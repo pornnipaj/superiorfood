@@ -1,12 +1,11 @@
-ion-content {
-    --ion-background-color: #EEEEEE;
+ion-content{
+    --ion-background-color:#EEEEEE;
 }
-
-.container-fluid {
+.container-fluid{
+    background-color: #EEEEEE;
     padding: 5px;
 }
-
-.tab {
+.tab{
     color: white;
     text-align: center;
     font-size: 2rem;
@@ -14,9 +13,4 @@ ion-content {
     margin-top: 5px;
     padding: 5px;
     margin-bottom: 5px;
-}
-
-.text {
-    padding: 0px;
-    color: #757575;
 }

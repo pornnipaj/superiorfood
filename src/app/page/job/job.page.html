@@ -8,5 +8,75 @@
 </ion-header>
 
 <ion-content>
+  <div class="container-fluid" >
+    <div class="page-content-inner"> 
+      <div class="row">        
+        <div class="col-md-2 background ">
+          <button class="btn btn-lg btn-block circle"
+            style="height: 50%; background-color: #D6D7D7;" [routerLink]="['/reportcheckpm']">รายการการตรวจเช็ค</button>
+            <button class="btn btn-lg btn-block circle"
+            style="height: 50%; background-color: #D6D7D7;" [routerLink]="['/calendarpm']">ปฏิทินการตรวจเช็ค</button>           
+        </div>
 
+        <div class="col-md-10" style="padding-left: 5px; padding-top: 5px;">
+          <div class="portlet box" style="background-color: #BBDEFB;">
+            <div class="portlet-title">
+              <div class="text-center" style="padding: 10px; color:black;">รายการผ่านการตรวจเช็คล่าสุด</div>
+            </div>
+            <div class="portlet-body">
+              <div class="row" [routerLink]="['/jobdetail']" routerDirection="forward">
+                <label class="col-2">
+                  ชื่อลูกค้า:
+                </label>
+                <label class="col-4">
+
+                </label>
+                <label class="col-2">
+                  วันที่กำหนด:
+                </label>
+                <label class="col-4">
+                </label>
+
+                <label class="col-2">
+                  สินค้าที่ติดตั้ง:
+                </label>
+                <label class="col-4">
+
+                </label>
+                <label class="col-2">
+                  เริ่มทำงาน:
+                </label>
+                <label class="col-4">
+                </label>
+
+                <label class="col-2">
+                  ชื่อสินค้า:
+                </label>
+                <label class="col-4">
+
+                </label>
+                <label class="col-2">
+                  เสร็จงาน:
+                </label>
+                <label class="col-4">
+                </label>
+
+                <label class="col-2">
+                  Serial No:
+                </label>
+                <label class="col-4">
+
+                </label>
+                <label class="col-2">
+                  เวลาที่ใช้:
+                </label>
+                <label class="col-4">
+                </label>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </ion-content>
