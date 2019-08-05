@@ -1,0 +1,111 @@
+ion-content {
+    --ion-background-color: #EEEEEE;
+}
+
+.container-fluid {
+    padding: 0px;
+    background-color: #EEEEEE;
+}
+
+.portlet {
+    padding: 0px;
+
+    .portlet-body {
+        padding-top: 0px;
+        margin-bottom: 20px;
+    }
+}
+
+.icon {
+    padding: 25px;
+    background: #D6D7D7;
+    color: black;
+    text-align: center;
+    border-radius: 2px !important;
+}
+
+.btnline {
+    width: 250px;
+    padding: 25px;
+    background: #D6D7D7;
+    color: black;
+    text-align: center;
+    border-radius: 2px !important;
+}
+
+.margin {
+    margin-top: 15px;
+}
+
+.listcheck {
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    background-color: #757575;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+
+.camera {
+    text-align: center;
+}
+
+
+.text {
+    color: black;
+    font-size: 1.5rem;
+    line-height: 3rem;
+}
+
+
+.btn {
+    text-align: center;
+    font-size: 1.5rem;
+    background-color: #D6D7D7;
+    border-radius: 3px !important;
+    width: 200px;
+}
+
+.status {
+    padding: 10px;
+    display: inline-block;
+    text-align: center;
+    font-size: 2rem;
+    background-color: #BBDEFB;
+    border-radius: 3px !important;
+    margin-bottom: 10px;
+}
+
+.head {
+    padding: 10px;
+    text-align: center;
+    font-size: 2rem;
+    background-color: #BBDEFB;
+    border-radius: 3px !important;
+}
+
+.time {
+    padding: 5px;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.wait {
+    padding: 5px;
+    font-size: 2rem;
+    color: #757575;
+    text-align: center;
+}
+.product {
+    color: black;
+    font-size: 1.6rem;
+    line-height: 4rem;
+    font-weight: bold;
+}
+.detailproduct {
+    color: black;
+    font-size: 1.5rem;
+    line-height: 4rem;
+}
+

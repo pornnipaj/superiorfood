@@ -2,11 +2,11 @@ ion-content{
     --ion-background-color:#EEEEEE;
 }
 ion-content {
-    font-size: 1.5rem;
+    font-size: 2rem;
     color: black;
 
     .btn {
-        font-size: 1.5rem;
+        font-size: 2rem;
     }
     .container-fluid{
         background-color: #EEEEEE;
@@ -16,8 +16,11 @@ ion-content {
         padding-top:  5px;
         padding-left: 5px;
         padding-right: 5px;
+        padding-bottom: 10px;
     }    
     .circle {
+        text-align: center;
+        font-size: 1.3rem;
         border-radius: 5px!important;
     }
 }

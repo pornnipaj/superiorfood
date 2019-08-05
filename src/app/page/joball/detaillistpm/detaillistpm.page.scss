@@ -3,7 +3,7 @@ ion-content {
 }
 
 .container-fluid {
-    padding: 0px;
+    background-color: #EEEEEE;
 }
 
 .portlet {
@@ -19,18 +19,32 @@ ion-content {
     color: black;
     text-align: center;
     font-size: 2rem;
-    background-color: #BDBDBD;
+    background-color: #BBDEFB;
     padding: 10px;
     margin-bottom: 10px;
+    border-radius: 2px !important;
 }
 
-.head {
-    font-size: 1.5rem;
+
+.list {
+    color: black;
+    font-size: 2rem;
+    background-color: #BDBDBD;
+    margin-top: 5px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.box {
+    background-color: white;
+}
+
+.text {
     font-weight: bold;
+    font-size: 1.6rem;
     line-height: 3rem;
 }
 
-.sub {
-    font-size: 1.5rem;
-    line-height: 3rem;
+.subtext {
+    font-size: 1rem;
 }
