@@ -12,7 +12,7 @@ ion-content {
     font-size: 2rem;
     background-color: #757575;
     margin-top: 5px;
-    padding: 5px;
+    padding: 10px;
     margin-bottom: 5px;
 }
 
@@ -20,4 +20,10 @@ ion-content {
     padding: 0px;
     color: #757575;
     font-size: 2rem;
+}
+.btn{
+    font-size: 1.5rem;
+    background-color: #BBDEFB;
+    border-radius: 3px!important;
+    padding-top: 0px;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AuthServiceService } from '../../auth-service.service';
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.page.html',
@@ -7,8 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OverviewPage implements OnInit {
 
-  test;
-  constructor() {}
+  data: any;
+  myDate;
+
+  constructor(public DataService: AuthServiceService) {
+    this.myDate = new Date().toISOString();
+
+    this.DataService.geteData().subscribe(data => {
+      this.data = data;
+      console.log(this.data);
+    });
+  }
 
   ngOnInit() {
   }

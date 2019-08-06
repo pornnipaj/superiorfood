@@ -3,74 +3,78 @@
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title>ภาพรวมการทำงาน</ion-title>
+        <ion-title text-left>ภาพรวมการทำงาน</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <div class="container-fluid">
         <div class="page-content-inner">
-            <div class="row" style="padding: 10px">
-                <div class="col-md-8">
-                    <div class="portlet green-sharp box">
+            <div class="row" style="padding: 5px">
+                <div class="col-8" style="padding: 0px;">
+                    <div class="portlet blue-sharp box">
                         <div class="portlet-title">
-                            <div class="tools pull-left">ข่าวใหม่
+                            <div class="tools pull-left head-new">ข่าวใหม่
                             </div>
-                            <div class="tools">
-                                วันนี้
-                            </div>
+                                <ion-datetime type="datetime-local" class="tool head-new pull-right" displayFormat="DD MMM YYYY" [(ngModel)]="myDate"></ion-datetime>
                         </div>
 
-                        <div class="portlet-body">
-                            <div class="col-12 text-center" style="background-color: silver; padding:5px;">
-                                ภาพรวมการทำงาน
+                        <div class="portlet-body" style="padding: 0px;">
+                            <div class="col-12 text-center head-white" style="background-color: #757575; padding:10px; color: white;">
+                               สรุปภาพรวมการทำงาน
                             </div>
-                            <div class="btn default pull-left" data-toggle="modal" href="#basic">ก่อนหน้า</div>
-                            <div class="btn red" data-toggle="modal" href="#basic">เดือน</div>
-                            <div class="btn default pull-right" data-toggle="modal" href="#basic">ถัดไป </div>
+                            <div class="col-12 text-center head-white" style="background-color: #BDBDBD; padding:10px;">
+                                <div class="btn  pull-left">ย้อนกลับ</div>
+                                <label class="head-white center">เดือน</label>
+                                <div class="btn  pull-right">ถัดไป </div>
+                            </div>
+
+
 
                             <div style="padding: 5px">
-                                <label class="col-6"> งานทั้งหมดในเดือน </label>
-                                <label class="col-6 text-right"> 0 </label>
+                                <label class="col-6 head"> งานทั้งหมดในเดือน </label>
+                                <label class="col-6 head text-right">0</label>
                             </div>
                             <div style="padding: 5px">
-                                <label class="col-6"> เสร็จไปแล้ว </label>
-                                <label class="col-6 text-right"> 0 </label>
+                                <label class="col-6 head"> เสร็จไปแล้ว </label>
+                                <label class="col-6 head text-right"> 0</label>
                             </div>
                             <div style="padding-top: 10px;">
-                                <div class="col-12 text-center" style="background-color: silver; padding-top:5px;">
+                                <div class="col-12 text-center head-white" style="background-color: silver; padding:10px;">
                                     งานที่ยัง Upload ไม่สำเร็จ
                                 </div>
 
                                 <div style="padding: 5px">
-                                    <label class="col-6"> ทั้งหมด </label>
-                                    <label class="col-6 text-right"> 0 </label>
+                                    <label class="col-6 head"> ทั้งหมด </label>
+                                    <label class="col-6 head text-right"> 0 </label>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="portlet green-sharp box">
+                <div class="col-4" style="padding: 0px; padding-left:5px; height: 100%;">
+                    <div class="portlet blue-sharp box">
                         <div class="portlet-title">
-                            <div class="tools pull-left">ข้อมูลพนักงาน</div>
+                            <div class="tools pull-left head">ข้อมูลพนักงาน
+                            </div>
                         </div>
+
                         <div class="portlet-body">
-                            <div>
-                                <label class="col-2"> ชื่อ </label>
-                                <label class="col-10"> คุณ </label>
+
+                            <div style="padding: 0px">
+                                <label class="col-5 head">ชื่อ</label>
+                                <label class="col-7 head">123</label>
                             </div>
-                            <div>
-                                <label class="col-2"> ชื่อผู้ใช้ </label>
-                                <label class="col-10"> wingplus </label>
+                            <div style="padding: 0px">
+                                <label class="col-5 head">ชื่อผู้ใช้</label>
+                                <label class="col-7 head"></label>
                             </div>
-                            <div>
-                                <label class="col-2"> หน้าที่ </label>
-                                <label class="col-10"> Service Technical </label>
+                            <div style="padding: 0px">
+                                <label class="col-5 head">หน้าที่</label>
+                                <label class="col-7 head"></label>
                             </div>
+
                         </div>
                     </div>
                 </div>

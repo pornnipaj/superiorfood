@@ -1,14 +1,17 @@
 ion-content {
     background-color: silver;
 }
-.container-fluid{
+
+.container-fluid {
     background-color: #EEEEEE;
     padding: 5px;
 }
-.card{
+
+.card {
     padding: 0px;
-    border-radius: 5px!important;
+    border-radius: 5px !important;
 }
+
 .text-card {
     margin: 10px;
     font-size: 2rem;
@@ -16,21 +19,24 @@ ion-content {
     font-weight: bold;
 
 }
-.tab{
+
+.tab {
     color: white;
     text-align: center;
     font-size: 2rem;
     background-color: #757575;
-    margin-top: 5px;
-    padding: 5px;
+    margin-top: 0px;
+    padding: 10px;
     margin-bottom: 5px;
 }
-.before{
+
+.before {
     padding: 0px;
     margin: 0px;
-    background-color:white;
+    background-color: white;
 }
-.before-text{
+
+.before-text {
     text-align: center;
     padding: 5px;
     margin: 0px;
@@ -39,20 +45,24 @@ ion-content {
     font-size: 2rem;
     font-weight: bold;
 }
-.check{
+
+.check {
     color: white;
     text-align: center;
     font-size: 2rem;
     background-color: #757575;
     margin-bottom: 0px;
-    padding: 5px;
+    padding: 10px;
+    margin-top: 5px;
 }
-.card-check{
+
+.card-check {
     margin: 0px;
     padding: 0px;
     background-color: white;
     margin-bottom: 0px;
 }
+
 .text-check {
     margin: 10px;
     font-size: 2rem;
@@ -61,3 +71,9 @@ ion-content {
     font-weight: bold;
 
 }
+
+img {
+    width: auto;
+    margin: auto;
+    display: block;
+    }

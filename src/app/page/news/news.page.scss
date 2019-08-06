@@ -1,3 +1,46 @@
 ion-content{
     --ion-background-color:#EEEEEE;
 }
+ion-content {
+    font-size: 2rem;
+    color: black;
+
+    .bg{
+        background-color: white;
+    }
+    .btn {
+        font-size: 2rem;
+    }
+    .card{
+        padding: 0px;
+        border-radius: 5px!important;
+    }
+    .container-fluid{
+        background-color: #EEEEEE;
+    }
+    .background{
+        background-color: white;
+        padding-top:  5px;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 10px;
+    }    
+    .circle {
+        text-align: center;
+        font-size: 1.3rem;
+        border-radius: 5px!important;
+        font-weight: bold;
+    }
+    .text{
+        text-align: center;
+        font-size: 1.5rem;
+    }
+    .head{
+        font-size: 1.3rem;
+        color: #777777;
+    }
+    .subhead{
+        font-size: 0.5rem;
+        color: #777777;
+    }
+}

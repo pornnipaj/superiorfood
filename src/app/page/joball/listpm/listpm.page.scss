@@ -1,10 +1,12 @@
-ion-content{
-    --ion-background-color:#EEEEEE;
+ion-content {
+    --ion-background-color: #EEEEEE;
 }
-.container-fluid{
+
+.container-fluid {
     background-color: #EEEEEE;
 }
-.tab{
+
+.tab {
     color: white;
     font-size: 2rem;
     background-color: #757575;
@@ -12,20 +14,45 @@ ion-content{
     padding: 10px;
     text-align: center;
 }
-.list{
+
+.list {
     color: black;
     font-size: 2rem;
     background-color: #BDBDBD;
     margin-top: 5px;
     padding: 10px;
-    text-align: center;
 }
 
-.btn{
+.btn {
     font-size: 2rem;
     background-color: #BBDEFB;
-    border-radius: 3px!important;
+    border-radius: 3px !important;
 }
-.text{
+
+.text {
     font-size: 2rem;
+}
+
+.btns {
+    background-color: #D6D7D7;
+    padding-top: 0px;
+    width: 80px;
+    margin: 0px;
+    padding: 0px;
+
+    .fa {
+        color: black;
+    }
+}
+
+.btn-text {
+    color: black;
+    margin: 5px;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.head-white {
+    font-size: 2rem;
+    color: white;
 }

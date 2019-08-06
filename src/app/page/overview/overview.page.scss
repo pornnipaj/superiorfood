@@ -1,14 +1,27 @@
 ion-content{
     --ion-background-color:#EEEEEE;
-}
-ion-content {
-    font-size: 1.5rem;
-
-    .btn {
-        font-size: 1.5rem;
-    }
+    height: 100%;
 }
 
 .text {
-    color: white;
+    color: #FFFFFF;
+}
+.head{
+    font-size: 1.5rem;
+    color: black;
+}
+.head-new{
+    font-size: 1.5rem;
+    color: black;
+}
+.btn{
+    font-size: 1.5rem;
+    background-color: #D6D7D7;
+    border-radius: 3px!important;
+    padding-top: 0px;
+    width: 70px;
+}
+.head-white{
+    color: #FFFFFF;
+    font-size: 1.5rem;
 }
