@@ -27,7 +27,7 @@ ion-content {
         // position: fixed;
         // width: 100%;
     }    
-    .circle {
+    .circle { 
         text-align: center;
         font-size: 1em;
         border-radius: 5px!important;
@@ -43,5 +43,11 @@ ion-content {
     .subhead{
         font-size: 1rem;
         color: #777777;
-    }
+    }   
+    div.ex2 {
+        overflow-y: hidden;
+      }
+      div.ex3 {
+        overflow-y: scroll;
+      }
 }
