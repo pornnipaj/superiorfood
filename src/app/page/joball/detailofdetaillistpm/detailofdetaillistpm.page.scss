@@ -17,7 +17,7 @@ ion-content {
 }
 
 .icon {
-    padding: 25px;
+    padding: 5px;
     background: #D6D7D7;
     color: black;
     text-align: center;
@@ -25,8 +25,8 @@ ion-content {
 }
 
 .btnline {
-    width: 250px;
-    padding: 25px;
+    width: auto;
+    padding: 5px;
     background: #D6D7D7;
     color: black;
     text-align: center;
@@ -56,6 +56,7 @@ ion-content {
     color: black;
     font-size: 1em;
     line-height: 3rem;
+    align-items: center;
 }
 
 
@@ -74,7 +75,7 @@ ion-content {
     font-size: 1em;
     background-color: #BBDEFB;
     border-radius: 3px !important;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .head {
@@ -86,13 +87,14 @@ ion-content {
 }
 
 .time {
-    padding: 5px;
+    padding: 0px;
     font-size: 1em;
     text-align: center;
+    font-weight: bold;
 }
 
 .wait {
-    padding: 5px;
+    padding: 0px;
     font-size: 1em;
     color: #757575;
     text-align: center;
@@ -101,7 +103,7 @@ ion-content {
 .product {
     color: black;
     font-size: 1em;
-    line-height: 1em;
+    margin-bottom: 5px;
     font-weight: bold;
 }
 
@@ -109,4 +111,11 @@ ion-content {
     color: black;
     font-size: 1em;
     line-height: 1em;
+}
+.ex2 {
+    overflow-y: hidden;
+}
+
+.ex3 {
+    overflow-y: scroll;
 }

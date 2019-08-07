@@ -3,7 +3,7 @@ ion-content {
 }
 
 .container-fluid {
-    padding: 5px;
+    padding: 0px;
 }
 
 .tab {
@@ -11,15 +11,16 @@ ion-content {
     text-align: center;
     font-size: 1em;
     background-color: #757575;
-    margin-top: 5px;
     padding: 5px;
     margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 .text {
     padding: 0px;
     color: #757575;
     font-size: 1em;
+    align-items: center;
 }
 .btn{
     font-size: 1em;
