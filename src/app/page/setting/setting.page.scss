@@ -1,3 +1,25 @@
 ion-content{
     --ion-background-color:#EEEEEE;
 }
+.polaroid {
+    width: 250px;
+    box-shadow:  rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+  }
+  
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+  }
+  .head{
+      font-size: 0.5em;
+      text-align: center;
+      color: #7C7C7C;
+  }
+  .btn{
+    font-size: 1em;
+    background-color: #D6D7D7;
+    border-radius: 3px!important;
+    margin-top: 20px;
+}
