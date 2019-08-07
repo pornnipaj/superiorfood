@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detailofdetaillistpm.page.scss'],
 })
 export class DetailofdetaillistpmPage implements OnInit {
+myDate;
+  constructor() {
+    this.myDate = new Date().toISOString();
 
-  constructor() { }
+  }
 
   ngOnInit() {
   }
