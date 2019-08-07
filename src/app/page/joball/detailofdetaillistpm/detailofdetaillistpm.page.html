@@ -10,25 +10,21 @@
 <ion-content>
   <div class="container-fluid" style="position: fixed;">
     <div class="row" style="padding: 5px;">
-      <div class="col-md-6 col-sm-6 ex3" style="padding-right: 5px; max-height:400px;">
+      <div class="col-6 col-md-6 col-sm-6 ex3" style="padding-right: 5px; max-height:400px;">
         <div class="portlet light">
           <div class="portlet-body">
             <div class="listcheck text-center">รายการการตรวจเช็ค 05-08-2019                             
               <ion-datetime type="datetime-local" class="head-new pull-right"
-              displayFormat="HH:mm:ss" [(ngModel)]="myDate" style="padding:0px;"></ion-datetime>
+              displayFormat="HH:mm:ss" [(ngModel)]="myDate" style="padding:0px; font-size: 1.1em;"></ion-datetime>
 </div>
-            <div>
-              <div class="col-12 text control-label">
-                <div class="row">
-                  <div class="col-sm-1 text-center" style="padding-left: 0px;padding-right: 0px;">
+                <div class="row margin" style="margin-left: 5px;">
+                  <div class="col-sm-1" style="padding-left: 0px;padding-right: 0px;">
                     <i class="fa fa-square-o fa-2x responsive" style="margin-right: 5px;color:#3880FF;"></i>
                   </div>
-                  <div class="col-sm-11" style="margin-top: -5px;padding-left: 0px;">
+                  <div class="col-sm-11 text" style="margin-top: -5px;padding-left: 0px;">
                     รายการที่ 1 ถ่ายภาพก่อนการตรวจสอบ
                   </div>
-                </div>
               </div>
-              <div>
                 <label class="col-4 camera responsive">
                   <i class="fa fa-camera fa-3x icon responsive"></i>
                 </label>
@@ -38,19 +34,15 @@
                 <label class="col-4 camera responsive">
                   <i class="fa fa-camera fa-3x icon responsive"></i>
                 </label>
-              </div>
-            </div>
             <div class="margin">
-              <label class="col-12 text">
-                <div class="row">
-                  <div class="col-sm-1 text-center" style="padding-left: 0px;padding-right: 0px;">
+                <div class="row" style="margin-left: 5px;">
+                  <div class="col-sm-1" style="padding-left: 0px;padding-right: 0px;">
                     <i class="fa fa-square-o fa-2x" style="margin-right: 5px;color:#3880FF;"></i>
                   </div>
-                  <div class="col-sm-11" style="margin-top: -5px;padding-left: 0px;">
+                  <div class="col-sm-11 text" style="margin-top: -5px;padding-left: 0px;">
                     รายการที่ 2 ถ่ายภาพหลังการตรวจสอบ
                   </div>
                 </div>
-              </label>
               <div>
                 <label class="col-4 camera responsive">
                   <i class="fa fa-camera fa-3x icon responsive"></i>
@@ -64,79 +56,69 @@
               </div>
             </div>
             <div class="margin">
-              <label class="col-12 text">
-                <div class="row">
-                  <div class="col-sm-1 text-center" style="padding-left: 0px;padding-right: 0px;">
+                <div class="row" style="margin-left: 5px;">
+                  <div class="col-sm-1" style="padding-left: 0px;padding-right: 0px;">
                     <i class="fa fa-square-o fa-2x" style="margin-right: 5px;color:#3880FF;"></i>
                   </div>
-                  <div class="col-sm-11" style="margin-top: -5px;padding-left: 0px;">
+                  <div class="col-sm-11 text" style="margin-top: -5px;padding-left: 0px;">
                     รายการที่ 3 รายการที่ต้องตรวจเช็ค
                   </div>
                 </div>
-              </label>
               <label class="btn btn-lg" style="margin-left: 50px;">
                 รายการตรวจเช็ค
               </label>
             </div>
             <div class="margin">
-              <label class="col-12 text">
-                <div class="row">
-                  <div class="col-sm-1 text-center" style="padding-left: 0px;padding-right: 0px;">
+                <div class="row" style="margin-left: 5px;">
+                  <div class="col-sm-1" style="padding-left: 0px;padding-right: 0px;">
                     <i class="fa fa-square-o fa-2x" style="margin-right: 5px;color:#3880FF;"></i>
                   </div>
-                  <div class="col-sm-11" style="margin-top: -5px;padding-left: 0px;">
+                  <div class="col-sm-11 text" style="margin-top: -5px;padding-left: 0px;">
                     รายการที่ 4 ลายเซ็นต์ผู้รับผิดชอบ
                   </div>
                 </div>
-              </label>
-              <label style="margin-left: 50px;">
-                <i class="fa fa-pencil fa-3x btnline"></i>
+              <label style="margin-left: 50px;" responsive>
+                <i class="fa fa-pencil fa-3x btnline" responsive></i>
               </label>
             </div>
             <div class="margin">
-              <label class="col-12 text">
-                <div class="row">
-                  <div class="col-sm-1 text-center" style="padding-left: 0px;padding-right: 0px;">
+                <div class="row" style="margin-left: 5px;">
+                  <div class="col-sm-1" style="padding-left: 0px;padding-right: 0px;">
                     <i class="fa fa-square-o fa-2x" style="margin-right: 5px;color:#3880FF;"></i>
                   </div>
-                  <div class="col-sm-11" style="margin-top: -5px;padding-left: 0px;">
+                  <div class="col-sm-11 text" style="margin-top: -5px;padding-left: 0px;">
                     รายการที่ 5 ประเมินการทำงาน
                   </div>
                 </div>
-              </label>
               <label class="btn btn-lg" style="margin-left: 50px;">
                 ประเมิน
               </label>
             </div>
 
             <div class="margin">
-              <label class="col-12 text">
-                <div class="row">
-                  <div class="col-sm-1 text-center" style="padding-left: 0px;padding-right: 0px;">
+                <div class="row" style="margin-left: 5px;">
+                  <div class="col-sm-1" style="padding-left: 0px;padding-right: 0px;">
                     <i class="fa fa-square-o fa-2x" style="margin-right: 5px;color:#3880FF;"></i>
                   </div>
-                  <div class="col-sm-11" style="margin-top: -5px;padding-left: 0px;">
+                  <div class="col-sm-11 text" style="margin-top: -5px;padding-left: 0px;">
                     รายการที่ 6 สรุปผลการตรวจเช็คและยืนยันการปิดงาน
                   </div>
                 </div>
-              </label>
               <label class="btn btn-lg" style="margin-left: 50px;">
                 รหัสยืนยันตัวตนลูกค้า
               </label>
             </div>
 
             <div class="margin">
-              <label class="col-12 text">
-                <div class="row">
-                  <div class="col-sm-1 text-center" style="padding-left: 0px;padding-right: 0px;">
+                <div class="row" style="margin-left: 5px;">
+                  <div class="col-sm-1" style="padding-left: 0px;padding-right: 0px;">
                     <i class="fa fa-square-o fa-2x" style="margin-right: 5px;color:#3880FF;"></i>
                   </div>
-                  <div class="col-sm-11" style="margin-top: -5px;padding-left: 0px;">
+                  <div class="col-sm-11 text" style="margin-top: -5px;padding-left: 0px;">
                     รายการที่ 7 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ
                   </div>
                 </div>
-              </label>
-              <label class="btn btn-lg" style="margin-left: 50px;">
+              <label class="btn btn-lg" style="margin-left: 50px; margin-bottom: 5px;">
                 บันทึก
               </label>
             </div>
