@@ -10,71 +10,106 @@
 <ion-content>
     <div class="container-fluid">
         <div class="page-content-inner">
-            <div class="row" style="padding: 5px">
-                <div class="col-8" style="padding: 0px; background-color: white;">
-                    <div class="portlet box gray-sharp box" style="margin-right: 5px;">
-                        <div class="portlet-title tools" style="padding: 5px; margin-bottom: 0px; background-color: white;">
-                            <div class="btn pull-left" style="margin-right: 5px; background-color: #BBDEFB; width: 30px;">0 </div><label
-                                class="text">ข่าวใหม่</label>
-                            <ion-datetime type="datetime-local" class="tool head-new pull-right"
-                                displayFormat="DD MMM YYYY" [(ngModel)]="myDate" style="padding:0px;"></ion-datetime>
-                        </div>
-                        <div class="portlet-body" style="padding: 0px;">
-                            <div class="col-12 text-center head-white"
-                                style="background-color: #757575; padding: 5px; color: white;">
-                                สรุปภาพรวมการทำงาน
+            <div class="row" style="padding: 0px">
+                <div id="col12Main" class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px;">
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding: 0px; background-color: #EEEEEE">
+                        <div id="col8Main" class="col-md-8 col-sm-8 col-xs-12"
+                            style="padding: 2px; background-color: #EEEEEE;">
+                            <div id="box" class="portlet box gray-sharp">
+                                <div class="" style="padding: 2px; background-color: white; height: 20px;">
+                                    <div class="btn pull-left text-center"
+                                        style="margin-right: 5px; padding: 2px; background-color: #BBDEFB; width: 30px;">
+                                        0
+                                    </div>
+                                    <label class="text">ข่าวใหม่</label>
+                                    <ion-datetime type="datetime-local" class="tool head-new pull-right"
+                                        displayFormat="DD MMM YYYY" [(ngModel)]="myDate" style="padding:0px;">
+                                    </ion-datetime>
+                                </div>
+                                <div class="portlet-body" style="padding: 0px;">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 text-center head-white"
+                                        style="background-color: #757575; padding: 2px; color: white; height: 20px;">
+                                        สรุปภาพรวมการทำงาน
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12 col-xs-12 text-center head-white"
+                                        style="background-color: #BDBDBD; padding: 2px; height: 20px;">
+                                        <div class="btn pull-left text-center" style="padding: 0px;">ย้อนกลับ</div>
+                                        <label class="head-white center">สิงหาคม 2019</label>
+                                        <div class="btn pull-right text-center" style="padding: 0px;">
+                                            ถัดไป </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div style="height: 20px;">
+                                        <div class="col-md-6 col-sm-6 col-xs-6 head top"> งานทั้งหมดในเดือน </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-6 head top text-right">0</div>
+                                    </div>
+                                    <div style="height: 20px;">
+                                        <label class="col-md-6 col-sm-6 col-xs-6 head top"> เสร็จไปแล้ว </label>
+                                        <label class="col-md-6 col-sm-6 col-xs-6 head top text-right">0</label>
+                                    </div>
+
+                                    <div style="padding: 0px; height: 20px;">
+                                        <div class="col-md-12 col-sm-12 col-xs-12 text-center head-white"
+                                            style="background-color: silver; padding:2px; height: 20px;">
+                                            งานที่ยัง Upload ไม่สำเร็จ
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div style="height: 20px; background-color: white;">
+                                                <div class="col-md-6 col-sm-6 col-xs-6 head top">ทั้งหมด </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-6 head top text-right">0</div>
+                                            </div>
+                                            <div style="height: 20px; background-color: white;">
+                                                <label class="col-md-6 col-sm-6 col-xs-6 head top">  </label>
+                                                <label class="col-md-6 col-sm-6 col-xs-6 head top text-right"></label>
+                                            </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-12 text-center head-white" style="background-color: #BDBDBD; padding: 5px;">
-                                <div class="btn  pull-left">ย้อนกลับ</div>
-                                <label class="head-white center">สิงหาคม 2019</label>
-                                <div class="btn  pull-right">ถัดไป </div>
+                        </div>
+                        <div id="col4Main" class="col-md-4 col-sm-4 col-xs-12"
+                            style="padding: 2px; background-color: #EEEEEE;">
+                            <div class=""
+                                style="padding: 2px; margin-bottom: 0px; background-color: #BDBDBD; height: 20px;">
+                                ข้อมูลพนักงาน
                             </div>
 
-                            <div>
-                                <label class="col-6 head top"> งานทั้งหมดในเดือน </label>
-                                <label class="col-6 head text-right">0</label>
-                            </div>
-                            <div>
-                                <label class="col-6 head top"> เสร็จไปแล้ว </label>
-                                <label class="col-6 head text-right"> 0</label>
-                            </div>
-                            <div style="padding-top: 5px;">
-                                <div class="col-12 text-center head-white"
-                                    style="background-color: silver; padding:5px;">
-                                    งานที่ยัง Upload ไม่สำเร็จ
+                            <div class="portlet-body" style="padding: 0px; margin:0px; background-color: white;">
+
+                                <div style="padding: 0px; height: 20px;">
+                                    <label class="col-md-5 col-sm-5 col-xs-6 head top">ชื่อ</label>
+                                    <label class="col-md-7 col-sm-7 col-xs-6 head top">คุณ เขตตะวัน ไพรพฤกษ์</label>
+                                </div>
+                                <div style="padding: 0px; height: 20px;">
+                                    <label class="col-md-5 col-sm-5 col-xs-6 head top">ชื่อผู้ใช้</label>
+                                    <label class="col-md-7 col-sm-7 col-xs-6 head top">wingplustech</label>
+                                </div>
+                                <div style="padding: 0px; height: 20px;">
+                                    <label class="col-md-5 col-sm-5 col-xs-6 head top">หน้าที่</label>
+                                    <label class="col-md-7 col-sm-7 col-xs-6 head top">Service technician</label>
+                                </div>
+                                <div style="padding: 0px; height: 20px;">
+                                    <label class="col-md-5 col-sm-5 col-xs-6"></label>
+                                    <label class="col-md-7 col-sm-7 col-xs-6"></label>
                                 </div>
 
-                                <div>
-                                    <label class="col-6 head top"> ทั้งหมด </label>
-                                    <label class="col-6 head text-right"> 0 </label>
+                                <div class=""
+                                    style="padding: 2px; margin-bottom: 0px; background-color: #BDBDBD; height: 20px;">
+                                    ข้อมูลระบบ
+                                </div>
+
+                                <div class="portlet-body" style="padding: 0px; margin:0px; background-color: white;">
+
+                                    <div style="padding: 0px; height: 20px;">
+                                        <label class="col-md-5 col-sm-5 col-xs-6 head top">พื้นที่ว่าง</label>
+                                        <label class="col-md-7 col-sm-7 col-xs-6 head top">6.78</label>
+                                    </div>
+                                    <div style="padding: 0px; height: 20px;">
+                                        <label class="col-md-5 col-sm-5 col-xs-6 head top">App Ver.</label>
+                                        <label class="col-md-7 col-sm-7 col-xs-6 head top">1.080</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-4" style="padding: 0px; background-color: white;">
-                    <div class="portlet ">
-                        <div class="portlet-title" style="background-color: #BDBDBD; padding: 0px; margin: 0px;">
-                            <div class="pull-left head" style="padding: 5px;">ข้อมูลพนักงาน
-                            </div>
-                        </div>
-
-                        <div class="portlet-body" style="padding: 0px; margin:0px; background-color: white;">
-
-                            <div style="padding: 0px">
-                                <label class="col-5 head top">ชื่อ</label>
-                                <label class="col-7 head top">คุณ เขตตะวัน ไพรพฤกษ์</label>
-                            </div>
-                            <div style="padding: 0px">
-                                <label class="col-5 head top">ชื่อผู้ใช้</label>
-                                <label class="col-7 head top">wingplustech</label>
-                            </div>
-                            <div style="padding: 0px">
-                                <label class="col-5 head top">หน้าที่</label>
-                                <label class="col-7 head top">Service technician</label>
-                            </div>
-
                         </div>
                     </div>
                 </div>

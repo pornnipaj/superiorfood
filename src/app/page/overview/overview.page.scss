@@ -1,5 +1,4 @@
-ion-content{
-    --ion-background-color:#EEEEEE;
+ion-content {
     height: 100%;
     font-size: 1em;
 }
@@ -7,32 +6,37 @@ ion-content{
 .text {
     color: black;
     align-items: center;
+    text-align: center;
+    padding: 0px;
 }
-.head{
-    font-size: 1em;
-    color: black;
-}
-.top{
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-.head-new{
-    font-size: 1em;
-    color: black;
-}
-.btn{
-    font-size: 1em;
-    background-color: #D6D7D7;
-    border-radius: 3px!important;
-    padding-top: 0px;
-    width: auto;
+
+.head {
+    font-size: 0.8em;
     color: black;
 }
 
-.head-white{
+.top {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.head-new {
+    font-size: 1em;
+    color: black;
+}
+
+.btn {
+    font-size: 0.8em;
+    background-color: #D6D7D7;
+    border-radius: 3px !important;
+    padding-top: 0px;
+    width: 50px;
+    color: black;
+    padding: 2px;
+    text-align: center;
+}
+
+.head-white {
     color: #FFFFFF;
     font-size: 1em;
-}
-.blue-sharp{
-    background-color: white!important;
 }

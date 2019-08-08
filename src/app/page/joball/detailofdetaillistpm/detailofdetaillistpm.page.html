@@ -26,8 +26,9 @@
                   </div>
               </div>
               <div style="margin-left: 15px; padding:0px;">
-                <label class="col-4 camera responsive">
+                <label class="col-4 camera responsive" (click)="takephoto()">
                   <i class="fa fa-camera fa-3x icon responsive"></i>
+                  <img src="{{ myphoto }}"/>
                 </label>
                 <label class="col-4 camera responsive">
                   <i class="fa fa-camera fa-3x icon responsive"></i>
@@ -122,7 +123,7 @@
                     รายการที่ 7 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ
                   </div>
                 </div>
-              <label class="btn btn-lg" style="margin-left: 50px; margin-bottom: 5px;">
+              <label class="btn btn-lg" style="margin-left: 30px; margin-bottom: 5px;">
                 บันทึก
               </label>
             </div>

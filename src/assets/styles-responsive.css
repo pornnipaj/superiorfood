@@ -1,0 +1,22 @@
+/* @media (min-width: 640px) and (max-width: 760px) {
+  #col12Main{
+      background-color: red;
+  }
+}
+
+@media (min-width: 340px) and (max-width: 639px) {
+    #col12Main{
+        background-color: #EEEEEE;
+        height: 731px;
+    }
+    #col8Main{
+        background-color: white;
+        height: 731px;
+        border: 3px solid #EEEEEE;
+    }
+    #col4Main{
+        background-color: white;
+        height: 731px;
+        border: 3px solid #EEEEEE;
+    }
+  } */
