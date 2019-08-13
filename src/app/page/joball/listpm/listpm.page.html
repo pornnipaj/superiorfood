@@ -10,7 +10,8 @@
 <ion-content>
   <div class="container-fluid">
     <div class="row" style="padding: 0px; padding-left: 5px; padding-right: 5px;">
-      <div class="col-12 text-center head-white" style="background-color: #757575; padding:5px; margin-top: 5px;">
+      <div class="col-12 text-center head-white" style="background-color: #757575; margin-top: 5px;
+      padding: 5px;">
         <div class="btns  pull-left">
           <label class="btn-text">ปัจจุบัน</label></div>
         <label class="head-white">รายการ PM เดือน สิงหาคม 2019</label>
@@ -28,11 +29,15 @@
         </div>
         <div class="col-12 text" style="padding: 0px; padding-right: 0px;">
           <ion-list style="padding: 0px; margin: 0px; padding-right: 0px;">
-            <ion-item class="text" [routerLink]="['/joball/listpm/detaillistpm']">
-              <input type="checkbox" disabled style="margin-right: 5px;">
-              <i class="fa fa-user" style="margin-right: 5px;"></i>
-              <ion-label class="text" style="padding: 0px; margin: 0px;">ชาบูชิ บิ๊กซี ติวานนท์</ion-label>
-              <label class="btn text" style="padding: 5px;">ติดตั้ง: 1 / สำเร็จ: 0</label>
+            <ion-item class="text">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <i class="fa fa-user" style="margin-right: 5px;"></i>
+                <label class="form-check-label text" for="exampleCheck1">ชาบูชิ บิ๊กซี ติวานนท์</label>
+              </div>
+              <ion-label class="text" style="padding: 0px; margin: 0px;"></ion-label>
+              <label class="btn text" style="padding: 5px; margin:0px;"
+                [routerLink]="['/joball/listpm/detaillistpm']">ติดตั้ง: 1 / สำเร็จ: 0</label>
             </ion-item>
           </ion-list>
         </div>

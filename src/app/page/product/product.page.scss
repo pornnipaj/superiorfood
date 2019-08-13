@@ -18,15 +18,18 @@ ion-content {
 .tab {
     color: black;
     text-align: center;
-    font-size: 1em;
+    font-size: 0.8em;
     background-color: #BDBDBD;
+    margin: 0px;
 }
 
 .head {
-    font-size: 1em;
+    font-size: 0.8em;
     font-weight: bold;
+    padding: 0px;
 }
 
 .sub {
-    font-size: 1em;
+    font-size: 0.8em;
+    padding: 0px;
 }

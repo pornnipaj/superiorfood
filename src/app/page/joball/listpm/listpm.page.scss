@@ -5,10 +5,12 @@ ion-content {
 .container-fluid {
     background-color: #EEEEEE;
 }
-
+.form-check-label{
+    color: black;
+}
 .tab {
     color: white;
-    font-size: 1em;
+    font-size: 0.9em;
     background-color: #757575;
     margin-top: 5px;
     padding: 5px;
@@ -17,29 +19,29 @@ ion-content {
 
 .list {
     color: black;
-    font-size: 1em;
+    font-size: 0.9em;
     background-color: #BDBDBD;
     margin-top: 5px;
     padding: 5px;
 }
 
 .btn {
-    font-size: 1em;
+    font-size: 0.9em;
     background-color: #BBDEFB;
     border-radius: 3px !important;
     padding-top: 0px;
 }
 
 .text {
-    font-size: 1em;
+    font-size: 0.9em;
 }
 
 .btns {
     background-color: #D6D7D7;
-    padding-top: 0px;
     width: 80px;
     margin: 0px;
-    padding: 0px;
+    padding: 5px;
+    text-align: center;
 
     .fa {
         color: black;
@@ -48,14 +50,16 @@ ion-content {
 
 .btn-text {
     color: black;
-    margin: 5px;
+    padding: 0px;
     text-align: center;
-    font-size: 1em;
+    font-size: 0.9em;
+    margin: 0px;
 }
 
 .head-white {
-    font-size: 1em;
+    font-size: 0.9em;
     color: white;
+    padding:5px; margin:0px;
 }
 
 .item-native {

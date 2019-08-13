@@ -1,42 +1,72 @@
-ion-content {
-    height: 100%;
-    font-size: 1em;
+ion-content{
+    --ion-background-color:#EEEEEE;
 }
-
-.text {
-    color: black;
-    align-items: center;
-    text-align: center;
-    padding: 0px;
-}
+    .background{
+        background-color: white;
+        padding: 0px;
+        height: 282px;
+    }  
+    .background-col4{
+        padding:  0px;
+        padding-left: 5px;
+        padding-bottom: 10px;
+    }    
 
 .head {
-    font-size: 0.8em;
+    font-size: 0.9em;
     color: black;
+    padding: 5px;
+    margin: 0px;
 }
-
-.top {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.head-new {
-    font-size: 1em;
+.text-employee {
+    font-size: 0.9em;
     color: black;
+    margin: 0px;
+    padding: 0px;
+    padding: 5px;
+}
+.portlet-body{
+    background-color: white;
 }
 
 .btn {
-    font-size: 0.8em;
+    font-size: 0.9em;
     background-color: #D6D7D7;
     border-radius: 3px !important;
     padding-top: 0px;
-    width: 50px;
     color: black;
-    padding: 2px;
     text-align: center;
+    padding: 2px;
+    width: 60px;
 }
 
 .head-white {
     color: #FFFFFF;
-    font-size: 1em;
+    font-size: 0.9em;
+    margin: 0px;
+}
+.tab-overview{
+    background-color: #757575; 
+    padding: 5px; 
+    color: white;
+    text-align: center;
+}
+.tab-month{
+    background-color: #BDBDBD; 
+    padding: 5px; 
+    color: white;
+    text-align: center;
+}
+.tab-employee{
+    background-color: #BDBDBD; 
+    padding: 5px; 
+    color: black;
+}
+.btn-upload{
+    padding: 3px;
+    font-size: 0.8em;
+    background-color: #D6D7D7;
+    border-radius: 3px!important;
+    margin-top: 10px;
+    text-align: center;
 }

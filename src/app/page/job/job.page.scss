@@ -1,15 +1,12 @@
 ion-content{
     --ion-background-color:#EEEEEE;
 }
-ion-content {
-    font-size: 1em;
-    color: black;
 
     .bg{
         background-color: white;
     }
     .btn {
-        font-size: 1em;
+        font-size: 0.9em;
     }
     .card{
         padding: 0px;
@@ -29,7 +26,7 @@ ion-content {
     }    
     .circle { 
         text-align: center;
-        font-size: 1em;
+        font-size: 0.9em;
         border-radius: 5px!important;
     }
     .text{
@@ -37,11 +34,11 @@ ion-content {
         font-size: 1em;
     }
     .head{
-        font-size: 1em;
+        font-size: 0.9em;
         color: #777777;
     }
     .subhead{
-        font-size: 1rem;
+        font-size: 0.9em;
         color: #777777;
     }   
     .ex2 {
@@ -50,4 +47,8 @@ ion-content {
       .ex3 {
         overflow-y: scroll;
       }
-}
+      @media (min-width: 340px) and (max-width: 640px) {
+        .subhead{
+            font-size: 0.7em;
+        }
+      }
