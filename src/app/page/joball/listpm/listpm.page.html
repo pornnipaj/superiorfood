@@ -9,8 +9,80 @@
 
 <ion-content>
   <div class="container-fluid">
-    <div class="row" style="padding: 0px; padding-left: 5px; padding-right: 5px;">
-      <div class="col-12 text-center head-white" style="background-color: #757575; margin-top: 5px;
+    <div class="row" style="padding: 5px;">
+        <div class="col-12" style="padding-top: 10px; padding: 0px;">
+            <div class="btn-group btn-group btn-group-justified btn-lg" style="padding: 0px;">
+                <a href="javascript:;" class="btn default btn-lg" style="padding: 5px;"> ปัจจุบัน </a>
+                <a href="javascript:;" class="btn blue btn-lg" style="width: 50%; padding: 5px;"> รายการ PM เดือนสิงหาคม 2019 </a>
+                <a href="javascript:;" class="btn default btn-lg" style="padding: 5px;"> ก่อนหน้า </a>
+                <a href="javascript:;" class="btn default btn-lg" style="padding: 5px;"> ถัดไป </a>
+            </div>
+          </div>
+          <div class="col-12" style="padding-top: 10px; padding: 0px;">
+          <div class="portlet box blue">
+        <div class="portlet-title">
+          <div class="caption">
+            <i class="fa fa-circle"></i>วันจันทร์ 05 สิงหาคม 2019</div>
+        </div>
+        <div class="portlet-body" style="padding: 5px;">
+          <!--BEGIN TABS-->
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab_1_1">
+              <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 339px;">
+                <div class="scroller" style="height: 339px; overflow: hidden; width: auto;" data-always-visible="1"
+                  data-rail-visible="0" data-initialized="1">
+                  <ul class="feeds">
+                    <li [routerLink]="['/joball/listpm/detaillistpm']">
+                      <div class="col1">
+                        <div class="cont">
+                          <div class="cont-col1">
+                            <div class="label label-sm label-default">
+                              <i class="fa fa-user"></i>
+                            </div>
+                          </div>
+                          <div class="cont-col2">
+                            <div class="desc" style="color: black; font-size:1em;"> 
+                                คุณ สมภพ แสนกล้า
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col2">
+                        <a href="javascript:;" class="btn btn-sm blue btn-lg" style="padding: 5px;">
+                            <i class="fa fa-file-o"></i> ติดตั้ง: 1 / สำเร็จ: 0 </a>
+                      </div>
+                    </li>
+                    <li [routerLink]="['/joball/listpm/detaillistpm']">
+                        <div class="col1">
+                          <div class="cont">
+                            <div class="cont-col1">
+                              <div class="label label-sm label-default">
+                                <i class="fa fa-user"></i>
+                              </div>
+                            </div>
+                            <div class="cont-col2">
+                              <div class="desc" style="color: black; font-size:1em;"> 
+                                  คุณ สมภพ แสนกล้า
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col2">
+                          <a href="javascript:;" class="btn btn-sm blue btn-lg" style="padding: 5px;">
+                              <i class="fa fa-file-o"></i> ติดตั้ง: 1 / สำเร็จ: 0 </a>
+                        </div>
+                      </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <!--END TABS-->
+        </div>
+      </div>
+          </div>
+      <!-- <div class="col-12 text-center head-white" style="background-color: #757575; margin-top: 5px;
       padding: 5px;">
         <div class="btns  pull-left">
           <label class="btn-text">ปัจจุบัน</label></div>
@@ -41,7 +113,7 @@
             </ion-item>
           </ion-list>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </ion-content>

@@ -1,54 +1,60 @@
 ion-content{
     --ion-background-color:#EEEEEE;
 }
-
-    .bg{
-        background-color: white;
-    }
-    .btn {
-        font-size: 0.9em;
-    }
-    .card{
-        padding: 0px;
-        border-radius: 5px!important;
-    }
-    .container-fluid{
-        background-color: #EEEEEE;
-    }
-    .background{
-        background-color: white;
-        padding-top:  5px;
-        padding-left: 5px;
-        padding-right: 5px;
-        padding-bottom: 10px;
-        // position: fixed;
-        // width: 100%;
-    }    
-    .circle { 
-        text-align: center;
-        font-size: 0.9em;
-        border-radius: 5px!important;
-    }
-    .text{
-        text-align: center;
-        font-size: 1em;
-    }
-    .head{
-        font-size: 0.9em;
-        color: #777777;
-    }
-    .subhead{
-        font-size: 0.9em;
-        color: #777777;
-    }   
+.btn{
+    width: 100%;
+    border-radius: 5px!important;
+}
+label{
+  font-size: 1em;
+}
+    // .bg{
+    //     background-color: white;
+    // }
+    // .btn {
+    //     font-size: 0.9em;
+    // }
+    // .card{
+    //     padding: 0px;
+    //     border-radius: 5px!important;
+    // }
+    // .container-fluid{
+    //     background-color: #EEEEEE;
+    // }
+    // .background{
+    //     background-color: white;
+    //     padding-top:  5px;
+    //     padding-left: 5px;
+    //     padding-right: 5px;
+    //     padding-bottom: 10px;
+    //     // position: fixed;
+    //     // width: 100%;
+    // }    
+    // .circle { 
+    //     text-align: center;
+    //     font-size: 0.9em;
+    //     border-radius: 5px!important;
+    // }
+    // .text{
+    //     text-align: center;
+    //     font-size: 1em;
+    // }
+    // .head{
+    //     font-size: 0.9em;
+    //     color: #777777;
+    // }
+    // .subhead{
+    //     font-size: 0.9em;
+    //     color: #777777;
+    // }   
     .ex2 {
         overflow-y: hidden;
       }
       .ex3 {
         overflow-y: scroll;
       }
-      @media (min-width: 340px) and (max-width: 640px) {
-        .subhead{
-            font-size: 0.7em;
-        }
-      }
+    //   @media (min-width: 340px) and (max-width: 640px) {
+    //     .subhead{
+    //         font-size: 0.7em;
+    //     }
+    //   }

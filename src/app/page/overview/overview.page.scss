@@ -1,72 +1,76 @@
 ion-content{
     --ion-background-color:#EEEEEE;
 }
-    .background{
-        background-color: white;
-        padding: 0px;
-        height: 282px;
-    }  
-    .background-col4{
-        padding:  0px;
-        padding-left: 5px;
-        padding-bottom: 10px;
-    }    
-
-.head {
-    font-size: 0.9em;
-    color: black;
-    padding: 5px;
-    margin: 0px;
-}
-.text-employee {
-    font-size: 0.9em;
-    color: black;
-    margin: 0px;
-    padding: 0px;
+label{
+    font-size: 1em;
     padding: 5px;
 }
-.portlet-body{
-    background-color: white;
-}
+//     .background{
+//         background-color: white;
+//         padding: 0px;
+//         height: 282px;
+//     }  
+//     .background-col4{
+//         padding:  0px;
+//         padding-left: 5px;
+//         padding-bottom: 10px;
+//     }    
 
-.btn {
-    font-size: 0.9em;
-    background-color: #D6D7D7;
-    border-radius: 3px !important;
-    padding-top: 0px;
-    color: black;
-    text-align: center;
-    padding: 2px;
-    width: 60px;
-}
+// .head {
+//     font-size: 0.9em;
+//     color: black;
+//     padding: 5px;
+//     margin: 0px;
+// }
+// .text-employee {
+//     font-size: 0.9em;
+//     color: black;
+//     margin: 0px;
+//     padding: 0px;
+//     padding: 5px;
+// }
+// .portlet-body{
+//     background-color: white;
+// }
 
-.head-white {
-    color: #FFFFFF;
-    font-size: 0.9em;
-    margin: 0px;
-}
-.tab-overview{
-    background-color: #757575; 
-    padding: 5px; 
-    color: white;
-    text-align: center;
-}
-.tab-month{
-    background-color: #BDBDBD; 
-    padding: 5px; 
-    color: white;
-    text-align: center;
-}
-.tab-employee{
-    background-color: #BDBDBD; 
-    padding: 5px; 
-    color: black;
-}
-.btn-upload{
-    padding: 3px;
-    font-size: 0.8em;
-    background-color: #D6D7D7;
-    border-radius: 3px!important;
-    margin-top: 10px;
-    text-align: center;
-}
+// .btn {
+//     font-size: 0.9em;
+//     background-color: #D6D7D7;
+//     border-radius: 3px !important;
+//     padding-top: 0px;
+//     color: black;
+//     text-align: center;
+//     padding: 2px;
+//     width: 60px;
+// }
+
+// .head-white {
+//     color: #FFFFFF;
+//     font-size: 0.9em;
+//     margin: 0px;
+// }
+// .tab-overview{
+//     background-color: #757575; 
+//     padding: 5px; 
+//     color: white;
+//     text-align: center;
+// }
+// .tab-month{
+//     background-color: #BDBDBD; 
+//     padding: 5px; 
+//     color: white;
+//     text-align: center;
+// }
+// .tab-employee{
+//     background-color: #BDBDBD; 
+//     padding: 5px; 
+//     color: black;
+// }
+// .btn-upload{
+//     padding: 3px;
+//     font-size: 0.8em;
+//     background-color: #D6D7D7;
+//     border-radius: 3px!important;
+//     margin-top: 10px;
+//     text-align: center;
+// }
