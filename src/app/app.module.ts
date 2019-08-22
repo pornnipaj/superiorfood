@@ -11,12 +11,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthServiceService } from '../app/auth-service.service';
 import { Camera } from '@ionic-native/camera/ngx';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
+    FullCalendarModule,
     IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,

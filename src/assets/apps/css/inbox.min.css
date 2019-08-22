@@ -103,7 +103,7 @@
 
 .inbox .input-actions .btn {
     margin-left: 10px;
-    font-size: 1em;
+    font-size: 0.9em;
 }
 
 .inbox .inbox-view-info {
@@ -121,7 +121,7 @@
 .inbox .inbox-view-info .inbox-info-btn .btn-group {
     float: right;
     margin-top: 5px;
-    font-size: 1em;
+    font-size: 0.9em;
 }
 
 .inbox .inbox-body,
@@ -318,7 +318,7 @@
 
 .inbox-attached span {
     margin-right: 3px;
-    font-size: 1em;
+    font-size: 0.9em;
 }
 
 .inbox-attached strong {

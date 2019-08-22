@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { CalendarpmPage } from './calendarpm.page';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
+    FullCalendarModule,
     RouterModule.forChild(routes)
   ],
   declarations: [CalendarpmPage]

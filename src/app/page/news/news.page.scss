@@ -2,14 +2,14 @@ ion-content{
     --ion-background-color:#EEEEEE;
 }
 ion-content {
-    font-size: 1em;
+    font-size: 0.9em;
     color: black;
 
     .bg{
         background-color: white;
     }
     .btn {
-        font-size: 1em;
+        font-size: 0.9em;
     }
     .card{
         padding: 0px;
@@ -27,20 +27,20 @@ ion-content {
     }    
     .circle {
         text-align: center;
-        font-size: 1em;
+        font-size: 0.9em;
         border-radius: 5px!important;
         font-weight: bold;
     }
     .text{
         text-align: center;
-        font-size: 1em;
+        font-size: 0.9em;
     }
     .head{
-        font-size: 1em;
+        font-size: 0.9em;
         color: #777777;
     }
     .subhead{
-        font-size: 1em;
+        font-size: 0.9em;
         color: #777777;
     }
 }

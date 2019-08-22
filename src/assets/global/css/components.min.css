@@ -1899,8 +1899,8 @@ li [class^=icon-].icon-large {
 .simplelineicons-demo .item-box {
     display: inline-block;
     font-size: 16px;
-    margin: 0 -.22em 1em 0;
-    padding-left: 1em;
+    margin: 0 -.22em 0.9em 0;
+    padding-left: 0.9em;
     width: 100%
 }
 
@@ -2142,7 +2142,7 @@ fieldset[disabled] .btn.white:not(.btn-outline):hover {
     color: #666;
     background-color: #e1e5ec;
     border-color: #e1e5ec;
-    font-size: 1em;
+    font-size: 0.9em;
 }
 
 .btn.default:not(.btn-outline).active,
@@ -2311,11 +2311,11 @@ fieldset[disabled] .btn.dark:not(.btn-outline):hover {
 
 ion-content {
     --ion-background-color: #EEEEEE;
-    font-size: 1em;
+    font-size: 0.9em;
 }
 
 .btn.blue:not(.btn-outline) {
-    font-size: 1em;
+    font-size: 0.9em;
     color: #FFF;
     background-color: #3598dc;
     border-color: #3598dc
@@ -10614,7 +10614,7 @@ body[ng-controller] .modal {
 .portlet.box.blue>.portlet-title>.caption,
 .portlet.box.blue>.portlet-title>.caption>i {
     color: #FFF;
-    font-size: 1em;
+    font-size: 0.9em;
 }
 
 .portlet.box.blue>.portlet-title>.actions .btn-default {
@@ -17694,7 +17694,7 @@ body[ng-controller] .modal {
     text-align: center;
     font-weight: 600;
     font-size: 14px;
-    letter-spacing: .01em;
+    letter-spacing: .00.9em;
     line-height: 14px;
     margin-bottom: 8px;
     margin-right: 10px
@@ -20200,7 +20200,7 @@ body[ng-controller] .modal {
     position: absolute;
     top: 15px;
     left: -2px;
-    padding: .5em 1em;
+    padding: .5em 0.9em;
     z-index: 5
 }
 
@@ -20212,16 +20212,16 @@ body[ng-controller] .modal {
 .mt-element-ribbon .ribbon.ribbon-vertical-left {
     top: -2px;
     left: 15px;
-    padding-top: 1em;
-    padding-bottom: 1em
+    padding-top: 0.9em;
+    padding-bottom: 0.9em
 }
 
 .mt-element-ribbon .ribbon.ribbon-vertical-right {
     top: -2px;
     left: auto;
     right: 15px;
-    padding-top: 1em;
-    padding-bottom: 1em
+    padding-top: 0.9em;
+    padding-bottom: 0.9em
 }
 
 .mt-element-ribbon .ribbon.ribbon-shadow {
@@ -20379,8 +20379,8 @@ body[ng-controller] .modal {
 .mt-element-ribbon .ribbon>.ribbon-sub.ribbon-bookmark:after {
     border-left: 21px solid;
     border-right: 20px solid;
-    border-bottom: 1em solid transparent !important;
-    bottom: -1em;
+    border-bottom: 0.9em solid transparent !important;
+    bottom: -0.9em;
     content: '';
     height: 0;
     left: 0;
