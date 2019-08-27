@@ -9,7 +9,18 @@
 
 <ion-content>
   <div class="container-fluid" >
-<div style="background-color: white; padding: 2px;">
+      <form #form="ngForm" (ngSubmit)="logForm(form)" novalidate>
+          <ion-item>
+            <ion-label>Todo</ion-label>
+            <ion-input type="text" required [(ngModel)]="todo.title" ngControl="title"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Description</ion-label>
+            <ion-textarea [(ngModel)]="todo.description" ngControl="description"></ion-textarea>
+          </ion-item>
+          <button ion-button type="submit" block>Add Todo</button>
+        </form>
+<!-- <div style="background-color: white; padding: 2px;">
     <full-calendar [plugins]="calendarPlugins" 
     [editable]="true"
     [eventLimit]="true"
@@ -24,6 +35,6 @@
         { title: 'คิงคอง บุฟเฟ่ต์ ยูไนเต็ด สีลม', date: '2019-08-05' }
       ]">
     </full-calendar>
-  </div>
+  </div> -->
   </div>
 </ion-content>
