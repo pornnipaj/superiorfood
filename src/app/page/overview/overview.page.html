@@ -53,11 +53,11 @@
                                 <i class="fa fa-user"></i>ข้อมูลพนักงาน</div>
 
                         </div>
-                        <div class="portlet-body" style="padding: 2px;">
+                        <div class="portlet-body" style="padding: 2px;" *ngFor="let item of data">
                             <label class="col-4">ชื่อ</label>
-                            <label class="col-8">คุณ เขตตะวัน ไพรพฤกษ์</label>
+                            <label class="col-8">{{item.Name}}</label>
                             <label class="col-4">ชื่อผู้ใช้</label>
-                            <label class="col-8">wingplustech</label>
+                            <label class="col-8">kamthorn</label>
                             <label class="col-4">หน้าที่</label>
                             <label class="col-8">Service technician</label>
                         </div>

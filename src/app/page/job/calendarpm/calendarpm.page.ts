@@ -9,9 +9,9 @@ import interactionPlugin from '@fullcalendar/interaction';
   styleUrls: ['./calendarpm.page.scss'],
 })
 export class CalendarpmPage implements OnInit {
-  
+  calendarPlugins = [dayGridPlugin ,interactionPlugin]
+
   constructor() {  
- 
   }
 
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthServiceService } from '../../auth-service.service';
 
 @Component({
   selector: 'app-joball',
@@ -6,8 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./joball.page.scss'],
 })
 export class JoballPage implements OnInit {
+  data: any;
+  constructor(public DataService: AuthServiceService) { 
 
-  constructor() { }
+    this.DataService.getEm().subscribe(data => {
+      this.data = data;
+      console.log(this.data);
+    });
+    
+  }
 
   ngOnInit() {
   }

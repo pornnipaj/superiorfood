@@ -26,32 +26,19 @@
                   <div class="scroller" style="height: 339px; overflow: hidden; width: auto;" data-always-visible="1"
                     data-rail-visible="0" data-initialized="1">
                     <ul class="feeds">
-                      <li [routerLink]="['/joball/listpm']">
+                      <li *ngFor="let item of data" [routerLink]="['/joball/listpm']">
                         <div class="">
                           <div class="pull-left">
                             <div class="desc" style="color: black; font-size:0.9em; padding: 5px;">
-                              <label class="custom-control-label" for="defaultUnchecked">คุณ สมภพ แสนกล้า</label>
+                              <label class="custom-control-label" for="defaultUnchecked">{{item.Name}}</label>
                             </div>
                           </div>
                           <div class="pull-right">
                             <a href="javascript:;" class="btn btn-sm blue" style="padding: 5px;">
-                              งาน: 20 / เสร็จ: 0 </a>
+                              งาน: {{item.workall}} / เสร็จ: {{item.workfinish}} </a>
                           </div>
                         </div>
-                      </li>
-                      <li [routerLink]="['/joball/listpm']">
-                        <div class="">
-                          <div class="pull-left">
-                            <div class="desc" style="color: black; font-size:0.9em; padding: 5px;">
-                              <label class="custom-control-label" for="defaultUnchecked">คุณ อำนาจ ราวะดี</label>
-                            </div>
-                          </div>
-                          <div class="pull-right">
-                            <a href="javascript:;" class="btn btn-sm blue" style="padding: 5px;">
-                              งาน: 20 / เสร็จ: 0 </a>
-                          </div>
-                        </div>
-                      </li>
+                      </li>                      
                     </ul>
                   </div>
                 </div>

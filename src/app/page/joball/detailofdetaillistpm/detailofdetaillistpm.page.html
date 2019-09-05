@@ -14,7 +14,9 @@
           <div class="portlet box blue">
             <div class="portlet-title">
               <div class="caption">
-                <i class="fa fa-sticky-note-o"></i>รายการการตรวจเช็ค 05-08-2019</div>
+                <i class="fa fa-sticky-note-o"></i>
+                รายการการตรวจเช็ค <ion-datetime type="datetime-local" class="head-new pull-right tools" displayFormat="DD-MMM-YYYY"
+                [(ngModel)]="myDate" style="padding:0px; font-size: 1.;"></ion-datetime></div>
               <div class="tools">
                 Time: <ion-datetime type="datetime-local" class="head-new pull-right tools" displayFormat="HH:mm:ss"
                   [(ngModel)]="myDate" style="padding:0px; font-size: 1.;"></ion-datetime>
@@ -34,14 +36,14 @@
                 <div class="row">
                   <div class="col-md-4 col-4 text-center">
                     <i class="fa fa-camera fa-4x icon responsive center"></i>
+                    <p><img src="{{myphoto}}"></p>
+                  </div>
+                  <div class="col-md-4 col-4 text-center">
+                    <i class="fa fa-camera fa-4x icon responsive center" (click)="Take()"></i>
                     <img src="{{ myphoto }}" />
                   </div>
                   <div class="col-md-4 col-4 text-center">
-                    <i class="fa fa-camera fa-4x icon responsive center"></i>
-                    <img src="{{ myphoto }}" />
-                  </div>
-                  <div class="col-md-4 col-4 text-center">
-                    <i class="fa fa-camera fa-4x icon responsive center"></i>
+                    <i class="fa fa-camera fa-4x icon responsive center" (click)="Take()"></i>
                     <img src="{{ myphoto }}" />
                   </div>
                 </div>
@@ -60,15 +62,15 @@
                 </div>
                 <div class="row">
                   <div class="col-md-4 col-4 text-center" style="padding-left: 10px;">
-                    <i class="fa fa-camera fa-4x icon responsive center"></i>
+                    <i class="fa fa-camera fa-4x icon responsive center" (click)="Take()"></i>
                     <img src="{{ myphoto }}" />
                   </div>
                   <div class="col-md-4 col-4 text-center">
-                    <i class="fa fa-camera fa-4x icon responsive center"></i>
+                    <i class="fa fa-camera fa-4x icon responsive center" (click)="Take()"></i>
                     <img src="{{ myphoto }}" />
                   </div>
                   <div class="col-md-4 col-4 text-center">
-                    <i class="fa fa-camera fa-4x icon responsive center"></i>
+                    <i class="fa fa-camera fa-4x icon responsive center" (click)="Take()"></i>
                     <img src="{{ myphoto }}" />
                   </div>
                 </div>
@@ -107,7 +109,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
-                    <a href="javascript:;" class="btn default"> รายการตรวจเช็ค </a>
+                    <a href="javascript:;" class="btn default"> ลายเซ็นต์ผู้รับผิดชอบ </a>
                   </div>
                   <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
                   </div>

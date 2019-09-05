@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../../auth-service.service';
+import { DatetimeOptions } from '@ionic/core';
 
 @Component({
   selector: 'app-job',
@@ -7,11 +8,12 @@ import { AuthServiceService } from '../../auth-service.service';
   styleUrls: ['./job.page.scss'],
 })
 export class JobPage implements OnInit {
+
 data: any;
 
   constructor(public DataService: AuthServiceService) {
 
-    this.DataService.geteData().subscribe(data => {
+    this.DataService.geteJob().subscribe(data => {
       this.data = data;
       console.log(this.data);
     });
