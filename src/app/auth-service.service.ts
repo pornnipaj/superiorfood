@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthServiceService {
-
+test;
   constructor(private http: HttpClient) { }
 
   geteJob() {
@@ -23,5 +23,10 @@ export class AuthServiceService {
     return this.http.get(
       'http://superior.wingplusweb.com/API/Employee.ashx'
     );    
+  }
+  getTest(){
+    return this.http.get(
+    'http://stock.wingplusapp.com/DataService.ashx'
+    );
   }
 }

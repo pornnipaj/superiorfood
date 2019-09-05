@@ -24,9 +24,9 @@
                                 <a href="javascript:;" class="btn default" style="padding: 5px; width: 70%;"> สิงหาคม </a>
                                 <a href="javascript:;" class="btn blue" style="padding: 5px;"> ถัดไป </a>
                             </div>
-                            <div [routerLink]="['/menu/joball']">
+                            <div [routerLink]="['/menu/joball']" *ngFor="let test of test">
                                 <label class="col-6">งานทั้งหมด</label>
-                                <label class="col-6 text-right">0</label>
+                                <label class="col-6 text-right">{{test.Name}}</label>
                             </div>
                             <label class="col-6">เสร็จไปแล้ว</label>
                             <label class="col-6 text-right">0</label>
