@@ -1,45 +1,25 @@
-<ion-content>
-  <div class="col-3">
-      <div class="portlet blue box">
-          <div class="portlet-title">
-              <div class="caption">
-                  <i class="fa fa-cogs"></i>ข้อมูลโดยรวม </div>
-              
-          </div>
-          <div class="portlet-body">
-              <label class="col-8">ชื่อลูกค้า: </label>
-              <label class="col-4">ผู้ตรวจเช็ค: </label>
-              <label class="col-8">โทรศัพท์: </label>
-              <label class="col-4">วันที่กำหนด: </label>
-              <label class="col-8">ที่อยู่: </label>
-              <label class="col-4">ต่างจากวันกำหนด: </label>
-              <label class="col-8">สินค้าที่ติดตั้ง: </label>
-              <label class="col-4">เริ่มทำงาน: </label>
-              <label class="col-8">Serial No: </label>
-              <label class="col-4">เสร็จงาน: </label>
-              <label class="col-8">ชื่อสินค้า: </label>
-              <label class="col-4">เวลาที่ใช้: </label>                                                                                                                         
-          </div>
-      </div>
-  </div>
-  <!-- <div class="modal-dialog modal-login">
-        <div class="modal-content">
-          <div class="modal-body">
-            <img class="img" src="../../assets/img/logo.png">
-            <div class="head">เข้าสู่ระบบโดยใช้บัญชีของระบบ eService</div>
-            <form action="" method="post">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Email" required="required">
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" required="required">
-              </div>
-              <div class="form-group">
-                <input type="submit" class="btn btn-primary btn-block btn-lg" value="เข้าสู่ระบบ" [routerLink]="['/menu']">
-              </div>
-            </form>				
-            <div class="text">ลืมรหัสผ่านกรุณาติดต่อผู้ดูแลระบบ</div>
-          </div>
+<ion-content>  
+<form #form="ngForm" (ngSubmit)="register(form)">
+  <ion-grid>
+    <ion-row color="primary" justify-content-center>
+      <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+        <div text-center>
+            <img src="../../assets/img/logo.png" alt="" />
+          <h3>Login your account!</h3>
         </div>
-      </div> -->
+        <div padding>
+          <ion-item>
+            <ion-input  name="username" type="text" [(ngModel)]="username" placeholder="Name" ngModel required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input name="password" type="password" [(ngModel)]="password" placeholder="Password" ngModel required></ion-input>
+          </ion-item>
+        </div>
+        <div padding>
+          <ion-button  size="large" type="submit" [disabled]="form.invalid" expand="block" (click)="login()">Login</ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</form>
   </ion-content>

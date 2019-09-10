@@ -11,5 +11,10 @@ export class SettingPage implements OnInit {
 
   ngOnInit() {
   }
+  
 
+logout(){
+  window.location.href="/login";
+  localStorage.clear();
+}
 }

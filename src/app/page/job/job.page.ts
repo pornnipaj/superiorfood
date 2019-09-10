@@ -13,7 +13,7 @@ data: any;
 
   constructor(public DataService: AuthServiceService) {
 
-    this.DataService.geteJob().subscribe(data => {
+    this.DataService.getJob().subscribe(data => {
       this.data = data;
       console.log(this.data);
     });

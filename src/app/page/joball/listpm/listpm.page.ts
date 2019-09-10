@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AuthServiceService } from '../../../auth-service.service';
 @Component({
   selector: 'app-listpm',
   templateUrl: './listpm.page.html',
@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListpmPage implements OnInit {
 
-  constructor() { }
+  constructor(public DataService: AuthServiceService) { 
+    
+    console.log(this.DataService.EmpID)
+  }
 
   ngOnInit() {
   }
