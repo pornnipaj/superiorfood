@@ -33,18 +33,17 @@ EmpID;
   }
   insert(body) {
     return new Promise((resovle, reject) => {
-      var headers = new Headers();
-      headers.append("Accept", "application/json");
-      headers.append("Content-Type", "application/json");
-      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
+      // var headers = new Headers();
+      // headers.append("Accept", "application/json");
+      // headers.append("Content-Type", "application/json");
 
-      this.http.post(this.api_url, JSON.stringify(body), option).subscribe(data => {
+      var header = { headers: {'Content-Type': 'application/json'} };
+
+      this.http.post(this.api_url, JSON.stringify(body), header).subscribe(data => {
         resovle(data);        
       }, error => {
         reject(error)
       });
     });
-  }
-
-  
+  }  
 }

@@ -1,12 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../../auth-service.service';
 import * as $ from 'jquery';
+import { HTTP } from '@ionic-native/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { PostDataService } from '../../post-data.service';
 
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.page.html',
   styleUrls: ['./overview.page.scss'],
 })
+
+
+
 export class OverviewPage implements OnInit {
 
   data: any;
@@ -23,7 +29,7 @@ export class OverviewPage implements OnInit {
   };
   test:any;
 
-  constructor(public DataService: AuthServiceService) {
+  constructor(public DataService: AuthServiceService,public http: Http,public postDataService:PostDataService) {
     this.ChangeMonth();
 
     this.Today = new Date();
@@ -31,6 +37,7 @@ export class OverviewPage implements OnInit {
       this.data = data;
       // console.log(this.data);
     });
+
   }
 
   // onchangeMonth(type) {
@@ -311,18 +318,18 @@ export class OverviewPage implements OnInit {
     console.log(this.intYear)
   }
 
-  insert() {
+  insert(body) {
     this.form.month = this.intMonth
     this.form.year = this.intYear
-    this.test = "123"    
-    alert(this.DataService.insert(this.test));
+    this.test = "123"   
+    alert(this.DataService.insert(this.test).then((this.test)))
     this.DataService.insert(this.test).then((data) => {
       console.log(data);
     },(err) => {
-      console.log(err);
-      
-    });
-  }
+      console.log(err);      
+    });   
+  } 
+
   OnPostJSON() {   
       //Receipt
       var documentData = {
@@ -358,6 +365,7 @@ export class OverviewPage implements OnInit {
           }
       });
   }     
+
   ngOnInit() {
   }
   // getDate(){
