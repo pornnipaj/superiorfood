@@ -5,7 +5,7 @@ import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common
   providedIn: 'root'
 })
 export class PostDataService {
-  api_url = 'http://superior.wingplusweb.com/API/Receipt.aspx?id=';
+  api_url = 'http://superior.wingplusweb.com/API/ServicePlans.ashx?id=';
  // api_url:any;
   constructor(private http: HttpClient) { }
 
@@ -29,7 +29,7 @@ export class PostDataService {
   getData() {
     alert(1);
     return this.http.get(     
-      'http://superior.wingplusweb.com/API/Receipt.aspx'
+      'http://superior.wingplusweb.com/API/ServicePlans.ashx'
     );
   }
 
