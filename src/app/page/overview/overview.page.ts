@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../../auth-service.service';
 import * as $ from 'jquery';
 import { HTTP } from '@ionic-native/http';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { PostDataService } from '../../post-data.service';
+// import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/observable';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-overview',
@@ -23,13 +27,18 @@ export class OverviewPage implements OnInit {
   textShow;
   all;
   finish;
-  form :any = {
-    month : '',
-    year : ''
+  form: any = {
+    emp_id: '',
+    month: '',
+    year: ''
   };
-  test:any;
+  test: any;
+  myphoto: any;
 
-  constructor(public DataService: AuthServiceService,public http: Http,public postDataService:PostDataService) {
+  constructor(public DataService: AuthServiceService,
+    public http: HttpClient,
+    public postDataService: PostDataService,
+    private camera: Camera) {
     this.ChangeMonth();
 
     this.Today = new Date();
@@ -67,6 +76,7 @@ export class OverviewPage implements OnInit {
   //   }    
   // }
 
+  //#region 
   ChangeMonth() {
     const month = new Date().getMonth() + 1;
     this.intMonth = month;
@@ -317,54 +327,116 @@ export class OverviewPage implements OnInit {
     console.log(this.intMonth)
     console.log(this.intYear)
   }
+  //#endregion
 
-  insert(body) {
-    this.form.month = this.intMonth
-    this.form.year = this.intYear
-    this.test = "123"   
-    alert(this.DataService.insert(this.test).then((this.test)))
-    this.DataService.insert(this.test).then((data) => {
+  insert() {
+    // let headerOptions: any = { 'Content-Type': 'application/json' };
+    // let headers = new Headers(headerOptions);
+    // return this.http.post('localhost:41603/API/Receipt.aspx', JSON.stringify(data), new RequestOptions({ headers: headers }))
+    //   .subscribe((response: Response) => {
+    //     return console.log(JSON.stringify(response));
+    //   });
+
+    // this.form.emp_id = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b"
+    // this.form.month = this.intMonth
+    // this.form.year = this.intYear
+    // console.log(this.form);
+
+
+    // return new Promise((resovle, reject) => {
+    //   let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    //   this.http.post('http://localhost:41603/API/Receipt.aspx', (this.form), option).subscribe(data => {
+    //     resovle(data);
+    //   }, error => {
+    //     reject(error)
+    //   });
+    // });
+
+    // alert(this.postDataService.insert(this.form).then((this.form)))
+    this.postDataService.url("http://localhost:41603/API/Receipt.aspx?id=" + this.form.emp_id + "&month=" + this.form.month + "&year=" + this.form.year);
+    // this.postDataService.insert(this.form.emp_id + "&month=" + this.form.month + "&year=" + this.form.year).then((data) => {
+    //    const json = JSON.stringify(data);
+    //    console.log(json);
+    // },(err) => {
+    //   console.log(err);      
+    // });   
+
+    this.onReceive();
+
+    // const req = this.http.post('http://jsonplaceholder.typicode.com/posts', {
+    //   emp_id: 'b99f4959-d1e7-44ec-98e2-07a6d0247a6b',
+    //   month: this.intMonth,
+    //   year: this.intYear
+    // })
+    //   .subscribe(
+    //     res => {
+    //       console.log(res);
+    //     },
+    //     err => {
+    //       console.log("Error occured",err);
+    //     }
+    //   );
+  }
+
+  onReceive() {
+    this.postDataService.getData().subscribe(data => {
+      // this.data = data;
       console.log(data);
-    },(err) => {
-      console.log(err);      
-    });   
-  } 
+    });
+  }
 
-  OnPostJSON() {   
-      //Receipt
-      var documentData = {
-          "DocTypeID": "5",
-          "DocID": "M19H00068",
-          "Email": "patchank@scg.com",
-          "LineID": "aimmilulu",
-          "EnName": "SCG Logistics Management",
-          "JobName": "", "DocDetailList": [{ "Origin": "ตำบล หลังสวน, ตำบล หลังสวน อำเภอ หลังสวน ชุมพร 86110 ประเทศไทย", "TruckMaxWeight": "2.500", "PONo": "PO19H0008", "ShipperRequestID": "110", "ConfirmDate": "2019-08-08 23:09:58.0", "Product": "สินค้าเกษตร", "AdminRemarks": "", "OrderID": "M19H00068", "Loc3ContactName": "", "CreateDate": "2019-08-07 22:10:02.0", "ShipperID": "77", "DeadheadDestination": "0.000", "DestinationLongitude": "100.536541", "UpdateDate": "2019-08-09 15:30:18.0", "Loc4Longitude": "0.000000", "Loc3Time": "", "Remarks": "", "Loc1Label": "จุดที่ 1: รับสินค้า", "DestinationName": "กรุงเทพมหานคร", "PickUpTime": "", "Loc4Latitude": "0.000000", "Loc4PlaceID": "", "ID": "68", "BillingNo": "", "Loc1Type": "1", "Loc3PlaceID": "", "Distance": "532483.000", "Loc4Time": "", "Status": "6", "OriginContactName": "คุณหนูแดง", "Loc4Name": "", "Loc4Detail": "", "DestinationContactTel": "086-885-1360", "DestinationPlaceID": "ChIJd0Wbks6e4jAR3MWLIOib5Eg", "Loc2Label": "จุดที่ 2: ส่งสินค้า", "ConfirmUserID": "254", "Loc3Name": "", "Weight": "2.500", "WHTNo": "", "Loc4": "", "DeliveryTemplateID": "2", "CarrierID": "5", "DeadheadOrigin": "0.000", "Valid": "false", "NoOfTrucks": "1", "Loc3": "", "QoutationNo": "QT19H0007", "DestinationLatitude": "100.536541", "DestinationDate": "2019-08-10 00:00:00.0", "DestinationContactName": "คุณสรศักดิ", "Destination": "11/5 ราชดำริ แขวง ปทุมวัน เขตปทุมวัน กรุงเทพมหานคร 10330 ประเทศไทย", "PickUpToDate": "2019-08-08 00:00:00.0", "OriginPlaceID": "ChIJf6mPmg56VjAREDE4LLwjAgQ", "DriverName": "", "Confirm": "1", "DriverLineID": "", "Loc4Type": "0", "UserID": "254", "PickUpFormDate": "2019-08-08 00:00:00.0", "TruckLicenseID": "", "ReceiptNo": "", "Loc3ContactTel": "", "OriginDetail": "อำเภอหลังสวน จังหวัดชุมพรnสหกรณ์การเกษตร หลังสวน", "DestinationTime": "10.00", "SpecialRequest": "รับสินค้าที่ต้นทาง 21.00 น. วันที่ 8 สค. ส่งถึงปลายทางภายใน 08.00 น. วันที่ 9 สค.nnรถเป็นปิคอัพคอกสูงสำหรับขนผลไม้", "BuyingPrice": "6500.000", "HandlingUnitID": "6", "Loc2Type": "2", "Loc3Latitude": "0.000000", "Loc3Date": "2019-08-09 00:00:00.0", "InvoiceNo": "IV19H0006", "DeliveryOrderHeaderID": "68", "ProductID": "4", "SourceLatitude": "9.948601", "ProductRemark": "มังคุดบรรจุกล่อง", "SourceLongitude": "99.081991", "OriginContactTel": "087-277-1441", "OriginName": "อำเภอหลังสวน,จ.ชุมพร", "DestinationDetail": "ร้านโครงการหลวง สาขาเซ็นทรัลเวิลด์", "Loc4ContactName": "", "UnitPrice": "6800.000", "CarrierRequestID": "0", "BookingNo": "BK19H0005", "TruckType": "4 ล้อ ตู้ทึบ", "HandlingUnit": "Box - กล่อง", "Loc4ContactTel": "", "Loc4Date": "2019-08-09 00:00:00.0", "Loc3Longitude": "0.000000", "TruckTypeID": "2", "Loc3Type": "0", "Loc3Detail": "", "DriverContact": "" }], "Photo": "", "Latitude": "0.000000", "CreditTerm": "7", "Subdistrict": "102901", "CreateDate": "2019-02-22 08:38:07.0", "Name": "พัชญ์ชนก", "ReferCode": "", "CompanyAddress": "เลขที่ 1 ถนนปูนซิเมนต์ไทย  เขตบางซื่อ บางซื่อ กรุงเทพมหานคร 10800", "CompanyName": "บจก. เอสซีจี โลจิสติกส์ แมเนจเม้นท์", "UpdateDate": "2019-08-09", "PhoneNo": "0614105517", "UserID": "176", "GetReferByCode": "", "Zipcode": "10800", "ID": "77", "Notes": "", "Status": "1", "ItemTax": "1", "Tier": "1", "TaxTypeID": "53", "InvoiceNo": "IV19H0006", "TaxID": "0105533060315", "CompanyType": "1", "Longitude": "0.000000", "ItemVat": "7", "Province": "10", "SaleName": "แพรวพรรณ", "OrderDate": "2019-08-09", "PrintType": "1", "DocRemarks": "", "OwnerID": "77", "Valid": "false", "RegisProgress": "50", "Volume": "0.000", "FullName": "พัชญ์ชนก คุ้มพิทักษ์", "Tel": "", "LastName": "คุ้มพิทักษ์", "District": "1029"
+  OnPostJSON() {
+    //Receipt
+    var documentData = {
+      "DocTypeID": "5",
+      "DocID": "M19H00068",
+      "Email": "patchank@scg.com",
+      "LineID": "aimmilulu",
+      "EnName": "SCG Logistics Management",
+      "JobName": "", "DocDetailList": [{ "Origin": "ตำบล หลังสวน, ตำบล หลังสวน อำเภอ หลังสวน ชุมพร 86110 ประเทศไทย", "TruckMaxWeight": "2.500", "PONo": "PO19H0008", "ShipperRequestID": "110", "ConfirmDate": "2019-08-08 23:09:58.0", "Product": "สินค้าเกษตร", "AdminRemarks": "", "OrderID": "M19H00068", "Loc3ContactName": "", "CreateDate": "2019-08-07 22:10:02.0", "ShipperID": "77", "DeadheadDestination": "0.000", "DestinationLongitude": "100.536541", "UpdateDate": "2019-08-09 15:30:18.0", "Loc4Longitude": "0.000000", "Loc3Time": "", "Remarks": "", "Loc1Label": "จุดที่ 1: รับสินค้า", "DestinationName": "กรุงเทพมหานคร", "PickUpTime": "", "Loc4Latitude": "0.000000", "Loc4PlaceID": "", "ID": "68", "BillingNo": "", "Loc1Type": "1", "Loc3PlaceID": "", "Distance": "532483.000", "Loc4Time": "", "Status": "6", "OriginContactName": "คุณหนูแดง", "Loc4Name": "", "Loc4Detail": "", "DestinationContactTel": "086-885-1360", "DestinationPlaceID": "ChIJd0Wbks6e4jAR3MWLIOib5Eg", "Loc2Label": "จุดที่ 2: ส่งสินค้า", "ConfirmUserID": "254", "Loc3Name": "", "Weight": "2.500", "WHTNo": "", "Loc4": "", "DeliveryTemplateID": "2", "CarrierID": "5", "DeadheadOrigin": "0.000", "Valid": "false", "NoOfTrucks": "1", "Loc3": "", "QoutationNo": "QT19H0007", "DestinationLatitude": "100.536541", "DestinationDate": "2019-08-10 00:00:00.0", "DestinationContactName": "คุณสรศักดิ", "Destination": "11/5 ราชดำริ แขวง ปทุมวัน เขตปทุมวัน กรุงเทพมหานคร 10330 ประเทศไทย", "PickUpToDate": "2019-08-08 00:00:00.0", "OriginPlaceID": "ChIJf6mPmg56VjAREDE4LLwjAgQ", "DriverName": "", "Confirm": "1", "DriverLineID": "", "Loc4Type": "0", "UserID": "254", "PickUpFormDate": "2019-08-08 00:00:00.0", "TruckLicenseID": "", "ReceiptNo": "", "Loc3ContactTel": "", "OriginDetail": "อำเภอหลังสวน จังหวัดชุมพรnสหกรณ์การเกษตร หลังสวน", "DestinationTime": "10.00", "SpecialRequest": "รับสินค้าที่ต้นทาง 21.00 น. วันที่ 8 สค. ส่งถึงปลายทางภายใน 08.00 น. วันที่ 9 สค.nnรถเป็นปิคอัพคอกสูงสำหรับขนผลไม้", "BuyingPrice": "6500.000", "HandlingUnitID": "6", "Loc2Type": "2", "Loc3Latitude": "0.000000", "Loc3Date": "2019-08-09 00:00:00.0", "InvoiceNo": "IV19H0006", "DeliveryOrderHeaderID": "68", "ProductID": "4", "SourceLatitude": "9.948601", "ProductRemark": "มังคุดบรรจุกล่อง", "SourceLongitude": "99.081991", "OriginContactTel": "087-277-1441", "OriginName": "อำเภอหลังสวน,จ.ชุมพร", "DestinationDetail": "ร้านโครงการหลวง สาขาเซ็นทรัลเวิลด์", "Loc4ContactName": "", "UnitPrice": "6800.000", "CarrierRequestID": "0", "BookingNo": "BK19H0005", "TruckType": "4 ล้อ ตู้ทึบ", "HandlingUnit": "Box - กล่อง", "Loc4ContactTel": "", "Loc4Date": "2019-08-09 00:00:00.0", "Loc3Longitude": "0.000000", "TruckTypeID": "2", "Loc3Type": "0", "Loc3Detail": "", "DriverContact": "" }], "Photo": "", "Latitude": "0.000000", "CreditTerm": "7", "Subdistrict": "102901", "CreateDate": "2019-02-22 08:38:07.0", "Name": "พัชญ์ชนก", "ReferCode": "", "CompanyAddress": "เลขที่ 1 ถนนปูนซิเมนต์ไทย  เขตบางซื่อ บางซื่อ กรุงเทพมหานคร 10800", "CompanyName": "บจก. เอสซีจี โลจิสติกส์ แมเนจเม้นท์", "UpdateDate": "2019-08-09", "PhoneNo": "0614105517", "UserID": "176", "GetReferByCode": "", "Zipcode": "10800", "ID": "77", "Notes": "", "Status": "1", "ItemTax": "1", "Tier": "1", "TaxTypeID": "53", "InvoiceNo": "IV19H0006", "TaxID": "0105533060315", "CompanyType": "1", "Longitude": "0.000000", "ItemVat": "7", "Province": "10", "SaleName": "แพรวพรรณ", "OrderDate": "2019-08-09", "PrintType": "1", "DocRemarks": "", "OwnerID": "77", "Valid": "false", "RegisProgress": "50", "Volume": "0.000", "FullName": "พัชญ์ชนก คุ้มพิทักษ์", "Tel": "", "LastName": "คุ้มพิทักษ์", "District": "1029"
+    }
+
+    $.ajax({
+      //url: 'Docs/Quotation',
+      //url: 'Docs/Booking',
+      //url: 'Docs/PO',
+      //url: 'Docs/Invoice',
+      url: 'http://localhost:41603/API/Receipt.aspx',
+      //url: 'Docs/Billing',
+      //url: 'Docs/Withholding',
+      //url:'OLogout.ashx',
+      type: 'post',
+      dataType: 'json',
+      contentType: 'application/json',
+      data: JSON.stringify(documentData),
+      success: function (data) {
+        console.log('--Success--');
+        console.log(data);
+      },
+      error: function (result) {
+        //alert('failed');
+        console.log('--fail--');
+        console.log(result);
       }
+    });
+  }
 
-      $.ajax({
-          //url: 'Docs/Quotation',
-          //url: 'Docs/Booking',
-          //url: 'Docs/PO',
-          //url: 'Docs/Invoice',
-          url: 'http://localhost:41603/API/Receipt.aspx',
-          //url: 'Docs/Billing',
-          //url: 'Docs/Withholding',
-          //url:'OLogout.ashx',
-          type: 'post',
-          dataType: 'json',
-          contentType: 'application/json',
-          data: JSON.stringify(documentData),
-          success: function (data) {
-              console.log('--Success--');
-              console.log(data);             
-          },
-          error: function (result) {
-              //alert('failed');
-              console.log('--fail--');
-              console.log(result);             
-          }
-      });
-  }     
+
+  Take() {
+    const options: CameraOptions = {
+      quality: 70,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      this.myphoto = 'data:image/jpeg;base64,' + imageData;
+    }, (err) => {
+      console.log("Camera issue:" + err);
+    });
+  }
 
   ngOnInit() {
   }

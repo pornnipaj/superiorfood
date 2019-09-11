@@ -1,41 +1,51 @@
-import { Injectable, Component  } from '@angular/core';
-import { HTTP } from '@ionic-native/http';
-import { Http, Headers, RequestOptions } from '@angular/http';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/toPromise';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostDataService {
-  
-  constructor(public http: Http) { }
+  api_url = 'http://superior.wingplusweb.com/API/Receipt.aspx?id=';
+ // api_url:any;
+  constructor(private http: HttpClient) { }
 
-  post(item: any) {
-    let headers = new Headers(
-      {
-        'Content-Type' : 'application/json'
-      });
-      let options = new RequestOptions({ headers: headers });
-      
-      let data = JSON.stringify({
-        cardToken: 1,
-        amount: 500
-      });
-      
-      return new Promise((resolve, reject) => {
-        this.http.post('http://localhost:41603/API/Receipt.aspx', data, options)
-        .toPromise()
-        .then((response) =>
-        {
-          console.log('API Response : ', response.json());
-          resolve(response.json());
-        })
-        .catch((error) =>
-        {console.error('API Error : ', error.status);
-        console.error('API Error : ', JSON.stringify(error));
-        reject(error.json());
-      });
-    })
+  url(link){
+    this.api_url = link;
   }
+
+  insert(body) {
+    return new Promise((resovle, reject) => {
+      body['key'] = 'insert';
+      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+      this.http.post(this.api_url, JSON.stringify(body), option).subscribe(data => {
+        // resovle(data);
+      }, error => {
+        reject(error)
+      });
+    });
+  }
+
+  getData() {
+    alert(1);
+    return this.http.get(     
+      'http://superior.wingplusweb.com/API/Receipt.aspx'
+    );
+  }
+
+  // post(body) {
+  //   return new Promise((resovle, reject) => {
+  //     // var headers = new Headers();
+  //     // headers.append("Accept", "application/json");
+  //     // headers.append("Content-Type", "application/json");
+
+  //     let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+  //     this.http.post(this.api_url, JSON.stringify(body), option).subscribe(data => {
+  //       resovle(data);        
+  //     }, error => {
+  //       reject(error)
+  //     });
+  //   });
+  // }
 }
