@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild  } from '@angular/core';
 import { AuthServiceService } from '../../auth-service.service';
+import { NavController } from 'ionic-angular';
+import { ListpmPage } from '../joball/listpm/listpm.page';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-joball',
@@ -7,6 +10,7 @@ import { AuthServiceService } from '../../auth-service.service';
   styleUrls: ['./joball.page.scss'],
 })
 export class JoballPage implements OnInit {
+  @ViewChild(NavController, { static: false }) myNav;
 
   data: any;
   form :any = {
@@ -28,10 +32,10 @@ export class JoballPage implements OnInit {
   }
 click(data){
 // if(data.EmpID == '01225f87-e6cc-4725-afe2-7e5a63f9a183'){
-  
-  this.DataService.EmpID = data.EmpID
-  window.location.href="/joball/listpm";
-  console.log(this.DataService.EmpID)
+  // this.myNav.push(ListpmPage, data);
+  // this.DataService.EmpID = data.EmpID
+  // window.location.href="/joball/listpm";
+  // console.log(this.DataService.EmpID)
   // console.log(data);
 }
 

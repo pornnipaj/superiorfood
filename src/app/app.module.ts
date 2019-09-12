@@ -13,16 +13,22 @@ import { AuthServiceService } from '../app/auth-service.service';
 import { Camera } from '@ionic-native/camera/ngx';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { HttpModule } from '@angular/http';
+import { IonicStorageModule } from '@ionic/storage';
+import { SignaturePadModule } from 'angular2-signaturepad';
+import { SignaturePageModule } from '../app/page/joball/detailofdetaillistpm/signature/signature.module';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
+    SignaturePadModule,
     BrowserModule,
     HttpModule,
     FullCalendarModule,
     IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
     AppRoutingModule,
+    SignaturePageModule,
     HttpClientModule,
   ],
   providers: [

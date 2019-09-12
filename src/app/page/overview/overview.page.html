@@ -3,7 +3,7 @@
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title text-left>ภาพรวมการทำงาน</ion-title>
+        <ion-title class="ion-text-left">ภาพรวมการทำงาน</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -16,83 +16,76 @@
                         <div class="portlet-title">
                             <div class="caption">
                                 <i class="fa fa-dashboard" style="font-size: 2em;"></i>สรุปภาพรวมการทำงาน</div>
-                            <ion-button type="text" placeholder="Username" (click)='insert()'>test</ion-button>
-                        </div>
-                        <div class="portlet-body" style="padding: 2px;">
-                            <div class="btn-group btn-group btn-group-justified btn-lg"
-                                style="padding: 0px; width: 100%;">
-                                <button class="btn blue" style="padding: 5px;" (click)="changeMonthBack()"> ย้อนกลับ
-                                </button>
-                                <button class="btn default" style="padding: 5px; width: 70%;" (click)="ChangeMonth()">
-                                    {{textShow}} </button>
-                                <button class="btn blue" style="padding: 5px;" (click)="changeMonthNext()"> ถัดไป
-                                </button>
-                            </div>
-                            <div [routerLink]="['/menu/joball']">
-                                <label class="col-6">งานทั้งหมด</label>
-                                <label class="col-6 text-right">{{all}}</label>
-                            </div>
-                            <div [routerLink]="['/menu/job']">
-                                <label class="col-6">เสร็จไปแล้ว</label>
-                                <label class="col-6 text-right">{{finish}}</label>
-                            </div>
-                        </div>
+                            <ion-button type="text" placeholder="Username" (click)='insert()'>test</ion-button>                            
+                        </div>  
+                <div class="portlet-body" style="padding: 2px;">
+                    <div class="btn-group btn-group btn-group-justified btn-lg" style="padding: 0px; width: 100%;">
+                        <button class="btn blue" style="padding: 5px;" (click)="changeMonthBack()"> ย้อนกลับ
+                        </button>
+                        <button class="btn default" style="padding: 5px; width: 70%;" (click)="ChangeMonth()">
+                            {{textShow}} </button>
+                        <button class="btn blue" style="padding: 5px;" (click)="changeMonthNext()"> ถัดไป
+                        </button>
                     </div>
-                    <div class="portlet box blue">
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class="fa fa-spinner"></i>งานที่ยัง UPLOAD ไม่เสร็จ</div>
-
-                        </div>
-                        <div class="portlet-body" style="padding: 2px;">
-                            <label class="col-6">ทั้งหมด</label>
-                            <label class="col-6 text-right">0</label>
-                        </div>
+                    <div [routerLink]="['/menu/joball']">
+                        <label class="col-6">งานทั้งหมด</label>
+                        <label class="col-6 text-right">{{all}}</label>
                     </div>
-
-                </div>
-
-                <div class="col-4 col-md-4" style="padding:0px; padding-left:5px;">
-                    <div class="portlet box blue">
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class="fa fa-user"></i>ข้อมูลพนักงาน</div>
-
-                        </div>
-                        <div class="portlet-body" style="padding: 2px;" *ngFor="let item of data">
-                            <label class="col-4">ชื่อ</label>
-                            <label class="col-8">{{item.Name}}</label>
-                            <label class="col-4">ชื่อผู้ใช้</label>
-                            <label class="col-8">kamthorn</label>
-                            <label class="col-4">หน้าที่</label>
-                            <label class="col-8">Service technician</label>
-                        </div>
+                    <div [routerLink]="['/menu/job']">
+                        <label class="col-6">เสร็จไปแล้ว</label>
+                        <label class="col-6 text-right">{{finish}}</label>
                     </div>
-                    <div class="portlet box blue">
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class="fa fa-compass"></i>ข้อมูลระบบ</div>
-
-                        </div>
-                        <div class="portlet-body" style="padding: 2px;">
-                            <label class="col-4">พื้นที่ว่าง</label>
-                            <label class="col-8">6.73 Gb</label>
-                            <label class="col-4">App Ver.</label>
-                            <label class="col-8">1.080</label>
-                            <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-                                <ion-fab-button (click)="Take()">
-                                  <ion-icon name="camera"></ion-icon>
-                                  <img [src]="myphoto" *ngIf="myphoto">
-                                </ion-fab-button>
-                              </ion-fab>
-                            <!-- <button ion-button color="food" (click)="Take()">take photo</button>
-
-                            <p align="center"><img src="{{myphoto}}"></p> -->
-                        </div>
-                    </div>
-
                 </div>
             </div>
+            <div class="portlet box blue">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-spinner"></i>งานที่ยัง UPLOAD ไม่เสร็จ</div>
+
+                </div>
+                <div class="portlet-body" style="padding: 2px;">
+                    <label class="col-6">ทั้งหมด</label>
+                    <label class="col-6 text-right">0</label>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-4 col-md-4" style="padding:0px; padding-left:5px;">
+            <div class="portlet box blue">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-user"></i>ข้อมูลพนักงาน</div>
+
+                </div>
+                <div class="portlet-body" style="padding: 2px;" *ngFor="let item of data">
+                    <label class="col-4">ชื่อ</label>
+                    <label class="col-8">{{item.Name}}</label>
+                    <label class="col-4">ชื่อผู้ใช้</label>
+                    <label class="col-8">kamthorn</label>
+                    <label class="col-4">หน้าที่</label>
+                    <label class="col-8">Service technician</label>
+                </div>
+            </div>
+            <div class="portlet box blue">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-compass"></i>ข้อมูลระบบ</div>
+
+                </div>
+                <div class="portlet-body" style="padding: 2px;">
+                    <label class="col-4">พื้นที่ว่าง</label>
+                    <label class="col-8">6.73 Gb</label>
+                    <label class="col-4">App Ver.</label>
+                    <label class="col-8">1.080</label>
+                    
+                    <!-- <button ion-button color="food" (click)="Take()">take photo</button>
+
+                            <p align="center"><img src="{{myphoto}}"></p> -->
+                </div>
+            </div>
+</div>
+</div>
         </div>
     </div>
 </ion-content>

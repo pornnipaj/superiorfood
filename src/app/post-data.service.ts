@@ -5,7 +5,7 @@ import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common
   providedIn: 'root'
 })
 export class PostDataService {
-  api_url = 'http://superior.wingplusweb.com/API/ServicePlans.ashx?id=';
+  api_url = 'http://localhost:41603/API/Receipt.aspx';
  // api_url:any;
   constructor(private http: HttpClient) { }
 
@@ -13,13 +13,23 @@ export class PostDataService {
     this.api_url = link;
   }
 
+  insertData(data){
+    return this.http.post(this.api_url,data,{
+      headers: { 'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Host': 'http://localhost:41603/API/Receipt.aspx',
+      'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT'
+    }
+    });
+  }
+    
   insert(body) {
     return new Promise((resovle, reject) => {
       body['key'] = 'insert';
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
       this.http.post(this.api_url, JSON.stringify(body), option).subscribe(data => {
-        // resovle(data);
+        resovle(data);
       }, error => {
         reject(error)
       });
@@ -27,9 +37,9 @@ export class PostDataService {
   }
 
   getData() {
-    alert(1);
+    // alert(1);
     return this.http.get(     
-      'http://superior.wingplusweb.com/API/ServicePlans.ashx'
+      'http://localhost:41603/API/Receipt.aspx'
     );
   }
 

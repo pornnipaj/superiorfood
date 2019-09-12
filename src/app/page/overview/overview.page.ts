@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { AuthServiceService } from '../../auth-service.service';
 import * as $ from 'jquery';
 import { HTTP } from '@ionic-native/http';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { PostDataService } from '../../post-data.service';
-// import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/observable';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
+
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { SignaturePad } from 'angular2-signaturepad/signature-pad';
+import { Storage } from '@ionic/storage';
+import { ModalController } from '@ionic/angular';
+import { SignaturePage } from '../joball/detailofdetaillistpm/signature/signature.page'
 
 @Component({
   selector: 'app-overview',
@@ -15,9 +18,8 @@ import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common
   styleUrls: ['./overview.page.scss'],
 })
 
-
-
 export class OverviewPage implements OnInit {
+  //#region  data
 
   data: any;
   Today;
@@ -35,6 +37,10 @@ export class OverviewPage implements OnInit {
   test: any;
   myphoto: any;
 
+  //#endregion
+
+  //#region constructor
+
   constructor(public DataService: AuthServiceService,
     public http: HttpClient,
     public postDataService: PostDataService,
@@ -42,13 +48,18 @@ export class OverviewPage implements OnInit {
     this.ChangeMonth();
 
     this.Today = new Date();
+    
     this.DataService.getJobDetail().subscribe(data => {
       this.data = data;
       // console.log(this.data);
     });
-
   }
+  //#endregion
 
+  //#region signaturePad
+
+  //#endregion
+  
   // onchangeMonth(type) {
 
   //   // const year = new Date().getFullYear();
@@ -329,6 +340,29 @@ export class OverviewPage implements OnInit {
   }
   //#endregion
 
+  sendData(){
+    var headers = new Headers();
+     headers.append("Accept", 'application/json');
+     headers.append('Content-Type', 'application/json' );
+
+
+     let postData =  {
+      user: "doctoravatar@yahoo.com",
+      t: "vlIj",
+      zip: 94089,
+      forecast: 7
+  }
+alert(this.http.post("http://localhost:41603/API/Receipt.aspx", postData,{observe: 'response'}));
+
+     this.http.post("http://localhost:41603/API/Receipt.aspx", postData,{observe: 'response'})
+       .subscribe(data => {
+         console.log(data);
+
+        }, error => {
+         console.log(error);
+       });
+
+  }
   insert() {
     // let headerOptions: any = { 'Content-Type': 'application/json' };
     // let headers = new Headers(headerOptions);
@@ -337,9 +371,9 @@ export class OverviewPage implements OnInit {
     //     return console.log(JSON.stringify(response));
     //   });
 
-    // this.form.emp_id = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b"
-    // this.form.month = this.intMonth
-    // this.form.year = this.intYear
+    this.form.emp_id = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b"
+    this.form.month = this.intMonth
+    this.form.year = this.intYear
     // console.log(this.form);
 
 
@@ -352,15 +386,22 @@ export class OverviewPage implements OnInit {
     //     reject(error)
     //   });
     // });
+    alert(this.postDataService.insertData(this.form.emp_id));
+    
+      this.postDataService.insertData(this.form.emp_id).subscribe((result:any)=>{
+        console.log(result);
+      },(err) => {
+              console.log(err);  
+      });
 
-    // alert(this.postDataService.insert(this.form).then((this.form)))
-    this.postDataService.url("http://localhost:41603/API/Receipt.aspx?id=" + this.form.emp_id + "&month=" + this.form.month + "&year=" + this.form.year);
-    // this.postDataService.insert(this.form.emp_id + "&month=" + this.form.month + "&year=" + this.form.year).then((data) => {
-    //    const json = JSON.stringify(data);
-    //    console.log(json);
-    // },(err) => {
-    //   console.log(err);      
-    // });   
+
+// alert(this.postDataService.insert(this.form))
+//     this.postDataService.insert(this.form).then((data) => {
+//        const json = JSON.stringify(data);
+//        console.log(json);
+//     },(err) => {
+//       console.log(err);      
+//     });   
 
     this.onReceive();
 

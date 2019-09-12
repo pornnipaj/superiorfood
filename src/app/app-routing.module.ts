@@ -12,6 +12,7 @@ const routes: Routes = [
   { path: 'joball/listpm/detaillistpm', loadChildren: './page/joball/detaillistpm/detaillistpm.module#DetaillistpmPageModule' },
   // tslint:disable-next-line: max-line-length
   { path: 'joball/listpm/detailofdetaillistpm', loadChildren: './page/joball/detailofdetaillistpm/detailofdetaillistpm.module#DetailofdetaillistpmPageModule' },
+  { path: 'signature', loadChildren: './page/joball/detailofdetaillistpm/signature/signature.module#SignaturePageModule' },
 ];
 
 @NgModule({

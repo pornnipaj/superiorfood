@@ -10,7 +10,7 @@
   <ion-content>
     <div class="container-fluid" style="position: fixed;">
       <div class="row" style="padding: 5px;">
-        <div class="col-6 col-md-6 col-sm-6 ex3" style="padding: 0px; max-height:400px;">
+        <div class="col-6 col-md-6 col-sm-6 ex3" style="padding: 0px;max-height:1280px; max-width: 800px;">
           <div class="portlet box blue">
             <div class="portlet-title">
               <div class="caption">
@@ -36,15 +36,30 @@
                 <div class="row">
                   <div class="col-md-4 col-4 text-center">
                     <i class="fa fa-camera fa-4x icon responsive center"></i>
-                    <p><img src="{{myphoto}}"></p>
+                    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+                        <ion-fab-button (click)="Take()">
+                            <ion-icon name="camera"></ion-icon>
+                        </ion-fab-button>
+                    </ion-fab>
+                    <p><img [src]="myphoto" *ngIf="myphoto"></p>
                   </div>
                   <div class="col-md-4 col-4 text-center">
                     <i class="fa fa-camera fa-4x icon responsive center" (click)="Take()"></i>
-                    <img src="{{ myphoto }}" />
+                    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+                        <ion-fab-button (click)="Take()">
+                            <ion-icon name="camera"></ion-icon>
+                        </ion-fab-button>
+                    </ion-fab>
+                    <p><img [src]="myphoto" *ngIf="myphoto"></p>
                   </div>
                   <div class="col-md-4 col-4 text-center">
                     <i class="fa fa-camera fa-4x icon responsive center" (click)="Take()"></i>
-                    <img src="{{ myphoto }}" />
+                    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+                        <ion-fab-button (click)="Take()">
+                            <ion-icon name="camera"></ion-icon>
+                        </ion-fab-button>
+                    </ion-fab>
+                    <p><img [src]="myphoto" *ngIf="myphoto"></p>
                   </div>
                 </div>
               </div>
@@ -109,7 +124,7 @@
                 </div>
                 <div class="row">
                   <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
-                    <a href="javascript:;" class="btn default"> ลายเซ็นต์ผู้รับผิดชอบ </a>
+                    <a class="btn default" (click)="Modal()"> ลายเซ็นต์ผู้รับผิดชอบ </a>
                   </div>
                   <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
                   </div>

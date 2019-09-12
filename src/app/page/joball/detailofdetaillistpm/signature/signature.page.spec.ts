@@ -1,27 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoginPage } from './login.page';
+import { SignaturePage } from './signature.page';
 
-import {ReactiveFormsModule} from '@angular/forms';
-
-describe('LoginPage', () => {
-  let component: LoginPage;
-  let fixture: ComponentFixture<LoginPage>;
+describe('SignaturePage', () => {
+  let component: SignaturePage;
+  let fixture: ComponentFixture<SignaturePage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginPage ],
+      declarations: [ SignaturePage ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports:[
-        ReactiveFormsModule
-      ],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoginPage);
+    fixture = TestBed.createComponent(SignaturePage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

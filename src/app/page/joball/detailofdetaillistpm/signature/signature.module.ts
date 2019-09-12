@@ -5,13 +5,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { OverviewPage } from './overview.page';
+import { SignaturePage } from './signature.page';
 import { SignaturePadModule } from 'angular2-signaturepad';
 
 const routes: Routes = [
   {
     path: '',
-    component: OverviewPage
+    component: SignaturePage
   }
 ];
 
@@ -23,6 +23,6 @@ const routes: Routes = [
     SignaturePadModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [OverviewPage]
+  declarations: [SignaturePage]
 })
-export class OverviewPageModule {}
+export class SignaturePageModule {}

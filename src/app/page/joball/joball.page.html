@@ -26,7 +26,7 @@
                   <div class="scroller" data-always-visible="1"
                     data-rail-visible="0" data-initialized="1">
                     <ul class="feeds">
-                      <li *ngFor="let item of data"  (click)="click(item)">
+                      <li *ngFor="let item of data" [routerLink]="['/joball/listpm']" (click)="click(item)">
                         <div class="">
                           <div class="pull-left">
                             <div class="desc" style="color: black; font-size:0.9em; padding: 5px;">

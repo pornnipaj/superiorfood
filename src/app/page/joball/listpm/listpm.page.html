@@ -1,12 +1,13 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-      <ion-title>รายการการตรวจเช็ค(PM) ของ สมภพ แสนกล้า</ion-title>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+        <ion-title>รายการการตรวจเช็ค(PM) ของ สมภพ แสนกล้า</ion-title>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
+  
 <ion-content>
   <div class="container-fluid">
     <div class="row" style="padding: 5px;">
@@ -24,7 +25,7 @@
           <div class="caption">
             <i class="fa fa-circle"></i>วันจันทร์ 05 สิงหาคม 2019</div>
         </div>
-        <div class="portlet-body" style="padding: 5px;">
+        <div class="portlet-body" style="padding: 5px; height: 40px;">
           <!--BEGIN TABS-->
           <div class="tab-content">
               <div class="tab-pane active" id="tab_1_1">
@@ -57,6 +58,49 @@
               </div>
             </div>
         </div>
+        
+      </div>
+          </div>
+          <div class="col-12" style="padding-top: 10px; padding: 0px;">
+          <div class="portlet box blue">
+        <div class="portlet-title">
+          <div class="caption">
+            <i class="fa fa-circle"></i>วันจันทร์ 05 สิงหาคม 2019</div>
+        </div>
+        <div class="portlet-body" style="padding: 5px; height: 40px;">
+          <!--BEGIN TABS-->
+          <div class="tab-content">
+              <div class="tab-pane active" id="tab_1_1">
+                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 339px;">
+                  <div class="scroller" style="height: 339px; overflow: hidden; width: auto;" data-always-visible="1"
+                    data-rail-visible="0" data-initialized="1">
+                    <ul class="feeds">
+                      <li [routerLink]="['/joball/listpm/detaillistpm']">
+                        <div class="">
+                          <div class="pull-left">
+                            <div class="desc" style="color: black; font-size:0.9em; padding: 5px;">
+                              <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="defaultUnchecked">
+                                <label class="custom-control-label" for="defaultUnchecked">ชาบูชิ
+                                  บิ๊กซี
+                                  ติวานนท์</label>
+                              </div>
+
+                            </div>
+                          </div>
+                          <div class="pull-right">
+                            <a href="javascript:;" class="btn btn-sm blue" style="padding: 5px;">
+                              ติดตั้ง:1 สำเร็จ:0 </a>
+                          </div>
+                        </div>
+                      </li>                      
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        
       </div>
           </div>
       <!-- <div class="col-12 text-center head-white" style="background-color: #757575; margin-top: 5px;
