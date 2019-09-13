@@ -18,7 +18,10 @@ export class PostDataService {
       headers: { 'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Host': 'http://localhost:41603/API/Receipt.aspx',
-      'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT'
+        'Origin': '*',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST',
+        'Access-Control-Allow-Headers': 'Content-Type'
     }
     });
   }
