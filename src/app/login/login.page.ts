@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../auth-service.service';
 import { AlertController } from '@ionic/angular';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +12,15 @@ export class LoginPage implements OnInit {
     username :string;
     password : string;
     
-  constructor(public DataService: AuthServiceService,public alertController: AlertController) {
+  constructor(public DataService: AuthServiceService,public alertController: AlertController,private screenOrientation: ScreenOrientation) {
+
     
-   }
+  }
   
   ngOnInit() {
+    
+    this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+    console.log(this.screenOrientation.type);
   }
 
   async login() {

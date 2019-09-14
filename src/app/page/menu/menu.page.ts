@@ -24,6 +24,11 @@ export class MenuPage implements OnInit {
       icon: 'people'
     },
     {
+      title: 'เบิกอะไหล่',
+      url: '/menu/sparepart',
+      icon: 'hammer'
+    },
+    {
       title: 'สินค้าและคู่มือ',
       url: '/menu/product',
       icon: 'bookmarks'

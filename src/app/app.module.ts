@@ -16,6 +16,7 @@ import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { SignaturePadModule } from 'angular2-signaturepad';
 import { SignaturePageModule } from '../app/page/joball/detailofdetaillistpm/signature/signature.module';
+import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +35,7 @@ import { SignaturePageModule } from '../app/page/joball/detailofdetaillistpm/sig
   providers: [
     StatusBar,
     SplashScreen,
+    ScreenOrientation,
     Camera,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AuthServiceService

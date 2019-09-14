@@ -30,6 +30,10 @@ const routes: Routes = [
         loadChildren: '../joball/joball.module#JoballPageModule'
       },
       {
+        path: 'sparepart',
+        loadChildren: '../take-spare-parts/take-spare-parts.module#TakeSparePartsPageModule'
+      },
+      {
         path: 'product',
         loadChildren: '../product/product.module#ProductPageModule'
       },

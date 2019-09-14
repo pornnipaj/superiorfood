@@ -29,14 +29,14 @@
                     <i class="fa fa-check"></i>รายการผ่านการตรวจเช็คล่าสุด </div>    
                 </div>
             <div class="portlet-body" style="padding-top: 5px;">
-              <div class="row" *ngFor="let item of data" [routerLink]="['/job/jobdetail']" routerDirection="forward"
+              <div class="row" *ngFor="let item of data" [routerLink]="['/job/jobdetail']" (click)="click(item)"
                 style="padding: 5px;">
                 <label class="col-6 col-md-6 col-sm-6 head">
                   ชื่อลูกค้า: {{item.CustomerName}}
                 </label>
 
                 <label class="col-6 col-md-6 col-sm-6 head">
-                  วันที่กำหนด: {{item.start_service_date | date: 'medium'}}
+                  วันที่กำหนด: {{item.start_service_date | date: 'dd-MM-yyyy HH:mm:ss'}}
                 </label>
 
 
@@ -62,7 +62,7 @@
                 </label>
 
                 <label class="col-6 col-md-6 col-sm-6 head">
-                  เวลาที่ใช้:{{item.TimeSpent}}
+                  เวลาที่ใช้: {{item.TimeSpent}}
                 </label>
                 <hr>
               </div>

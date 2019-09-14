@@ -5,6 +5,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-jobdetail',
@@ -12,6 +13,7 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
   styleUrls: ['./jobdetail.page.scss'],
 })
 export class JobdetailPage implements OnInit {
+  myId:any;
   data: any;
   json: any;
   items: any;
@@ -24,20 +26,25 @@ export class JobdetailPage implements OnInit {
     row: ''
       }
 
-  constructor(public DataService: AuthServiceService, public http: Http) {
-
-    this.getOverview();
-    this.getEvaluation();
-    this.getCheckList();
-  }
-
-  getOverview() {
+  constructor(public DataService: AuthServiceService, private route: ActivatedRoute) {
+    
     this.DataService.getJobDetail().subscribe(data => {
       this.data = data;
-      // console.log(this.data);      
+      // console.log(this.data);
     });
+    // this.getOverview();
+    // this.getEvaluation();
+    // this.getCheckList();
+    
+  //   this.DataService.getJobDetail().subscribe(data => {
+  //     this.data = data;
+  //   for (let i = 0; i < this.data.length; i++) {
+  //     const json = this.data[i].Name;
+  //     console.log(json);
+  //   }
+  // });
   }
-
+  
   getEvaluation() {
     this.DataService.getJobDetail().subscribe(data => {
       this.data = data;
@@ -71,7 +78,7 @@ export class JobdetailPage implements OnInit {
 
         //convert to array
         this.items = JSON.parse(this.json);
-        console.log(this.items);
+        // console.log(this.items);
       }
 
       //get data in json_checklist
@@ -84,5 +91,9 @@ export class JobdetailPage implements OnInit {
   }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.myId = params["data"];
+      console.log("receive", this.myId);
+    });
   }
 } 

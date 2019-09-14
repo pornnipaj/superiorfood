@@ -1,8 +1,9 @@
 import { Component, OnInit,ViewChild  } from '@angular/core';
 import { AuthServiceService } from '../../auth-service.service';
-import { NavController } from 'ionic-angular';
 import { ListpmPage } from '../joball/listpm/listpm.page';
 import { from } from 'rxjs';
+import { NavController } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-joball',
@@ -18,7 +19,7 @@ export class JoballPage implements OnInit {
     body : ''
   };
   name:any;
-  constructor(public DataService: AuthServiceService) { 
+  constructor(public DataService: AuthServiceService,public navCtrl: NavController) { 
 
     this.DataService.getJobAll().subscribe(data => {
       this.data = data;
@@ -31,6 +32,14 @@ export class JoballPage implements OnInit {
     
   }
 click(data){
+  console.log(data);
+  const navigationExtras: NavigationExtras = {
+    queryParams: {
+      data: JSON.stringify(data)
+    }
+  };
+  this.navCtrl.navigateForward(['/joball/listpm'], navigationExtras);
+  // this.router.navigate(['/joball/listpm',{data:data}])
 // if(data.EmpID == '01225f87-e6cc-4725-afe2-7e5a63f9a183'){
   // this.myNav.push(ListpmPage, data);
   // this.DataService.EmpID = data.EmpID

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ModalController } from '@ionic/angular';
 import { SignaturePage } from '../detailofdetaillistpm/signature/signature.page';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detailofdetaillistpm',
@@ -9,14 +10,21 @@ import { SignaturePage } from '../detailofdetaillistpm/signature/signature.page'
   styleUrls: ['./detailofdetaillistpm.page.scss'],
 })
 export class DetailofdetaillistpmPage implements OnInit {
+
 myDate;
 myphoto;
-  constructor(private camera: Camera,public modalController: ModalController,) {
+myId;
+
+  constructor(private camera: Camera,public modalController: ModalController,private route: ActivatedRoute) {
     this.myDate = new Date().toISOString();
 
   }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.myId = JSON.parse(params["data"]);
+      console.log("receive", this.myId);
+    });
   }
 
   async Modal(){
