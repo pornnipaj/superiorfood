@@ -6,9 +6,9 @@ import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common
 })
 export class AuthServiceService {
 
-  EmpID;
+  public myGlobalVar: string;
+
   constructor(private http: HttpClient) {
-    this.EmpID = "";
   }
 
   getJob() {
@@ -31,4 +31,14 @@ export class AuthServiceService {
       'http://stock.wingplusapp.com/DataService.ashx'
     );
   }
+  getuser(username, password){
+    return this.http.get(
+      'http://localhost:41603/API/Login.ashx?username=' + username + '&password=' + password
+    );
+}
+getJobOverview(empID, month,year){
+  return this.http.get(
+    'http://localhost:41603/API/JobOverview.ashx' + '?empID=' + empID + '&month=' + month + '&year=' + year
+  );
+}
 }

@@ -48,6 +48,7 @@
     "ionic-angular": "^3.9.8",
     "jquery": "^3.4.1",
     "json-server": "^0.15.1",
+    "ngx-bootstrap": "^5.1.2",
     "rxjs": "^6.5.2",
     "rxjs-compat": "^6.5.3",
     "rxjs-observable": "0.0.7",

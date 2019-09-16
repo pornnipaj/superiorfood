@@ -11,6 +11,7 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { Storage } from '@ionic/storage';
 import { ModalController } from '@ionic/angular';
 import { SignaturePage } from '../joball/detailofdetaillistpm/signature/signature.page'
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-overview',
@@ -20,8 +21,6 @@ import { SignaturePage } from '../joball/detailofdetaillistpm/signature/signatur
 
 export class OverviewPage implements OnInit {
   //#region  data
-
-  data: any;
   Today;
   month;
   intMonth;
@@ -34,32 +33,54 @@ export class OverviewPage implements OnInit {
     month: '',
     year: ''
   };
+  myId;
   test: any;
   myphoto: any;
-
+username;
+name;
+position;
+workallnow;
+workfinishnow;
+workall;
+workfinish;
+emp;
+user;
+jobOverview;
   //#endregion
 
   //#region constructor
 
   constructor(public DataService: AuthServiceService,
-    public http: HttpClient,
+    public http: Http,
     public postDataService: PostDataService,
+    private route: ActivatedRoute,
     private camera: Camera) {
+
+      this.user = [];
+
     this.ChangeMonth();
 
     this.Today = new Date();
-    
-    this.DataService.getJobDetail().subscribe(data => {
-      this.data = data;
-      // console.log(this.data);
-    });
+
+    this.route.queryParams.subscribe(params => {
+      this.myId = JSON.parse(params["data"]);
+      this.username = this.myId[0]["Username"]
+      this.name = this.myId[0]["Name"]
+      this.position = this.myId[0]["Position"]
+      this.workallnow = this.myId[0]["WorkAll"]
+      this.workall = this.workallnow
+      this.workfinishnow = this.myId[0]["WorkFinish"]
+      this.workfinish = this.workfinishnow
+      this.emp = this.myId[0]["empID"]
+      console.log("receive", this.username + this.position);      
+    });    
   }
   //#endregion
 
   //#region signaturePad
 
   //#endregion
-  
+
   // onchangeMonth(type) {
 
   //   // const year = new Date().getFullYear();
@@ -168,6 +189,11 @@ export class OverviewPage implements OnInit {
     // }
     console.log(this.intMonth)
     console.log(this.intYear)
+    this.route.queryParams.subscribe(params => {
+      this.myId = JSON.parse(params["data"]);
+      this.workall = this.workallnow
+      this.workfinish = this.workfinishnow
+    });
   }
 
   changeMonthNext() {
@@ -261,6 +287,24 @@ export class OverviewPage implements OnInit {
     //#endregion
     console.log(this.intMonth)
     console.log(this.intYear)
+
+    this.user.empID = this.emp;
+    this.user.month = this.intMonth;
+    this.user.year = this.intYear;
+
+    this.postDataService.getjobOverview(this.user).then(form => {
+      // console.log('form', form);
+    });
+
+    this.DataService.getJobOverview(this.user.empID, this.user.month, this.user.year).subscribe(data => {
+      this.jobOverview = data;
+      console.log('Data Returner', this.jobOverview);
+      for (let i = 0; i < this.jobOverview.length; i++) {
+        this.workall = this.jobOverview[i].WorkAll;
+        this.workfinish = this.jobOverview[i].WorkFinish;
+      }
+    });
+
   }
 
   changeMonthBack() {
@@ -337,95 +381,77 @@ export class OverviewPage implements OnInit {
     //#endregion
     console.log(this.intMonth)
     console.log(this.intYear)
+    this.user.empID = this.emp;
+    this.user.month = this.intMonth;
+    this.user.year = this.intYear;
+
+    this.postDataService.getjobOverview(this.user).then(form => {
+      // console.log('form', form);
+    });
+
+    this.DataService.getJobOverview(this.user.empID, this.user.month, this.user.year).subscribe(data => {
+      this.jobOverview = data;
+      console.log('Data Returner', this.jobOverview);
+      for (let i = 0; i < this.jobOverview.length; i++) {
+        this.workall = this.jobOverview[i].WorkAll;
+        this.workfinish = this.jobOverview[i].WorkFinish;
+      }
+    });
   }
   //#endregion
 
-  sendData(){
-    var headers = new Headers();
-     headers.append("Accept", 'application/json');
-     headers.append('Content-Type', 'application/json' );
+  //   sendData(){
+  //     var headers = new Headers();
+  //      headers.append("Accept", 'application/json');
+  //      headers.append('Content-Type', 'application/json' );
 
 
-     let postData =  {
-      user: "doctoravatar@yahoo.com",
-      t: "vlIj",
-      zip: 94089,
-      forecast: 7
-  }
-alert(this.http.post("http://localhost:41603/API/Receipt.aspx", postData,{observe: 'response'}));
+  //      let postData =  {
+  //       user: "doctoravatar@yahoo.com",
+  //       t: "vlIj",
+  //       zip: 94089,
+  //       forecast: 7
+  //   }
+  // alert(this.http.post("http://localhost:41603/API/Receipt.aspx", postData,{observe: 'response'}));
 
-     this.http.post("http://localhost:41603/API/Receipt.aspx", postData,{observe: 'response'})
-       .subscribe(data => {
-         console.log(data);
+  //      this.http.post("http://localhost:41603/API/Receipt.aspx", postData,{observe: 'response'})
+  //        .subscribe(data => {
+  //          console.log(data);
 
-        }, error => {
-         console.log(error);
-       });
+  //         }, error => {
+  //          console.log(error);
+  //        });
 
-  }
-  insert() {
-    // let headerOptions: any = { 'Content-Type': 'application/json' };
-    // let headers = new Headers(headerOptions);
-    // return this.http.post('localhost:41603/API/Receipt.aspx', JSON.stringify(data), new RequestOptions({ headers: headers }))
-    //   .subscribe((response: Response) => {
-    //     return console.log(JSON.stringify(response));
-    //   });
-
-    this.form.emp_id = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b"
-    this.form.month = this.intMonth
-    this.form.year = this.intYear
-    // console.log(this.form);
-
-
-    // return new Promise((resovle, reject) => {
-    //   let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-    //   this.http.post('http://localhost:41603/API/Receipt.aspx', (this.form), option).subscribe(data => {
-    //     resovle(data);
-    //   }, error => {
-    //     reject(error)
-    //   });
-    // });
-    alert(this.postDataService.insertData(this.form.emp_id));
+  //   }
+  // insert() {
     
-      this.postDataService.insertData(this.form.emp_id).subscribe((result:any)=>{
-        console.log(result);
-      },(err) => {
-              console.log(err);  
-      });
 
+  //   //alert(this.postDataService.insertData(this.form.emp_id));
 
-// alert(this.postDataService.insert(this.form))
-//     this.postDataService.insert(this.form).then((data) => {
-//        const json = JSON.stringify(data);
-//        console.log(json);
-//     },(err) => {
-//       console.log(err);      
-//     });   
+  //   // this.postDataService.insertData(this.form, this.form.emp_id).subscribe((result: any) => {
+  //   //   console.log(result);
+  //   // }, (err) => {
+  //   //   console.log(err);
+  //   // });    
+  
 
-    this.onReceive();
+  //   this.onReceive();
+  // }
 
-    // const req = this.http.post('http://jsonplaceholder.typicode.com/posts', {
-    //   emp_id: 'b99f4959-d1e7-44ec-98e2-07a6d0247a6b',
-    //   month: this.intMonth,
-    //   year: this.intYear
-    // })
-    //   .subscribe(
-    //     res => {
-    //       console.log(res);
-    //     },
-    //     err => {
-    //       console.log("Error occured",err);
-    //     }
-    //   );
-  }
-
-  onReceive() {
-    this.postDataService.getData().subscribe(data => {
-      // this.data = data;
-      console.log(data);
+  
+  postData(){
+    this.form.emp_id = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b"
+    this.postDataService.insert(this.form).then(form => {
+      console.log('form', form);
     });
   }
+
+  // onReceive() {
+  //   this.postDataService.getData().subscribe(c => {
+  //     this.test = c;
+  //     console.log('data Call back', this.test);
+  //   });
+  // }
 
   OnPostJSON() {
     //Receipt
@@ -480,6 +506,10 @@ alert(this.http.post("http://localhost:41603/API/Receipt.aspx", postData,{observ
   }
 
   ngOnInit() {
+    // this.route.queryParams.subscribe(params => {
+    //   this.myId = JSON.parse(params["data"]);
+    //   console.log("receive", this.myId);      
+    // });
   }
   // getDate(){
   //   var today = new Date();

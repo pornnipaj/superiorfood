@@ -1,6 +1,6 @@
 <ion-content>
   <div class="centered">
-    <form #form="ngForm" (ngSubmit)="login(form)" text-center>
+    <form #form="ngForm" (ngSubmit)="login(form)" ion-text-center>
       <img src="../../assets/img/logo.png" alt=""/>
       <h3>Login your account!</h3>
       <ion-item>
@@ -10,7 +10,7 @@
         <ion-input name="password" type="password" [(ngModel)]="password" placeholder="Password" ngModel required>
         </ion-input>
       </ion-item>
-      <ion-button shape="round"  [disabled]="form.invalid" (click)="login()">Login</ion-button>
+      <ion-button shape="round"  [disabled]="form.invalid" (click)="login(form)">Login</ion-button>
     </form>
   </div>
 </ion-content>

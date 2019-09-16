@@ -9,13 +9,13 @@
 
 <ion-content>
     <div class="row">
-    <div class="col-4">
-            <div class="alert alert-primary" role="alert">
-                    A simple primary alert—check it out!
-                  </div>
+    <div class="col-4 no-scroll">
+            <li class="list-group-item" *ngFor="let item of data" (click)="onChange(item)">
+                    {{item.CustomerName}}<br />10 ส.ค. 2016</li>   
     </div>
-    <div class="col-8">
-        12
+    <div class="col-8 scroll-hidden">
+            <li class="list-group-item" *ngFor="let item of data" (click)="onChange(item)">
+                    {{item.CustomerName}}<br />10 ส.ค. 2016</li>
     </div>
 </div>
     <!-- <div class="container-fluid">

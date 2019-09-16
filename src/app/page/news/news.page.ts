@@ -13,8 +13,9 @@ export class NewsPage implements OnInit {
   date;
   data;
   Show = false;
+
   constructor(public DataService: AuthServiceService) {
-    this.DataService.getJob().subscribe(data => {
+    this.DataService.getJobAll().subscribe(data => {
       console.log(data);
       this.data = data;
       

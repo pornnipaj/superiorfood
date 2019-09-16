@@ -45,5 +45,7 @@ ion-content {
         font-size: 0.9em;
         color: #777777;
     }
-    
+    .no-scroll .scroll-content{
+        overflow: hidden;
+    }
 }
