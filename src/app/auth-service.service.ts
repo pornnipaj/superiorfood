@@ -33,12 +33,12 @@ export class AuthServiceService {
   }
   getuser(username, password){
     return this.http.get(
-      'http://localhost:41603/API/Login.ashx?username=' + username + '&password=' + password
+      'http://superior.wingplusweb.com/API/Login.ashx?username=' + username + '&password=' + password
     );
 }
 getJobOverview(empID, month,year){
   return this.http.get(
-    'http://localhost:41603/API/JobOverview.ashx' + '?empID=' + empID + '&month=' + month + '&year=' + year
+    'http://superior.wingplusweb.com/API/JobOverview.ashx' + '?empID=' + empID + '&month=' + month + '&year=' + year
   );
 }
 }

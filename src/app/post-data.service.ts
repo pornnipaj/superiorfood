@@ -5,7 +5,7 @@ import { Http, Headers } from "@angular/http";
   providedIn: 'root'
 })
 export class PostDataService {
-  api_url = 'http://localhost:41603/API/Login.ashx';
+  api_url = 'http://superior.wingplusweb.com/API/Login.ashx';
   username: string;
   // api_url:any;
   constructor(private http: HttpClient, public https: Http) { }
@@ -87,7 +87,7 @@ export class PostDataService {
       
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post('http://localhost:41603/API/JobOverview.ashx' + '?empID=' + user.empID + '&month=' + user.month + '&year=' + user.year, 
+      this.http.post('http://superior.wingplusweb.com/API/JobOverview.ashx' + '?empID=' + user.empID + '&month=' + user.month + '&year=' + user.year, 
       JSON.stringify(user), option).subscribe(data => {
         resovle(data);
       }, error => {
