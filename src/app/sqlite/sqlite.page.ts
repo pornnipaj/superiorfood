@@ -11,9 +11,12 @@ export class SqlitePage implements OnInit {
   
   databaseObj: SQLiteObject; // Database instance object
   name_model:string = "test"; // Input field model
+  username:string = "test"; // Input field model
   row_data: any = []; // Table rows
   readonly database_name:string = "db.db"; // DB name
   readonly table_name:string = "user"; // Table name
+
+  data = { name:"123", username:"asd", emp_id:"25618"};
 
   constructor(
     private platform: Platform,
@@ -42,7 +45,7 @@ export class SqlitePage implements OnInit {
     }
   
     createTable() {
-      this.databaseObj.executeSql('CREATE TABLE IF NOT EXISTS ' + this.table_name + ' (pid INTEGER PRIMARY KEY, Name varchar(50), , Username varchar(50))', [])
+      this.databaseObj.executeSql('CREATE TABLE IF NOT EXISTS ' + this.table_name + ' (name varchar(50), username varchar(50), emp_id varchar(50))', [])
         .then(() => {
           alert('Table Created!');
         })
@@ -56,7 +59,7 @@ export class SqlitePage implements OnInit {
         alert("Enter Name");
         return;
       }
-      this.databaseObj.executeSql('INSERT INTO ' + this.table_name + ' (Name) VALUES ("' + this.name_model + '")', [])
+      this.databaseObj.executeSql('INSERT INTO user VALUES (?,?,?)', [this.data.name,this.data.username,this.data.emp_id])
         .then(() => {
           alert('Row Inserted!');
           this.getRows();
@@ -82,7 +85,7 @@ export class SqlitePage implements OnInit {
     }
    
     deleteRow(item) {
-      this.databaseObj.executeSql("DELETE FROM " + this.table_name + " WHERE pid = " + item.pid, [])
+      this.databaseObj.executeSql("DELETE FROM " + this.table_name + " WHERE name = " + item.name, [])
         .then((res) => {
           alert("Row Deleted!");
           this.getRows();
