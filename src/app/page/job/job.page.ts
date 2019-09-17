@@ -29,18 +29,6 @@ jobID;
   //     console.log(json);
   //   }
   // });
-  this.route.queryParams.subscribe(params => {
-    this.jobID = JSON.parse(params["data"]);
-    // this.username = this.myId[0]["Username"]
-    // this.name = this.myId[0]["Name"]
-    // this.position = this.myId[0]["Position"]
-    // this.workallnow = this.myId[0]["WorkAll"]
-    // this.workall = this.workallnow
-    // this.workfinishnow = this.myId[0]["WorkFinish"]
-    // this.workfinish = this.workfinishnow
-    // this.emp = this.myId[0]["empID"]
-    console.log("receive", this.jobID);      
-  });
 
 }
     

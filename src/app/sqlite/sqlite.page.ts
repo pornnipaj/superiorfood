@@ -16,18 +16,22 @@ export class SqlitePage implements OnInit {
   readonly database_name:string = "db.db"; // DB name
   readonly table_name:string = "user"; // Table name
 
-  data = { name:"123", username:"asd", emp_id:"25618"};
-
+  // data = { name:"123", username:"asd", emp_id:"25618"};
+data;
   constructor(
     private platform: Platform,
     private sqlite: SQLite
     ) { 
+
+      this.data = [];
+
       this.platform.ready().then(() => {
         this.createDB();
         this.createTable();
       }).catch(error => {
         console.log(error);
       })
+
     }
 
     createDB() {
@@ -45,7 +49,7 @@ export class SqlitePage implements OnInit {
     }
   
     createTable() {
-      this.databaseObj.executeSql('CREATE TABLE IF NOT EXISTS ' + this.table_name + ' (name varchar(50), username varchar(50), emp_id varchar(50))', [])
+      this.databaseObj.executeSql('CREATE TABLE IF NOT EXISTS ' + this.table_name + ' (name varchar(50), username varchar(50), emp_id varchar(50), position varchar(50))', [])
         .then(() => {
           alert('Table Created!');
         })
@@ -55,11 +59,7 @@ export class SqlitePage implements OnInit {
     }
    
     insertRow() {
-      if (!this.name_model.length) {
-        alert("Enter Name");
-        return;
-      }
-      this.databaseObj.executeSql('INSERT INTO user VALUES (?,?,?)', [this.data.name,this.data.username,this.data.emp_id])
+      this.databaseObj.executeSql('INSERT INTO user VALUES (?,?,?,?)', [this.data.name,this.data.username,this.data.emp_id,this.data.empid])
         .then(() => {
           alert('Row Inserted!');
           this.getRows();

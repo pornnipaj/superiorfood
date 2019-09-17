@@ -33,14 +33,14 @@
                               <ion-input type="text" [(ngModel)]="username"></ion-input>
                             </ion-item>
                             </ion-list> -->
-                            <div *ngFor="let item of row_data">
+                            <div>
                                 <div [routerLink]="['/menu/joball']">
                                     <label class="col-6">งานทั้งหมด</label>
-                                    <label class="col-6 text-right">{{item.Workall}}</label>
+                                    <label class="col-6 text-right">{{workall}}</label>
                                 </div>
                                 <div [routerLink]="['/menu/job']">
                                     <label class="col-6">เสร็จไปแล้ว</label>
-                                    <label class="col-6 text-right">{{item.Workfinish}}</label>
+                                    <label class="col-6 text-right">{{workfinish}}</label>
                                 </div>
                             </div>
                         </div>
@@ -68,11 +68,11 @@
                         </div>
                         <div class="portlet-body" style="padding: 2px;" *ngFor="let item of row_data">
                             <label class="col-4">ชื่อ</label>
-                            <label class="col-8">{{item.Name}}</label>
+                            <label class="col-8">{{user.name}}</label>
                             <label class="col-4">ชื่อผู้ใช้</label>
-                            <label class="col-8">{{item.Username}}</label>
+                            <label class="col-8">{{user.username}}</label>
                             <label class="col-4">หน้าที่</label>
-                            <label class="col-8">{{item.position}}</label>
+                            <label class="col-8">{{user.position}}</label>
                         </div>
                     </div>
                     <div class="portlet box blue">

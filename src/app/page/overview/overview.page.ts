@@ -82,21 +82,18 @@ readonly table_name:string = "user"; // Table name
 
     this.Today = new Date();
 
-    this.route.queryParams.subscribe(params => {
-      this.myId = JSON.parse(params["data"]);
-      this.username = this.myId[0]["Username"]
-      this.name = this.myId[0]["Name"]
-      this.position = this.myId[0]["Position"]
-      this.workallnow = this.myId[0]["WorkAll"]
-      this.workall = this.workallnow
-      this.workfinishnow = this.myId[0]["WorkFinish"]
-      this.workfinish = this.workfinishnow
-      this.emp = this.myId[0]["empID"]
-      console.log("receive", this.username + this.position);      
-    });
-    
-    this.DataService.myGlobalVar = "1231"
-    console.log(this.DataService.myGlobalVar);
+    // this.route.queryParams.subscribe(params => {
+    //   this.myId = JSON.parse(params["data"]);
+    //   this.username = this.myId[0]["Username"]
+    //   this.name = this.myId[0]["Name"]
+    //   this.position = this.myId[0]["Position"]
+    //   this.workallnow = this.myId[0]["WorkAll"]
+    //   this.workall = this.workallnow
+    //   this.workfinishnow = this.myId[0]["WorkFinish"]
+    //   this.workfinish = this.workfinishnow
+    //   this.emp = this.myId[0]["empID"]
+    //   console.log("receive", this.username + this.position);      
+    // });
     
   }
 
@@ -107,6 +104,9 @@ readonly table_name:string = "user"; // Table name
         if (res.rows.length > 0) {
           for (var i = 0; i < res.rows.length; i++) {
             this.row_data.push(res.rows.item(i));
+            this.user.name = this.row_data.push(res.rows.item(i).name);
+            this.user.username = this.row_data.push(res.rows.item(i).username);
+            this.user.position = this.row_data.push(res.rows.item(i).position);
           }
         }
       })

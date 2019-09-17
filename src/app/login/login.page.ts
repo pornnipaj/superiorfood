@@ -19,15 +19,9 @@ export class LoginPage implements OnInit {
   row_data: any = []; // Table rows
   readonly database_name:string = "db.db"; // DB name
   readonly table_name:string = "user"; // Table name
-
-  email: 123
-  workall: 132
-  workfinish: 132
-  username: 123
-  name: 132
-  position: 123
-  password: string
-  empID:123;
+;
+  workall;
+  workfinish;
   data;
   user;
   status;
@@ -40,6 +34,7 @@ export class LoginPage implements OnInit {
     private sqlite: SQLite) {
 
     this.user = [];
+
     this.platform.ready().then(() => {
       this.createDB();
       this.createTable();
@@ -67,35 +62,28 @@ export class LoginPage implements OnInit {
   }
 
   createTable() {
-    this.databaseObj.executeSql('CREATE TABLE IF NOT EXISTS ' + this.table_name +
-     ' (pid INTEGER PRIMARY KEY, Name varchar(50), Username varchar(50), position varchar(50), Workall varchar(50), Workfinish varchar(50) , empID varchar(50) )', [])
-      .then(() => {
-        alert('Table Created!');
-      })
-      .catch(e => {
-        alert("error " + JSON.stringify(e))
-      });
+    this.databaseObj.executeSql('CREATE TABLE IF NOT EXISTS ' + this.table_name + ' (name varchar(50), username varchar(50), emp_id varchar(50), position varchar(50))', [])
+        .then(() => {
+          alert('Table Created!');
+        })
+        .catch(e => {
+          alert("error " + JSON.stringify(e))
+        });
   }
 
   insertRow() {
-    if (!this.name_model.length) {
-      alert("Enter Name");
-      return;
-    }
-    this.databaseObj.executeSql(
-      'INSERT INTO ' + this.table_name + 
-      ' (Name) VALUES ("' + this.name + '") , (Username) VALUES ("' + this.username + '") , (position) VALUES ("' + this.position + '") ,(Workall) VALUES ("' + this.workall + '"), (Workfinish) VALUES ("' + this.workfinish + '"), (empID) VALUES ("' + this.empID + '")' , [])
-      .then(() => {
-        alert('Row Inserted!');
-        this.getRows();
-      })
-      .catch(e => {
-        alert("error " + JSON.stringify(e))
-      });
+    this.databaseObj.executeSql('INSERT INTO user VALUES (?,?,?,?)', [this.data.name,this.data.username,this.data.emp_id,this.data.empid])
+        .then(() => {
+          alert('Row Inserted!');
+          this.getRows();
+        })
+        .catch(e => {
+          alert("error " + JSON.stringify(e))
+        });
   }
   login() {
-    this.user.username = this.username;
-    this.user.password = this.password;
+    console.log(this.user.username);
+    console.log(this.user.password);
 
     this.postDataService.login(this.user).then(form => {
       console.log('form', form);
@@ -106,14 +94,13 @@ export class LoginPage implements OnInit {
       console.log('Data Returner', this.data);
       for (let i = 0; i < this.data.length; i++) {
         this.status = this.data[i].Status;
-        this.name = this.data[i].Name;
-        this.username = this.data[i].Username;
-        this.position = this.data[i].Position;
+        this.data.name = this.data[i].Name;
+        this.data.username = this.data[i].Username;
+        this.data.position = this.data[i].Position;
         this.workall = this.data[i].WorkAll;
         this.workfinish = this.data[i].WorkFinish;
-        this.empID = this.data[i].empID;
+        this.data.empID = this.data[i].empID;
         this.status = this.data[i].Status;
-        // console.log(this.status);
         this.check(data);
         this.insertRow();
       }

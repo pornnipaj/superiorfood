@@ -4,10 +4,10 @@
       <img src="../../assets/img/logo.png" alt=""/>
       <h3>Login your account!</h3>
       <ion-item>
-        <ion-input name="username" type="text" [(ngModel)]="username" placeholder="Name" ngModel required></ion-input>
+        <ion-input name="username" type="text" [(ngModel)]="user.username" placeholder="Name" ngModel required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input name="password" type="password" [(ngModel)]="password" placeholder="Password" ngModel required>
+        <ion-input name="password" type="password" [(ngModel)]="user.password" placeholder="Password" ngModel required>
         </ion-input>
       </ion-item>
       <ion-button shape="round"  [disabled]="form.invalid" (click)="login(form)">Login</ion-button>
