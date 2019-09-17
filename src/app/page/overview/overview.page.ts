@@ -69,7 +69,7 @@ readonly table_name:string = "user"; // Table name
     private platform: Platform,
     private sqlite: SQLite) {
 
-      this.getUser();
+      // this.getUser();
       this.platform.ready().then(() => {
         this.getUser();
       }).catch(error => {

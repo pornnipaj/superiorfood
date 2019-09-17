@@ -19,7 +19,10 @@ export class LoginPage implements OnInit {
   row_data: any = []; // Table rows
   readonly database_name:string = "db.db"; // DB name
   readonly table_name:string = "user"; // Table name
-;
+  name;
+  username;
+  position;
+  empid;
   workall;
   workfinish;
   data;
@@ -53,7 +56,6 @@ export class LoginPage implements OnInit {
         this.databaseObj = db;
         alert('db Database Created!');
         this.createTable();
-        alert('db table Database Created!');
       })
       .catch(e => {
         alert("error " + JSON.stringify(e))
@@ -85,9 +87,9 @@ export class LoginPage implements OnInit {
       console.log('Data Returner', this.data);
       for (let i = 0; i < this.data.length; i++) {
         this.status = this.data[i].Status;
-        this.data.name = this.data[i].Name;
-        this.data.username = this.data[i].Username;
-        this.data.position = this.data[i].Position;
+        this.name = this.data[i].Name;
+        this.username = this.data[i].Username;
+        this.position = this.data[i].Position;
         this.workall = this.data[i].WorkAll;
         this.workfinish = this.data[i].WorkFinish;
         this.data.empID = this.data[i].empID;
@@ -99,22 +101,12 @@ export class LoginPage implements OnInit {
       }
 
       insertRow() {
-        this.DataService.getuser(this.user.username, this.user.password).subscribe(data => {
-          this.data = data;
-          // console.log('Data Returner', this.data);
-          for (let i = 0; i < this.data.length; i++) {
-            this.status = this.data[i].Status;
-            this.data.name = this.data[i].Name;
-            this.data.username = this.data[i].Username;
-            this.data.position = this.data[i].Position;
-            this.workall = this.data[i].WorkAll;
-            this.workfinish = this.data[i].WorkFinish;
-            this.data.empID = this.data[i].empID;
-            this.status = this.data[i].Status;
-            this.check(data);
-            this.insertRow();
-          }
-        });    
+        this.data.user = this.user;
+        this.data.username = this.username;
+        this.data.position = this.position;
+        this.data.empid = this.empid;
+        alert(this.data.user);
+
         this.databaseObj.executeSql('INSERT INTO user VALUES (?,?,?,?)', [this.data.name,this.data.username,this.data.emp_id,this.data.empid])
             .then(() => {
               alert(this.data);
@@ -132,6 +124,7 @@ export class LoginPage implements OnInit {
         if (res.rows.length > 0) {
           for (var i = 0; i < res.rows.length; i++) {
             this.row_data.push(res.rows.item(i));
+            alert(this.row_data.push(res.rows.item(i)))
           }
         }
       })

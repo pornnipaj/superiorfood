@@ -89,7 +89,7 @@ data;
         });
     }
    
-    deleteRow(item) {
+    deleteRow() {
       this.databaseObj.executeSql("DELETE FROM " + this.table_name + " WHERE name = " + this.data.name, [])
         .then((res) => {
           alert("Row Deleted!");
