@@ -42,7 +42,7 @@ export class SqlitePage implements OnInit {
     }
   
     createTable() {
-      this.databaseObj.executeSql('CREATE TABLE IF NOT EXISTS ' + this.table_name + ' (pid INTEGER PRIMARY KEY, Name varchar(50))', [])
+      this.databaseObj.executeSql('CREATE TABLE IF NOT EXISTS ' + this.table_name + ' (pid INTEGER PRIMARY KEY, Name varchar(50), , Username varchar(50))', [])
         .then(() => {
           alert('Table Created!');
         })
