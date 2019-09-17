@@ -13,6 +13,9 @@ import { ModalController } from '@ionic/angular';
 import { SignaturePage } from '../joball/detailofdetaillistpm/signature/signature.page'
 import { ActivatedRoute } from '@angular/router';
 
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
+import {  Platform } from '@ionic/angular';
+
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.page.html',
@@ -46,6 +49,14 @@ workfinish;
 emp;
 user;
 jobOverview;
+
+databaseObj: SQLiteObject; // Database instance object
+name_model:string = "test"; // Input field model
+row_data: any = []; // Table rows
+readonly database_name:string = "db.db"; // DB name
+readonly table_name:string = "user"; // Table name
+
+
   //#endregion
 
   //#region constructor
@@ -54,7 +65,16 @@ jobOverview;
     public http: Http,
     public postDataService: PostDataService,
     private route: ActivatedRoute,
-    private camera: Camera) {
+    private camera: Camera,
+    private platform: Platform,
+    private sqlite: SQLite) {
+
+      this.platform.ready().then(() => {
+        this.getUser();
+      }).catch(error => {
+        console.log(error);
+      })
+
 
       this.user = [];
 
@@ -79,6 +99,22 @@ jobOverview;
     console.log(this.DataService.myGlobalVar);
     
   }
+
+  getUser() {
+    this.databaseObj.executeSql("SELECT * FROM " + this.table_name, [])
+      .then((res) => {
+        this.row_data = [];
+        if (res.rows.length > 0) {
+          for (var i = 0; i < res.rows.length; i++) {
+            this.row_data.push(res.rows.item(i));
+          }
+        }
+      })
+      .catch(e => {
+        alert("error " + JSON.stringify(e))
+      });
+  }
+
   //#endregion
 
   //#region signaturePad

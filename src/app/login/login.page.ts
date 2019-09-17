@@ -5,7 +5,6 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { PostDataService } from '../post-data.service';
 import { NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
-
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 
 @Component({
@@ -14,12 +13,6 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  
-  username: string
-  password: string
-  data;
-  user;
-  status;
 
   databaseObj: SQLiteObject; // Database instance object
   name_model:string = "test"; // Input field model
@@ -27,21 +20,35 @@ export class LoginPage implements OnInit {
   readonly database_name:string = "db.db"; // DB name
   readonly table_name:string = "user"; // Table name
 
+  email: string
+  workall: string
+  workfinish: string
+  username: string
+  name: string
+  position: string
+  password: string
+  empID:string;
+  data;
+  user;
+  status;
   constructor(public DataService: AuthServiceService,
     public alertController: AlertController,
     private screenOrientation: ScreenOrientation,
     public postDataService: PostDataService,
-    public navCtrl: NavController,
+    public navCtrl: NavController, 
     private platform: Platform,
-    private sqlite: SQLite ) {
-      this.platform.ready().then(() => {
-        this.createDB();
-      }).catch(error => {
-        console.log(error);
-      })
+    private sqlite: SQLite) {
+
     this.user = [];
+    this.platform.ready().then(() => {
+      this.createDB();
+      this.createTable();
+    }).catch(error => {
+      console.log(error);
+    })
+
   }
-  
+
   createDB() {
     this.sqlite.create({
       name: this.database_name,
@@ -57,7 +64,8 @@ export class LoginPage implements OnInit {
   }
 
   createTable() {
-    this.databaseObj.executeSql('CREATE TABLE IF NOT EXISTS ' + this.table_name + ' (pid INTEGER PRIMARY KEY, Name varchar(50))', [])
+    this.databaseObj.executeSql('CREATE TABLE IF NOT EXISTS ' + this.table_name +
+     ' (pid INTEGER PRIMARY KEY, Name varchar(50), Username varchar(50), position varchar(50), Workall varchar(50), Workfinish varchar(50) , empID varchar(50) )', [])
       .then(() => {
         alert('Table Created!');
       })
@@ -65,13 +73,20 @@ export class LoginPage implements OnInit {
         alert("error " + JSON.stringify(e))
       });
   }
- 
+
   insertRow() {
     if (!this.name_model.length) {
       alert("Enter Name");
       return;
     }
-    this.databaseObj.executeSql('INSERT INTO ' + this.table_name + ' (Name) VALUES ("' + this.name_model + '")', [])
+    this.databaseObj.executeSql(
+      'INSERT INTO ' + this.table_name + 
+      ' (Name) VALUES ("' + this.name + '") ' +
+      ' (Username) VALUES ("' + this.username + '") ' + 
+      ' (position) VALUES ("' + this.position + '") ' +
+      ' (Workall) VALUES ("' + this.workall + '") ' +
+      ' (Workfinish) VALUES ("' + this.workfinish + '") ' +
+      ' (empID) VALUES ("' + this.empID + '") ', [])
       .then(() => {
         alert('Row Inserted!');
         this.getRows();
@@ -80,7 +95,33 @@ export class LoginPage implements OnInit {
         alert("error " + JSON.stringify(e))
       });
   }
- 
+  login() {
+    this.user.username = this.username;
+    this.user.password = this.password;
+
+    this.postDataService.login(this.user).then(form => {
+      console.log('form', form);
+    });
+
+    this.DataService.getuser(this.user.username, this.user.password).subscribe(data => {
+      this.data = data;
+      console.log('Data Returner', this.data);
+      for (let i = 0; i < this.data.length; i++) {
+        this.status = this.data[i].Status;
+        this.name = this.data[i].Name;
+        this.username = this.data[i].Username;
+        this.position = this.data[i].Position;
+        this.workall = this.data[i].WorkAll;
+        this.workfinish = this.data[i].WorkFinish;
+        this.empID = this.data[i].empID;
+        this.status = this.data[i].Status;
+        // console.log(this.status);
+        this.insertRow();
+        this.check(data);
+      }
+    });
+      }
+      
   getRows() {
     this.databaseObj.executeSql("SELECT * FROM " + this.table_name, [])
       .then((res) => {
@@ -95,18 +136,7 @@ export class LoginPage implements OnInit {
         alert("error " + JSON.stringify(e))
       });
   }
- 
-  deleteRow(item) {
-    this.databaseObj.executeSql("DELETE FROM " + this.table_name + " WHERE pid = " + item.pid, [])
-      .then((res) => {
-        alert("Row Deleted!");
-        this.getRows();
-      })
-      .catch(e => {
-        alert("error " + JSON.stringify(e))
-      });
-  }
- 
+  
   ngOnInit() {
 
     // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
@@ -131,25 +161,6 @@ export class LoginPage implements OnInit {
   //   //   console.log(data);
   //   // });
   // }
-  login() {
-    this.user.username = this.username;
-    this.user.password = this.password;
-
-    this.postDataService.login(this.user).then(form => {
-      console.log('form', form);
-    });
-
-    this.DataService.getuser(this.user.username, this.user.password).subscribe(data => {
-      this.data = data;
-      // console.log('Data Returner', this.data);
-      for (let i = 0; i < this.data.length; i++) {
-        this.status = this.data[i].Status;
-        // console.log(this.status);
-        this.check(data);
-      }
-    });
-    
-  }
 
   async check(data){
   if (this.status == true) {
