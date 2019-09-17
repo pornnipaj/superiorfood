@@ -121,7 +121,7 @@ export class LoginPage implements OnInit {
       }
     });
       }
-      
+
   getRows() {
     this.databaseObj.executeSql("SELECT * FROM " + this.table_name, [])
       .then((res) => {
