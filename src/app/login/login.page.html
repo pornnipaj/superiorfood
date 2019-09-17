@@ -10,7 +10,7 @@
         <ion-input name="password" type="password" [(ngModel)]="user.password" placeholder="Password" ngModel required>
         </ion-input>
       </ion-item>
-      <ion-button shape="round"  [disabled]="form.invalid" (click)="login(form)">Login</ion-button>
+      <ion-button shape="round"  [disabled]="form.invalid" (click)="login()">Login</ion-button>
     </form>
   </div>
 </ion-content>

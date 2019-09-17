@@ -66,13 +66,13 @@
                                 <i class="fa fa-user"></i>ข้อมูลพนักงาน</div>
 
                         </div>
-                        <div class="portlet-body" style="padding: 2px;" *ngFor="let item of row_data">
+                        <div class="portlet-body" style="padding: 2px;" *ngFor="let item of items">
                             <label class="col-4">ชื่อ</label>
-                            <label class="col-8">{{user.name}}</label>
+                            <label class="col-8">{{ item.name }}</label>
                             <label class="col-4">ชื่อผู้ใช้</label>
-                            <label class="col-8">{{user.username}}</label>
+                            <label class="col-8">{{ item.username }}</label>
                             <label class="col-4">หน้าที่</label>
-                            <label class="col-8">{{user.position}}</label>
+                            <label class="col-8">{{ item.position }}</label>
                         </div>
                     </div>
                     <div class="portlet box blue">
@@ -86,8 +86,6 @@
                             <label class="col-8">6.73 Gb</label>
                             <label class="col-4">App Ver.</label>
                             <label class="col-8">1.080</label>
-
-                            <ion-button [routerLink]="['/sqlite']">sqlite</ion-button>
                             <!-- <button ion-button color="food" (click)="Take()">take photo</button>
 
                             <p align="center"><img src="{{myphoto}}"></p> -->

@@ -15,6 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import {  Platform } from '@ionic/angular';
+import { StorageService, User } from '../../storage.service';
 
 @Component({
   selector: 'app-overview',
@@ -46,16 +47,11 @@ workallnow;
 workfinishnow;
 workall;
 workfinish;
-emp;
+empid;
 user;
 jobOverview;
 
-databaseObj: SQLiteObject; // Database instance object
-name_model:string = "test"; // Input field model
-row_data: any = []; // Table rows
-readonly database_name:string = "db.db"; // DB name
-readonly table_name:string = "user"; // Table name
-
+items: User[] = [];
 
   //#endregion
 
@@ -67,15 +63,9 @@ readonly table_name:string = "user"; // Table name
     private route: ActivatedRoute,
     private camera: Camera,
     private platform: Platform,
-    private sqlite: SQLite) {
-
-      // this.getUser();
-      this.platform.ready().then(() => {
-        this.getUser();
-      }).catch(error => {
-        console.log(error);
-      })
-
+    private sqlite: SQLite,
+    private storageService: StorageService) {
+      this.loadItems();
 
       this.user = [];
 
@@ -98,23 +88,11 @@ readonly table_name:string = "user"; // Table name
     
   }
 
-  getUser() {
-    this.databaseObj.executeSql("SELECT * FROM " + this.table_name, [])
-      .then((res) => {
-        this.row_data = [];
-        if (res.rows.length > 0) {
-          for (var i = 0; i < res.rows.length; i++) {
-            this.row_data.push(res.rows.item(i));
-            this.user.name = this.row_data.push(res.rows.item(i).name);
-            this.user.username = this.row_data.push(res.rows.item(i).username);
-            this.user.position = this.row_data.push(res.rows.item(i).position);
-            alert(this.user)
-          }
-        }
-      })
-      .catch(e => {
-        alert("error " + JSON.stringify(e))
-      });
+  loadItems() {
+    this.storageService.getUser().then(items => {
+      this.items = items;
+      console.log(items);      
+    });
   }
 
   //#endregion
@@ -330,7 +308,7 @@ readonly table_name:string = "user"; // Table name
     console.log(this.intMonth)
     console.log(this.intYear)
 
-    this.user.empID = this.emp;
+    this.user.empID = this.user;
     this.user.month = this.intMonth;
     this.user.year = this.intYear;
 
@@ -423,7 +401,7 @@ readonly table_name:string = "user"; // Table name
     //#endregion
     console.log(this.intMonth)
     console.log(this.intYear)
-    this.user.empID = this.emp;
+    this.user.empID = this.empid;
     this.user.month = this.intMonth;
     this.user.year = this.intYear;
 
@@ -548,10 +526,7 @@ readonly table_name:string = "user"; // Table name
   }
 
   ngOnInit() {
-    // this.route.queryParams.subscribe(params => {
-    //   this.myId = JSON.parse(params["data"]);
-    //   console.log("receive", this.myId);      
-    // });
+    this.loadItems();
   }
   // getDate(){
   //   var today = new Date();

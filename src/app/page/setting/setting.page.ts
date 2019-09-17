@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
-import { Platform } from '@ionic/angular';
+import { Platform, IonList } from '@ionic/angular';
+import { StorageService , User } from '../../storage.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-setting',
@@ -15,51 +17,41 @@ export class SettingPage implements OnInit {
   readonly table_name: string = "user"; // Table name
   user;
   name;
+  items: User[] = [];
+  @ViewChild('mylist', { static: false }) mylist: IonList;
 
   constructor(
     private platform: Platform,
-    private sqlite: SQLite
+    private sqlite: SQLite,
+    private storageService: StorageService,
+    public navCtrl: NavController
   ) {
-
-    this.platform.ready().then(() => {
-      this.getRows();
-    }).catch(error => {
-      console.log(error);
-    })
-
+this.loadItems();
   }
-
-  getRows() {
-    this.databaseObj.executeSql("SELECT * FROM " + this.table_name, [])
-      .then((res) => {
-        this.row_data = [];
-        if (res.rows.length > 0) {
-          for (var i = 0; i < res.rows.length; i++) {
-            this.row_data.push(res.rows.item(i));
-            this.name = this.row_data.push(res.rows.item(i)).name;
-          }
-        }
-      })
-      .catch(e => {
-        alert("error " + JSON.stringify(e))
-      });
-  }
-
 
   ngOnInit() {
   }
 
 
-  logout() {
-    this.databaseObj.executeSql("DELETE FROM " + this.table_name + " WHERE name = " + this.name, [])
-      .then((res) => {
-        // alert("Row Deleted!");
-      })
-      .catch(e => {
-        alert("error " + JSON.stringify(e))
-      });
+  logout(user: User) { 
+    this.storageService.deleteUser(user.id).then(item => {
+      this.mylist.closeSlidingItems();
+    });
+    this.navCtrl.navigateForward(['/login']);
+  }
 
-    window.location.href = "/login";
-    localStorage.clear();
+  loadItems() {
+    this.storageService.getUser().then(items => {
+      this.items = items;
+      console.log(items);      
+    });
+  }
+
+
+  deleteItem(user: User) {
+    this.storageService.deleteUser(user.id).then(item => {
+      this.mylist.closeSlidingItems();
+      window.location.reload();
+    });
   }
 }
