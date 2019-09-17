@@ -73,7 +73,11 @@ jobOverview;
       this.workfinish = this.workfinishnow
       this.emp = this.myId[0]["empID"]
       console.log("receive", this.username + this.position);      
-    });    
+    });
+    
+    this.DataService.myGlobalVar = "1231"
+    console.log(this.DataService.myGlobalVar);
+    
   }
   //#endregion
 

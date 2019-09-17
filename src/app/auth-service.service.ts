@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
+import { SQLiteObject } from '@ionic-native/sqlite/ngx';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +8,30 @@ import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common
 export class AuthServiceService {
 
   public myGlobalVar: string;
-
+  db: SQLiteObject = null;
   constructor(private http: HttpClient) {
+  }
+  setDatabase(db: SQLiteObject){
+    if(this.db === null){
+      this.db = db;
+    }
+  }
+  createTable(){
+    let sql = 'CREATE TABLE IF NOT EXISTS datis(id INTEGER PRIMARY KEY AUTOINCREMENT, dati TEXT, isTrue INTEGER DEFAULT 0, dateCreated datetime default CURRENT_TIMESTAMP)';
+    return this.db.executeSql(sql, []);
+
+  }
+
+  createFirstRunningApp(){ //solo la primera vez se corre
+    let allDate = [
+      'Blablabla',
+      'Something',
+      'YellowBlueRed',
+    ];
+    let sql = 'INSERT INTO datis(dati) VALUES(?)';
+    for (let dati of allDate) {
+      this.db.executeSql(sql, [dati]);
+    }
   }
 
   getJob() {

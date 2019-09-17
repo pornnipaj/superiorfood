@@ -18,6 +18,8 @@ import { SignaturePadModule } from 'angular2-signaturepad';
 import { SignaturePageModule } from '../app/page/joball/detailofdetaillistpm/signature/signature.module';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
+import { SQLite } from '@ionic-native/sqlite/ngx';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -37,8 +39,9 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
     SplashScreen,
     ScreenOrientation,
     Camera,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    AuthServiceService
+    SQLite,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },    
+    AuthServiceService,
   ],
   bootstrap: [AppComponent]
 })

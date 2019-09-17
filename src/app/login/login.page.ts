@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../auth-service.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, Platform } from '@ionic/angular';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { PostDataService } from '../post-data.service';
 import { NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
+
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 
 @Component({
   selector: 'app-login',
@@ -12,23 +14,99 @@ import { NavigationExtras } from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-
+  
   username: string
   password: string
   data;
   user;
   status;
+
+  databaseObj: SQLiteObject; // Database instance object
+  name_model:string = "test"; // Input field model
+  row_data: any = []; // Table rows
+  readonly database_name:string = "db.db"; // DB name
+  readonly table_name:string = "user"; // Table name
+
   constructor(public DataService: AuthServiceService,
     public alertController: AlertController,
     private screenOrientation: ScreenOrientation,
     public postDataService: PostDataService,
-    public navCtrl: NavController, ) {
-
+    public navCtrl: NavController,
+    private platform: Platform,
+    private sqlite: SQLite ) {
+      this.platform.ready().then(() => {
+        this.createDB();
+      }).catch(error => {
+        console.log(error);
+      })
     this.user = [];
   }
+  
+  createDB() {
+    this.sqlite.create({
+      name: this.database_name,
+      location: 'default'
+    })
+      .then((db: SQLiteObject) => {
+        this.databaseObj = db;
+        alert('db Database Created!');
+      })
+      .catch(e => {
+        alert("error " + JSON.stringify(e))
+      });
+  }
 
-
-
+  createTable() {
+    this.databaseObj.executeSql('CREATE TABLE IF NOT EXISTS ' + this.table_name + ' (pid INTEGER PRIMARY KEY, Name varchar(50))', [])
+      .then(() => {
+        alert('Table Created!');
+      })
+      .catch(e => {
+        alert("error " + JSON.stringify(e))
+      });
+  }
+ 
+  insertRow() {
+    if (!this.name_model.length) {
+      alert("Enter Name");
+      return;
+    }
+    this.databaseObj.executeSql('INSERT INTO ' + this.table_name + ' (Name) VALUES ("' + this.name_model + '")', [])
+      .then(() => {
+        alert('Row Inserted!');
+        this.getRows();
+      })
+      .catch(e => {
+        alert("error " + JSON.stringify(e))
+      });
+  }
+ 
+  getRows() {
+    this.databaseObj.executeSql("SELECT * FROM " + this.table_name, [])
+      .then((res) => {
+        this.row_data = [];
+        if (res.rows.length > 0) {
+          for (var i = 0; i < res.rows.length; i++) {
+            this.row_data.push(res.rows.item(i));
+          }
+        }
+      })
+      .catch(e => {
+        alert("error " + JSON.stringify(e))
+      });
+  }
+ 
+  deleteRow(item) {
+    this.databaseObj.executeSql("DELETE FROM " + this.table_name + " WHERE pid = " + item.pid, [])
+      .then((res) => {
+        alert("Row Deleted!");
+        this.getRows();
+      })
+      .catch(e => {
+        alert("error " + JSON.stringify(e))
+      });
+  }
+ 
   ngOnInit() {
 
     // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
