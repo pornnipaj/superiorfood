@@ -69,6 +69,7 @@ readonly table_name:string = "user"; // Table name
     private platform: Platform,
     private sqlite: SQLite) {
 
+      this.getUser();
       this.platform.ready().then(() => {
         this.getUser();
       }).catch(error => {
@@ -107,6 +108,7 @@ readonly table_name:string = "user"; // Table name
             this.user.name = this.row_data.push(res.rows.item(i).name);
             this.user.username = this.row_data.push(res.rows.item(i).username);
             this.user.position = this.row_data.push(res.rows.item(i).position);
+            alert(this.user)
           }
         }
       })

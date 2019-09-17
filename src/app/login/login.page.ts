@@ -71,16 +71,7 @@ export class LoginPage implements OnInit {
         });
   }
 
-  insertRow() {
-    this.databaseObj.executeSql('INSERT INTO user VALUES (?,?,?,?)', [this.data.name,this.data.username,this.data.emp_id,this.data.empid])
-        .then(() => {
-          alert('Row Inserted!');
-          this.getRows();
-        })
-        .catch(e => {
-          alert("error " + JSON.stringify(e))
-        });
-  }
+  
   login() {
     console.log(this.user.username);
     console.log(this.user.password);
@@ -104,9 +95,34 @@ export class LoginPage implements OnInit {
         this.check(data);
         this.insertRow();
       }
-    });
-    
-        
+    });    
+      }
+
+      insertRow() {
+        this.DataService.getuser(this.user.username, this.user.password).subscribe(data => {
+          this.data = data;
+          // console.log('Data Returner', this.data);
+          for (let i = 0; i < this.data.length; i++) {
+            this.status = this.data[i].Status;
+            this.data.name = this.data[i].Name;
+            this.data.username = this.data[i].Username;
+            this.data.position = this.data[i].Position;
+            this.workall = this.data[i].WorkAll;
+            this.workfinish = this.data[i].WorkFinish;
+            this.data.empID = this.data[i].empID;
+            this.status = this.data[i].Status;
+            this.check(data);
+            this.insertRow();
+          }
+        });    
+        this.databaseObj.executeSql('INSERT INTO user VALUES (?,?,?,?)', [this.data.name,this.data.username,this.data.emp_id,this.data.empid])
+            .then(() => {
+              alert(this.data);
+              this.getRows();
+            })
+            .catch(e => {
+              alert("error " + JSON.stringify(e))
+            });
       }
 
   getRows() {

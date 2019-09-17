@@ -76,6 +76,11 @@ data;
           if (res.rows.length > 0) {
             for (var i = 0; i < res.rows.length; i++) {
               this.row_data.push(res.rows.item(i));
+              this.data.user = this.row_data.push(res.rows.item(i).user);
+              this.data.username = this.row_data.push(res.rows.item(i).username);
+              this.data.position = this.row_data.push(res.rows.item(i).position);
+              this.data.empid = this.row_data.push(res.rows.item(i).empid);
+              console.log(this.data.user);              
             }
           }
         })
@@ -85,7 +90,7 @@ data;
     }
    
     deleteRow(item) {
-      this.databaseObj.executeSql("DELETE FROM " + this.table_name + " WHERE name = " + item.name, [])
+      this.databaseObj.executeSql("DELETE FROM " + this.table_name + " WHERE name = " + this.data.name, [])
         .then((res) => {
           alert("Row Deleted!");
           this.getRows();
