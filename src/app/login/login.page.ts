@@ -20,14 +20,14 @@ export class LoginPage implements OnInit {
   readonly database_name:string = "db.db"; // DB name
   readonly table_name:string = "user"; // Table name
 
-  email: string
-  workall: string
-  workfinish: string
-  username: string
-  name: string
-  position: string
+  email: 123
+  workall: 132
+  workfinish: 132
+  username: 123
+  name: 132
+  position: 123
   password: string
-  empID:string;
+  empID:123;
   data;
   user;
   status;
@@ -57,10 +57,13 @@ export class LoginPage implements OnInit {
       .then((db: SQLiteObject) => {
         this.databaseObj = db;
         alert('db Database Created!');
+        this.createTable();
+        alert('db table Database Created!');
       })
       .catch(e => {
         alert("error " + JSON.stringify(e))
       });
+      
   }
 
   createTable() {
@@ -81,12 +84,7 @@ export class LoginPage implements OnInit {
     }
     this.databaseObj.executeSql(
       'INSERT INTO ' + this.table_name + 
-      ' (Name) VALUES ("' + this.name + '") ' +
-      ' (Username) VALUES ("' + this.username + '") ' + 
-      ' (position) VALUES ("' + this.position + '") ' +
-      ' (Workall) VALUES ("' + this.workall + '") ' +
-      ' (Workfinish) VALUES ("' + this.workfinish + '") ' +
-      ' (empID) VALUES ("' + this.empID + '") ', [])
+      ' (Name) VALUES ("' + this.name + '") , (Username) VALUES ("' + this.username + '") , (position) VALUES ("' + this.position + '") ,(Workall) VALUES ("' + this.workall + '"), (Workfinish) VALUES ("' + this.workfinish + '"), (empID) VALUES ("' + this.empID + '")' , [])
       .then(() => {
         alert('Row Inserted!');
         this.getRows();
@@ -116,10 +114,12 @@ export class LoginPage implements OnInit {
         this.empID = this.data[i].empID;
         this.status = this.data[i].Status;
         // console.log(this.status);
-        this.insertRow();
         this.check(data);
+        this.insertRow();
       }
     });
+    
+        
       }
 
   getRows() {

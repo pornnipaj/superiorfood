@@ -41,7 +41,7 @@
       <ion-col>
         Username
       </ion-col>
-      <ion-col>
+      <!-- <ion-col>
         position
       </ion-col>
       <ion-col>
@@ -55,7 +55,7 @@
       </ion-col>
       <ion-col>
         Delete
-      </ion-col>
+      </ion-col> -->
     </ion-row>
     <ion-row *ngFor="let item of row_data">
       <ion-col>
@@ -65,9 +65,9 @@
         {{item.Name}}
       </ion-col>
       <ion-col>
-        {{item.Username}}
+        {{item.New}}
       </ion-col>
-      <ion-col>
+      <!-- <ion-col>
         {{item.position}}
       </ion-col>
       <ion-col>
@@ -77,11 +77,8 @@
         {{item.Workfinish}}
       </ion-col>
       <ion-col>
-        {{item.pid}}
-      </ion-col>
-      <ion-col>
         {{item.empID}}
-      </ion-col>
+      </ion-col> -->
       <ion-col>
         <ion-button (click)="deleteRow(item)" size="small" color="danger">
           <ion-icon name="trash"></ion-icon>
