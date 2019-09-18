@@ -59,9 +59,9 @@ export class AuthServiceService {
       'http://superior.wingplusweb.com/API/Login.ashx?username=' + username + '&password=' + password
     );
 }
-getJobOverview(empID, month,year){
-  return this.http.get(
-    'http://superior.wingplusweb.com/API/JobOverview.ashx' + '?empID=' + empID + '&month=' + month + '&year=' + year
-  );
-}
+// getJobOverview(empid, month,year){
+//   return this.http.get(
+//     'http://superior.wingplusweb.com/API/JobOverview.ashx' + '?empID=' + empid + '&month=' + month + '&year=' + year
+//   );
+// }
 }

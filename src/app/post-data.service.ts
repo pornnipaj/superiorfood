@@ -82,12 +82,12 @@ export class PostDataService {
     });
   }
 
-  getjobOverview(user){
+  postjobOverview(user){
     return new Promise((resovle, reject) => {
       
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post('http://superior.wingplusweb.com/API/JobOverview.ashx' + '?empID=' + user.empID + '&month=' + user.month + '&year=' + user.year, 
+      this.http.post('http://superior.wingplusweb.com/API/JobOverview.ashx' + '?empID=' + user.empid + '&month=' + user.month + '&year=' + user.year, 
       JSON.stringify(user), option).subscribe(data => {
         resovle(data);
       }, error => {
