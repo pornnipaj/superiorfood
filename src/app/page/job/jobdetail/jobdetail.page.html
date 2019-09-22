@@ -18,23 +18,24 @@
                             <i class="fa fa-dashboard"></i>ข้อมูลโดยรวม </div>
 
                     </div>
-                    <div class="portlet-body" *ngFor="let item of data">
+                    <div class="portlet-body" *ngFor="let item of result">
                         <label class="col-8">ชื่อลูกค้า: {{item.CustomerName}}</label>
                         <label class="col-4">ผู้ตรวจเช็ค: {{item.Name}}</label>
                         <label class="col-8">โทรศัพท์: {{item.Phone}} </label>
-                        <label class="col-4">วันที่กำหนด: {{item.start_service_date | date: 'dd-MM-yyyy'}}</label>
+                        <label class="col-4">วันที่กำหนด: {{item.start_service_date}}</label>
                         <label class="col-8">ที่อยู่: {{item.Address}}</label>
                         <label class="col-4">ต่างจากวันกำหนด: {{item.TimeDiff}}</label>
                         <label class="col-8">สินค้าที่ติดตั้ง: {{item.InstallPlanName}} </label>
                         <label class="col-4">เริ่มทำงาน:
-                            {{item.start_service_date | date: 'dd-MM-yyyy HH:mm:ss'}}</label>
+                            {{item.start_service_date}}</label>
                         <label class="col-8">Serial No: {{item.SerialNo}}</label>
-                        <label class="col-4">เสร็จงาน: {{item.end_service_date | date: 'dd-MM-yyyy HH:mm:ss'}}</label>
+                        <label class="col-4">เสร็จงาน: {{item.end_service_date}}</label>
                         <label class="col-8">ชื่อสินค้า: {{item.ItemsName}}</label>
                         <label class="col-4">เวลาที่ใช้: {{item.TimeSpent}}</label>
                     </div>
                 </div>
             </div>
+            <div>
             <div class="col-md-6" style="padding: 0px;">
                 <div class="portlet blue box">
                     <div class="portlet-title">
@@ -67,6 +68,7 @@
                     </div>
                 </div>
             </div>
+        </div>
             <div class="col-12 col-sm-12 col-md-12" style="padding: 0px;">
                 <div class="portlet blue box">
                     <div class="portlet-title">

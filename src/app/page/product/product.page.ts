@@ -7,9 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductPage implements OnInit {
 
+  //#region data
+
+  //#endregion data
+
+  //#region constructor
+
   constructor() { }
+
+  //#endregion
+
+  //#region start
 
   ngOnInit() {
   }
 
+  //#endregion
+
+  //#region click
+
+  //#endregion
 }

@@ -2,9 +2,11 @@ ion-content{
     --ion-background-color:white;
 }
 ion-content {
-    font-size: 0.9em;
+    font-size: 0.9em!important;
     color: black;
-
+    ion-label{
+        font-size: 0.9em!important;
+    }
     .bg{
         background-color: white;
         

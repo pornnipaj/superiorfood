@@ -9,14 +9,28 @@ import interactionPlugin from '@fullcalendar/interaction';
   styleUrls: ['./calendarpm.page.scss'],
 })
 export class CalendarpmPage implements OnInit {
-  calendarPlugins = [dayGridPlugin ,interactionPlugin]
 
-  constructor() {  
+  //#region data
+
+  calendarPlugins = [dayGridPlugin, interactionPlugin]
+
+  //#endregion
+
+  //#region constructor
+
+  constructor() {
   }
 
+  //#endregion
+
+  //#region start
 
   ngOnInit() {
   }
+  //#endregion
 
+  //#region click
+
+  //#endregion
 }
 

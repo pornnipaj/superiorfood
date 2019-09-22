@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 
 export interface User {
-  modified: number;
   id: number,
   name: string,
-  username:  string,
+  username: string,
   position: string,
-  empid: string
+  empID: string
 }
 
 const user_KEY = 'my-user';
@@ -17,11 +16,11 @@ const user_KEY = 'my-user';
 })
 export class StorageService {
 
-users;
+  users;
 
-  constructor(private storage: Storage ) { }
+  constructor(private storage: Storage) { }
 
-  addUser(user: User): Promise<any>{
+  addUser(user: User): Promise<any> {
     return this.storage.get(user_KEY).then((users: User[]) => {
       if (users) {
         users.push(user);
@@ -32,7 +31,7 @@ users;
     });
   }
 
-  getUser(): Promise<User[]>{
+  getUser(): Promise<User[]> {
     return this.storage.get(user_KEY);
   }
 
@@ -41,9 +40,9 @@ users;
       if (!users || users.length === 0) {
         return null;
       }
- 
+
       let toKeep: User[] = [];
- 
+
       for (let i of users) {
         if (i.id !== id) {
           toKeep.push(i);
@@ -52,4 +51,9 @@ users;
       return this.storage.set(user_KEY, toKeep);
     });
   }
+
+  resetLocalStorage() {
+    this.storage.clear();
+  }
+
 }

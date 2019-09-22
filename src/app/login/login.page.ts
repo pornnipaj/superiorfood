@@ -15,11 +15,8 @@ import { StorageService, User } from '../storage.service';
 })
 export class LoginPage implements OnInit {
 
-  databaseObj: SQLiteObject; // Database instance object
-  name_model: string = "test"; // Input field model
-  row_data: any = []; // Table rows
-  readonly database_name: string = "db.db"; // DB name
-  readonly table_name: string = "user"; // Table name
+  //#region data
+
   name;
   username;
   position;
@@ -29,10 +26,12 @@ export class LoginPage implements OnInit {
   data;
   user;
   status;
-
   items: User[] = [];
-
   newUser: User = <User>{};
+
+  //#endregion
+
+  //#region constructor
 
   @ViewChild('mylist', { static: false }) mylist: IonList;
 
@@ -50,15 +49,18 @@ export class LoginPage implements OnInit {
     });
 
     this.user = [];
-
   }
+
+  //#endregion
+
+  //#region event click
 
   addUser() {
     this.newUser.id = 1;
     this.newUser.name = "name";
     this.newUser.username = "username";
     this.newUser.position = "position";
-    this.newUser.empid = "empid";
+    this.newUser.empID = "empID";
 
     this.storageService.addUser(this.newUser).then(item => {
       this.newUser = <User>{};
@@ -80,16 +82,15 @@ export class LoginPage implements OnInit {
     });
   }
 
-
   login() {
-    console.log(this.user.username);
+    console.log(this.user.email);
     console.log(this.user.password);
 
     this.postDataService.login(this.user).then(form => {
       console.log('form', form);
     });
 
-    this.DataService.getuser(this.user.username, this.user.password).subscribe(data => {
+    this.DataService.getuser(this.user.email, this.user.password).subscribe(data => {
       this.data = data;
       console.log('Data Returner', this.data);
       for (let i = 0; i < this.data.length; i++) {
@@ -107,31 +108,20 @@ export class LoginPage implements OnInit {
 
   }
 
-  ngOnInit() {
-
-    // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
-    // console.log(this.screenOrientation.type);
-  }
-
   async check() {
     if (this.status == true) {
-      //   const navigationExtras: NavigationExtras = {
-      //     queryParams: {
-      //       data: JSON.stringify(data)
-      //     }
-      //   };  
       this.newUser.id = 1;
       this.newUser.name = this.name;
       this.newUser.username = this.username;
       this.newUser.position = this.position;
-      this.newUser.empid = this.empID;
+      this.newUser.empID = this.empID;
 
       this.storageService.addUser(this.newUser).then(item => {
-        this.newUser = <User>{}; 
-        window.location.reload();       
+        this.newUser = <User>{};
+        window.location.reload();
       });
-      
-      this.navCtrl.navigateForward(['/menu/overview']);      
+
+      this.navCtrl.navigateForward(['/menu/overview']);
     }
     if (this.status == false) {
       const alert = await this.alertController.create({
@@ -143,10 +133,26 @@ export class LoginPage implements OnInit {
     }
   }
 
-  // show() {
-  //   this.DataService.getuser(this.user.username, this.user.password).subscribe(data => {
-  //     this.data = data;
-  //     console.log('Data Returner', this.data);
-  //   });
-  // }
+  checkspace() {
+    cordova.exec(function (result) {
+      alert("Free Disk Space: " + result);
+    }, function (error) {
+      alert("Error: " + error);
+    }, "File", "getFreeDiskSpace", []);
+
+  }
+
+  //#endregion
+
+  //#region start
+
+  ngOnInit() {
+    this.storageService.resetLocalStorage();
+    // this.checkspace();
+    // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+    // console.log(this.screenOrientation.type);
+  }
+
+  //#endregion
+
 }

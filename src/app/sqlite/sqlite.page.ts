@@ -59,7 +59,7 @@ data;
     }
    
     insertRow() {
-      this.databaseObj.executeSql('INSERT INTO user VALUES (?,?,?,?)', [this.data.name,this.data.username,this.data.emp_id,this.data.empid])
+      this.databaseObj.executeSql('INSERT INTO user VALUES (?,?,?,?)', [this.data.name,this.data.username,this.data.emp_id,this.data.empID])
         .then(() => {
           alert('Row Inserted!');
           this.getRows();
@@ -79,7 +79,7 @@ data;
               this.data.user = this.row_data.push(res.rows.item(i).user);
               this.data.username = this.row_data.push(res.rows.item(i).username);
               this.data.position = this.row_data.push(res.rows.item(i).position);
-              this.data.empid = this.row_data.push(res.rows.item(i).empid);
+              this.data.empID = this.row_data.push(res.rows.item(i).empID);
               console.log(this.data.user);              
             }
           }

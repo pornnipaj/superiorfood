@@ -11,23 +11,39 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DetailofdetaillistpmPage implements OnInit {
 
-myDate;
-myphoto;
-myId;
+  //#region data
 
-  constructor(private camera: Camera,public modalController: ModalController,private route: ActivatedRoute) {
+  myDate;
+  myphoto;
+  myId;
+  planID;
+
+  //#endregion
+
+  //#region constructor
+
+  constructor(private camera: Camera, public modalController: ModalController, private route: ActivatedRoute) {
     this.myDate = new Date().toISOString();
 
   }
 
+  //#endregion
+
+  //#region start
+
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.myId = JSON.parse(params["data"]);
-      console.log("receive", this.myId);
+      this.planID = this.myId.planID
+      console.log("planID", this.myId);
     });
   }
 
-  async Modal(){
+  //#endregion
+
+  //#region click
+
+  async Modal() {
     const modal = await this.modalController.create({
       component: SignaturePage,
       componentProps: {
@@ -53,6 +69,8 @@ myId;
       console.log("Camera issue:" + err);
     });
   }
+
+  //#endregion
 
   // takephoto() {
   //   console.log('Take photo');

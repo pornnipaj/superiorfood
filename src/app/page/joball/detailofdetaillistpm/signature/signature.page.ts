@@ -1,5 +1,5 @@
-import { Component, ViewChild,OnInit,Input } from '@angular/core';
-import { NavController,ModalController } from '@ionic/angular';
+import { Component, ViewChild, OnInit, Input } from '@angular/core';
+import { NavController, ModalController } from '@ionic/angular';
 import { NavParams } from '@ionic/angular';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { Storage } from '@ionic/storage';
@@ -11,14 +11,19 @@ import { Storage } from '@ionic/storage';
 })
 export class SignaturePage implements OnInit {
 
+  //#region data
+
   @Input() firstName: string;
   @Input() lastName: string;
   @Input() middleInitial: string;
- 
-  firstname:any;
 
+  firstname: any;
   isShow = false;
   image: any;
+
+  //#endregion
+
+  //#region constructor
 
   @ViewChild(SignaturePad, { static: false }) signaturePad;
 
@@ -30,8 +35,8 @@ export class SignaturePage implements OnInit {
     penColor: 'black'
   };
 
-  constructor(private nav:NavController, 
-    private modalCtrl:ModalController, 
+  constructor(private nav: NavController,
+    private modalCtrl: ModalController,
     navParams: NavParams,
     public storage: Storage,
     public modalController: ModalController) {
@@ -40,10 +45,14 @@ export class SignaturePage implements OnInit {
     // console.log(navParams.get('middleInitial'));
     this.firstName = navParams.get('firstName')
     console.log(this.firstName);
-    
-   }
 
-   drawStart() {
+  }
+
+  //#endregion
+
+  //#region click
+
+  drawStart() {
     this.isShow = true;
   }
 
@@ -72,12 +81,18 @@ export class SignaturePage implements OnInit {
     this.isShow = false;
   }
 
-  close(){
+  close() {
     this.modalCtrl.dismiss({
       'dismissed': true
     });
   }
+
+  //#endregion
+
+  //#region start
+
   ngOnInit() {
   }
 
+  //#endregion
 }

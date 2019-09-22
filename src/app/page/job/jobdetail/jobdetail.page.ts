@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { ActivatedRoute } from '@angular/router';
+import { StorageService } from '../../../storage.service';
+import { PostDataService } from '../../../post-data.service';
 
 @Component({
   selector: 'app-jobdetail',
@@ -13,7 +15,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./jobdetail.page.scss'],
 })
 export class JobdetailPage implements OnInit {
-  myId:any;
+
+  //#region data
+
   data: any;
   json: any;
   items: any;
@@ -24,27 +28,50 @@ export class JobdetailPage implements OnInit {
     header: '',
     subheader: '',
     row: ''
-      }
-
-  constructor(public DataService: AuthServiceService, private route: ActivatedRoute) {
-    
-    this.DataService.getJobDetail().subscribe(data => {
-      this.data = data;
-      // console.log(this.data);
-    });
-    // this.getOverview();
-    // this.getEvaluation();
-    // this.getCheckList();
-    
-  //   this.DataService.getJobDetail().subscribe(data => {
-  //     this.data = data;
-  //   for (let i = 0; i < this.data.length; i++) {
-  //     const json = this.data[i].Name;
-  //     console.log(json);
-  //   }
-  // });
   }
+  jobdetail;
+  cusID;
+  result;
+  query;
+  planID;
+  tranID;
+  //#endregion
   
+  //#region constructor
+
+  constructor(public DataService: AuthServiceService,
+    private route: ActivatedRoute,
+    private storageService: StorageService,
+    private postDataService: PostDataService) {
+
+      this.jobdetail = [];
+
+
+    this.route.queryParams.subscribe(params => {
+      this.query = JSON.parse(params["data"]);
+      this.planID = this.query.planID
+      this.tranID = this.query.tranID
+      console.log("receive", this.query);
+    });
+
+
+    // this.getOverview();
+    this.getEvaluation();
+    // this.getCheckList();
+
+    //   this.DataService.getJobDetail().subscribe(data => {
+    //     this.data = data;
+    //   for (let i = 0; i < this.data.length; i++) {
+    //     const json = this.data[i].Name;
+    //     console.log(json);
+    //   }
+    // });
+  }
+
+  //#endregion
+
+  //#region click
+
   getEvaluation() {
     this.DataService.getJobDetail().subscribe(data => {
       this.data = data;
@@ -90,10 +117,39 @@ export class JobdetailPage implements OnInit {
     });
   }
 
+  //#endregion
+
+  //#region start
+
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.myId = params["data"];
-      console.log("receive", this.myId);
-    });
+  
+    // this.route.queryParams.subscribe(params => {
+    //   if (params && params.special) {
+    //     this.cusID = JSON.parse(params.special);  
+    //     console.log(this.cusID.empID);     
+    //     console.log(this.cusID.cusID);
+    //     console.log(this.cusID.planID);        
+    //   }   
+    // });
+    // this.jobdetail.empID = this.cusID.empID
+    // this.jobdetail.cusID = this.cusID.cusID
+    // this.jobdetail.planID = this.cusID.planID
+    //   console.log(this.jobdetail);
+    
+    this.jobdetail.planID = this.planID;
+    this.jobdetail.tranID = this.tranID
+
+    console.log(this.jobdetail);
+
+    this.postDataService.postjobDetail(this.jobdetail).then(jobdetail => {
+      this.result = jobdetail;
+      console.log(this.result)
+      // for (let i = 0; i < this.jobOverview.length; i++) {
+      //   this.workall = this.jobOverview[i].WorkAll;
+      //   this.workfinish = this.jobOverview[i].WorkFinish;
+      // }
+      });
   }
-} 
+
+  //#endregion
+}

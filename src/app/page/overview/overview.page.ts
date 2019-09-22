@@ -24,7 +24,9 @@ import { StorageService, User } from '../../storage.service';
 })
 
 export class OverviewPage implements OnInit {
+  
   //#region  data
+
   Today;
   month;
   intMonth;
@@ -42,10 +44,9 @@ export class OverviewPage implements OnInit {
   workfinishnow;
   workall;
   workfinish;
-  empid;
+  empID;
   user;
   jobOverview;
-
   items: User[] = [];
 
   //#endregion
@@ -74,46 +75,16 @@ export class OverviewPage implements OnInit {
       this.items = items;
       // console.log(items);      
       for (let i = 0; i < this.items.length; i++) {
-        this.empid = this.items[i].empid;
-        console.log(this.empid);
+        this.empID = this.items[i].empID;
+        console.log(this.empID);
       }
     });
   }
 
   //#endregion
 
-  //#region signaturePad
+  //#region Month
 
-  //#endregion
-
-  // onchangeMonth(type) {
-
-  //   // const year = new Date().getFullYear();
-  //   // this.intYear = year;  
-  //   // console.log(type);
-
-  //   if (this.month != '') {
-  //     this.ChangeMonth();
-  //     console.log(this.intMonth);
-  //     console.log(this.month);   
-  //   }
-  //   if (type == 'now') {
-  //     this.ChangeMonth();
-  //     console.log(this.intMonth);
-  //     console.log(this.month); 
-  //   }
-  //   if (type == 'back') { 
-  //     this.intMonth = this.intMonth - 1 
-  //     console.log(this.intMonth);
-  //   }
-  //   if (type == 'next') {
-  //     this.ChangeMonth();
-  //     this.intMonth+1
-  //     console.log(this.intMonth);
-  //   }    
-  // }
-
-  //#region 
   ChangeMonth() {
     const month = new Date().getMonth() + 1;
     this.intMonth = month;
@@ -189,16 +160,12 @@ export class OverviewPage implements OnInit {
     }
     //#endregion
 
-    // if (this.intYear > year) {
-    //   this.intYear = year
-    // }
     console.log(this.intMonth)
     console.log(this.intYear)
 
-    this.user.empid = this.empid;
+    this.user.empID = this.empID;
     this.user.month = this.intMonth;
     this.user.year = this.intYear;
-
 
     this.postDataService.postjobOverview(this.user).then(work => {
       this.jobOverview = work;
@@ -301,10 +268,9 @@ export class OverviewPage implements OnInit {
     console.log(this.intMonth)
     console.log(this.intYear)
 
-    this.user.empid = this.empid;
+    this.user.empID = this.empID;
     this.user.month = this.intMonth;
     this.user.year = this.intYear;
-
 
     this.postDataService.postjobOverview(this.user).then(work => {
       console.log('worknext', work);
@@ -313,7 +279,7 @@ export class OverviewPage implements OnInit {
         this.workall = this.jobOverview[i].WorkAll;
         this.workfinish = this.jobOverview[i].WorkFinish;
       }
-    });  
+    });
   }
 
   changeMonthBack() {
@@ -390,7 +356,7 @@ export class OverviewPage implements OnInit {
     console.log(this.intMonth)
     console.log(this.intYear)
 
-    this.user.empID = this.empid;
+    this.user.empID = this.empID;
     this.user.month = this.intMonth;
     this.user.year = this.intYear;
 
@@ -401,11 +367,12 @@ export class OverviewPage implements OnInit {
         this.workall = this.jobOverview[i].WorkAll;
         this.workfinish = this.jobOverview[i].WorkFinish;
       }
-    });   
+    });
   }
 
   //#endregion
 
+  //#region click
 
   Take() {
     const options: CameraOptions = {
@@ -422,29 +389,34 @@ export class OverviewPage implements OnInit {
     });
   }
 
+  //#endregion
+
+  //#region start
+
   ngOnInit() {
     this.storageService.getUser().then(items => {
       this.items = items;
       // console.log(items);      
       for (let i = 0; i < this.items.length; i++) {
-        this.empid = this.items[i].empid;
-        // console.log(this.empid);
+        this.empID = this.items[i].empID;
+        // console.log(this.empID);
 
-        this.user.empid = this.empid;
+        this.user.empID = this.empID;
         this.user.month = this.intMonth;
         this.user.year = this.intYear;
         // console.log(this.user);
 
         this.postDataService.postjobOverview(this.user).then(work => {
-          console.log('worknow', work);
+          // console.log('worknow', work);
           this.jobOverview = work;
           for (let i = 0; i < this.jobOverview.length; i++) {
             this.workall = this.jobOverview[i].WorkAll;
             this.workfinish = this.jobOverview[i].WorkFinish;
-          }         
+          }
         });
       }
     });
   }
 
+  //#endregion
 }
