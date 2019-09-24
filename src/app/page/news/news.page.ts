@@ -22,7 +22,7 @@ export class NewsPage implements OnInit {
   //#region constuctor
 
   constructor(public DataService: AuthServiceService) {
-    this.DataService.getJob().subscribe(data => {
+    this.DataService.getnew().subscribe(data => {
       console.log(data);
       this.data = data;
 
@@ -35,10 +35,10 @@ export class NewsPage implements OnInit {
 
   onChange(item) {
     this.Show = true;
-    this.header = item.CustomerName
-    this.type = item.InstallPlanName
-    this.content = item.SerialNo
-    this.date = item.start_service_date
+    this.header = item.title
+    this.type = item.name
+    this.content = item.content
+    this.date = item.updated_at
   }
 
   //#endregion

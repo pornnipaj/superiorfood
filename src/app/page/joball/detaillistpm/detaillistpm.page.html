@@ -2,7 +2,7 @@
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
-      <ion-title>ข้อมูลของ ชาบูชิ บิ๊กซี ติวานนท์ CutomerName (ดูแลโดย สมภพ แสนกล้าName) </ion-title>
+      <ion-title>ข้อมูลของ {{Customername}} (ดูแลโดย {{Name}}) </ion-title>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -90,7 +90,7 @@
               <i class="fa fa-cube"></i>สินค้าที่ติดตั้ง </div>
 
           </div>
-          <div (click)="click(item)" style="padding: 5px;">
+          <div (click)="click(item)" style="padding: 5px;" *ngFor="let data of item.productInstall | keyvalue">
             <div
               style="background-color: #EEEEEE; margin-left:10px; padding: 0px; margin-bottom: 5px; margin-right:10px;">
               <label class="col-4 text" style="margin:0px; padding-left: 5px;">สถานะ:</label>
@@ -100,13 +100,13 @@
                 style="margin-bottom: 0px; color: green; padding-left: 10px;" *ngIf="isShowSuccess">สำเร็จ</label>
             </div>
             <label class="col-4 text">สินค้าที่ติดตั้ง:</label>
-            <label class="col-8 subtext">{{item.InstallPlanName}} {{item.ProductCode}}</label>
+            <label class="col-8 subtext">{{data.value.InstallPlanName}} ({{data.value.ProductCode}})</label>
             <label class="col-4 text">รหัสสินค้า:</label>
-            <label class="col-8 subtext">{{item.ItemCode}}</label>
+            <label class="col-8 subtext">{{data.value.ItemCode}}</label>
             <label class="col-4 text">ชื่อสินค้า:</label>
-            <label class="col-8 subtext">{{item.ItemsName}}</label>
+            <label class="col-8 subtext">{{data.value.ItemsName}}</label>
             <label class="col-4 text">Serial No:</label>
-            <label class="col-8 subtext">{{item.SerialNo}}</label>
+            <label class="col-8 subtext">{{data.value.SerialNo}}</label>
           </div>
         </div>
       </div>

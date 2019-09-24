@@ -10,23 +10,24 @@
    
   </ion-header> -->
 
-  <ion-toolbar>
-      <ion-title>ลายเซ็นผู้รับผิดชอบ</ion-title>
-      <ion-buttons slot="primary">        
-          <ion-icon slot="end" name="close" (click)="close()"></ion-icon>
-      </ion-buttons>
-    </ion-toolbar>
-    
+<ion-toolbar>
+  <ion-title>ลายเซ็นผู้รับผิดชอบ</ion-title>
+  <ion-buttons slot="primary">
+    <ion-icon slot="end" name="close" (click)="close()"></ion-icon>
+  </ion-buttons>
+</ion-toolbar>
+
 <ion-content>
   <div id="sig" class="sig">
-    <div class="sig-body">
+    <div *ngIf="isShow">
+      <img [src]="image" />
+    </div>
+    <div class="sig-body" *ngIf="isSign">
       <signature-pad [options]="signaturePadOptions"></signature-pad>
     </div>
-    <ion-button (click)="savePad()">บันทึก</ion-button>
+    <ion-button (click)="savePad()" *ngIf="isSave">บันทึก</ion-button>
     <ion-button color="dark" (click)="clearPad()">รีเซ็ต</ion-button>
     <ion-button color="danger" (click)="close()">ปิด</ion-button>
   </div>
-  <div *ngIf="isShow">
-    <img [src]="image" />
-  </div>
+
 </ion-content>

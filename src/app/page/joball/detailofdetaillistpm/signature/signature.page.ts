@@ -20,7 +20,8 @@ export class SignaturePage implements OnInit {
   firstname: any;
   isShow = false;
   image: any;
-
+  isSave = true;
+  isSign = true;
   //#endregion
 
   //#region constructor
@@ -54,6 +55,8 @@ export class SignaturePage implements OnInit {
 
   drawStart() {
     this.isShow = true;
+    this.isSave = false;
+    this.isSign = false;
   }
 
   savePad() {
@@ -77,8 +80,9 @@ export class SignaturePage implements OnInit {
   }
 
   clearPad() {
-    this.signaturePad.clear();
     this.isShow = false;
+    this.isSave = true;
+    this.isSign = true;
   }
 
   close() {

@@ -9,6 +9,10 @@ export interface User {
   empID: string
 }
 
+class Photo {
+  data: any;
+}
+
 const user_KEY = 'my-user';
 
 @Injectable({
@@ -16,9 +20,13 @@ const user_KEY = 'my-user';
 })
 export class StorageService {
 
+  public photos: Photo[] = [];
+
   users;
 
-  constructor(private storage: Storage) { }
+  constructor(private storage: Storage) { 
+    
+  }
 
   addUser(user: User): Promise<any> {
     return this.storage.get(user_KEY).then((users: User[]) => {

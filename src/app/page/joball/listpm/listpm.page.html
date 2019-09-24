@@ -2,7 +2,7 @@
     <ion-toolbar color="primary">
       <ion-buttons slot="start">
         <ion-back-button></ion-back-button>
-        <ion-title>รายการการตรวจเช็ค(PM) ของ สมภพ แสนกล้า</ion-title>
+        <ion-title>รายการการตรวจเช็ค(PM) ของ {{name}}</ion-title>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
@@ -38,7 +38,7 @@
                                         </div>
                                     </div>
                                     <div class="pull-right">
-                                        <span class="badge badge-primary" style="margin-top: 10px;">ติดตั้ง : {{ item.value.WorkAll }} สำเร็จ : {{ item.value.WorkFinish }}</span>
+                                        <span class="badge badge-default bg-blue" style="margin-top: 10px;">ติดตั้ง : {{ item.value.WorkAll }} สำเร็จ : {{ item.value.WorkFinish }}</span>
                                     </div>
                                 </div>
                             </li>

@@ -36,6 +36,8 @@ export class ListpmPage implements OnInit {
   customer;
   empid;
   listpmdetail;
+  myId;
+  name;
   //#endregion
 
   //#region constructor
@@ -61,7 +63,11 @@ export class ListpmPage implements OnInit {
     //this.listpm = [];
     this.ChangeMonth();
 
-    
+    this.route.queryParams.subscribe(params => {
+      this.myId = JSON.parse(params["data"]);
+      this.name = this.myId.Name
+      console.log("name", this.name);
+    });
 
   }
 
@@ -81,6 +87,7 @@ export class ListpmPage implements OnInit {
   }
 
   click(item) {
+    console.log(item);
     
     let navigationExtras: NavigationExtras = {
       queryParams: {

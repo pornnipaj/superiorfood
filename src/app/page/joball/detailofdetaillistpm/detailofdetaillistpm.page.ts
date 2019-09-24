@@ -17,7 +17,13 @@ export class DetailofdetaillistpmPage implements OnInit {
   myphoto;
   myId;
   planID;
-
+  isTake = true;
+  isShow = false;
+  InstallPlanName;
+  SerialNo;
+  ItemsName;
+  ItemCode;
+  ProductCode;
   //#endregion
 
   //#region constructor
@@ -32,10 +38,19 @@ export class DetailofdetaillistpmPage implements OnInit {
   //#region start
 
   ngOnInit() {
+
     this.route.queryParams.subscribe(params => {
       this.myId = JSON.parse(params["data"]);
       this.planID = this.myId.planID
-      console.log("planID", this.myId);
+      // this.tranID = this.myId.tranID
+      console.log("receive", this.myId.productInstall);
+      for (let i = 0; i < this.myId.productInstall.length; i++) {
+        this.InstallPlanName = this.myId.productInstall[i].InstallPlanName;
+        this.SerialNo = this.myId.productInstall[i].SerialNo;
+        this.ItemsName = this.myId.productInstall[i].ItemsName;
+        this.ItemCode = this.myId.productInstall[i].ItemCode;
+        this.ProductCode = this.myId.productInstall[i].ProductCode;
+      }
     });
   }
 
@@ -56,6 +71,7 @@ export class DetailofdetaillistpmPage implements OnInit {
   }
 
   Take() {
+
     const options: CameraOptions = {
       quality: 70,
       destinationType: this.camera.DestinationType.FILE_URI,
@@ -69,6 +85,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       console.log("Camera issue:" + err);
     });
   }
+
 
   //#endregion
 

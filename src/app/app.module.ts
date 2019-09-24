@@ -18,6 +18,7 @@ import { SignaturePadModule } from 'angular2-signaturepad';
 import { SignaturePageModule } from '../app/page/joball/detailofdetaillistpm/signature/signature.module';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 
+
 import { SQLite } from '@ionic-native/sqlite/ngx';
 
 @NgModule({

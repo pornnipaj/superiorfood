@@ -35,6 +35,12 @@ export class AuthServiceService {
       'http://superior.wingplusweb.com/API/Login.ashx?username=' + email + '&password=' + password
     );
 }
+
+getnew(){
+  return this.http.get(
+    'http://localhost:41603/API/News.ashx'
+  );
+}
 // getJobOverview(empid, month,year){
 //   return this.http.get(
 //     'http://superior.wingplusweb.com/API/JobOverview.ashx' + '?empID=' + empid + '&month=' + month + '&year=' + year

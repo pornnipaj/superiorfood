@@ -2,7 +2,7 @@
     <ion-toolbar color="primary">
       <ion-buttons slot="start">
         <ion-back-button></ion-back-button>
-        <ion-title>PM: Ice machine Half cube Icematic M402(H)</ion-title>
+        <ion-title>PM: {{ItemsName}}</ion-title>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
@@ -35,13 +35,15 @@
                 </div>
                 <div class="row">
                   <div class="col-md-4 col-4 text-center">
+                    <div *ngIf="isTake">
                     <i class="fa fa-camera fa-4x icon responsive center"></i>
                     <ion-fab vertical="bottom" horizontal="center" slot="fixed">
                         <ion-fab-button (click)="Take()">
                             <ion-icon name="camera"></ion-icon>
                         </ion-fab-button>
                     </ion-fab>
-                    <p><img [src]="myphoto" *ngIf="myphoto"></p>
+                  </div>
+                    <p><img [src]="myphoto" *ngIf="isShow"></p>
                   </div>
                   <div class="col-md-4 col-4 text-center">
                     <i class="fa fa-camera fa-4x icon responsive center" (click)="Take()"></i>
@@ -247,10 +249,10 @@
                       <p class="profile-desc-text">ประเภท:</p>
                     </div>
                     <div class="col-md-8 col-8">
-                      <p class="profile-desc-text">เครื่องทำน้ำแข็ง</p>
-                      <p class="profile-desc-text">IMI01IOM0605</p>
-                      <p class="profile-desc-text">Ice machine Half cube Icematic M402 (H)</p>
-                      <p class="profile-desc-text">CMA1011751</p>
+                      <p class="profile-desc-text">{{InstallPlanName}}</p>
+                      <p class="profile-desc-text">{{ItemCode}}</p>
+                      <p class="profile-desc-text">{{ItemsName}}</p>
+                      <p class="profile-desc-text">{{SerialNo}}</p>
                       <p class="profile-desc-text">Cube</p>
                     </div>
                   </div>

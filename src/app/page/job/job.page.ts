@@ -91,10 +91,9 @@ this.jobdetail = [];
         this.postDataService.postjob(this.job).then(work => {
           this.jobresolve = work;
           console.log(this.jobresolve)
-          // for (let i = 0; i < this.jobOverview.length; i++) {
-          //   this.workall = this.jobOverview[i].WorkAll;
-          //   this.workfinish = this.jobOverview[i].WorkFinish;
-          // }
+          for (let i = 0; i < this.jobresolve.length; i++) {
+            // this.jobresolve[i].customerdata = JSON.parse(this.jobresolve[i].customerdata);
+          }
         });
 
       }

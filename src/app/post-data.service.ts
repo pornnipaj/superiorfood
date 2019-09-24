@@ -55,7 +55,7 @@ export class PostDataService {
 
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post('http://superior.wingplusweb.com/API/JobOverview.ashx' + '?empID=' + user.empID + '&month=' + user.month + '&year=' + user.year,
+      this.http.post('http://localhost:41603/API/JobOverview.ashx' + '?empID=' + user.empID + '&month=' + user.month + '&year=' + user.year,
         JSON.stringify(user), option).subscribe(data => {
           resovle(data);
         }, error => {
@@ -69,7 +69,7 @@ export class PostDataService {
 
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post('http://localhost:41603/API/ServicePlans.ashx' + '?empID=' + job.empID + '&month=' + job.month + '&year=' + job.year,
+      this.http.post('http://localhost:41603/API/Job.ashx' + '?empID=' + job.empID + '&month=' + job.month + '&year=' + job.year,
         JSON.stringify(job), option).subscribe(data => {
           resovle(data);
         }, error => {
@@ -83,7 +83,7 @@ export class PostDataService {
 
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post('http://localhost:41603/API/ServicePlansDetail.ashx' + '?planID=' + jobdetail.planID + '&tranID=' + jobdetail.tranID ,
+      this.http.post('http://localhost:41603/API/DetailJob.ashx' + '?planID=' + jobdetail.planID + '&tranID=' + jobdetail.tranID ,
         JSON.stringify(jobdetail), option).subscribe(data => {
           resovle(data);
         }, error => {
@@ -111,8 +111,22 @@ export class PostDataService {
 
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post('http://localhost:41603/API/DetailListpm.ashx' + '?cusID=' + detaillistpm.cusID + '&planID=' + detaillistpm.planID ,
+      this.http.post('http://localhost:41603/API/DetailListpm.ashx' + '?cusID=' + detaillistpm.cusID + '&planID=' + detaillistpm.planID + '&month=' + detaillistpm.month + '&year=' + detaillistpm.year ,
         JSON.stringify(detaillistpm), option).subscribe(data => {
+          resovle(data);
+        }, error => {
+          reject(error)
+        });
+    });
+  }
+
+  postServicaPlan(serviceplan) {
+    return new Promise((resovle, reject) => {
+
+      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+      this.http.post('http://localhost:41603/API/DetailListpm.ashx' + '?empID=' + serviceplan.empID + '&month=' + serviceplan.month + '&year=' + serviceplan.year,
+        JSON.stringify(serviceplan), option).subscribe(data => {
           resovle(data);
         }, error => {
           reject(error)
