@@ -41,7 +41,7 @@ export class PostDataService {
 
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post(this.api_url + '?email=' + user.username + '&password=' + user.password,
+      this.http.post(this.api_url + '?email=' + user.email + '&password=' + user.password,
         JSON.stringify(user), option).subscribe(data => {
           resovle(data);
         }, error => {
@@ -119,7 +119,7 @@ export class PostDataService {
         });
     });
   }
-
+  
   postServicaPlan(serviceplan) {
     return new Promise((resovle, reject) => {
 
@@ -127,6 +127,20 @@ export class PostDataService {
 
       this.http.post('http://localhost:41603/API/DetailListpm.ashx' + '?empID=' + serviceplan.empID + '&month=' + serviceplan.month + '&year=' + serviceplan.year,
         JSON.stringify(serviceplan), option).subscribe(data => {
+          resovle(data);
+        }, error => {
+          reject(error)
+        });
+    });
+  }
+
+  postPlan(plan) {
+    return new Promise((resovle, reject) => {
+
+      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+      this.http.post('http://localhost:41603/API/ServicePlans.ashx' + '?empID=' + plan.empID + '&month=' + plan.month + '&year=' + plan.year,
+        JSON.stringify(plan), option).subscribe(data => {
           resovle(data);
         }, error => {
           reject(error)

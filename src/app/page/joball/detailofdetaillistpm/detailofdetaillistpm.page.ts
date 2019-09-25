@@ -50,6 +50,8 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.ItemsName = this.myId.productInstall[i].ItemsName;
         this.ItemCode = this.myId.productInstall[i].ItemCode;
         this.ProductCode = this.myId.productInstall[i].ProductCode;
+        console.log(this.myId);
+        
       }
     });
   }

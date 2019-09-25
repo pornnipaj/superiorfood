@@ -10,21 +10,22 @@
 <ion-content>
   <div class="container-fluid" >
       
-<div style="background-color: white; padding: 2px;">
-    <full-calendar [plugins]="calendarPlugins" 
-    [editable]="true"
-    [eventLimit]="true"
-      [events]="[
-        { title: 'โครงการกาแฟเขาช่องปาร์ค เชียงใหม่', date: '2019-09-02' },
-        { title: 'เจียง ลูกชิ้นปลา ( ปากเกร็ด ) ถ.ชัยพฤกษ์', date: '2019-09-02' },
-        { title: 'ชาบูชิ เดอะมอลล์ รามคำแหง', date: '2019-09-02' },
-        { title: 'ชาบูชิ บิ๊กซี ปทุมธานี', date: '2019-09-02' },
-        { title: 'ชิชิ ซูชิ ราชพฤกษ์', date: '2019-09-02' },
-        { title: 'ยาโยอิ เดอะมอลล์ รามคำแหง', date: '2019-09-02' },
-        { title: 'กาแฟดอยช้าง มอเตอร์เวย์ ( ขาออก )', date: '2019-09-05' },
-        { title: 'คิงคอง บุฟเฟ่ต์ ยูไนเต็ด สีลม', date: '2019-09-05' }
-      ]">
-    </full-calendar>
+<div style="background-color: white; padding: 2px;">  
+  
+    <full-calendar
+      *ngIf="options"
+      #fullcalendar
+      [editable]="true"
+      [events]="eventsModel"
+      [header]="options.header"
+      [customButtons]="options.customButtons"
+      [plugins]="calendarPlugins"
+      [columnHeaderHtml]="options.columnHeaderHtml"
+      [selectable]="true"
+      [selectOverlap]="options.selectOverlap"
+    ></full-calendar>
+    
+   </div>
   </div>
-  </div>
+  
 </ion-content>

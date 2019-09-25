@@ -32,13 +32,19 @@ export class AuthServiceService {
   }
   getuser(email, password){
     return this.http.get(
-      'http://superior.wingplusweb.com/API/Login.ashx?username=' + email + '&password=' + password
+      'http://localhost:41603/API/Login.ashx?email=' + email + '&password=' + password
     );
 }
 
 getnew(){
   return this.http.get(
     'http://localhost:41603/API/News.ashx'
+  );
+}
+
+getPlan(){
+  return this.http.get(
+    'http://localhost:41603/API/ServicePlans.ashx'
   );
 }
 // getJobOverview(empid, month,year){
