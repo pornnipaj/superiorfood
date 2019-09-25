@@ -25,11 +25,6 @@ export class AuthServiceService {
       'http://superior.wingplusweb.com/API/Employee.ashx'
     );
   }
-  getTest() {
-    return this.http.get(
-      'http://stock.wingplusapp.com/DataService.ashx'
-    );
-  }
   getuser(email, password){
     return this.http.get(
       'http://localhost:41603/API/Login.ashx?email=' + email + '&password=' + password
@@ -47,9 +42,4 @@ getPlan(){
     'http://localhost:41603/API/ServicePlans.ashx'
   );
 }
-// getJobOverview(empid, month,year){
-//   return this.http.get(
-//     'http://superior.wingplusweb.com/API/JobOverview.ashx' + '?empID=' + empid + '&month=' + month + '&year=' + year
-//   );
-// }
 }

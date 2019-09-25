@@ -30,6 +30,7 @@ export class ReportcheckpmPage implements OnInit {
   myempID: string;
   empid: any;
   listpm;
+  name;
 
   //#endregion
 
@@ -51,6 +52,7 @@ export class ReportcheckpmPage implements OnInit {
       // console.log(items);      
       for (let i = 0; i < this.items.length; i++) {
         this.myempID = this.items[i].empID;
+        this.name = this.items[i].name;
         console.log(this.myempID);
       }
     });
@@ -76,6 +78,8 @@ export class ReportcheckpmPage implements OnInit {
 
   click(item) {
 
+    console.log(item);
+    
     let navigationExtras: NavigationExtras = {
       queryParams: {
         currency: JSON.stringify(item.value)
@@ -182,7 +186,7 @@ export class ReportcheckpmPage implements OnInit {
         this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
       }
 
-      console.log('listpmnow', this.listpm);
+      console.log('listpmnow',this.listpm);
     });
   }
 
@@ -290,7 +294,7 @@ export class ReportcheckpmPage implements OnInit {
         this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
       }
 
-      console.log('listpmnext', this.listpm);
+      console.log('listpmnext',this.listpm);
     });
   }
 
@@ -380,7 +384,7 @@ export class ReportcheckpmPage implements OnInit {
         this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
       }
 
-      console.log('listback', this.listpm);
+      console.log('listback',this.listpm);
     });
   }
 
@@ -389,12 +393,6 @@ export class ReportcheckpmPage implements OnInit {
   //#region start
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.empid = JSON.parse(params["data"]);
-      this.empid = this.empid.EmpID
-      console.log("receive", this.empid);
-    });
-
     this.job.empID = "01225f87-e6cc-4725-afe2-7e5a63f9a183";
     this.job.month = 8;
     this.job.year = 2019;
@@ -402,14 +400,14 @@ export class ReportcheckpmPage implements OnInit {
     this.postDataService.postListpm(this.job).then(work => {
       this.listpm = work;
       console.log(this.listpm);
-
+      
 
       for (let i = 0; i < this.listpm.length; i++) {
         this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
       }
 
-      console.log('listpm', this.listpm);
-
+      console.log('listpm',this.listpm);
+      
     });
   }
 

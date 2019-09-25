@@ -25,6 +25,7 @@ export class CalendarpmPage implements OnInit {
   options: any;
   eventsModel: any;
   date;
+  str = "123";
   @ViewChild("fullcalendar", { static: true }) fullcalendar: FullCalendarComponent;
   @ViewChild("external", { static: true }) external: ElementRef;
 
@@ -44,18 +45,6 @@ export class CalendarpmPage implements OnInit {
 
     this.postDataService.postPlan(this.calendar).then(plan => {
       this.data = plan;
-      console.log('data',this.data)
-      // for (let i = 0; i < this.data.length; i++) {
-      //   this.customername =  this.data[i];
-      //   this.date = this.data[i].service_date_plan
-      // }
-
-      for (let a = 0; a < this.data.length; a++) {
-        this.eventsModel.title += this.data[a].customername;
-        this.eventsModel.date += this.data[a].service_date_plan;
-      }
-  
-      console.log('eventsModel',this.eventsModel);
       });
 
     
@@ -76,11 +65,31 @@ export class CalendarpmPage implements OnInit {
     }
 
     
+    this.postDataService.postPlan(this.calendar).then(plan => {
+      this.data = plan;
+      console.log('data',this.data)
+      this.eventsModel += "[";
+      for (let a = 0; a < this.data.length; a++) {        
+        this.eventsModel += '{title: "' + this.data[a].customername + '", date: "' + this.data[a].service_date_plan + '"},';
+      }
+      this.eventsModel = this.eventsModel.substring(0, this.eventsModel.length - 1);
+      this.eventsModel += "]";
+      console.log('test',this.eventsModel);
+    });
+
+      
+       
+
+    this.date = [{
+      title: 'ยาโยอิ บิ๊กซี บางพลี',
+      date: '2019-09-02'
+    },
+    {
+      title: 'ยาโยอิ บิ๊กซี บางพลี',
+      date: '2019-09-05'
+    }];
+    console.log('date', this.date);
     
-    // this.eventsModel = [{
-    //   title: 'ยาโยอิ บิ๊กซี บางพลี',
-    //   date: '2019-09-02'
-    // }];
     
   }
   //#endregion

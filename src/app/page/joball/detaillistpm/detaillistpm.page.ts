@@ -74,7 +74,9 @@ console.log(this.detaillistpm);
       console.log(this.data);
       for (let i = 0; i < this.data.length; i++) {
         this.Customername = this.data[i].CustomerName;   
-        this.data[i].productInstall = JSON.parse(this.data[i].productInstall);     
+        this.data[i].productInstall = JSON.parse(this.data[i].productInstall);
+        
+        this.workfinish = JSON.parse(this.data[i].productInstall);    
       }
       
     });
@@ -99,7 +101,7 @@ console.log(this.detaillistpm);
       console.log("sent", navigationExtras);
     }
 
-    if (this.workfinish == 1) {
+    if (this.workfinish != 0) {
       
       const navigationExtras: NavigationExtras = {
         queryParams: {

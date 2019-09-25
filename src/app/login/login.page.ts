@@ -53,8 +53,8 @@ export class LoginPage implements OnInit {
 
   //#endregion
 
-  //#region event click
 
+  //#region adddata to storage
   addUser() {
     this.newUser.id = 1;
     this.newUser.name = "name";
@@ -81,6 +81,10 @@ export class LoginPage implements OnInit {
       this.loadItems(); // Or splice it from the array directly
     });
   }
+  //#endregion
+
+  //#region event click
+
 
   login() {
     console.log(this.user.email);
