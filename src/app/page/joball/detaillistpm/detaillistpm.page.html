@@ -90,14 +90,14 @@
               <i class="fa fa-cube"></i>สินค้าที่ติดตั้ง </div>
 
           </div>
-          <div (click)="click(item)" style="padding: 5px;" *ngFor="let data of item.productInstall | keyvalue">
+          <div (click)="click(item, data.value)" style="padding: 5px;" *ngFor="let data of item.productInstall | keyvalue">
             <div
               style="background-color: #EEEEEE; margin-left:10px; padding: 0px; margin-bottom: 5px; margin-right:10px;">
               <label class="col-4 text" style="margin:0px; padding-left: 5px;">สถานะ:</label>
-              <label class="col-8 subtext"
-                style="margin-bottom: 0px; color: #E78D8D; padding-left: 10px;" *ngIf="isShowWait">รอการตรวจสอบ</label>
-                <label class="col-8 subtext"
-                style="margin-bottom: 0px; color: green; padding-left: 10px;" *ngIf="isShowSuccess">สำเร็จ</label>
+              <label class="col-8 subtext" #lblWait
+                style="margin-bottom: 0px; color: #E78D8D; padding-left: 10px;" *ngIf="data.value.Workfinish == 0; else lblWait">รอการตรวจสอบ</label>
+              <label class="col-8 subtext" #lblSuccess
+                style="margin-bottom: 0px; color: green; padding-left: 10px;"  *ngIf="data.value.Workfinish == 1; else lblSuccess">สำเร็จ</label>
             </div>
             <label class="col-4 text">สินค้าที่ติดตั้ง:</label>
             <label class="col-8 subtext">{{data.value.InstallPlanName}} ({{data.value.ProductCode}})</label>

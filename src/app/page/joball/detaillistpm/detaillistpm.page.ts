@@ -16,8 +16,6 @@ export class DetaillistpmPage implements OnInit {
   //#region data
 
   myId;
-  isShowWait;
-  isShowSuccess;
   workfinish;
   cusID;
   planID;
@@ -53,16 +51,6 @@ export class DetaillistpmPage implements OnInit {
   //#region start
 
   ngOnInit() {
-
-    if (this.workfinish == 0) {
-      this.isShowWait = true;
-      this.isShowSuccess = false;
-    }
-    if (this.workfinish != 0) {
-      this.isShowSuccess = true;
-      this.isShowWait = false;
-    }
-
     this.detaillistpm.cusID = this.cusID;
     this.detaillistpm.planID = this.planID;
     this.detaillistpm.month = this.month;
@@ -76,36 +64,35 @@ console.log(this.detaillistpm);
         this.Customername = this.data[i].CustomerName;   
         this.data[i].productInstall = JSON.parse(this.data[i].productInstall);
         
-        this.workfinish = JSON.parse(this.data[i].productInstall);    
-      }
-      
+      }      
     });
-
   }
 
   //#endregion
 
   //#region click
 
-  click(item) {
-    console.log(item);
+  click(data, item) {
+    console.log('Data',data);
+    console.log('item',item);
     
-    if (this.workfinish == 0) {
+    
+    if (item.Workfinish == 0) {
 
       const navigationExtras: NavigationExtras = {
         queryParams: {
-          data: JSON.stringify(item)
+          data: JSON.stringify(data)
         }
       };
       this.navCtrl.navigateForward(['/joball/listpm/detailofdetaillistpm'], navigationExtras);
       console.log("sent", navigationExtras);
     }
 
-    if (this.workfinish != 0) {
+    if (item.Workfinish == 1) {
       
       const navigationExtras: NavigationExtras = {
         queryParams: {
-          data: JSON.stringify(item)
+          data: JSON.stringify(data)
         }
       };
       this.navCtrl.navigateForward(['/job/jobdetail'], navigationExtras);

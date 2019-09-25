@@ -35,6 +35,10 @@ export class JobdetailPage implements OnInit {
   query;
   planID;
   tranID;
+  image;
+  img1;
+  img2;
+  img3;
   //#endregion
   
   //#region constructor
@@ -144,12 +148,14 @@ export class JobdetailPage implements OnInit {
     this.postDataService.postjobDetail(this.jobdetail).then(jobdetail => {
       this.result = jobdetail;
       console.log(this.result)
-      // for (let i = 0; i < this.jobOverview.length; i++) {
-      //   this.workall = this.jobOverview[i].WorkAll;
-      //   this.workfinish = this.jobOverview[i].WorkFinish;
-      // }
+      for (let i = 0; i < this.result.length; i++) {
+
+        //convert to array
+        this.image = JSON.parse(this.result[i].image);
+        // console.log(this.image);
+      }
       });
-  }
+  } 
 
   //#endregion
 }
