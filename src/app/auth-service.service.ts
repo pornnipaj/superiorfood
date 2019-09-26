@@ -27,19 +27,25 @@ export class AuthServiceService {
   }
   getuser(email, password){
     return this.http.get(
-      'http://localhost:41603/API/Login.ashx?email=' + email + '&password=' + password
+      'http://superior.wingplusweb.com/API/Login.ashx?email=' + email + '&password=' + password
     );
 }
 
 getnew(){
   return this.http.get(
-    'http://localhost:41603/API/News.ashx'
+    'http://superior.wingplusweb.com/API/News.ashx'
   );
 }
 
 getPlan(){
   return this.http.get(
-    'http://localhost:41603/API/ServicePlans.ashx'
+    'http://superior.wingplusweb.com/API/ServicePlans.ashx'
+  );
+}
+
+getProduct(){
+  return this.http.get(
+    'http://localhost:41603/ApI/ProductAndManual.ashx'
   );
 }
 }
