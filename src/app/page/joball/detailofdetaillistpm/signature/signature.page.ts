@@ -3,6 +3,9 @@ import { NavController, ModalController } from '@ionic/angular';
 import { NavParams } from '@ionic/angular';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { Storage } from '@ionic/storage';
+import { NavigationExtras } from '@angular/router';
+import { PostDataService } from '../../../../post-data.service';
+import { StorageService, Sig } from '../../../../storage.service';
 
 @Component({
   selector: 'app-signature',
@@ -22,6 +25,7 @@ export class SignaturePage implements OnInit {
   image: any;
   isSave = true;
   isSign = true;
+  newSig: Sig = <Sig>{};
   //#endregion
 
   //#region constructor
@@ -40,12 +44,15 @@ export class SignaturePage implements OnInit {
     private modalCtrl: ModalController,
     navParams: NavParams,
     public storage: Storage,
+    public navCtrl: NavController,
+    private postDataService:PostDataService,
+    private storageService: StorageService,
     public modalController: ModalController) {
     // console.log(navParams.get('firstName'));
     // console.log(navParams.get('lastName'));
     // console.log(navParams.get('middleInitial'));
     this.firstName = navParams.get('firstName')
-    console.log(this.firstName);
+    // console.log(this.firstName);
 
   }
 
@@ -60,12 +67,29 @@ export class SignaturePage implements OnInit {
   }
 
   savePad() {
-    const base64 = this.signaturePad.toDataURL('image/png', 0.5);
+    const base64 = this.signaturePad.toDataURL('image/png', 0.5);    
     console.log(base64);
     const blob = this.signature(base64)
     console.log(blob);
     this.image = base64;
     this.drawStart();
+
+    let params={ 
+      UserID: '23',
+      UserPassword: this.image, 
+      BranchID: '01'
+    }
+      this.postDataService.post(params).then((data:any) => {
+        console.log(data);
+      });   
+        console.log(this.image);
+        
+      // this.newSig.base64 = this.image;
+      // this.storageService.addSig(this.newSig).then(item => {
+      //   this.newSig = <Sig>{};
+      //   console.log("success",item);
+        
+      // });      
   }
 
   signature(base64) {

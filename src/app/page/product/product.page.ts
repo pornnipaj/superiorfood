@@ -21,11 +21,13 @@ export class ProductPage implements OnInit {
   cat3
   ProductName;
   ProductCode;
+
   //#endregion data
 
   //#region constructor
 
   constructor(private DataService: AuthServiceService) {
+
     this.DataService.getProduct().subscribe(data => {
       this.data = data;
 
@@ -39,7 +41,7 @@ export class ProductPage implements OnInit {
 
         }
       }
-    });
+    });    
   }
 
   onChange(value) {

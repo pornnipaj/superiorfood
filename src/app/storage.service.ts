@@ -9,23 +9,39 @@ export interface User {
   empID: string
 }
 
-class Photo {
-  data: any;
+export interface Sig {
+  base64: string,
 }
 
 const user_KEY = 'my-user';
+const sig_KEY = 'my-sig';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
 
-  public photos: Photo[] = [];
-
   users;
+  sigs;
 
   constructor(private storage: Storage) { 
     
+  }
+
+  
+  addSig(sig: Sig): Promise<any> {
+    return this.storage.get(sig_KEY).then((sigs: Sig[]) => {
+      if (sigs) {
+        sigs.push(sig);
+        return this.storage.set(sig_KEY, sigs);
+      } else {
+        return this.storage.set(sig_KEY, [sigs]);
+      }
+    });
+  }
+
+  getSig(): Promise<Sig[]> {
+    return this.storage.get(sig_KEY);
   }
 
   addUser(user: User): Promise<any> {

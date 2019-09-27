@@ -35,33 +35,37 @@
                 </div>
                 <div class="row">
                   <div class="col-md-4 col-4 text-center">
-                    <div *ngIf="isTake">
+                    <div *ngIf="isTake1">
                     <i class="fa fa-camera fa-4x icon responsive center"></i>
                     <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-                        <ion-fab-button (click)="Take()">
+                        <ion-fab-button (click)="Take(1)">
                             <ion-icon name="camera"></ion-icon>
                         </ion-fab-button>
                     </ion-fab>
                   </div>
-                    <p><img [src]="myphoto" *ngIf="isShow"></p>
-                  </div>
-                  <div class="col-md-4 col-4 text-center">
-                    <i class="fa fa-camera fa-4x icon responsive center" (click)="Take()"></i>
-                    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-                        <ion-fab-button (click)="Take()">
-                            <ion-icon name="camera"></ion-icon>
-                        </ion-fab-button>
-                    </ion-fab>
-                    <p><img [src]="myphoto" *ngIf="myphoto"></p>
+                    <p><img [src]="myphoto1" *ngIf="isShow1"></p>
                   </div>
                   <div class="col-md-4 col-4 text-center">
+                      <div *ngIf="isTake2">
                     <i class="fa fa-camera fa-4x icon responsive center" (click)="Take()"></i>
                     <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-                        <ion-fab-button (click)="Take()">
+                        <ion-fab-button (click)="Take(2)">
                             <ion-icon name="camera"></ion-icon>
                         </ion-fab-button>
                     </ion-fab>
-                    <p><img [src]="myphoto" *ngIf="myphoto"></p>
+                    </div>
+                    <p><img [src]="myphoto2" *ngIf="isShow2"></p>
+                  </div>
+                  <div class="col-md-4 col-4 text-center">
+                      <div *ngIf="isTake3">
+                    <i class="fa fa-camera fa-4x icon responsive center" (click)="Take()"></i>
+                    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+                        <ion-fab-button (click)="Take(3)">
+                            <ion-icon name="camera"></ion-icon>
+                        </ion-fab-button>
+                    </ion-fab>
+                    </div>
+                    <p><img [src]="myphoto3" *ngIf="isShow3"></p>
                   </div>
                 </div>
               </div>
@@ -78,18 +82,39 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-4 col-4 text-center" style="padding-left: 10px;">
-                    <i class="fa fa-camera fa-4x icon responsive center" (click)="Take()"></i>
-                    <img src="{{ myphoto }}" />
-                  </div>
-                  <div class="col-md-4 col-4 text-center">
-                    <i class="fa fa-camera fa-4x icon responsive center" (click)="Take()"></i>
-                    <img src="{{ myphoto }}" />
-                  </div>
-                  <div class="col-md-4 col-4 text-center">
-                    <i class="fa fa-camera fa-4x icon responsive center" (click)="Take()"></i>
-                    <img src="{{ myphoto }}" />
-                  </div>
+                    <div class="col-md-4 col-4 text-center">
+                        <div *ngIf="isTake4">
+                        <i class="fa fa-camera fa-4x icon responsive center"></i>
+                        <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+                            <ion-fab-button (click)="Take(4)">
+                                <ion-icon name="camera"></ion-icon>
+                            </ion-fab-button>
+                        </ion-fab>
+                      </div>
+                        <p><img [src]="myphoto4" *ngIf="isShow4"></p>
+                      </div>
+                      <div class="col-md-4 col-4 text-center">
+                          <div *ngIf="isTake5">
+                          <i class="fa fa-camera fa-4x icon responsive center"></i>
+                          <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+                              <ion-fab-button (click)="Take(5)">
+                                  <ion-icon name="camera"></ion-icon>
+                              </ion-fab-button>
+                          </ion-fab>
+                        </div>
+                          <p><img [src]="myphoto5" *ngIf="isShow5"></p>
+                        </div>
+                        <div class="col-md-4 col-4 text-center">
+                            <div *ngIf="isTake6">
+                            <i class="fa fa-camera fa-4x icon responsive center"></i>
+                            <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+                                <ion-fab-button (click)="Take(6)">
+                                    <ion-icon name="camera"></ion-icon>
+                                </ion-fab-button>
+                            </ion-fab>
+                          </div>
+                            <p><img [src]="myphoto6" *ngIf="isShow6"></p>
+                          </div>
                 </div>
               </div>
             </div>
@@ -121,6 +146,9 @@
                       <i class="fa fa-map-pin font-blue-sharp"></i>
                       <span class="caption-subject font-blue-sharp bold uppercase"> รายการที่ 4
                         ลายเซ็นต์ผู้รับผิดชอบ</span>
+                        <!-- <div *ngFor="let img of sign"> -->
+                        <img src="" />
+                      <!-- </div> -->
                     </div>
                   </div>
                 </div>

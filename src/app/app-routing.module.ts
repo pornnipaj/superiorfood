@@ -15,6 +15,8 @@ const routes: Routes = [
   { path: 'signature', loadChildren: './page/joball/detailofdetaillistpm/signature/signature.module#SignaturePageModule' },
   { path: 'take-spare-parts', loadChildren: './page/take-spare-parts/take-spare-parts.module#TakeSparePartsPageModule' },
   { path: 'sqlite', loadChildren: './sqlite/sqlite.module#SqlitePageModule' },
+  { path: 'test', loadChildren: './test/test.module#TestPageModule' },
+
 ];
 
 @NgModule({

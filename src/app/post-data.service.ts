@@ -1,11 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Http, Headers } from "@angular/http";
+
 @Injectable({
   providedIn: 'root'
 })
 export class PostDataService {
-  api_url = 'http://superior.wingplusweb.com/API/Login.ashx';
+  api_url = 'http://localhost:41603/API/WebService.asmx/HelloWorld';
+
+ 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }  
 
   constructor(private http: HttpClient, public https: Http) { }
 
@@ -145,6 +153,18 @@ export class PostDataService {
         }, error => {
           reject(error)
         });
+    });
+  }
+  
+  post(form) {
+    return new Promise((resovle, reject) => {      
+      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+      this.http.post(this.api_url, JSON.stringify(form), option).subscribe(data => {
+        resovle(data);
+      }, error => {
+        reject(error)
+      });
     });
   }
 }

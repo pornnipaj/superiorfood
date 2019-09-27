@@ -11,7 +11,7 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { Storage } from '@ionic/storage';
 import { ModalController } from '@ionic/angular';
 import { SignaturePage } from '../joball/detailofdetaillistpm/signature/signature.page'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Data } from '@angular/router';
 
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { Platform } from '@ionic/angular';
@@ -23,10 +23,12 @@ import { StorageService, User } from '../../storage.service';
   styleUrls: ['./overview.page.scss'],
 })
 
+
+
 export class OverviewPage implements OnInit {
   
   //#region  data
-
+  
   Today;
   month;
   intMonth;
@@ -54,7 +56,7 @@ export class OverviewPage implements OnInit {
   //#region constructor
 
   constructor(public DataService: AuthServiceService,
-    public http: Http,
+    public http: HttpClient,
     public postDataService: PostDataService,
     private route: ActivatedRoute,
     private camera: Camera,
@@ -63,7 +65,7 @@ export class OverviewPage implements OnInit {
     private storageService: StorageService) {
 
     this.user = [];
-
+    this.test = [];
     this.ChangeMonth();
 
     this.Today = new Date();
@@ -405,7 +407,6 @@ export class OverviewPage implements OnInit {
         this.user.month = this.intMonth;
         this.user.year = this.intYear;
         // console.log(this.user);
-
         this.postDataService.postjobOverview(this.user).then(work => {
           // console.log('worknow', work);
           this.jobOverview = work;
@@ -419,4 +420,5 @@ export class OverviewPage implements OnInit {
   }
 
   //#endregion
+
 }
