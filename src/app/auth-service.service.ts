@@ -45,7 +45,7 @@ getPlan(){
 
 getProduct(){
   return this.http.get(
-    'http://localhost:41603/ApI/ProductAndManual.ashx'
+    'http://superior.wingplusweb.com/API/ProductAndManual.ashx'
   );
 }
 }

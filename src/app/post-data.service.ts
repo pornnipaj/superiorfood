@@ -160,7 +160,7 @@ export class PostDataService {
     return new Promise((resovle, reject) => {      
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post("http://localhost:41603/API/WebService.asmx/HelloWorld", JSON.stringify(form), option).subscribe(data => {
+      this.http.post("http://superior.wingplusweb.com/API/WebService.asmx/HelloWorld", JSON.stringify(form), option).subscribe(data => {
         resovle(data);
       }, error => {
         reject(error)

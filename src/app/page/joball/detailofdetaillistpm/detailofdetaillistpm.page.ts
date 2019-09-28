@@ -61,7 +61,6 @@ export class DetailofdetaillistpmPage implements OnInit {
   //#region start
 
   ngOnInit() {
-
     this.route.queryParams.subscribe(params => {
       this.myId = JSON.parse(params["data"]);
       this.planID = this.myId.planID
@@ -105,7 +104,9 @@ export class DetailofdetaillistpmPage implements OnInit {
 
     modal.onDidDismiss()
     .then((data) => {
-      const user = data['data']; // Here's your selected user!
+      const sign = data['sign']; 
+      console.log(sign);
+      
   });
 
     return await modal.present();
