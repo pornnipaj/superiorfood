@@ -123,9 +123,29 @@ export class DetailofdetaillistpmPage implements OnInit {
   Take(id) {
 
     if (id == 1) {
-      this.functiontake();
-      this.isShow1 = true;
+      const options: CameraOptions = {
+        quality: 70,
+        targetWidth: 320,
+        targetHeight: 320,
+        destinationType: this.camera.DestinationType.FILE_URI,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE
+      }
+    
+      this.camera.getPicture(options).then((imageData) => {
+        // imageData is either a base64 encoded string or a file URI
+        // If it's base64 (DATA_URL):
+        let base64Image = 'data:image/jpeg;base64,' + imageData;
+        this.myphoto1 = base64Image;
+        alert('string' + this.myphoto1)
+        alert('base64'+ imageData)
+        this.isShow1 = true;
       this.isTake1 = false;
+       }, (err) => {
+        // Handle error
+       });
+
+      
     }
     if (id == 2) {
       this.functiontake();
@@ -156,32 +176,20 @@ export class DetailofdetaillistpmPage implements OnInit {
   }
 
 functiontake(){
-  const options: CameraOptions = {
-    quality: 70,
-    targetWidth: 320,
-    targetHeight: 320,
-    destinationType: this.camera.DestinationType.FILE_URI,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
-  }
+  
+
+  // let params={ 
+  //   signature: this.myphoto1
+  // }
+  // this.postDataService.post(params).then((data:any) => {
+  //   this.myphoto1 = data
+  //   for (let i = 0; i < this.myphoto1.length; i++) {
+  //   this.myphoto1 = this.myphoto1[i];         
       
-  this.camera.getPicture(options).then((imageData) => {
-    this.myphoto1 = 'data:image/jpeg;base64,' + imageData;
-  }, (err) => {
-    console.log("Camera issue:" + err);
-  });
-  let params={ 
-    signature: this.myphoto1
-  }
-  this.postDataService.post(params).then((data:any) => {
-    this.myphoto1 = data
-    for (let i = 0; i < this.myphoto1.length; i++) {
-    this.myphoto1 = this.myphoto1[i];         
-      
-    }
-    this.myphoto1 = this.myphoto1.signature
-    console.log(this.myphoto1);
-  })
+  //   }
+  //   this.myphoto1 = this.myphoto1.signature
+  //   console.log(this.myphoto1);
+  // })
   };
 
   //#endregion
