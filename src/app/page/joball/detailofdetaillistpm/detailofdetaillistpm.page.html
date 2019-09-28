@@ -1,306 +1,307 @@
 <ion-header>
-    <ion-toolbar color="primary">
-      <ion-buttons slot="start">
-        <ion-back-button></ion-back-button>
-        <ion-title>PM: {{ItemsName}}</ion-title>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content>
-    <div class="container-fluid" style="position: fixed;">
-      <div class="row" style="padding: 5px;">
-        <div class="col-6 col-md-6 col-sm-6 ex3" style="padding: 0px;max-height:1280px; max-width: 800px;">
-          <div class="portlet box blue">
-            <div class="portlet-title">
-              <div class="caption">
-                <i class="fa fa-sticky-note-o"></i>
-                รายการการตรวจเช็ค <ion-datetime type="datetime-local" class="head-new pull-right tools" displayFormat="DD-MMM-YYYY"
-                [(ngModel)]="myDate" style="padding:0px; font-size: 1.;"></ion-datetime></div>
-              <div class="tools">
-                Time: <ion-datetime type="datetime-local" class="head-new pull-right tools" displayFormat="HH:mm:ss"
-                  [(ngModel)]="myDate" style="padding:0px; font-size: 1.;"></ion-datetime>
-              </div>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+      <ion-title>PM: {{ItemsName}}</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container-fluid" style="position: fixed;">
+    <div class="row" style="padding: 5px;">
+      <div class="col-6 col-md-6 col-sm-6 ex3" style="padding: 0px;max-height:800px;">
+        <div class="portlet box blue">
+          <div class="portlet-title">
+            <div class="caption">
+              <i class="fa fa-sticky-note-o"></i>
+              รายการการตรวจเช็ค <ion-datetime type="datetime-local" class="head-new pull-right tools"
+                displayFormat="DD-MMM-YYYY" [(ngModel)]="myDate" style="padding:0px; font-size: 1.;"></ion-datetime>
             </div>
-            <div class="portlet-body" style="margin: 0px;">
-              <div class="portlet light ">
-                <div class="row">
-                  <div class="col-md-12 col-12">
-                    <div class="caption">
-                      <i class="fa fa-map-pin font-blue-sharp"></i>
-                      <span class="caption-subject font-blue-sharp bold uppercase"> รายการที่ 1
-                        ถ่ายภาพก่อนการตรวจสอบ</span>
-                    </div>
+            <div class="tools">
+              Time: <ion-datetime type="datetime-local" class="head-new pull-right tools" displayFormat="HH:mm:ss"
+                [(ngModel)]="myDate" style="padding:0px; font-size: 1.;"></ion-datetime>
+            </div>
+          </div>
+          <div class="portlet-body" style="margin: 0px;">
+            <div class="portlet light ">
+              <div class="row">
+                <div class="col-md-12 col-12">
+                  <div class="caption">
+                    <i class="fa fa-map-pin font-blue-sharp"></i>
+                    <span class="caption-subject font-blue-sharp bold uppercase"> รายการที่ 1
+                      ถ่ายภาพก่อนการตรวจสอบ</span>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-4 col-4 text-center">
-                    <div *ngIf="isTake1">
+              </div>
+              <div class="row">
+                <div class="col-md-4 col-4 text-center">
+                  <div *ngIf="isTake1">
                     <i class="fa fa-camera fa-4x icon responsive center"></i>
                     <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-                        <ion-fab-button (click)="Take(1)">
-                            <ion-icon name="camera"></ion-icon>
-                        </ion-fab-button>
+                      <ion-fab-button (click)="Take(1)">
+                        <ion-icon name="camera"></ion-icon>
+                      </ion-fab-button>
                     </ion-fab>
                   </div>
-                    <p><img [src]="myphoto1" *ngIf="isShow1"></p>
-                  </div>
-                  <div class="col-md-4 col-4 text-center">
-                      <div *ngIf="isTake2">
+                  <p><img [src]="myphoto1" *ngIf="isShow1"></p>
+                </div>
+                <div class="col-md-4 col-4 text-center">
+                  <div *ngIf="isTake2">
                     <i class="fa fa-camera fa-4x icon responsive center" (click)="Take()"></i>
                     <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-                        <ion-fab-button (click)="Take(2)">
-                            <ion-icon name="camera"></ion-icon>
-                        </ion-fab-button>
+                      <ion-fab-button (click)="Take(2)">
+                        <ion-icon name="camera"></ion-icon>
+                      </ion-fab-button>
                     </ion-fab>
-                    </div>
-                    <p><img [src]="myphoto2" *ngIf="isShow2"></p>
                   </div>
-                  <div class="col-md-4 col-4 text-center">
-                      <div *ngIf="isTake3">
+                  <p><img [src]="myphoto2" *ngIf="isShow2"></p>
+                </div>
+                <div class="col-md-4 col-4 text-center">
+                  <div *ngIf="isTake3">
                     <i class="fa fa-camera fa-4x icon responsive center" (click)="Take()"></i>
                     <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-                        <ion-fab-button (click)="Take(3)">
-                            <ion-icon name="camera"></ion-icon>
-                        </ion-fab-button>
+                      <ion-fab-button (click)="Take(3)">
+                        <ion-icon name="camera"></ion-icon>
+                      </ion-fab-button>
                     </ion-fab>
-                    </div>
-                    <p><img [src]="myphoto3" *ngIf="isShow3"></p>
                   </div>
+                  <p><img [src]="myphoto3" *ngIf="isShow3"></p>
                 </div>
               </div>
             </div>
-            <div class="portlet-body" style="margin: 0px;">
-              <div class="portlet light ">
-                <div class="row">
-                  <div class="col-md-12 col-12">
-                    <div class="caption">
-                      <i class="fa fa-map-pin font-blue-sharp"></i>
-                      <span class="caption-subject font-blue-sharp bold uppercase"> รายการที่ 2
-                        ถ่ายภาพหลังการตรวจสอบ</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 col-4 text-center">
-                        <div *ngIf="isTake4">
-                        <i class="fa fa-camera fa-4x icon responsive center"></i>
-                        <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-                            <ion-fab-button (click)="Take(4)">
-                                <ion-icon name="camera"></ion-icon>
-                            </ion-fab-button>
-                        </ion-fab>
-                      </div>
-                        <p><img [src]="myphoto4" *ngIf="isShow4"></p>
-                      </div>
-                      <div class="col-md-4 col-4 text-center">
-                          <div *ngIf="isTake5">
-                          <i class="fa fa-camera fa-4x icon responsive center"></i>
-                          <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-                              <ion-fab-button (click)="Take(5)">
-                                  <ion-icon name="camera"></ion-icon>
-                              </ion-fab-button>
-                          </ion-fab>
-                        </div>
-                          <p><img [src]="myphoto5" *ngIf="isShow5"></p>
-                        </div>
-                        <div class="col-md-4 col-4 text-center">
-                            <div *ngIf="isTake6">
-                            <i class="fa fa-camera fa-4x icon responsive center"></i>
-                            <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-                                <ion-fab-button (click)="Take(6)">
-                                    <ion-icon name="camera"></ion-icon>
-                                </ion-fab-button>
-                            </ion-fab>
-                          </div>
-                            <p><img [src]="myphoto6" *ngIf="isShow6"></p>
-                          </div>
-                </div>
-              </div>
-            </div>
-            <div class="portlet-body" style="margin: 0px;">
-              <div class="portlet light ">
-                <div class="row">
-                  <div class="col-md-12 col-12">
-                    <div class="caption">
-                      <i class="fa fa-map-pin font-blue-sharp"></i>
-                      <span class="caption-subject font-blue-sharp bold uppercase"> รายการที่ 3
-                        รายการที่ต้องตรวจเช็ค</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
-                    <a href="javascript:;" class="btn default"> รายการตรวจเช็ค </a>
-                  </div>
-                  <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+          </div>
+          <div class="portlet-body" style="margin: 0px;">
+            <div class="portlet light ">
+              <div class="row">
+                <div class="col-md-12 col-12">
+                  <div class="caption">
+                    <i class="fa fa-map-pin font-blue-sharp"></i>
+                    <span class="caption-subject font-blue-sharp bold uppercase"> รายการที่ 2
+                      ถ่ายภาพหลังการตรวจสอบ</span>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="portlet-body" style="margin: 0px;">
-              <div class="portlet light ">
-                <div class="row">
-                  <div class="col-md-12 col-12">
-                    <div class="caption">
-                      <i class="fa fa-map-pin font-blue-sharp"></i>
-                      <span class="caption-subject font-blue-sharp bold uppercase"> รายการที่ 4
-                        ลายเซ็นต์ผู้รับผิดชอบ</span>
-                        <!-- <div *ngFor="let img of sign"> -->
-                        <img src="sign" />
-                      <!-- </div> -->
-                    </div>
+              <div class="row">
+                <div class="col-md-4 col-4 text-center">
+                  <div *ngIf="isTake4">
+                    <i class="fa fa-camera fa-4x icon responsive center"></i>
+                    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+                      <ion-fab-button (click)="Take(4)">
+                        <ion-icon name="camera"></ion-icon>
+                      </ion-fab-button>
+                    </ion-fab>
                   </div>
+                  <p><img [src]="myphoto4" *ngIf="isShow4"></p>
                 </div>
-                <div class="row">
-                  <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
-                    <a class="btn default" (click)="Modal()"> ลายเซ็นต์ผู้รับผิดชอบ </a>
+                <div class="col-md-4 col-4 text-center">
+                  <div *ngIf="isTake5">
+                    <i class="fa fa-camera fa-4x icon responsive center"></i>
+                    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+                      <ion-fab-button (click)="Take(5)">
+                        <ion-icon name="camera"></ion-icon>
+                      </ion-fab-button>
+                    </ion-fab>
                   </div>
-                  <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
-                  </div>
+                  <p><img [src]="myphoto5" *ngIf="isShow5"></p>
                 </div>
-              </div>
-            </div>
-            <div class="portlet-body" style="margin: 0px;">
-              <div class="portlet light ">
-                <div class="row">
-                  <div class="col-md-12 col-12">
-                    <div class="caption">
-                      <i class="fa fa-map-pin font-blue-sharp"></i>
-                      <span class="caption-subject font-blue-sharp bold uppercase"> รายการที่ 5 ประเมินการทำงาน</span>
-                    </div>
+                <div class="col-md-4 col-4 text-center">
+                  <div *ngIf="isTake6">
+                    <i class="fa fa-camera fa-4x icon responsive center"></i>
+                    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+                      <ion-fab-button (click)="Take(6)">
+                        <ion-icon name="camera"></ion-icon>
+                      </ion-fab-button>
+                    </ion-fab>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
-                    <a href="javascript:;" class="btn default"> ประเมิน </a>
-                  </div>
-                  <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
-                  </div>
+                  <p><img [src]="myphoto6" *ngIf="isShow6"></p>
                 </div>
               </div>
             </div>
-            <div class="portlet-body" style="margin: 0px;">
-              <div class="portlet light ">
-                <div class="row">
-                  <div class="col-md-12 col-12">
-                    <div class="caption">
-                      <p><i class="fa fa-map-pin font-blue-sharp"></i>
-                        <span class="caption-subject font-blue-sharp bold uppercase"> รายการที่ 6
-                          สรุปผลการตรวจเช็คและยืนยันการปิดงาน</span></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
-                    <a href="javascript:;" class="btn default"> รหัสยืนยันตัวตนลูกค้า </a>
-                  </div>
-                  <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+          </div>
+          <div class="portlet-body" style="margin: 0px;">
+            <div class="portlet light ">
+              <div class="row">
+                <div class="col-md-12 col-12">
+                  <div class="caption">
+                    <i class="fa fa-map-pin font-blue-sharp"></i>
+                    <span class="caption-subject font-blue-sharp bold uppercase"> รายการที่ 3
+                      รายการที่ต้องตรวจเช็ค</span>
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                  <a href="javascript:;" class="btn default"> รายการตรวจเช็ค </a>
+                </div>
+                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                </div>
+              </div>
             </div>
-  
-            <div class="portlet-body" style="margin: 0px;">
-              <div class="portlet light ">
-                <div class="row">
-                  <div class="col-md-12 col-12">
-                    <div class="caption">
-                      <i class="fa fa-map-pin font-blue-sharp"></i>
-                      <span class="caption-subject font-blue-sharp bold uppercase"> รายการที่ 7
-                        บันทึกข้อมูลและส่งข้อมุลเข้าระบบ</span>
+          </div>
+          <div class="portlet-body" style="margin: 0px;">
+            <div class="portlet light ">
+              <div class="row">
+                <div class="col-md-12 col-12">
+                  <div class="caption">
+                    <i class="fa fa-map-pin font-blue-sharp"></i>
+                    <span class="caption-subject font-blue-sharp bold uppercase"> รายการที่ 4
+                      ลายเซ็นต์ผู้รับผิดชอบ</span>
+                    <div *ngIf="showSig">
+                      <img [src]="sign" />
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
-                    <a href="javascript:;" class="btn default"> บันทึกและย้อนกลับ </a>
+              </div>
+              <div class="row">
+                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                  <a class="btn default" (click)="Modal()"> ลายเซ็นต์ผู้รับผิดชอบ </a>
+                </div>
+                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="portlet-body" style="margin: 0px;">
+            <div class="portlet light ">
+              <div class="row">
+                <div class="col-md-12 col-12">
+                  <div class="caption">
+                    <i class="fa fa-map-pin font-blue-sharp"></i>
+                    <span class="caption-subject font-blue-sharp bold uppercase"> รายการที่ 5 ประเมินการทำงาน</span>
                   </div>
-                  <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                  <a href="javascript:;" class="btn default"> ประเมิน </a>
+                </div>
+                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="portlet-body" style="margin: 0px;">
+            <div class="portlet light ">
+              <div class="row">
+                <div class="col-md-12 col-12">
+                  <div class="caption">
+                    <p><i class="fa fa-map-pin font-blue-sharp"></i>
+                      <span class="caption-subject font-blue-sharp bold uppercase"> รายการที่ 6
+                        สรุปผลการตรวจเช็คและยืนยันการปิดงาน</span></p>
                   </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                  <a href="javascript:;" class="btn default"> รหัสยืนยันตัวตนลูกค้า </a>
+                </div>
+                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="portlet-body" style="margin: 0px;">
+            <div class="portlet light ">
+              <div class="row">
+                <div class="col-md-12 col-12">
+                  <div class="caption">
+                    <i class="fa fa-map-pin font-blue-sharp"></i>
+                    <span class="caption-subject font-blue-sharp bold uppercase"> รายการที่ 7
+                      บันทึกข้อมูลและส่งข้อมุลเข้าระบบ</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                  <a href="javascript:;" class="btn default"> บันทึกและย้อนกลับ </a>
+                </div>
+                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-6 col-md-6 col-sm-6 ex2" style="padding-right: 0px; padding-left: 5px;">
-          <div class="row" style="padding-left:15px;">
-            <div class="col-4 col-md-4 col-sm-4" style="padding: 0px; padding-right:2px;">
-              <div class="portlet box blue">
-                <div class="portlet-title">
-                  <div class="caption">
-                    <i class="fa fa-clock-o"></i>เวลาทำงาน</div>
-                </div>
-                <div class="portlet-body" style="margin: 0px;">
-                  <div class="portlet light ">
-                    <div class="row">
-                      <div class="col-md-12 col-12">
-                        <p class="profile-desc-text" style="text-align: center">00.00</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-8 col-md-8 col-sm-8 ex2" style="padding: 0px;">
-              <div class="portlet box blue">
-                <div class="portlet-title">
-                  <div class="caption">
-                    <i class="fa fa-bar-chart"></i>สถานะ</div>
-                </div>
-                <div class="portlet-body" style="margin: 0px;">
-                  <div class="portlet light ">
-                    <div class="row">
-                      <div class="col-md-12 col-12">
-                        <p class="profile-desc-text" style="text-align: center; padding: 5px;;">รอการตรวจสอบ</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-12 col-sm-12 ex2" style="padding: 0px;" >
+      </div>
+      <div class="col-6 col-md-6 col-sm-6 ex2" style="padding-right: 0px; padding-left: 5px;">
+        <div class="row" style="padding-left:15px;">
+          <div class="col-4 col-md-4 col-sm-4" style="padding: 0px; padding-right:2px;">
             <div class="portlet box blue">
               <div class="portlet-title">
                 <div class="caption">
-                  <i class="fa fa-cube"></i>สินค้าที่ติดตั้ง</div>
+                  <i class="fa fa-clock-o"></i>เวลาทำงาน</div>
               </div>
               <div class="portlet-body" style="margin: 0px;">
                 <div class="portlet light ">
                   <div class="row">
-                    <div class="col-md-4 col-4">
-                      <p class="profile-desc-text">สินค้าที่ติดตั้ง:</p>
-                      <p class="profile-desc-text">รหัสสินค้า:</p>
-                      <p class="profile-desc-text">ชื่อสินค้า:</p>
-                      <p class="profile-desc-text">Serial No:</p>
-                      <p class="profile-desc-text">ประเภท:</p>
-                    </div>
-                    <div class="col-md-8 col-8" >
-                      <p class="profile-desc-text">{{InstallPlanName}}</p>
-                      <p class="profile-desc-text">{{ItemCode}}</p>
-                      <p class="profile-desc-text">{{ItemsName}}</p>
-                      <p class="profile-desc-text">{{SerialNo}}</p>
-                      <p class="profile-desc-text">Cube</p>
+                    <div class="col-md-12 col-12">
+                      <p class="profile-desc-text" style="text-align: center">00.00</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-  
-          <div class="col-12 col-md-12 col-sm-12 ex2" style="padding: 0px;">
+          <div class="col-8 col-md-8 col-sm-8 ex2" style="padding: 0px;">
             <div class="portlet box blue">
               <div class="portlet-title">
                 <div class="caption">
-                  <i class="fa fa-book"></i>เอกสารและคู่มือ</div>
+                  <i class="fa fa-bar-chart"></i>สถานะ</div>
               </div>
               <div class="portlet-body" style="margin: 0px;">
-  
+                <div class="portlet light ">
+                  <div class="row">
+                    <div class="col-md-12 col-12">
+                      <p class="profile-desc-text" style="text-align: center; padding: 5px;;">รอการตรวจสอบ</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <div class="col-12 col-md-12 col-sm-12 ex2" style="padding: 0px;">
+          <div class="portlet box blue">
+            <div class="portlet-title">
+              <div class="caption">
+                <i class="fa fa-cube"></i>สินค้าที่ติดตั้ง</div>
+            </div>
+            <div class="portlet-body" style="margin: 0px;">
+              <div class="portlet light ">
+                <div class="row">
+                  <div class="col-md-4 col-4">
+                    <p class="profile-desc-text">สินค้าที่ติดตั้ง:</p>
+                    <p class="profile-desc-text">รหัสสินค้า:</p>
+                    <p class="profile-desc-text">ชื่อสินค้า:</p>
+                    <p class="profile-desc-text">Serial No:</p>
+                    <p class="profile-desc-text">ประเภท:</p>
+                  </div>
+                  <div class="col-md-8 col-8">
+                    <p class="profile-desc-text">{{InstallPlanName}}</p>
+                    <p class="profile-desc-text">{{ItemCode}}</p>
+                    <p class="profile-desc-text">{{ItemsName}}</p>
+                    <p class="profile-desc-text">{{SerialNo}}</p>
+                    <p class="profile-desc-text">Cube</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <div class="col-12 col-md-12 col-sm-12 ex2" style="padding: 0px;">
+          <div class="portlet box blue">
+            <div class="portlet-title">
+              <div class="caption">
+                <i class="fa fa-book"></i>เอกสารและคู่มือ</div>
+            </div>
+            <div class="portlet-body" style="margin: 0px;">
+
+            </div>
+          </div>
         </div>
-        </ion-content>
+      </div>
+    </div>
+  </div>
+</ion-content>

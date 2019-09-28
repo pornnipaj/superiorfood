@@ -42,6 +42,7 @@ export class DetailofdetaillistpmPage implements OnInit {
   ProductCode;
   sign;
   install;
+  showSig = false;
   //#endregion
 
   //#region constructor
@@ -61,6 +62,7 @@ export class DetailofdetaillistpmPage implements OnInit {
   //#region start
 
   ngOnInit() {
+
     this.route.queryParams.subscribe(params => {
       this.myId = JSON.parse(params["data"]);
       this.planID = this.myId.planID
@@ -76,6 +78,8 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.ItemCode = this.install.ItemCode;
         this.ProductCode = this.install.ProductCode;
     });
+
+    
     // this.route.queryParams.subscribe(params => {
     //   this.myId = JSON.parse(params["sig"]);
     //   console.log("receive", this.myId);
@@ -102,12 +106,15 @@ export class DetailofdetaillistpmPage implements OnInit {
       componentProps: { sign: this.sign }
     });
 
-    modal.onDidDismiss()
-    .then((data) => {
-      const sign = data['sign']; 
-      console.log(sign);
-      
-  });
+    modal.onDidDismiss().then(data=>{
+      this.showSig = true;
+      this.sign = data
+      for (let i = 0; i < this.sign.length; i++) {
+        this.sign = this.sign[i]
+      }
+      this.sign = this.sign.data
+      // console.log(this.sign)
+      })
 
     return await modal.present();
   }

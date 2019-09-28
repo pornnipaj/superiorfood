@@ -7,7 +7,8 @@ import { Http, Headers } from "@angular/http";
 })
 export class PostDataService {
   
-  api_url = 'http://localhost:41603/API/WebService.asmx/HelloWorld';
+  apiLocal_url = 'http://localhost:41603/API/WebService.asmx/HelloWorld';
+  apiServer_url = 'http://superior.wingplusweb.com/API/WebService.asmx/HelloWorld';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -31,32 +32,32 @@ export class PostDataService {
   //     });
   // }
 
-  insert(form) {
-    return new Promise((resovle, reject) => {
-      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
+  // insert(form) {
+  //   return new Promise((resovle, reject) => {
+  //     let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post(this.api_url + '?id=' + form.emp_id, JSON.stringify(form), option).subscribe(data => {
-        resovle(data);
-      }, error => {
-        reject(error)
-      });
-    });
-  }
+  //     this.http.post(this.api_url + '?id=' + form.emp_id, JSON.stringify(form), option).subscribe(data => {
+  //       resovle(data);
+  //     }, error => {
+  //       reject(error)
+  //     });
+  //   });
+  // }
 
-  login(user) {
-    // console.log(user);
-    return new Promise((resovle, reject) => {
+  // login(user) {
+  //   // console.log(user);
+  //   return new Promise((resovle, reject) => {
 
-      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
+  //     let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post(this.api_url + '?email=' + user.email + '&password=' + user.password,
-        JSON.stringify(user), option).subscribe(data => {
-          resovle(data);
-        }, error => {
-          reject(error)
-        });
-    });
-  }
+  //     this.http.post(this.api_url + '?email=' + user.email + '&password=' + user.password,
+  //       JSON.stringify(user), option).subscribe(data => {
+  //         resovle(data);
+  //       }, error => {
+  //         reject(error)
+  //       });
+  //   });
+  // }
 
   postjobOverview(user) {
     return new Promise((resovle, reject) => {
@@ -160,7 +161,7 @@ export class PostDataService {
     return new Promise((resovle, reject) => {      
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post("http://superior.wingplusweb.com/API/WebService.asmx/HelloWorld", JSON.stringify(form), option).subscribe(data => {
+      this.http.post(this.apiLocal_url, JSON.stringify(form), option).subscribe(data => {
         resovle(data);
       }, error => {
         reject(error)

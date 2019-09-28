@@ -50,11 +50,11 @@ export class SignaturePage implements OnInit {
     private postDataService:PostDataService,
     private storageService: StorageService,
     public modalController: ModalController) {
-    // console.log(navParams.get('firstName'));
+    this.sig = (navParams.get('sign'))
     // console.log(navParams.get('lastName'));
     // console.log(navParams.get('middleInitial'));
-    this.firstName = navParams.get('firstName')
-    // console.log(this.firstName);
+    // this.firstName = navParams.get('firstName')
+    console.log(this.sig);
 
   }
 
@@ -87,24 +87,12 @@ export class SignaturePage implements OnInit {
           
         }
         this.sig = this.sig.signature
-        console.log(this.sig);
+        // console.log(this.sig);
         
       });   
-        console.log(this.image);
+        // console.log(this.image);
         
-        // const navigationExtras: NavigationExtras = {
-        //   queryParams: {
-        //     sig: JSON.stringify(this.image)
-        //   }
-        // };
-        // this.navCtrl.navigateForward(['test'], navigationExtras);
-        // console.log("sent", navigationExtras);
-      // this.newSig.base64 = this.image;
-      // this.storageService.addSig(this.newSig).then(item => {
-      //   this.newSig = <Sig>{};
-      //   console.log("success",item);
-        
-      // });      
+        this.modalController.dismiss(this.image);
   }
 
   signature(base64) {
@@ -125,7 +113,7 @@ export class SignaturePage implements OnInit {
   }
 
   close() {
-    this.modalCtrl.dismiss(this.sig);
+    this.modalController.dismiss(this.image);
   }
 
   //#endregion
