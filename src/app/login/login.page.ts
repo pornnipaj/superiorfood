@@ -90,10 +90,6 @@ export class LoginPage implements OnInit {
     console.log(this.user.email);
     console.log(this.user.password);
 
-    this.postDataService.login(this.user).then(form => {
-      console.log('form', form);
-    });
-
     this.DataService.getuser(this.user.email, this.user.password).subscribe(data => {
       this.data = data;
       console.log('Data Returner', this.data);

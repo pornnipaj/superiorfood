@@ -26,6 +26,8 @@ export class SignaturePage implements OnInit {
   isSave = true;
   isSign = true;
   newSig: Sig = <Sig>{};
+  sig;
+  test;
   //#endregion
 
   //#region constructor
@@ -68,22 +70,35 @@ export class SignaturePage implements OnInit {
 
   savePad() {
     const base64 = this.signaturePad.toDataURL('image/png', 0.5);    
-    console.log(base64);
+    // console.log(base64);
     const blob = this.signature(base64)
-    console.log(blob);
+    // console.log(blob);
     this.image = base64;
     this.drawStart();
 
     let params={ 
-      UserID: '23',
-      UserPassword: this.image, 
-      BranchID: '01'
+      signature: this.image
     }
       this.postDataService.post(params).then((data:any) => {
-        console.log(data);
+        this.sig = data
+        console.log(this.sig);
+        for (let i = 0; i < this.sig.length; i++) {
+          this.sig = this.sig[i];         
+          
+        }
+        this.sig = this.sig.signature
+        console.log(this.sig);
+        
       });   
         console.log(this.image);
         
+        // const navigationExtras: NavigationExtras = {
+        //   queryParams: {
+        //     sig: JSON.stringify(this.image)
+        //   }
+        // };
+        // this.navCtrl.navigateForward(['test'], navigationExtras);
+        // console.log("sent", navigationExtras);
       // this.newSig.base64 = this.image;
       // this.storageService.addSig(this.newSig).then(item => {
       //   this.newSig = <Sig>{};
@@ -110,9 +125,7 @@ export class SignaturePage implements OnInit {
   }
 
   close() {
-    this.modalCtrl.dismiss({
-      'dismissed': true
-    });
+    this.modalCtrl.dismiss(this.sig);
   }
 
   //#endregion

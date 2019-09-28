@@ -29,8 +29,9 @@ export class StorageService {
   }
 
   
-  addSig(sig: Sig): Promise<any> {
+  addSig(sig: Sig): Promise<any> {   
     return this.storage.get(sig_KEY).then((sigs: Sig[]) => {
+      alert(1);
       if (sigs) {
         sigs.push(sig);
         return this.storage.set(sig_KEY, sigs);

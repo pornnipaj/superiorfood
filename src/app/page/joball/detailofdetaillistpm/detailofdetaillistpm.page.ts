@@ -4,7 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { SignaturePage } from '../detailofdetaillistpm/signature/signature.page';
 import { ActivatedRoute } from '@angular/router';
 import { StorageService, Sig } from '../../../storage.service';
-
+import { PostDataService } from '../../../post-data.service';
 @Component({
   selector: 'app-detailofdetaillistpm',
   templateUrl: './detailofdetaillistpm.page.html',
@@ -41,6 +41,7 @@ export class DetailofdetaillistpmPage implements OnInit {
   ItemCode;
   ProductCode;
   sign;
+  install;
   //#endregion
 
   //#region constructor
@@ -48,8 +49,10 @@ export class DetailofdetaillistpmPage implements OnInit {
   constructor(private camera: Camera,
     public modalController: ModalController,
     private route: ActivatedRoute,
-    private storageService: StorageService) {
-    this.myDate = new Date().toISOString();
+    private storageService: StorageService,
+    private postDataService:PostDataService) {
+    this.myDate = new Date().toString();
+   
     // this.loadItems()
   }
 
@@ -62,25 +65,30 @@ export class DetailofdetaillistpmPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.myId = JSON.parse(params["data"]);
       this.planID = this.myId.planID
-      // this.tranID = this.myId.tranID
-      console.log("receive", this.myId.productInstall);
-      for (let i = 0; i < this.myId.productInstall.length; i++) {
-        this.InstallPlanName = this.myId.productInstall[i].InstallPlanName;
-        this.SerialNo = this.myId.productInstall[i].SerialNo;
-        this.ItemsName = this.myId.productInstall[i].ItemsName;
-        this.ItemCode = this.myId.productInstall[i].ItemCode;
-        this.ProductCode = this.myId.productInstall[i].ProductCode;
-        console.log(this.myId);
+      this.install = this.myId.install
+      console.log("receive", this.planID);
 
+      for (let i = 0; i < this.install.length; i++) {
+        this.install = (this.install[i])  
       }
+        this.InstallPlanName = this.install.InstallPlanName;
+        this.SerialNo = this.install.SerialNo;
+        this.ItemsName = this.install.ItemsName;
+        this.ItemCode = this.install.ItemCode;
+        this.ProductCode = this.install.ProductCode;
     });
-    this.loadItems()
+    // this.route.queryParams.subscribe(params => {
+    //   this.myId = JSON.parse(params["sig"]);
+    //   console.log("receive", this.myId);
+
+    // });
+    // this.loadItems()
   }
 
   loadItems() {
     this.storageService.getSig().then(items => {
       this.sign = items;
-      console.log(this.sign);
+      // console.log(this.sign);
 
     });
   }
@@ -92,15 +100,18 @@ export class DetailofdetaillistpmPage implements OnInit {
   async Modal() {
     const modal = await this.modalController.create({
       component: SignaturePage,
-      componentProps: {
-        'firstName': 'Douglas',
-        'lastName': 'Adams',
-        'middleInitial': 'Y'
-      }
+      componentProps: { sign: this.sign }
     });
+
+    modal.onDidDismiss()
+    .then((data) => {
+      const user = data['data']; // Here's your selected user!
+  });
+
     return await modal.present();
   }
 
+  
   Take(id) {
 
     if (id == 1) {
@@ -143,8 +154,7 @@ functiontake(){
     targetHeight: 320,
     destinationType: this.camera.DestinationType.FILE_URI,
     encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE,
-    saveToPhotoAlbum: true
+    mediaType: this.camera.MediaType.PICTURE
   }
       
   this.camera.getPicture(options).then((imageData) => {
@@ -152,7 +162,20 @@ functiontake(){
   }, (err) => {
     console.log("Camera issue:" + err);
   });
-}
+  let params={ 
+    signature: this.myphoto1
+  }
+  this.postDataService.post(params).then((data:any) => {
+    this.myphoto1 = data
+    for (let i = 0; i < this.myphoto1.length; i++) {
+    this.myphoto1 = this.myphoto1[i];         
+      
+    }
+    this.myphoto1 = this.myphoto1.signature
+    console.log(this.myphoto1);
+  })
+  };
+
   //#endregion
 
   // takephoto() {

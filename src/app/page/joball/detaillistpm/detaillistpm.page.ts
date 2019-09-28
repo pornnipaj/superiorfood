@@ -41,9 +41,8 @@ export class DetaillistpmPage implements OnInit {
       this.workfinish = this.myId.WorkFinish
       this.month = this.myId.month
       this.year = this.myId.year
-      console.log("receive", this.myId);
+      // console.log("receive", this.planID);
     });
-    
     }
 
   //#endregion
@@ -55,11 +54,11 @@ export class DetaillistpmPage implements OnInit {
     this.detaillistpm.planID = this.planID;
     this.detaillistpm.month = this.month;
     this.detaillistpm.year = this.year;
-console.log(this.detaillistpm);
+// console.log(this.detaillistpm);
 
     this.postDataService.postDetailListpm(this.detaillistpm).then(work => {
       this.data = work;
-      console.log(this.data);
+      // console.log(this.data);
       for (let i = 0; i < this.data.length; i++) {
         this.Customername = this.data[i].CustomerName;   
         this.data[i].productInstall = JSON.parse(this.data[i].productInstall);
@@ -73,19 +72,23 @@ console.log(this.detaillistpm);
   //#region click
 
   click(data, item) {
-    console.log('Data',data);
-    console.log('item',item);
+    // console.log('Data',data);
+    // console.log('item',item);
     
     
     if (item.Workfinish == 0) {
+      let params = { 
+        planID: this.planID,
+        install: item, 
+      }
 
       const navigationExtras: NavigationExtras = {
         queryParams: {
-          data: JSON.stringify(data)
+          data: JSON.stringify(params)
         }
       };
       this.navCtrl.navigateForward(['/joball/listpm/detailofdetaillistpm'], navigationExtras);
-      console.log("sent", navigationExtras);
+      // console.log("sent", navigationExtras);
     }
 
     if (item.Workfinish == 1) {
@@ -96,7 +99,7 @@ console.log(this.detaillistpm);
         }
       };
       this.navCtrl.navigateForward(['/job/jobdetail'], navigationExtras);
-      console.log("sent", navigationExtras);
+      // console.log("sent", navigationExtras);
     }
   }
 
