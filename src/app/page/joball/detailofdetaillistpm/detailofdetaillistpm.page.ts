@@ -136,9 +136,9 @@ export class DetailofdetaillistpmPage implements OnInit {
         // imageData is either a base64 encoded string or a file URI
         // If it's base64 (DATA_URL):
         let base64Image = 'data:image/jpeg;base64,' + imageData;
-        this.myphoto1 = base64Image;
-        alert('string' + this.myphoto1)
-        alert('base64'+ imageData)
+        this.myphoto1 = imageData;
+        alert('string' + imageData)
+        alert('base64'+ base64Image)
         this.isShow1 = true;
       this.isTake1 = false;
        }, (err) => {
