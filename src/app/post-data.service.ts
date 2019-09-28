@@ -161,7 +161,7 @@ export class PostDataService {
     return new Promise((resovle, reject) => {      
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post(this.apiLocal_url, JSON.stringify(form), option).subscribe(data => {
+      this.http.post(this.apiServer_url, JSON.stringify(form), option).subscribe(data => {
         resovle(data);
       }, error => {
         reject(error)
