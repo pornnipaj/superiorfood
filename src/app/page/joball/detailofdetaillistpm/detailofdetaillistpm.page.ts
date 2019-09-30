@@ -51,9 +51,9 @@ export class DetailofdetaillistpmPage implements OnInit {
     public modalController: ModalController,
     private route: ActivatedRoute,
     private storageService: StorageService,
-    private postDataService:PostDataService) {
+    private postDataService: PostDataService) {
     this.myDate = new Date().toString();
-   
+
     // this.loadItems()
   }
 
@@ -70,16 +70,16 @@ export class DetailofdetaillistpmPage implements OnInit {
       console.log("receive", this.planID);
 
       for (let i = 0; i < this.install.length; i++) {
-        this.install = (this.install[i])  
+        this.install = (this.install[i])
       }
-        this.InstallPlanName = this.install.InstallPlanName;
-        this.SerialNo = this.install.SerialNo;
-        this.ItemsName = this.install.ItemsName;
-        this.ItemCode = this.install.ItemCode;
-        this.ProductCode = this.install.ProductCode;
+      this.InstallPlanName = this.install.InstallPlanName;
+      this.SerialNo = this.install.SerialNo;
+      this.ItemsName = this.install.ItemsName;
+      this.ItemCode = this.install.ItemCode;
+      this.ProductCode = this.install.ProductCode;
     });
 
-    
+
     // this.route.queryParams.subscribe(params => {
     //   this.myId = JSON.parse(params["sig"]);
     //   console.log("receive", this.myId);
@@ -106,7 +106,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       componentProps: { sign: this.sign }
     });
 
-    modal.onDidDismiss().then(data=>{
+    modal.onDidDismiss().then(data => {
       this.showSig = true;
       this.sign = data
       for (let i = 0; i < this.sign.length; i++) {
@@ -114,12 +114,12 @@ export class DetailofdetaillistpmPage implements OnInit {
       }
       this.sign = this.sign.data
       // console.log(this.sign)
-      })
+    })
 
     return await modal.present();
   }
 
-  
+
   Take(id) {
 
     if (id == 1) {
@@ -131,26 +131,41 @@ export class DetailofdetaillistpmPage implements OnInit {
         encodingType: this.camera.EncodingType.JPEG,
         mediaType: this.camera.MediaType.PICTURE
       }
-    
-      this.camera.getPicture(options).then((imageData) => {
-        // imageData is either a base64 encoded string or a file URI
-        // If it's base64 (DATA_URL):
-        let base64Image = 'data:image/jpeg;base64,' + imageData;
-        this.myphoto1 = imageData;
-        alert('string' + imageData)
-        alert('base64'+ base64Image)
-        this.isShow1 = true;
-      this.isTake1 = false;
-       }, (err) => {
-        // Handle error
-       });
 
-      
+      this.camera.getPicture(options).then((imageData) => {
+
+        let base64Image = 'data:image/jpeg;base64,${imageData}';
+        this.myphoto1 = base64Image;
+
+        alert('string' + imageData)
+        alert('base64' + base64Image)
+
+        this.isShow1 = true;
+        this.isTake1 = false;
+      }, (err) => {
+        // Handle error
+      });
     }
+
     if (id == 2) {
-      this.functiontake();
-      this.isShow2 = true;
-      this.isTake2 = false;
+      const options: CameraOptions = {
+        quality: 70,
+        destinationType: this.camera.DestinationType.FILE_URI,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE
+      }
+
+      this.camera.getPicture(options).then((imageData) => {
+        
+        let base64Image = 'data:image/jpeg;base64,' + imageData;
+        this.myphoto2 = base64Image
+
+        this.isShow2 = true;
+        this.isTake2 = false;
+      }, (err) => {
+        // Handle error
+      });
+
     }
     if (id == 3) {
       this.functiontake();
@@ -172,24 +187,24 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.isShow6 = true;
       this.isTake6 = false;
     }
-    
+
   }
 
-functiontake(){
-  
+  functiontake() {
 
-  // let params={ 
-  //   signature: this.myphoto1
-  // }
-  // this.postDataService.post(params).then((data:any) => {
-  //   this.myphoto1 = data
-  //   for (let i = 0; i < this.myphoto1.length; i++) {
-  //   this.myphoto1 = this.myphoto1[i];         
-      
-  //   }
-  //   this.myphoto1 = this.myphoto1.signature
-  //   console.log(this.myphoto1);
-  // })
+
+    // let params={ 
+    //   signature: this.myphoto1
+    // }
+    // this.postDataService.post(params).then((data:any) => {
+    //   this.myphoto1 = data
+    //   for (let i = 0; i < this.myphoto1.length; i++) {
+    //   this.myphoto1 = this.myphoto1[i];         
+
+    //   }
+    //   this.myphoto1 = this.myphoto1.signature
+    //   console.log(this.myphoto1);
+    // })
   };
 
   //#endregion

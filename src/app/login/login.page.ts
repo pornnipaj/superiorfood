@@ -149,8 +149,18 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.storageService.resetLocalStorage();
     // this.checkspace();
-    // this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
-    // console.log(this.screenOrientation.type);
+    this.lockscreen()
+    
+  }
+  async lockscreen(){
+    try {
+      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
+    } catch (error){
+      console.log(error);
+      
+    }
+    
+    alert(this.screenOrientation.type);
   }
 
   //#endregion

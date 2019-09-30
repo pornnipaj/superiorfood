@@ -48,14 +48,14 @@
                 </div>
                 <div class="col-md-4 col-4 text-center">
                   <div *ngIf="isTake2">
-                    <i class="fa fa-camera fa-4x icon responsive center" (click)="Take()"></i>
+                    <i class="fa fa-camera fa-4x icon responsive center" (click)="Take(2)"></i>
                     <ion-fab vertical="bottom" horizontal="center" slot="fixed">
                       <ion-fab-button (click)="Take(2)">
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
                     </ion-fab>
                   </div>
-                  <p><img [src]="myphoto2" *ngIf="isShow2"></p>
+                  <p *ngIf="isShow2"><img [src]="myphoto2"></p>
                 </div>
                 <div class="col-md-4 col-4 text-center">
                   <div *ngIf="isTake3">
