@@ -144,8 +144,8 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.camera.getPicture(options).then((imageData) => {
 
         let base64Image = 'data:image/jpeg;base64,' + imageData;
-        this.myphoto1 = base64Image;
-
+        this.myphoto1.push(base64Image);
+        this.myphoto1.reverse();
         alert('string' + imageData)
         alert('base64' + base64Image)
 
