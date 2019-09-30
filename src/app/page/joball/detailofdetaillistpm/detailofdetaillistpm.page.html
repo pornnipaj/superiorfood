@@ -34,11 +34,11 @@
                   </div>
                 </div>
               </div>
-              <ion-button (click)="takeSnap()">
+              <!-- <ion-button (click)="takeSnap()">
                 Take Snap
               </ion-button>
 
-              <img [src]="capturedSnapURL" />
+              <img [src]="capturedSnapURL" /> -->
               <div class="row">
                 <div class="col-md-4 col-4 text-center">
                   <div *ngIf="isTake1">
@@ -61,7 +61,7 @@
                       </ion-fab-button>
                     </ion-fab>
                   </div>
-                  <p ><img [src]="myphoto2" /></p>
+                  <img [src]="myphoto2" *ngIf="isShow2"/>
                 </div>
 
                 <div class="col-md-4 col-4 text-center">

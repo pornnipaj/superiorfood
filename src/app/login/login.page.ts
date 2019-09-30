@@ -155,7 +155,7 @@ export class LoginPage implements OnInit {
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
 
     
-    alert(this.screenOrientation.type);
+    // alert(this.screenOrientation.type);
   }
 
   //#endregion

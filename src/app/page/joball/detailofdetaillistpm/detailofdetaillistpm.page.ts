@@ -5,6 +5,7 @@ import { SignaturePage } from '../detailofdetaillistpm/signature/signature.page'
 import { ActivatedRoute } from '@angular/router';
 import { StorageService, Sig } from '../../../storage.service';
 import { PostDataService } from '../../../post-data.service';
+import { Base64 } from '@ionic-native/base64';
 @Component({
   selector: 'app-detailofdetaillistpm',
   templateUrl: './detailofdetaillistpm.page.html',
@@ -51,7 +52,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE
   }
-
+  base64;
   //#endregion
 
   //#region constructor
@@ -133,18 +134,21 @@ export class DetailofdetaillistpmPage implements OnInit {
 
     if (id == 1) {
       this.camera.getPicture(this.cameraOptions).then((imageData1) => {
-        // this.camera.DestinationType.FILE_URI gives file URI saved in local
-        // this.camera.DestinationType.DATA_URL gives base64 URI
-
+        alert('imagedata1=' + imageData1)
         let base64Image1 = 'data:image/jpeg;base64,' + imageData1;
         this.myphoto1 = base64Image1;
+        alert('base64Image1=' + base64Image1)
       }, (err) => {
 
         console.log(err);
         // Handle error
       });
+
       this.isTake1 = false;
       this.isShow1 = true;
+
+      this.base64 = this.myphoto1.toDataURL();
+      alert('base64=' + this.base64);
     }
 
     if (id == 2) {
@@ -160,27 +164,68 @@ export class DetailofdetaillistpmPage implements OnInit {
         // Handle error
       });
       this.isTake2 = false;
+      this.isShow2 = true;
 
     }
     if (id == 3) {
-      this.functiontake();
-      this.isShow3 = true;
+      this.camera.getPicture(this.cameraOptions).then((imageData3) => {
+        // this.camera.DestinationType.FILE_URI gives file URI saved in local
+        // this.camera.DestinationType.DATA_URL gives base64 URI
+
+        let base64Image3 = 'data:image/jpeg;base64,' + imageData3;
+        this.myphoto3 = base64Image3;
+      }, (err) => {
+
+        console.log(err);
+        // Handle error
+      });
       this.isTake3 = false;
+      this.isShow3 = true;
     }
     if (id == 4) {
-      this.functiontake();
-      this.isShow4 = true;
+      this.camera.getPicture(this.cameraOptions).then((imageData4) => {
+        // this.camera.DestinationType.FILE_URI gives file URI saved in local
+        // this.camera.DestinationType.DATA_URL gives base64 URI
+
+        let base64Image4 = 'data:image/jpeg;base64,' + imageData4;
+        this.myphoto4 = base64Image4;
+      }, (err) => {
+
+        console.log(err);
+        // Handle error
+      });
       this.isTake4 = false;
+      this.isShow4 = true;
     }
     if (id == 5) {
-      this.functiontake();
-      this.isShow5 = true;
+      this.camera.getPicture(this.cameraOptions).then((imageData5) => {
+        // this.camera.DestinationType.FILE_URI gives file URI saved in local
+        // this.camera.DestinationType.DATA_URL gives base64 URI
+
+        let base64Image5 = 'data:image/jpeg;base64,' + imageData5;
+        this.myphoto5 = base64Image5;
+      }, (err) => {
+
+        console.log(err);
+        // Handle error
+      });
       this.isTake5 = false;
+      this.isShow5 = true;
     }
     if (id == 6) {
-      this.functiontake();
-      this.isShow6 = true;
+      this.camera.getPicture(this.cameraOptions).then((imageData6) => {
+        // this.camera.DestinationType.FILE_URI gives file URI saved in local
+        // this.camera.DestinationType.DATA_URL gives base64 URI
+
+        let base64Image6 = 'data:image/jpeg;base64,' + imageData6;
+        this.myphoto6 = base64Image6;
+      }, (err) => {
+
+        console.log(err);
+        // Handle error
+      });
       this.isTake6 = false;
+      this.isShow6 = true;
     }
 
   }
@@ -200,22 +245,19 @@ export class DetailofdetaillistpmPage implements OnInit {
   }
 
 
-  functiontake() {
-
-
-    // let params={ 
-    //   signature: this.myphoto1
-    // }
-    // this.postDataService.post(params).then((data:any) => {
-    //   this.myphoto1 = data
-    //   for (let i = 0; i < this.myphoto1.length; i++) {
-    //   this.myphoto1 = this.myphoto1[i];         
-
-    //   }
-    //   this.myphoto1 = this.myphoto1.signature
-    //   console.log(this.myphoto1);
-    // })
-  };
+  getBase64(event) {
+    let me = this;
+    let file = event.target.files[0];
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function () {
+      //me.modelvalue = reader.result;
+      console.log(reader.result);
+    };
+    reader.onerror = function (error) {
+      console.log('Error: ', error);
+    };
+  }
 
   //#endregion
 
