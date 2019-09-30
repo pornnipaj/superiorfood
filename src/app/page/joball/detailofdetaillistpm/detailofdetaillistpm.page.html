@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content>  
   <div class="container-fluid" style="position: fixed;">
     <div class="row" style="padding: 5px;">
       <div class="col-6 col-md-6 col-sm-6 ex3" style="padding: 0px; max-height:1280px;">
@@ -42,8 +42,7 @@
               <div class="row">
                 <div class="col-md-4 col-4 text-center">
                   <div *ngIf="isTake1">
-                    <i class="fa fa-camera fa-4x icon responsive center"></i>
-                    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+                    <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(1)">
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
@@ -54,8 +53,7 @@
 
                 <div class="col-md-4 col-4 text-center">
                   <div *ngIf="isTake2">
-                    <i class="fa fa-camera fa-4x icon responsive center"></i>
-                    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+                    <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(2)">
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
@@ -65,9 +63,8 @@
                 </div>
 
                 <div class="col-md-4 col-4 text-center">
-                  <div *ngIf="isTake3">
-                    <i class="fa fa-camera fa-4x icon responsive center" (click)="Take()"></i>
-                    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+                  <div *ngIf="isTake3">                    
+                    <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(3)">
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
@@ -82,7 +79,7 @@
             <div class="portlet light ">
               <div class="row">
                 <div class="col-md-12 col-12">
-                  <div class="caption">
+                  <div class="caption" style="margin-top: 10px;">
                     <i class="fa fa-map-pin font-blue-sharp"></i>
                     <span class="caption-subject font-blue-sharp bold uppercase"> รายการที่ 2
                       ถ่ายภาพหลังการตรวจสอบ</span>
@@ -92,8 +89,7 @@
               <div class="row">
                 <div class="col-md-4 col-4 text-center">
                   <div *ngIf="isTake4">
-                    <i class="fa fa-camera fa-4x icon responsive center"></i>
-                    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+                    <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(4)">
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
@@ -103,8 +99,7 @@
                 </div>
                 <div class="col-md-4 col-4 text-center">
                   <div *ngIf="isTake5">
-                    <i class="fa fa-camera fa-4x icon responsive center"></i>
-                    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+                    <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(5)">
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
@@ -114,8 +109,7 @@
                 </div>
                 <div class="col-md-4 col-4 text-center">
                   <div *ngIf="isTake6">
-                    <i class="fa fa-camera fa-4x icon responsive center"></i>
-                    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+                    <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(6)">
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
@@ -130,7 +124,7 @@
             <div class="portlet light ">
               <div class="row">
                 <div class="col-md-12 col-12">
-                  <div class="caption">
+                  <div class="caption" style="margin-top: 10px;">
                     <i class="fa fa-map-pin font-blue-sharp"></i>
                     <span class="caption-subject font-blue-sharp bold uppercase"> รายการที่ 3
                       รายการที่ต้องตรวจเช็ค</span>
@@ -139,7 +133,7 @@
               </div>
               <div class="row">
                 <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
-                  <a href="javascript:;" class="btn default"> รายการตรวจเช็ค </a>
+                  <button [disabled]="!isenabled" href="javascript:;" class="btn default"> รายการตรวจเช็ค </button>
                 </div>
                 <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
                 </div>

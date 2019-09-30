@@ -6,6 +6,7 @@ import { NavigationExtras } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { StorageService, User } from '../../storage.service';
 import { PostDataService } from '../../post-data.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-job',
@@ -31,6 +32,7 @@ export class JobPage implements OnInit {
   constructor(public DataService: AuthServiceService,
     public navCtrl: NavController,
     private route: ActivatedRoute,
+    private router: Router,
     private storageService: StorageService,
     public postDataService: PostDataService
   ) {
@@ -108,7 +110,38 @@ this.jobdetail = [];
     this.loadItems();
     
   }
+  next(type){
+    console.log(type);
+    
+    if (type == 'cm') {
+      let navigationExtras: NavigationExtras = {
+        queryParams: {
+          data: JSON.stringify("cm")
+        }
+      };
+      this.router.navigate(['/job/cm'], navigationExtras);
+    }
 
+    if (type == 'install') {
+      let navigationExtras: NavigationExtras = {
+        queryParams: {
+          data: JSON.stringify("install")
+        }
+      };
+      this.router.navigate(['/job/install'], navigationExtras);
+    }
+
+    if (type == 'uninstall') {
+      let navigationExtras: NavigationExtras = {
+        queryParams: {
+          data: JSON.stringify("uninstall")
+        }
+      };
+      this.router.navigate(['/job/uninstall'], navigationExtras);
+    }
+
+    }
+    
+  }
   //#endregion
 
-}

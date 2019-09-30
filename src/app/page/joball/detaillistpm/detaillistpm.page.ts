@@ -73,7 +73,7 @@ export class DetaillistpmPage implements OnInit {
 
   click(data, item) {
     // console.log('Data',data);
-    // console.log('item',item);
+    console.log('item',item);
     
     
     if (item.Workfinish == 0) {

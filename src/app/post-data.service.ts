@@ -120,7 +120,7 @@ export class PostDataService {
 
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post('http://superior.wingplusweb.com/API/DetailListpm.ashx' + '?cusID=' + detaillistpm.cusID + '&planID=' + detaillistpm.planID + '&month=' + detaillistpm.month + '&year=' + detaillistpm.year ,
+      this.http.post('http://localhost:41603/API/DetailListpm.ashx' + '?cusID=' + detaillistpm.cusID + '&planID=' + detaillistpm.planID + '&month=' + detaillistpm.month + '&year=' + detaillistpm.year ,
         JSON.stringify(detaillistpm), option).subscribe(data => {
           resovle(data);
         }, error => {

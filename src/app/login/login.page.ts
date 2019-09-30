@@ -44,6 +44,10 @@ export class LoginPage implements OnInit {
     private sqlite: SQLite,
     private storageService: StorageService) {
 
+      setTimeout(() => {
+        this.ngOnInit();
+      }, 500);
+      
     this.platform.ready().then(() => {
       this.loadItems();
     });

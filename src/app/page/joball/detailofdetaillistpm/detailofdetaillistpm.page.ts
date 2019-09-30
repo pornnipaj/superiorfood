@@ -5,7 +5,7 @@ import { SignaturePage } from '../detailofdetaillistpm/signature/signature.page'
 import { ActivatedRoute } from '@angular/router';
 import { StorageService, Sig } from '../../../storage.service';
 import { PostDataService } from '../../../post-data.service';
-import { Base64 } from '@ionic-native/base64';
+
 @Component({
   selector: 'app-detailofdetaillistpm',
   templateUrl: './detailofdetaillistpm.page.html',
@@ -14,7 +14,9 @@ import { Base64 } from '@ionic-native/base64';
 export class DetailofdetaillistpmPage implements OnInit {
 
   //#region data
-
+  isenabled=false;
+  animal: string;
+  name: string;
   myDate;
   myphoto1;
   myphoto2;
@@ -43,6 +45,7 @@ export class DetailofdetaillistpmPage implements OnInit {
   ProductCode;
   sign;
   install;
+  password;
   showSig = false;
   capturedSnapURL;
 
@@ -52,7 +55,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE
   }
-  base64;
+  
   //#endregion
 
   //#region constructor
@@ -61,13 +64,14 @@ export class DetailofdetaillistpmPage implements OnInit {
     public modalController: ModalController,
     private route: ActivatedRoute,
     private storageService: StorageService,
-    private postDataService: PostDataService) {
+    private postDataService: PostDataService,) {
     this.myDate = new Date().toString();
 
     // this.loadItems()
   }
 
   //#endregion
+
 
   //#region start
 
@@ -77,7 +81,8 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.myId = JSON.parse(params["data"]);
       this.planID = this.myId.planID
       this.install = this.myId.install
-      console.log("receive", this.planID);
+      
+      // console.log("receive", this.myId);
 
       for (let i = 0; i < this.install.length; i++) {
         this.install = (this.install[i])
@@ -87,7 +92,10 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.ItemsName = this.install.ItemsName;
       this.ItemCode = this.install.ItemCode;
       this.ProductCode = this.install.ProductCode;
+      this.password = this.install.Password
     });
+    // console.log(this.password);
+    
 
 
     // this.route.queryParams.subscribe(params => {
@@ -134,10 +142,10 @@ export class DetailofdetaillistpmPage implements OnInit {
 
     if (id == 1) {
       this.camera.getPicture(this.cameraOptions).then((imageData1) => {
-        alert('imagedata1=' + imageData1)
+        // alert('imagedata1=' + imageData1)
         let base64Image1 = 'data:image/jpeg;base64,' + imageData1;
         this.myphoto1 = base64Image1;
-        alert('base64Image1=' + base64Image1)
+        // alert('base64Image1=' + base64Image1)
       }, (err) => {
 
         console.log(err);
@@ -146,9 +154,6 @@ export class DetailofdetaillistpmPage implements OnInit {
 
       this.isTake1 = false;
       this.isShow1 = true;
-
-      this.base64 = this.myphoto1.toDataURL();
-      alert('base64=' + this.base64);
     }
 
     if (id == 2) {

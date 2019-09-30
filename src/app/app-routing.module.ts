@@ -16,6 +16,10 @@ const routes: Routes = [
   { path: 'take-spare-parts', loadChildren: './page/take-spare-parts/take-spare-parts.module#TakeSparePartsPageModule' },
   { path: 'sqlite', loadChildren: './sqlite/sqlite.module#SqlitePageModule' },
   { path: 'test', loadChildren: './test/test.module#TestPageModule' },
+  { path: 'job/install', loadChildren: './page/job/install/install.module#InstallPageModule' },
+  { path: 'job/uninstall', loadChildren: './page/job/uninstall/uninstall.module#UninstallPageModule' },
+  { path: 'job/cm', loadChildren: './page/job/cm/cm.module#CmPageModule' },
+
 
 ];
 
