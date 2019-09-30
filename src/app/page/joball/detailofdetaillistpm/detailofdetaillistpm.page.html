@@ -10,7 +10,7 @@
 <ion-content>
   <div class="container-fluid" style="position: fixed;">
     <div class="row" style="padding: 5px;">
-      <div class="col-6 col-md-6 col-sm-6 ex3" style="padding: 0px;max-height:800px;">
+      <div class="col-6 col-md-6 col-sm-6 ex3" style="padding: 0px; max-height:1280px;">
         <div class="portlet box blue">
           <div class="portlet-title">
             <div class="caption">
@@ -34,6 +34,11 @@
                   </div>
                 </div>
               </div>
+              <ion-button (click)="takeSnap()">
+                Take Snap
+              </ion-button>
+
+              <img [src]="capturedSnapURL" />
               <div class="row">
                 <div class="col-md-4 col-4 text-center">
                   <div *ngIf="isTake1">
@@ -46,17 +51,19 @@
                   </div>
                   <p><img [src]="myphoto1" *ngIf="isShow1"></p>
                 </div>
+
                 <div class="col-md-4 col-4 text-center">
                   <div *ngIf="isTake2">
-                    <i class="fa fa-camera fa-4x icon responsive center" (click)="Take(2)"></i>
+                    <i class="fa fa-camera fa-4x icon responsive center"></i>
                     <ion-fab vertical="bottom" horizontal="center" slot="fixed">
                       <ion-fab-button (click)="Take(2)">
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
                     </ion-fab>
                   </div>
-                  <p *ngIf="isShow2"><img [src]="myphoto2"></p>
+                  <p *ngIf="isShow2"><img [src]="myphoto2" /></p>
                 </div>
+
                 <div class="col-md-4 col-4 text-center">
                   <div *ngIf="isTake3">
                     <i class="fa fa-camera fa-4x icon responsive center" (click)="Take()"></i>

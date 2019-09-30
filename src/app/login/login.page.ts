@@ -152,12 +152,8 @@ export class LoginPage implements OnInit {
     
   }
   async lockscreen(){
-    try {
       this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
-    } catch (error){
-      console.log(error);
-      
-    }
+
     
     alert(this.screenOrientation.type);
   }

@@ -43,6 +43,15 @@ export class DetailofdetaillistpmPage implements OnInit {
   sign;
   install;
   showSig = false;
+  capturedSnapURL;
+  
+  cameraOptions: CameraOptions = {
+    quality: 20,
+    destinationType: this.camera.DestinationType.DATA_URL,
+    encodingType: this.camera.EncodingType.JPEG,
+    mediaType: this.camera.MediaType.PICTURE
+  }
+
   //#endregion
 
   //#region constructor
@@ -134,7 +143,7 @@ export class DetailofdetaillistpmPage implements OnInit {
 
       this.camera.getPicture(options).then((imageData) => {
 
-        let base64Image = 'data:image/jpeg;base64,${imageData}';
+        let base64Image = 'data:image/jpeg;base64,' + imageData;
         this.myphoto1 = base64Image;
 
         alert('string' + imageData)
@@ -147,21 +156,15 @@ export class DetailofdetaillistpmPage implements OnInit {
       });
     }
 
-    if (id == 2) {
-      const options: CameraOptions = {
-        quality: 70,
-        destinationType: this.camera.DestinationType.FILE_URI,
-        encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE
-      }
-
-      this.camera.getPicture(options).then((imageData) => {
+    if (id == 2) {    
+      this.camera.getPicture(this.cameraOptions).then((imageData) => { 
         
         let base64Image = 'data:image/jpeg;base64,' + imageData;
-        this.myphoto2 = base64Image
-
         this.isShow2 = true;
         this.isTake2 = false;
+        this.myphoto2 = base64Image
+
+        
       }, (err) => {
         // Handle error
       });
@@ -189,6 +192,21 @@ export class DetailofdetaillistpmPage implements OnInit {
     }
 
   }
+
+  takeSnap() {
+    this.camera.getPicture(this.cameraOptions).then((imageData) => {
+      // this.camera.DestinationType.FILE_URI gives file URI saved in local
+      // this.camera.DestinationType.DATA_URL gives base64 URI
+      
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      this.capturedSnapURL = base64Image;
+    }, (err) => {
+      
+      console.log(err);
+      // Handle error
+    });
+  }
+ 
 
   functiontake() {
 
