@@ -34,17 +34,22 @@
                   </div>
                 </div>
               </div>
+              <ion-button (click)="takeSnap()">
+                Take Snap
+              </ion-button>
+
+              <img [src]="capturedSnapURL" />
               <div class="row">
                 <div class="col-md-4 col-4 text-center">
                   <div *ngIf="isTake1">
-                    <i class="fa fa-camera fa-4x icon responsive center" (click)="Take(1)"> </i>
+                    <i class="fa fa-camera fa-4x icon responsive center"></i>
                     <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-                      <ion-fab-button>
+                      <ion-fab-button (click)="Take(1)">
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
                     </ion-fab>
                   </div>
-                  <p><img [src]="myphoto1" *ngIf="isShow1"></p>
+                  <img [src]="myphoto1" *ngIf="isShow1">
                 </div>
 
                 <div class="col-md-4 col-4 text-center">
@@ -56,7 +61,7 @@
                       </ion-fab-button>
                     </ion-fab>
                   </div>
-                  <p *ngIf="isShow2"><img [src]="myphoto2" /></p>
+                  <p ><img [src]="myphoto2" /></p>
                 </div>
 
                 <div class="col-md-4 col-4 text-center">

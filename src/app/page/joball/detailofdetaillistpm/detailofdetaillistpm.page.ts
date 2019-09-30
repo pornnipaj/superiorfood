@@ -44,7 +44,7 @@ export class DetailofdetaillistpmPage implements OnInit {
   install;
   showSig = false;
   capturedSnapURL;
-  
+
   cameraOptions: CameraOptions = {
     quality: 20,
     destinationType: this.camera.DestinationType.DATA_URL,
@@ -135,27 +135,27 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.camera.getPicture(this.cameraOptions).then((imageData1) => {
         // this.camera.DestinationType.FILE_URI gives file URI saved in local
         // this.camera.DestinationType.DATA_URL gives base64 URI
-        
+
         let base64Image1 = 'data:image/jpeg;base64,' + imageData1;
         this.myphoto1 = base64Image1;
       }, (err) => {
-        
+
         console.log(err);
         // Handle error
       });
       this.isTake1 = false;
-  this.isShow1 = true;
+      this.isShow1 = true;
     }
 
-    if (id == 2) {    
+    if (id == 2) {
       this.camera.getPicture(this.cameraOptions).then((imageData2) => {
         // this.camera.DestinationType.FILE_URI gives file URI saved in local
         // this.camera.DestinationType.DATA_URL gives base64 URI
-        
+
         let base64Image2 = 'data:image/jpeg;base64,' + imageData2;
         this.myphoto2 = base64Image2;
       }, (err) => {
-        
+
         console.log(err);
         // Handle error
       });
@@ -189,16 +189,16 @@ export class DetailofdetaillistpmPage implements OnInit {
     this.camera.getPicture(this.cameraOptions).then((imageData) => {
       // this.camera.DestinationType.FILE_URI gives file URI saved in local
       // this.camera.DestinationType.DATA_URL gives base64 URI
-      
+
       let base64Image = 'data:image/jpeg;base64,' + imageData;
       this.capturedSnapURL = base64Image;
     }, (err) => {
-      
+
       console.log(err);
       // Handle error
     });
   }
- 
+
 
   functiontake() {
 
