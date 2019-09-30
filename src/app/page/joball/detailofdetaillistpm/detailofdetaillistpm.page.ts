@@ -132,42 +132,34 @@ export class DetailofdetaillistpmPage implements OnInit {
   Take(id) {
 
     if (id == 1) {
-      const options: CameraOptions = {
-        quality: 70,
-        targetWidth: 320,
-        targetHeight: 320,
-        destinationType: this.camera.DestinationType.FILE_URI,
-        encodingType: this.camera.EncodingType.JPEG,
-        mediaType: this.camera.MediaType.PICTURE
-      }
-
-      this.camera.getPicture(options).then((imageData) => {
-
-        let base64Image = 'data:image/jpeg;base64,' + imageData;
-        this.myphoto1.push(base64Image);
-        this.myphoto1.reverse();
-        alert('string' + imageData)
-        alert('base64' + base64Image)
-
-        this.isShow1 = true;
-        this.isTake1 = false;
+      this.camera.getPicture(this.cameraOptions).then((imageData1) => {
+        // this.camera.DestinationType.FILE_URI gives file URI saved in local
+        // this.camera.DestinationType.DATA_URL gives base64 URI
+        
+        let base64Image1 = 'data:image/jpeg;base64,' + imageData1;
+        this.myphoto1 = base64Image1;
       }, (err) => {
+        
+        console.log(err);
         // Handle error
       });
+      this.isTake1 = false;
+  this.isShow1 = true;
     }
 
     if (id == 2) {    
-      this.camera.getPicture(this.cameraOptions).then((imageData) => { 
+      this.camera.getPicture(this.cameraOptions).then((imageData2) => {
+        // this.camera.DestinationType.FILE_URI gives file URI saved in local
+        // this.camera.DestinationType.DATA_URL gives base64 URI
         
-        let base64Image = 'data:image/jpeg;base64,' + imageData;
-        this.isShow2 = true;
-        this.isTake2 = false;
-        this.myphoto2 = base64Image
-
-        
+        let base64Image2 = 'data:image/jpeg;base64,' + imageData2;
+        this.myphoto2 = base64Image2;
       }, (err) => {
+        
+        console.log(err);
         // Handle error
       });
+      this.isTake2 = false;
 
     }
     if (id == 3) {

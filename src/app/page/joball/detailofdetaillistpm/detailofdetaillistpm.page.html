@@ -34,17 +34,12 @@
                   </div>
                 </div>
               </div>
-              <ion-button (click)="takeSnap()">
-                Take Snap
-              </ion-button>
-
-              <img [src]="capturedSnapURL" />
               <div class="row">
                 <div class="col-md-4 col-4 text-center">
                   <div *ngIf="isTake1">
-                    <i class="fa fa-camera fa-4x icon responsive center"></i>
+                    <i class="fa fa-camera fa-4x icon responsive center" (click)="Take(1)"> </i>
                     <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-                      <ion-fab-button (click)="Take(1)">
+                      <ion-fab-button>
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
                     </ion-fab>
