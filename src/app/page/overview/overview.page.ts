@@ -63,7 +63,9 @@ export class OverviewPage implements OnInit {
     private platform: Platform,
     private sqlite: SQLite,
     private storageService: StorageService) {
-
+      setTimeout(() => {
+        this.ngOnInit();
+      }, 500);
     this.user = [];
     this.test = [];
     this.ChangeMonth();
