@@ -19,6 +19,10 @@ const routes: Routes = [
   { path: 'job/install', loadChildren: './page/job/install/install.module#InstallPageModule' },
   { path: 'job/uninstall', loadChildren: './page/job/uninstall/uninstall.module#UninstallPageModule' },
   { path: 'job/cm', loadChildren: './page/job/cm/cm.module#CmPageModule' },
+  { path: 'customerpassword', loadChildren: './page/joball/detailofdetaillistpm/customerpassword/customerpassword.module#CustomerpasswordPageModule' },
+  { path: 'joball/listpm/detaillistpm/jobdetail', loadChildren: './page/joball/detaillistpm/jobdetail/jobdetail.module#JobdetailPageModule' },
+
+
 
 
 ];

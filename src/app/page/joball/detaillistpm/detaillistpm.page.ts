@@ -25,6 +25,7 @@ export class DetaillistpmPage implements OnInit {
   Name;
   month;
   year;
+  insID;
   //#endregion
 
   //#region constructor
@@ -58,7 +59,7 @@ export class DetaillistpmPage implements OnInit {
 
     this.postDataService.postDetailListpm(this.detaillistpm).then(work => {
       this.data = work;
-      // console.log(this.data);
+      console.log(this.data);
       for (let i = 0; i < this.data.length; i++) {
         this.Customername = this.data[i].CustomerName;   
         this.data[i].productInstall = JSON.parse(this.data[i].productInstall);
@@ -72,7 +73,7 @@ export class DetaillistpmPage implements OnInit {
   //#region click
 
   click(data, item) {
-    // console.log('Data',data);
+    console.log('Data',data);
     console.log('item',item);
     
     
@@ -92,14 +93,20 @@ export class DetaillistpmPage implements OnInit {
     }
 
     if (item.Workfinish == 1) {
+      console.log(item.installId);
       
+      let params = { 
+        data: data,
+        installID: item.installId, 
+      }
+
       const navigationExtras: NavigationExtras = {
         queryParams: {
-          data: JSON.stringify(data)
+          data: JSON.stringify(params)
         }
       };
-      this.navCtrl.navigateForward(['/job/jobdetail'], navigationExtras);
-      // console.log("sent", navigationExtras);
+      this.navCtrl.navigateForward(['/joball/listpm/detaillistpm/jobdetail'], navigationExtras);
+      console.log("sent", navigationExtras);
     }
   }
 

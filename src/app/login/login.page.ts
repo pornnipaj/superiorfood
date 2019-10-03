@@ -1,11 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthServiceService } from '../auth-service.service';
 import { AlertController, Platform, IonList } from '@ionic/angular';
-import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { PostDataService } from '../post-data.service';
 import { NavController } from '@ionic/angular';
-import { NavigationExtras } from '@angular/router';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { StorageService, User } from '../storage.service';
 
 @Component({
@@ -35,13 +32,10 @@ export class LoginPage implements OnInit {
 
   @ViewChild('mylist', { static: false }) mylist: IonList;
 
-  constructor(public DataService: AuthServiceService,
-    public alertController: AlertController,
-    private screenOrientation: ScreenOrientation,
+  constructor(public alertController: AlertController,
     public postDataService: PostDataService,
     public navCtrl: NavController,
     private platform: Platform,
-    private sqlite: SQLite,
     private storageService: StorageService) {
 
       setTimeout(() => {
@@ -91,10 +85,10 @@ export class LoginPage implements OnInit {
 
 
   login() {
-    console.log(this.user.email);
-    console.log(this.user.password);
+    this.user.email = this.user.email;
+    this.user.password = this.user.password;
 
-    this.DataService.getuser(this.user.email, this.user.password).subscribe(data => {
+    this.postDataService.login(this.user).then(data => {
       this.data = data;
       console.log('Data Returner', this.data);
       for (let i = 0; i < this.data.length; i++) {
@@ -108,8 +102,8 @@ export class LoginPage implements OnInit {
         this.status = this.data[i].Status;
         this.check();
       }
-    });
-
+    });  
+    
   }
 
   async check() {
@@ -152,14 +146,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.storageService.resetLocalStorage();
     // this.checkspace();
-    this.lockscreen()
     
-  }
-  async lockscreen(){
-      this.screenOrientation.lock(this.screenOrientation.ORIENTATIONS.LANDSCAPE);
-
-    
-    // alert(this.screenOrientation.type);
   }
 
   //#endregion

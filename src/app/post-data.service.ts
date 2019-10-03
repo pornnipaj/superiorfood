@@ -7,8 +7,8 @@ import { Http, Headers } from "@angular/http";
 })
 export class PostDataService {
   
-  apiLocal_url = 'http://localhost:41603/API/WebService.asmx/HelloWorld';
-  apiServer_url = 'http://superior.wingplusweb.com/API/WebService.asmx/HelloWorld';
+  apiLocal_url = 'http://localhost:41603/API/WebService.asmx/Photo';
+  apiServer_url = 'http://superior.wingplusweb.com/API/WebService.asmx/Photo';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -18,46 +18,19 @@ export class PostDataService {
 
   constructor(private http: HttpClient, public https: Http) { }
 
-  // insertData(data) {
-  //   var headers = new Headers();
-  //   headers.append("Accept", 'application/json');
-  //   headers.append('Content-Type', 'application/json' );
-  //   const requestOptions = new RequestOptions({ headers: headers });
+  login(user) {
+    return new Promise((resovle, reject) => {
 
-  //   this.http.post("http://127.0.0.1:3000/customers", data, requestOptions)
-  //     .subscribe(data => {
-  //       console.log(data['_body']);
-  //      }, error => {
-  //       console.log(error);
-  //     });
-  // }
+      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  // insert(form) {
-  //   return new Promise((resovle, reject) => {
-  //     let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-  //     this.http.post(this.api_url + '?id=' + form.emp_id, JSON.stringify(form), option).subscribe(data => {
-  //       resovle(data);
-  //     }, error => {
-  //       reject(error)
-  //     });
-  //   });
-  // }
-
-  // login(user) {
-  //   // console.log(user);
-  //   return new Promise((resovle, reject) => {
-
-  //     let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-  //     this.http.post(this.api_url + '?email=' + user.email + '&password=' + user.password,
-  //       JSON.stringify(user), option).subscribe(data => {
-  //         resovle(data);
-  //       }, error => {
-  //         reject(error)
-  //       });
-  //   });
-  // }
+      this.http.post('http://superior.wingplusweb.com/API/Login.ashx' + '?email=' + user.email + '&password=' + user.password,
+        JSON.stringify(user), option).subscribe(data => {
+          resovle(data);
+        }, error => {
+          reject(error)
+        });
+    });
+  }
 
   postjobOverview(user) {
     return new Promise((resovle, reject) => {
@@ -92,7 +65,7 @@ export class PostDataService {
 
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post('http://superior.wingplusweb.com/API/DetailJob.ashx' + '?planID=' + jobdetail.planID + '&tranID=' + jobdetail.tranID ,
+      this.http.post('http://localhost:41603/API/DetailJob.ashx' + '?planID=' + jobdetail.planID + '&tranID=' + jobdetail.tranID + '&insID=' + jobdetail.insID,
         JSON.stringify(jobdetail), option).subscribe(data => {
           resovle(data);
         }, error => {
@@ -128,20 +101,6 @@ export class PostDataService {
         });
     });
   }
-  
-  postServicaPlan(serviceplan) {
-    return new Promise((resovle, reject) => {
-
-      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-      this.http.post('http://superior.wingplusweb.com/API/DetailListpm.ashx' + '?empID=' + serviceplan.empID + '&month=' + serviceplan.month + '&year=' + serviceplan.year,
-        JSON.stringify(serviceplan), option).subscribe(data => {
-          resovle(data);
-        }, error => {
-          reject(error)
-        });
-    });
-  }
 
   postPlan(plan) {
     return new Promise((resovle, reject) => {
@@ -157,15 +116,43 @@ export class PostDataService {
     });
   }
   
-  post(form) {
+  postServicaPlan(serviceplan) {
+    return new Promise((resovle, reject) => {
+
+      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+      this.http.post('http://superior.wingplusweb.com/API/DetailListpm.ashx' + '?empID=' + serviceplan.empID + '&month=' + serviceplan.month + '&year=' + serviceplan.year,
+        JSON.stringify(serviceplan), option).subscribe(data => {
+          resovle(data);
+        }, error => {
+          reject(error)
+        });
+    });
+  }
+  
+  postphoto(form) {
     return new Promise((resovle, reject) => {      
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post(this.apiServer_url, JSON.stringify(form), option).subscribe(data => {
+      this.http.post(this.apiLocal_url, JSON.stringify(form), option).subscribe(data => {
         resovle(data);
       }, error => {
         reject(error)
       });
+    });
+  }
+  
+  postTran(tran) {
+    return new Promise((resovle, reject) => {
+
+      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+      this.http.post('http://localhost:41603/Web/Test2.aspx' + '?empID=' + tran.empID + '&planID=' + tran.planID + '&installID=' + tran.installID + '&startDate=' + tran.startDate,
+        JSON.stringify(tran), option).subscribe(data => {
+          resovle(data);
+        }, error => {
+          reject(error)
+        });
     });
   }
 }

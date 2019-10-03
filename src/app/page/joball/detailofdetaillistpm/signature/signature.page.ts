@@ -28,6 +28,7 @@ export class SignaturePage implements OnInit {
   newSig: Sig = <Sig>{};
   sig;
   test;
+  base64;
   //#endregion
 
   //#region constructor
@@ -47,7 +48,7 @@ export class SignaturePage implements OnInit {
     navParams: NavParams,
     public storage: Storage,
     public navCtrl: NavController,
-    private postDataService:PostDataService,
+    private postDataService: PostDataService,
     private storageService: StorageService,
     public modalController: ModalController) {
     this.sig = (navParams.get('sign'))
@@ -69,30 +70,14 @@ export class SignaturePage implements OnInit {
   }
 
   savePad() {
-    const base64 = this.signaturePad.toDataURL('image/png', 0.5);    
+    const base64 = this.signaturePad.toDataURL('image/png', 0.5);
     // console.log(base64);
     const blob = this.signature(base64)
     // console.log(blob);
     this.image = base64;
     this.drawStart();
 
-    let params={ 
-      signature: this.image
-    }
-      this.postDataService.post(params).then((data:any) => {
-        this.sig = data
-        console.log(this.sig);
-        for (let i = 0; i < this.sig.length; i++) {
-          this.sig = this.sig[i];         
-          
-        }
-        this.sig = this.sig.signature
-        // console.log(this.sig);
-        
-      });   
-        // console.log(this.image);
-        
-        this.modalController.dismiss(this.image);
+    this.modalController.dismiss(this.image);
   }
 
   signature(base64) {
@@ -113,6 +98,9 @@ export class SignaturePage implements OnInit {
   }
 
   close() {
+    const base64 = this.signaturePad.toDataURL('image/png', 0.5);
+    this.image = base64;
+
     this.modalController.dismiss(this.image);
   }
 

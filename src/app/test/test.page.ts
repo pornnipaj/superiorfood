@@ -36,9 +36,6 @@ sign
     UserPassword: '00100100957', 
     BranchID: '01',
     AllowHttp: true
-  }
-    this.postDataService.post(params).then((data:any) => {
-      console.log(data);
-    });
+    }
   }
 }

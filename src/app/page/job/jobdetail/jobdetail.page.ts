@@ -35,6 +35,7 @@ export class JobdetailPage implements OnInit {
   query;
   planID;
   tranID;
+  insID;
   image;
   img1;
   img2;
@@ -55,12 +56,13 @@ export class JobdetailPage implements OnInit {
       this.query = JSON.parse(params["data"]);
       this.planID = this.query.planID
       this.tranID = this.query.tranID
-      console.log("receive", this.query);
+      this.insID = this.query.installID
+      console.log("receive", this.insID);
     });
 
 
     // this.getOverview();
-    this.getEvaluation();
+    // this.getEvaluation();
     // this.getCheckList();
 
     //   this.DataService.getJobDetail().subscribe(data => {
@@ -74,54 +76,54 @@ export class JobdetailPage implements OnInit {
 
   //#endregion
 
-  //#region click
+  // //#region click
 
-  getEvaluation() {
-    this.DataService.getJobDetail().subscribe(data => {
-      this.data = data;
-      //get json_evaluation
-      for (let i = 0; i < this.data.length; i++) {
-        this.json = this.data[i].json_evaluation;
-        // console.log(this.json);
+  // getEvaluation() {
+  //   this.DataService.getJobDetail().subscribe(data => {
+  //     this.data = data;
+  //     //get json_evaluation
+  //     for (let i = 0; i < this.data.length; i++) {
+  //       this.json = this.data[i].json_evaluation;
+  //       // console.log(this.json);
 
-        //convert to array
-        this.items = JSON.parse(this.json);
-        // console.log(this.items);
-      }
+  //       //convert to array
+  //       this.items = JSON.parse(this.json);
+  //       // console.log(this.items);
+  //     }
 
-      //get data in json_evaluation
-      for (let i = 0; i < this.items.length; i++) {
-        this.question = this.items[i].question;
-        this.answer = this.items[i].answer;
-        this.answerText = this.items[i].answerText;
-        // console.log(this.question + " " + this.answer + " " + this.answerText);
-      }
-    });
-  }
+  //     //get data in json_evaluation
+  //     for (let i = 0; i < this.items.length; i++) {
+  //       this.question = this.items[i].question;
+  //       this.answer = this.items[i].answer;
+  //       this.answerText = this.items[i].answerText;
+  //       // console.log(this.question + " " + this.answer + " " + this.answerText);
+  //     }
+  //   });
+  // }
 
-  getCheckList() {
-    this.DataService.getJobDetail().subscribe(data => {
-      this.data = data;
-      //get json_checklist
-      for (let i = 0; i < this.data.length; i++) {
-        this.json = this.data[i].json_checklist;
-        // console.log(this.json);
+  // getCheckList() {
+  //   this.DataService.getJobDetail().subscribe(data => {
+  //     this.data = data;
+  //     //get json_checklist
+  //     for (let i = 0; i < this.data.length; i++) {
+  //       this.json = this.data[i].json_checklist;
+  //       // console.log(this.json);
 
-        //convert to array
-        this.items = JSON.parse(this.json);
-        // console.log(this.items);
-      }
+  //       //convert to array
+  //       this.items = JSON.parse(this.json);
+  //       // console.log(this.items);
+  //     }
 
-      //get data in json_checklist
-      for (let i = 0; i < this.items.length; i++) {
-        this.json_checklist.header = this.items[i].header;
-        this.json_checklist.subheader = this.items[i].subheader;
-        // console.log(this.json_checklist.header + " " + this.json_checklist.subheader);
-      }
-    });
-  }
+  //     //get data in json_checklist
+  //     for (let i = 0; i < this.items.length; i++) {
+  //       this.json_checklist.header = this.items[i].header;
+  //       this.json_checklist.subheader = this.items[i].subheader;
+  //       // console.log(this.json_checklist.header + " " + this.json_checklist.subheader);
+  //     }
+  //   });
+  // }
 
-  //#endregion
+  // //#endregion
 
   //#region start
 
@@ -141,7 +143,8 @@ export class JobdetailPage implements OnInit {
     //   console.log(this.jobdetail);
     
     this.jobdetail.planID = this.planID;
-    this.jobdetail.tranID = this.tranID
+    this.jobdetail.tranID = this.tranID;
+    this.jobdetail.insID = this.insID;
 
     console.log(this.jobdetail);
 

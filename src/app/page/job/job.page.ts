@@ -37,16 +37,7 @@ export class JobPage implements OnInit {
     public postDataService: PostDataService
   ) {
     this.job = [];
-this.jobdetail = [];
-    // this.getJob();
-
-    //   this.DataService.getJobDetail().subscribe(data => {
-    //     this.data = data;
-    //   for (let i = 0; i < this.data.length; i++) {
-    //     const json = this.data[i].Name;
-    //     console.log(json);
-    //   }
-    // });
+    this.jobdetail = [];
 
   }
 
@@ -54,16 +45,9 @@ this.jobdetail = [];
 
   //#region click
 
-  getJob() {
-    this.DataService.getJob().subscribe(data => {
-      this.data = data;
-      console.log(this.data);
-    });
-  }
-
   click(item) {
     console.log(item);
-    
+
     const navigationExtras: NavigationExtras = {
       queryParams: {
         data: JSON.stringify(item)
@@ -108,11 +92,11 @@ this.jobdetail = [];
 
   ngOnInit() {
     this.loadItems();
-    
+
   }
-  next(type){
+  next(type) {
     console.log(type);
-    
+
     if (type == 'cm') {
       let navigationExtras: NavigationExtras = {
         queryParams: {
@@ -140,8 +124,8 @@ this.jobdetail = [];
       this.router.navigate(['/job/uninstall'], navigationExtras);
     }
 
-    }
-    
   }
+
+}
   //#endregion
 

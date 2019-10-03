@@ -10,42 +10,44 @@ export class AuthServiceService {
   constructor(private http: HttpClient) {
   }
 
-  getJob() {
-    return this.http.get(
-      'http://superior.wingplusweb.com/API/ServicePlans.ashx'
-    );
-  }
-  getJobDetail() {
-    return this.http.get(
-      'http://superior.wingplusweb.com/API/ServicePlansDetail.ashx'
-    );
-  }
+  // getJob() {
+  //   return this.http.get(
+  //     'http://superior.wingplusweb.com/API/ServicePlans.ashx'
+  //   );
+  // }
+  // getJobDetail() {
+  //   return this.http.get(
+  //     'http://superior.wingplusweb.com/API/ServicePlansDetail.ashx'
+  //   );
+  // }
+
   getJobAll() {
     return this.http.get(
       'http://superior.wingplusweb.com/API/Employee.ashx'
     );
   }
-  getuser(email, password){
+
+  getuser(email, password) {
     return this.http.get(
       'http://superior.wingplusweb.com/API/Login.ashx?email=' + email + '&password=' + password
     );
-}
+  }
 
-getnew(){
-  return this.http.get(
-    'http://superior.wingplusweb.com/API/News.ashx'
-  );
-}
+  getnew() {
+    return this.http.get(
+      'http://superior.wingplusweb.com/API/News.ashx'
+    );
+  }
 
-getPlan(){
-  return this.http.get(
-    'http://superior.wingplusweb.com/API/ServicePlans.ashx'
-  );
-}
+  getPlan() {
+    return this.http.get(
+      'http://superior.wingplusweb.com/API/ServicePlans.ashx'
+    );
+  }
 
-getProduct(){
-  return this.http.get(
-    'http://superior.wingplusweb.com/API/ProductAndManual.ashx'
-  );
-}
+  getProduct() {
+    return this.http.get(
+      'http://superior.wingplusweb.com/API/ProductAndManual.ashx'
+    );
+  }
 }

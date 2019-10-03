@@ -8,29 +8,44 @@
 </ion-header>
 
 <ion-content>
-  <div class="container-fluid" style="position: fixed;">
+  <div class="container-fluid">
     <div class="page-content-inner">
       <div class="row" style="padding:5px;">
-        <div class="col-4 col-md-4 col-sm-4 background ex2" style="padding: 0px; background-color: white;">
-          <!-- <button class="col-12 col-md-12 col-sm-12 btn btn-lg btn-block circle"
-            style="height: 50px; background-color: #D6D7D7; padding: 0px;"
-            [routerLink]="['/job/reportcheckpm']">รายการการตรวจเช็ค</button> -->
-                      <!-- <button class="col-12 col-md-12 col-sm-12 btn btn-lg btn-block circle"
-            style="height: 50px; background-color: #D6D7D7;"
-            [routerLink]="['/job/calendarpm']">ปฏิทินการตรวจเช็ค</button> -->
-            <div class="col-12" style="padding: 2px;"><button type="button" class="btn default" [routerLink]="['/job/reportcheckpm']"><i class="fa fa-check"></i> รายการตรวจเช็ค (PM)</button></div>
-            <div class="col-12" style="padding: 2px;"><button type="button" class="btn default" (click)="next('cm')"><i class="fa fa-check"></i> รายการซ่อมบำรุง (CM)</button></div>
-            <div class="col-12" style="padding: 2px;"><button type="button" class="btn default" (click)="next('install')" ><i class="fa fa-check"></i> รายการติดตั้ง (Install) </button></div>
-            <div class="col-12" style="padding: 2px;"><button type="button" class="btn default" (click)="next('uninstall')"><i class="fa fa-check"></i> รายการถอนการติดตั้ง (Uninstall) </button></div>
-            <div class="col-12" style="padding: 2px;"><button type="button" class="btn default" [routerLink]="['/job/calendarpm']"><i class="fa fa-calendar"></i> ปฏิทิน</button></div>
+        <div class="col-4 col-md-4 col-sm-4 background text-center" style="padding: 0px; background-color: white;"
+          id="Left">
+          <div class="col-12" style="padding: 2px;">
+            <button type="button" class="btn default" [routerLink]="['/job/reportcheckpm']">
+              <i class="fa fa-check"></i> รายการตรวจเช็ค (PM)
+            </button>
+            </div>
+          <div class="col-12" style="padding: 2px;">
+            <button type="button" class="btn default" (click)="next('cm')">
+              <i class="fa fa-check"></i> รายการซ่อมบำรุง (CM)
+            </button>
+          </div>
+          <div class="col-12" style="padding: 2px;">
+            <button type="button" class="btn default" (click)="next('install')">
+              <i class="fa fa-check"></i> รายการติดตั้ง (Install) 
+            </button>
+          </div>
+          <div class="col-12" style="padding: 2px;">
+            <button type="button" class="btn default" (click)="next('uninstall')">
+              <i class="fa fa-check"> </i> รายการถอนการติดตั้ง (Uninstall)
+            </button>
+          </div>
+          <div class="col-12" style="padding: 2px;">
+            <button type="button" class="btn default" [routerLink]="['/job/calendarpm']">
+              <i class="fa fa-calendar"></i>  ปฏิทิน
+            </button>
+          </div>
         </div>
 
-        <div class="col-8 col-md-8 col-sm-8 ex3" style="padding: 0px; padding-left: 5px; max-height:800px;">
-          <div class="portlet blue box">
-              <div class="portlet-title" style="margin-top:0px;">
-                  <div class="caption">
-                    <i class="fa fa-check"></i>รายการผ่านการตรวจเช็คล่าสุด </div>    
-                </div>
+        <div class="col-8 col-md-8 col-sm-8" style="padding: 0px; padding-left: 5px;" id="Right">
+          <div class="portlet blue box" style="margin-top:0px!important;">
+            <div class="portlet-title" style="margin-top:0px;">
+              <div class="caption">
+                <i class="fa fa-check"></i>รายการผ่านการตรวจเช็คล่าสุด </div>
+            </div>
             <div class="portlet-body" style="padding-top: 5px;">
               <div class="row" *ngFor="let item of jobresolve" [routerLink]="['/job/jobdetail']" (click)="click(item)"
                 style="padding: 5px;">
@@ -39,13 +54,13 @@
                 </label>
 
                 <label class="col-6 col-md-6 col-sm-6 head">
-                    วันที่กำหนด: {{item.service_date_plan}}
+                  วันที่กำหนด: {{item.service_date_plan}}
                   <!-- วันที่กำหนด: {{item.service_date_plan | date: 'dd-MM-yyyy HH:mm:ss'}} -->
                 </label>
 
 
                 <label class="col-6 col-md-6 col-sm-6 head">
-                  สินค้าที่ติดตั้ง:  {{item.InstallPlanName}}
+                  สินค้าที่ติดตั้ง: {{item.InstallPlanName}}
                 </label>
 
                 <label class="col-6 col-md-6 col-sm-6 head">
@@ -58,7 +73,7 @@
                 </label>
 
                 <label class="col-6 col-md-6 col-sm-6 head">
-                    เสร็จงาน: {{item.end_service_date}}
+                  เสร็จงาน: {{item.end_service_date}}
                 </label>
 
                 <label class="col-6 col-md-6 col-sm-6 head">
@@ -77,29 +92,3 @@
     </div>
   </div>
 </ion-content>
-<!-- <div *ngFor="let item of data">
-                <ion-list class="card">
-                  <ion-item class="" [routerLink]="['/job/jobdetail']" routerDirection="forward">
-                    <div class="col-6">
-                      <ion-label class="head">ชื่อลูกค้า: {{item.Name}}</ion-label>
-                      <ion-label class="head">สินค้าที่ติดตั้ง: </ion-label>
-                      <ion-label class="head">ชื่อสินค้า: </ion-label>
-                      <ion-label class="head" style="margin-bottom: 10px;">Serial No:{{item.TransferID}} </ion-label>
-                    </div>
-  
-  
-                    <div class="col-6">
-                      <ion-label class="head">วันที่กำหนด: </ion-label>
-                      <ion-label class="head">เริ่มทำงาน: </ion-label>
-                      <ion-label class="head">เสร็จงาน: </ion-label>
-                      <ion-label class="head">เวลาที่ใช้: </ion-label>
-                    </div>
-                  </ion-item>
-                </ion-list>
-              </div> -->
-<!-- </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </ion-content> -->

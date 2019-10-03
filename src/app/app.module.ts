@@ -16,9 +16,9 @@ import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { SignaturePadModule } from 'angular2-signaturepad';
 import { SignaturePageModule } from '../app/page/joball/detailofdetaillistpm/signature/signature.module';
+import { CustomerpasswordPageModule } from '../app/page/joball/detailofdetaillistpm/customerpassword/customerpassword.module';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
 import { SQLite } from '@ionic-native/sqlite/ngx';
 
 @NgModule({
@@ -33,6 +33,7 @@ import { SQLite } from '@ionic-native/sqlite/ngx';
     IonicStorageModule.forRoot(),
     AppRoutingModule,
     SignaturePageModule,
+    CustomerpasswordPageModule,
     HttpClientModule,
     NgbModule,
   ],

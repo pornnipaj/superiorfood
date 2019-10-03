@@ -49,6 +49,7 @@ export class ProductPage implements OnInit {
 
     this.DataService.getProduct().subscribe(data => {
       this.data = data;
+      
       for (let i = 0; i < this.data.length; i++) {
         this.data[i].DetailProduct = JSON.parse(this.data[i].DetailProduct);
 
