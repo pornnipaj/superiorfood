@@ -71,7 +71,7 @@
 
     #RightPhoto{
         height: 100%;
-        left:635px;
+        left:50%;
         position: fixed;
         width: 100%;
     }

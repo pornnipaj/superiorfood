@@ -166,7 +166,20 @@ export class DetailofdetaillistpmPage implements OnInit {
         // alert('imagedata1=' + imageData1)
         let base64Image1 = 'data:image/jpeg;base64,' + imageData1;
         this.photo1 = base64Image1;
-        this.checktakeback();
+        alert(this.photo1)
+        this.DateStart = new Date().toLocaleString();
+
+      this.tran.empID = this.empID;
+      this.tran.planID = this.planID;
+      this.tran.installID = this.installID;
+      this.tran.startDate = this.DateStart;
+      console.log(this.tran);
+
+      this.postDataService.postTran(this.tran).then(tran => {
+        this.tran = tran;
+        console.log(this.tran);
+      });
+
       }, (err) => {
 
         console.log(err);
