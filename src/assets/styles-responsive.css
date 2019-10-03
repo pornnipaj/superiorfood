@@ -64,7 +64,7 @@
   }
 
 
-@media (min-width: 375px) and (max-width: 812px) {
+/* @media (min-width: 375px) and (max-width: 812px) {
     #LeftDetailpm{
         width: 100%;
         position: fixed;
@@ -90,28 +90,6 @@
         float: right;
         position: relative;
         }
-        #LeftDetailpm{
-            width: 100%;
-                position: fixed;
-                height: 100%;
-        }
-        #RightDetailpm{
-            width: 100%;
-                left: 50%;
-                float: right;
-                position: relative;
-            }
-            #LeftPhoto{
-                width: 100%;
-                position: fixed;
-                height: 100%;
-            }
-            #RightPhoto{
-                width: 100%;
-                left: 50%;
-                float: right;
-                position: relative;
-                }
   }
 
   @media (min-width: 411px) and (max-width: 731px) {
@@ -167,4 +145,4 @@
         float: right;
         position: relative;
     }
-}
+} */

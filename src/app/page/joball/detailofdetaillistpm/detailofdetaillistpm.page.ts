@@ -387,6 +387,7 @@ export class DetailofdetaillistpmPage implements OnInit {
 
     this.postDataService.postphoto(params).then(servicephoto => {
       console.log(servicephoto);
+      alert(servicephoto);
     });
   }
 
