@@ -350,13 +350,13 @@ export class DetailofdetaillistpmPage implements OnInit {
   }
 
   checktakeback() {
-    if (this.photo1 && this.photo2 && this.photo3 && this.photo4 && this.photo5 != "") {
+    if (this.photo1!= "" && this.photo2!= "" && this.photo3!= "" && this.photo4!= "" && this.photo5 != "") {
       this.isenabledTakeback = true;
     }
   }
 
   checklist() {
-    if (this.photo6 && this.photo7 && this.photo8 && this.photo9 && this.photo10 != "") {
+    if (this.photo6!= "" && this.photo7!= "" && this.photo8!= "" && this.photo9!= "" && this.photo10 != "") {
       this.isenabledcheck = true;
       this.DateStart = new Date().toLocaleString();
 
