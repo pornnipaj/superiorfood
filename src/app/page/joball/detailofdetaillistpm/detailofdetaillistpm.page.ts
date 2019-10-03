@@ -167,6 +167,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         let base64Image1 = 'data:image/jpeg;base64,' + imageData1;
         this.photo1 = base64Image1;
         alert(this.photo1)
+        alert(imageData1)
         this.DateStart = new Date().toLocaleString();
 
       this.tran.empID = this.empID;
