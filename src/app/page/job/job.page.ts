@@ -69,8 +69,8 @@ export class JobPage implements OnInit {
         console.log(this.empID, this.month, this.year);
 
         this.job.empID = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b";
-        this.job.month = "1";
-        this.job.year = "2016";
+        this.job.month = "8";
+        this.job.year = "2019";
 
         console.log(this.job);
 
@@ -97,33 +97,24 @@ export class JobPage implements OnInit {
   next(type) {
     console.log(type);
 
+    if (type == 'pm') {
+      this.router.navigate(['/job/reportcheckpm']);
+    }
+
     if (type == 'cm') {
-      let navigationExtras: NavigationExtras = {
-        queryParams: {
-          data: JSON.stringify("cm")
-        }
-      };
-      this.router.navigate(['/job/cm'], navigationExtras);
+      this.router.navigate(['/job/cm']);
     }
 
     if (type == 'install') {
-      let navigationExtras: NavigationExtras = {
-        queryParams: {
-          data: JSON.stringify("install")
-        }
-      };
-      this.router.navigate(['/job/install'], navigationExtras);
+      this.router.navigate(['/job/install']);
     }
 
     if (type == 'uninstall') {
-      let navigationExtras: NavigationExtras = {
-        queryParams: {
-          data: JSON.stringify("uninstall")
-        }
-      };
-      this.router.navigate(['/job/uninstall'], navigationExtras);
-    }
 
+      this.router.navigate(['/job/uninstall']);
+
+
+    }
   }
 
 }

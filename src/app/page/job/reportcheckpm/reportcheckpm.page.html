@@ -1,52 +1,57 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-      <ion-title>รายการตรวจเช็ค (PM) ของ {{name}}</ion-title>
-    </ion-buttons>
-  </ion-toolbar>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+            <ion-title>รายการการตรวจเช็ค(PM) ของ {{name}}</ion-title>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 
 <ion-content>
-  <div class="container-fluid">
-      <div class="row" style="padding: 5px;">
-          <div class="col-12" style="padding-top: 10px; padding: 0px;">
-              <div class="btn-group btn-group btn-group-justified btn-lg" style="padding: 0px; width: 100%;">
-                  <button href="javascript:;" class="btn default btn-lg" style="padding: 5px;"  (click)="ChangeMonth()"> ปัจจุบัน </button>
-                  <button href="javascript:;" class="btn blue btn-lg" style="width: 50%; padding: 5px;"> รายการ PM เดือน{{textShow}} </button>
-                  <button href="javascript:;" class="btn default btn-lg" style="padding: 5px;" (click)="changeMonthBack()"> ก่อนหน้า </button>
-                  <button href="javascript:;" class="btn default btn-lg" style="padding: 5px;" (click)="changeMonthNext()"> ถัดไป </button>               
-              </div>
-          </div>
-          <div class="col-12" style="padding-top: 10px; padding: 0px;" *ngFor="let data of listpm">
-              <div class="portlet box blue">
-                  <div class="portlet-title">
-                      <div class="caption">
-                          <i class="fa fa-circle"></i>{{data.planDateTH}}
-                      </div>
-                  </div>
-                  <div class="portlet-body" style="padding: 5px;">
-                      <ul class="list-group">
-                          <li *ngFor="let item of data.customerdata | keyvalue" (click)="click(item)" class="list-group-item">
-                              <div class="clearfix">
-                                  <div class="pull-left">
-                                      <div class="checkbox">
-                                          <label>
-                                              <div class="checker"><span><input type="checkbox"></span></div> {{ item.value.Customer }}
-                                          </label>
-                                      </div>
-                                  </div>
-                                  <div class="pull-right">
-                                      <span class="badge badge-default bg-blue" style="margin-top: 10px;">ติดตั้ง : {{ item.value.WorkAll }} สำเร็จ : {{ item.value.WorkFinish }}</span>
-                                  </div>
-                              </div>
-                          </li>
-                      </ul> 
-                  </div>
-              </div> 
-          </div>
-      </div>
-  </div>
-  
+    <div class="container-fluid">
+        <div class="row" style="padding: 5px;">
+            <div class="col-12" style="padding-top: 10px; padding: 0px;">
+                <div class="btn-group btn-group btn-group-justified btn-lg" style="padding: 0px; width: 100%;">
+                    <button href="javascript:;" class="btn default btn-lg" style="padding: 5px;"
+                        (click)="ChangeMonth()"> ปัจจุบัน </button>
+                    <button href="javascript:;" class="btn blue btn-lg" style="width: 50%; padding: 5px;"> รายการ PM
+                        เดือน{{textShow}} </button>
+                    <button href="javascript:;" class="btn default btn-lg" style="padding: 5px;"
+                        (click)="changeMonthBack()"> ก่อนหน้า </button>
+                    <button href="javascript:;" class="btn default btn-lg" style="padding: 5px;"
+                        (click)="changeMonthNext()"> ถัดไป </button>
+                </div>
+            </div>
+            <div class="col-12" style="padding-top: 10px; padding: 0px;" *ngFor="let data of listpm">
+                <div class="portlet box blue">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-circle"></i>{{data.planDateTH}}
+                        </div>
+                    </div>
+                    <div class="portlet-body" style="padding: 5px;">
+                        <ul class="list-group">
+                            <li *ngFor="let item of data.customerdata | keyvalue" (click)="click(item)"
+                                class="list-group-item">
+                                <i class="fa fa-square-o" #lblSuccess
+                                    *ngIf="item.value.WorkAll != item.value.WorkFinish; else lblSuccess">
+                                </i>
+                                <i class="fa fa-check-square-o" #lblInstall
+                                    *ngIf="item.value.WorkAll == item.value.WorkFinish; else lblInstall">
+                                </i>
+                                {{ item.value.Customer }}
+                                <div class="pull-right">
+                                    <div class="badge badge-default bg-blue"
+                                        style="margin:5px;" style="font-size: 0.9em;">ติดตั้ง : {{ item.value.WorkAll }}
+                                        สำเร็จ : {{ item.value.WorkFinish }}
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </ion-content>

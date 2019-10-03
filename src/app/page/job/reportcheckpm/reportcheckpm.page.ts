@@ -15,6 +15,9 @@ export class ReportcheckpmPage implements OnInit {
 
   //#region data
 
+  items;
+  name;
+  type = "PM";
   data: any;
   Today;
   month;
@@ -26,12 +29,9 @@ export class ReportcheckpmPage implements OnInit {
   json: any;
   listpmdetail;
   job;
-  items;
   myempID: string;
   empid: any;
   listpm;
-  name;
-
   //#endregion
 
   //#region constructor
@@ -41,6 +41,7 @@ export class ReportcheckpmPage implements OnInit {
     public navCtrl: NavController,
     private storageService: StorageService,
     private postDataService: PostDataService) {
+
 
     this.json;
     this.listpmdetail = [];
@@ -79,7 +80,7 @@ export class ReportcheckpmPage implements OnInit {
   click(item) {
 
     console.log(item);
-    
+
     let navigationExtras: NavigationExtras = {
       queryParams: {
         currency: JSON.stringify(item.value)
@@ -92,6 +93,7 @@ export class ReportcheckpmPage implements OnInit {
   }
 
   //#endregion
+
   //#region Month
   ChangeMonth() {
     const month = new Date().getMonth() + 1;
@@ -173,20 +175,26 @@ export class ReportcheckpmPage implements OnInit {
     // }
     console.log(this.intMonth)
     console.log(this.intYear)
-    console.log(this.myempID);
+    console.log(this.empid);
+
 
     this.job.empID = "01225f87-e6cc-4725-afe2-7e5a63f9a183";
     this.job.month = 8;
     this.job.year = 2019;
+    this.job.jobtype = this.type
+    console.log(this.job);
 
-    this.postDataService.postListpm(this.job).then(work => {
+    this.postDataService.postJobList(this.job).then(work => {
       this.listpm = work;
+      console.log(this.listpm);
+
 
       for (let i = 0; i < this.listpm.length; i++) {
         this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
       }
 
-      console.log('listpmnow',this.listpm);
+      console.log('listpm', this.listpm);
+
     });
   }
 
@@ -281,20 +289,26 @@ export class ReportcheckpmPage implements OnInit {
     //#endregion
     console.log(this.intMonth)
     console.log(this.intYear)
+    console.log(this.empid);
+
 
     this.job.empID = "01225f87-e6cc-4725-afe2-7e5a63f9a183";
     this.job.month = 8;
     this.job.year = 2019;
+    this.job.jobtype = this.type
+    console.log(this.job);
 
-
-    this.postDataService.postListpm(this.job).then(work => {
+    this.postDataService.postJobList(this.job).then(work => {
       this.listpm = work;
+      console.log(this.listpm);
+
 
       for (let i = 0; i < this.listpm.length; i++) {
         this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
       }
 
-      console.log('listpmnext',this.listpm);
+      console.log('listpmnext', this.listpm);
+
     });
   }
 
@@ -371,20 +385,26 @@ export class ReportcheckpmPage implements OnInit {
     //#endregion
     console.log(this.intMonth)
     console.log(this.intYear)
+    console.log(this.empid);
+
 
     this.job.empID = "01225f87-e6cc-4725-afe2-7e5a63f9a183";
     this.job.month = 8;
     this.job.year = 2019;
+    this.job.jobtype = this.type
+    console.log(this.job);
 
-
-    this.postDataService.postListpm(this.job).then(work => {
+    this.postDataService.postJobList(this.job).then(work => {
       this.listpm = work;
+      console.log(this.listpm);
+
 
       for (let i = 0; i < this.listpm.length; i++) {
         this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
       }
 
-      console.log('listback',this.listpm);
+      console.log('listpmback', this.listpm);
+
     });
   }
 
@@ -393,24 +413,36 @@ export class ReportcheckpmPage implements OnInit {
   //#region start
 
   ngOnInit() {
-    this.job.empID = "01225f87-e6cc-4725-afe2-7e5a63f9a183";
+
+    this.storageService.getUser().then(items => {
+      this.items = items;
+      // console.log(items);      
+      for (let i = 0; i < this.items.length; i++) {
+        this.empid = this.items[i].empID
+        this.name = this.items[i].name;
+      }
+    });
+
+
+    this.job.empID = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b";
     this.job.month = 8;
     this.job.year = 2019;
+    this.job.jobtype = this.type
 
-    this.postDataService.postListpm(this.job).then(work => {
+    this.postDataService.postJobList(this.job).then(work => {
       this.listpm = work;
       console.log(this.listpm);
-      
+
 
       for (let i = 0; i < this.listpm.length; i++) {
         this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
       }
 
-      console.log('listpm',this.listpm);
-      
-    });
-  }
+      console.log('listpm', this.listpm);
 
+    });
+
+  }
   //#endregion
 
 }

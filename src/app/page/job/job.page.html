@@ -14,7 +14,7 @@
         <div class="col-4 col-md-4 col-sm-4 background text-center" style="padding: 0px; background-color: white;"
           id="Left">
           <div class="col-12" style="padding: 2px;">
-            <button type="button" class="btn default" [routerLink]="['/job/reportcheckpm']">
+            <button type="button" class="btn default" (click)="next('pm')">
               <i class="fa fa-check"></i> รายการตรวจเช็ค (PM)
             </button>
             </div>
@@ -82,6 +82,10 @@
 
                 <label class="col-6 col-md-6 col-sm-6 head">
                   เวลาที่ใช้: {{item.TimeSpent}}
+                </label>
+
+                <label class="col-6 col-md-6 col-sm-6 head">
+                  ประเภทงาน: {{item.JobType}}
                 </label>
                 <hr>
               </div>

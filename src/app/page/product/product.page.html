@@ -15,7 +15,7 @@
           <div class="portlet-body">
             <ul class="list-group list-group-flush">
                 <ion-label style="font-size: 2em;">กลุ่ม</ion-label>
-                <ion-select interface="popover" (ionChange)="onChange($event)">
+                <ion-select interface="popover" placeholder="Accessories" (ionChange)="onChange($event)">
                   <ion-select-option *ngFor="let title of data" [value]="title.ProductID" [selected]="title.ProductName">{{title.ProductName}}
                   </ion-select-option>
                 </ion-select>

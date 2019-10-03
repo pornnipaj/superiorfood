@@ -28,9 +28,11 @@ export class ProductPage implements OnInit {
 
   constructor(private DataService: AuthServiceService) {
 
-    this.DataService.getProduct().subscribe(data => {
-      this.data = data;
+    
 
+    this.DataService.getProduct().subscribe(data => {
+      this.data = data;    
+     
       for (let i = 0; i < this.data.length; i++) {
         this.data[i].DetailProduct = JSON.parse(this.data[i].DetailProduct);                
 
@@ -38,12 +40,10 @@ export class ProductPage implements OnInit {
           this.product = this.data[i].DetailProduct;
           this.title = this.data[i].ProductName;
         console.log(this.title);
-
-        }
+        }        
       }
     });    
-  }
-
+  }  
   onChange(value) {
     this.items = value.detail.value
 
