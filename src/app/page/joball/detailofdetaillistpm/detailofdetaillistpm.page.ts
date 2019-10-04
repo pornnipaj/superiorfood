@@ -160,242 +160,182 @@ export class DetailofdetaillistpmPage implements OnInit {
   //#region click
 
   Take(id) {
-
     if (id == 1) {
+      this.status1 = "1"
       this.camera.getPicture(this.cameraOptions).then((imageData1) => {
         // alert('imagedata1=' + imageData1)
+        
         let base64Image1 = 'data:image/jpeg;base64,' + imageData1;
         this.photo1 = base64Image1;
-        this.status1 = "1"
-        alert(this.photo1)
-        alert(imageData1)
 
-        this.tran.empID = this.empID;
-        this.tran.planID = this.planID;
-        this.tran.installID = this.installID;
-        this.tran.startDate = this.DateStart;
-        console.log(this.tran);
-        alert(this.tran)
-
-        this.postDataService.postTran(this.tran).then(tran => {
-          this.tran = tran;
-          console.log(this.tran);
-          alert(this.tran)
-        });
-
-
+        this.checktakeback();
       }, (err) => {
 
         console.log(err);
-        alert(err)
         // Handle error
-        this.status1 = "1"
+        
         this.checktakeback();
 
       });
 
       this.isTake1 = false;
       this.isShow1 = true;
-      this.checktakeback();
       this.startTimer();
-      this.DateStart = new Date().toLocaleString();
-
-        this.tran.empID = this.empID;
-        this.tran.planID = this.planID;
-        this.tran.installID = this.installID;
-        this.tran.startDate = this.DateStart;
-        console.log(this.tran);
-
-        this.postDataService.postTran(this.tran).then(tran => {
-          this.tran = tran;
-          console.log(this.tran);
-          alert(this.tran)
-        });
-
     }
     if (id == 2) {
+      this.status2 = "1"
       this.camera.getPicture(this.cameraOptions).then((imageData2) => {
-
+        
         let base64Image2 = 'data:image/jpeg;base64,' + imageData2;
         this.photo2 = base64Image2;
-        this.status2 = "1"
+
         this.checktakeback();
-        this.DateStart = new Date().toLocaleString();
-
-        this.compressImage(this.photo2, 100, 100).then(compressed => {
-          this.photo2 = compressed;
-          alert(this.photo2);
-        });
-
-        let params = {
-          tranId: this.tran,
-          photo2: this.photo2,
-          endDate: this.DateEnd,
-        }
-
-        console.log(params);
-
-        this.postDataService.postphoto(params).then(servicephoto => {
-          console.log(servicephoto);
-          alert(servicephoto);
-
-        });
 
       }, (err) => {
 
         console.log(err);
-        // Handle error
-        this.status2 = "1"
+        // Handle error\
         this.checktakeback();
       });
+
       this.isTake2 = false;
       this.isShow2 = true;
-      this.checktakeback();
 
     }
     if (id == 3) {
+      this.status3 = "1"
       this.camera.getPicture(this.cameraOptions).then((imageData3) => {
-
+        
         let base64Image3 = 'data:image/jpeg;base64,' + imageData3;
         this.photo3 = base64Image3;
-        this.status3 = "1"
+
         this.checktakeback();
       }, (err) => {
 
         console.log(err);
-        this.status3 = "1"
         this.checktakeback();
         // Handle error
       });
       this.isTake3 = false;
       this.isShow3 = true;
-      this.checktakeback();
     }
     if (id == 4) {
+      this.status4 = "1"
       this.camera.getPicture(this.cameraOptions).then((imageData4) => {
-
+        
         let base64Image4 = 'data:image/jpeg;base64,' + imageData4;
         this.photo4 = base64Image4;
-        this.status4 = "1"
+
         this.checktakeback();
       }, (err) => {
 
         console.log(err);
         // Handle error
-        this.status4 = "1"
         this.checktakeback();
       });
       this.isTake4 = false;
       this.isShow4 = true;
-      this.checktakeback();
     }
     if (id == 5) {
-      this.camera.getPicture(this.cameraOptions).then((imageData5) => {
-
+      this.status5 = "1"
+      this.camera.getPicture(this.cameraOptions).then((imageData5) => {        
         let base64Image5 = 'data:image/jpeg;base64,' + imageData5;
         this.photo5 = base64Image5;
-        this.status5 = "1"
+
         this.checktakeback();
       }, (err) => {
 
         console.log(err);
-        this.status5 = "1"
         this.checktakeback();
         // Handle error
       });
       this.isTake5 = false;
       this.isShow5 = true;
-      this.checktakeback();
     }
     if (id == 6) {
+      this.status6 = "1"
       this.camera.getPicture(this.cameraOptions).then((imageData6) => {
-
+        
         let base64Image6 = 'data:image/jpeg;base64,' + imageData6;
         this.photo6 = base64Image6;
-        this.status6 = "1"
+
         this.checklist();
       }, (err) => {
 
         console.log(err);
-        this.status6 = "1"
         this.checklist();
         // Handle error
       });
       this.isTake6 = false;
       this.isShow6 = true;
-      this.checklist();
     }
     if (id == 7) {
+      this.status7 = "1"
       this.camera.getPicture(this.cameraOptions).then((imageData7) => {
-
+        
         let base64Image7 = 'data:image/jpeg;base64,' + imageData7;
         this.photo7 = base64Image7;
-        this.status7 = "1"
+
         this.checklist();
       }, (err) => {
 
         console.log(err);
-        this.status7 = "1"
         this.checklist();
         // Handle error
       });
       this.isTake7 = false;
       this.isShow7 = true;
-      this.checklist();
     }
     if (id == 8) {
+      this.status8 = "1"
       this.camera.getPicture(this.cameraOptions).then((imageData8) => {
-
+        
         let base64Image8 = 'data:image/jpeg;base64,' + imageData8;
         this.photo8 = base64Image8;
-        this.status8 = "1"
+
         this.checklist();
       }, (err) => {
 
         console.log(err);
-        this.status8 = "1"
         this.checklist();
         // Handle error
       });
       this.isTake8 = false;
       this.isShow8 = true;
-      this.checklist();
     }
     if (id == 9) {
+      this.status9 = "1"
       this.camera.getPicture(this.cameraOptions).then((imageData9) => {
-
+        
         let base64Image9 = 'data:image/jpeg;base64,' + imageData9;
         this.photo9 = base64Image9;
-        this.status9 = "1"
+
         this.checklist();
       }, (err) => {
 
         console.log(err);
         // Handle error
-        this.status9 = "1"
         this.checklist();
       });
       this.isTake9 = false;
       this.isShow9 = true;
-      this.checklist();
     }
     if (id == 10) {
+      this.status10 = "10"
       this.camera.getPicture(this.cameraOptions).then((imageData10) => {
-
+        
         let base64Image10 = 'data:image/jpeg;base64,' + imageData10;
         this.photo10 = base64Image10;
-        this.status10 = "1"
+
         this.checklist();
       }, (err) => {
 
         console.log(err);
-        this.status10 = "1"
         this.checklist();
         // Handle error
       });
       this.isTake10 = false;
       this.isShow10 = true;
-      this.checklist();
     }
   }
 
@@ -406,25 +346,31 @@ export class DetailofdetaillistpmPage implements OnInit {
   }
 
   checklist() {
+    alert(this.status6 + this.status7 + this.status8 + this.status9 + this.status10)
     if (this.status6 && this.status7 && this.status8 && this.status9 && this.status10 != "") {
+      alert("finishcamera")
       this.isenabledcheck = true;
-      this.DateStart = new Date().toLocaleString();
 
+      this.DateStart = new Date().toLocaleString();
       this.tran.empID = this.empID;
       this.tran.planID = this.planID;
       this.tran.installID = this.installID;
       this.tran.startDate = this.DateStart;
       console.log(this.tran);
-      alert(this.tran)
+      // alert(this.tran)
 
       this.postDataService.postTran(this.tran).then(tran => {
         this.tran = tran;
         console.log(this.tran);
-        alert(this.tran)
+        // alert(this.tran)
       });
     }
+
   }
 
+  button(){
+    this.isenabledcheck = true;
+  }
   check() {
     this.isenabledsig = true;
   }

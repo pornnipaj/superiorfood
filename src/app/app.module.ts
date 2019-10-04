@@ -17,6 +17,8 @@ import { IonicStorageModule } from '@ionic/storage';
 import { SignaturePadModule } from 'angular2-signaturepad';
 import { SignaturePageModule } from '../app/page/joball/detailofdetaillistpm/signature/signature.module';
 import { CustomerpasswordPageModule } from '../app/page/joball/detailofdetaillistpm/customerpassword/customerpassword.module';
+import { CheckevaluationPageModule } from '../app/page/joball/detailofdetaillistpm/checkevaluation/checkevaluation.module';
+import { ChecklistPageModule } from '../app/page/joball/detailofdetaillistpm/checklist/checklist.module';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SQLite } from '@ionic-native/sqlite/ngx';
@@ -34,6 +36,8 @@ import { SQLite } from '@ionic-native/sqlite/ngx';
     AppRoutingModule,
     SignaturePageModule,
     CustomerpasswordPageModule,
+    CheckevaluationPageModule,
+    ChecklistPageModule,
     HttpClientModule,
     NgbModule,
   ],
