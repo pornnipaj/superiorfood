@@ -165,7 +165,7 @@ export class PostDataService {
 
       this.http.post(this.apiServer_url + '/Web/Test2.aspx' + '?empID=' + tran.empID + '&planID=' + tran.planID + '&installID=' + tran.installID,
         JSON.stringify(tran), option).subscribe(data => {
-          resovle(data);
+          // resovle(data);
         }, error => {
           reject(error)
         });

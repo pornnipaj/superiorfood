@@ -356,8 +356,8 @@ export class DetailofdetaillistpmPage implements OnInit {
       // alert(this.tran)
 
       this.postDataService.postTran(this.tran).then(tran => {
-        this.tran = tran;
-        console.log(this.tran);
+        // this.tran = tran;
+        // console.log(this.tran);
         // alert(this.tran)
       });
     }
