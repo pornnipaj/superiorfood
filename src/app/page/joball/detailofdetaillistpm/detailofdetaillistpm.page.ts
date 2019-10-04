@@ -34,6 +34,16 @@ export class DetailofdetaillistpmPage implements OnInit {
   photo8: any;
   photo9: any;
   photo10: any;
+  status1 = "";
+  status2 = "";
+  status3 = "";
+  status4 = "";
+  status5 = "";
+  status6 = "";
+  status7 = "";
+  status8 = "";
+  status9 = "";
+  status10 = "";
   myId;
   planID;
   isTake1 = true;
@@ -96,16 +106,6 @@ export class DetailofdetaillistpmPage implements OnInit {
     private postDataService: PostDataService, ) {
     this.DateStart = new Date().toString();
     this.tran = [];
-    this.photo1 = "";
-    this.photo2 = "";
-    this.photo3 = "";
-    this.photo4 = "";
-    this.photo5 = "";
-    this.photo6 = "";
-    this.photo7 = "";
-    this.photo8 = "";
-    this.photo9 = "";
-    this.photo10 = "";
   }
 
   //#endregion
@@ -166,44 +166,86 @@ export class DetailofdetaillistpmPage implements OnInit {
         // alert('imagedata1=' + imageData1)
         let base64Image1 = 'data:image/jpeg;base64,' + imageData1;
         this.photo1 = base64Image1;
+        this.status1 = "1"
         alert(this.photo1)
         alert(imageData1)
-        this.DateStart = new Date().toLocaleString();
 
-      this.tran.empID = this.empID;
-      this.tran.planID = this.planID;
-      this.tran.installID = this.installID;
-      this.tran.startDate = this.DateStart;
-      console.log(this.tran);
-
-      this.postDataService.postTran(this.tran).then(tran => {
-        this.tran = tran;
+        this.tran.empID = this.empID;
+        this.tran.planID = this.planID;
+        this.tran.installID = this.installID;
+        this.tran.startDate = this.DateStart;
         console.log(this.tran);
-      });
+        alert(this.tran)
+
+        this.postDataService.postTran(this.tran).then(tran => {
+          this.tran = tran;
+          console.log(this.tran);
+          alert(this.tran)
+        });
+
 
       }, (err) => {
 
         console.log(err);
+        alert(err)
         // Handle error
-        this.photo1 = "1"
+        this.status1 = "1"
         this.checktakeback();
+
       });
+
       this.isTake1 = false;
       this.isShow1 = true;
       this.checktakeback();
       this.startTimer();
+      this.DateStart = new Date().toLocaleString();
+
+        this.tran.empID = this.empID;
+        this.tran.planID = this.planID;
+        this.tran.installID = this.installID;
+        this.tran.startDate = this.DateStart;
+        console.log(this.tran);
+
+        this.postDataService.postTran(this.tran).then(tran => {
+          this.tran = tran;
+          console.log(this.tran);
+          alert(this.tran)
+        });
+
     }
     if (id == 2) {
       this.camera.getPicture(this.cameraOptions).then((imageData2) => {
 
         let base64Image2 = 'data:image/jpeg;base64,' + imageData2;
         this.photo2 = base64Image2;
+        this.status2 = "1"
         this.checktakeback();
+        this.DateStart = new Date().toLocaleString();
+
+        this.compressImage(this.photo2, 100, 100).then(compressed => {
+          this.photo2 = compressed;
+          alert(this.photo2);
+        });
+
+        let params = {
+          tranId: this.tran,
+          photo2: this.photo2,
+          endDate: this.DateEnd,
+        }
+
+        console.log(params);
+
+        this.postDataService.postphoto(params).then(servicephoto => {
+          console.log(servicephoto);
+          alert(servicephoto);
+
+        });
+
       }, (err) => {
 
         console.log(err);
         // Handle error
-        this.photo2 = "1"
+        this.status2 = "1"
         this.checktakeback();
       });
       this.isTake2 = false;
@@ -216,11 +258,12 @@ export class DetailofdetaillistpmPage implements OnInit {
 
         let base64Image3 = 'data:image/jpeg;base64,' + imageData3;
         this.photo3 = base64Image3;
+        this.status3 = "1"
         this.checktakeback();
       }, (err) => {
 
         console.log(err);
-        this.photo3 = "1"
+        this.status3 = "1"
         this.checktakeback();
         // Handle error
       });
@@ -233,12 +276,13 @@ export class DetailofdetaillistpmPage implements OnInit {
 
         let base64Image4 = 'data:image/jpeg;base64,' + imageData4;
         this.photo4 = base64Image4;
+        this.status4 = "1"
         this.checktakeback();
       }, (err) => {
 
         console.log(err);
         // Handle error
-        this.photo4 = "1"
+        this.status4 = "1"
         this.checktakeback();
       });
       this.isTake4 = false;
@@ -250,11 +294,12 @@ export class DetailofdetaillistpmPage implements OnInit {
 
         let base64Image5 = 'data:image/jpeg;base64,' + imageData5;
         this.photo5 = base64Image5;
+        this.status5 = "1"
         this.checktakeback();
       }, (err) => {
 
         console.log(err);
-        this.photo5 = "1"
+        this.status5 = "1"
         this.checktakeback();
         // Handle error
       });
@@ -267,11 +312,12 @@ export class DetailofdetaillistpmPage implements OnInit {
 
         let base64Image6 = 'data:image/jpeg;base64,' + imageData6;
         this.photo6 = base64Image6;
-        this.checktakeback();
+        this.status6 = "1"
+        this.checklist();
       }, (err) => {
 
         console.log(err);
-        this.photo6 = "1"
+        this.status6 = "1"
         this.checklist();
         // Handle error
       });
@@ -284,11 +330,12 @@ export class DetailofdetaillistpmPage implements OnInit {
 
         let base64Image7 = 'data:image/jpeg;base64,' + imageData7;
         this.photo7 = base64Image7;
-        this.checktakeback();
+        this.status7 = "1"
+        this.checklist();
       }, (err) => {
 
         console.log(err);
-        this.photo7 = "1"
+        this.status7 = "1"
         this.checklist();
         // Handle error
       });
@@ -301,11 +348,12 @@ export class DetailofdetaillistpmPage implements OnInit {
 
         let base64Image8 = 'data:image/jpeg;base64,' + imageData8;
         this.photo8 = base64Image8;
-        this.checktakeback();
+        this.status8 = "1"
+        this.checklist();
       }, (err) => {
 
         console.log(err);
-        this.photo8 = "1"
+        this.status8 = "1"
         this.checklist();
         // Handle error
       });
@@ -318,12 +366,13 @@ export class DetailofdetaillistpmPage implements OnInit {
 
         let base64Image9 = 'data:image/jpeg;base64,' + imageData9;
         this.photo9 = base64Image9;
-        this.checktakeback();
+        this.status9 = "1"
+        this.checklist();
       }, (err) => {
 
         console.log(err);
         // Handle error
-        this.photo9 = "1"
+        this.status9 = "1"
         this.checklist();
       });
       this.isTake9 = false;
@@ -335,11 +384,12 @@ export class DetailofdetaillistpmPage implements OnInit {
 
         let base64Image10 = 'data:image/jpeg;base64,' + imageData10;
         this.photo10 = base64Image10;
-        this.checktakeback();
+        this.status10 = "1"
+        this.checklist();
       }, (err) => {
 
         console.log(err);
-        this.photo10 = "1"
+        this.status10 = "1"
         this.checklist();
         // Handle error
       });
@@ -350,13 +400,13 @@ export class DetailofdetaillistpmPage implements OnInit {
   }
 
   checktakeback() {
-    if (this.photo1!= "" && this.photo2!= "" && this.photo3!= "" && this.photo4!= "" && this.photo5 != "") {
+    if (this.status1 && this.status2 && this.status3 && this.status4 && this.status5 != "") {
       this.isenabledTakeback = true;
     }
   }
 
   checklist() {
-    if (this.photo6!= "" && this.photo7!= "" && this.photo8!= "" && this.photo9!= "" && this.photo10 != "") {
+    if (this.status6 && this.status7 && this.status8 && this.status9 && this.status10 != "") {
       this.isenabledcheck = true;
       this.DateStart = new Date().toLocaleString();
 
@@ -365,10 +415,12 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.tran.installID = this.installID;
       this.tran.startDate = this.DateStart;
       console.log(this.tran);
+      alert(this.tran)
 
       this.postDataService.postTran(this.tran).then(tran => {
         this.tran = tran;
         console.log(this.tran);
+        alert(this.tran)
       });
     }
   }
@@ -513,51 +565,51 @@ export class DetailofdetaillistpmPage implements OnInit {
     })
   }
 
-  resizePhoto(){
+  resizePhoto() {
     this.compressImage(this.sign, 100, 100).then(compressed => {
       this.sign = compressed;
       console.log(this.sign);
     });
 
-    // this.compressImage(this.photo1, 100, 100).then(compressed => {
-    //   this.photo1 = compressed;
-    // });
-    
-    // this.compressImage(this.photo2, 100, 100).then(compressed => {
-    //   this.photo2 = compressed;
-    // });
+    this.compressImage(this.photo1, 100, 100).then(compressed => {
+      this.photo1 = compressed;
+    });
 
-    // this.compressImage(this.photo3, 100, 100).then(compressed => {
-    //   this.photo3 = compressed;
-    // });
+    this.compressImage(this.photo2, 100, 100).then(compressed => {
+      this.photo2 = compressed;
+    });
 
-    // this.compressImage(this.photo4, 100, 100).then(compressed => {
-    //   this.photo4 = compressed;
-    // });
+    this.compressImage(this.photo3, 100, 100).then(compressed => {
+      this.photo3 = compressed;
+    });
 
-    // this.compressImage(this.photo5, 100, 100).then(compressed => {
-    //   this.photo5 = compressed;
-    // });
+    this.compressImage(this.photo4, 100, 100).then(compressed => {
+      this.photo4 = compressed;
+    });
 
-    // this.compressImage(this.photo6, 100, 100).then(compressed => {
-    //   this.photo6 = compressed;
-    // });
+    this.compressImage(this.photo5, 100, 100).then(compressed => {
+      this.photo5 = compressed;
+    });
 
-    // this.compressImage(this.photo7, 100, 100).then(compressed => {
-    //   this.photo7 = compressed;
-    // });
+    this.compressImage(this.photo6, 100, 100).then(compressed => {
+      this.photo6 = compressed;
+    });
 
-    // this.compressImage(this.photo8, 100, 100).then(compressed => {
-    //   this.photo8 = compressed;
-    // });
+    this.compressImage(this.photo7, 100, 100).then(compressed => {
+      this.photo7 = compressed;
+    });
 
-    // this.compressImage(this.photo9, 100, 100).then(compressed => {
-    //   this.photo9 = compressed;
-    // });
+    this.compressImage(this.photo8, 100, 100).then(compressed => {
+      this.photo8 = compressed;
+    });
 
-    // this.compressImage(this.photo10, 100, 100).then(compressed => {
-    //   this.photo11 = compressed;
-    // });
+    this.compressImage(this.photo9, 100, 100).then(compressed => {
+      this.photo9 = compressed;
+    });
+
+    this.compressImage(this.photo10, 100, 100).then(compressed => {
+      this.photo10 = compressed;
+    });
   }
   //#endregion
 

@@ -1,4 +1,4 @@
-@media (min-width: 800px) and (max-width: 1280px) {
+@media (min-width: 400px) and (max-width: 1400px) {
     #Left{
         width: 100%;
         position: fixed;
@@ -6,61 +6,22 @@
     }
     #Right{
         width: 100%;
-        left: 430px;
+        left: 33.5%;
         float: right;
         position: relative;
         }
-    #LeftDetailpm{
-        width: 100%;
-        position: fixed;
-        height: 100%;
-    }
-    
-    #RightDetailpm{
-        width: 100%;
-        left:635px;
-        float: right;
-        position: relative;
-    }
 
-    #LeftPhoto{
+    #LeftDetailpm{
         width: 100%;
         float: left;
         position: relative;
     }
-
-    #RightPhoto{
-        height: 100%;
-        left:635px;
-        position: fixed;
-        width: 100%;
-    }
-}
-
-
-@media (min-width: 768px) and (max-width: 1024px) {
-    #Left{
-        width: 100%;
-        position: fixed;
-        height: 100%;
-    }
-    #Right{
-        width: 100%;
-        left: 430px;
-        float: right;
-        position: relative;
-        }
-    #LeftDetailpm{
-        width: 100%;
-        position: fixed;
-        height: 100%;
-    }
     
     #RightDetailpm{
+        height: 100%;
+        left:50%;
+        position: fixed;
         width: 100%;
-        left:100%;
-        float: right;
-        position: relative;
     }
 
     #LeftPhoto{
@@ -75,6 +36,87 @@
         position: fixed;
         width: 100%;
     }
+}
+
+
+@media (min-width: 400px) and (max-width: 1280px) {
+    #Left{
+        width: 100%;
+        position: fixed;
+        height: 100%;
+    }
+    #Right{
+        width: 100%;
+        left: 33.5%;
+        float: right;
+        position: relative;
+        }
+
+    #LeftDetailpm{
+        width: 100%;
+        float: left;
+        position: relative;
+    }
+    
+    #RightDetailpm{
+        height: 100%;
+        left:50%;
+        position: fixed;
+        width: 100%;
+    }
+
+    #LeftPhoto{
+        width: 100%;
+        float: left;
+        position: relative;
+    }
+
+    #RightPhoto{
+        height: 100%;
+        left:50%;
+        position: fixed;
+        width: 100%;
+    }
+}
+
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    #Left{
+        width: 100%;
+        position: fixed;
+        height: 100%;
+    }
+    #Right{
+        width: 100%;
+        left: 33.5%;
+        float: right;
+        position: relative;
+        }
+        #LeftDetailpm{
+            width: 100%;
+            float: left;
+            position: relative;
+        }
+        
+        #RightDetailpm{
+            height: 100%;
+            left:50%;
+            position: fixed;
+            width: 100%;
+        }
+    
+        #LeftPhoto{
+            width: 100%;
+            float: left;
+            position: relative;
+        }
+    
+        #RightPhoto{
+            height: 100%;
+            left:635px;
+            position: fixed;
+            width: 100%;
+        }
   }
 
 
