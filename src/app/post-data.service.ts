@@ -23,7 +23,7 @@ export class PostDataService {
 
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post(this.apiServer_url +'/API/Login.ashx' + '?email=' + user.email + '&password=' + user.password,
+      this.http.post(this.apiServer_url +'/API/Login.asmx/Login' + '?email=' + user.email + '&password=' + user.password,
         JSON.stringify(user), option).subscribe(data => {
           resovle(data);
         }, error => {
@@ -163,7 +163,7 @@ export class PostDataService {
 
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post(this.apiServer_url + '/Web/Test2.aspx' + '?empID=' + tran.empID + '&planID=' + tran.planID + '&installID=' + tran.installID + '&startDate=' + tran.startDate,
+      this.http.post(this.apiServer_url + '/Web/Test2.aspx' + '?empID=' + tran.empID + '&planID=' + tran.planID + '&installID=' + tran.installID,
         JSON.stringify(tran), option).subscribe(data => {
           resovle(data);
         }, error => {
