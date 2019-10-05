@@ -8,6 +8,7 @@ import { PostDataService } from '../../../post-data.service';
 import { CustomerpasswordPage } from '../detailofdetaillistpm/customerpassword/customerpassword.page';
 import { AlertController } from '@ionic/angular';
 import { from } from 'rxjs';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detailofdetaillistpm',
@@ -93,6 +94,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE
   }
+  status;
 
   //#endregion
 
@@ -101,6 +103,7 @@ export class DetailofdetaillistpmPage implements OnInit {
   constructor(private camera: Camera,
     public modalController: ModalController,
     private route: ActivatedRoute,
+    public navCtrl: NavController,
     private storageService: StorageService,
     public alertController: AlertController,
     private postDataService: PostDataService, ) {
@@ -403,8 +406,14 @@ export class DetailofdetaillistpmPage implements OnInit {
     console.log(params);
 
     this.postDataService.postphoto(params).then(servicephoto => {
+      this.status = servicephoto
+      if (this.status == "true") {
+        this.navCtrl.navigateForward(['/joball/listpm/detailofdetaillistpm']);
+      }
+      if (this.status != "true") {
+        alert("บันทึกข้อมูลไม่สำเร็จ")
+      }
       console.log(servicephoto);
-      alert(servicephoto);
     });
   }
 
