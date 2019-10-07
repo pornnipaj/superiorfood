@@ -57,7 +57,7 @@ export class ListpmPage implements OnInit {
       // console.log(items);      
       for (let i = 0; i < this.items.length; i++) {
         this.myempID = this.items[i].empID;
-        console.log(this.myempID);
+        // console.log(this.myempID);
       }
     });
     //this.listpm = [];
@@ -66,7 +66,7 @@ export class ListpmPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.myId = JSON.parse(params["data"]);
       this.name = this.myId.Name
-      console.log("name", this.name);
+      // console.log("name", this.name);
     });
 
   }
@@ -81,7 +81,7 @@ export class ListpmPage implements OnInit {
       // console.log(items);      
       for (let i = 0; i < this.items.length; i++) {
         this.myempID = this.items[i].empID;
-        console.log(this.myempID);
+        // console.log(this.myempID);
       }
     });
   }
@@ -117,14 +117,14 @@ export class ListpmPage implements OnInit {
 
     this.postDataService.postListpm(this.job).then(work => {
       this.listpm = work;
-      console.log(this.listpm);
+      // console.log(this.listpm);
       
 
       for (let i = 0; i < this.listpm.length; i++) {
         this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
       }
 
-      console.log('listpm',this.listpm);
+      // console.log('listpm',this.listpm);
       
     });
   }
@@ -210,9 +210,17 @@ export class ListpmPage implements OnInit {
     // if (this.intYear > year) {
     //   this.intYear = year
     // }
+    this.route.queryParams.subscribe(params => {
+      this.empid = JSON.parse(params["data"]);
+      this.empid = this.empid.EmpID
+      console.log("receive", this.empid);
+    });
+    
+
     console.log(this.intMonth)
-    console.log(this.intYear)
-    console.log(this.myempID);
+    console.log(this.intYear) 
+    
+    
 
     this.job.empID = "01225f87-e6cc-4725-afe2-7e5a63f9a183";
     this.job.month = 8;

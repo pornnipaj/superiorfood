@@ -9,7 +9,7 @@ import { CustomerpasswordPage } from '../detailofdetaillistpm/customerpassword/c
 import { AlertController } from '@ionic/angular';
 import { from } from 'rxjs';
 import { NavController } from '@ionic/angular';
-
+import { ChecklistPage } from '../detailofdetaillistpm/checklist/checklist.page';
 @Component({
   selector: 'app-detailofdetaillistpm',
   templateUrl: './detailofdetaillistpm.page.html',
@@ -74,9 +74,11 @@ export class DetailofdetaillistpmPage implements OnInit {
   ItemsName;
   ItemCode;
   ProductCode;
+  Category;
   sign;
   install;
   installID;
+  planDate;
   password;
   capturedSnapURL;
   items;
@@ -86,8 +88,8 @@ export class DetailofdetaillistpmPage implements OnInit {
   minute: number = 0;
   second: number = 0;
   time: number = 0;
+  list;
   interval;
-  test;
   cameraOptions: CameraOptions = {
     quality: 20,
     destinationType: this.camera.DestinationType.DATA_URL,
@@ -132,8 +134,10 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.ItemsName = this.install.ItemsName;
       this.ItemCode = this.install.ItemCode;
       this.ProductCode = this.install.ProductCode;
-      this.password = this.install.Password
-      this.installID = this.install.installId
+      this.password = this.install.Password;
+      this.installID = this.install.installId;
+      this.Category = this.install.Category;
+      this.planDate = this.install.planDate;
     });
     console.log(this.installID);
 
@@ -167,7 +171,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.status1 = "1"
       this.camera.getPicture(this.cameraOptions).then((imageData1) => {
         // alert('imagedata1=' + imageData1)
-        
+
         let base64Image1 = 'data:image/jpeg;base64,' + imageData1;
         this.photo1 = base64Image1;
 
@@ -176,7 +180,7 @@ export class DetailofdetaillistpmPage implements OnInit {
 
         console.log(err);
         // Handle error
-        
+
         this.checktakeback();
 
       });
@@ -188,7 +192,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     if (id == 2) {
       this.status2 = "1"
       this.camera.getPicture(this.cameraOptions).then((imageData2) => {
-        
+
         let base64Image2 = 'data:image/jpeg;base64,' + imageData2;
         this.photo2 = base64Image2;
 
@@ -208,7 +212,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     if (id == 3) {
       this.status3 = "1"
       this.camera.getPicture(this.cameraOptions).then((imageData3) => {
-        
+
         let base64Image3 = 'data:image/jpeg;base64,' + imageData3;
         this.photo3 = base64Image3;
 
@@ -225,7 +229,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     if (id == 4) {
       this.status4 = "1"
       this.camera.getPicture(this.cameraOptions).then((imageData4) => {
-        
+
         let base64Image4 = 'data:image/jpeg;base64,' + imageData4;
         this.photo4 = base64Image4;
 
@@ -241,7 +245,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     }
     if (id == 5) {
       this.status5 = "1"
-      this.camera.getPicture(this.cameraOptions).then((imageData5) => {        
+      this.camera.getPicture(this.cameraOptions).then((imageData5) => {
         let base64Image5 = 'data:image/jpeg;base64,' + imageData5;
         this.photo5 = base64Image5;
 
@@ -258,7 +262,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     if (id == 6) {
       this.status6 = "1"
       this.camera.getPicture(this.cameraOptions).then((imageData6) => {
-        
+
         let base64Image6 = 'data:image/jpeg;base64,' + imageData6;
         this.photo6 = base64Image6;
 
@@ -275,7 +279,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     if (id == 7) {
       this.status7 = "1"
       this.camera.getPicture(this.cameraOptions).then((imageData7) => {
-        
+
         let base64Image7 = 'data:image/jpeg;base64,' + imageData7;
         this.photo7 = base64Image7;
 
@@ -292,7 +296,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     if (id == 8) {
       this.status8 = "1"
       this.camera.getPicture(this.cameraOptions).then((imageData8) => {
-        
+
         let base64Image8 = 'data:image/jpeg;base64,' + imageData8;
         this.photo8 = base64Image8;
 
@@ -309,7 +313,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     if (id == 9) {
       this.status9 = "1"
       this.camera.getPicture(this.cameraOptions).then((imageData9) => {
-        
+
         let base64Image9 = 'data:image/jpeg;base64,' + imageData9;
         this.photo9 = base64Image9;
 
@@ -326,7 +330,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     if (id == 10) {
       this.status10 = "10"
       this.camera.getPicture(this.cameraOptions).then((imageData10) => {
-        
+
         let base64Image10 = 'data:image/jpeg;base64,' + imageData10;
         this.photo10 = base64Image10;
 
@@ -351,34 +355,61 @@ export class DetailofdetaillistpmPage implements OnInit {
   checklist() {
     if (this.status6 && this.status7 && this.status8 && this.status9 && this.status10 != "") {
       this.isenabledcheck = true;
-
-      this.tran.empID = this.empID;
-      this.tran.planID = this.planID;
-      this.tran.installID = this.installID;
-      console.log(this.tran);
-      // alert(this.tran)
-
-      this.postDataService.postTran(this.tran).then(tran => {
-        // this.tran = tran;
-        // console.log(this.tran);
-        // alert(this.tran)
-      });
     }
-
   }
 
-  check() {
-    this.isenabledsig = true;
+  
+  async check() {
+
+    this.tran.empID = this.empID;
+    this.tran.planID = this.planID;
+    this.tran.installID = this.installID;
+    console.log(this.tran);
+    // alert(this.tran)
+
+    this.postDataService.postTran(this.tran).then(tran => {
+    });
+
+    const modal = await this.modalController.create({
+      component: ChecklistPage,
+      componentProps: {
+        empID:this.empID,
+        planID:this.planID,
+        install:this.installID
+      }
+    });
+    
+    modal.onDidDismiss().then(data => {
+      this.list = data
+      console.log(data);
+
+      for (let i = 0; i < this.list.length; i++) {
+        this.list = this.list[i]
+      }
+
+      this.list = this.list.data
+      console.log(this.list)
+
+      if (this.list == "") {
+       
+      }
+      if (this.list == 0) {
+        this.isenabledsig = true;
+      }
+
+    })
+
+    return await modal.present();
   }
 
   saveData() {
     this.pauseTimer();
-    this.resizePhoto();    
+    this.resizePhoto();
     this.DateEnd = new Date().toLocaleString();
     console.log(this.tran);
     let params = {
-      planID : this.planID,
-      installID : this.installID,
+      planID: this.planID,
+      installID: this.installID,
       photo1: this.photo1,
       photo2: this.photo2,
       photo3: this.photo3,

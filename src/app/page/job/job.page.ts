@@ -69,8 +69,8 @@ export class JobPage implements OnInit {
         console.log(this.empID, this.month, this.year);
 
         this.job.empID = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b";
-        this.job.month = "8";
-        this.job.year = "2019";
+        this.job.month = "1";
+        this.job.year = "2016";
 
         console.log(this.job);
 

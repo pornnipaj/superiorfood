@@ -14,11 +14,12 @@
         <div class="portlet light">
           <div class="portlet-body">
             <ul class="list-group list-group-flush">
-                <ion-label style="font-size: 2em;">กลุ่ม</ion-label>
-                <ion-select interface="popover" placeholder="Accessories" (ionChange)="onChange($event)">
-                  <ion-select-option *ngFor="let title of data" [value]="title.ProductID" [selected]="title.ProductName">{{title.ProductName}}
-                  </ion-select-option>
-                </ion-select>
+                <ion-item>
+                    <ion-label>กลุ่ม</ion-label>
+                    <ion-select interface="popover" placeholder="Accessories" (ionChange)="onChange($event)">
+                      <ion-select-option *ngFor="let title of data" [value]="title.ProductID" [selected]="title.ProductName">{{title.ProductName}}</ion-select-option>
+                    </ion-select>
+                  </ion-item>                
               <li class="list-group-item" *ngFor="let item of product" (click)="detail(item)">
                 <span>{{item.ItemsName}}</span><br />
                 <span style="font-size: 8px;color: grey;">ประเภท: {{item.cat1}}</span>
