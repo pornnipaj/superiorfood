@@ -18,7 +18,7 @@
                             <i class="fa fa-dashboard"></i>ข้อมูลโดยรวม </div>
 
                     </div>
-                    <div class="portlet-body" >
+                    <div class="portlet-body">
                         <label class="col-8">ชื่อลูกค้า: {{item.CustomerName}}</label>
                         <label class="col-4">ผู้ตรวจเช็ค: {{item.Name}}</label>
                         <label class="col-8">โทรศัพท์: {{item.Phone}} </label>
@@ -36,41 +36,50 @@
                 </div>
             </div>
             <div>
-            <div class="col-md-6" style="padding: 0px;" >
-                <div class="portlet blue box">
-                    <div class="portlet-title">
-                        <div class="caption">
-                            <i class="fa fa-file-image-o"></i>ภาพถ่ายก่อนการทำงาน </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div class="portlet blue box">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-file-image-o"></i>ภาพถ่ายหลังการทำงาน</div>
 
+                            </div>
+                            <div class="portlet-body">
+                                <!-- <div class="portlet-body" *ngFor="let item of image"> -->
+                                <!-- <img src="{{item.file_path}}"/> -->
+                                <img src="../../assets/img/jpeg-20160104-134619774740814.jpg" />
+                                <img src="../../assets/img/jpeg-20160104-1348551554131365.jpg" />
+                                <img src="../../assets/img/jpeg-20160104-1349091251273610.jpg" />
+                                <img src="../../assets/img/jpeg-20160104-134619774740814.jpg" />
+                                <img src="../../assets/img/jpeg-20160104-1348551554131365.jpg" />
+                            </div>
+                        </div>
                     </div>
-                    <div class="portlet-body"  *ngFor="let item of image">
-                        <img src="{{item.file_path}}"/>
-                        <img src="../../assets/img/jpeg-20160104-134019-1412202161.jpg" />
-                        <!-- <img src="../../assets/img/jpeg-20160104-134216-1329440106.jpg" />
-                        <img src="../../assets/img/jpeg-20160104-134003223699135.jpg" />
-                        <img src="../../assets/img/jpeg-20160104-134019-1412202161.jpg" />
-                        <img src="../../assets/img/jpeg-20160104-134216-1329440106.jpg" /> -->
+                    <div class="col-6">
+                        <div class="portlet blue box">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-file-image-o"></i>ภาพถ่ายหลังการทำงาน</div>
+
+                            </div>
+                            <div class="portlet-body">
+                                <!-- <div class="portlet-body" *ngFor="let item of image"> -->
+                                <!-- <img src="{{item.file_path}}"/> -->
+                                <img src="../../assets/img/jpeg-20160104-134619774740814.jpg" />
+                                <img src="../../assets/img/jpeg-20160104-1348551554131365.jpg" />
+                                <img src="../../assets/img/jpeg-20160104-1349091251273610.jpg" />
+                                <img src="../../assets/img/jpeg-20160104-134619774740814.jpg" />
+                                <img src="../../assets/img/jpeg-20160104-1348551554131365.jpg" />
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-6" style="padding: 0px;">
-                <div class="portlet blue box">
-                    <div class="portlet-title">
-                        <div class="caption">
-                            <i class="fa fa-file-image-o"></i>ภาพถ่ายหลังการทำงาน</div>
 
-                    </div>
-                    <div class="portlet-body" *ngFor="let item of image">
-                            <!-- <img src="{{item.file_path}}"/> -->
-                        <img src="../../assets/img/jpeg-20160104-134619774740814.jpg" />
-                        <!-- <img src="../../assets/img/jpeg-20160104-1348551554131365.jpg" />
-                        <img src="../../assets/img/jpeg-20160104-1349091251273610.jpg" />
-                        <img src="../../assets/img/jpeg-20160104-134619774740814.jpg" />
-                        <img src="../../assets/img/jpeg-20160104-1348551554131365.jpg" /> -->
-                    </div>
+
+                <div class="col-md-6" style="padding: 0px;">
+
                 </div>
             </div>
-        </div>
             <div class="col-12 col-sm-12 col-md-12" style="padding: 0px;">
                 <div class="portlet blue box">
                     <div class="portlet-title">

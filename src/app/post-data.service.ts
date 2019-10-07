@@ -65,7 +65,7 @@ export class PostDataService {
 
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post('http://localhost:41603/API/DetailJob.ashx' + '?planID=' + jobdetail.planID + '&tranID=' + jobdetail.tranID + '&insID=' + jobdetail.insID,
+      this.http.post(this.apiServer_url + '/API/DetailJob.ashx' + '?planID=' + jobdetail.planID + '&tranID=' + jobdetail.tranID + '&insID=' + jobdetail.insID,
         JSON.stringify(jobdetail), option).subscribe(data => {
           resovle(data);
         }, error => {
@@ -163,7 +163,7 @@ export class PostDataService {
 
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post(this.apiServer_url + '/Web/Test2.aspx' + '?empID=' + tran.empID + '&planID=' + tran.planID + '&installID=' + tran.installID,
+      this.http.post(this.apiServer_url + '/Web/CK_Check.aspx' + '?empID=' + tran.empID + '&serviceplanid=' + tran.planID + '&installplanid=' + tran.installID,
         JSON.stringify(tran), option).subscribe(data => {
           // resovle(data);
         }, error => {

@@ -407,10 +407,10 @@ export class DetailofdetaillistpmPage implements OnInit {
 
     this.postDataService.postphoto(params).then(servicephoto => {
       this.status = servicephoto
-      if (this.status == "true") {
+      if (this.status == "True") {
         this.navCtrl.navigateForward(['/joball/listpm/detailofdetaillistpm']);
       }
-      if (this.status != "true") {
+      if (this.status != "True") {
         alert("บันทึกข้อมูลไม่สำเร็จ")
       }
       console.log(servicephoto);
