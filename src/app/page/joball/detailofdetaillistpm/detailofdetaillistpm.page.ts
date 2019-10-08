@@ -361,14 +361,14 @@ export class DetailofdetaillistpmPage implements OnInit {
   
   async check() {
 
-    this.tran.empID = this.empID;
-    this.tran.planID = this.planID;
-    this.tran.installID = this.installID;
-    console.log(this.tran);
-    // alert(this.tran)
+    // this.tran.empID = this.empID;
+    // this.tran.planID = this.planID;
+    // this.tran.installID = this.installID;
+    // console.log(this.tran);
+    // // alert(this.tran)
 
-    this.postDataService.postTran(this.tran).then(tran => {
-    });
+    // this.postDataService.postTran(this.tran).then(tran => {
+    // });
 
     const modal = await this.modalController.create({
       component: ChecklistPage,
