@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController, NavParams } from '@ionic/angular';
-import { PostDataService } from '../../../../post-data.service';;
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-checklist',
@@ -9,25 +9,36 @@ import { PostDataService } from '../../../../post-data.service';;
 })
 export class ChecklistPage implements OnInit {
 
+  //#region data
+ 
   link;
   empID;
   planID;
   installID;
   tran;
+  url: SafeResourceUrl;
+
+  //#endregion
+
+  //#region constructor
+
   constructor(public modalController: ModalController,
     private navParams: NavParams,
-    public postDataService: PostDataService) {
+    sanitizer: DomSanitizer,) {
 
     this.empID = this.navParams.data.empID;
     this.planID = this.navParams.data.planID;
     this.installID = this.navParams.data.install
-    console.log(this.empID,this.planID,this.installID);
-    this.tran = [];  
-    // this.link = 'http://localhost:41604/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID     
-// console.log(this.link);
+    console.log(this.empID, this.planID, this.installID);
+    this.tran = [];;
 
-    
+    this.url = sanitizer.bypassSecurityTrustResourceUrl('http://superior.wingplusweb.com/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
+
   }
+
+  //#endregion
+
+  //#region start
 
   ngOnInit() {
     // console.log(this.empID);
@@ -41,9 +52,13 @@ export class ChecklistPage implements OnInit {
     // });
   }
 
+  //#endregion
+
+  //#region click
 
   close() {
     this.modalController.dismiss(0);
   }
+  //#endregion
 
 }

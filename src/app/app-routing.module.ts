@@ -20,11 +20,9 @@ const routes: Routes = [
   { path: 'job/uninstall', loadChildren: './page/job/uninstall/uninstall.module#UninstallPageModule' },
   { path: 'job/cm', loadChildren: './page/job/cm/cm.module#CmPageModule' },
   { path: 'customerpassword', loadChildren: './page/joball/detailofdetaillistpm/customerpassword/customerpassword.module#CustomerpasswordPageModule' },
-  { path: 'joball/listpm/detaillistpm/jobdetail', loadChildren: './page/joball/detaillistpm/jobdetail/jobdetail.module#JobdetailPageModule' },  { path: 'checklist', loadChildren: './page/joball/detailofdetaillistpm/checklist/checklist.module#ChecklistPageModule' },
-  { path: 'checkevaluation', loadChildren: './page/joball/detailofdetaillistpm/checkevaluation/checkevaluation.module#CheckevaluationPageModule' },
-
-
-
+  { path: 'joball/listpm/detaillistpm/jobdetail', loadChildren: './page/joball/detaillistpm/jobdetail/jobdetail.module#JobdetailPageModule' },
+  { path: 'checklist', loadChildren: './page/joball/detailofdetaillistpm/checklist/checklist.module#ChecklistPageModule' },
+  { path: 'checkevaluation', loadChildren: './page/joball/detailofdetaillistpm/checkevaluation/checkevaluation.module#CheckevaluationPageModule' },  { path: 'checklistcm', loadChildren: './page/joball/detailofdetaillistpm/checklistcm/checklistcm.module#ChecklistcmPageModule' },
 
 
 ];

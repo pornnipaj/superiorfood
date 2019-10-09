@@ -19,6 +19,7 @@ import { SignaturePageModule } from '../app/page/joball/detailofdetaillistpm/sig
 import { CustomerpasswordPageModule } from '../app/page/joball/detailofdetaillistpm/customerpassword/customerpassword.module';
 import { CheckevaluationPageModule } from '../app/page/joball/detailofdetaillistpm/checkevaluation/checkevaluation.module';
 import { ChecklistPageModule } from '../app/page/joball/detailofdetaillistpm/checklist/checklist.module';
+import { ChecklistcmPageModule } from '../app/page/joball/detailofdetaillistpm/checklistcm/checklistcm.module';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SQLite } from '@ionic-native/sqlite/ngx';
@@ -38,6 +39,7 @@ import { SQLite } from '@ionic-native/sqlite/ngx';
     CustomerpasswordPageModule,
     CheckevaluationPageModule,
     ChecklistPageModule,
+    ChecklistcmPageModule,
     HttpClientModule,
     NgbModule,
   ],

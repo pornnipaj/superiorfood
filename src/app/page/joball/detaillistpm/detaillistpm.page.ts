@@ -26,6 +26,9 @@ export class DetaillistpmPage implements OnInit {
   month;
   year;
   insID;
+  item;
+  type;
+
   //#endregion
 
   //#region constructor
@@ -33,18 +36,22 @@ export class DetaillistpmPage implements OnInit {
   constructor(private route: ActivatedRoute,
     public navCtrl: NavController,
     private postDataService: PostDataService,
-    private storageService:StorageService) {
+    private storageService: StorageService) {
     this.detaillistpm = [];
+
     this.route.queryParams.subscribe(params => {
-      this.myId = JSON.parse(params.currency);
-      this.cusID = this.myId.cusID
-      this.planID = this.myId.planID
-      this.workfinish = this.myId.WorkFinish
-      this.month = this.myId.month
-      this.year = this.myId.year
-      // console.log("receive", this.planID);
+      this.myId = JSON.parse(params["data"]);
+      this.item = this.myId.item
+      this.type = this.myId.type
+
+      this.cusID = this.item.cusID
+      this.planID = this.item.planID
+      this.workfinish = this.item.WorkFinish
+      this.month = this.item.month
+      this.year = this.item.year
+      console.log("receive", this.cusID);
     });
-    }
+  }
 
   //#endregion
 
@@ -55,16 +62,17 @@ export class DetaillistpmPage implements OnInit {
     this.detaillistpm.planID = this.planID;
     this.detaillistpm.month = this.month;
     this.detaillistpm.year = this.year;
-// console.log(this.detaillistpm);
+    this.detaillistpm.type = this.type;
+    console.log(this.detaillistpm);
 
     this.postDataService.postDetailListpm(this.detaillistpm).then(work => {
       this.data = work;
       console.log(this.data);
       for (let i = 0; i < this.data.length; i++) {
-        this.Customername = this.data[i].CustomerName;   
+        this.Customername = this.data[i].CustomerName;
         this.data[i].productInstall = JSON.parse(this.data[i].productInstall);
-        
-      }      
+
+      }
     });
   }
 
@@ -73,14 +81,14 @@ export class DetaillistpmPage implements OnInit {
   //#region click
 
   click(data, item) {
-    console.log('Data',data);
-    console.log('item',item);
-    
-    
+    console.log('Data', data);
+    console.log('item', item);
+
+
     if (item.Workfinish == 0) {
-      let params = { 
+      let params = {
         planID: this.planID,
-        install: item, 
+        install: item,
       }
 
       const navigationExtras: NavigationExtras = {
@@ -94,10 +102,10 @@ export class DetaillistpmPage implements OnInit {
 
     if (item.Workfinish == 1) {
       console.log(item.installId);
-      
-      let params = { 
+
+      let params = {
         data: data,
-        installID: item.installId, 
+        installID: item.installId,
       }
 
       const navigationExtras: NavigationExtras = {

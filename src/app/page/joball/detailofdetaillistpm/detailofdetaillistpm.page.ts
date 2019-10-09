@@ -10,6 +10,8 @@ import { AlertController } from '@ionic/angular';
 import { from } from 'rxjs';
 import { NavController } from '@ionic/angular';
 import { ChecklistPage } from '../detailofdetaillistpm/checklist/checklist.page';
+import { ChecklistcmPage } from '../detailofdetaillistpm/checklistcm/checklistcm.page';
+
 @Component({
   selector: 'app-detailofdetaillistpm',
   templateUrl: './detailofdetaillistpm.page.html',
@@ -18,7 +20,22 @@ import { ChecklistPage } from '../detailofdetaillistpm/checklist/checklist.page'
 export class DetailofdetaillistpmPage implements OnInit {
 
   //#region data
-  isenabledcheck = false;
+  header;
+  title1 = "รายการที่ 1 ถ่ายภาพก่อนการตรวจสอบ"
+  title2 ="รายการที่ 2 ถ่ายภาพหลังการตรวจสอบ"
+  title3 = "รายการที่ 3 รายการที่ต้องตรวจเช็ค"
+  title4 = "รายการที่ 4 ลายเซ็นต์ผู้รับผิดชอบ"
+  title5 = "รายการที่ 5 ประเมินการทำงาน"
+  title6 = "รายการที่ 6 สรุปผลการตรวจเช็คและยืนยันการปิดงาน"
+  title7 = "รายการที่ 7 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
+  isenabledtitle1 = true;
+  isenabledtitle2 = true;
+  isenabledtitle3 = true;
+  isenabledtitle4 = true;
+  isenabledtitle5 = true;
+  isenabledtitle6 = true;
+  isenabledtitle7 = true;
+  isenabledcheck = true;
   isenabledTakeback = false;
   isenabledeva = false;
   isenabledsig = false;
@@ -89,6 +106,7 @@ export class DetailofdetaillistpmPage implements OnInit {
   second: number = 0;
   time: number = 0;
   list;
+  jobtype;
   interval;
   cameraOptions: CameraOptions = {
     quality: 20,
@@ -123,12 +141,6 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.myId = JSON.parse(params["data"]);
       this.planID = this.myId.planID
       this.install = this.myId.install
-
-      console.log("receive", this.myId);
-
-      for (let i = 0; i < this.install.length; i++) {
-        this.install = (this.install[i])
-      }
       this.InstallPlanName = this.install.InstallPlanName;
       this.SerialNo = this.install.SerialNo;
       this.ItemsName = this.install.ItemsName;
@@ -138,9 +150,9 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.installID = this.install.installId;
       this.Category = this.install.Category;
       this.planDate = this.install.planDate;
-    });
-    console.log(this.installID);
-
+      this.jobtype = this.install.JobType;
+    }); 
+    console.log(this.jobtype);
 
     this.storageService.getUser().then(items => {
       this.items = items;
@@ -151,7 +163,28 @@ export class DetailofdetaillistpmPage implements OnInit {
       }
     });
 
-    // this.forresize();
+    
+    if (this.jobtype == "CM") {
+      this.title3 = "รายการที่ 3 รายการที่ต้องตรวจซ่อม"  
+
+    } else if (this.jobtype == "INSTALL") {
+      this.title1 ="รายการที่ 1 ถ่ายภาพหลังการติดตั้ง"
+      this.title4 = "รายการที่ 2 ลายเซ็นต์ผู้รับผิดชอบ"
+      this.title5 = "รายการที่ 3 ประเมินการทำงาน"
+      this.title6 = "รายการที่ 4 สรุปผลการตรวจเช็คและยืนยันการปิดงาน"
+      this.title7 = "รายการที่ 5 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
+      this.isenabledtitle2 = false;
+      this.isenabledtitle3 = false;  
+      this.isenabledTakeback = true;
+      
+    } else if (this.jobtype == "UNINSTALL") {
+      this.title4 = "รายการที่ 3 ลายเซ็นต์ผู้รับผิดชอบ"
+      this.title5 = "รายการที่ 4 ประเมินการทำงาน"
+      this.title6 = "รายการที่ 5 สรุปผลการตรวจเช็คและยืนยันการปิดงาน"
+      this.title7 = "รายการที่ 6 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
+      this.isenabledtitle3 = false; 
+      
+    }
   }
 
   loadItems() {
@@ -347,20 +380,99 @@ export class DetailofdetaillistpmPage implements OnInit {
   }
 
   checktakeback() {
-    if (this.status1 && this.status2 && this.status3 && this.status4 && this.status5 != "") {
-      this.isenabledTakeback = true;
+    if (this.status1 && this.status2 && this.status3 && this.status4 && this.status5 != "") {   
+      if (this.jobtype == "INSTALL") {
+        this.isenabledsig = true;
+      }else {
+        this.isenabledTakeback = true;
+      }         
     }
   }
 
   checklist() {
-    if (this.status6 && this.status7 && this.status8 && this.status9 && this.status10 != "") {
-      this.isenabledcheck = true;
+    if (this.status6 && this.status7 && this.status8 && this.status9 && this.status10 != "") {     
+      if (this.jobtype == "PM") {
+        this.isenabledcheck = true;  
+      }
+      if (this.jobtype == "CM") {
+        this.isenabledcheck = true;  
+      }
     }
   }
 
-  
-  async check() {
 
+  async check() {
+if (this.jobtype == "PM") {
+  const modal = await this.modalController.create({
+    component: ChecklistPage,
+    cssClass: 'my-custom-modal-css',
+    componentProps: {
+      empID: this.empID,
+      planID: this.planID,
+      install: this.installID
+    }
+  });
+
+  modal.onDidDismiss().then(data => {
+    this.list = data
+    console.log(data);
+
+    for (let i = 0; i < this.list.length; i++) {
+      this.list = this.list[i]
+    }
+
+    this.list = this.list.data
+    console.log(this.list)
+
+    if (this.list == "") {
+
+    }
+    if (this.list == 0) {
+      this.isenabledsig = true;
+    }
+
+  })
+
+  return await modal.present();
+}
+if (this.jobtype == "CM") {
+  const modal = await this.modalController.create({
+    component: ChecklistcmPage,
+    cssClass: 'my-custom-modal-css',
+    componentProps: {
+      empID: this.empID,
+      planID: this.planID,
+      install: this.installID,
+      InstallPlanName: this.InstallPlanName,
+      ItemsName: this.ItemsName,
+      ItemCode: this.ItemCode,
+      SerialNo: this.SerialNo,
+      Cat: this.Category
+    }
+  });
+
+  modal.onDidDismiss().then(data => {
+    this.list = data
+    console.log(data);
+
+    for (let i = 0; i < this.list.length; i++) {
+      this.list = this.list[i]
+    }
+
+    this.list = this.list.data
+    console.log(this.list)
+
+    if (this.list == "") {
+
+    }
+    if (this.list == 0) {
+      this.isenabledsig = true;
+    }
+
+  })
+
+  return await modal.present();
+}
     // this.tran.empID = this.empID;
     // this.tran.planID = this.planID;
     // this.tran.installID = this.installID;
@@ -370,36 +482,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     // this.postDataService.postTran(this.tran).then(tran => {
     // });
 
-    const modal = await this.modalController.create({
-      component: ChecklistPage,
-      componentProps: {
-        empID:this.empID,
-        planID:this.planID,
-        install:this.installID
-      }
-    });
     
-    modal.onDidDismiss().then(data => {
-      this.list = data
-      console.log(data);
-
-      for (let i = 0; i < this.list.length; i++) {
-        this.list = this.list[i]
-      }
-
-      this.list = this.list.data
-      console.log(this.list)
-
-      if (this.list == "") {
-       
-      }
-      if (this.list == 0) {
-        this.isenabledsig = true;
-      }
-
-    })
-
-    return await modal.present();
   }
 
   saveData() {

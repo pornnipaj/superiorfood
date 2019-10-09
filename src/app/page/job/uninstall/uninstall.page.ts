@@ -82,9 +82,14 @@ export class UninstallPage implements OnInit {
 
     console.log(item);
 
+    let params = { 
+      item: item.value,
+      type: this.type, 
+    } 
+
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        currency: JSON.stringify(item.value)
+        data: JSON.stringify(params)
       }
     };
     console.log(navigationExtras);

@@ -2,7 +2,7 @@
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
-      <ion-title>PM: {{ItemsName}}</ion-title>
+      <ion-title>{{jobtype}}: {{ItemsName}}</ion-title>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -16,20 +16,21 @@
             <div class="caption">
               <i class="fa fa-sticky-note-o"></i>
               รายการการตรวจเช็ค {{planDate}}
-            </div>          
+            </div>
           </div>
-          <div class="portlet-body" style="margin: 0px;">
+
+          <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle1">
             <div class="portlet light ">
               <div class="row">
                 <div class="col-md-12 col-12">
                   <div class="caption">
                     <i class="fa fa-map-pin font-blue-sharp"></i>
                     <span style="font-size: 1.1em!important;" class="caption-subject font-blue-sharp bold uppercase">
-                      รายการที่ 1 ถ่ายภาพก่อนการตรวจสอบ </span>
+                      {{title1}} </span>
                   </div>
                 </div>
-              
-              <!-- <ion-button (click)="takeSnap()">
+
+                <!-- <ion-button (click)="takeSnap()">
                 Take Snap
               </ion-button>
 
@@ -91,14 +92,14 @@
               </div>
             </div>
           </div>
-          <div class="portlet-body" style="margin: 0px;">
+          <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle2">
             <div class="portlet light">
               <div class="row">
                 <div class="col-md-12 col-12">
-                  <div class="caption" style="margin-top: 50px;">
+                  <div class="caption" style="margin-top: 20px;">
                     <i class="fa fa-map-pin font-blue-sharp"></i>
-                    <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;"> รายการที่ 2
-                      ถ่ายภาพหลังการตรวจสอบ</span>
+                    <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
+                      {{title2}}</span>
                   </div>
                 </div>
               </div>
@@ -158,14 +159,14 @@
               </div>
             </div>
           </div>
-          <div class="portlet-body" style="margin: 0px;">
+          <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle3">
             <div class="portlet light ">
               <div class="row">
                 <div class="col-md-12 col-12">
-                  <div class="caption" style="margin-top: 50px;">
+                  <div class="caption" style="margin-top: 20px;">
                     <i class="fa fa-map-pin font-blue-sharp"></i>
-                    <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;"> รายการที่ 3
-                      รายการที่ต้องตรวจเช็ค</span>
+                    <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
+                      {{title3}}</span>
                   </div>
                 </div>
               </div>
@@ -179,14 +180,14 @@
               </div>
             </div>
           </div>
-          <div class="portlet-body" style="margin: 0px;">
+          <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle4">
             <div class="portlet light ">
               <div class="row">
                 <div class="col-md-12 col-12">
-                  <div class="caption">
+                  <div class="caption" style="margin-top: 20px;">
                     <i class="fa fa-map-pin font-blue-sharp"></i>
-                    <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;"> รายการที่ 4
-                      ลายเซ็นต์ผู้รับผิดชอบ</span>
+                    <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
+                      {{title4}}</span>
                     <div *ngIf="showSig">
                       <img class="sig" [src]="sign" />
                     </div>
@@ -203,13 +204,14 @@
               </div>
             </div>
           </div>
-          <div class="portlet-body" style="margin: 0px;">
+          <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle5">
             <div class="portlet light ">
               <div class="row">
                 <div class="col-md-12 col-12">
-                  <div class="caption">
+                  <div class="caption" style="margin-top: 20px;">
                     <i class="fa fa-map-pin font-blue-sharp"></i>
-                    <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;"> รายการที่ 5 ประเมินการทำงาน</span>
+                    <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
+                      {{title5}}</span>
                   </div>
                 </div>
               </div>
@@ -223,21 +225,21 @@
               </div>
             </div>
           </div>
-          <div class="portlet-body" style="margin: 0px;">
+          <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle6">
             <div class="portlet light ">
               <div class="row">
                 <div class="col-md-12 col-12">
-                  <div class="caption">
+                  <div class="caption" style="margin-top: 20px;">
                     <p><i class="fa fa-map-pin font-blue-sharp"></i>
-                      <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;"> รายการที่ 6
-                        สรุปผลการตรวจเช็คและยืนยันการปิดงาน</span></p>
+                      <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.2em!important;">
+                        {{title6}}</span></p>
                   </div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
-                  <button class="btn default" (click)="openModalcustomerpw()"
-                    [disabled]="!isenabledcuspass"> รหัสยืนยันตัวตนลูกค้า </button>
+                  <button class="btn default" (click)="openModalcustomerpw()" [disabled]="!isenabledcuspass">
+                    รหัสยืนยันตัวตนลูกค้า </button>
                 </div>
                 <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
                 </div>
@@ -245,14 +247,14 @@
             </div>
           </div>
 
-          <div class="portlet-body" style="margin: 0px;">
+          <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle7">
             <div class="portlet light ">
               <div class="row">
                 <div class="col-md-12 col-12">
                   <div class="caption">
                     <i class="fa fa-map-pin font-blue-sharp"></i>
-                    <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;"> รายการที่ 7
-                      บันทึกข้อมูลและส่งข้อมุลเข้าระบบ</span>
+                    <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
+                      {{title7}}</span>
                   </div>
                 </div>
               </div>

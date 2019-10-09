@@ -1,0 +1,88 @@
+<ion-toolbar>
+  <ion-title>รายการตรวจซ่อม</ion-title>
+  <ion-buttons slot="primary">
+    <ion-icon slot="end" name="close" (click)="close()"></ion-icon>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+  <!-- <iframe [src]="url" style="width:100%;height:100%"></iframe> -->
+  <div class="row">
+    <div class="col-6" style="padding-right: 0px;">
+      <ion-card>
+        <ion-card-content>
+          <ion-item>
+            <ion-label>สินค้าที่ติดตั้ง : {{InstallPlanName}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>รหัสสินค้า : {{ItemCode}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>ชื่อสินค้า : {{ItemsName}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Serial No : {{SerialNo}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>ประเภท : {{cat}}</ion-label>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div class="col-6" style="padding-left: 0px;">
+      <div *ngIf="isShowType">
+        <ion-button expand="block" (click)="chang('spare')">เปลี่ยนอะไหล่</ion-button>
+        <ion-button expand="block" (click)="chang('device')">เปลี่ยนเครื่อง</ion-button>
+      </div>
+      <ion-card *ngIf="isShowDevice">
+        <ion-card-content>
+          <ion-card-title>เปลี่ยนเครื่อง</ion-card-title>
+          <ion-item>
+            <ion-input type="text" placeholder="Serial No." [(ngModel)]="serial" name="serial"></ion-input>
+            <ion-icon name="search" slot="end" (click)="search()">Search</ion-icon>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card *ngIf="isShowDeviceDetail">
+        <ion-card-content>
+          <ion-item>
+            <ion-label>สินค้าที่ติดตั้ง : {{InstallPlanName}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>รหัสสินค้า : {{ItemCode}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>ชื่อสินค้า : {{ItemsName}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Serial No : {{SerialNo}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>ประเภท : {{cat}}</ion-label>
+          </ion-item>
+          <ion-button expand="block">ยืนยัน</ion-button>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card *ngIf="isShowSpare">
+        <ion-card-content>
+          <ion-card-title>เปลี่ยนอะไหล่</ion-card-title>
+          <ion-item>
+            <ion-input type="text" placeholder="Serial No." [(ngModel)]="sparepart" name="serial"></ion-input>
+            <ion-icon name="add" (click)="Add()"></ion-icon>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+
+      <ion-card *ngIf="isShowSpareDetail">
+        <ion-card-content>
+          <ion-item *ngFor="let att of anArray;">
+            <ion-label type="text" >{{att.value}}</ion-label>
+            <ion-icon name="remove" slot="end" (click)="remove(att)"></ion-icon>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>
