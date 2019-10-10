@@ -683,45 +683,45 @@ export class DetailofdetaillistpmPage implements OnInit {
       console.log(this.sign);
     });
 
-    // this.compressImage(this.photo1, 100, 100).then(compressed => {
-    //   this.photo1 = compressed;
-    // });
+    this.compressImage(this.photo1, 100, 100).then(compressed => {
+      this.photo1 = compressed;
+    });
 
-    // this.compressImage(this.photo2, 100, 100).then(compressed => {
-    //   this.photo2 = compressed;
-    // });
+    this.compressImage(this.photo2, 100, 100).then(compressed => {
+      this.photo2 = compressed;
+    });
 
-    // this.compressImage(this.photo3, 100, 100).then(compressed => {
-    //   this.photo3 = compressed;
-    // });
+    this.compressImage(this.photo3, 100, 100).then(compressed => {
+      this.photo3 = compressed;
+    });
 
-    // this.compressImage(this.photo4, 100, 100).then(compressed => {
-    //   this.photo4 = compressed;
-    // });
+    this.compressImage(this.photo4, 100, 100).then(compressed => {
+      this.photo4 = compressed;
+    });
 
-    // this.compressImage(this.photo5, 100, 100).then(compressed => {
-    //   this.photo5 = compressed;
-    // });
+    this.compressImage(this.photo5, 100, 100).then(compressed => {
+      this.photo5 = compressed;
+    });
 
-    // this.compressImage(this.photo6, 100, 100).then(compressed => {
-    //   this.photo6 = compressed;
-    // });
+    this.compressImage(this.photo6, 100, 100).then(compressed => {
+      this.photo6 = compressed;
+    });
 
-    // this.compressImage(this.photo7, 100, 100).then(compressed => {
-    //   this.photo7 = compressed;
-    // });
+    this.compressImage(this.photo7, 100, 100).then(compressed => {
+      this.photo7 = compressed;
+    });
 
-    // this.compressImage(this.photo8, 100, 100).then(compressed => {
-    //   this.photo8 = compressed;
-    // });
+    this.compressImage(this.photo8, 100, 100).then(compressed => {
+      this.photo8 = compressed;
+    });
 
-    // this.compressImage(this.photo9, 100, 100).then(compressed => {
-    //   this.photo9 = compressed;
-    // });
+    this.compressImage(this.photo9, 100, 100).then(compressed => {
+      this.photo9 = compressed;
+    });
 
-    // this.compressImage(this.photo10, 100, 100).then(compressed => {
-    //   this.photo10 = compressed;
-    // });
+    this.compressImage(this.photo10, 100, 100).then(compressed => {
+      this.photo10 = compressed;
+    });
   }
   //#endregion
 
