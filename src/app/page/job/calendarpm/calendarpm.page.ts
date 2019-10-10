@@ -50,11 +50,12 @@ export class CalendarpmPage implements OnInit {
         this.myempID = this.items[i].empID;
         console.log(this.myempID);
       }
-    });
-    this.myempID = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b"
+    this.myempID = this.myempID
     this.month = "7"
     this.year = 2019
     this.url = sanitizer.bypassSecurityTrustResourceUrl('http://superior.wingplusweb.com/Web/WebFormCalendar.aspx' + '?empid=' + this.myempID + '&year=' + this.year + '&month=' + this.month);    
+    });
+    
     
     this.eventsModel = [];
     this.calendar = [];
