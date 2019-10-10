@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthServiceService } from '../auth-service.service';
 import { AlertController, Platform, IonList } from '@ionic/angular';
 import { PostDataService } from '../post-data.service';
-import { NavController } from '@ionic/angular';
+import { NavController,LoadingController  } from '@ionic/angular';
 import { StorageService, User } from '../storage.service';
 
 @Component({
@@ -34,6 +34,7 @@ export class LoginPage implements OnInit {
   @ViewChild('mylist', { static: false }) mylist: IonList;
 
   constructor(public alertController: AlertController,
+    public loadingController: LoadingController,
     public postDataService: PostDataService,
     public navCtrl: NavController,
     private platform: Platform,
@@ -51,6 +52,15 @@ export class LoginPage implements OnInit {
   }
 
   //#endregion
+  async load(){
+    const loading = await this.loadingController.create({   
+      message: 'กำลังเข้าสู่ระบบ...',
+      duration:500,
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+    });
+    return await loading.present();
+}
 
 
   //#region adddata to storage
@@ -86,9 +96,9 @@ export class LoginPage implements OnInit {
 
 
   login() {
+    this.load();
     this.user.email = this.user.email;
     this.user.password = this.user.password;
-
     this.postDataService.login(this.user).then(data => {
       this.data = data;
       console.log('Data Returner', this.data);
@@ -101,7 +111,7 @@ export class LoginPage implements OnInit {
         this.workfinish = this.data[i].WorkFinish;
         this.empID = this.data[i].empID;
         this.status = this.data[i].Status;
-        this.role = this.data[i].HeadTechnician;
+        this.role = this.data[i].HeadTechnician;        
         this.check();
       }
     });  
@@ -119,15 +129,14 @@ export class LoginPage implements OnInit {
 
       this.storageService.addUser(this.newUser).then(item => {
         this.newUser = <User>{};
-      });
-
-      if (this.role == true) {
-        this.navCtrl.navigateForward(['/menuhead/overview']);
-      }
-      if (this.role == false) {
-        this.navCtrl.navigateForward(['/menu/overview']);
-      }
+      });      
       
+    }
+    if (this.role == true) {
+      this.navCtrl.navigateForward(['/menuhead/overview']);
+    }
+    if (this.role == false) {
+      this.navCtrl.navigateForward(['/menu/overview']);
     }
     if (this.status == false) {
       const alert = await this.alertController.create({

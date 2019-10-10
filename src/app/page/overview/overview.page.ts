@@ -9,15 +9,16 @@ import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { Storage } from '@ionic/storage';
-import { ModalController } from '@ionic/angular';
 import { SignaturePage } from '../joball/detailofdetaillistpm/signature/signature.page'
 import { ActivatedRoute, Data } from '@angular/router';
 
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
-import { Platform } from '@ionic/angular';
+import { Platform , PopoverController,ModalController,Events} from '@ionic/angular';
 import { StorageService, User } from '../../storage.service';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { ModalpopPage } from '../overview/modalpop/modalpop.page';
 
+import { from } from 'rxjs';
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.page.html',
@@ -59,8 +60,10 @@ export class OverviewPage implements OnInit {
     public postDataService: PostDataService,
     private route: ActivatedRoute,
     private camera: Camera,
+    private popoverController: PopoverController,
     private platform: Platform,
     private sqlite: SQLite,
+    private events: Events,
     private barcodeScanner: BarcodeScanner,
     private storageService: StorageService) {
       setTimeout(() => {
@@ -73,9 +76,19 @@ export class OverviewPage implements OnInit {
     this.Today = new Date();
 
   }
+  async Openpop(ev: any){
+    const popover = await this.popoverController.create({
+      component: ModalpopPage,
+      event: ev,
+      translucent: true
+    });
+    return await popover.present();
+  }
+
 barcode(){
   this.barcodeScanner.scan().then(barcodeData => {
     console.log('Barcode data', barcodeData);
+    alert('Barcode data'+ barcodeData)
    }).catch(err => {
        console.log('Error', err);
    });

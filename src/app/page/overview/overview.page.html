@@ -4,10 +4,16 @@
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title class="ion-text-left">ภาพรวมการทำงาน</ion-title>
+
+        <ion-content>
+        </ion-content>
+        <ion-icon slot="end" name="notifications"></ion-icon>
+        <ion-badge slot="end" (click)="Openpop($event)" color="danger">66</ion-badge>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
     <div class="container-fluid">
         <div class="page-content-inner">
             <div class="row" style="padding:5px;">
@@ -15,16 +21,18 @@
                     <div class="portlet box blue">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-dashboard" style="font-size: 2em;"></i>สรุปภาพรวมการทำงาน</div>
+                                <i class="fa fa-dashboard" style="font-size: 2em;"></i>สรุปภาพรวมการทำงาน</div>                            
                         </div>
                         <div class="portlet-body" style="padding: 2px;">
                             <div class="btn-group btn-group btn-group-justified btn-lg"
                                 style="padding: 0px; width: 100%;">
-                                <button class="btn blue text-center" style="padding: 5px;" (click)="changeMonthBack()"> ย้อนกลับ
+                                <button class="btn blue text-center" style="padding: 5px;" (click)="changeMonthBack()">
+                                    ย้อนกลับ
                                 </button>
                                 <button class="btn default" style="padding: 5px; width: 65%;" (click)="ChangeMonth()">
                                     {{textShow}} </button>
-                                <button class="btn blue text-center" style="padding: 5px;" (click)="changeMonthNext()"> ถัดไป
+                                <button class="btn blue text-center" style="padding: 5px;" (click)="changeMonthNext()">
+                                    ถัดไป
                                 </button>
                             </div>
                             <!-- <ion-list>

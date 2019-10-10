@@ -5,6 +5,12 @@ label{
     font-size: 0.9em;
     padding: 5px;
 }
+.offPointer{
+    pointer-events: all !important;
+  }
+  ion-item{
+    --ion-background-color:#fff;
+ }
 //     .background{
 //         background-color: white;
 //         padding: 0px;

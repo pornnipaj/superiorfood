@@ -1,0 +1,19 @@
+<div style="width:100%">
+  <ion-list-header>งานทั้งหมด</ion-list-header>
+  <ion-item (click)="next('cm')">
+    งานตรวจเช็ค
+    <ion-badge slot="end" color="primary">20</ion-badge>
+  </ion-item>
+  <ion-item (click)="next('pm')">
+      งานซ่อม
+    <ion-badge slot="end" color="secondary">10</ion-badge>
+  </ion-item>
+  <ion-item (click)="next('install')">
+    งานติดตั้ง
+    <ion-badge slot="end" color="warning">1</ion-badge>
+  </ion-item>
+  <ion-item (click)="next('uninstall')">
+    งานถอนการติดตั้ง
+    <ion-badge slot="end" color="tertiary">0</ion-badge>
+  </ion-item>
+</div>
