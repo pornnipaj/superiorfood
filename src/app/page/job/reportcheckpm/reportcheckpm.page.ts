@@ -58,8 +58,6 @@ export class ReportcheckpmPage implements OnInit {
       }
     });
 
-    this.ChangeMonth();
-
   }
 
   //#endregion
@@ -183,11 +181,10 @@ export class ReportcheckpmPage implements OnInit {
     console.log(this.empid);
 
 
-    this.job.empID = "01225f87-e6cc-4725-afe2-7e5a63f9a183";
+    this.job.empID = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b";
     this.job.month = 8;
     this.job.year = 2019;
     this.job.jobtype = this.type
-    console.log(this.job);
 
     this.postDataService.postJobList(this.job).then(work => {
       this.listpm = work;
@@ -297,11 +294,10 @@ export class ReportcheckpmPage implements OnInit {
     console.log(this.empid);
 
 
-    this.job.empID = "01225f87-e6cc-4725-afe2-7e5a63f9a183";
+    this.job.empID = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b";
     this.job.month = 8;
     this.job.year = 2019;
     this.job.jobtype = this.type
-    console.log(this.job);
 
     this.postDataService.postJobList(this.job).then(work => {
       this.listpm = work;
@@ -312,7 +308,7 @@ export class ReportcheckpmPage implements OnInit {
         this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
       }
 
-      console.log('listpmnext', this.listpm);
+      console.log('listpm', this.listpm);
 
     });
   }
@@ -393,11 +389,10 @@ export class ReportcheckpmPage implements OnInit {
     console.log(this.empid);
 
 
-    this.job.empID = "01225f87-e6cc-4725-afe2-7e5a63f9a183";
+    this.job.empID = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b";
     this.job.month = 8;
     this.job.year = 2019;
     this.job.jobtype = this.type
-    console.log(this.job);
 
     this.postDataService.postJobList(this.job).then(work => {
       this.listpm = work;
@@ -408,7 +403,7 @@ export class ReportcheckpmPage implements OnInit {
         this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
       }
 
-      console.log('listpmback', this.listpm);
+      console.log('listpm', this.listpm);
 
     });
   }
