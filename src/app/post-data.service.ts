@@ -23,7 +23,7 @@ export class PostDataService {
 
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post(this.apiServer_url +'/API/Login.ashx' + '?email=' + user.email + '&password=' + user.password,
+      this.http.post(this.apiLocal_url +'/API/Login.ashx' + '?email=' + user.email + '&password=' + user.password,
         JSON.stringify(user), option).subscribe(data => {
           resovle(data);
         }, error => {
@@ -150,7 +150,7 @@ export class PostDataService {
     return new Promise((resovle, reject) => {      
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post(this.apiServer_url + '/API/WebService.asmx/Photo', JSON.stringify(form), option).subscribe(data => {
+      this.http.post(this.apiLocal_url + '/API/WebService.asmx/Photo', JSON.stringify(form), option).subscribe(data => {
         resovle(data);
       }, error => {
         reject(error)
@@ -163,7 +163,7 @@ export class PostDataService {
 
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post(this.apiServer_url + '/Web/CK_Check.aspx' + '?empID=' + tran.empID + '&serviceplanid=' + tran.serviceplanid + '&installplanid=' + tran.installplanid,
+      this.http.post(this.apiLocal_url + '/Web/CK_Check.aspx' + '?empID=' + tran.empID + '&serviceplanid=' + tran.serviceplanid + '&installplanid=' + tran.installplanid,
         JSON.stringify(tran), option).subscribe(data => {
           resovle(data);
         }, error => {

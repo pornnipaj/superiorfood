@@ -16,14 +16,13 @@ import { ActivatedRoute, Data } from '@angular/router';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { Platform } from '@ionic/angular';
 import { StorageService, User } from '../../storage.service';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.page.html',
   styleUrls: ['./overview.page.scss'],
 })
-
-
 
 export class OverviewPage implements OnInit {
   
@@ -62,6 +61,7 @@ export class OverviewPage implements OnInit {
     private camera: Camera,
     private platform: Platform,
     private sqlite: SQLite,
+    private barcodeScanner: BarcodeScanner,
     private storageService: StorageService) {
       setTimeout(() => {
         this.ngOnInit();
@@ -73,7 +73,13 @@ export class OverviewPage implements OnInit {
     this.Today = new Date();
 
   }
-
+barcode(){
+  this.barcodeScanner.scan().then(barcodeData => {
+    console.log('Barcode data', barcodeData);
+   }).catch(err => {
+       console.log('Error', err);
+   });
+}
   loadItems() {
     this.storageService.getUser().then(items => {
       this.items = items;

@@ -57,7 +57,7 @@
                   <img [src]="photo2" *ngIf="isShow2" />
                 </div>
 
-                <div class="col-md-2 col-2 text-center">
+                <div class="col-md-2 col-2 text-center" *ngIf="isInstall">
                   <div *ngIf="isTake3">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(3)">
@@ -68,7 +68,7 @@
                   <img [src]="photo3" *ngIf="isShow3">
                 </div>
 
-                <div class="col-md-2 col-2 text-center">
+                <div class="col-md-2 col-2 text-center" *ngIf="isInstall">
                   <div *ngIf="isTake4">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(4)">
@@ -79,7 +79,7 @@
                   <img [src]="photo4" *ngIf="isShow4">
                 </div>
 
-                <div class="col-md-2 col-2 text-center">
+                <div class="col-md-2 col-2 text-center" *ngIf="isInstall">
                   <div *ngIf="isTake5">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(5)">

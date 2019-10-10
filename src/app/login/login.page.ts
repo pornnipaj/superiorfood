@@ -23,6 +23,7 @@ export class LoginPage implements OnInit {
   data;
   user;
   status;
+  role;
   items: User[] = [];
   newUser: User = <User>{};
 
@@ -100,6 +101,7 @@ export class LoginPage implements OnInit {
         this.workfinish = this.data[i].WorkFinish;
         this.empID = this.data[i].empID;
         this.status = this.data[i].Status;
+        this.role = this.data[i].HeadTechnician;
         this.check();
       }
     });  
@@ -113,12 +115,19 @@ export class LoginPage implements OnInit {
       this.newUser.username = this.username;
       this.newUser.position = this.position;
       this.newUser.empID = this.empID;
+      this.newUser.role = this.role;
 
       this.storageService.addUser(this.newUser).then(item => {
         this.newUser = <User>{};
       });
 
-      this.navCtrl.navigateForward(['/menu/overview']);
+      if (this.role == true) {
+        this.navCtrl.navigateForward(['/menuhead/overview']);
+      }
+      if (this.role == false) {
+        this.navCtrl.navigateForward(['/menu/overview']);
+      }
+      
     }
     if (this.status == false) {
       const alert = await this.alertController.create({

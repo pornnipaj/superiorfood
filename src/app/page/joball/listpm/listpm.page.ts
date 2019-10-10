@@ -38,6 +38,7 @@ export class ListpmPage implements OnInit {
   listpmdetail;
   myId;
   name;
+  type = "PM";
   //#endregion
 
   //#region constructor
@@ -88,10 +89,14 @@ export class ListpmPage implements OnInit {
 
   click(item) {
     console.log(item);
-    
+    let params = { 
+      item: item.value,
+      type: this.type, 
+    } 
+
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        currency: JSON.stringify(item.value)
+        data: JSON.stringify(params)
       }
     };
     console.log(navigationExtras);

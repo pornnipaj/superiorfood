@@ -23,6 +23,7 @@ import { ChecklistcmPageModule } from '../app/page/joball/detailofdetaillistpm/c
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SQLite } from '@ionic-native/sqlite/ngx';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -49,8 +50,9 @@ import { SQLite } from '@ionic-native/sqlite/ngx';
     ScreenOrientation,
     Camera,
     SQLite,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },    
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },        
     AuthServiceService,
+    BarcodeScanner
   ],
   bootstrap: [AppComponent]
 })
