@@ -57,7 +57,7 @@ export class ListpmPage implements OnInit {
         console.log(this.myempID);
       }
     });
-
+this.ChangeMonth();
   }
 
   //#endregion

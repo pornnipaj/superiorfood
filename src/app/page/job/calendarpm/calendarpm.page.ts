@@ -73,13 +73,7 @@ export class CalendarpmPage implements OnInit {
   }
 
   //#endregion
-
-  //#region sanitizer
-  getSafeUrl(url) {
-		this.url = this.sanitizer.bypassSecurityTrustResourceUrl(url);		
-	}
-  //#endregion
-
+  
   //#region start
 
   ngOnInit() {

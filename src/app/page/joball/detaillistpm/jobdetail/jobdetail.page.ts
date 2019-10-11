@@ -39,7 +39,7 @@ insID;
 image;
 img1;
 img2;
-img3:SafeResourceUrl;
+img3;
 img4;
 img5;
 img6;
@@ -50,12 +50,13 @@ img10;
 type;
 isShowImage = false;
 isShowImageInstall = false;
+url: SafeResourceUrl;
 sanitizer: DomSanitizer;
 
 //#endregion
   constructor(public DataService: AuthServiceService,
     private route: ActivatedRoute,
-    private DomSanitizer: DomSanitizer,
+    sanitizer: DomSanitizer,
     private storageService: StorageService,
     private postDataService: PostDataService) {
       this.jobdetail = [];
@@ -74,7 +75,7 @@ sanitizer: DomSanitizer;
         this.tranID = this.data.tranID
       });
         
-    
+      this.url = sanitizer.bypassSecurityTrustResourceUrl('http://superior.wingplusweb.com/Web/WebFormCalendar.aspx')
      }
 
   ngOnInit() {
@@ -105,24 +106,28 @@ sanitizer: DomSanitizer;
             console.log("bf2",this.img2);         
           }           
           if (this.image[v].type == "step3_pic1" ) {
-            // this.img6 = this.image[v].file_path
-            this.img6 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
+            this.img6 = this.image[v].file_path
+            // this.img6 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
             console.log("af1",this.img6);          
           }
           if (this.image[v].type == "step3_pic2" ) {
             this.img7 = this.image[v].file_path
+            // this.img7 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
             console.log("af2",this.img7);          
           }
           if (this.image[v].type == "step3_pic3" ) {
             this.img8 = this.image[v].file_path
+            // this.img8 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
             console.log("af3",this.img8);          
           }
           if (this.image[v].type == "step3_pic4" ) {
             this.img9 = this.image[v].file_path
+            // this.img9 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
             console.log("af4",this.img2);          
           }
           if (this.image[v].type == "step3_pic5" ) {
             this.img10 = this.image[v].file_path
+            // this.img10 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
             console.log("af5",this.img10);          
           }   
         }
@@ -130,45 +135,53 @@ sanitizer: DomSanitizer;
         this.isShowImage = true;
         for (let v = 0; v < this.image.length; v++) {
           if (this.image[v].type == "step1_pic1" ) {
-            // this.img1 = this.image[v].file_path
-            this.img1 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
+            this.img1 = this.image[v].file_path
+            // this.img1 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
             console.log("bf1",this.img1);          
           }  
           if (this.image[v].type == "step1_pic2" ) {
             this.img2 = this.image[v].file_path
+            // this.img2 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
             console.log("bf2",this.img2);          
           } 
           if (this.image[v].type == "step1_pic3" ) {
             this.img3 = this.image[v].file_path
+            // this.img3 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
             console.log("bf3",this.img3);          
           }
           if (this.image[v].type == "step1_pic4" ) {
             this.img4 = this.image[v].file_path
+            // this.img4 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
             console.log("bf4",this.img4);          
           }
           if (this.image[v].type == "step1_pic5" ) {
             this.img5 = this.image[v].file_path
+            // this.img5 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
             console.log("bf5",this.img5);          
           }
           if (this.image[v].type == "step3_pic1" ) {
-            // this.img6 = this.image[v].file_path
-            this.img6 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
+            this.img6 = this.image[v].file_path
+            // this.img6 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
             console.log("af1",this.img6);          
           }
           if (this.image[v].type == "step3_pic2" ) {
             this.img7 = this.image[v].file_path
+            // this.img7 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
             console.log("af2",this.img7);          
           }
           if (this.image[v].type == "step3_pic3" ) {
             this.img8 = this.image[v].file_path
+            // this.img8 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
             console.log("af3",this.img8);          
           }
           if (this.image[v].type == "step3_pic4" ) {
             this.img9 = this.image[v].file_path
+            // this.img9 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
             console.log("af4",this.img2);          
           }
           if (this.image[v].type == "step3_pic5" ) {
             this.img10 = this.image[v].file_path
+            // this.img10 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
             console.log("af5",this.img10);          
           }   
         }

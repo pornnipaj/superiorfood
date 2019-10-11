@@ -96,7 +96,7 @@ export class DetaillistpmPage implements OnInit {
           data: JSON.stringify(params)
         }
       };
-      this.navCtrl.navigateForward(['/joball/listpm/detailofdetaillistpm'], navigationExtras);
+      this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
       // console.log("sent", navigationExtras);
     }
 

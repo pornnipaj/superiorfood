@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController,NavParams } from '@ionic/angular';
+
 @Component({
   selector: 'app-modalpop',
   templateUrl: './modalpop.page.html',
@@ -8,7 +9,17 @@ import { PopoverController } from '@ionic/angular';
 })
 export class ModalpopPage implements OnInit {
   id;
-  constructor(private router: Router, private popoverController: PopoverController) { }
+  pm;
+  cm;
+  install;
+  uninstall;
+  constructor(private router: Router, private popoverController: PopoverController,
+    private navParams: NavParams) {
+      this.pm = this.navParams.data.pm;
+      this.cm = this.navParams.data.cm;
+      this.install = this.navParams.data.install;
+      this.uninstall = this.navParams.data.uninstall;      
+     }
 
   ngOnInit() {
   }

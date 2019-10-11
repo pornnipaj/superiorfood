@@ -8,6 +8,7 @@ import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { ActivatedRoute } from '@angular/router';
 import { StorageService } from '../../../storage.service';
 import { PostDataService } from '../../../post-data.service';
+import { DomSanitizer,SafeResourceUrl } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-jobdetail',
@@ -16,132 +17,69 @@ import { PostDataService } from '../../../post-data.service';
 })
 export class JobdetailPage implements OnInit {
 
-  //#region data
+ //#region data
 
-  data: any;
-  json: any;
-  items: any;
-  question: any;
-  answer: any;
-  answerText: any;
-  json_checklist = {
-    header: '',
-    subheader: '',
-    row: ''
-  }
-  jobdetail;
-  cusID;
-  result;
-  query;
-  planID;
-  tranID;
-  insID;
-  image;
-  img1;
-  img2;
-  img3;
-  //#endregion
-  
-  //#region constructor
+data: any;
+json: any;
+items: any;
+question: any;
+answer: any;
+answerText: any;
+json_checklist = {
+  header: '',
+  subheader: '',
+  row: ''
+}
+jobdetail;
+cusID;
+result;
+query;
+planID;
+tranID;
+insID;
+image;
+img1;
+img2;
+img3;
+img4;
+img5;
+img6;
+img7;
+img8;
+img9;
+img10;
+type;
+isShowImage = false;
+isShowImageInstall = false;
+url: SafeResourceUrl;
+sanitizer: DomSanitizer;
 
+//#endregion
   constructor(public DataService: AuthServiceService,
     private route: ActivatedRoute,
+    sanitizer: DomSanitizer,
     private storageService: StorageService,
     private postDataService: PostDataService) {
-
       this.jobdetail = [];
 
-
-    this.route.queryParams.subscribe(params => {
-      this.query = JSON.parse(params["data"]);
-      this.planID = this.query.planID
-      this.tranID = this.query.tranID
-      this.insID = this.query.installID
-      console.log("receive", this.insID);
-    });
-
-
-    // this.getOverview();
-    // this.getEvaluation();
-    // this.getCheckList();
-
-    //   this.DataService.getJobDetail().subscribe(data => {
-    //     this.data = data;
-    //   for (let i = 0; i < this.data.length; i++) {
-    //     const json = this.data[i].Name;
-    //     console.log(json);
-    //   }
-    // });
-  }
-
-  //#endregion
-
-  // //#region click
-
-  // getEvaluation() {
-  //   this.DataService.getJobDetail().subscribe(data => {
-  //     this.data = data;
-  //     //get json_evaluation
-  //     for (let i = 0; i < this.data.length; i++) {
-  //       this.json = this.data[i].json_evaluation;
-  //       // console.log(this.json);
-
-  //       //convert to array
-  //       this.items = JSON.parse(this.json);
-  //       // console.log(this.items);
-  //     }
-
-  //     //get data in json_evaluation
-  //     for (let i = 0; i < this.items.length; i++) {
-  //       this.question = this.items[i].question;
-  //       this.answer = this.items[i].answer;
-  //       this.answerText = this.items[i].answerText;
-  //       // console.log(this.question + " " + this.answer + " " + this.answerText);
-  //     }
-  //   });
-  // }
-
-  // getCheckList() {
-  //   this.DataService.getJobDetail().subscribe(data => {
-  //     this.data = data;
-  //     //get json_checklist
-  //     for (let i = 0; i < this.data.length; i++) {
-  //       this.json = this.data[i].json_checklist;
-  //       // console.log(this.json);
-
-  //       //convert to array
-  //       this.items = JSON.parse(this.json);
-  //       // console.log(this.items);
-  //     }
-
-  //     //get data in json_checklist
-  //     for (let i = 0; i < this.items.length; i++) {
-  //       this.json_checklist.header = this.items[i].header;
-  //       this.json_checklist.subheader = this.items[i].subheader;
-  //       // console.log(this.json_checklist.header + " " + this.json_checklist.subheader);
-  //     }
-  //   });
-  // }
-
-  // //#endregion
-
-  //#region start
+      this.route.queryParams.subscribe(params => {
+        this.query = JSON.parse(params["data"]);
+        this.data = this.query.data
+        this.insID = this.query.installID
+        this.type = this.query.type
+        console.log(this.query);
+        
+        for (let i = 0; i < this.data.length; i++) {
+          this.data = (this.data[i])
+        }
+        this.planID = this.data.planID
+        this.tranID = this.data.tranID
+      });
+        
+      this.url = sanitizer.bypassSecurityTrustResourceUrl('http://superior.wingplusweb.com/Web/WebFormCalendar.aspx')
+     }
 
   ngOnInit() {
-  
-    // this.route.queryParams.subscribe(params => {
-    //   if (params && params.special) {
-    //     this.cusID = JSON.parse(params.special);  
-    //     console.log(this.cusID.empID);     
-    //     console.log(this.cusID.cusID);
-    //     console.log(this.cusID.planID);        
-    //   }   
-    // });
-    // this.jobdetail.empID = this.cusID.empID
-    // this.jobdetail.cusID = this.cusID.cusID
-    // this.jobdetail.planID = this.cusID.planID
-    //   console.log(this.jobdetail);
-    
     this.jobdetail.planID = this.planID;
     this.jobdetail.tranID = this.tranID;
     this.jobdetail.insID = this.insID;
@@ -152,13 +90,104 @@ export class JobdetailPage implements OnInit {
       this.result = jobdetail;
       console.log(this.result)
       for (let i = 0; i < this.result.length; i++) {
-
-        //convert to array
         this.image = JSON.parse(this.result[i].image);
-        // console.log(this.image);
       }
+      console.log(this.image);
+      if (this.type == "INSTALL") {
+        this.isShowImageInstall = true;
+        for (let v = 0; v < this.image.length; v++) {
+          if (this.image[v].type == "step1_pic1" ) {
+            this.img1 = this.image[v].file_path
+            // this.img1 = this.sanitizer.bypassSecurityTrustResourceUrl('D:\wingplus\Superiors\WingPlus\Data\image\4876c93f-d1db-4879-a3c5-8df3af959ddf_step1_pic2.png');    
+            // this.img1 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
+            console.log("bf1",this.img1);          
+          }  
+          if (this.image[v].type == "step1_pic2" ) {
+            this.img2 = this.image[v].file_path
+            console.log("bf2",this.img2);         
+          }           
+          if (this.image[v].type == "step3_pic1" ) {
+            this.img6 = this.image[v].file_path
+            // this.img6 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
+            console.log("af1",this.img6);          
+          }
+          if (this.image[v].type == "step3_pic2" ) {
+            this.img7 = this.image[v].file_path
+            // this.img7 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
+            console.log("af2",this.img7);          
+          }
+          if (this.image[v].type == "step3_pic3" ) {
+            this.img8 = this.image[v].file_path
+            // this.img8 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
+            console.log("af3",this.img8);          
+          }
+          if (this.image[v].type == "step3_pic4" ) {
+            this.img9 = this.image[v].file_path
+            // this.img9 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
+            console.log("af4",this.img2);          
+          }
+          if (this.image[v].type == "step3_pic5" ) {
+            this.img10 = this.image[v].file_path
+            // this.img10 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
+            console.log("af5",this.img10);          
+          }   
+        }
+      }else{
+        this.isShowImage = true;
+        for (let v = 0; v < this.image.length; v++) {
+          if (this.image[v].type == "step1_pic1" ) {
+            this.img1 = this.image[v].file_path
+            // this.img1 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
+            console.log("bf1",this.img1);          
+          }  
+          if (this.image[v].type == "step1_pic2" ) {
+            this.img2 = this.image[v].file_path
+            // this.img2 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
+            console.log("bf2",this.img2);          
+          } 
+          if (this.image[v].type == "step1_pic3" ) {
+            this.img3 = this.image[v].file_path
+            // this.img3 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
+            console.log("bf3",this.img3);          
+          }
+          if (this.image[v].type == "step1_pic4" ) {
+            this.img4 = this.image[v].file_path
+            // this.img4 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
+            console.log("bf4",this.img4);          
+          }
+          if (this.image[v].type == "step1_pic5" ) {
+            this.img5 = this.image[v].file_path
+            // this.img5 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
+            console.log("bf5",this.img5);          
+          }
+          if (this.image[v].type == "step3_pic1" ) {
+            this.img6 = this.image[v].file_path
+            // this.img6 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
+            console.log("af1",this.img6);          
+          }
+          if (this.image[v].type == "step3_pic2" ) {
+            this.img7 = this.image[v].file_path
+            // this.img7 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
+            console.log("af2",this.img7);          
+          }
+          if (this.image[v].type == "step3_pic3" ) {
+            this.img8 = this.image[v].file_path
+            // this.img8 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
+            console.log("af3",this.img8);          
+          }
+          if (this.image[v].type == "step3_pic4" ) {
+            this.img9 = this.image[v].file_path
+            // this.img9 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
+            console.log("af4",this.img2);          
+          }
+          if (this.image[v].type == "step3_pic5" ) {
+            this.img10 = this.image[v].file_path
+            // this.img10 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
+            console.log("af5",this.img10);          
+          }   
+        }
+      }      
       });
-  } 
-
-  //#endregion
+  }
 }
+ 

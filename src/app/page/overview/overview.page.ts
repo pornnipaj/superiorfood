@@ -55,7 +55,7 @@ export class OverviewPage implements OnInit {
   //#region constructor
 
   constructor(public DataService: AuthServiceService,
-    public http: HttpClient,
+    public http: HttpClient,    
     public postDataService: PostDataService,
     private route: ActivatedRoute,
     private camera: Camera,
@@ -78,7 +78,13 @@ export class OverviewPage implements OnInit {
     const popover = await this.popoverController.create({
       component: ModalpopPage,
       event: ev,
-      translucent: true
+      translucent: true,
+      componentProps: {
+        pm: 1,
+        cm: 1,
+        install: 1,
+        uninstall:1
+      }
     });
     return await popover.present();
   }
