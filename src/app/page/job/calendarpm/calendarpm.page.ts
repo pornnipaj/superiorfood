@@ -51,7 +51,7 @@ export class CalendarpmPage implements OnInit {
         console.log(this.myempID);
       }
     this.myempID = this.myempID
-    this.month = "7"
+    this.month = 7
     this.year = 2019
     this.url = sanitizer.bypassSecurityTrustResourceUrl('http://superior.wingplusweb.com/Web/WebFormCalendar.aspx' + '?empid=' + this.myempID + '&year=' + this.year + '&month=' + this.month);    
     });
