@@ -25,6 +25,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SQLite } from '@ionic-native/sqlite/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { IonicImageLoader } from 'ionic-image-loader';
 
 @NgModule({
   declarations: [AppComponent],
@@ -54,7 +55,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
     SQLite,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },        
     AuthServiceService,
-    BarcodeScanner
+    BarcodeScanner,
+    IonicImageLoader
   ],
   bootstrap: [AppComponent]
 })
