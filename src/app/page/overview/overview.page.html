@@ -3,12 +3,9 @@
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title class="ion-text-left">ภาพรวมการทำงาน</ion-title>
-
-        <ion-content>
-        </ion-content>
-        <ion-icon slot="end" name="notifications"></ion-icon>
-        <ion-badge slot="end" (click)="Openpop($event)" color="danger">66</ion-badge>
+        <ion-title class="ion-text-left">ภาพรวมการทำงาน</ion-title>        
+            <ion-icon slot="end" name="notifications"></ion-icon>
+            <ion-badge slot="end" (click)="Openpop($event)"  color="danger">66</ion-badge>      
     </ion-toolbar>
 </ion-header>
 
@@ -41,8 +38,7 @@
                               <ion-input type="text" [(ngModel)]="username"></ion-input>
                             </ion-item>
                             </ion-list> -->
-                            <div>
-                                <ion-button (click)="barcode()">barcode</ion-button>
+                            <div>                                
                                 <div [routerLink]="['/menu/joball']">
                                     <label class="col-6">งานทั้งหมด</label>
                                     <label class="col-6 text-right">{{workall}}</label>

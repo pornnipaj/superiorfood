@@ -15,7 +15,7 @@ export class MenuheadPage implements OnInit {
     {
       title: 'แพลนงานช่าง',
       url: '/menuhead/serviceplan',
-      icon: 'person'
+      icon: 'calendar'
     },
     {
       title: 'งานของในความรับผิดชอบ',

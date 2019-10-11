@@ -106,6 +106,7 @@ export class DetaillistpmPage implements OnInit {
       let params = {
         data: data,
         installID: item.installId,
+        type: this.type
       }
 
       const navigationExtras: NavigationExtras = {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController, NavParams } from '@ionic/angular';
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @Component({
   selector: 'app-checklistcm',
@@ -34,6 +35,7 @@ export class ChecklistcmPage implements OnInit {
   //#region constructor
 
   constructor(public modalController: ModalController,
+    private barcodeScanner: BarcodeScanner,
     private navParams: NavParams,
     public navCtrl: NavController,
     sanitizer: DomSanitizer, ) {
@@ -122,4 +124,16 @@ export class ChecklistcmPage implements OnInit {
 
   //#endregion
 
+  //#region barcode
+
+  scan(){
+    this.barcodeScanner.scan().then(barcodeData => {
+      console.log('Barcode data', barcodeData);
+      alert('Barcode data'+ barcodeData)
+     }).catch(err => {
+         console.log('Error', err);
+     });
+  }
+  
+  //#endregion
 } 

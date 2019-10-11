@@ -15,11 +15,10 @@ import { ActivatedRoute, Data } from '@angular/router';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { Platform , PopoverController,ModalController,Events} from '@ionic/angular';
 import { StorageService, User } from '../../storage.service';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { ModalpopPage } from '../overview/modalpop/modalpop.page';
 
 import { from } from 'rxjs';
-@Component({
+@Component({ 
   selector: 'app-overview',
   templateUrl: './overview.page.html',
   styleUrls: ['./overview.page.scss'],
@@ -64,7 +63,6 @@ export class OverviewPage implements OnInit {
     private platform: Platform,
     private sqlite: SQLite,
     private events: Events,
-    private barcodeScanner: BarcodeScanner,
     private storageService: StorageService) {
       setTimeout(() => {
         this.ngOnInit();
@@ -85,14 +83,6 @@ export class OverviewPage implements OnInit {
     return await popover.present();
   }
 
-barcode(){
-  this.barcodeScanner.scan().then(barcodeData => {
-    console.log('Barcode data', barcodeData);
-    alert('Barcode data'+ barcodeData)
-   }).catch(err => {
-       console.log('Error', err);
-   });
-}
   loadItems() {
     this.storageService.getUser().then(items => {
       this.items = items;

@@ -65,7 +65,8 @@ export class PostDataService {
 
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post(this.apiServer_url + '/API/DetailJob.ashx' + '?planID=' + jobdetail.planID + '&tranID=' + jobdetail.tranID + '&insID=' + jobdetail.insID,
+      this.http.post(this.apiServer_url + '/API/DetailJob.ashx' + '?planID=' + jobdetail.planID + '&tranID=' + jobdetail.tranID 
+      + '&insID=' + jobdetail.insID ,
         JSON.stringify(jobdetail), option).subscribe(data => {
           resovle(data);
         }, error => {

@@ -22,6 +22,7 @@ export class InstallPage implements OnInit {
   data: any;
   Today;
   month;
+  year;
   intMonth;
   intYear;
   textShow;
@@ -185,24 +186,31 @@ export class InstallPage implements OnInit {
     console.log(this.intYear)
     console.log(this.empid);
 
-
-    this.job.empID = "01225f87-e6cc-4725-afe2-7e5a63f9a183";
-    this.job.month = 8;
-    this.job.year = 2019;
-    this.job.jobtype = this.type
-    console.log(this.job);
-
-    this.postDataService.postJobList(this.job).then(work => {
-      this.listpm = work;
-      console.log(this.listpm);
-
-
-      for (let i = 0; i < this.listpm.length; i++) {
-        this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+    this.storageService.getUser().then(items => {
+      this.items = items;
+      // console.log(items);      
+      for (let i = 0; i < this.items.length; i++) {
+        this.empid = this.items[i].empID
+        this.name = this.items[i].name;
       }
-
-      console.log('listpm', this.listpm);
-
+      this.job.empID = this.empid;
+      this.job.month = this.intMonth;
+      this.job.year = this.intYear;
+      this.job.jobtype = this.type
+  console.log(this.job);
+  
+      this.postDataService.postJobList(this.job).then(work => {
+        this.listpm = work;
+        console.log(this.listpm);
+  
+  
+        for (let i = 0; i < this.listpm.length; i++) {
+          this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+        }
+  
+        console.log('listpm', this.listpm);
+  
+      });
     });
   }
 
@@ -300,23 +308,31 @@ export class InstallPage implements OnInit {
     console.log(this.empid);
 
 
-    this.job.empID = "01225f87-e6cc-4725-afe2-7e5a63f9a183";
-    this.job.month = 8;
-    this.job.year = 2019;
-    this.job.jobtype = this.type
-    console.log(this.job);
-
-    this.postDataService.postJobList(this.job).then(work => {
-      this.listpm = work;
-      console.log(this.listpm);
-
-
-      for (let i = 0; i < this.listpm.length; i++) {
-        this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+    this.storageService.getUser().then(items => {
+      this.items = items;
+      // console.log(items);      
+      for (let i = 0; i < this.items.length; i++) {
+        this.empid = this.items[i].empID
+        this.name = this.items[i].name;
       }
-
-      console.log('listpmnext', this.listpm);
-
+      this.job.empID = this.empid;
+      this.job.month = this.intMonth;
+      this.job.year = this.intYear;
+      this.job.jobtype = this.type
+  console.log(this.job);
+  
+      this.postDataService.postJobList(this.job).then(work => {
+        this.listpm = work;
+        console.log(this.listpm);
+  
+  
+        for (let i = 0; i < this.listpm.length; i++) {
+          this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+        }
+  
+        console.log('listpm', this.listpm);
+  
+      });
     });
   }
 
@@ -396,23 +412,31 @@ export class InstallPage implements OnInit {
     console.log(this.empid);
 
 
-    this.job.empID = "01225f87-e6cc-4725-afe2-7e5a63f9a183";
-    this.job.month = 8;
-    this.job.year = 2019;
-    this.job.jobtype = this.type
-    console.log(this.job);
-
-    this.postDataService.postJobList(this.job).then(work => {
-      this.listpm = work;
-      console.log(this.listpm);
-
-
-      for (let i = 0; i < this.listpm.length; i++) {
-        this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+    this.storageService.getUser().then(items => {
+      this.items = items;
+      // console.log(items);      
+      for (let i = 0; i < this.items.length; i++) {
+        this.empid = this.items[i].empID
+        this.name = this.items[i].name;
       }
-
-      console.log('listpmback', this.listpm);
-
+      this.job.empID = this.empid;
+      this.job.month = this.intMonth;
+      this.job.year = this.intYear;
+      this.job.jobtype = this.type
+  console.log(this.job);
+  
+      this.postDataService.postJobList(this.job).then(work => {
+        this.listpm = work;
+        console.log(this.listpm);
+  
+  
+        for (let i = 0; i < this.listpm.length; i++) {
+          this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+        }
+  
+        console.log('listpm', this.listpm);
+  
+      });
     });
   }
 
@@ -429,27 +453,25 @@ export class InstallPage implements OnInit {
         this.empid = this.items[i].empID
         this.name = this.items[i].name;
       }
+      this.job.empID = this.empid;
+      this.job.month = this.intMonth;
+      this.job.year = this.intYear;
+      this.job.jobtype = this.type
+  console.log(this.job);
+  
+      this.postDataService.postJobList(this.job).then(work => {
+        this.listpm = work;
+        console.log(this.listpm);
+  
+  
+        for (let i = 0; i < this.listpm.length; i++) {
+          this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+        }
+  
+        console.log('listpm', this.listpm);
+  
+      });
     });
-
-
-    this.job.empID = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b";
-    this.job.month = 8;
-    this.job.year = 2019;
-    this.job.jobtype = this.type
-
-    this.postDataService.postJobList(this.job).then(work => {
-      this.listpm = work;
-      console.log(this.listpm);
-
-
-      for (let i = 0; i < this.listpm.length; i++) {
-        this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
-      }
-
-      console.log('listpm', this.listpm);
-
-    });
-
   }
   //#endregion
 

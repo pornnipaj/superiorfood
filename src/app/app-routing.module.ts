@@ -23,7 +23,8 @@ const routes: Routes = [
   { path: 'joball/listpm/detaillistpm/jobdetail', loadChildren: './page/joball/detaillistpm/jobdetail/jobdetail.module#JobdetailPageModule' },
   { path: 'checklist', loadChildren: './page/joball/detailofdetaillistpm/checklist/checklist.module#ChecklistPageModule' },
   { path: 'checkevaluation', loadChildren: './page/joball/detailofdetaillistpm/checkevaluation/checkevaluation.module#CheckevaluationPageModule' },
-  { path: 'checklistcm', loadChildren: './page/joball/detailofdetaillistpm/checklistcm/checklistcm.module#ChecklistcmPageModule' },  { path: 'menuhead', loadChildren: './page/menuhead/menuhead.module#MenuheadPageModule' },
+  { path: 'checklistcm', loadChildren: './page/joball/detailofdetaillistpm/checklistcm/checklistcm.module#ChecklistcmPageModule' },
+  { path: 'menuhead', loadChildren: './page/menuhead/menuhead.module#MenuheadPageModule' },
   { path: 'modalpop', loadChildren: './page/overview/modalpop/modalpop.module#ModalpopPageModule' }
 
 
