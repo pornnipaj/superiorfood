@@ -489,7 +489,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.postDataService.postphoto(params).then(servicephoto => {
         this.status = servicephoto
         if (this.status == true) {
-          this.navCtrl.navigateForward(['/menu/overview']);
+          this.navCtrl.navigateForward(['/menuhead/overview']);
         }
         if (this.status == false) {
           alert("บันทึกข้อมูลไม่สำเร็จ")
@@ -537,7 +537,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.postDataService.postphoto(params).then(servicephoto => {
         this.status = servicephoto
         if (this.status == true) {
-          this.navCtrl.navigateForward(['/menu/overview']);
+          this.navCtrl.navigateForward(['/menuhead/overview']);
         }
         if (this.status == false) {
           alert("บันทึกข้อมูลไม่สำเร็จ")
