@@ -9,30 +9,24 @@ import { AuthServiceService } from '../../auth-service.service';
 export class NewsPage implements OnInit {
 
   //#region data
-
   header;
   type;
   content;
   date;
   data;
   Show = false;
-
   //#endregion
 
   //#region constuctor
-
   constructor(public DataService: AuthServiceService) {
     this.DataService.getnew().subscribe(data => {
       console.log(data);
       this.data = data;
-
     })
   }
-
   //#endregion
 
-  //#region click
-
+  //#region onchang
   onChange(item) {
     this.Show = true;
     this.header = item.title
@@ -40,14 +34,11 @@ export class NewsPage implements OnInit {
     this.content = item.content
     this.date = item.updated_at
   }
-
   //#endregion
 
   //#region start
-
   ngOnInit() {
   }
-
   //#endregion
 
 }

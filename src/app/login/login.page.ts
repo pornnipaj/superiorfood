@@ -13,7 +13,6 @@ import { StorageService, User } from '../storage.service';
 export class LoginPage implements OnInit {
 
   //#region data
-
   name;
   username;
   position;
@@ -25,36 +24,29 @@ export class LoginPage implements OnInit {
   status;
   role;
   items: User[] = [];
-  newUser: User = <User>{}; 
-
+  newUser: User = <User>{};
   //#endregion
 
   //#region constructor
-
   @ViewChild('mylist', { static: false }) mylist: IonList;
-
   constructor(public alertController: AlertController,
     public loadingController: LoadingController,
     public postDataService: PostDataService,
     public navCtrl: NavController,
     private platform: Platform,
     private storageService: StorageService) {
-
     setTimeout(() => {
       this.ngOnInit();
     }, 500);
-
     this.platform.ready().then(() => {
       this.loadItems();
     });
 
     this.user = [];
   }
-
   //#endregion
 
   //#region load
-
   async load() {
     const loading = await this.loadingController.create({
       message: 'กำลังเข้าสู่ระบบ...',
@@ -95,9 +87,7 @@ export class LoginPage implements OnInit {
   }
   //#endregion
 
-  //#region event click
-
-
+  //#region login
   login() {
     this.load();
     this.user.email = this.user.email;
@@ -118,9 +108,10 @@ export class LoginPage implements OnInit {
         this.check();
       }
     });
-
   }
+  //#endregion
 
+  //#region check
   async check() {
     if (this.status == true) {
       this.newUser.id = 1;
@@ -135,12 +126,13 @@ export class LoginPage implements OnInit {
       });
 
     }
-    if (this.role == true) {
-      this.navCtrl.navigateForward(['/menuhead/overview']);
-    }
-    if (this.role == false) {
-      this.navCtrl.navigateForward(['/menu/overview']);
-    }
+    this.navCtrl.navigateForward(['/menuhead/overview']);
+    // if (this.role == true) {
+    //   this.navCtrl.navigateForward(['/menuhead/overview']);
+    // }
+    // if (this.role == false) {
+    //   this.navCtrl.navigateForward(['/menu/overview']);
+    // }
     if (this.status == false) {
       const alert = await this.alertController.create({
         message: 'อีเมลล์ หรือ รหัสผ่านไม่ถูกต้อง',
@@ -150,26 +142,23 @@ export class LoginPage implements OnInit {
       await alert.present();
     }
   }
+  //#endregion
 
+  //#region checkspace
   checkspace() {
     cordova.exec(function (result) {
-      alert("Free Disk Space: " + result);
+      // alert("Free Disk Space: " + result);
     }, function (error) {
-      alert("Error: " + error);
+      // alert("Error: " + error);
     }, "File", "getFreeDiskSpace", []);
-
   }
-
   //#endregion
 
   //#region start
-
   ngOnInit() {
     this.storageService.resetLocalStorage();
     // this.checkspace();
-
   }
-
   //#endregion
 
 }

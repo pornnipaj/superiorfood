@@ -13,6 +13,7 @@ import { PostDataService } from '../../../post-data.service';
 })
 export class CmPage implements OnInit {
 
+  //#region data
   items;
   name;
   type = "CM";
@@ -30,21 +31,17 @@ export class CmPage implements OnInit {
   myempID: string;
   empid: any;
   listpm;
+  //#endregion
 
   //#region constructor
-
   constructor(public DataService: AuthServiceService,
     private route: ActivatedRoute,
     public navCtrl: NavController,
     private storageService: StorageService,
     private postDataService: PostDataService) {
-
-
     this.json;
     this.listpmdetail = [];
-
     this.job = [];
-
     this.storageService.getUser().then(items => {
       this.items = items;
       // console.log(items);      
@@ -60,11 +57,9 @@ export class CmPage implements OnInit {
     this.ChangeMonth();
 
   }
-
   //#endregion
 
-  //#region click
-
+  //#region loaditem
   loadItems() {
     this.storageService.getUser().then(items => {
       this.items = items;
@@ -75,30 +70,27 @@ export class CmPage implements OnInit {
       }
     });
   }
+  //#endregion
 
-  click(item,data) {
-
+  //#region click
+  click(item, data) {
     console.log(item);
     let params = {
       item: item.value,
       type: this.type,
       date: data.planDate,
     }
-
     let navigationExtras: NavigationExtras = {
       queryParams: {
         data: JSON.stringify(params)
       }
     };
     console.log(navigationExtras);
-
     this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
-
   }
-
   //#endregion
 
-  //#region Month
+  //#region ChangeMonth
   ChangeMonth() {
     const month = new Date().getMonth() + 1;
     this.intMonth = month;
@@ -201,7 +193,9 @@ export class CmPage implements OnInit {
       });
     });
   }
+  //#endregion
 
+  //#region changeMonthNext
   changeMonthNext() {
     // const year = new Date().getFullYear();
     //#region nextmonth
@@ -323,7 +317,9 @@ export class CmPage implements OnInit {
       });
     });
   }
+  //#endregion
 
+  //#region changeMonthBack
   changeMonthBack() {
     //#region 
     if (this.month == 'มกราคม') {
@@ -427,13 +423,10 @@ export class CmPage implements OnInit {
       });
     });
   }
-
   //#endregion
 
   //#region start
-
   ngOnInit() {
-
     this.storageService.getUser().then(items => {
       this.items = items;
       // console.log(items);      
@@ -442,8 +435,6 @@ export class CmPage implements OnInit {
         this.name = this.items[i].name;
       }
     });
-
-
     this.storageService.getUser().then(items => {
       this.items = items;
       // console.log(items);      

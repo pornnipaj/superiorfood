@@ -12,14 +12,11 @@ import { NavController } from '@ionic/angular';
 export class SettingPage implements OnInit {
 
   //#region data
-
   user;
   name;
-
   //#endregion
 
   //#region constructor
-
   constructor(
     private platform: Platform,
     private sqlite: SQLite,
@@ -27,23 +24,18 @@ export class SettingPage implements OnInit {
     public navCtrl: NavController
   ) {
   }
-
   //#endregion
 
   //#region start
-
   ngOnInit() {
   }
-
   //#endregion
 
-  //#region click
-
+  //#region logout
   logout() {
     this.storageService.resetLocalStorage();
     this.navCtrl.navigateForward(['/login']);
   }
-
   //#endregion
   
 }

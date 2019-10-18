@@ -21,21 +21,14 @@ export class ProductPage implements OnInit {
   cat3
   ProductName;
   ProductCode;
-
   //#endregion data
 
   //#region constructor
-
-  constructor(private DataService: AuthServiceService) {
-
-    
-
+  constructor(private DataService: AuthServiceService) {  
     this.DataService.getProduct().subscribe(data => {
-      this.data = data;    
-     
+      this.data = data;         
       for (let i = 0; i < this.data.length; i++) {
-        this.data[i].DetailProduct = JSON.parse(this.data[i].DetailProduct);                
-
+        this.data[i].DetailProduct = JSON.parse(this.data[i].DetailProduct);             
         if (this.data[i].ProductID == 'd0506370-b111-45d5-8532-69ff00d833de') {          
           this.product = this.data[i].DetailProduct;
           this.title = this.data[i].ProductName;
@@ -44,6 +37,9 @@ export class ProductPage implements OnInit {
       }
     });    
   }  
+  //#endregion
+  
+  //#region onchang
   onChange(value) {
     this.items = value.detail.value
 
@@ -52,15 +48,15 @@ export class ProductPage implements OnInit {
       
       for (let i = 0; i < this.data.length; i++) {
         this.data[i].DetailProduct = JSON.parse(this.data[i].DetailProduct);
-
         if (this.data[i].ProductID == this.items) {
           this.product = this.data[i].DetailProduct;
-
         }
       }
     });
   }
+  //#endregion
 
+  //#region detail
   detail(item) {
     console.log(item);
     this.ItemsName = item.ItemsName;
@@ -72,14 +68,12 @@ export class ProductPage implements OnInit {
     this.ProductName = item.ProductName;
     this.ProductCode = item.ProductCode;
   }
+  //#endregion
 
+  //#region start
   ngOnInit() {
 
   }
-
   //#endregion
 
-  //#region click
-
-  //#endregion
 }

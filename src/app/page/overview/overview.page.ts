@@ -413,7 +413,7 @@ export class OverviewPage implements OnInit {
 
   //#endregion
 
-  //#region click
+  //#region take
 
   Take() {
     const options: CameraOptions = {

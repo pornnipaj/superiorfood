@@ -16,7 +16,6 @@ import { Router } from '@angular/router';
 export class JobPage implements OnInit {
 
   //#region data
-
   data: any;
   empID;
   items
@@ -30,7 +29,6 @@ export class JobPage implements OnInit {
   //#endregion
 
   //#region constructor
-
   constructor(public DataService: AuthServiceService,
     public navCtrl: NavController,
     private route: ActivatedRoute,
@@ -40,58 +38,51 @@ export class JobPage implements OnInit {
   ) {
     this.job = [];
     this.jobdetail = [];
-    
   }
-
   //#endregion
 
   //#region click
-
   click(item) {
     console.log(item.JobType);
-    
     if (item.JobType == "CM") {
       console.log(item);
-
-    let params = {
-      item: item,
-      install: item.installnew
-    }
-    console.log(params);
-    
-
-    const navigationExtras: NavigationExtras = {
-      queryParams: {
-        data: JSON.stringify(params)
+      let params = {
+        item: item,
+        install: item.installnew
       }
-    };
-    this.navCtrl.navigateForward(['/job/jobdetail'], navigationExtras);
-    console.log("sent", navigationExtras);
-    }else{
+      console.log(params);
+
+      const navigationExtras: NavigationExtras = {
+        queryParams: {
+          data: JSON.stringify(params)
+        }
+      };
+      this.navCtrl.navigateForward(['/job/jobdetail'], navigationExtras);
+      console.log("sent", navigationExtras);
+    } else {
       console.log(item);
-
-    let params = {
-      item: item,
-      install: item.installID
-    }
-    console.log(params);
-    
-
-    const navigationExtras: NavigationExtras = {
-      queryParams: {
-        data: JSON.stringify(params)
+      let params = {
+        item: item,
+        install: item.installID
       }
-    };
-    this.navCtrl.navigateForward(['/job/jobdetail'], navigationExtras);
-    console.log("sent", navigationExtras);
+      console.log(params);
+
+      const navigationExtras: NavigationExtras = {
+        queryParams: {
+          data: JSON.stringify(params)
+        }
+      };
+      this.navCtrl.navigateForward(['/job/jobdetail'], navigationExtras);
+      console.log("sent", navigationExtras);
     }
   }
+  //#endregion
 
-
+  //#region loaditem
   loadItems() {
     this.month = new Date().getMonth() + 1;
     this.year = new Date().getFullYear();
- 
+
     this.storageService.getUser().then(items => {
       this.items = items;
       // console.log(items);      
@@ -112,20 +103,20 @@ export class JobPage implements OnInit {
           }
           for (let i = 0; i < this.jobresolve.length; i++) {
             this.type = this.jobresolve[i].JobType
-          }        
-        });        
+          }
+        });
       }
     });
   }
-
   //#endregion
 
   //#region start
-
   ngOnInit() {
     this.loadItems();
-
   }
+  //#endregion
+
+  //#region next
   next(type) {
     console.log(type);
 
@@ -148,7 +139,7 @@ export class JobPage implements OnInit {
 
     }
   }
-
-}
   //#endregion
+}
+
 
