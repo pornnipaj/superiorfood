@@ -13,21 +13,21 @@ import { SignaturePage } from '../joball/detailofdetaillistpm/signature/signatur
 import { ActivatedRoute, Data } from '@angular/router';
 
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
-import { Platform , PopoverController,ModalController,Events} from '@ionic/angular';
+import { Platform, PopoverController, ModalController, Events,LoadingController } from '@ionic/angular';
 import { StorageService, User } from '../../storage.service';
 import { ModalpopPage } from '../overview/modalpop/modalpop.page';
 
 import { from } from 'rxjs';
-@Component({ 
+@Component({
   selector: 'app-overview',
   templateUrl: './overview.page.html',
   styleUrls: ['./overview.page.scss'],
 })
 
 export class OverviewPage implements OnInit {
-  
+
   //#region  data
-  
+
   Today;
   month;
   intMonth;
@@ -49,14 +49,19 @@ export class OverviewPage implements OnInit {
   user;
   jobOverview;
   items: User[] = [];
-
+  cm;
+  pm;
+  install;
+  uninstall;
+  job;
   //#endregion
 
   //#region constructor
 
   constructor(public DataService: AuthServiceService,
-    public http: HttpClient,    
+    public http: HttpClient,
     public postDataService: PostDataService,
+    public loadingController: LoadingController,
     private route: ActivatedRoute,
     private camera: Camera,
     private popoverController: PopoverController,
@@ -64,9 +69,9 @@ export class OverviewPage implements OnInit {
     private sqlite: SQLite,
     private events: Events,
     private storageService: StorageService) {
-      setTimeout(() => {
-        this.ngOnInit();
-      }, 500);
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 500);
     this.user = [];
     this.test = [];
     this.ChangeMonth();
@@ -74,16 +79,33 @@ export class OverviewPage implements OnInit {
     this.Today = new Date();
 
   }
-  async Openpop(ev: any){
+  loadpage(){
+    setTimeout(() => {
+      this.load();
+      this.ngOnInit();
+    }, 500);
+  }
+
+  async load() {
+    const loading = await this.loadingController.create({
+      message: 'กำลังโหลดข้อมูล...',
+      duration: 500,
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+    });
+    return await loading.present();
+  }
+
+  async Openpop(ev: any) {
     const popover = await this.popoverController.create({
       component: ModalpopPage,
       event: ev,
       translucent: true,
       componentProps: {
-        pm: 1,
-        cm: 1,
-        install: 1,
-        uninstall:1
+        pm: this.pm,
+        cm: this.cm,
+        install: this.install,
+        uninstall: this.uninstall
       }
     });
     return await popover.present();
@@ -423,13 +445,18 @@ export class OverviewPage implements OnInit {
         this.user.empID = this.empID;
         this.user.month = this.intMonth;
         this.user.year = this.intYear;
-        // console.log(this.user);
+        console.log(this.user);
         this.postDataService.postjobOverview(this.user).then(work => {
-          // console.log('worknow', work);
+          console.log('worknow', work);
           this.jobOverview = work;
           for (let i = 0; i < this.jobOverview.length; i++) {
             this.workall = this.jobOverview[i].WorkAll;
             this.workfinish = this.jobOverview[i].WorkFinish;
+            this.cm = this.jobOverview[i].cm;
+            this.pm = this.jobOverview[i].pm;
+            this.install = this.jobOverview[i].install;
+            this.uninstall = this.jobOverview[i].uninstall;
+            this.job = this.jobOverview[i].job;
           }
         });
       }

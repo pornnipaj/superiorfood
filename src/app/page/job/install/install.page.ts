@@ -34,6 +34,7 @@ export class InstallPage implements OnInit {
   myempID: string;
   empid: any;
   listpm;
+  planDate;
 
   //#endregion
 
@@ -62,7 +63,9 @@ export class InstallPage implements OnInit {
     });
 
     this.ChangeMonth();
-
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 500);
   }
 
   //#endregion
@@ -80,13 +83,14 @@ export class InstallPage implements OnInit {
     });
   }
 
-  click(item) {
+  click(item,data) {
 
-    console.log(item);
+    console.log(data);
 
     let params = { 
       item: item.value,
       type: this.type, 
+      date: data.planDate,
     } 
 
     let navigationExtras: NavigationExtras = {
@@ -466,6 +470,7 @@ export class InstallPage implements OnInit {
   
         for (let i = 0; i < this.listpm.length; i++) {
           this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+          this.planDate = this.listpm[i].planDate
         }
   
         console.log('listpm', this.listpm);

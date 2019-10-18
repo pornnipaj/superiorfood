@@ -32,7 +32,7 @@
                     </div>
                     <div class="portlet-body" style="padding: 5px;">
                         <ul class="list-group">
-                            <li *ngFor="let item of data.customerdata | keyvalue" (click)="click(item)"
+                            <li *ngFor="let item of data.customerdata | keyvalue" (click)="click(item,data)"
                                 class="list-group-item">
                                 <i class="fa fa-square-o" #lblSuccess
                                     *ngIf="item.value.WorkAll != item.value.WorkFinish; else lblSuccess">

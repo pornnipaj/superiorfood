@@ -4,7 +4,8 @@ import { ListpmPage } from '../joball/listpm/listpm.page';
 import { from } from 'rxjs';
 import { NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
-
+import { PostDataService } from '../../post-data.service';
+import { StorageService } from '../../storage.service'
 @Component({
   selector: 'app-joball',
   templateUrl: './joball.page.html',
@@ -17,26 +18,38 @@ export class JoballPage implements OnInit {
   data: any;
   
   empid: any;
-  
+  emp;
+  items
+  empID;
   //#endregion
   
   //#region constructor
 
   @ViewChild(NavController, { static: false }) myNav;
 
-  constructor(public DataService: AuthServiceService, public navCtrl: NavController) {
+  constructor(public DataService: AuthServiceService, 
+    public navCtrl: NavController,
+    private storageService: StorageService,
+    private postDataService: PostDataService) {
+      this.emp = [];
 
-    this.DataService.getJobAll().subscribe(data => {
-      this.data = data;
-      console.log(this.data);
+      this.storageService.getUser().then(items => {
+        this.items = items;
+        // console.log(items);      
+        for (let i = 0; i < this.items.length; i++) {
+          this.empID = this.items[i].empID;
+          console.log(this.empID);
+        }
+        this.emp.empid = this.empID;
+      console.log(this.emp);
+  
+      this.postDataService.postEmployee(this.emp).then(work => {
+        this.data = work;
+        console.log(this.data);
+      });
+      });
+
       
-      //       for(let i = 0; i <= this.data.length; i++){
-      //         this.name  = this.data[0].CustomerName
-      //         console.log(this.name);
-      // } 
-
-    });
-
   }
 
   //#endregion

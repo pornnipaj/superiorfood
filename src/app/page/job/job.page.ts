@@ -25,6 +25,8 @@ export class JobPage implements OnInit {
   job;
   jobresolve;
   jobdetail;
+  type;
+  isShow = false;
   //#endregion
 
   //#region constructor
@@ -38,7 +40,7 @@ export class JobPage implements OnInit {
   ) {
     this.job = [];
     this.jobdetail = [];
-
+    
   }
 
   //#endregion
@@ -46,42 +48,72 @@ export class JobPage implements OnInit {
   //#region click
 
   click(item) {
-    console.log(item);
+    console.log(item.JobType);
+    
+    if (item.JobType == "CM") {
+      console.log(item);
+
+    let params = {
+      item: item,
+      install: item.installnew
+    }
+    console.log(params);
+    
 
     const navigationExtras: NavigationExtras = {
       queryParams: {
-        data: JSON.stringify(item)
+        data: JSON.stringify(params)
       }
     };
     this.navCtrl.navigateForward(['/job/jobdetail'], navigationExtras);
     console.log("sent", navigationExtras);
+    }else{
+      console.log(item);
+
+    let params = {
+      item: item,
+      install: item.installID
+    }
+    console.log(params);
+    
+
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        data: JSON.stringify(params)
+      }
+    };
+    this.navCtrl.navigateForward(['/job/jobdetail'], navigationExtras);
+    console.log("sent", navigationExtras);
+    }
   }
+
 
   loadItems() {
     this.month = new Date().getMonth() + 1;
     this.year = new Date().getFullYear();
-
+ 
     this.storageService.getUser().then(items => {
       this.items = items;
       // console.log(items);      
       for (let i = 0; i < this.items.length; i++) {
         this.empID = this.items[i].empID;
-        console.log(this.empID, this.month, this.year);
+        // console.log(this.empID, this.month, this.year);
 
-        this.job.empID = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b";
-        this.job.month = "1";
-        this.job.year = "2016";
-
-        console.log(this.job);
+        this.job.empID = this.empID;
+        this.job.month = this.month;
+        this.job.year = this.year;
+        // console.log(this.job);
 
         this.postDataService.postjob(this.job).then(work => {
           this.jobresolve = work;
           console.log(this.jobresolve)
-          for (let i = 0; i < this.jobresolve.length; i++) {
-            // this.jobresolve[i].customerdata = JSON.parse(this.jobresolve[i].customerdata);
+          if (this.jobresolve == false) {
+            this.isShow = true;
           }
-        });
-
+          for (let i = 0; i < this.jobresolve.length; i++) {
+            this.type = this.jobresolve[i].JobType
+          }        
+        });        
       }
     });
   }

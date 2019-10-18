@@ -32,6 +32,8 @@ export class ListpmPage implements OnInit {
   myempID: string;
   empid: any;
   listpm;
+  myId;
+  emp;
   //#endregion
 
   //#region constructor
@@ -41,7 +43,12 @@ export class ListpmPage implements OnInit {
     public navCtrl: NavController,
     private storageService: StorageService,
     private postDataService: PostDataService) {
-
+      this.route.queryParams.subscribe(params => {
+        this.myId = JSON.parse(params["data"]);
+        this.emp = this.myId.PersonID
+        console.log(this.emp);
+        
+      });
 
     this.json;
     this.listpmdetail = [];
@@ -54,7 +61,7 @@ export class ListpmPage implements OnInit {
       for (let i = 0; i < this.items.length; i++) {
         this.myempID = this.items[i].empID;
         this.name = this.items[i].name;
-        console.log(this.myempID);
+        // console.log(this.myempID);
       }
     });
 this.ChangeMonth();
@@ -70,7 +77,7 @@ this.ChangeMonth();
       // console.log(items);      
       for (let i = 0; i < this.items.length; i++) {
         this.myempID = this.items[i].empID;
-        console.log(this.myempID);
+        // console.log(this.myempID);
       }
     });
   }
@@ -181,9 +188,9 @@ this.ChangeMonth();
     console.log(this.empid);
 
 
-    this.job.empID = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b";
-    this.job.month = 8;
-    this.job.year = 2019;
+    this.job.empID = this.emp;
+    this.job.month = this.intMonth;
+    this.job.year = this.intYear;
     this.job.jobtype = this.type
 
     this.postDataService.postJobList(this.job).then(work => {
@@ -294,21 +301,14 @@ this.ChangeMonth();
     console.log(this.empid);
 
 
-    this.job.empID = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b";
-    this.job.month = 8;
-    this.job.year = 2019;
+    this.job.empID = this.emp;
+    this.job.month = this.intMonth;
+    this.job.year = this.intYear;
     this.job.jobtype = this.type
 
     this.postDataService.postJobList(this.job).then(work => {
       this.listpm = work;
       console.log(this.listpm);
-
-
-      for (let i = 0; i < this.listpm.length; i++) {
-        this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
-      }
-
-      console.log('listpm', this.listpm);
 
     });
   }
@@ -389,21 +389,14 @@ this.ChangeMonth();
     console.log(this.empid);
 
 
-    this.job.empID = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b";
-    this.job.month = 8;
-    this.job.year = 2019;
+    this.job.empID = this.emp;
+    this.job.month = this.intMonth;
+    this.job.year = this.intYear;
     this.job.jobtype = this.type
 
     this.postDataService.postJobList(this.job).then(work => {
       this.listpm = work;
       console.log(this.listpm);
-
-
-      for (let i = 0; i < this.listpm.length; i++) {
-        this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
-      }
-
-      console.log('listpm', this.listpm);
 
     });
   }
@@ -424,21 +417,14 @@ this.ChangeMonth();
     });
 
 
-    this.job.empID = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b";
-    this.job.month = 8;
-    this.job.year = 2019;
+    this.job.empID = this.emp;
+    this.job.month = this.intMonth;
+    this.job.year = this.intYear;
     this.job.jobtype = this.type
 
     this.postDataService.postJobList(this.job).then(work => {
       this.listpm = work;
       console.log(this.listpm);
-
-
-      for (let i = 0; i < this.listpm.length; i++) {
-        this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
-      }
-
-      console.log('listpm', this.listpm);
 
     });
 

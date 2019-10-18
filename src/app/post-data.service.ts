@@ -65,7 +65,7 @@ export class PostDataService {
 
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post(this.apiServer_url + '/API/DetailJob.ashx' + '?planID=' + jobdetail.planID + '&tranID=' + jobdetail.tranID 
+      this.http.post(this.apiServer_url + '/API/DetailJob.ashx' + '?planID=' + jobdetail.planID + '&tranID=' + jobdetail.tranID + '&type=' + jobdetail.type 
       + '&insID=' + jobdetail.insID ,
         JSON.stringify(jobdetail), option).subscribe(data => {
           resovle(data);
@@ -110,8 +110,23 @@ export class PostDataService {
 
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post(this.apiServer_url + '/API/DetailListpm.ashx' + '?cusID=' + detaillistpm.cusID + '&planID=' + detaillistpm.planID + '&month=' + detaillistpm.month + '&year=' + detaillistpm.year + '&jobtype=' + detaillistpm.type ,
+      this.http.post(this.apiServer_url + '/API/DetailListpm.ashx' + '?cusID=' + detaillistpm.cusID + '&planID=' + detaillistpm.planID + '&month=' + detaillistpm.month 
+      + '&year=' + detaillistpm.year + '&jobtype=' + detaillistpm.type + '&date=' + detaillistpm.date + '&empid=' + detaillistpm.empid,
         JSON.stringify(detaillistpm), option).subscribe(data => {
+          resovle(data);
+        }, error => {
+          reject(error)
+        });
+    });
+  }
+
+  postEmployee(emp) {
+    return new Promise((resovle, reject) => {
+
+      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+      this.http.post(this.apiServer_url + '/API/Employee.ashx' + '?empID=' + emp.empid ,
+        JSON.stringify(emp), option).subscribe(data => {
           resovle(data);
         }, error => {
           reject(error)
@@ -172,4 +187,32 @@ export class PostDataService {
         });
     });
   }
+
+  postTranid(tran) {
+    return new Promise((resovle, reject) => {
+
+      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+      this.http.post(this.apiServer_url + '/Web/Test2.aspx' + '?empID=' + tran.empID + '&planID=' + tran.serviceplanid + '&installID=' + tran.installplanid,
+        JSON.stringify(tran), option).subscribe(data => {
+          resovle(data);
+        }, error => {
+          reject(error) 
+        });
+    });
+  }
+
+  postdevice(form) {
+    return new Promise((resovle, reject) => {      
+      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+      this.http.post(this.apiServer_url + '/API/Device.asmx/Devices', JSON.stringify(form), option).subscribe(data => {
+        resovle(data);
+      }, error => {
+        reject(error)
+      });
+    });
+  }
+
 }
+

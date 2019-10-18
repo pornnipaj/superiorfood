@@ -60,7 +60,9 @@ export class UninstallPage implements OnInit {
     });
 
     this.ChangeMonth();
-
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 500);
   }
 
   //#endregion
@@ -78,13 +80,14 @@ export class UninstallPage implements OnInit {
     });
   }
 
-  click(item) {
+  click(item,data) {
 
     console.log(item);
 
     let params = { 
       item: item.value,
       type: this.type, 
+      date: data.planDate,
     } 
 
     let navigationExtras: NavigationExtras = {

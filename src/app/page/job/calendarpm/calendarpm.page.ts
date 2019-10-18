@@ -5,7 +5,7 @@ import { FullCalendarComponent } from '@fullcalendar/angular';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { PostDataService } from '../../../post-data.service';
 import { StorageService } from '../../../storage.service';
-import { DomSanitizer,SafeResourceUrl } from "@angular/platform-browser";
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-calendarpm',
@@ -40,7 +40,7 @@ export class CalendarpmPage implements OnInit {
   //#region constructor
 
   constructor(private postDataService: PostDataService,
-    private storageService:StorageService,
+    private storageService: StorageService,
     sanitizer: DomSanitizer) {
 
     this.storageService.getUser().then(items => {
@@ -50,30 +50,18 @@ export class CalendarpmPage implements OnInit {
         this.myempID = this.items[i].empID;
         console.log(this.myempID);
       }
-    this.myempID = this.myempID
-    this.month = 7
-    this.year = 2019
-    this.url = sanitizer.bypassSecurityTrustResourceUrl('http://superior.wingplusweb.com/Web/WebFormCalendar.aspx' + '?empid=' + this.myempID + '&year=' + this.year + '&month=' + this.month);    
+      const month = new Date().getMonth() + 1;
+      const year = new Date().getFullYear();
+
+      this.myempID = this.myempID
+      this.month = month
+      this.year = year
+      this.url = sanitizer.bypassSecurityTrustResourceUrl('http://superior.wingplusweb.com/Web/WebFormCalendar.aspx' + '?empid=' + this.myempID + '&year=' + this.year + '&month=' + this.month);
     });
-    
-    
-    this.eventsModel = [];
-    this.calendar = [];
-    this.calendar.empID = '15eb4290-7426-446b-9ab9-acf68b467e72';
-    this.calendar.month = 8;
-    this.calendar.year = 2019;
-
-    // console.log(this.calendar);
-
-    this.postDataService.postPlan(this.calendar).then(plan => {
-      this.data = plan;
-      });
-
-    
   }
 
   //#endregion
-  
+
   //#region start
 
   ngOnInit() {
@@ -81,12 +69,12 @@ export class CalendarpmPage implements OnInit {
     // this.options = {
     //   editable: true,      
     //   theme: 'standart', // default view, may be bootstrap
-      
+
     //   // add other plugins
     //   plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin],
     // }
 
-    
+
     // this.postDataService.postPlan(this.calendar).then(plan => {
     //   this.data = plan;
     //   console.log('data',this.data)
@@ -99,9 +87,6 @@ export class CalendarpmPage implements OnInit {
     //   console.log('test',this.eventsModel);
     // });
 
-      
-       
-
     // this.date = [{
     //   title: 'ยาโยอิ บิ๊กซี บางพลี',
     //   date: '2019-09-02'
@@ -111,8 +96,8 @@ export class CalendarpmPage implements OnInit {
     //   date: '2019-09-05'
     // }];
     // console.log('date', this.date);
-    
-    
+
+
   }
   //#endregion
 

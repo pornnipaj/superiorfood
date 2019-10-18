@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthServiceService } from '../auth-service.service';
 import { AlertController, Platform, IonList } from '@ionic/angular';
 import { PostDataService } from '../post-data.service';
-import { NavController,LoadingController  } from '@ionic/angular';
+import { NavController, LoadingController } from '@ionic/angular';
 import { StorageService, User } from '../storage.service';
 
 @Component({
@@ -25,7 +25,7 @@ export class LoginPage implements OnInit {
   status;
   role;
   items: User[] = [];
-  newUser: User = <User>{};
+  newUser: User = <User>{}; 
 
   //#endregion
 
@@ -40,10 +40,10 @@ export class LoginPage implements OnInit {
     private platform: Platform,
     private storageService: StorageService) {
 
-      setTimeout(() => {
-        this.ngOnInit();
-      }, 500);
-      
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 500);
+
     this.platform.ready().then(() => {
       this.loadItems();
     });
@@ -52,16 +52,19 @@ export class LoginPage implements OnInit {
   }
 
   //#endregion
-  async load(){
-    const loading = await this.loadingController.create({   
+
+  //#region load
+
+  async load() {
+    const loading = await this.loadingController.create({
       message: 'กำลังเข้าสู่ระบบ...',
-      duration:500,
+      duration: 500,
       translucent: true,
       cssClass: 'custom-class custom-loading'
     });
     return await loading.present();
-}
-
+  }
+  //#endregion
 
   //#region adddata to storage
   addUser() {
@@ -111,11 +114,11 @@ export class LoginPage implements OnInit {
         this.workfinish = this.data[i].WorkFinish;
         this.empID = this.data[i].empID;
         this.status = this.data[i].Status;
-        this.role = this.data[i].HeadTechnician;        
+        this.role = this.data[i].HeadTechnician;
         this.check();
       }
-    });  
-    
+    });
+
   }
 
   async check() {
@@ -129,8 +132,8 @@ export class LoginPage implements OnInit {
 
       this.storageService.addUser(this.newUser).then(item => {
         this.newUser = <User>{};
-      });      
-      
+      });
+
     }
     if (this.role == true) {
       this.navCtrl.navigateForward(['/menuhead/overview']);
@@ -164,7 +167,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.storageService.resetLocalStorage();
     // this.checkspace();
-    
+
   }
 
   //#endregion

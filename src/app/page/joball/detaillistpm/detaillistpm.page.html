@@ -107,6 +107,8 @@
             <label class="col-8 subtext">{{data.value.ItemsName}}</label>
             <label class="col-4 text">Serial No:</label>
             <label class="col-8 subtext">{{data.value.SerialNo}}</label>
+            <label class="col-4 text" *ngIf="new">New Serial No:</label>
+            <label class="col-8 subtext" *ngIf="new">{{data.value.SerialNoNew}}</label>
             <label class="col-4 text">ประเภทงาน :</label>
             <label class="col-8 subtext">{{data.value.JobType}}</label>
           </div>

@@ -38,22 +38,15 @@ planID;
 tranID;
 insID;
 image;
-img1;
-img2;
-img3;
-img4;
-img5;
-img6;
-img7;
-img8;
-img9;
-img10;
 type;
 isShowImage = false;
 isShowImageInstall = false;
 url: SafeResourceUrl;
 sanitizer: DomSanitizer;
-
+img;
+empID;
+installnew;
+link = 'http://localhost:41604';
 //#endregion
   constructor(public DataService: AuthServiceService,
     private route: ActivatedRoute,
@@ -61,28 +54,34 @@ sanitizer: DomSanitizer;
     private storageService: StorageService,
     private postDataService: PostDataService) {
       this.jobdetail = [];
-
+      this.img = [];
       this.route.queryParams.subscribe(params => {
         this.query = JSON.parse(params["data"]);
-        this.data = this.query.data
-        this.insID = this.query.installID
-        this.type = this.query.type
-        console.log(this.query);
-        
-        for (let i = 0; i < this.data.length; i++) {
-          this.data = (this.data[i])
-        }
-        this.planID = this.data.planID
-        this.tranID = this.data.tranID
+        this.insID = this.query.install
+        this.type = this.query.item.JobType
+        this.tranID = this.query.item.tranID
+        this.planID = this.query.item.planID
+        console.log("query",this.insID);
       });
-        
-      this.url = sanitizer.bypassSecurityTrustResourceUrl('http://superior.wingplusweb.com/Web/WebFormCalendar.aspx')
-     }
+      this.storageService.getUser().then(items => {
+        this.items = items;
+        // console.log(items);      
+        for (let i = 0; i < this.items.length; i++) {
+          this.empID = this.items[i].empID;
+          console.log(this.planID);
+          console.log(this.insID);        
+          
+          console.log(this.empID);
+        }       
+        this.url = sanitizer.bypassSecurityTrustResourceUrl('http://superior.wingplusweb.com/Web/CK_CheckInfo.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.insID);
+      });
+    }
 
   ngOnInit() {
     this.jobdetail.planID = this.planID;
     this.jobdetail.tranID = this.tranID;
     this.jobdetail.insID = this.insID;
+    this.jobdetail.type = this.type
 
     console.log(this.jobdetail);
 
@@ -92,101 +91,56 @@ sanitizer: DomSanitizer;
       for (let i = 0; i < this.result.length; i++) {
         this.image = JSON.parse(this.result[i].image);
       }
-      console.log(this.image);
+      console.log(this.image); 
       if (this.type == "INSTALL") {
-        this.isShowImageInstall = true;
-        for (let v = 0; v < this.image.length; v++) {
-          if (this.image[v].type == "step1_pic1" ) {
-            this.img1 = this.image[v].file_path
-            // this.img1 = this.sanitizer.bypassSecurityTrustResourceUrl('D:\wingplus\Superiors\WingPlus\Data\image\4876c93f-d1db-4879-a3c5-8df3af959ddf_step1_pic2.png');    
-            // this.img1 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
-            console.log("bf1",this.img1);          
-          }  
-          if (this.image[v].type == "step1_pic2" ) {
-            this.img2 = this.image[v].file_path
-            console.log("bf2",this.img2);         
-          }           
-          if (this.image[v].type == "step3_pic1" ) {
-            this.img6 = this.image[v].file_path
-            // this.img6 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
-            console.log("af1",this.img6);          
-          }
-          if (this.image[v].type == "step3_pic2" ) {
-            this.img7 = this.image[v].file_path
-            // this.img7 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
-            console.log("af2",this.img7);          
-          }
-          if (this.image[v].type == "step3_pic3" ) {
-            this.img8 = this.image[v].file_path
-            // this.img8 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
-            console.log("af3",this.img8);          
-          }
-          if (this.image[v].type == "step3_pic4" ) {
-            this.img9 = this.image[v].file_path
-            // this.img9 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
-            console.log("af4",this.img2);          
-          }
-          if (this.image[v].type == "step3_pic5" ) {
-            this.img10 = this.image[v].file_path
-            // this.img10 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
-            console.log("af5",this.img10);          
-          }   
-        }
+        this.isShowImage = true;
+        this.isShowImageInstall = false;
       }else{
         this.isShowImage = true;
-        for (let v = 0; v < this.image.length; v++) {
-          if (this.image[v].type == "step1_pic1" ) {
-            this.img1 = this.image[v].file_path
-            // this.img1 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
-            console.log("bf1",this.img1);          
-          }  
-          if (this.image[v].type == "step1_pic2" ) {
-            this.img2 = this.image[v].file_path
-            // this.img2 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
-            console.log("bf2",this.img2);          
-          } 
-          if (this.image[v].type == "step1_pic3" ) {
-            this.img3 = this.image[v].file_path
-            // this.img3 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
-            console.log("bf3",this.img3);          
-          }
-          if (this.image[v].type == "step1_pic4" ) {
-            this.img4 = this.image[v].file_path
-            // this.img4 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
-            console.log("bf4",this.img4);          
-          }
-          if (this.image[v].type == "step1_pic5" ) {
-            this.img5 = this.image[v].file_path
-            // this.img5 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
-            console.log("bf5",this.img5);          
-          }
-          if (this.image[v].type == "step3_pic1" ) {
-            this.img6 = this.image[v].file_path
-            // this.img6 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
-            console.log("af1",this.img6);          
-          }
-          if (this.image[v].type == "step3_pic2" ) {
-            this.img7 = this.image[v].file_path
-            // this.img7 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
-            console.log("af2",this.img7);          
-          }
-          if (this.image[v].type == "step3_pic3" ) {
-            this.img8 = this.image[v].file_path
-            // this.img8 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
-            console.log("af3",this.img8);          
-          }
-          if (this.image[v].type == "step3_pic4" ) {
-            this.img9 = this.image[v].file_path
-            // this.img9 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
-            console.log("af4",this.img2);          
-          }
-          if (this.image[v].type == "step3_pic5" ) {
-            this.img10 = this.image[v].file_path
-            // this.img10 = "../../../../../assets/img/jpeg-20160104-134003223699135.jpg"
-            console.log("af5",this.img10);          
-          }   
+        this.isShowImageInstall = true;
+      }
+      for (let v = 0; v < this.image.length; v++) {
+        if (this.image[v].type == "step1_pic1" ) {
+          this.img.src1 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("bf1",this.img.src1);          
+        }  
+        if (this.image[v].type == "step1_pic2" ) {
+          this.img.src2 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("bf2",this.img.src2);          
+        } 
+        if (this.image[v].type == "step1_pic3" ) {
+          this.img.src3 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("bf3",this.img.src3);          
         }
-      }      
+        if (this.image[v].type == "step1_pic4" ) {
+          this.img.src4 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("bf4",this.img.src4);          
+        }
+        if (this.image[v].type == "step1_pic5" ) {
+          this.img.src5 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("bf5",this.img.src5);          
+        }
+        if (this.image[v].type == "step3_pic1" ) {
+          this.img.src6 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("af1",this.img.src6);          
+        }
+        if (this.image[v].type == "step3_pic2" ) {
+          this.img.src7 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("af2",this.img.src7);          
+        }
+        if (this.image[v].type == "step3_pic3" ) {
+          this.img.src8 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("af3",this.img.src8);          
+        }
+        if (this.image[v].type == "step3_pic4" ) {
+          this.img.src9 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("af4",this.img.src9);          
+        }
+        if (this.image[v].type == "step3_pic5" ) {
+          this.img.src10 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("af5",this.img.src10);          
+        }   
+      }   
       });
   }
 }

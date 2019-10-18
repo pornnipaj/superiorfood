@@ -57,7 +57,10 @@ export class ReportcheckpmPage implements OnInit {
         console.log(this.myempID);
       }
     });
-this.ChangeMonth()
+    this.ChangeMonth()
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 500);
   }
 
   //#endregion
@@ -75,14 +78,16 @@ this.ChangeMonth()
     });
   }
 
-  click(item) {
+  click(item, data) {
 
     console.log(item);
 
-    let params = { 
+    let params = {
       item: item.value,
-      type: this.type, 
-    } 
+      type: this.type,
+      date: data.planDate,
+    }
+    console.log(params);
 
     let navigationExtras: NavigationExtras = {
       queryParams: {
@@ -181,22 +186,33 @@ this.ChangeMonth()
     console.log(this.empid);
 
 
-    this.job.empID = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b";
-    this.job.month = 8;
-    this.job.year = 2019;
-    this.job.jobtype = this.type
-
-    this.postDataService.postJobList(this.job).then(work => {
-      this.listpm = work;
-      console.log(this.listpm);
-
-
-      for (let i = 0; i < this.listpm.length; i++) {
-        this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+    this.storageService.getUser().then(items => {
+      this.items = items;
+      // console.log(items);      
+      for (let i = 0; i < this.items.length; i++) {
+        this.empid = this.items[i].empID
+        this.name = this.items[i].name;
       }
+      this.job.empID = this.empid;
+      this.job.month = this.intMonth;
+      this.job.year = this.intYear;
+      this.job.jobtype = this.type
+      console.log(this.job);
 
-      console.log('listpm', this.listpm);
+      this.postDataService.postJobList(this.job).then(work => {
+        this.listpm = work;
+        console.log(this.listpm);
+        if (this.listpm == false) {
+          // this.isShow = true;
+        }
 
+        for (let i = 0; i < this.listpm.length; i++) {
+          this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+        }
+
+        console.log('listpm', this.listpm);
+
+      });
     });
   }
 
@@ -294,22 +310,31 @@ this.ChangeMonth()
     console.log(this.empid);
 
 
-    this.job.empID = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b";
-    this.job.month = 8;
-    this.job.year = 2019;
-    this.job.jobtype = this.type
-
-    this.postDataService.postJobList(this.job).then(work => {
-      this.listpm = work;
-      console.log(this.listpm);
-
-
-      for (let i = 0; i < this.listpm.length; i++) {
-        this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+    this.storageService.getUser().then(items => {
+      this.items = items;
+      // console.log(items);      
+      for (let i = 0; i < this.items.length; i++) {
+        this.empid = this.items[i].empID
+        this.name = this.items[i].name;
       }
+      this.job.empID = this.empid;
+      this.job.month = this.intMonth;
+      this.job.year = this.intYear;
+      this.job.jobtype = this.type
+      console.log(this.job);
 
-      console.log('listpm', this.listpm);
+      this.postDataService.postJobList(this.job).then(work => {
+        this.listpm = work;
+        console.log(this.listpm);
 
+
+        for (let i = 0; i < this.listpm.length; i++) {
+          this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+        }
+
+        console.log('listpm', this.listpm);
+
+      });
     });
   }
 
@@ -389,22 +414,31 @@ this.ChangeMonth()
     console.log(this.empid);
 
 
-    this.job.empID = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b";
-    this.job.month = 8;
-    this.job.year = 2019;
-    this.job.jobtype = this.type
-
-    this.postDataService.postJobList(this.job).then(work => {
-      this.listpm = work;
-      console.log(this.listpm);
-
-
-      for (let i = 0; i < this.listpm.length; i++) {
-        this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+    this.storageService.getUser().then(items => {
+      this.items = items;
+      // console.log(items);      
+      for (let i = 0; i < this.items.length; i++) {
+        this.empid = this.items[i].empID
+        this.name = this.items[i].name;
       }
+      this.job.empID = this.empid;
+      this.job.month = this.intMonth;
+      this.job.year = this.intYear;
+      this.job.jobtype = this.type
+      console.log(this.job);
 
-      console.log('listpm', this.listpm);
+      this.postDataService.postJobList(this.job).then(work => {
+        this.listpm = work;
+        console.log(this.listpm);
 
+
+        for (let i = 0; i < this.listpm.length; i++) {
+          this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+        }
+
+        console.log('listpm', this.listpm);
+
+      });
     });
   }
 
@@ -424,24 +458,30 @@ this.ChangeMonth()
     });
 
 
-    this.job.empID = "b99f4959-d1e7-44ec-98e2-07a6d0247a6b";
-    this.job.month = 8;
-    this.job.year = 2019;
-    this.job.jobtype = this.type
-
-    this.postDataService.postJobList(this.job).then(work => {
-      this.listpm = work;
-      console.log(this.listpm);
-
-
-      for (let i = 0; i < this.listpm.length; i++) {
-        this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+    this.storageService.getUser().then(items => {
+      this.items = items;
+      // console.log(items);      
+      for (let i = 0; i < this.items.length; i++) {
+        this.empid = this.items[i].empID
+        this.name = this.items[i].name;
       }
+      this.job.empID = this.empid;
+      this.job.month = this.intMonth;
+      this.job.year = this.intYear;
+      this.job.jobtype = this.type
+      console.log(this.job);
 
-      console.log('listpm', this.listpm);
+      this.postDataService.postJobList(this.job).then(work => {
+        this.listpm = work;
+        console.log(this.listpm);
 
+
+        for (let i = 0; i < this.listpm.length; i++) {
+          this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+        }
+        console.log('listpm', this.listpm);
+      });
     });
-
   }
   //#endregion
 

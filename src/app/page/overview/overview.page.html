@@ -5,7 +5,8 @@
         </ion-buttons>
         <ion-title class="ion-text-left">ภาพรวมการทำงาน</ion-title>        
             <ion-icon slot="end" name="notifications"></ion-icon>
-            <ion-badge slot="end" (click)="Openpop($event)"  color="danger">{{workall}}</ion-badge>      
+            <ion-badge slot="end" (click)="Openpop($event)"  color="danger">{{job}}</ion-badge> 
+            <ion-icon slot="end" name="refresh" (click)="loadpage()"></ion-icon>     
     </ion-toolbar>
 </ion-header>
 
@@ -20,7 +21,7 @@
                             <div class="caption">
                                 <i class="fa fa-dashboard" style="font-size: 2em;"></i>สรุปภาพรวมการทำงาน</div>                            
                         </div>
-                        <div class="portlet-body" style="padding: 2px;">
+                        <div class="portlet-body" style="padding: 2px;">                            
                             <div class="btn-group btn-group btn-group-justified btn-lg"
                                 style="padding: 0px; width: 100%;">
                                 <button class="btn blue text-center" style="padding: 5px;" (click)="changeMonthBack()">
@@ -39,11 +40,11 @@
                             </ion-item>
                             </ion-list> -->
                             <div>                                
-                                <div [routerLink]="['/menu/joball']">
+                                <div>
                                     <label class="col-6">งานทั้งหมด</label>
                                     <label class="col-6 text-right">{{workall}}</label>
                                 </div>
-                                <div [routerLink]="['/menu/job']">
+                                <div>
                                     <label class="col-6">เสร็จไปแล้ว</label>
                                     <label class="col-6 text-right">{{workfinish}}</label>
                                 </div>

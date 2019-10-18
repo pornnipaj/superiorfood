@@ -54,7 +54,9 @@ export class CmPage implements OnInit {
         console.log(this.myempID);
       }
     });
-
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 500);
     this.ChangeMonth();
 
   }
@@ -74,13 +76,14 @@ export class CmPage implements OnInit {
     });
   }
 
-  click(item) {
+  click(item,data) {
 
     console.log(item);
-    let params = { 
+    let params = {
       item: item.value,
-      type: this.type, 
-    } 
+      type: this.type,
+      date: data.planDate,
+    }
 
     let navigationExtras: NavigationExtras = {
       queryParams: {
@@ -182,19 +185,19 @@ export class CmPage implements OnInit {
       this.job.month = this.intMonth;
       this.job.year = this.intYear;
       this.job.jobtype = this.type
-  console.log(this.job);
-  
+      console.log(this.job);
+
       this.postDataService.postJobList(this.job).then(work => {
         this.listpm = work;
         console.log(this.listpm);
-  
-  
+
+
         for (let i = 0; i < this.listpm.length; i++) {
           this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
         }
-  
+
         console.log('listpm', this.listpm);
-  
+
       });
     });
   }
@@ -304,19 +307,19 @@ export class CmPage implements OnInit {
       this.job.month = this.intMonth;
       this.job.year = this.intYear;
       this.job.jobtype = this.type
-  console.log(this.job);
-  
+      console.log(this.job);
+
       this.postDataService.postJobList(this.job).then(work => {
         this.listpm = work;
         console.log(this.listpm);
-  
-  
+
+
         for (let i = 0; i < this.listpm.length; i++) {
           this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
         }
-  
+
         console.log('listpm', this.listpm);
-  
+
       });
     });
   }
@@ -408,19 +411,19 @@ export class CmPage implements OnInit {
       this.job.month = this.intMonth;
       this.job.year = this.intYear;
       this.job.jobtype = this.type
-  console.log(this.job);
-  
+      console.log(this.job);
+
       this.postDataService.postJobList(this.job).then(work => {
         this.listpm = work;
         console.log(this.listpm);
-  
-  
+
+
         for (let i = 0; i < this.listpm.length; i++) {
           this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
         }
-  
+
         console.log('listpm', this.listpm);
-  
+
       });
     });
   }
@@ -452,19 +455,19 @@ export class CmPage implements OnInit {
       this.job.month = this.intMonth;
       this.job.year = this.intYear;
       this.job.jobtype = this.type
-  console.log(this.job);
-  
+      console.log(this.job);
+
       this.postDataService.postJobList(this.job).then(work => {
         this.listpm = work;
         console.log(this.listpm);
-  
-  
+
+
         for (let i = 0; i < this.listpm.length; i++) {
           this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
         }
-  
+
         console.log('listpm', this.listpm);
-  
+
       });
     });
 

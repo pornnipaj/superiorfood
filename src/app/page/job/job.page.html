@@ -46,6 +46,14 @@
               <div class="caption">
                 <i class="fa fa-check"></i>รายการผ่านการตรวจเช็คล่าสุด </div>
             </div>
+            <div class="portlet-body" style="padding-top: 5px;" *ngIf="isShow">
+                <div class="row"
+                  style="padding: 5px;">
+                  <label class="col-12 col-md-12 col-sm-12" style="text-align: center; font-size: 0.9em;">
+                    ไม่พบข้อมูล
+                  </label>
+                  </div>
+            </div>
             <div class="portlet-body" style="padding-top: 5px;">
               <div class="row" *ngFor="let item of jobresolve" [routerLink]="['/job/jobdetail']" (click)="click(item)"
                 style="padding: 5px;">
