@@ -138,6 +138,7 @@ export class LoginPage implements OnInit {
         buttons: ['OK']
       });
       await alert.present();
+      this.storageService.resetLocalStorage();
     }
   }
   //#endregion
