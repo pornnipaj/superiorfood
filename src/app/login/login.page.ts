@@ -124,9 +124,7 @@ export class LoginPage implements OnInit {
       this.storageService.addUser(this.newUser).then(item => {
         this.newUser = <User>{};
       });
-
-    }
-    this.navCtrl.navigateForward(['/menuhead/overview']);
+    }    
     // if (this.role == true) {
     //   this.navCtrl.navigateForward(['/menuhead/overview']);
     // }
@@ -138,8 +136,10 @@ export class LoginPage implements OnInit {
         message: 'อีเมลล์ หรือ รหัสผ่านไม่ถูกต้อง',
         buttons: ['OK']
       });
-
       await alert.present();
+    }
+    if (this.status == true) {
+      this.navCtrl.navigateForward(['/menuhead/overview']);
     }
   }
   //#endregion
