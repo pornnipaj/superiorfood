@@ -8,17 +8,20 @@ import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
   styleUrls: ['./checklist.page.scss'],
 })
 export class ChecklistPage implements OnInit {
- 
+
+  //#region data
   link;
   empID;
   planID;
   installID;
   tran;
   url: SafeResourceUrl;
+  //#endregion data
 
+  //#region constructor
   constructor(public modalController: ModalController,
     private navParams: NavParams,
-    sanitizer: DomSanitizer,) {
+    sanitizer: DomSanitizer, ) {
 
     this.empID = this.navParams.data.empID;
     this.planID = this.navParams.data.planID;
@@ -29,14 +32,17 @@ export class ChecklistPage implements OnInit {
     this.url = sanitizer.bypassSecurityTrustResourceUrl('http://superior.wingplusweb.com/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
     // this.url = sanitizer.bypassSecurityTrustResourceUrl('http://localhost:41604/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
   }
+  //#endregion
 
   //#region start
 
   ngOnInit() {
   }
-
+  //#endregion
+  
+  //#region close  
   close() {
     this.modalController.dismiss(0);
   }
-
+  //#endregion
 }

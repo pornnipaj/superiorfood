@@ -60,7 +60,6 @@ export class CalendarpmPage implements OnInit {
 
   //#region start
   ngOnInit() {
-
   }
   //#endregion
 

@@ -15,7 +15,6 @@ import { PostDataService } from '../../../post-data.service';
 export class InstallPage implements OnInit {
 
   //#region data
-
   items;
   name;
   type = "INSTALL";
@@ -35,23 +34,17 @@ export class InstallPage implements OnInit {
   empid: any;
   listpm;
   planDate;
-
   //#endregion
 
   //#region constructor
-
   constructor(public DataService: AuthServiceService,
     private route: ActivatedRoute,
     public navCtrl: NavController,
     private storageService: StorageService,
     private postDataService: PostDataService) {
-
-
     this.json;
     this.listpmdetail = [];
-
     this.job = [];
-
     this.storageService.getUser().then(items => {
       this.items = items;
       // console.log(items);      
@@ -67,11 +60,9 @@ export class InstallPage implements OnInit {
       this.ngOnInit();
     }, 500);
   }
-
   //#endregion
 
-  //#region click
-
+  //#region loaditem
   loadItems() {
     this.storageService.getUser().then(items => {
       this.items = items;
@@ -82,32 +73,27 @@ export class InstallPage implements OnInit {
       }
     });
   }
+  //#endregion
 
-  click(item,data) {
-
+  //#region click
+  click(item, data) {
     console.log(data);
-
-    let params = { 
+    let params = {
       item: item.value,
-      type: this.type, 
+      type: this.type,
       date: data.planDate,
-    } 
-
+    }
     let navigationExtras: NavigationExtras = {
       queryParams: {
         data: JSON.stringify(params)
       }
     };
     console.log(navigationExtras);
-
     this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
-    
-
   }
-
   //#endregion
 
-  //#region Month
+  //#region ChangMonth
   ChangeMonth() {
     const month = new Date().getMonth() + 1;
     this.intMonth = month;
@@ -201,23 +187,25 @@ export class InstallPage implements OnInit {
       this.job.month = this.intMonth;
       this.job.year = this.intYear;
       this.job.jobtype = this.type
-  console.log(this.job);
-  
+      console.log(this.job);
+
       this.postDataService.postJobList(this.job).then(work => {
         this.listpm = work;
         console.log(this.listpm);
-  
-  
+
+
         for (let i = 0; i < this.listpm.length; i++) {
           this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
         }
-  
+
         console.log('listpm', this.listpm);
-  
+
       });
     });
   }
+  //#endregion
 
+  //#region ChangMonthNext
   changeMonthNext() {
     // const year = new Date().getFullYear();
     //#region nextmonth
@@ -311,7 +299,6 @@ export class InstallPage implements OnInit {
     console.log(this.intYear)
     console.log(this.empid);
 
-
     this.storageService.getUser().then(items => {
       this.items = items;
       // console.log(items);      
@@ -323,23 +310,25 @@ export class InstallPage implements OnInit {
       this.job.month = this.intMonth;
       this.job.year = this.intYear;
       this.job.jobtype = this.type
-  console.log(this.job);
-  
+      console.log(this.job);
+
       this.postDataService.postJobList(this.job).then(work => {
         this.listpm = work;
         console.log(this.listpm);
-  
-  
+
+
         for (let i = 0; i < this.listpm.length; i++) {
           this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
         }
-  
+
         console.log('listpm', this.listpm);
-  
+
       });
     });
   }
+  //#endregion
 
+  //#region ChangMonthBack
   changeMonthBack() {
     //#region 
     if (this.month == 'มกราคม') {
@@ -415,7 +404,6 @@ export class InstallPage implements OnInit {
     console.log(this.intYear)
     console.log(this.empid);
 
-
     this.storageService.getUser().then(items => {
       this.items = items;
       // console.log(items);      
@@ -427,29 +415,26 @@ export class InstallPage implements OnInit {
       this.job.month = this.intMonth;
       this.job.year = this.intYear;
       this.job.jobtype = this.type
-  console.log(this.job);
-  
+      console.log(this.job);
+
       this.postDataService.postJobList(this.job).then(work => {
         this.listpm = work;
         console.log(this.listpm);
-  
-  
+
+
         for (let i = 0; i < this.listpm.length; i++) {
           this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
         }
-  
+
         console.log('listpm', this.listpm);
-  
+
       });
     });
   }
-
   //#endregion
 
   //#region start
-
   ngOnInit() {
-
     this.storageService.getUser().then(items => {
       this.items = items;
       // console.log(items);      
@@ -461,20 +446,18 @@ export class InstallPage implements OnInit {
       this.job.month = this.intMonth;
       this.job.year = this.intYear;
       this.job.jobtype = this.type
-  console.log(this.job);
-  
+      console.log(this.job);
+
       this.postDataService.postJobList(this.job).then(work => {
         this.listpm = work;
         console.log(this.listpm);
-  
-  
+
         for (let i = 0; i < this.listpm.length; i++) {
           this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
           this.planDate = this.listpm[i].planDate
         }
-  
         console.log('listpm', this.listpm);
-  
+
       });
     });
   }

@@ -14,7 +14,6 @@ import { from } from 'rxjs';
 export class DetaillistpmPage implements OnInit {
 
   //#region data
-
   myId;
   workfinish;
   cusID;
@@ -31,11 +30,10 @@ export class DetaillistpmPage implements OnInit {
   date;
   items;
   empID;
-  new=false;
+  new = false;
   //#endregion
 
   //#region constructor
-
   constructor(private route: ActivatedRoute,
     public navCtrl: NavController,
     private postDataService: PostDataService,
@@ -77,20 +75,20 @@ export class DetaillistpmPage implements OnInit {
         this.detaillistpm.type = this.type;
         this.detaillistpm.date = this.date;
         this.detaillistpm.empid = this.empID;
-  
+
         console.log(this.detaillistpm);
-  
+
         this.postDataService.postDetailListpm(this.detaillistpm).then(work => {
           this.data = work;
           console.log(this.data);
           for (let i = 0; i < this.data.length; i++) {
             this.Customername = this.data[i].CustomerName;
             this.data[i].productInstall = JSON.parse(this.data[i].productInstall);
-  
+
           }
         });
       });
-    }else{
+    } else {
       this.storageService.getUser().then(items => {
         this.items = items;
         // console.log(items);      
@@ -105,16 +103,16 @@ export class DetaillistpmPage implements OnInit {
         this.detaillistpm.type = this.type;
         this.detaillistpm.date = this.date;
         this.detaillistpm.empid = this.empID;
-  
+
         console.log(this.detaillistpm);
-  
+
         this.postDataService.postDetailListpm(this.detaillistpm).then(work => {
           this.data = work;
           console.log(this.data);
           for (let i = 0; i < this.data.length; i++) {
             this.Customername = this.data[i].CustomerName;
             this.data[i].productInstall = JSON.parse(this.data[i].productInstall);
-  
+
           }
         });
       });
@@ -153,8 +151,8 @@ export class DetaillistpmPage implements OnInit {
           tranID: item.tranID,
           type: this.type
         }
-  console.log(params);
-  
+        console.log(params);
+
         const navigationExtras: NavigationExtras = {
           queryParams: {
             data: JSON.stringify(params)
@@ -163,24 +161,24 @@ export class DetaillistpmPage implements OnInit {
         this.navCtrl.navigateForward(['/joball/listpm/detaillistpm/jobdetail'], navigationExtras);
         console.log("sent", navigationExtras);
       }
-      else{
-let params = {
-        data: data,
-        installID: item.installId,
-        tranID: item.tranID,
-        type: this.type
-      }
-
-      const navigationExtras: NavigationExtras = {
-        queryParams: {
-          data: JSON.stringify(params)
+      else {
+        let params = {
+          data: data,
+          installID: item.installId,
+          tranID: item.tranID,
+          type: this.type
         }
-      };
-      this.navCtrl.navigateForward(['/joball/listpm/detaillistpm/jobdetail'], navigationExtras);
-      console.log("sent", navigationExtras);
-    }
+
+        const navigationExtras: NavigationExtras = {
+          queryParams: {
+            data: JSON.stringify(params)
+          }
+        };
+        this.navCtrl.navigateForward(['/joball/listpm/detaillistpm/jobdetail'], navigationExtras);
+        console.log("sent", navigationExtras);
       }
-      console.log(item.installId);      
+    }
+    console.log(item.installId);
   }
 
   //#endregion

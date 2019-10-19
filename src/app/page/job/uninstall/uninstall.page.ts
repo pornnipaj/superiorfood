@@ -12,41 +12,36 @@ import { PostDataService } from '../../../post-data.service';
   styleUrls: ['./uninstall.page.scss'],
 })
 export class UninstallPage implements OnInit {
-    //#region data
 
-    items;
-    name;
-    type="UNINSTALL";
-    data: any;
-    Today;
-    month;
-    intMonth;
-    intYear;
-    textShow;
-    all;
-    finish;
-    json: any;
-    listpmdetail;
-    job;
-    myempID: string;
-    empid: any;
-    listpm;
-  
-    //#endregion
-  
+  //#region data
+  items;
+  name;
+  type = "UNINSTALL";
+  data: any;
+  Today;
+  month;
+  intMonth;
+  intYear;
+  textShow;
+  all;
+  finish;
+  json: any;
+  listpmdetail;
+  job;
+  myempID: string;
+  empid: any;
+  listpm;
+  //#endregion
 
   //#region constructor
-
   constructor(public DataService: AuthServiceService,
     private route: ActivatedRoute,
     public navCtrl: NavController,
     private storageService: StorageService,
     private postDataService: PostDataService) {
 
-
     this.json;
     this.listpmdetail = [];
-
     this.job = [];
 
     this.storageService.getUser().then(items => {
@@ -64,11 +59,11 @@ export class UninstallPage implements OnInit {
       this.ngOnInit();
     }, 500);
   }
-
   //#endregion
 
   //#region click
 
+  //#region LoadItem
   loadItems() {
     this.storageService.getUser().then(items => {
       this.items = items;
@@ -79,16 +74,17 @@ export class UninstallPage implements OnInit {
       }
     });
   }
+  ////#endregion
 
-  click(item,data) {
+  click(item, data) {
 
     console.log(item);
 
-    let params = { 
+    let params = {
       item: item.value,
-      type: this.type, 
+      type: this.type,
       date: data.planDate,
-    } 
+    }
 
     let navigationExtras: NavigationExtras = {
       queryParams: {
@@ -103,7 +99,7 @@ export class UninstallPage implements OnInit {
 
   //#endregion
 
-  //#region Month
+  //#region ChangMonth
   ChangeMonth() {
     const month = new Date().getMonth() + 1;
     this.intMonth = month;
@@ -186,7 +182,6 @@ export class UninstallPage implements OnInit {
     console.log(this.intYear)
     console.log(this.empid);
 
-
     this.storageService.getUser().then(items => {
       this.items = items;
       // console.log(items);      
@@ -198,23 +193,24 @@ export class UninstallPage implements OnInit {
       this.job.month = this.intMonth;
       this.job.year = this.intYear;
       this.job.jobtype = this.type
-  console.log(this.job);
-  
+      console.log(this.job);
+
       this.postDataService.postJobList(this.job).then(work => {
         this.listpm = work;
         console.log(this.listpm);
-  
-  
+
         for (let i = 0; i < this.listpm.length; i++) {
           this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
         }
-  
+
         console.log('listpm', this.listpm);
-  
+
       });
     });
   }
+  //#endregion
 
+  //#region Chang MonthNext
   changeMonthNext() {
     // const year = new Date().getFullYear();
     //#region nextmonth
@@ -303,7 +299,6 @@ export class UninstallPage implements OnInit {
     // if (this.intYear > year) {
     //   this.intYear = year
     // }
-    //#endregion
     console.log(this.intMonth)
     console.log(this.intYear)
     console.log(this.empid);
@@ -320,23 +315,26 @@ export class UninstallPage implements OnInit {
       this.job.month = this.intMonth;
       this.job.year = this.intYear;
       this.job.jobtype = this.type
-  console.log(this.job);
-  
+      console.log(this.job);
+
       this.postDataService.postJobList(this.job).then(work => {
         this.listpm = work;
         console.log(this.listpm);
-  
-  
+
+
         for (let i = 0; i < this.listpm.length; i++) {
           this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
         }
-  
+
         console.log('listpm', this.listpm);
-  
+
       });
     });
+    //#endregion
   }
-
+  //#endregion
+  
+  //#region ChangMonthBack
   changeMonthBack() {
     //#region 
     if (this.month == 'มกราคม') {
@@ -424,29 +422,26 @@ export class UninstallPage implements OnInit {
       this.job.month = this.intMonth;
       this.job.year = this.intYear;
       this.job.jobtype = this.type
-  console.log(this.job);
-  
+      console.log(this.job);
+
       this.postDataService.postJobList(this.job).then(work => {
         this.listpm = work;
         console.log(this.listpm);
-  
-  
+
+
         for (let i = 0; i < this.listpm.length; i++) {
           this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
         }
-  
+
         console.log('listpm', this.listpm);
-  
+
       });
     });
   }
-
   //#endregion
 
   //#region start
-
   ngOnInit() {
-
     this.storageService.getUser().then(items => {
       this.items = items;
       // console.log(items);      
@@ -455,7 +450,6 @@ export class UninstallPage implements OnInit {
         this.name = this.items[i].name;
       }
     });
-
 
     this.storageService.getUser().then(items => {
       this.items = items;
@@ -468,19 +462,16 @@ export class UninstallPage implements OnInit {
       this.job.month = this.intMonth;
       this.job.year = this.intYear;
       this.job.jobtype = this.type
-  console.log(this.job);
-  
+      console.log(this.job);
+
       this.postDataService.postJobList(this.job).then(work => {
         this.listpm = work;
         console.log(this.listpm);
-  
-  
+
         for (let i = 0; i < this.listpm.length; i++) {
           this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
         }
-  
         console.log('listpm', this.listpm);
-  
       });
     });
 

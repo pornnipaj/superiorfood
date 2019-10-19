@@ -111,7 +111,7 @@ export class LoginPage implements OnInit {
   }
   //#endregion
 
-  //#region check
+  //#region check  
   async check() {
     if (this.status == true) {
       this.newUser.id = 1;

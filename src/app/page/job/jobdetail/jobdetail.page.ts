@@ -18,7 +18,6 @@ import { DomSanitizer,SafeResourceUrl } from "@angular/platform-browser";
 export class JobdetailPage implements OnInit {
 
  //#region data
-
 data: any;
 json: any;
 items: any;
@@ -49,7 +48,9 @@ installnew;
 link = 'http://localhost:41604';
 ShowList=true;
 //#endregion
-  constructor(public DataService: AuthServiceService,
+  
+//#region constructor
+constructor(public DataService: AuthServiceService,
     private route: ActivatedRoute,
     sanitizer: DomSanitizer,
     private storageService: StorageService,
@@ -77,8 +78,10 @@ ShowList=true;
         this.url = sanitizer.bypassSecurityTrustResourceUrl('http://superior.wingplusweb.com/Web/CK_CheckInfo.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.insID);
       });
     }
-
-  ngOnInit() {
+//#endregion
+  
+//#region start
+ngOnInit() {
     if (this.type != "PM") {
       this.ShowList =  false;
     }
@@ -147,5 +150,7 @@ ShowList=true;
       }   
       });
   }
+  //#endregion
+
 }
  

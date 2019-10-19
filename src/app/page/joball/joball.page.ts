@@ -14,9 +14,7 @@ import { StorageService } from '../../storage.service'
 export class JoballPage implements OnInit {
 
   //#region data
-
-  data: any;
-  
+  data: any;  
   empid: any;
   emp;
   items
@@ -24,15 +22,12 @@ export class JoballPage implements OnInit {
   //#endregion
   
   //#region constructor
-
   @ViewChild(NavController, { static: false }) myNav;
-
   constructor(public DataService: AuthServiceService, 
     public navCtrl: NavController,
     private storageService: StorageService,
     private postDataService: PostDataService) {
       this.emp = [];
-
       this.storageService.getUser().then(items => {
         this.items = items;
         // console.log(items);      
@@ -41,24 +36,18 @@ export class JoballPage implements OnInit {
           console.log(this.empID);
         }
         this.emp.empid = this.empID;
-      console.log(this.emp);
-  
+      console.log(this.emp);  
       this.postDataService.postEmployee(this.emp).then(work => {
         this.data = work;
         console.log(this.data);
       });
-      });
-
-      
+      });      
   }
-
   //#endregion
 
   //#region click
-
   click(data) {
     console.log(data);
-
     const navigationExtras: NavigationExtras = {
       queryParams: {
         data: JSON.stringify(data)
@@ -67,14 +56,11 @@ export class JoballPage implements OnInit {
     this.navCtrl.navigateForward(['/joball/listpm'], navigationExtras);
     console.log("sent", navigationExtras);
   }
-
   //#endregion
 
   //#region start
-
   ngOnInit() {
   }
-
   //#endregion
   
 }

@@ -14,7 +14,6 @@ import { PostDataService } from '../../../post-data.service';
 export class ReportcheckpmPage implements OnInit {
 
   //#region data
-
   items;
   name;
   type = "PM";
@@ -35,19 +34,14 @@ export class ReportcheckpmPage implements OnInit {
   //#endregion
 
   //#region constructor
-
   constructor(public DataService: AuthServiceService,
     private route: ActivatedRoute,
     public navCtrl: NavController,
     private storageService: StorageService,
     private postDataService: PostDataService) {
-
-
     this.json;
     this.listpmdetail = [];
-
     this.job = [];
-
     this.storageService.getUser().then(items => {
       this.items = items;
       // console.log(items);      
@@ -62,11 +56,9 @@ export class ReportcheckpmPage implements OnInit {
       this.ngOnInit();
     }, 500);
   }
-
   //#endregion
 
-  //#region click
-
+  //#region load 
   loadItems() {
     this.storageService.getUser().then(items => {
       this.items = items;
@@ -77,11 +69,11 @@ export class ReportcheckpmPage implements OnInit {
       }
     });
   }
+  //#endregion
 
+  //#region click
   click(item, data) {
-
     console.log(item);
-
     let params = {
       item: item.value,
       type: this.type,
@@ -95,14 +87,11 @@ export class ReportcheckpmPage implements OnInit {
       }
     };
     console.log(navigationExtras);
-
     this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
-
   }
-
   //#endregion
 
-  //#region Month
+  //#region ChangMonth
   ChangeMonth() {
     const month = new Date().getMonth() + 1;
     this.intMonth = month;
@@ -215,7 +204,9 @@ export class ReportcheckpmPage implements OnInit {
       });
     });
   }
+  //#endregion
 
+  //#region ChangMonthNext
   changeMonthNext() {
     // const year = new Date().getFullYear();
     //#region nextmonth
@@ -337,7 +328,9 @@ export class ReportcheckpmPage implements OnInit {
       });
     });
   }
+  //#endregion
 
+  //#region ChangBack
   changeMonthBack() {
     //#region 
     if (this.month == 'มกราคม') {
@@ -445,9 +438,7 @@ export class ReportcheckpmPage implements OnInit {
   //#endregion
 
   //#region start
-
   ngOnInit() {
-
     this.storageService.getUser().then(items => {
       this.items = items;
       // console.log(items);      
@@ -456,7 +447,6 @@ export class ReportcheckpmPage implements OnInit {
         this.name = this.items[i].name;
       }
     });
-
 
     this.storageService.getUser().then(items => {
       this.items = items;
