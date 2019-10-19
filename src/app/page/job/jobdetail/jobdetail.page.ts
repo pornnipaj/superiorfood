@@ -47,6 +47,7 @@ img;
 empID;
 installnew;
 link = 'http://localhost:41604';
+ShowList=true;
 //#endregion
   constructor(public DataService: AuthServiceService,
     private route: ActivatedRoute,
@@ -78,6 +79,9 @@ link = 'http://localhost:41604';
     }
 
   ngOnInit() {
+    if (this.type != "PM") {
+      this.ShowList =  false;
+    }
     this.jobdetail.planID = this.planID;
     this.jobdetail.tranID = this.tranID;
     this.jobdetail.insID = this.insID;

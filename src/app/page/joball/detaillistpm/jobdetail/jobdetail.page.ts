@@ -54,6 +54,7 @@ url: SafeResourceUrl;
 sanitizer: DomSanitizer;
 img;
 empID;
+ShowList=true;
 
 
 //#endregion
@@ -91,6 +92,9 @@ empID;
      }
 
      ngOnInit() {
+      if (this.type != "PM") {
+        this.ShowList =  false;
+      }
       this.jobdetail.planID = this.planID;
       this.jobdetail.tranID = this.tranID;
       this.jobdetail.insID = this.insID;
