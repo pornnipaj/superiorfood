@@ -35,10 +35,35 @@
               </ion-button>
 
               <img [src]="capturedSnapURL" /> -->
+              <div class="col-3 text-center">
+                <img [src]="img.src1" *ngIf="isShowImage"/>                                   
+              </div>
+              <div class="col-3 text-center">
+                <img [src]="img.src2" *ngIf="isShowImage"/>                                   
+              </div>
+              <div class="col-3 text-center">
+                <img [src]="img.src3" *ngIf="isShowImage"/>                                   
+              </div>
+              <div class="col-3 text-center">
+                <img [src]="img.src4" *ngIf="isShowImage"/>                                   
+              </div>
+              <div class="col-3 text-center">
+                <img [src]="img.src5" *ngIf="isShowImage"/>                                   
+              </div>
+              <div class="col-3 text-center">
+                <img [src]="img.src6" *ngIf="isShowImage"/>                                   
+              </div>
+              <div class="col-3 text-center">
+                <img [src]="img.src7" *ngIf="isShowImage"/>                                   
+              </div>
+              <div class="col-3 text-center">
+                <img [src]="img.src8" *ngIf="isShowImage"/>                                   
+              </div>
+
               <div class="col-md-1 col-1 text-center">
               </div>
 
-                <div class="col-md-2 col-2 text-center">
+                <div class="col-md-2 col-2 text-center" *ngIf="isInstall">
                   <div *ngIf="isTake1">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(1)">
@@ -49,7 +74,7 @@
                   <img [src]="photo1" *ngIf="isShow1">
                 </div>
 
-                <div class="col-md-2 col-2 text-center">
+                <div class="col-md-2 col-2 text-center" *ngIf="isInstall">
                   <div *ngIf="isTake2">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(2)">

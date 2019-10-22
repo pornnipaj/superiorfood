@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController,AlertController  } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
 import { PostDataService } from '../../../post-data.service';
 import { StorageService } from '../../../storage.service';
@@ -30,14 +30,18 @@ export class DetaillistpmPage implements OnInit {
   date;
   items;
   empID;
+  AssetID;
+  Serial;
   new = false;
+  status;
   //#endregion
 
   //#region constructor
   constructor(private route: ActivatedRoute,
     public navCtrl: NavController,
     private postDataService: PostDataService,
-    private storageService: StorageService) {
+    private storageService: StorageService,
+    public alertController: AlertController) {
     this.detaillistpm = [];
 
     this.route.queryParams.subscribe(params => {
@@ -94,7 +98,7 @@ export class DetaillistpmPage implements OnInit {
         // console.log(items);      
         for (let i = 0; i < this.items.length; i++) {
           this.empID = this.items[i].empID;
-          console.log(this.empID);
+          // console.log(this.empID);
         }
         this.detaillistpm.cusID = this.cusID;
         this.detaillistpm.planID = this.planID;
@@ -109,11 +113,15 @@ export class DetaillistpmPage implements OnInit {
         this.postDataService.postDetailListpm(this.detaillistpm).then(work => {
           this.data = work;
           console.log(this.data);
-          for (let i = 0; i < this.data.length; i++) {
+          for (let i = 0; i < this.data.length; i++) {            
             this.Customername = this.data[i].CustomerName;
             this.data[i].productInstall = JSON.parse(this.data[i].productInstall);
-
-          }
+            for (let j = 0; j < this.data[i].productInstall.length; j++) {
+              console.log(this.data[i].productInstall[j]);              
+              this.Serial = this.data[i].productInstall[j].SerialNo
+              this.AssetID = this.data[i].productInstall[j].AssetID                            
+            }
+          }   
         });
       });
     }
@@ -123,24 +131,51 @@ export class DetaillistpmPage implements OnInit {
 
   //#region click
 
-  click(data, item) {
+  async click(data, item) {
     console.log('Data', data);
-    console.log('item', item);
-
-
+    console.log('item', item);  
+    console.log(this.AssetID);
+    console.log(this.Serial); 
     if (item.Workfinish == 0) {
-      let params = {
-        planID: this.planID,
-        install: item,
-      }
-
-      const navigationExtras: NavigationExtras = {
-        queryParams: {
-          data: JSON.stringify(params)
-        }
-      };
-      this.navCtrl.navigateForward(['joball/listpm/detailofdetaillistpm'], navigationExtras);
-      console.log("sent", navigationExtras);
+      const alert = await this.alertController.create({
+        header: 'แจ้งเตือน!',
+        message: 'ต้องการเริ่มทำงาน',
+        buttons: [
+          {          
+            text: 'ตกลง',
+            handler: () => {            
+              let data = {
+                AssetID: this.AssetID,
+                Serial: this.Serial,        
+              }
+              this.postDataService.postTranService(data).then(TranService => {
+                console.log(TranService);  
+              });
+              let params = {
+                planID: this.planID,
+                install: item,
+              }  
+              const navigationExtras: NavigationExtras = {
+                queryParams: {
+                  data: JSON.stringify(params)
+                }
+              };
+              this.navCtrl.navigateForward(['joball/listpm/detailofdetaillistpm'], navigationExtras);
+              console.log("sent", navigationExtras);
+            }
+          }, {
+            text: 'ยกเลิก',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: (blah) => {            
+              this.status = 0;
+              console.log(this.status);
+            }
+          }
+        ]
+      });  
+      await alert.present();
+      
     }
 
     if (item.Workfinish == 1) {

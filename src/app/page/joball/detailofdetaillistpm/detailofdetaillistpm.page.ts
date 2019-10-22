@@ -65,6 +65,8 @@ export class DetailofdetaillistpmPage implements OnInit {
   status10 = "";
   myId;
   planID;
+  isShowImage = false;
+  img;
   isTake1 = true;
   isShow1 = false;
   isTake2 = true;
@@ -120,6 +122,9 @@ export class DetailofdetaillistpmPage implements OnInit {
   idnew;
   idold;
   typedevice;
+  imginstall;
+  resultimg;
+  image;
 
   //#endregion
 
@@ -134,6 +139,8 @@ export class DetailofdetaillistpmPage implements OnInit {
     private postDataService: PostDataService, ) {
     this.DateStart = new Date().toString();
     this.tran = [];
+    this.img = [];
+    this.imginstall = [];
   }
 
   //#endregion
@@ -182,6 +189,8 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.isenabledtitle3 = false;
       this.isenabledTakeback = false;
       this.isInstall = false;
+      this.getImgInstall();
+      this.isShowImage = true;
 
     } else if (this.jobtype == "UNINSTALL") {
       this.title4 = "รายการที่ 3 ลายเซ็นต์ผู้รับผิดชอบ"
@@ -201,6 +210,50 @@ export class DetailofdetaillistpmPage implements OnInit {
   }
 
   //#endregion
+  getImgInstall() {
+    this.postDataService.postjobDetail(this.imginstall).then(resultimg => {
+      this.resultimg = resultimg;
+      console.log(this.resultimg)
+      for (let i = 0; i < this.resultimg.length; i++) {
+        this.image = JSON.parse(this.resultimg[i].image);
+      }
+      console.log(this.image);
+      for (let v = 0; v < this.image.length; v++) {
+        if (this.image[v].type == "step2_pic1") {
+          this.img.src1 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("bf1", this.img.src1);
+        }
+        if (this.image[v].type == "step2_pic2") {
+          this.img.src2 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("bf2", this.img.src2);
+        }
+        if (this.image[v].type == "step2_pic3") {
+          this.img.src3 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("bf3", this.img.src3);
+        }
+        if (this.image[v].type == "step2_pic4") {
+          this.img.src4 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("bf4", this.img.src4);
+        }
+        if (this.image[v].type == "step2_pic5") {
+          this.img.src5 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("bf5", this.img.src5);
+        }
+        if (this.image[v].type == "step2_pic6") {
+          this.img.src6 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("af1", this.img.src6);
+        }
+        if (this.image[v].type == "step2_pic7") {
+          this.img.src7 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("af2", this.img.src7);
+        }
+        if (this.image[v].type == "step2_pic8") {
+          this.img.src8 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("af3", this.img.src8);
+        }
+      }
+    });
+  }
 
   //#region click
   //#region take
@@ -717,7 +770,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     return await modal.present();
   }
   //#endregion
-//#region Modal Sig
+  //#region Modal Sig
   async Modal() {
     const modal = await this.modalController.create({
       component: SignaturePage,
@@ -738,7 +791,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     return await modal.present();
   }
   //#endregion
-//#region Alert Cuscode
+  //#region Alert Cuscode
   async alertCusCode() {
     const alert = await this.alertController.create({
       header: 'แจ้งเตือน',

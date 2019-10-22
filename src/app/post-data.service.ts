@@ -7,7 +7,7 @@ import { Http, Headers } from "@angular/http";
 })
 export class PostDataService {
   
-  apiLocal_url = 'http://localhost:41604';
+  apiLocal_url = 'http://localhost:41605';
   apiServer_url = 'http://superior.wingplusweb.com';
 
   httpOptions = {
@@ -213,6 +213,16 @@ export class PostDataService {
       });
     });
   }
+  postTranService(form) {
+    return new Promise((resovle, reject) => {      
+      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
+      this.http.post(this.apiLocal_url + '/API/TranService.asmx/Tran', JSON.stringify(form), option).subscribe(data => {
+        resovle(data);
+      }, error => {
+        reject(error)
+      });
+    });
+  }
 }
 

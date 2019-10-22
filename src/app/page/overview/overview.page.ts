@@ -114,9 +114,9 @@ export class OverviewPage implements OnInit {
   loadItems() {
     this.storageService.getUser().then(items => {
       this.items = items;
-      // console.log(items);      
+      console.log(items);      
       for (let i = 0; i < this.items.length; i++) {
-        this.empID = this.items[i].empID;
+        this.empID = this.items[i].empID;       
         console.log(this.empID);
       }
     });
@@ -413,33 +413,17 @@ export class OverviewPage implements OnInit {
 
   //#endregion
 
-  //#region take
-
-  Take() {
-    const options: CameraOptions = {
-      quality: 70,
-      destinationType: this.camera.DestinationType.FILE_URI,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-
-    this.camera.getPicture(options).then((imageData) => {
-      this.myphoto = 'data:image/jpeg;base64,' + imageData;
-    }, (err) => {
-      console.log("Camera issue:" + err);
-    });
-  }
-
-  //#endregion
-
   //#region start
 
   ngOnInit() {
     this.storageService.getUser().then(items => {
       this.items = items;
-      // console.log(items);      
+      console.log(items);      
       for (let i = 0; i < this.items.length; i++) {
         this.empID = this.items[i].empID;
+        this.name = this.items[i].name
+        this.position = this.items[i].position
+        this.username = this.items[i].username
         // console.log(this.empID);
 
         this.user.empID = this.empID;

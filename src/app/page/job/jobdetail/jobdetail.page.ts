@@ -45,7 +45,7 @@ sanitizer: DomSanitizer;
 img;
 empID;
 installnew;
-link = 'http://localhost:41604';
+link = 'http://localhost:41605';
 ShowList=true;
 //#endregion
   
