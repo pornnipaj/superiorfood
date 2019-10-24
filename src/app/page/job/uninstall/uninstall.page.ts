@@ -478,4 +478,11 @@ export class UninstallPage implements OnInit {
   }
   //#endregion
 
+  //#region load
+  ionViewDidLoad() {
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 350);
+  }
+  //#endregion
 }

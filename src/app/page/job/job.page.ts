@@ -47,8 +47,11 @@ export class JobPage implements OnInit {
     if (item.JobType == "CM") {
       console.log(item);
       let params = {
-        item: item,
-        install: item.installnew
+        data: item,
+        installID: item.installnew,
+        tranID:item.tranID,
+        planID:item.planID,
+        type:item.JobType
       }
       console.log(params);
 
@@ -62,8 +65,11 @@ export class JobPage implements OnInit {
     } else {
       console.log(item);
       let params = {
-        item: item,
-        install: item.installID
+        data: item,
+        installID: item.installID,
+        tranID:item.tranID,
+        planID:item.planID,
+        type:item.JobType
       }
       console.log(params);
 

@@ -38,8 +38,8 @@
           <ion-card-title>เปลี่ยนเครื่อง</ion-card-title>
           <ion-item>
             <ion-input type="text" placeholder="Serial No." [(ngModel)]="serial" name="serial"></ion-input>
-            <ion-icon name="search" slot="end"  (click)="search()">Search</ion-icon>
             <ion-icon name="barcode" slot="end" (click)="scan()"></ion-icon>
+            <ion-icon name="search" slot="end"  (click)="search()">Search</ion-icon>            
           </ion-item>
         </ion-card-content>
       </ion-card>
@@ -67,18 +67,24 @@
           <ion-card-title>เปลี่ยนอะไหล่</ion-card-title>
           <ion-item>
             <ion-input type="text" placeholder="Serial No." [(ngModel)]="sparepart" name="serial"></ion-input>
-            <ion-icon name="add" (click)="Add()"></ion-icon>
             <ion-icon name="barcode" (click)="scan()"></ion-icon>
+            <ion-icon name="add" (click)="Add()"></ion-icon>            
           </ion-item>
         </ion-card-content>
       </ion-card>
 
       <ion-card *ngIf="isShowSpareDetail">
         <ion-card-content>
-          <ion-item *ngFor="let att of anArray;">
+          <!-- <ion-item *ngFor="let att of anArray;">
             <ion-label type="text" >{{att.value}}</ion-label>
             <ion-icon name="remove" slot="end" (click)="remove(att)"></ion-icon>
-          </ion-item>
+          </ion-item> -->
+          <ion-list>
+              <ion-item *ngFor="let todo of spareList; let i = index">
+                {{todo}}                
+            <ion-icon name="remove" slot="end" (click)="remove(i)"></ion-icon>
+              </ion-item>
+            </ion-list>
         </ion-card-content>
       </ion-card>
     </div>

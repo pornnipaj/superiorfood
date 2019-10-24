@@ -463,4 +463,11 @@ export class InstallPage implements OnInit {
   }
   //#endregion
 
+  //#region load
+  ionViewDidLoad() {
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 350);
+  }
+  //#endregion
 }

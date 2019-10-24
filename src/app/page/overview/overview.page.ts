@@ -13,7 +13,7 @@ import { SignaturePage } from '../joball/detailofdetaillistpm/signature/signatur
 import { ActivatedRoute, Data } from '@angular/router';
 
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
-import { Platform, PopoverController, ModalController, Events,LoadingController } from '@ionic/angular';
+import { Platform, PopoverController, ModalController, Events, LoadingController } from '@ionic/angular';
 import { StorageService, User } from '../../storage.service';
 import { ModalpopPage } from '../overview/modalpop/modalpop.page';
 
@@ -79,7 +79,7 @@ export class OverviewPage implements OnInit {
     this.Today = new Date();
 
   }
-  loadpage(){
+  loadpage() {
     setTimeout(() => {
       this.load();
       this.ngOnInit();
@@ -114,9 +114,9 @@ export class OverviewPage implements OnInit {
   loadItems() {
     this.storageService.getUser().then(items => {
       this.items = items;
-      console.log(items);      
+      console.log(items);
       for (let i = 0; i < this.items.length; i++) {
-        this.empID = this.items[i].empID;       
+        this.empID = this.items[i].empID;
         console.log(this.empID);
       }
     });
@@ -418,7 +418,7 @@ export class OverviewPage implements OnInit {
   ngOnInit() {
     this.storageService.getUser().then(items => {
       this.items = items;
-      console.log(items);      
+      console.log(items);
       for (let i = 0; i < this.items.length; i++) {
         this.empID = this.items[i].empID;
         this.name = this.items[i].name
@@ -449,4 +449,9 @@ export class OverviewPage implements OnInit {
 
   //#endregion
 
+  ionViewDidLoad() {
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 350);
+  }
 }

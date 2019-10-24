@@ -54,6 +54,7 @@ export class JobdetailPage implements OnInit {
   img;
   empID;
   ShowList = true;
+  typethai;
   //#endregion
 
   //#region constructor
@@ -71,12 +72,26 @@ export class JobdetailPage implements OnInit {
       this.insID = this.query.installID
       this.tranID = this.query.tranID
       this.type = this.query.type
+      this.planID = this.query.planID
       console.log("test", this.query);
-
+      if (this.type == "INSTALL") {
+        this.typethai = "ติดตั้ง"
+      }
+      else if (this.type == "CM") {
+        this.typethai = "ซ๋อม"
+      }
+      else if (this.type == "PM") {
+        this.typethai = "ตรวจเช็ค"
+      }
+      else if (this.type == "UNINSTALL") {
+        this.typethai = "ถอนการติดตั้ง"
+      }
       for (let i = 0; i < this.data.length; i++) {
         this.data = (this.data[i])
       }
-      this.planID = this.data.planID
+      
+      console.log(this.planID);
+      
     });
 
     this.storageService.getUser().then(items => {
@@ -96,6 +111,7 @@ export class JobdetailPage implements OnInit {
     if (this.type != "PM") {
       this.ShowList = false;
     }
+    //#region post
     this.jobdetail.planID = this.planID;
     this.jobdetail.tranID = this.tranID;
     this.jobdetail.insID = this.insID;
@@ -105,17 +121,17 @@ export class JobdetailPage implements OnInit {
 
     this.postDataService.postjobDetail(this.jobdetail).then(jobdetail => {
       this.result = jobdetail;
-      console.log(this.result)
+      // console.log(this.result)
       for (let i = 0; i < this.result.length; i++) {
         this.image = JSON.parse(this.result[i].image);
       }
-      console.log(this.image);
+      // console.log(this.image);
       if (this.type == "INSTALL") {
         this.isShowImage = true;
-        this.isShowImageInstall = false;
+        this.isShowImageInstall = true;
       } else {
         this.isShowImage = true;
-        this.isShowImageInstall = true;
+        this.isShowImageInstall = false;
       }
       for (let v = 0; v < this.image.length; v++) {
         if (this.image[v].type == "step1_pic1") {
@@ -137,6 +153,18 @@ export class JobdetailPage implements OnInit {
         if (this.image[v].type == "step1_pic5") {
           this.img.src5 = 'http://superior.wingplusweb.com' + this.image[v].file_path
           console.log("bf5", this.img.src5);
+        }
+        if (this.image[v].type == "step1_pic6" ) {
+          this.img.src6 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("bf6",this.img.src1);          
+        }  
+        if (this.image[v].type == "step1_pic7" ) {
+          this.img.src7 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("bf7",this.img.src2);          
+        } 
+        if (this.image[v].type == "step1_pic8" ) {
+          this.img.src8 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          console.log("bf8",this.img.src3);          
         }
         if (this.image[v].type == "step3_pic1") {
           this.img.src6 = 'http://superior.wingplusweb.com' + this.image[v].file_path
@@ -160,6 +188,8 @@ export class JobdetailPage implements OnInit {
         }
       }
     });
+    //#endregion
+  
   }
   //#endregion
 }

@@ -40,6 +40,7 @@ export class ChecklistcmPage implements OnInit {
   assetnew;
   assetold;
   chkdata;
+  spareList = [];
   //#endregion
 
   //#region constructor
@@ -97,8 +98,7 @@ export class ChecklistcmPage implements OnInit {
 
   search() {
     console.log(this.serial);
-    console.log(this.SerialNo);
-    
+    console.log(this.SerialNo);   
     
     if (this.serial == "") {
       this.alertSN();
@@ -144,31 +144,29 @@ export class ChecklistcmPage implements OnInit {
 
   //#region spare
 
-  Add() {
-    this.anArray.push({ 'value': this.sparepart });
+  Add() {    
     this.isShowSpareDetail = true;
     if (this.sparepart == "") {
       this.alertSN();
       this.isShowSpareDetail = false;
     }
+    if (this.sparepart.length > 0) {
+      let task = this.sparepart;
+      this.spareList.push(task);
+      this.sparepart = "";
+  }
     // if (this.sparepart != "sparepart" && this.sparepart != "") {
-    //   alert("S/N ไม่ตรงกับเลขในสต็อก")   
+    //   this.alertStock();   
     //   this.isShowSpareDetail = false;
     // }
   }
 
-  remove(item) {
-    console.log(item.value);
-    console.log(this.anArray);
-
-    this.anArray.splice(item, 1)
-
+  remove(index){
+    this.spareList.splice(index, 1);
     if (this.anArray == "") {
-      this.isShowSpareDetail = false;
-    }
-
-  }
-
+          this.isShowSpareDetail = false;
+        }
+}
   //#endregion
 
   //#region barcode
@@ -219,6 +217,15 @@ async alertNotSearch() {
     message: 'ไม่พบ S/N นี้',
     buttons: ['OK']
   });
+  await alert.present();
+}
+
+async alertStock() {
+  const alert = await this.alertController.create({
+    message: 'S/N ไม่ตรงกับเลขในสต็อก',
+    buttons: ['OK']
+  });
+
   await alert.present();
 }
 //#endregion

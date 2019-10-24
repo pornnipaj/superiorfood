@@ -475,4 +475,11 @@ export class ReportcheckpmPage implements OnInit {
   }
   //#endregion
 
+  //#region load
+  ionViewDidLoad() {
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 350);
+  }
+  //#endregion
 }

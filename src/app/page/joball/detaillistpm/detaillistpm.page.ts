@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavController,AlertController  } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
 import { PostDataService } from '../../../post-data.service';
 import { StorageService } from '../../../storage.service';
@@ -33,7 +33,6 @@ export class DetaillistpmPage implements OnInit {
   AssetID;
   Serial;
   new = false;
-  status;
   //#endregion
 
   //#region constructor
@@ -113,15 +112,15 @@ export class DetaillistpmPage implements OnInit {
         this.postDataService.postDetailListpm(this.detaillistpm).then(work => {
           this.data = work;
           console.log(this.data);
-          for (let i = 0; i < this.data.length; i++) {            
+          for (let i = 0; i < this.data.length; i++) {
             this.Customername = this.data[i].CustomerName;
             this.data[i].productInstall = JSON.parse(this.data[i].productInstall);
             for (let j = 0; j < this.data[i].productInstall.length; j++) {
-              console.log(this.data[i].productInstall[j]);              
+              console.log(this.data[i].productInstall[j]);
               this.Serial = this.data[i].productInstall[j].SerialNo
-              this.AssetID = this.data[i].productInstall[j].AssetID                            
+              this.AssetID = this.data[i].productInstall[j].AssetID
             }
-          }   
+          }
         });
       });
     }
@@ -133,28 +132,37 @@ export class DetaillistpmPage implements OnInit {
 
   async click(data, item) {
     console.log('Data', data);
-    console.log('item', item);  
+    console.log('item', item);
     console.log(this.AssetID);
-    console.log(this.Serial); 
+    console.log(this.Serial);
     if (item.Workfinish == 0) {
       const alert = await this.alertController.create({
         header: 'แจ้งเตือน!',
         message: 'ต้องการเริ่มทำงาน',
         buttons: [
-          {          
+          {
             text: 'ตกลง',
-            handler: () => {            
+            handler: () => {
               let data = {
                 AssetID: this.AssetID,
-                Serial: this.Serial,        
+                Serial: this.Serial,
+                planID: item.planID,
+                empID: this.empID,
+                insID: item.installId,
+                type: this.type
               }
+              console.log(data);
+
               this.postDataService.postTranService(data).then(TranService => {
-                console.log(TranService);  
+                // console.log(TranService);  
               });
               let params = {
-                planID: this.planID,
+                planID: item.planID,
                 install: item,
-              }  
+                insID: item.installId,
+              }
+              console.log(params);
+
               const navigationExtras: NavigationExtras = {
                 queryParams: {
                   data: JSON.stringify(params)
@@ -167,15 +175,12 @@ export class DetaillistpmPage implements OnInit {
             text: 'ยกเลิก',
             role: 'cancel',
             cssClass: 'secondary',
-            handler: (blah) => {            
-              this.status = 0;
-              console.log(this.status);
+            handler: (blah) => {
             }
           }
         ]
-      });  
+      });
       await alert.present();
-      
     }
 
     if (item.Workfinish == 1) {
@@ -184,6 +189,7 @@ export class DetaillistpmPage implements OnInit {
           data: data,
           installID: item.newinstallID,
           tranID: item.tranID,
+          planID: item.planID,
           type: this.type
         }
         console.log(params);
@@ -193,27 +199,28 @@ export class DetaillistpmPage implements OnInit {
             data: JSON.stringify(params)
           }
         };
-        this.navCtrl.navigateForward(['/joball/listpm/detaillistpm/jobdetail'], navigationExtras);
+        this.navCtrl.navigateForward(['/job/jobdetail'], navigationExtras);
         console.log("sent", navigationExtras);
       }
-      else {
+      else if (this.type != "CM") {
         let params = {
           data: data,
           installID: item.installId,
           tranID: item.tranID,
+          planID: item.planID,
           type: this.type
         }
+        console.log(params);
 
         const navigationExtras: NavigationExtras = {
           queryParams: {
             data: JSON.stringify(params)
           }
         };
-        this.navCtrl.navigateForward(['/joball/listpm/detaillistpm/jobdetail'], navigationExtras);
+        this.navCtrl.navigateForward(['/job/jobdetail'], navigationExtras);
         console.log("sent", navigationExtras);
       }
     }
-    console.log(item.installId);
   }
 
   //#endregion
