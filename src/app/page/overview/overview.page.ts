@@ -16,7 +16,6 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { Platform, PopoverController, ModalController, Events, LoadingController } from '@ionic/angular';
 import { StorageService, User } from '../../storage.service';
 import { ModalpopPage } from '../overview/modalpop/modalpop.page';
-import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { from } from 'rxjs';
 
 @Component({
@@ -69,7 +68,6 @@ export class OverviewPage implements OnInit {
     private platform: Platform,
     private sqlite: SQLite,
     private events: Events,
-    private localNotifications: LocalNotifications,
     private storageService: StorageService) {
     setTimeout(() => {
       this.ngOnInit();
