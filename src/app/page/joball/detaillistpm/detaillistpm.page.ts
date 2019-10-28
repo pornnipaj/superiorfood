@@ -30,8 +30,6 @@ export class DetaillistpmPage implements OnInit {
   date;
   items;
   empID;
-  AssetID;
-  Serial;
   new = false;
   //#endregion
 
@@ -117,8 +115,6 @@ export class DetaillistpmPage implements OnInit {
             this.data[i].productInstall = JSON.parse(this.data[i].productInstall);
             for (let j = 0; j < this.data[i].productInstall.length; j++) {
               console.log(this.data[i].productInstall[j]);
-              this.Serial = this.data[i].productInstall[j].SerialNo
-              this.AssetID = this.data[i].productInstall[j].AssetID
             }
           }
         });
@@ -133,8 +129,6 @@ export class DetaillistpmPage implements OnInit {
   async click(data, item) {
     console.log('Data', data);
     console.log('item', item);
-    console.log(this.AssetID);
-    console.log(this.Serial);
     if (item.Workfinish == 0) {
       const alert = await this.alertController.create({
         header: 'แจ้งเตือน!',
@@ -144,8 +138,8 @@ export class DetaillistpmPage implements OnInit {
             text: 'ตกลง',
             handler: () => {
               let data = {
-                AssetID: this.AssetID,
-                Serial: this.Serial,
+                AssetID: item.AssetID,
+                Serial: item.Serial,
                 planID: item.planID,
                 empID: this.empID,
                 insID: item.installId,
