@@ -334,13 +334,13 @@ export class InstallPage implements OnInit {
     if (this.month == 'มกราคม') {
       this.month = 'ธันวาคม'
       this.intMonth = 12;
+      this.intYear = this.intYear - 1
       this.textShow = this.month + " " + this.intYear
     }
     else if (this.month == 'กุมภาพันธ์') {
       this.month = 'มกราคม'
       this.intMonth = 1;
       this.textShow = this.month + " " + this.intYear
-      this.intYear = this.intYear - 1
     }
     else if (this.month == 'มีนาคม') {
       this.month = 'กุมภาพันธ์'

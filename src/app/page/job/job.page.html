@@ -11,13 +11,12 @@
   <div class="container-fluid">
     <div class="page-content-inner">
       <div class="row" style="padding:5px;">
-        <div class="col-4 col-md-4 col-sm-4 background" style="padding: 0px; background-color: white;"
-          id="Left">
+        <div class="col-4 col-md-4 col-sm-4 background" style="padding: 0px; background-color: white;" id="Left">
           <div class="col-12" style="padding: 2px;">
             <button type="button" class="btn default" (click)="next('pm')">
               <i class="fa fa-check"></i> รายการตรวจเช็ค (PM)
             </button>
-            </div>
+          </div>
           <div class="col-12" style="padding: 2px;">
             <button type="button" class="btn default" (click)="next('cm')">
               <i class="fa fa-check"></i> รายการซ่อมบำรุง (CM)
@@ -25,7 +24,7 @@
           </div>
           <div class="col-12" style="padding: 2px;">
             <button type="button" class="btn default" (click)="next('install')">
-              <i class="fa fa-check"></i> รายการติดตั้ง (Install) 
+              <i class="fa fa-check"></i> รายการติดตั้ง (Install)
             </button>
           </div>
           <div class="col-12" style="padding: 2px;">
@@ -35,7 +34,7 @@
           </div>
           <div class="col-12" style="padding: 2px;">
             <button type="button" class="btn default" [routerLink]="['/job/calendarpm']">
-              <i class="fa fa-calendar"></i>  ปฏิทิน
+              <i class="fa fa-calendar"></i> ปฏิทิน
             </button>
           </div>
         </div>
@@ -47,12 +46,11 @@
                 <i class="fa fa-check"></i>รายการผ่านการตรวจเช็คล่าสุด </div>
             </div>
             <div class="portlet-body" style="padding-top: 5px;" *ngIf="isShow">
-                <div class="row"
-                  style="padding: 5px;">
-                  <label class="col-12 col-md-12 col-sm-12" style="text-align: center; font-size: 0.9em;">
-                    ไม่พบข้อมูล
-                  </label>
-                  </div>
+              <div class="row" style="padding: 5px;">
+                <label class="col-12 col-md-12 col-sm-12" style="text-align: center; font-size: 0.9em;">
+                  ไม่พบข้อมูล
+                </label>
+              </div>
             </div>
             <div class="portlet-body" style="padding-top: 5px;">
               <div class="row" *ngFor="let item of jobresolve" [routerLink]="['/job/jobdetail']" (click)="click(item)"

@@ -25,6 +25,7 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SQLite } from '@ionic-native/sqlite/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -49,6 +50,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
   providers: [
     StatusBar,
     SplashScreen,
+    LocalNotifications,
     ScreenOrientation,
     Camera,
     SQLite,

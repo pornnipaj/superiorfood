@@ -31,6 +31,7 @@ export class ReportcheckpmPage implements OnInit {
   myempID: string;
   empid: any;
   listpm;
+  // isShow = false;
   //#endregion
 
   //#region constructor
@@ -51,6 +52,7 @@ export class ReportcheckpmPage implements OnInit {
         console.log(this.myempID);
       }
     });
+    
     this.ChangeMonth()
     setTimeout(() => {
       this.ngOnInit();
@@ -191,10 +193,6 @@ export class ReportcheckpmPage implements OnInit {
       this.postDataService.postJobList(this.job).then(work => {
         this.listpm = work;
         console.log(this.listpm);
-        if (this.listpm == false) {
-          // this.isShow = true;
-        }
-
         for (let i = 0; i < this.listpm.length; i++) {
           this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
         }
@@ -316,8 +314,7 @@ export class ReportcheckpmPage implements OnInit {
 
       this.postDataService.postJobList(this.job).then(work => {
         this.listpm = work;
-        console.log(this.listpm);
-
+        console.log(this.listpm);        
 
         for (let i = 0; i < this.listpm.length; i++) {
           this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
@@ -325,8 +322,8 @@ export class ReportcheckpmPage implements OnInit {
 
         console.log('listpm', this.listpm);
 
-      });
-    });
+      });      
+    });    
   }
   //#endregion
 
@@ -336,13 +333,13 @@ export class ReportcheckpmPage implements OnInit {
     if (this.month == 'มกราคม') {
       this.month = 'ธันวาคม'
       this.intMonth = 12;
+      this.intYear = this.intYear - 1
       this.textShow = this.month + " " + this.intYear
     }
     else if (this.month == 'กุมภาพันธ์') {
       this.month = 'มกราคม'
       this.intMonth = 1;
       this.textShow = this.month + " " + this.intYear
-      this.intYear = this.intYear - 1
     }
     else if (this.month == 'มีนาคม') {
       this.month = 'กุมภาพันธ์'
@@ -463,15 +460,16 @@ export class ReportcheckpmPage implements OnInit {
 
       this.postDataService.postJobList(this.job).then(work => {
         this.listpm = work;
-        console.log(this.listpm);
-
+        console.log(this.listpm);       
 
         for (let i = 0; i < this.listpm.length; i++) {
           this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
         }
         console.log('listpm', this.listpm);
+        
       });
-    });
+    });    
+    
   }
   //#endregion
 

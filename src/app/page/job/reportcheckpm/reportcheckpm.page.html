@@ -15,14 +15,15 @@
                 <div class="btn-group btn-group btn-group-justified btn-lg" style="padding: 0px; width: 100%;">
                     <button href="javascript:;" class="btn default btn-lg" style="padding: 5px;"
                         (click)="ChangeMonth()"> ปัจจุบัน </button>
-                    <button href="javascript:;" class="btn blue btn-lg" style="width: 50%; padding: 5px;"> รายการการตรวจเช็ค (PM)
+                    <button href="javascript:;" class="btn blue btn-lg" style="width: 50%; padding: 5px;">
+                        รายการการตรวจเช็ค (PM)
                         เดือน{{textShow}} </button>
                     <button href="javascript:;" class="btn default btn-lg" style="padding: 5px;"
                         (click)="changeMonthBack()"> ก่อนหน้า </button>
                     <button href="javascript:;" class="btn default btn-lg" style="padding: 5px;"
                         (click)="changeMonthNext()"> ถัดไป </button>
                 </div>
-            </div>
+            </div>            
             <div class="col-12" style="padding-top: 10px; padding: 0px;" *ngFor="let data of listpm">
                 <div class="portlet box blue">
                     <div class="portlet-title">
@@ -42,8 +43,8 @@
                                 </i>
                                 {{ item.value.Customer }}
                                 <div class="pull-right">
-                                    <div class="badge badge-default bg-blue"
-                                        style="margin:5px;" style="font-size: 0.9em;">ติดตั้ง : {{ item.value.WorkAll }}
+                                    <div class="badge badge-default bg-blue" style="margin:5px;"
+                                        style="font-size: 0.9em;">ติดตั้ง : {{ item.value.WorkAll }}
                                         สำเร็จ : {{ item.value.WorkFinish }}
                                     </div>
                                 </div>
@@ -51,7 +52,16 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> 
+            <!-- <div class="col-12" style="padding-top: 10px; padding: 0px;" >
+                <div class="portlet-body" style="padding-top: 5px;" >
+                    <div class="row" style="padding: 5px;">
+                        <label class="col-12 col-md-12 col-sm-12" style="text-align: center; font-size: 0.9em;" *ngIf="isShow">
+                            ไม่พบข้อมูล
+                        </label>
+                    </div>
+                </div>
+            </div>            -->
         </div>
     </div>
 </ion-content>
