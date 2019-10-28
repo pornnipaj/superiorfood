@@ -67,7 +67,7 @@ export class JobdetailPage implements OnInit {
       this.tranID = this.query.tranID
       this.type = this.query.type
       this.planID = this.query.planID
-      console.log("query", this.type);
+      console.log("query", this.planID);
     });
 
     this.storageService.getUser().then(items => {

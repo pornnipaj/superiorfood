@@ -766,6 +766,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     return await modal.present();
   }
   //#endregion
+  
   //#region Modal Sig
   async Modal() {
     const modal = await this.modalController.create({
@@ -787,6 +788,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     return await modal.present();
   }
   //#endregion
+  
   //#region Alert Cuscode
   async alertCusCode() {
     const alert = await this.alertController.create({
@@ -818,7 +820,6 @@ export class DetailofdetaillistpmPage implements OnInit {
   }
 
   //#endregion
-
 
   //#region Resize Photo
 
