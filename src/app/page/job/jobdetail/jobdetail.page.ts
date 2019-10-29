@@ -160,23 +160,23 @@ export class JobdetailPage implements OnInit {
           console.log("bf8", this.img.src3);
         }
         if (this.image[v].type == "step3_pic1") {
-          this.img.src6 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          this.img.src9 = 'http://superior.wingplusweb.com' + this.image[v].file_path
           console.log("af1", this.img.src6);
         }
         if (this.image[v].type == "step3_pic2") {
-          this.img.src7 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          this.img.src10 = 'http://superior.wingplusweb.com' + this.image[v].file_path
           console.log("af2", this.img.src7);
         }
         if (this.image[v].type == "step3_pic3") {
-          this.img.src8 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          this.img.src11 = 'http://superior.wingplusweb.com' + this.image[v].file_path
           console.log("af3", this.img.src8);
         }
         if (this.image[v].type == "step3_pic4") {
-          this.img.src9 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          this.img.src12 = 'http://superior.wingplusweb.com' + this.image[v].file_path
           console.log("af4", this.img.src9);
         }
         if (this.image[v].type == "step3_pic5") {
-          this.img.src10 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          this.img.src13 = 'http://superior.wingplusweb.com' + this.image[v].file_path
           console.log("af5", this.img.src10);
         }
       }
