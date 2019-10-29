@@ -90,6 +90,14 @@ export class ChecklistcmPage implements OnInit {
       this.isShowDevice = true;
       this.isShowSpare = false;
     }
+    if (type == "not") {
+      let param = {
+        typedevice:"not"
+      }
+      console.log(param);
+      
+      this.modalController.dismiss(param);
+    }
   }
 
   //#endregion
