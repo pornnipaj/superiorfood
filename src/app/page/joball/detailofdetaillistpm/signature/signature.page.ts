@@ -95,6 +95,7 @@ export class SignaturePage implements OnInit {
     this.isShow = false;
     this.isSave = true;
     this.isSign = true;
+    this.signaturePad.clear();
   }
 
   close() {

@@ -133,14 +133,14 @@ export class DetailofdetaillistpmPage implements OnInit {
   booimg6 = false;
   booimg7 = false;
   booimg8 = false;
-  isShowImage1 = true;
-  isShowImage2 = true;
-  isShowImage3 = true;
-  isShowImage4 = true;
-  isShowImage5 = true;
-  isShowImage6 = true;
-  isShowImage7 = true;
-  isShowImage8 = true;
+  isShowImage1 = false;
+  isShowImage2 = false;
+  isShowImage3 = false;
+  isShowImage4 = false;
+  isShowImage5 = false;
+  isShowImage6 = false;
+  isShowImage7 = false;
+  isShowImage8 = false;
 
   //#endregion
 
@@ -206,8 +206,6 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.isenabledTakeback = true;
       this.isInstall = false;
       this.getImgInstall();
-      this.isShowImage = true;
-
     } else if (this.jobtype == "UNINSTALL") {
       this.title4 = "รายการที่ 3 ลายเซ็นต์ผู้รับผิดชอบ"
       this.title5 = "รายการที่ 4 ประเมินการทำงาน"
@@ -223,10 +221,11 @@ export class DetailofdetaillistpmPage implements OnInit {
       // console.log(this.sign);
 
     });
-    this.getImgInstall();
   }
 
   //#endregion
+  
+  //#region getImg
   getImgInstall() {
     this.storageService.getUser().then(items => {
       this.items = items;
@@ -254,7 +253,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           } else if (this.resultimg[v].type == "step1_pic2") {
             this.img.src2 = 'http://superior.wingplusweb.com' + this.resultimg[v].file_path
             this.booimg2 = true;
-              console.log("bf1", this.img.src2);
+            console.log("bf1", this.img.src2);
           } else if (this.resultimg[v].type == "step1_pic3") {
             this.img.src3 = 'http://superior.wingplusweb.com' + this.resultimg[v].file_path
             this.booimg3 = true;
@@ -274,7 +273,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           } else if (this.resultimg[v].type == "step1_pic7") {
             this.img.src7 = 'http://superior.wingplusweb.com' + this.resultimg[v].file_path
             console.log("bf1", this.img.src7);
-          } else if (this.resultimg[v].type == "step1_pic8") {          
+          } else if (this.resultimg[v].type == "step1_pic8") {
             this.img.src8 = 'http://superior.wingplusweb.com' + this.resultimg[v].file_path
             this.booimg8 = true;
             console.log("bf1", this.img.src8);
@@ -293,8 +292,10 @@ export class DetailofdetaillistpmPage implements OnInit {
       });
     });
   }
+  //#endregion
 
   //#region click
+  
   //#region take
   Take(id) {
     if (id == 1) {
@@ -504,6 +505,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     }
   }
   //#endregion
+  
   //#region Check Take Before
   checktakeback() {
     if (this.jobtype == "INSTALL") {
@@ -534,6 +536,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     }
   }
   //#endregion
+  
   //#region Check Take After  
   checklist() {
     if (this.status6 && this.status7 && this.status8 && this.status9 && this.status10 != "") {
@@ -549,6 +552,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     }
   }
   //#endregion
+  
   //#region save All 
   saveData() {
     if (this.jobtype == "INSTALL") {
@@ -638,6 +642,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     }
   }
   //#endregion
+  
   //#region Evaluation  
   async clickeva() {
     if (this.jobtype == "INSTALL") {
@@ -709,8 +714,7 @@ export class DetailofdetaillistpmPage implements OnInit {
 
   //#endregion
 
-  //#region Modal
-
+  //#region checklist
   async check() {
     if (this.jobtype == "PM") {
       const modal = await this.modalController.create({
@@ -773,6 +777,8 @@ export class DetailofdetaillistpmPage implements OnInit {
       return await modal.present();
     }
   }
+  //#endregion
+  
   //#region Modal Cuscode
   async openModalcustomerpw() {
     const modal = await this.modalController.create({

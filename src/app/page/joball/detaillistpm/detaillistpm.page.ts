@@ -183,7 +183,7 @@ export class DetaillistpmPage implements OnInit {
           data: data,
           installID: item.newinstallID,
           tranID: item.tranID,
-          planID: data.planID,
+          planID: item.planID,
           type: this.type
         }
         console.log(params);
@@ -201,7 +201,7 @@ export class DetaillistpmPage implements OnInit {
           data: data,
           installID: item.installId,
           tranID: item.tranID,
-          planID: data.planID,
+          planID: item.planID,
           type: this.type
         }
         console.log(params);
