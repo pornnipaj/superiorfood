@@ -272,6 +272,7 @@ export class DetailofdetaillistpmPage implements OnInit {
             console.log("bf1", this.img.src6);
           } else if (this.resultimg[v].type == "step1_pic7") {
             this.img.src7 = 'http://superior.wingplusweb.com' + this.resultimg[v].file_path
+            this.booimg7 = true;
             console.log("bf1", this.img.src7);
           } else if (this.resultimg[v].type == "step1_pic8") {
             this.img.src8 = 'http://superior.wingplusweb.com' + this.resultimg[v].file_path
