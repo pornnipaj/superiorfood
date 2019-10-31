@@ -28,15 +28,17 @@ export class DetailofdetaillistpmPage implements OnInit {
   title4 = "รายการที่ 4 ลายเซ็นต์ผู้รับผิดชอบ"
   title5 = "รายการที่ 5 ประเมินการทำงาน"
   title6 = "รายการที่ 6 สรุปผลการตรวจเช็คและยืนยันการปิดงาน"
-  title7 = "รายการที่ 7 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
+  title7 = "รายการที่ 7 แบบประเมินร้านค้า"
+  title8 = "รายการที่ 8 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
   isenabledtitle1 = true;
   isenabledtitle2 = true;
   isenabledtitle3 = true;
   isenabledtitle4 = true;
   isenabledtitle5 = true;
   isenabledtitle6 = true;
-  isenabledtitle7 = true;
-  isenabledcheck = true;
+  isenabledtitle7 = false;
+  isenabledtitle8 = true;
+  isenabledcheck = false;
   isenabledTakeback = false;
   isenabledeva = false;
   isenabledsig = false;
@@ -195,13 +197,14 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.title3 = "รายการที่ 3 รายการที่ต้องตรวจซ่อม"
       this.isenabledTakeback = false;
       this.isenabledcheck = false;
+      this.isenabledtitle7 = true;
     } else if (this.jobtype == "INSTALL") {
       this.title1 = "รายการที่ 1 ถ่ายภาพก่อนการติดตั้ง"
       this.title2 = "รายการที่ 2 ถ่ายภาพหลังการติดตั้ง"
       this.title4 = "รายการที่ 3 ลายเซ็นต์ผู้รับผิดชอบ"
       this.title5 = "รายการที่ 4 ประเมินการทำงาน"
       this.title6 = "รายการที่ 5 สรุปผลการตรวจเช็คและยืนยันการปิดงาน"
-      this.title7 = "รายการที่ 6 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
+      this.title8 = "รายการที่ 6 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
       this.isenabledtitle3 = false;
       this.isenabledTakeback = true;
       this.isInstall = false;
@@ -210,8 +213,10 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.title4 = "รายการที่ 3 ลายเซ็นต์ผู้รับผิดชอบ"
       this.title5 = "รายการที่ 4 ประเมินการทำงาน"
       this.title6 = "รายการที่ 5 สรุปผลการตรวจเช็คและยืนยันการปิดงาน"
-      this.title7 = "รายการที่ 6 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
+      this.title8 = "รายการที่ 6 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
       this.isenabledtitle3 = false;
+    }else if (this.jobtype == "PM") {
+      this.title8 = "รายการที่ 7 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
     }
   }
 
@@ -225,6 +230,11 @@ export class DetailofdetaillistpmPage implements OnInit {
 
   //#endregion
   
+  //#region chang dropdown
+  onChange(value){
+    
+  }
+  //#endregion
   //#region getImg
   getImgInstall() {
     this.storageService.getUser().then(items => {
@@ -544,11 +554,14 @@ export class DetailofdetaillistpmPage implements OnInit {
       if (this.jobtype == "INSTALL") {
         this.isenabledsig = true;
       }
-      if (this.jobtype == "CM") {
+      else if (this.jobtype == "CM") {
         this.isenabledcheck = true;
       }
-      if (this.jobtype == "UNINSTALL") {
+      else if (this.jobtype == "UNINSTALL") {
         this.isenabledsig = true;
+      }
+      else if (this.jobtype == "PM") {
+        this.isenabledcheck = true;
       }
     }
   }
@@ -868,7 +881,6 @@ export class DetailofdetaillistpmPage implements OnInit {
   //#endregion
 
   //#region Resize Photo
-
   compressImage(src, newX, newY) {
     return new Promise((res, rej) => {
       const img = new Image();

@@ -39,7 +39,7 @@ export class SignaturePage implements OnInit {
     'minWidth': 2,
     canvasWidth: 600,
     canvasHeight: 400,
-    backgroundColor: '#f6fbff',
+    backgroundColor: 'white',
     penColor: 'black'
   };
 

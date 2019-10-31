@@ -35,33 +35,33 @@
               </ion-button>
 
               <img [src]="capturedSnapURL" /> -->
-              <div class="col-3 text-center">
-                <img [src]="img.src1" *ngIf="isShowImage1"/>                                   
-              </div>
-              <div class="col-3 text-center">
-                <img [src]="img.src2" *ngIf="isShowImage2"/>                                   
-              </div>
-              <div class="col-3 text-center">
-                <img [src]="img.src3" *ngIf="isShowImage3"/>                                   
-              </div>
-              <div class="col-3 text-center">
-                <img [src]="img.src4" *ngIf="isShowImage4"/>                                   
-              </div>
-              <div class="col-3 text-center">
-                <img [src]="img.src5" *ngIf="isShowImage5"/>                                   
-              </div>
-              <div class="col-3 text-center">
-                <img [src]="img.src6" *ngIf="isShowImage6"/>                                   
-              </div>
-              <div class="col-3 text-center">
-                <img [src]="img.src7" *ngIf="isShowImage7"/>                                   
-              </div>
-              <div class="col-3 text-center">
-                <img [src]="img.src8" *ngIf="isShowImage8"/>                                   
-              </div>
+                <div class="col-3 text-center">
+                  <img [src]="img.src1" *ngIf="isShowImage1" />
+                </div>
+                <div class="col-3 text-center">
+                  <img [src]="img.src2" *ngIf="isShowImage2" />
+                </div>
+                <div class="col-3 text-center">
+                  <img [src]="img.src3" *ngIf="isShowImage3" />
+                </div>
+                <div class="col-3 text-center">
+                  <img [src]="img.src4" *ngIf="isShowImage4" />
+                </div>
+                <div class="col-3 text-center">
+                  <img [src]="img.src5" *ngIf="isShowImage5" />
+                </div>
+                <div class="col-3 text-center">
+                  <img [src]="img.src6" *ngIf="isShowImage6" />
+                </div>
+                <div class="col-3 text-center">
+                  <img [src]="img.src7" *ngIf="isShowImage7" />
+                </div>
+                <div class="col-3 text-center">
+                  <img [src]="img.src8" *ngIf="isShowImage8" />
+                </div>
 
-              <div class="col-md-1 col-1 text-center">
-              </div>
+                <div class="col-md-1 col-1 text-center">
+                </div>
 
                 <div class="col-md-2 col-2 text-center" *ngIf="isInstall">
                   <div *ngIf="isTake1">
@@ -132,8 +132,8 @@
                 </div>
               </div>
               <div class="row">
-                  <div class="col-md-1 col-1 text-center">
-                    </div>
+                <div class="col-md-1 col-1 text-center">
+                </div>
                 <div class="col-md-2 col-2 text-center">
                   <div *ngIf="isTake6">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
@@ -261,8 +261,8 @@
                 <div class="col-md-12 col-12">
                   <div class="caption" style="margin-top: 15px;">
                     <i class="fa fa-map-pin font-blue-sharp"></i>
-                      <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
-                        {{title6}}</span>
+                    <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
+                      {{title6}}</span>
                   </div>
                 </div>
               </div>
@@ -285,6 +285,36 @@
                     <i class="fa fa-map-pin font-blue-sharp"></i>
                     <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
                       {{title7}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                    <ion-item>
+                        <ion-label>ปัญหา</ion-label>
+                        <ion-select placeholder="Select One" interface="popover">
+                          <ion-select-option>สายไปขาด</ion-select-option>
+                          <ion-select-option>เครื่องไม่ทำงาน</ion-select-option>
+                        </ion-select>
+                      </ion-item>
+                </div>
+                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                    <ion-item>
+                        <ion-label position="fixed">รายละเอียด</ion-label>
+                        <ion-input></ion-input>
+                      </ion-item>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle8">
+            <div class="portlet light ">
+              <div class="row">
+                <div class="col-md-12 col-12">
+                  <div class="caption">
+                    <i class="fa fa-map-pin font-blue-sharp"></i>
+                    <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
+                      {{title8}}</span>
                   </div>
                 </div>
               </div>

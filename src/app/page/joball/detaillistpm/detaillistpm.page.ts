@@ -5,6 +5,8 @@ import { NavigationExtras } from '@angular/router';
 import { PostDataService } from '../../../post-data.service';
 import { StorageService } from '../../../storage.service';
 import { from } from 'rxjs';
+import { ModalController } from '@ionic/angular';
+import { ShowimginstallPage } from '../../job/showimginstall/showimginstall.page';
 
 @Component({
   selector: 'app-detaillistpm',
@@ -31,6 +33,7 @@ export class DetaillistpmPage implements OnInit {
   items;
   empID;
   new = false;
+  imgbf = false;
   //#endregion
 
   //#region constructor
@@ -38,7 +41,8 @@ export class DetaillistpmPage implements OnInit {
     public navCtrl: NavController,
     private postDataService: PostDataService,
     private storageService: StorageService,
-    public alertController: AlertController) {
+    public alertController: AlertController,
+    public modalController: ModalController, ) {
     this.detaillistpm = [];
 
     this.route.queryParams.subscribe(params => {
@@ -52,14 +56,13 @@ export class DetaillistpmPage implements OnInit {
       this.workfinish = this.item.WorkFinish
       this.month = this.item.month
       this.year = this.item.year
-      console.log("receive", this.myId);
+      console.log("receive", this.type);
     });
   }
 
   //#endregion
 
   //#region start
-
   ngOnInit() {
     if (this.type == "CM") {
       this.storageService.getUser().then(items => {
@@ -86,6 +89,38 @@ export class DetaillistpmPage implements OnInit {
             this.Customername = this.data[i].CustomerName;
             this.data[i].productInstall = JSON.parse(this.data[i].productInstall);
 
+          }
+        });
+      });
+    }
+    if (this.type == "INSTALL") {
+      this.imgbf = true
+      this.storageService.getUser().then(items => {
+        this.items = items;
+        // console.log(items);      
+        for (let i = 0; i < this.items.length; i++) {
+          this.empID = this.items[i].empID;
+          // console.log(this.empID);
+        }
+        this.detaillistpm.cusID = this.cusID;
+        this.detaillistpm.planID = this.planID;
+        this.detaillistpm.month = this.month;
+        this.detaillistpm.year = this.year;
+        this.detaillistpm.type = this.type;
+        this.detaillistpm.date = this.date;
+        this.detaillistpm.empid = this.empID;
+
+        console.log(this.detaillistpm);
+
+        this.postDataService.postDetailListpm(this.detaillistpm).then(work => {
+          this.data = work;
+          console.log(this.data);
+          for (let i = 0; i < this.data.length; i++) {
+            this.Customername = this.data[i].CustomerName;
+            this.data[i].productInstall = JSON.parse(this.data[i].productInstall);
+            for (let j = 0; j < this.data[i].productInstall.length; j++) {
+              console.log(this.data[i].productInstall[j]);
+            }
           }
         });
       });
@@ -120,12 +155,12 @@ export class DetaillistpmPage implements OnInit {
         });
       });
     }
+
   }
 
   //#endregion
 
   //#region click
-
   async click(data, item) {
     console.log('Data', data);
     console.log('item', item);
@@ -219,4 +254,22 @@ export class DetaillistpmPage implements OnInit {
 
   //#endregion
 
+  //#region Imgbf
+  async Imgbf(item) {
+    console.log(item);
+
+    if (this.type == "INSTALL") {
+      const modal = await this.modalController.create({
+        component: ShowimginstallPage,
+        cssClass: 'my-custom-modal-css',
+        componentProps: {
+          installId: item.installId,
+          empID: this.empID,
+          planID: item.planID,
+        }
+      });
+      return await modal.present();
+    }
+  }
+  //#endregion
 }

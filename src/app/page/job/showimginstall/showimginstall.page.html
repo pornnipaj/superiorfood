@@ -1,0 +1,32 @@
+<ion-toolbar>
+  <ion-title>ภาพหน้างาน</ion-title>
+  <ion-buttons slot="primary">
+    <ion-icon slot="end" name="close" (click)="close()"></ion-icon>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+  <div class="col-12">{{notimg}}</div>
+  <div class="row" *ngIf="hide">
+    <div class="col-12">
+      <div class="portlet blue box">        
+        <div class="portlet-body">
+          <div class="row">            
+            <div class="col-6">
+              <img [src]="img.src1" *ngIf="isShowImage1"/>
+              <img [src]="img.src2" *ngIf="isShowImage2"/>
+              <img [src]="img.src3" *ngIf="isShowImage3"/>
+              <img [src]="img.src4" *ngIf="isShowImage4"/>
+            </div>
+            <div class="col-6">
+              <img [src]="img.src5" *ngIf="isShowImage5"/>
+              <img [src]="img.src6" *ngIf="isShowImage6"/>
+              <img [src]="img.src7" *ngIf="isShowImage7"/>
+              <img [src]="img.src8" *ngIf="isShowImage8"/>
+            </div>            
+          </div>          
+        </div>        
+      </div>
+    </div>
+  </div>
+</ion-content>

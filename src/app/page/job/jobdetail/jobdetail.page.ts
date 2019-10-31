@@ -50,6 +50,33 @@ export class JobdetailPage implements OnInit {
   typethai;
   ShowCM = false;
   HideCM = true;
+  booimg1 = false;
+  booimg2 = false;
+  booimg3 = false;
+  booimg4 = false;
+  booimg5 = false;
+  booimg6 = false;
+  booimg7 = false;
+  booimg8 = false;
+  booimg9 = false;
+  booimg10 = false;
+  booimg11 = false;
+  booimg12 = false;
+  booimg13 = false;
+  isShowImage1 = false;
+  isShowImage2 = false;
+  isShowImage3 = false;
+  isShowImage4 = false;
+  isShowImage5 = false;
+  isShowImage6 = false;
+  isShowImage7 = false;
+  isShowImage8 = false;
+  isShowImage9 = false;
+  isShowImage10 = false;
+  isShowImage11 = false;
+  isShowImage12 = false;
+  isShowImage13 = false;
+  
   //#endregion
 
   //#region constructor
@@ -129,57 +156,83 @@ export class JobdetailPage implements OnInit {
       for (let v = 0; v < this.image.length; v++) {
         if (this.image[v].type == "step1_pic1") {
           this.img.src1 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          this.booimg1 = true;
           console.log("bf1", this.img.src1);
         }
         if (this.image[v].type == "step1_pic2") {
           this.img.src2 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          this.booimg2 = true;
           console.log("bf2", this.img.src2);
         }
         if (this.image[v].type == "step1_pic3") {
           this.img.src3 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          this.booimg3 = true;
           console.log("bf3", this.img.src3);
         }
         if (this.image[v].type == "step1_pic4") {
           this.img.src4 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          this.booimg1 = true;
           console.log("bf4", this.img.src4);
         }
         if (this.image[v].type == "step1_pic5") {
           this.img.src5 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          this.booimg5 = true;
           console.log("bf5", this.img.src5);
         }
         if (this.image[v].type == "step1_pic6") {
           this.img.src6 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          this.booimg6 = true;
           console.log("bf6", this.img.src1);
         }
         if (this.image[v].type == "step1_pic7") {
           this.img.src7 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          this.booimg7 = true;
           console.log("bf7", this.img.src2);
         }
         if (this.image[v].type == "step1_pic8") {
           this.img.src8 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          this.booimg8 = true;
           console.log("bf8", this.img.src3);
         }
         if (this.image[v].type == "step3_pic1") {
           this.img.src9 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          this.booimg9 = true;
           console.log("af1", this.img.src6);
         }
         if (this.image[v].type == "step3_pic2") {
           this.img.src10 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          this.booimg10 = true;
           console.log("af2", this.img.src7);
         }
         if (this.image[v].type == "step3_pic3") {
           this.img.src11 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          this.booimg11 = true;
           console.log("af3", this.img.src8);
         }
         if (this.image[v].type == "step3_pic4") {
           this.img.src12 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          this.booimg12 = true;
           console.log("af4", this.img.src9);
         }
         if (this.image[v].type == "step3_pic5") {
           this.img.src13 = 'http://superior.wingplusweb.com' + this.image[v].file_path
+          this.booimg13 = true;
           console.log("af5", this.img.src10);
         }
       }
+      this.isShowImage1 = this.booimg1;
+      this.isShowImage2 = this.booimg2;
+      this.isShowImage3 = this.booimg3;
+      this.isShowImage4 = this.booimg4;
+      this.isShowImage5 = this.booimg5;
+      this.isShowImage6 = this.booimg6;
+      this.isShowImage7 = this.booimg7;
+      this.isShowImage8 = this.booimg8;
+      this.isShowImage9 = this.booimg4;
+      this.isShowImage10  = this.booimg5;
+      this.isShowImage11  = this.booimg6;
+      this.isShowImage12 = this.booimg7;
+      this.isShowImage13 = this.booimg8;
     });
   }
   //#endregion

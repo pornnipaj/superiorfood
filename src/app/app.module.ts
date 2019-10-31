@@ -21,6 +21,7 @@ import { CheckevaluationPageModule } from '../app/page/joball/detailofdetaillist
 import { ChecklistPageModule } from '../app/page/joball/detailofdetaillistpm/checklist/checklist.module';
 import { ModalpopPageModule } from '../app/page/overview/modalpop/modalpop.module';
 import { ChecklistcmPageModule } from '../app/page/joball/detailofdetaillistpm/checklistcm/checklistcm.module';
+import { ShowimginstallPageModule } from '../app/page/job/showimginstall/showimginstall.module';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SQLite } from '@ionic-native/sqlite/ngx';
@@ -43,6 +44,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
     ModalpopPageModule,
     ChecklistPageModule,
     ChecklistcmPageModule,
+    ShowimginstallPageModule,
     HttpClientModule,
     NgbModule,
   ],
