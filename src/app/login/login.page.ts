@@ -25,6 +25,7 @@ export class LoginPage implements OnInit {
   role;
   items: User[] = [];
   newUser: User = <User>{};
+  newtest;
   //#endregion
 
   //#region constructor
@@ -47,8 +48,14 @@ export class LoginPage implements OnInit {
 
     this.DataService.getnew().subscribe(data => {
       console.log(data);
-      alert("new" + data)
+      alert("ข่าว" + data)
       this.data = data;
+    });
+
+    this.DataService.getnewTest().subscribe(newtest => {
+      console.log(newtest);
+      alert("ข่าวtest" + newtest)
+      this.newtest = newtest;
     });
   }
   //#endregion

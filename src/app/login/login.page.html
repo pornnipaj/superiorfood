@@ -4,11 +4,11 @@
           <ion-list-header>
               <ion-label>{{item.title}}</ion-label>
           </ion-list-header>
-          <ion-item>
-              <ion-icon name="calendar"></ion-icon>
-              <ion-label>{{item.name}}</ion-label>
-              <ion-label slot="end" class="text-right">{{item.updated_at}}</ion-label>
-          </ion-item>
+      </ion-list>
+      <ion-list *ngFor="let newtest of newtest">
+          <ion-list-header>
+              <ion-label>newTest : {{newtest.title}}</ion-label>
+          </ion-list-header>
       </ion-list>
 
     <form #form="ngForm" (ngSubmit)="login(form)" class="text-center">

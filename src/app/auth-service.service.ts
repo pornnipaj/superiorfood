@@ -26,6 +26,14 @@ export class AuthServiceService {
 
   getnew() {
     return this.http.get
+    (`${"https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com/API/News.ashx"}?apikey=${this.apiKey}`);
+    // (
+    //   'http://superior.wingplusweb.com/API/News.ashx'
+    // );
+  }
+
+  getnewTest() {
+    return this.http.get
     (`${"http://superior.wingplusweb.com/API/News.ashx"}?apikey=${this.apiKey}`);
     // (
     //   'http://superior.wingplusweb.com/API/News.ashx'
