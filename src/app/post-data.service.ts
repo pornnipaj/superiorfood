@@ -16,7 +16,7 @@ export class PostDataService {
     })
   }  
 
-  constructor(private http: HttpClient, public https: Http) { }
+  constructor(private http: HttpClient) { }
 
   login(user) {
     return new Promise((resovle, reject) => {

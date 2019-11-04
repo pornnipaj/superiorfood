@@ -1,5 +1,16 @@
 <ion-content>
   <div class="centered">
+      <ion-list *ngFor="let item of data">
+          <ion-list-header>
+              <ion-label>{{item.title}}</ion-label>
+          </ion-list-header>
+          <ion-item>
+              <ion-icon name="calendar"></ion-icon>
+              <ion-label>{{item.name}}</ion-label>
+              <ion-label slot="end" class="text-right">{{item.updated_at}}</ion-label>
+          </ion-item>
+      </ion-list>
+
     <form #form="ngForm" (ngSubmit)="login(form)" class="text-center">
       <img src="../../assets/img/logo.png" alt=""/>
       <h3>Login your account!</h3>

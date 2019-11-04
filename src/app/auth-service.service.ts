@@ -6,47 +6,42 @@ import { SQLiteObject } from '@ionic-native/sqlite/ngx';
   providedIn: 'root'
 })
 export class AuthServiceService {
-
+  apiKey = '';
   constructor(private http: HttpClient) {
   }
 
-  // getJob() {
+  // getJobAll() {
+  //   return this.http.get
+  //   (`${"http://superior.wingplusweb.com/API/Employee.ashx"}?apikey=${this.apiKey}`);
+  //   // (
+  //   //   'http://superior.wingplusweb.com/API/Employee.ashx'
+  //   // );
+  // }
+
+  // getuser(email, password) {
+  //   return this.http.get(
+  //     'http://superior.wingplusweb.com/API/Login.ashx?email=' + email + '&password=' + password
+  //   );
+  // }
+
+  getnew() {
+    return this.http.get
+    (`${"http://superior.wingplusweb.com/API/News.ashx"}?apikey=${this.apiKey}`);
+    // (
+    //   'http://superior.wingplusweb.com/API/News.ashx'
+    // );
+  }
+
+  // getPlan() {
   //   return this.http.get(
   //     'http://superior.wingplusweb.com/API/ServicePlans.ashx'
   //   );
   // }
-  // getJobDetail() {
-  //   return this.http.get(
-  //     'http://superior.wingplusweb.com/API/ServicePlansDetail.ashx'
-  //   );
-  // }
-
-  getJobAll() {
-    return this.http.get(
-      'http://superior.wingplusweb.com/API/Employee.ashx'
-    );
-  }
-
-  getuser(email, password) {
-    return this.http.get(
-      'http://superior.wingplusweb.com/API/Login.ashx?email=' + email + '&password=' + password
-    );
-  }
-
-  getnew() {
-    return this.http.get(
-      'http://superior.wingplusweb.com/API/News.ashx'
-    );
-  }
-
-  getPlan() {
-    return this.http.get(
-      'http://superior.wingplusweb.com/API/ServicePlans.ashx'
-    );
-  }
 
   getProduct() {
-    return this.http.get(
+    return this.http.get
+    // (`${"http://superior.wingplusweb.com/API/ProductAndManual.ashx"}?apikey=${this.apiKey}`);
+    (
       'http://superior.wingplusweb.com/API/ProductAndManual.ashx'
     );
   }

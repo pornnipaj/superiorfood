@@ -22,7 +22,7 @@ export class NewsPage implements OnInit {
     this.DataService.getnew().subscribe(data => {
       console.log(data);
       this.data = data;
-    })
+    });
   }
   //#endregion
 

@@ -34,7 +34,8 @@ export class LoginPage implements OnInit {
     public postDataService: PostDataService,
     public navCtrl: NavController,
     private platform: Platform,
-    private storageService: StorageService) {
+    private storageService: StorageService,
+    private DataService:AuthServiceService) {
     setTimeout(() => {
       this.ngOnInit();
     }, 500);
@@ -43,6 +44,11 @@ export class LoginPage implements OnInit {
     });
 
     this.user = [];
+
+    this.DataService.getnew().subscribe(data => {
+      console.log(data);
+      this.data = data;
+    });
   }
   //#endregion
 
