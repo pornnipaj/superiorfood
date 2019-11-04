@@ -426,7 +426,7 @@ export class ReportcheckpmPage implements OnInit {
           this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
         }
 
-        console.log('listpm', this.listpm);
+        // console.log('listpm', this.listpm);
 
       });
     });

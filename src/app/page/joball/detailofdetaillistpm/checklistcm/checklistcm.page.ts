@@ -80,7 +80,7 @@ export class ChecklistcmPage implements OnInit {
   }
 
   chang(type) {
-    if (type == "spare") {
+    if (type == "sparepart") {
       this.isShowType = false;
       this.isShowSpare = true;
       this.isShowDevice = false;
@@ -90,9 +90,9 @@ export class ChecklistcmPage implements OnInit {
       this.isShowDevice = true;
       this.isShowSpare = false;
     }
-    if (type == "not") {
+    if (type == "non") {
       let param = {
-        typedevice:"not"
+        typedevice:"non"
       }
       console.log(param);
       
