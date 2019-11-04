@@ -1,15 +1,5 @@
 <ion-content>
-  <div class="centered">
-      <ion-list *ngFor="let item of data">
-          <ion-list-header>
-              <ion-label>{{item.title}}</ion-label>
-          </ion-list-header>
-      </ion-list>
-      <ion-list *ngFor="let newtest of newtest">
-          <ion-list-header>
-              <ion-label>newTest : {{newtest.title}}</ion-label>
-          </ion-list-header>
-      </ion-list>
+  <div class="centered">     
 
     <form #form="ngForm" (ngSubmit)="login(form)" class="text-center">
       <img src="../../assets/img/logo.png" alt=""/>

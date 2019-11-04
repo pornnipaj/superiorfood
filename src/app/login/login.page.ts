@@ -45,18 +45,6 @@ export class LoginPage implements OnInit {
     });
 
     this.user = [];
-
-    this.DataService.getnew().subscribe(data => {
-      console.log(data);
-      alert("ข่าว" + data)
-      this.data = data;
-    });
-
-    this.DataService.getnewTest().subscribe(newtest => {
-      console.log(newtest);
-      alert("ข่าวtest" + newtest)
-      this.newtest = newtest;
-    });
   }
   //#endregion
 
@@ -109,7 +97,6 @@ export class LoginPage implements OnInit {
     this.postDataService.login(this.user).then(data => {
       this.data = data;
       console.log('Data Returner', this.data);
-      alert("login" + data)
       for (let i = 0; i < this.data.length; i++) {
         this.status = this.data[i].Status;
         this.name = this.data[i].Name;
