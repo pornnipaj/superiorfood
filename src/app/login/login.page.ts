@@ -47,6 +47,7 @@ export class LoginPage implements OnInit {
 
     this.DataService.getnew().subscribe(data => {
       console.log(data);
+      alert("new" + data)
       this.data = data;
     });
   }
@@ -101,6 +102,7 @@ export class LoginPage implements OnInit {
     this.postDataService.login(this.user).then(data => {
       this.data = data;
       console.log('Data Returner', this.data);
+      alert("login" + data)
       for (let i = 0; i < this.data.length; i++) {
         this.status = this.data[i].Status;
         this.name = this.data[i].Name;
