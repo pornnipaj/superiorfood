@@ -23,8 +23,8 @@
                         (click)="changeMonthNext()"> ถัดไป </button>
                 </div>
             </div>
-            <div class="col-12" style="padding-top: 10px; padding: 0px;" *ngFor="let data of listpm">
-                <div class="portlet box blue">
+            <div class="col-12" #lblData *ngIf="listpm != false; else lblData" style="padding-top: 10px; padding: 0px;">
+                <div class="portlet box blue" *ngFor="let data of listpm">
                     <div class="portlet-title">
                         <div class="caption">
                             <i class="fa fa-circle"></i>{{data.planDateTH}}
@@ -51,6 +51,9 @@
                         </ul>
                     </div>
                 </div>
+            </div>
+            <div class="col-12" style="text-align: center; margin-top: 20px;" #lblWait *ngIf="listpm == false; else lblWait">
+                <label>ไม่พบข้อมูล</label>
             </div>
         </div>
     </div>

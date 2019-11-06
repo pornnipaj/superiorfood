@@ -3,15 +3,24 @@
         <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
-        <ion-title class="ion-text-left">ภาพรวมการทำงาน</ion-title>        
-            <ion-icon slot="end" name="notifications"></ion-icon>
-            <ion-badge slot="end" (click)="Openpop($event)"  color="danger">{{job}}</ion-badge> 
-            <ion-icon slot="end" name="refresh" (click)="loadpage()"></ion-icon>     
+        <ion-buttons slot="primary">
+            <ion-button (click)="Openpop($event)">
+                    <ion-badge slot="icon-only" color="danger">{{job}}</ion-badge>
+                    <ion-icon slot="icon-only" name="notifications"></ion-icon>                
+            </ion-button>
+            <ion-button (click)="loadpage()">
+                <ion-icon slot="icon-only" name="refresh"></ion-icon>  
+            </ion-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
+<ion-content>
+        <ion-refresher (ionRefresh)="doRefresh($event)">
+                <ion-refresher-content></ion-refresher-content>
+              </ion-refresher>
+              
     <div class="container-fluid">
         <div class="page-content-inner">
             <div class="row" style="padding:5px;">
@@ -19,9 +28,9 @@
                     <div class="portlet box blue">
                         <div class="portlet-title">
                             <div class="caption">
-                                <i class="fa fa-dashboard" style="font-size: 2em;"></i>สรุปภาพรวมการทำงาน</div>                            
+                                <i class="fa fa-dashboard" style="font-size: 2em;"></i>สรุปภาพรวมการทำงาน</div>
                         </div>
-                        <div class="portlet-body" style="padding: 2px;">                            
+                        <div class="portlet-body" style="padding: 2px;">
                             <div class="btn-group btn-group btn-group-justified btn-lg"
                                 style="padding: 0px; width: 100%;">
                                 <button class="btn blue text-center" style="padding: 5px;" (click)="changeMonthBack()">
@@ -39,7 +48,7 @@
                               <ion-input type="text" [(ngModel)]="username"></ion-input>
                             </ion-item>
                             </ion-list> -->
-                            <div>                                
+                            <div>
                                 <div>
                                     <label class="col-6">งานทั้งหมด</label>
                                     <label class="col-6 text-right">{{workall}}</label>
@@ -101,4 +110,3 @@
             </div>
         </div>
     </div>
-</ion-content>

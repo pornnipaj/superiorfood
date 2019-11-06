@@ -23,8 +23,6 @@ export class CmPage implements OnInit {
   intMonth;
   intYear;
   textShow;
-  all;
-  finish;
   json: any;
   listpmdetail;
   job;
@@ -135,22 +133,16 @@ export class CmPage implements OnInit {
     }
     if (this.intMonth == 8) {
       this.month = 'สิงหาคม'
-      this.all = '8';
-      this.finish = '8';
       this.intMonth = 8;
       this.textShow = this.month + " " + this.intYear
     }
     if (this.intMonth == 9) {
       this.month = 'กันยายน'
-      this.all = '9';
-      this.finish = '9';
       this.intMonth = 9;
       this.textShow = this.month + " " + this.intYear
     }
     if (this.intMonth == 10) {
       this.month = 'ตุลาคม'
-      this.all = '10';
-      this.finish = '10';
       this.intMonth = 10;
       this.textShow = this.month + " " + this.intYear
     }
@@ -196,82 +188,60 @@ export class CmPage implements OnInit {
   //#endregion
 
   //#region changeMonthNext
-  changeMonthNext() {
+  changeMonthNext(value) {
     // const year = new Date().getFullYear();
     //#region nextmonth
     if (this.month == 'มกราคม') {
       this.month = 'กุมภาพันธ์'
-      this.all = '2';
-      this.finish = '2';
       this.intMonth = 2;
       this.textShow = this.month + " " + this.intYear
     }
     else if (this.month == 'กุมภาพันธ์') {
       this.month = 'มีนาคม'
-      this.all = '3';
-      this.finish = '3';
       this.intMonth = 3;
       this.textShow = this.month + " " + this.intYear
     }
     else if (this.month == 'มีนาคม') {
       this.month = 'เมษายน'
-      this.all = '4';
-      this.finish = '4';
       this.intMonth = 4;
       this.textShow = this.month + " " + this.intYear
     }
     else if (this.month == 'เมษายน') {
       this.month = 'พฤษภาคม'
-      this.all = '5';
-      this.finish = '5';
       this.intMonth = 5;
     }
     else if (this.month == 'พฤษภาคม') {
       this.month = 'มิถุนายน'
-      this.all = '6';
-      this.finish = '6';
       this.intMonth = 6;
       this.textShow = this.month + " " + this.intYear
     }
     else if (this.month == 'มิถุนายน') {
       this.month = 'กรกฎาคม'
-      this.all = '7';
-      this.finish = '7';
       this.intMonth = 7;
       this.textShow = this.month + " " + this.intYear
     }
     else if (this.month == 'กรกฎาคม') {
       this.month = 'สิงหาคม'
-      this.all = '8';
-      this.finish = '8';
       this.intMonth = 8;
       this.textShow = this.month + " " + this.intYear
     }
     else if (this.month == 'สิงหาคม') {
       this.month = 'กันยายน'
-      this.all = '9';
-      this.finish = '9';
       this.intMonth = 9;
       this.textShow = this.month + " " + this.intYear
     }
     else if (this.month == 'กันยายน') {
       this.month = 'ตุลาคม'
-      this.all = '10';
-      this.finish = '10';
       this.intMonth = 10;
       this.textShow = this.month + " " + this.intYear
     }
     else if (this.month == 'ตุลาคม') {
       this.month = 'พฤศจิกายน'
-      this.all = '11';
-      this.finish = '11';
       this.intMonth = 11;
       this.textShow = this.month + " " + this.intYear
     }
     else if (this.month == 'พฤศจิกายน') {
       this.month = 'ธันวาคม'
-      this.all = '12';
-      this.finish = '12';
       this.intMonth = 12;
       this.textShow = this.month + " " + this.intYear
     }
@@ -285,10 +255,33 @@ export class CmPage implements OnInit {
     //   this.intYear = year
     // }
     //#endregion
+    if (value == false) {
+      this.job.empID = this.empid;
+      this.job.month = this.intMonth;
+      this.job.year = this.intYear;
+      this.job.jobtype = this.type
+      console.log(this.job);
+
+      this.postDataService.postJobList(this.job).then(work => {
+        this.listpm = work;
+        console.log(this.listpm);
+
+
+        for (let i = 0; i < this.listpm.length; i++) {
+          this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+        }
+
+        console.log('listpm', this.listpm);
+
+      });
+    }
+    if (value != false) {
+      this.listpm = false;      
+    }
+
     console.log(this.intMonth)
     console.log(this.intYear)
     console.log(this.empid);
-
 
     this.storageService.getUser().then(items => {
       this.items = items;
@@ -320,7 +313,7 @@ export class CmPage implements OnInit {
   //#endregion
 
   //#region changeMonthBack
-  changeMonthBack() {
+  changeMonthBack(value) {
     //#region 
     if (this.month == 'มกราคม') {
       this.month = 'ธันวาคม'
@@ -365,22 +358,16 @@ export class CmPage implements OnInit {
     }
     else if (this.month == 'กันยายน') {
       this.month = 'สิงหาคม'
-      this.all = '8';
-      this.finish = '8';
       this.intMonth = 8;
       this.textShow = this.month + " " + this.intYear
     }
     else if (this.month == 'ตุลาคม') {
       this.month = 'กันยายน'
-      this.all = '9';
-      this.finish = '9';
       this.intMonth = 9;
       this.textShow = this.month + " " + this.intYear
     }
     else if (this.month == 'พฤศจิกายน') {
       this.month = 'ตุลาคม'
-      this.all = '10';
-      this.finish = '10';
       this.intMonth = 10;
       this.textShow = this.month + " " + this.intYear
     }
@@ -395,6 +382,30 @@ export class CmPage implements OnInit {
     console.log(this.intYear)
     console.log(this.empid);
 
+
+    if (value == false) {
+      this.job.empID = this.empid;
+      this.job.month = this.intMonth;
+      this.job.year = this.intYear;
+      this.job.jobtype = this.type
+      console.log(this.job);
+
+      this.postDataService.postJobList(this.job).then(work => {
+        this.listpm = work;
+        console.log(this.listpm);
+
+
+        for (let i = 0; i < this.listpm.length; i++) {
+          this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+        }
+
+        console.log('listpm', this.listpm);
+
+      }); 
+    }
+    if (value != false) {
+      this.listpm = false;      
+    }
 
     this.storageService.getUser().then(items => {
       this.items = items;

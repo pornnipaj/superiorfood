@@ -28,6 +28,9 @@ export class ModalpopPage implements OnInit {
 
   //#region start
   ngOnInit() {
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 500);
   }
   //#endregion
   

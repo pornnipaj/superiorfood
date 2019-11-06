@@ -5,6 +5,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
   { path: 'menu', loadChildren: './page/menu/menu.module#MenuPageModule' },
+  { path: 'home', loadChildren: './home/home.module#HomePageModule' },
   { path: 'job/jobdetail', loadChildren: './page/job/jobdetail/jobdetail.module#JobdetailPageModule' },
   { path: 'job/reportcheckpm', loadChildren: './page/job/reportcheckpm/reportcheckpm.module#ReportcheckpmPageModule' },
   { path: 'job/calendarpm', loadChildren: './page/job/calendarpm/calendarpm.module#CalendarpmPageModule' },

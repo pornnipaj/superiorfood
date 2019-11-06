@@ -108,8 +108,8 @@ export class DetailofdetaillistpmPage implements OnInit {
   empID;
   tran;
   code;
-  minute: number = 0;
-  second: number = 0;
+  Minute: number = 0;
+  Hours: number = 0;
   time: number = 0;
   list;
   jobtype;
@@ -871,7 +871,6 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.time = 1;
       }
     }, 1000)
-
   }
 
   pauseTimer() {

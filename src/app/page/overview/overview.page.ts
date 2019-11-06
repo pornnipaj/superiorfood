@@ -77,7 +77,6 @@ export class OverviewPage implements OnInit {
     this.ChangeMonth();
 
     this.Today = new Date();
-
   }
   loadpage() {
     setTimeout(() => {
