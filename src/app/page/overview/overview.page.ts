@@ -17,6 +17,7 @@ import { Platform, PopoverController, ModalController, Events, LoadingController
 import { StorageService, User } from '../../storage.service';
 import { ModalpopPage } from '../overview/modalpop/modalpop.page';
 import { from } from 'rxjs';
+import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 
 @Component({
   selector: 'app-overview',
@@ -68,6 +69,7 @@ export class OverviewPage implements OnInit {
     private platform: Platform,
     private sqlite: SQLite,
     private events: Events,
+    private localNotifications: LocalNotifications,
     private storageService: StorageService) {
     setTimeout(() => {
       this.ngOnInit();
@@ -418,6 +420,9 @@ export class OverviewPage implements OnInit {
     this.storageService.getUser().then(items => {
       this.items = items;
       console.log(items);
+      if (this.items == null) {
+        
+      }else{
       for (let i = 0; i < this.items.length; i++) {
         this.empID = this.items[i].empID;
         this.name = this.items[i].name
@@ -443,6 +448,13 @@ export class OverviewPage implements OnInit {
           }
         });
       }
+    }
+    });
+    this.localNotifications.schedule({
+      id: 1,
+      text: 'งานทั้งหมด' + this.job + "งาน",
+      data: { secret: 'key_data' },
+      trigger: { every: { hour: 24 }, count: 1 },
     });
   }
 

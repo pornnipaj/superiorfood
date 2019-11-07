@@ -40,9 +40,6 @@ export class LoginPage implements OnInit {
     setTimeout(() => {
       this.ngOnInit();
     }, 500);
-    this.platform.ready().then(() => {
-      this.loadItems();
-    });
 
     this.user = [];
   }
@@ -57,35 +54,6 @@ export class LoginPage implements OnInit {
       cssClass: 'custom-class custom-loading'
     });
     return await loading.present();
-  }
-  //#endregion
-
-  //#region adddata to storage
-  addUser() {
-    this.newUser.id = 1;
-    this.newUser.name = "name";
-    this.newUser.username = "username";
-    this.newUser.position = "position";
-    this.newUser.empID = "empID";
-
-    this.storageService.addUser(this.newUser).then(item => {
-      this.newUser = <User>{};
-      this.loadItems();
-    });
-  }
-
-  loadItems() {
-    this.storageService.getUser().then(items => {
-      this.items = items;
-      // alert(items)
-    });
-  }
-
-  deleteItem(user: User) {
-    this.storageService.deleteUser(user.id).then(item => {
-      this.mylist.closeSlidingItems(); // Fix or sliding is stuck afterwards
-      this.loadItems(); // Or splice it from the array directly
-    });
   }
   //#endregion
 
