@@ -23,7 +23,7 @@ import { ModalpopPageModule } from '../app/page/overview/modalpop/modalpop.modul
 import { ChecklistcmPageModule } from '../app/page/joball/detailofdetaillistpm/checklistcm/checklistcm.module';
 import { ShowimginstallPageModule } from '../app/page/job/showimginstall/showimginstall.module';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SQLite } from '@ionic-native/sqlite/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
@@ -56,10 +56,10 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
     LocalNotifications,
     Camera,
     SQLite,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },        
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AuthServiceService,
     BarcodeScanner,
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
