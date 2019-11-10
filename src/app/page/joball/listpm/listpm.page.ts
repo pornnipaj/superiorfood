@@ -32,6 +32,7 @@ export class ListpmPage implements OnInit {
   listpm;
   myId;
   emp;
+
   //#endregion
 
   //#region constructor
@@ -41,28 +42,20 @@ export class ListpmPage implements OnInit {
     public navCtrl: NavController,
     private storageService: StorageService,
     private postDataService: PostDataService) {
-      this.route.queryParams.subscribe(params => {
-        this.myId = JSON.parse(params["data"]);
-        this.emp = this.myId.PersonID
-        console.log(this.emp);
-        
-      });
+    this.route.queryParams.subscribe(params => {
+      this.myId = JSON.parse(params["data"]);
+      this.emp = this.myId.EmpID;
+      this.name = this.myId.Name;
+      console.log(this.name);
+
+    });
 
     this.json;
     this.listpmdetail = [];
 
     this.job = [];
 
-    this.storageService.getUser().then(items => {
-      this.items = items;
-      // console.log(items);      
-      for (let i = 0; i < this.items.length; i++) {
-        this.myempID = this.items[i].empID;
-        this.name = this.items[i].name;
-        // console.log(this.myempID);
-      }
-    });
-this.ChangeMonth();
+    this.ChangeMonth();
   }
 
   //#endregion
@@ -78,26 +71,6 @@ this.ChangeMonth();
         // console.log(this.myempID);
       }
     });
-  }
-
-  click(item) {
-
-    console.log(item);
-
-    let params = { 
-      item: item.value,
-      type: this.type, 
-    } 
-
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        data: JSON.stringify(params)
-      }
-    };
-    console.log(navigationExtras);
-
-    this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
-
   }
 
   //#endregion
@@ -184,6 +157,7 @@ this.ChangeMonth();
     this.job.month = this.intMonth;
     this.job.year = this.intYear;
     this.job.jobtype = this.type
+    console.log(this.job);
 
     this.postDataService.postJobList(this.job).then(work => {
       this.listpm = work;
@@ -199,13 +173,12 @@ this.ChangeMonth();
     });
   }
 
-  changeMonthNext() {
+  changeMonthNext(value) {
     // const year = new Date().getFullYear();
     //#region nextmonth
     if (this.month == 'มกราคม') {
       this.month = 'กุมภาพันธ์'
       this.intMonth = 2;
-      this.intYear = this.intYear - 1
       this.textShow = this.month + " " + this.intYear
     }
     else if (this.month == 'กุมภาพันธ์') {
@@ -267,35 +240,63 @@ this.ChangeMonth();
     //   this.intYear = year
     // }
     //#endregion
+    if (value == false) {
+      this.job.empID = this.emp;
+      this.job.month = this.intMonth;
+      this.job.year = this.intYear;
+      this.job.jobtype = this.type
+
+      this.postDataService.postJobList(this.job).then(work => {
+        this.listpm = work;
+        console.log(this.listpm);
+        for (let i = 0; i < this.listpm.length; i++) {
+          this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+        }
+
+        console.log('listpm', this.listpm);
+
+      });
+    }
+    if (value != false) {
+      this.listpm = false;
+    }
     console.log(this.intMonth)
     console.log(this.intYear)
     console.log(this.empid);
-
 
     this.job.empID = this.emp;
     this.job.month = this.intMonth;
     this.job.year = this.intYear;
     this.job.jobtype = this.type
+    console.log(this.job);
 
     this.postDataService.postJobList(this.job).then(work => {
       this.listpm = work;
       console.log(this.listpm);
 
+
+      for (let i = 0; i < this.listpm.length; i++) {
+        this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+      }
+
+      console.log('listpm', this.listpm);
+
     });
   }
 
-  changeMonthBack() {
+  changeMonthBack(value) {
     //#region 
     if (this.month == 'มกราคม') {
       this.month = 'ธันวาคม'
       this.intMonth = 12;
+      this.intYear = this.intYear - 1
       this.textShow = this.month + " " + this.intYear
     }
     else if (this.month == 'กุมภาพันธ์') {
       this.month = 'มกราคม'
       this.intMonth = 1;
       this.textShow = this.month + " " + this.intYear
-      this.intYear = this.intYear - 1
+
     }
     else if (this.month == 'มีนาคม') {
       this.month = 'กุมภาพันธ์'
@@ -349,19 +350,46 @@ this.ChangeMonth();
     }
 
     //#endregion
+    if (value == false) {
+      this.job.empID = this.emp;
+      this.job.month = this.intMonth;
+      this.job.year = this.intYear;
+      this.job.jobtype = this.type
+
+      this.postDataService.postJobList(this.job).then(work => {
+        this.listpm = work;
+        console.log(this.listpm);
+        for (let i = 0; i < this.listpm.length; i++) {
+          this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+        }
+
+        console.log('listpm', this.listpm);
+
+      });
+    }
+    if (value != false) {
+      this.listpm = false;
+    }
     console.log(this.intMonth)
     console.log(this.intYear)
     console.log(this.empid);
-
 
     this.job.empID = this.emp;
     this.job.month = this.intMonth;
     this.job.year = this.intYear;
     this.job.jobtype = this.type
+    console.log(this.job);
 
     this.postDataService.postJobList(this.job).then(work => {
       this.listpm = work;
       console.log(this.listpm);
+
+
+      for (let i = 0; i < this.listpm.length; i++) {
+        this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+      }
+
+      console.log('listpm', this.listpm);
 
     });
   }
@@ -372,20 +400,11 @@ this.ChangeMonth();
 
   ngOnInit() {
 
-    this.storageService.getUser().then(items => {
-      this.items = items;
-      // console.log(items);      
-      for (let i = 0; i < this.items.length; i++) {
-        this.empid = this.items[i].empID
-        this.name = this.items[i].name;
-      }
-    });
-
-
     this.job.empID = this.emp;
     this.job.month = this.intMonth;
     this.job.year = this.intYear;
     this.job.jobtype = this.type
+    console.log(this.job);
 
     this.postDataService.postJobList(this.job).then(work => {
       this.listpm = work;
