@@ -12,11 +12,11 @@ export class MenuheadPage implements OnInit {
       url: '/menuhead/overview',
       icon: 'home'
     },
-    {
-      title: 'แพลนงานช่าง',
-      url: '/menuhead/serviceplan',
-      icon: 'calendar'
-    },
+    // {
+    //   title: 'แพลนงานช่าง',
+    //   url: '/menuhead/serviceplan',
+    //   icon: 'calendar'
+    // },
     {
       title: 'งานของในความรับผิดชอบ',
       url: '/menuhead/job',

@@ -21,10 +21,10 @@ const routes: Routes = [
         path: 'overview',
         loadChildren: '../overview/overview.module#OverviewPageModule'
       },
-      {
-        path: 'serviceplan',
-        loadChildren: '../serviceplan/serviceplan.module#ServiceplanPageModule'
-      },
+      // {
+      //   path: 'serviceplan',
+      //   loadChildren: '../serviceplan/serviceplan.module#ServiceplanPageModule'
+      // },
       {
         path: 'job',
         loadChildren: '../job/job.module#JobPageModule'
