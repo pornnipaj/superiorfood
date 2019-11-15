@@ -56,7 +56,6 @@ export class ShowimginstallPage implements OnInit {
       console.log(this.resultimg)
       if (this.resultimg == null) {
         this.hide = false;
-        this.notimg = "ไม่พบรูปภาพ";
         console.log(123);
       }
       for (let v = 0; v < this.resultimg.length; v++) {

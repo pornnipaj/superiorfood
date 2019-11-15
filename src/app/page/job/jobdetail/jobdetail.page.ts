@@ -171,7 +171,7 @@ export class JobdetailPage implements OnInit {
         }
         if (this.image[v].type == "step1_pic4") {
           this.img.src4 = 'http://superior.wingplusweb.com' + this.image[v].file_path
-          this.booimg1 = true;
+          this.booimg4 = true;
           console.log("bf4", this.img.src4);
         }
         if (this.image[v].type == "step1_pic5") {
