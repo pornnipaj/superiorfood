@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>เบิกอะไหล่</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container-fluid">
+    <div class="row" style="padding: 5px;">
+      <div class="col-md-12 col-12">
+        <div class="portlet box blue">
+          <div class="portlet-title">
+            <div class="caption">
+              <i class="fa fa-user"></i>รายการเบิกอะไหล่</div>
+              <div class="tools">
+                  <span class="label label-sm label-success circle"
+                  (click)="NewSpare()">เบิกอะไหล่</span>
+              </div>
+          </div>
+          <div class="portlet-body">
+            <div class="tab-content">
+              <div class="tab-pane active">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="table-scrollable">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th> ลำดับที่ </th>
+                            <th> เลขที่เอกสาร </th>
+                            <th> ชื่อลูกค้า </th>
+                            <th> สถานะ </th>
+                            <th> วันที่สร้างเอกสาร </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let item of list">
+                            <td> </td>
+                            <td> {{item.ServiceReportNo}} </td>
+                            <td> {{item.CustomerName}} </td>
+                            <td> {{item.Status}} </td>
+                            <td> {{item.CreatedDate}} </td>
+                            <td> <span class="label label-sm label-warning circle"
+                                (click)="Detail(item)">แก้ไข</span>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

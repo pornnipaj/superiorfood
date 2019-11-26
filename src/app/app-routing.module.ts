@@ -27,7 +27,8 @@ const routes: Routes = [
   { path: 'menuhead', loadChildren: './page/menuhead/menuhead.module#MenuheadPageModule' },
   { path: 'modalpop', loadChildren: './page/overview/modalpop/modalpop.module#ModalpopPageModule' },
   { path: 'showimginstall', loadChildren: './page/job/showimginstall/showimginstall.module#ShowimginstallPageModule' },  { path: 'customerevaluation', loadChildren: './page/joball/detailofdetaillistpm/customerevaluation/customerevaluation.module#CustomerevaluationPageModule' },
-  { path: 'take', loadChildren: './page/take-spare-parts/take/take.module#TakePageModule' }
+  { path: 'take', loadChildren: './page/take-spare-parts/take/take.module#TakePageModule' },
+  { path: 'sparelist', loadChildren: './page/take-spare-parts/sparelist/sparelist.module#SparelistPageModule' }
 
 
 ];

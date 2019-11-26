@@ -35,7 +35,7 @@ const routes: Routes = [
       },
       {
         path: 'sparepart',
-        loadChildren: '../take-spare-parts/take-spare-parts.module#TakeSparePartsPageModule'
+        loadChildren: '../take-spare-parts/sparelist/sparelist.module#SparelistPageModule'
       },
       {
         path: 'product',

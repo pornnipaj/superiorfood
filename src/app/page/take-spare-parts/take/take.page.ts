@@ -22,6 +22,7 @@ export class TakePage implements OnInit {
   Sum;
   AsID;
   Remark;
+  JobDeviceID;
 
   constructor(public modalController: ModalController,
     navParams: NavParams,
@@ -29,27 +30,29 @@ export class TakePage implements OnInit {
 
       this.CusID = (navParams.get('cusID'))
       this.EmpID = (navParams.get('EmpID'))
-      this.ProID = (navParams.get('ProID'))
       this.JobID = (navParams.get('JobID'))
-      console.log(this.JobID);
+      this.JobDeviceID = (navParams.get('JobDeviceID'))
+
+      console.log(this.JobID,this.JobDeviceID);
       
-      this.Sum = this.No * this.UnitPrice;
+      this.Sum = this.No * this.UnitPrice;  
+      
       let params = {
-        ProID: this.ProID,
-        Type: "Device",
+        Type: "Machine",
       }
-      console.log(params);
-      this.postDataService.PostCus(params).then(Device => {
-        this.Device = Device;
-        console.log(Device);
+      this.postDataService.PostCus(params).then(Machine => {
+        this.Machine = Machine;
       });
+      if (this.JobDeviceID != "") {
+        alert("123")
+      }
     }
 
   ngOnInit() {
     
   }
   close() {
-    this.modalController.dismiss();
+    this.modalController.dismiss(this.JobID);
   }
   onSum(){
     this.Sum = this.No * this.UnitPrice
@@ -60,6 +63,8 @@ export class TakePage implements OnInit {
     console.log(this.UnitPrice);
     console.log(this.Sum);
     let params = {
+      EmpID: this.EmpID,
+      CusID: this.CusID,
       JobID: this.JobID,
       ProID: this.ProID,
       AsID: this.AsID,
@@ -68,20 +73,32 @@ export class TakePage implements OnInit {
       UnitPrice: this.UnitPrice,
       Amount: this.Sum,
       Remark: this.Remark,
-      Type: "jobDevice",
+      Type: "Job",
+    }
+    console.log(params);
+    this.postDataService.PostCus(params).then(JobID => {
+     this.JobID = JobID;
+      console.log(JobID);
+      this.modalController.dismiss(this.JobID);
+    });  
+
+  }
+  getProId(value) {
+    this.ProID = value.detail.value;
+    console.log(this.ProID);
+    let params = {
+      ProID: this.ProID,
+      Type: "Device",
     }
     console.log(params);
     this.postDataService.PostCus(params).then(Device => {
       this.Device = Device;
-      console.log(Device);
     });
-
   }
   getAsID(value){
     this.AsID = value.detail.value
     console.log(this.AsID); 
-    console.log(value);      
-
+    console.log(value);   
   }
   
 }

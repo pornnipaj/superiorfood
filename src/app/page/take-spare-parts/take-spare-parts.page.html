@@ -1,12 +1,11 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-back-button></ion-back-button>
+      <ion-title>รายละเอียดการเบิกอะไหล่</ion-title>
     </ion-buttons>
-    <ion-title>เบิกอะไหล่</ion-title>
   </ion-toolbar>
 </ion-header>
-
 
 <ion-content>
   <div class="container-fluid">
@@ -24,56 +23,83 @@
                   <div class="col-6">
                     <ion-list>
                       <ion-item>
+                        <div class="col-4">
                         <ion-label color="primary">รหัสลูกค้า</ion-label>
+                      </div>
+                      <div class="col-8">
                         <ion-input [(ngModel)]="CustomerCode"></ion-input>
+                      </div>
                       </ion-item>
                       <ion-item>
+                          <div class="col-4">
                         <ion-label color="primary">ชื่อลูกค้า</ion-label>
+                        </div>
+                        <div class="col-8">
                         <ion-select interface="popover" (ionChange)="onChange($event)">
                           <ion-select-option *ngFor="let title of Cus" [value]="title.CustomerID"
                             [selected]="title.CustomerName">{{title.CustomerName}}</ion-select-option>
                         </ion-select>
+                        </div>
                       </ion-item>
                       <ion-item>
+                          <div class="col-4">
                         <ion-label color="primary">ที่อยู่ร้าน</ion-label>
-                        <ion-textarea rows="3" [(ngModel)]="Address" [disabled]="true"></ion-textarea>
+                        </div>
+                        <div class="col-8">
+                        <ion-textarea rows="3" [(ngModel)]="AddressSite" [disabled]="true"></ion-textarea>
+                        </div>
                       </ion-item>
-                      <ion-item hidden>
-                        <ion-label color="primary">ประเภทเครื่อง</ion-label>
-                        <ion-select interface="popover" placeholder="Accessories">
-                          <ion-select-option></ion-select-option>
-                        </ion-select>
-                      </ion-item>
-                      <ion-item>
-                        <ion-label color="primary">ประเภทเครื่อง</ion-label>
-                        <ion-select interface="popover" (ionChange)="getProId($event)">
-                          <ion-select-option *ngFor="let title of Machine" [value]="title.ProductID"
-                            [selected]="title.ProductName">{{title.ProductName}}</ion-select-option>
-                        </ion-select>
-                      </ion-item>                      
+                          <ion-item>
+                              <div class="col-4">
+                              <ion-label color="primary">เบอร์โทรศัพท์ร้าน</ion-label>
+                              </div>
+                              <div class="col-8">
+                              <ion-input [(ngModel)]="TelCompany"></ion-input>
+                              </div>
+                            </ion-item>                   
                     </ion-list>
                   </div>
                   <div class="col-6">
                     <ion-list>
                       <ion-item>
+                          <div class="col-4">
                         <ion-label color="primary">หมายเลขเอกสาร</ion-label>
-                        <ion-input></ion-input>
+                        </div>
+                        <div class="col-8">
+                        <ion-input [(ngModel)]="ServiceReportNo"></ion-input>
+                      </div>
                       </ion-item>
                       <ion-item>
+                          <div class="col-4">
                         <ion-label color="primary">วันที่เบิก</ion-label>
+                        </div>
+                        <div class="col-8">
                         <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="myDate"></ion-datetime>
+                      </div>
                       </ion-item>
                       <ion-item>
-                        <ion-label color="primary">เบอร์โทรศัพท์</ion-label>
-                        <ion-input [(ngModel)]="Phone"></ion-input>
+                          <div class="col-4">
+                        <ion-label color="primary">เบอร์โทรศัพท์ช่าง</ion-label>
+                        </div>
+                        <div class="col-8">
+                        <ion-input [(ngModel)]="EngineerTel"></ion-input>
+                      </div>
                       </ion-item>
                       <ion-item>
+                          <div class="col-4">
                         <ion-label color="primary">อ้างอิง</ion-label>
-                        <ion-input [(ngModel)]="Remark"></ion-input>
+                        </div>
+                        <div class="col-8">
+                        <ion-input [(ngModel)]="Reference"></ion-input>
+                      </div>
                       </ion-item>
                       <ion-item>
+                          <div class="col-4">
                         <ion-label color="primary">ชื่อช่าง</ion-label>
+                        </div>
+                        <div class="col-8">
                         <ion-label>{{name}}</ion-label>
+                      </div>
                       </ion-item>
                     </ion-list>
                   </div>
@@ -86,7 +112,7 @@
           </div>          
         </div>        
       </div>
-      <div class="col-md-12 col-12">
+      <div class="col-md-12 col-12" *ngIf="isShow">
       <div class="portlet light ">
         <div class="portlet-body">
             <div class="table-scrollable">
@@ -101,11 +127,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr *ngFor="let item of list">
                             <td>  </td>
-                            <td> </td>
-                            <td>  </td>
-                            <td>  </td>
+                            <td> {{item.AssetType}} </td>
+                            <td> {{item.AssetNo}} </td>
+                            <td> {{item.Qty}} </td>                            
+                            <td>
+                                <span class="label label-sm label-warning" (click)="Edit(item)"> แก้ไข </span>
+                            </td>
                             <td>
                                 <span class="label label-sm label-success"> Approved </span>
                             </td>

@@ -12,6 +12,13 @@
                 <div class="row">
                   <div class="col-12">
                     <ion-list>
+                      <ion-item>
+                          <ion-label color="primary">ประเภทเครื่อง</ion-label>
+                          <ion-select interface="popover" (ionChange)="getProId($event)">
+                            <ion-select-option *ngFor="let title of Machine" [value]="title.ProductID"
+                              [selected]="title.ProductName">{{title.ProductName}}</ion-select-option>
+                          </ion-select>
+                      </ion-item>
                           <ion-item>
                               <ion-label color="primary">อุปกรณ์</ion-label>
                               <ion-select interface="popover" (ionChange)="getAsID($event)">
