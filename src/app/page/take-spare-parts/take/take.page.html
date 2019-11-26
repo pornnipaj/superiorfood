@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>เบิกอะไหล่</ion-title>
+    <ion-icon slot="end" name="close" (click)="close()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="col-md-12 col-12" style="padding: 0;">        
+            <div class="tab-content">
+              <div class="tab-pane active">
+                <div class="row">
+                  <div class="col-12">
+                    <ion-list>
+                          <ion-item>
+                              <ion-label color="primary">อุปกรณ์</ion-label>
+                              <ion-select interface="popover" (ionChange)="getAsID($event)">
+                                <ion-select-option *ngFor="let title of Device" [value]="title.AssID"                                
+                                  [selected]="title.AssetNo">{{title.AssetNo}}</ion-select-option>
+                              </ion-select>
+                            </ion-item>
+                      <ion-item>
+                        <ion-label color="primary">จำนวน</ion-label>
+                        <ion-input type="number" [(ngModel)]="No" (ionChange)="onSum($event)"></ion-input>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label color="primary">Unit</ion-label>
+                        <ion-input type="text" [(ngModel)]="Unit"></ion-input>
+                      </ion-item>
+                      <ion-item>
+                          <ion-label color="primary">ราคาต่อหน่วย</ion-label>
+                          <ion-input type="number" [(ngModel)]="UnitPrice" (ionChange)="onSum($event)"></ion-input>
+                        </ion-item>
+                      <ion-item>
+                        <ion-label color="primary">ราคารวม</ion-label>
+                        <ion-input type="number" [(ngModel)]="Sum"></ion-input>
+                      </ion-item>
+                      <ion-item>
+                          <ion-label color="primary">หมายเหตุ</ion-label>
+                          <ion-textarea [(ngModel)]="Remark"></ion-textarea>
+                        </ion-item>
+                    </ion-list>
+                    <div class="col-12" style="text-align: center;">
+                        <ion-button slot="end" (click)="PostSpare()">เบิกอะไหล่</ion-button> 
+                    </div> 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+</ion-content>

@@ -9,4 +9,113 @@
 
 
 <ion-content>
+  <div class="container-fluid">
+    <div class="row" style="padding: 5px;">
+      <div class="col-md-12 col-12">
+        <div class="portlet box blue">
+          <div class="portlet-title">
+            <div class="caption">
+              <i class="fa fa-user"></i>ข้อมูลลูกค้า</div>
+          </div>
+          <div class="portlet-body">
+            <div class="tab-content">
+              <div class="tab-pane active">
+                <div class="row">
+                  <div class="col-6">
+                    <ion-list>
+                      <ion-item>
+                        <ion-label color="primary">รหัสลูกค้า</ion-label>
+                        <ion-input [(ngModel)]="CustomerCode"></ion-input>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label color="primary">ชื่อลูกค้า</ion-label>
+                        <ion-select interface="popover" (ionChange)="onChange($event)">
+                          <ion-select-option *ngFor="let title of Cus" [value]="title.CustomerID"
+                            [selected]="title.CustomerName">{{title.CustomerName}}</ion-select-option>
+                        </ion-select>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label color="primary">ที่อยู่ร้าน</ion-label>
+                        <ion-textarea rows="3" [(ngModel)]="Address" [disabled]="true"></ion-textarea>
+                      </ion-item>
+                      <ion-item hidden>
+                        <ion-label color="primary">ประเภทเครื่อง</ion-label>
+                        <ion-select interface="popover" placeholder="Accessories">
+                          <ion-select-option></ion-select-option>
+                        </ion-select>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label color="primary">ประเภทเครื่อง</ion-label>
+                        <ion-select interface="popover" (ionChange)="getProId($event)">
+                          <ion-select-option *ngFor="let title of Machine" [value]="title.ProductID"
+                            [selected]="title.ProductName">{{title.ProductName}}</ion-select-option>
+                        </ion-select>
+                      </ion-item>                      
+                    </ion-list>
+                  </div>
+                  <div class="col-6">
+                    <ion-list>
+                      <ion-item>
+                        <ion-label color="primary">หมายเลขเอกสาร</ion-label>
+                        <ion-input></ion-input>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label color="primary">วันที่เบิก</ion-label>
+                        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="myDate"></ion-datetime>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label color="primary">เบอร์โทรศัพท์</ion-label>
+                        <ion-input [(ngModel)]="Phone"></ion-input>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label color="primary">อ้างอิง</ion-label>
+                        <ion-input [(ngModel)]="Remark"></ion-input>
+                      </ion-item>
+                      <ion-item>
+                        <ion-label color="primary">ชื่อช่าง</ion-label>
+                        <ion-label>{{name}}</ion-label>
+                      </ion-item>
+                    </ion-list>
+                  </div>
+                  <div class="col-12" style="text-align: center;">
+                    <ion-button slot="end" (click)="ShowSpare()">เบิกอะไหล่</ion-button>
+                  </div>
+                </div>
+              </div>
+            </div>            
+          </div>          
+        </div>        
+      </div>
+      <div class="col-md-12 col-12">
+      <div class="portlet light ">
+        <div class="portlet-body">
+            <div class="table-scrollable">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th> ลำดับที่ </th>
+                            <th> ประเภทเครื่อง </th>
+                            <th> รายละเอียดเครื่อง </th>
+                            <th> จำนวน </th>
+                            <th>  </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>  </td>
+                            <td> </td>
+                            <td>  </td>
+                            <td>  </td>
+                            <td>
+                                <span class="label label-sm label-success"> Approved </span>
+                            </td>
+                        </tr>                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+  </div>     
+    </div>
+  </div>
 </ion-content>

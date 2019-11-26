@@ -41,6 +41,7 @@ export class ChecklistcmPage implements OnInit {
   assetold;
   chkdata;
   spareList = [];
+  stock;
   //#endregion
 
   //#region constructor
@@ -61,6 +62,8 @@ export class ChecklistcmPage implements OnInit {
     this.SerialNo = this.navParams.data.SerialNo;
     this.cat = this.navParams.data.Cat;
     console.log(this.ItemsName, this.ItemCode, this.SerialNo);
+
+    this.stock = [];
   }
 
   //#endregion
@@ -156,13 +159,35 @@ export class ChecklistcmPage implements OnInit {
     this.isShowSpareDetail = true;
     if (this.sparepart == "") {
       this.alertSN();
-      this.isShowSpareDetail = false;
     }
-    if (this.sparepart.length > 0) {
-      let task = this.sparepart;
-      this.spareList.push(task);
-      this.sparepart = "";
-  }
+    if (this.sparepart.length > 0) {      
+      let params = {
+        installID: this.installID,
+      }  
+        this.postDataService.postdevice(params).then(asset => {
+          this.asset = asset
+          this.chkdata = 0;
+          console.log(this.asset);
+    
+          for (let i = 0; i < this.asset.length; i++) {
+            const a = this.asset[i].SerialNo
+            if (this.sparepart == a) {
+              this.productname = this.asset[i].type;
+              this.installcode = this.asset[i].AssetCode;
+              this.installname = this.asset[i].AssetNo;
+              this.installserial = this.asset[i].SerialNo;
+              this.assetnew = this.asset[i].AssetID;
+              this.assetold = this.asset[i].assetid;          
+              let task = this.sparepart;
+              this.spareList.push(task);
+              this.sparepart = ""; 
+              this.isShowSpareDetail = true;        
+              break;
+            } 
+        }
+      });
+    }     
+  
     // if (this.sparepart != "sparepart" && this.sparepart != "") {
     //   this.alertStock();   
     //   this.isShowSpareDetail = false;
@@ -171,10 +196,8 @@ export class ChecklistcmPage implements OnInit {
 
   remove(index){
     this.spareList.splice(index, 1);
-    if (this.anArray == "") {
-          this.isShowSpareDetail = false;
-        }
 }
+
   //#endregion
 
   //#region barcode
@@ -191,17 +214,30 @@ export class ChecklistcmPage implements OnInit {
   }
   
   DeviceNew(){
+    
+  }
+  //#endregion
+//#region Add Spare
+AddCM(type){
+  if (type == "Device") {
     let param = {
       idnew:this.assetnew,
       idold:this.assetold,
       typedevice:"device"
     }
     console.log(param);
-    
     this.modalController.dismiss(param);
   }
-  //#endregion
-
+  if (type == "Sparepart") {
+    let param = {
+      sparepart:this.spareList,
+      typedevice:"sparepart"
+    }
+    console.log(param);
+    this.modalController.dismiss(param);
+  }
+}
+//#endregion
   //#region alert
 async alertSN() {
   const alert = await this.alertController.create({

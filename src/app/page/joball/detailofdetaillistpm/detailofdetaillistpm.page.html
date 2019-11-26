@@ -290,19 +290,10 @@
               </div>
               <div class="row">
                 <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
-                    <ion-item>
-                        <ion-label>ปัญหา</ion-label>
-                        <ion-select placeholder="Select One" interface="popover">
-                          <ion-select-option>สายไปขาด</ion-select-option>
-                          <ion-select-option>เครื่องไม่ทำงาน</ion-select-option>
-                        </ion-select>
-                      </ion-item>
+                  <button class="btn default" (click)="openModalcustomereva()" [disabled]="!isenabledcuseva">
+                    ประเมิน </button>
                 </div>
                 <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
-                    <ion-item>
-                        <ion-label position="fixed">รายละเอียด</ion-label>
-                        <ion-input></ion-input>
-                      </ion-item>
                 </div>
               </div>
             </div>

@@ -16,7 +16,9 @@ import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { SignaturePadModule } from 'angular2-signaturepad';
 import { SignaturePageModule } from '../app/page/joball/detailofdetaillistpm/signature/signature.module';
+import { CustomerevaluationPageModule } from '../app/page/joball/detailofdetaillistpm/customerevaluation/customerevaluation.module';
 import { CustomerpasswordPageModule } from '../app/page/joball/detailofdetaillistpm/customerpassword/customerpassword.module';
+import { TakePageModule } from '../app/page/take-spare-parts/take/take.module';
 import { CheckevaluationPageModule } from '../app/page/joball/detailofdetaillistpm/checkevaluation/checkevaluation.module';
 import { ChecklistPageModule } from '../app/page/joball/detailofdetaillistpm/checklist/checklist.module';
 import { ModalpopPageModule } from '../app/page/overview/modalpop/modalpop.module';
@@ -27,6 +29,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SQLite } from '@ionic-native/sqlite/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { Network } from '@ionic-native/network/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -40,7 +43,9 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
     IonicStorageModule.forRoot(),
     AppRoutingModule,
     SignaturePageModule,
+    CustomerevaluationPageModule,
     CustomerpasswordPageModule,
+    TakePageModule,
     CheckevaluationPageModule,
     ModalpopPageModule,
     ChecklistPageModule,
@@ -54,6 +59,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
     SplashScreen,
     ScreenOrientation,
     LocalNotifications,
+    Network,
     Camera,
     SQLite,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
