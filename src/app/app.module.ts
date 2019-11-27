@@ -19,6 +19,7 @@ import { SignaturePageModule } from '../app/page/joball/detailofdetaillistpm/sig
 import { CustomerevaluationPageModule } from '../app/page/joball/detailofdetaillistpm/customerevaluation/customerevaluation.module';
 import { CustomerpasswordPageModule } from '../app/page/joball/detailofdetaillistpm/customerpassword/customerpassword.module';
 import { TakePageModule } from '../app/page/take-spare-parts/take/take.module';
+import { TakeNewPageModule } from '../app/page/take-spare-parts/take-new/take-new.module';
 import { CheckevaluationPageModule } from '../app/page/joball/detailofdetaillistpm/checkevaluation/checkevaluation.module';
 import { ChecklistPageModule } from '../app/page/joball/detailofdetaillistpm/checklist/checklist.module';
 import { ModalpopPageModule } from '../app/page/overview/modalpop/modalpop.module';
@@ -46,6 +47,7 @@ import { Network } from '@ionic-native/network/ngx';
     CustomerevaluationPageModule,
     CustomerpasswordPageModule,
     TakePageModule,
+    TakeNewPageModule,
     CheckevaluationPageModule,
     ModalpopPageModule,
     ChecklistPageModule,

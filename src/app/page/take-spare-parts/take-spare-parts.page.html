@@ -15,38 +15,48 @@
           <div class="portlet-title">
             <div class="caption">
               <i class="fa fa-user"></i>ข้อมูลลูกค้า</div>
-          </div>
+              <div class="tools" *ngIf="Status != 'รออนุมัติ'; else lblOld">
+                <span class="label label-sm label-success circle" (click)="Approve()" #lblOld
+                      >บันทึก</span>
+              </div>
+          </div>         
           <div class="portlet-body">
             <div class="tab-content">
               <div class="tab-pane active">
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col-6">                      
                     <ion-list>
                       <ion-item>
                         <div class="col-4">
                         <ion-label color="primary">รหัสลูกค้า</ion-label>
                       </div>
-                      <div class="col-8">
-                        <ion-input [(ngModel)]="CustomerCode"></ion-input>
+                      <div class="col-8" *ngIf="JobID == null; else lblNew">
+                        <ion-input #lblNew [(ngModel)]="CustomerCode"></ion-input>
                       </div>
+                      <div class="col-8" *ngIf="JobID != null; else lblOld">
+                          <ion-label #lblOld>{{CustomerCode}}</ion-label>
+                        </div>
                       </ion-item>
                       <ion-item>
                           <div class="col-4">
                         <ion-label color="primary">ชื่อลูกค้า</ion-label>
                         </div>
-                        <div class="col-8">
-                        <ion-select interface="popover" (ionChange)="onChange($event)">
+                        <div class="col-8" *ngIf="JobID == null; else lblNew">
+                        <ion-select interface="popover" (ionChange)="onChange($event)" #lblNew>
                           <ion-select-option *ngFor="let title of Cus" [value]="title.CustomerID"
-                            [selected]="title.CustomerName">{{title.CustomerName}}</ion-select-option>
+                            [selected]="true">{{title.CustomerName}}</ion-select-option>
                         </ion-select>
                         </div>
+                        <div class="col-8" *ngIf="JobID != null; else lblOld">
+                            <ion-label #lblOld>{{CustomerName}}</ion-label>
+                            </div>
                       </ion-item>
                       <ion-item>
                           <div class="col-4">
                         <ion-label color="primary">ที่อยู่ร้าน</ion-label>
                         </div>
                         <div class="col-8">
-                        <ion-textarea rows="3" [(ngModel)]="AddressSite" [disabled]="true"></ion-textarea>
+                        <ion-textarea rows="3" [(ngModel)]="AddressSite"></ion-textarea>
                         </div>
                       </ion-item>
                           <ion-item>
@@ -54,7 +64,7 @@
                               <ion-label color="primary">เบอร์โทรศัพท์ร้าน</ion-label>
                               </div>
                               <div class="col-8">
-                              <ion-input [(ngModel)]="TelCompany"></ion-input>
+                              <ion-label>{{TelCompany}}</ion-label>
                               </div>
                             </ion-item>                   
                     </ion-list>
@@ -66,16 +76,19 @@
                         <ion-label color="primary">หมายเลขเอกสาร</ion-label>
                         </div>
                         <div class="col-8">
-                        <ion-input [(ngModel)]="ServiceReportNo"></ion-input>
+                        <ion-label>{{ServiceReportNo}}</ion-label>
                       </div>
                       </ion-item>
                       <ion-item>
                           <div class="col-4">
                         <ion-label color="primary">วันที่เบิก</ion-label>
                         </div>
-                        <div class="col-8">
-                        <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="myDate"></ion-datetime>
+                        <div class="col-8" *ngIf="JobID == null; else lblNew">
+                            <ion-label>{{myDate | date: 'dd-MM-yyyy'}}</ion-label> 
                       </div>
+                      <div class="col-8" *ngIf="JobID != null; else lblOld">
+                        <ion-label>{{myDate | date: 'dd-MM-yyyy'}}</ion-label> 
+                        </div>
                       </ion-item>
                       <ion-item>
                           <div class="col-4">
@@ -89,9 +102,12 @@
                           <div class="col-4">
                         <ion-label color="primary">อ้างอิง</ion-label>
                         </div>
-                        <div class="col-8">
-                        <ion-input [(ngModel)]="Reference"></ion-input>
+                        <div class="col-8" *ngIf="JobID == null; else lblNew">
+                        <ion-input [(ngModel)]="Reference" #lblNew></ion-input>
                       </div>
+                      <div class="col-8" *ngIf="JobID != null; else lblOld">
+                          <ion-label #lblOld>{{Reference}}</ion-label>
+                        </div>
                       </ion-item>
                       <ion-item>
                           <div class="col-4">
@@ -102,16 +118,16 @@
                       </div>
                       </ion-item>
                     </ion-list>
-                  </div>
-                  <div class="col-12" style="text-align: center;">
-                    <ion-button slot="end" (click)="ShowSpare()">เบิกอะไหล่</ion-button>
-                  </div>
+                  </div>                  
                 </div>
               </div>
             </div>            
           </div>          
         </div>        
       </div>
+      <div class="col-12" style="text-align: right; padding: 20px;" *ngIf="Status != 'รออนุมัติ'; else lblOld">
+          <span class="label label-sm label-warning" (click)="spare()" #lblOld> เพิ่มอะไหล่ </span>
+        </div>
       <div class="col-md-12 col-12" *ngIf="isShow">
       <div class="portlet light ">
         <div class="portlet-body">
@@ -127,16 +143,16 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of list">
-                            <td>  </td>
+                        <tr *ngFor="let item of list; let i = index">
+                            <td>  {{i+1}}</td>
                             <td> {{item.AssetType}} </td>
                             <td> {{item.AssetNo}} </td>
                             <td> {{item.Qty}} </td>                            
-                            <td>
-                                <span class="label label-sm label-warning" (click)="Edit(item)"> แก้ไข </span>
+                            <td *ngIf="Status != 'รออนุมัติ'; else lblOld">
+                                <span class="label label-sm label-warning" (click)="Edit(item)" #lblOld> แก้ไข </span>
                             </td>
-                            <td>
-                                <span class="label label-sm label-success"> Approved </span>
+                            <td *ngIf="Status != 'รออนุมัติ'; else lblOld">
+                                <span class="label label-sm label-danger" (click)="Delete(item)" #lblOld> ลบ </span>
                             </td>
                         </tr>                       
                     </tbody>

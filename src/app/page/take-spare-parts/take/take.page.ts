@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController } from '@ionic/angular';
 import { NavParams } from '@ionic/angular';
 import { PostDataService } from '../../../post-data.service';
+import { StorageService } from '../../../storage.service';
 
 @Component({
   selector: 'app-take',
@@ -13,7 +14,6 @@ export class TakePage implements OnInit {
   ProID;
   CusID;
   EmpID;
-  proID;
   JobID;
   Machine;
   No;
@@ -23,41 +23,53 @@ export class TakePage implements OnInit {
   AsID;
   Remark;
   JobDeviceID;
+  item;
+  ProductName;
+  AssetNo;
 
   constructor(public modalController: ModalController,
-    navParams: NavParams,
-    private postDataService:PostDataService) { 
+    private navParams: NavParams,
+    private postDataService: PostDataService,
+    private storageService: StorageService) {
 
-      this.CusID = (navParams.get('cusID'))
-      this.EmpID = (navParams.get('EmpID'))
-      this.JobID = (navParams.get('JobID'))
-      this.JobDeviceID = (navParams.get('JobDeviceID'))
+    this.item = (navParams.get('item'))
+    this.JobID = this.item.JobID
+    this.CusID = this.item.CusID
+    this.JobDeviceID = this.item.JobDeviceID
+    this.No = this.item.Qty
+      this.Unit = this.item.Unit
+      this.Remark = this.item.Remark
+      this.AsID = this.item.AssetID
+      this.ProductName = this.item.AssetType
+      this.AssetNo = this.item.AssetNo
+    console.log(this.item);
 
-      console.log(this.JobID,this.JobDeviceID);
-      
-      this.Sum = this.No * this.UnitPrice;  
-      
-      let params = {
-        Type: "Machine",
+    this.Sum = this.No * this.UnitPrice;
+
+    this.storageService.getUser().then(items => {
+      for (let i = 0; i < items.length; i++) {
+        this.EmpID = items[i].empID;
       }
-      this.postDataService.PostCus(params).then(Machine => {
-        this.Machine = Machine;
-      });
-      if (this.JobDeviceID != "") {
-        alert("123")
-      }
+    });
+
+    let params = {
+      Type: "Machine",
     }
+    this.postDataService.PostCus(params).then(Machine => {
+      this.Machine = Machine;
+    });      
+  }
 
   ngOnInit() {
-    
+
   }
   close() {
-    this.modalController.dismiss(this.JobID);
+    this.modalController.dismiss();
   }
-  onSum(){
+  onSum() {
     this.Sum = this.No * this.UnitPrice
   }
-  PostSpare(){
+  PostSpare() {
     console.log(this.No);
     console.log(this.Unit);
     console.log(this.UnitPrice);
@@ -66,6 +78,7 @@ export class TakePage implements OnInit {
       EmpID: this.EmpID,
       CusID: this.CusID,
       JobID: this.JobID,
+      JobDeviceID: this.JobDeviceID,
       ProID: this.ProID,
       AsID: this.AsID,
       Unit: this.Unit,
@@ -77,28 +90,9 @@ export class TakePage implements OnInit {
     }
     console.log(params);
     this.postDataService.PostCus(params).then(JobID => {
-     this.JobID = JobID;
+      this.JobID = JobID;
       console.log(JobID);
       this.modalController.dismiss(this.JobID);
-    });  
-
-  }
-  getProId(value) {
-    this.ProID = value.detail.value;
-    console.log(this.ProID);
-    let params = {
-      ProID: this.ProID,
-      Type: "Device",
-    }
-    console.log(params);
-    this.postDataService.PostCus(params).then(Device => {
-      this.Device = Device;
     });
   }
-  getAsID(value){
-    this.AsID = value.detail.value
-    console.log(this.AsID); 
-    console.log(value);   
-  }
-  
 }

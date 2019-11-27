@@ -37,13 +37,13 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let item of list">
-                            <td> </td>
+                          <tr *ngFor="let item of list; let i = index">
+                            <td> {{i+1}}</td>
                             <td> {{item.ServiceReportNo}} </td>
                             <td> {{item.CustomerName}} </td>
                             <td> {{item.Status}} </td>
                             <td> {{item.CreatedDate}} </td>
-                            <td> <span class="label label-sm label-warning circle"
+                            <td  > <span class="label label-sm label-warning circle" 
                                 (click)="Detail(item)">แก้ไข</span>
                             </td>
                           </tr>

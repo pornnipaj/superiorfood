@@ -4,6 +4,8 @@ import { TakePage } from './take/take.page';
 import { StorageService, User } from '../../storage.service';
 import { PostDataService } from '../../post-data.service';
 import { ActivatedRoute } from '@angular/router';
+import { TakeNewPage } from '../take-spare-parts/take-new/take-new.page';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-take-spare-parts',
@@ -33,12 +35,15 @@ export class TakeSparePartsPage implements OnInit {
   myId;
   type;
   item;
+  Status;
   ServiceReportNo;
   JobDeviceID;
+
   constructor(
     private storageService: StorageService,
     public modalController: ModalController,
     private postDataService: PostDataService,
+    private navCtrl:NavController,
     private route: ActivatedRoute) {
     this.loadItems()
 
@@ -46,8 +51,10 @@ export class TakeSparePartsPage implements OnInit {
       this.myId = JSON.parse(params["data"]);
       this.item = this.myId.item
       this.CustomerCode = this.item.CustomerCode
+      this.CustomerName = this.item.CustomerName
       this.AddressSite = this.item.AddressSite
       this.ServiceReportNo = this.item.ServiceReportNo
+      this.Status = this.item.Status
       this.TelCompany = this.item.TelCompany
       this.EngineerTel = this.item.EngineerTel
       this.Reference = this.item.Reference
@@ -68,31 +75,44 @@ export class TakeSparePartsPage implements OnInit {
           this.isShow = true;
         });
       }
+      else {
+        this.loadItems();
+      }
     });
   }
 
   ngOnInit() {
-    this.loadItems();
-  }
-
-
-  async ShowSpare() {
-    this.spare();
   }
 
   async spare() {
     const modal = await this.modalController.create({
-      component: TakePage,
+      component: TakeNewPage,
       componentProps: {
         EmpID: this.empID,
         CusID: this.CusID,
-        JobID: this.JobID
+        JobID: this.JobID,
+        Reference: this.Reference,
+        EngineerTel: this.EngineerTel
       }
     });
 
     modal.onDidDismiss().then(data => {
+      this.JobID = data
       this.JobID = this.JobID.data
       console.log(this.JobID)
+
+      if (this.JobID != null) {
+        let params = {
+          JobID: this.JobID,
+          Type: "ListDetail",
+        }
+        this.postDataService.PostCus(params).then(list => {
+          this.list = list
+          console.log(list);
+          this.isShow = true;
+          this.ngOnInit();
+        });
+      }
     });
     return await modal.present();
   }
@@ -131,21 +151,43 @@ export class TakeSparePartsPage implements OnInit {
     });
   }
 
+  Delete(item) {
+    let params = {
+      JobDeviceID: item.JobDeviceID,
+      Type: "Delete",
+    }
+    this.postDataService.PostCus(params).then(list => {
+      this.list = list
+      console.log(list);
+      this.isShow = true;
+    });
+  }
+
   async Edit(item) {
     console.log(item);
     const modal = await this.modalController.create({
       component: TakePage,
       componentProps: {
-        JobID: item.JobID,
-        JobDeviceID: item.JobDeviceID
-      }  
-      
+        item: item,
+      }
+
     });
 
     modal.onDidDismiss().then(data => {
-      this.JobID = this.JobID.data
-      console.log(this.JobID)
+      this.ngOnInit();
     });
     return await modal.present();
+  }
+
+  Approve() {
+    let params = {
+      JobID: this.JobID,
+      Type: "Approve",
+    }
+    this.postDataService.PostCus(params).then(list => {
+      this.list = list
+      console.log(list);
+      this.navCtrl.navigateForward(['sparelist']);
+    });
   }
 }
