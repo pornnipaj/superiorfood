@@ -43,9 +43,14 @@
                             <td> {{item.CustomerName}} </td>
                             <td> {{item.Status}} </td>
                             <td> {{item.CreatedDate}} </td>
-                            <td  > <span class="label label-sm label-warning circle" 
-                                (click)="Detail(item)">แก้ไข</span>
+                            <td *ngIf="item.Status != 'กำลังดำเนินการ'; else lblEdit" > 
+                              <span class="label label-sm label-warning circle" #lblEdit
+                                (click)="Detail(item)">ดู</span>
                             </td>
+                            <td *ngIf="item.Status == 'กำลังดำเนินการ'; else lblView" > 
+                              <span class="label label-sm label-warning circle" #lblView
+                              (click)="Detail(item)">แก้ไข</span>
+                          </td>
                           </tr>
                         </tbody>
                       </table>

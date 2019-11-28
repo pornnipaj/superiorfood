@@ -6,6 +6,7 @@ import { PostDataService } from '../../post-data.service';
 import { ActivatedRoute } from '@angular/router';
 import { TakeNewPage } from '../take-spare-parts/take-new/take-new.page';
 import { NavController } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-take-spare-parts',
@@ -14,6 +15,7 @@ import { NavController } from '@ionic/angular';
 })
 
 export class TakeSparePartsPage implements OnInit {
+  
   myDate: String = new Date().toISOString();
   isShowSpare = false;
   CustomerCode;
@@ -43,7 +45,7 @@ export class TakeSparePartsPage implements OnInit {
     private storageService: StorageService,
     public modalController: ModalController,
     private postDataService: PostDataService,
-    private navCtrl:NavController,
+    private navCtrl: NavController,
     private route: ActivatedRoute) {
     this.loadItems()
 
@@ -62,7 +64,7 @@ export class TakeSparePartsPage implements OnInit {
       this.type = this.myId.type
       this.CusID = this.myId.CusID
       console.log(this.JobID, this.type, this.CusID);
-      console.log(this.item, this.ServiceReportNo);
+      console.log(this.item);
 
       if (this.type == "edit") {
         let params = {
@@ -99,21 +101,10 @@ export class TakeSparePartsPage implements OnInit {
     modal.onDidDismiss().then(data => {
       this.JobID = data
       this.JobID = this.JobID.data
-      console.log(this.JobID)
-
-      if (this.JobID != null) {
-        let params = {
-          JobID: this.JobID,
-          Type: "ListDetail",
-        }
-        this.postDataService.PostCus(params).then(list => {
-          this.list = list
-          console.log(list);
-          this.isShow = true;
-          this.ngOnInit();
-        });
-      }
+      console.log(this.JobID) 
+      location.reload(); 
     });
+    
     return await modal.present();
   }
 
@@ -142,12 +133,22 @@ export class TakeSparePartsPage implements OnInit {
     }
     this.postDataService.PostCus(params).then(Cus => {
       this.Cus = Cus;
+      console.log(this.Cus);
+      
       for (let i = 0; i < this.Cus.length; i++) {
-        this.CustomerCode = this.Cus[i].CustomerCode;
-        this.AddressSite = this.Cus[i].Address;
-        this.TelCompany = this.Cus[i].Phone;
+        this.CustomerCode = this.Cus[i].CustomerCode
+        this.CustomerName = this.Cus[i].CustomerName
+        this.AddressSite = this.Cus[i].Address
+        this.ServiceReportNo = this.Cus[i].ServiceReportNo
+        this.Status = this.Cus[i].Status
+        this.TelCompany = this.Cus[i].TelCompany
+        this.EngineerTel = this.Cus[i].EngineerTel
+        this.Reference = this.Cus[i].Reference
+        this.JobID = this.Cus[i].JobID
         this.loadItems();
       }
+      console.log(this.CusID);
+      
     });
   }
 
@@ -157,9 +158,9 @@ export class TakeSparePartsPage implements OnInit {
       Type: "Delete",
     }
     this.postDataService.PostCus(params).then(list => {
-      this.list = list
       console.log(list);
-      this.isShow = true;
+      this.isShow = true;  
+      location.reload();     
     });
   }
 
@@ -170,19 +171,39 @@ export class TakeSparePartsPage implements OnInit {
       componentProps: {
         item: item,
       }
-
     });
-
-    modal.onDidDismiss().then(data => {
-      this.ngOnInit();
+    modal.onDidDismiss().then(data => { 
+      location.reload();    
     });
     return await modal.present();
+    
   }
 
-  Approve() {
+  Save() {
+    let params =
+    {
+      EmpID: this.empID,
+      JobID: this.JobID,
+      Reference: this.Reference,
+      EngineerTel: this.EngineerTel,
+      Type: "UpdateJob",
+    }
+    this.postDataService.PostCus(params).then(list => {
+      this.list = list
+      console.log(list);
+      for (let i = 0; i < this.list.length; i++) {
+        this.CustomerName = this.list[i].CustomerName;
+        this.CustomerCode = this.list[i].CustomerCode;
+        this.AddressSite = this.list[i].AddressSite;
+        this.TelCompany = this.list[i].TelCompany;
+      }
+    });
+  }
+
+  Requested() {
     let params = {
       JobID: this.JobID,
-      Type: "Approve",
+      Type: "Job",
     }
     this.postDataService.PostCus(params).then(list => {
       this.list = list

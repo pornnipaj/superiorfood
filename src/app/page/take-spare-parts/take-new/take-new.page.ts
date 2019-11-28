@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController } from '@ionic/angular';
 import { NavParams } from '@ionic/angular';
 import { PostDataService } from '../../../post-data.service';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-take-new',
@@ -23,8 +24,11 @@ export class TakeNewPage implements OnInit {
   Machine;
   Reference;
   EngineerTel;
+  list;
+
   constructor(private navParams: NavParams,
     public modalController: ModalController,
+    public navCtrl: NavController,
     private postDataService: PostDataService) {
     this.JobID = this.navParams.data.JobID;
     this.CusID = this.navParams.data.CusID;
@@ -51,10 +55,6 @@ export class TakeNewPage implements OnInit {
   }
 
   PostSpare() {
-    console.log(this.No);
-    console.log(this.Unit);
-    console.log(this.UnitPrice);
-    console.log(this.Sum);
     let params = {
       EmpID: this.EmpID,
       CusID: this.CusID,
@@ -71,12 +71,13 @@ export class TakeNewPage implements OnInit {
     console.log(params);
     this.postDataService.PostCus(params).then(JobID => {
       this.JobID = JobID
-      console.log(JobID);      
+      console.log(JobID); 
+      this.modalController.dismiss(this.JobID,this.list);
+      // this.navCtrl.navigateForward(['sparelist']);
     });
-    this.modalController.dismiss(this.JobID);
+    
   }
-
-  getProId(value) {
+getProId(value) {
     this.ProID = value.detail.value;
     console.log(this.ProID);
     let params = {
