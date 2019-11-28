@@ -240,7 +240,7 @@ export class DetailofdetaillistpmPage implements OnInit {
 
   }
   //#endregion
-  
+
   //#region getImg
   getImgInstall() {
     this.storageService.getUser().then(items => {
@@ -310,8 +310,6 @@ export class DetailofdetaillistpmPage implements OnInit {
     });
   }
   //#endregion
-
-  //#region click
 
   //#region take
   Take(id) {
@@ -550,7 +548,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         }
         console.log(params);
         this.postDataService.SaveCaseAll(params).then(servicephoto => {
-         console.log(servicephoto);         
+          console.log(servicephoto);
         });
       }
     }
@@ -591,37 +589,107 @@ export class DetailofdetaillistpmPage implements OnInit {
       }
       console.log(params);
       this.postDataService.SaveCaseAll(params).then(servicephoto => {
-        console.log(servicephoto);          
+        console.log(servicephoto);
       });
     }
   }
   //#endregion
 
-  //#region save All 
-  saveData() {
-      this.pauseTimer();
+  //#region checklist
+  async check() {
+    if (this.jobtype == "PM") {
+      const modal = await this.modalController.create({
+        component: ChecklistPage,
+        cssClass: 'my-custom-modal-css-pm',
+        componentProps: {
+          empID: this.empID,
+          planID: this.planID,
+          install: this.installID
+        }
+      });
+      modal.onDidDismiss().then(data => {
+        this.list = data
+        console.log(data);
+
+        for (let i = 0; i < this.list.length; i++) {
+          this.list = this.list[i]
+        }
+        this.list = this.list.data
+        console.log(this.list)
+        if (this.list == "") {
+        }
+        if (this.list == 0) {
+          this.isenabledsig = true;
+        }
+      })
+      return await modal.present();
+    }
+    if (this.jobtype == "CM") {
+      const modal = await this.modalController.create({
+        component: ChecklistcmPage,
+        cssClass: 'my-custom-modal-css',
+        componentProps: {
+          empID: this.empID,
+          planID: this.planID,
+          install: this.installID,
+          InstallPlanName: this.InstallPlanName,
+          ItemsName: this.ItemsName,
+          ItemCode: this.ItemCode,
+          SerialNo: this.SerialNo,
+          Cat: this.Category
+        }
+      });
+
+      modal.onDidDismiss().then(data => {
+        this.list = data
+        console.log(data);
+
+        for (let i = 0; i < this.list.length; i++) {
+          this.list = this.list[i]
+        }
+
+        this.idnew = this.list.data.idnew
+        this.idold = this.list.data.idold
+        this.sparepart = this.list.data.sparepart
+        this.typedevice = this.list.data.typedevice
+        console.log(this.list.data)
+        this.isenabledsig = true;
+      })
+
+      return await modal.present();
+    }
+  }
+  //#endregion
+
+  //#region Modal Sig
+  async Modal() {
+    const modal = await this.modalController.create({
+      component: SignaturePage,
+      componentProps: { sign: this.sign }
+    });
+
+    modal.onDidDismiss().then(data => {
+      this.showSig = true;
+      this.sign = data
+      for (let i = 0; i < this.sign.length; i++) {
+        this.sign = this.sign[i]
+      }
+      this.sign = this.sign.data
       let params = {
         planID: this.planID,
         installID: this.installID,
-        idold: this.idold,
-        idnew: this.idnew,
-        typedevice: this.typedevice,
         signature: this.sign,
-        empID: this.empID,
-        jobtype: this.jobtype + "3",
-        sparepart:this.sparepart
+        jobtype: this.jobtype + "2",
+        empID: this.empID
       }
       console.log(params);
       this.postDataService.SaveCaseAll(params).then(servicephoto => {
-        this.status = servicephoto
-        if (this.status == true) {
-          this.navCtrl.navigateForward(['/menuhead/overview']);
-        }
-        if (this.status == false) {
-          alert("บันทึกข้อมูลไม่สำเร็จ")
-        }
         console.log(servicephoto);
       });
+      this.isenabledeva = true;
+    })
+
+    return await modal.present();
   }
   //#endregion
 
@@ -696,8 +764,36 @@ export class DetailofdetaillistpmPage implements OnInit {
 
   //#endregion
 
+  //#region save All 
+  saveData() {
+    this.pauseTimer();
+    let params = {
+      planID: this.planID,
+      installID: this.installID,
+      idold: this.idold,
+      idnew: this.idnew,
+      typedevice: this.typedevice,
+      signature: this.sign,
+      empID: this.empID,
+      jobtype: this.jobtype + "3",
+      sparepart: this.sparepart
+    }
+    console.log(params);
+    this.postDataService.SaveCaseAll(params).then(servicephoto => {
+      this.status = servicephoto
+      if (this.status == true) {
+        this.navCtrl.navigateForward(['/menuhead/overview']);
+      }
+      if (this.status == false) {
+        alert("บันทึกข้อมูลไม่สำเร็จ")
+      }
+      console.log(servicephoto);
+    });
+  }
+  //#endregion
+
   //#region openModalcustomereva
-  async openModalcustomereva(){
+  async openModalcustomereva() {
     const modal = await this.modalController.create({
       component: CustomerevaluationPage,
       componentProps: {}
@@ -710,7 +806,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.cusEva = this.cusEva[i]
       }
       console.log(this.cusEva);
-      
+
       // let params = {
       //   planID: this.planID,
       //   installID: this.installID,
@@ -726,71 +822,6 @@ export class DetailofdetaillistpmPage implements OnInit {
     })
 
     return await modal.present();
-  }
-  //#endregion
-  //#region checklist
-  async check() {
-    if (this.jobtype == "PM") {
-      const modal = await this.modalController.create({
-        component: ChecklistPage,
-        cssClass: 'my-custom-modal-css-pm',
-        componentProps: {
-          empID: this.empID,
-          planID: this.planID,
-          install: this.installID
-        }
-      });
-      modal.onDidDismiss().then(data => {
-        this.list = data
-        console.log(data);
-
-        for (let i = 0; i < this.list.length; i++) {
-          this.list = this.list[i]
-        }
-        this.list = this.list.data
-        console.log(this.list)
-        if (this.list == "") {
-        }
-        if (this.list == 0) {
-          this.isenabledsig = true;
-        }
-      })
-      return await modal.present();
-    }
-    if (this.jobtype == "CM") {
-      const modal = await this.modalController.create({
-        component: ChecklistcmPage,
-        cssClass: 'my-custom-modal-css',
-        componentProps: {
-          empID: this.empID,
-          planID: this.planID,
-          install: this.installID,
-          InstallPlanName: this.InstallPlanName,
-          ItemsName: this.ItemsName,
-          ItemCode: this.ItemCode,
-          SerialNo: this.SerialNo,
-          Cat: this.Category
-        }
-      });
-
-      modal.onDidDismiss().then(data => {
-        this.list = data
-        console.log(data);
-
-        for (let i = 0; i < this.list.length; i++) {
-          this.list = this.list[i]
-        }
-
-        this.idnew = this.list.data.idnew
-        this.idold = this.list.data.idold
-        this.sparepart = this.list.data.sparepart
-        this.typedevice = this.list.data.typedevice
-        console.log(this.list.data)
-        this.isenabledsig = true;
-      })
-
-      return await modal.present();
-    }
   }
   //#endregion
 
@@ -821,43 +852,11 @@ export class DetailofdetaillistpmPage implements OnInit {
         if (this.jobtype == "CM") {
           this.isenabledcuseva = true;
         }
-        else{
+        else {
           this.isenabledsave = true;
-        }        
+        }
       }
 
-    })
-
-    return await modal.present();
-  }
-  //#endregion
-
-  //#region Modal Sig
-  async Modal() {
-    const modal = await this.modalController.create({
-      component: SignaturePage,
-      componentProps: { sign: this.sign }
-    });
-
-    modal.onDidDismiss().then(data => {
-      this.showSig = true;
-      this.sign = data
-      for (let i = 0; i < this.sign.length; i++) {
-        this.sign = this.sign[i]
-      }
-      this.sign = this.sign.data
-      let params = {
-        planID: this.planID,
-        installID: this.installID,
-        signature: this.sign,
-        jobtype: this.jobtype + "2",
-        empID: this.empID
-      }
-      console.log(params);
-      this.postDataService.SaveCaseAll(params).then(servicephoto => {
-        console.log(servicephoto);          
-      });    
-      this.isenabledeva = true;
     })
 
     return await modal.present();
