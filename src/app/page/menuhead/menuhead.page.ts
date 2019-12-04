@@ -27,11 +27,11 @@ export class MenuheadPage implements OnInit {
       url: '/menuhead/joball',
       icon: 'people'
     },
-    {
-      title: 'เบิกอะไหล่',
-      url: '/menuhead/sparepart',
-      icon: 'hammer'
-    },
+    // {
+    //   title: 'เบิกอะไหล่',
+    //   url: '/menuhead/sparepart',
+    //   icon: 'hammer'
+    // },
     {
       title: 'สินค้าและคู่มือ',
       url: '/menuhead/product',
