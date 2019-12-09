@@ -327,20 +327,6 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.startTimer();
         }        
       }, (err) => {
-        if (this.photo1 == null || "") {
-          
-        }else{
-          this.status1 = "1"
-          this.checktakeback();
-          this.isTake1 = false;
-          this.isShow1 = true;
-          this.startTimer();
-        } 
-        // console.log(err);
-        // this.checktakeback();
-        // this.isTake1 = false;
-        // this.isShow1 = true;
-        // this.startTimer();
       });
     }
     if (id == 2) {
@@ -349,21 +335,16 @@ export class DetailofdetaillistpmPage implements OnInit {
         let base64Image2 = 'data:image/jpeg;base64,' + imageData2;
         this.photo2 = base64Image2;
         if (this.photo2 == null || "") {
-          alert(this.photo2)
+          
         }else{
           this.status2 = "2"
           this.checktakeback();
           this.isTake2 = false;
           this.isShow2 = true;
           this.startTimer();
-        }    
+        }   
       }, (err) => {
 
-        console.log(err);
-        // Handle error\
-        this.checktakeback();
-        this.isTake2 = false;
-        this.isShow2 = true;
       });
 
 
