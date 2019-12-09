@@ -7,7 +7,8 @@ export interface User {
   username: string,
   position: string,
   empID: string,
-  role: string
+  role: string,
+  status: string
 }
 
 export interface Sig {

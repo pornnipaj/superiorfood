@@ -7,7 +7,7 @@ import { Http, Headers } from "@angular/http";
 })
 export class PostDataService {
 
-  apiLocal_url = 'http://localhost:41619';
+  apiLocal_url = 'http://localhost:41649';
   apiServer_url = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com';
 
   httpOptions = {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageService, User } from '../../storage.service';
 
 @Component({
   selector: 'app-menuhead',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menuhead.page.scss'],
 })
 export class MenuheadPage implements OnInit {
+  items;
+  status;
+
   pages = [
     {
       title: 'ภาพรวมการทำงาน',
@@ -27,11 +31,11 @@ export class MenuheadPage implements OnInit {
       url: '/menuhead/joball',
       icon: 'people'
     },
-    // {
-    //   title: 'เบิกอะไหล่',
-    //   url: '/menuhead/sparepart',
-    //   icon: 'hammer'
-    // },
+    {
+      title: 'เบิกอะไหล่',
+      url: '/menuhead/sparepart',
+      icon: 'hammer'
+    },
     {
       title: 'สินค้าและคู่มือ',
       url: '/menuhead/product',
@@ -48,9 +52,38 @@ export class MenuheadPage implements OnInit {
       icon: 'settings'
     }
   ];
-  constructor() { }
+
+  pagesspare = [
+    {
+      title: 'ภาพรวมการทำงาน',
+      url: '/menuhead/overview',
+      icon: 'home'
+    },    
+    {
+      title: 'ตั้งค่า',
+      url: '/menuhead/setting',
+      icon: 'settings'
+    }
+  ];
+  
+  constructor(private storageService: StorageService) { 
+    setTimeout(() => {
+      this.ngOnInit();
+    }, 500);  }
 
   ngOnInit() {
+    this.loadItems();
+  }
+
+  loadItems() {
+    this.storageService.getUser().then(items => {
+      this.items = items;
+      console.log(items);
+      for (let i = 0; i < this.items.length; i++) {
+        this.status = this.items[i].status;
+        console.log(this.status);
+      }
+    });
   }
 
 }

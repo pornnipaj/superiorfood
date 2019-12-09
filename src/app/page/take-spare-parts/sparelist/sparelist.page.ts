@@ -57,7 +57,18 @@ export class SparelistPage implements OnInit {
     this.navCtrl.navigateForward(['take-spare-parts'], navigationExtras);
   }
   NewSpare(){
-    this.navCtrl.navigateForward(['take-spare-parts']);
+    let params = {
+      type: "new"
+    }
+    console.log(params);
+
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        data: JSON.stringify(params)
+      }
+    };
+    console.log(navigationExtras);
+    this.navCtrl.navigateForward(['take-spare-parts'], navigationExtras);
   }
 }
 

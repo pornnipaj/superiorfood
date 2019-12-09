@@ -313,37 +313,50 @@ export class DetailofdetaillistpmPage implements OnInit {
 
   //#region take
   Take(id) {
-    if (id == 1) {
-      this.status1 = "1"
+    if (id == 1) {      
       this.camera.getPicture(this.cameraOptions).then((imageData1) => {
-        // alert('imagedata1=' + imageData1)
-
         let base64Image1 = 'data:image/jpeg;base64,' + imageData1;
         this.photo1 = base64Image1;
-
-        this.checktakeback();
-        this.isTake1 = false;
-        this.isShow1 = true;
-        this.startTimer();
+        if (this.photo1 == null || "") {
+          
+        }else{
+          this.status1 = "1"
+          this.checktakeback();
+          this.isTake1 = false;
+          this.isShow1 = true;
+          this.startTimer();
+        }        
       }, (err) => {
-
-        console.log(err);
-        // Handle error
-
-        this.checktakeback();
-        this.isTake1 = false;
-        this.isShow1 = true;
-        this.startTimer();
-
+        if (this.photo1 == null || "") {
+          
+        }else{
+          this.status1 = "1"
+          this.checktakeback();
+          this.isTake1 = false;
+          this.isShow1 = true;
+          this.startTimer();
+        } 
+        // console.log(err);
+        // this.checktakeback();
+        // this.isTake1 = false;
+        // this.isShow1 = true;
+        // this.startTimer();
       });
     }
     if (id == 2) {
       this.status2 = "1"
       this.camera.getPicture(this.cameraOptions).then((imageData2) => {
-
         let base64Image2 = 'data:image/jpeg;base64,' + imageData2;
         this.photo2 = base64Image2;
-
+        if (this.photo2 == null || "") {
+          alert(this.photo2)
+        }else{
+          this.status2 = "2"
+          this.checktakeback();
+          this.isTake2 = false;
+          this.isShow2 = true;
+          this.startTimer();
+        }    
         this.checktakeback();
         this.isTake2 = false;
         this.isShow2 = true;

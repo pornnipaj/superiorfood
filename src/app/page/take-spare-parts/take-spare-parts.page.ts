@@ -102,7 +102,6 @@ export class TakeSparePartsPage implements OnInit {
       this.JobID = data
       this.JobID = this.JobID.data
       console.log(this.JobID) 
-      location.reload(); 
     });
     
     return await modal.present();

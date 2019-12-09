@@ -112,17 +112,6 @@ export class OverviewPage implements OnInit {
     return await popover.present();
   }
 
-  loadItems() {
-    this.storageService.getUser().then(items => {
-      this.items = items;
-      console.log(items);
-      for (let i = 0; i < this.items.length; i++) {
-        this.empID = this.items[i].empID;
-        console.log(this.empID);
-      }
-    });
-  }
-
   //#endregion
 
   //#region Month
