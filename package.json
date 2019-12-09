@@ -64,7 +64,7 @@
     "cordova-sqlite-storage": "^3.3.0",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
-    "ionic-angular": "^3.9.8",
+    "ionic-angular": "^3.9.8-201910071810",
     "ionic-image-loader": "^6.3.3",
     "jquery": "^3.4.1",
     "json-server": "^0.15.1",
