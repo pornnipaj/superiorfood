@@ -357,9 +357,6 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.isShow2 = true;
           this.startTimer();
         }    
-        this.checktakeback();
-        this.isTake2 = false;
-        this.isShow2 = true;
       }, (err) => {
 
         console.log(err);
