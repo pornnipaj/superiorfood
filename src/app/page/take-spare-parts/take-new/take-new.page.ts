@@ -3,6 +3,7 @@ import { NavController, ModalController } from '@ionic/angular';
 import { NavParams } from '@ionic/angular';
 import { PostDataService } from '../../../post-data.service';
 import { NavigationExtras } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-take-new',
@@ -28,8 +29,10 @@ export class TakeNewPage implements OnInit {
 
   constructor(private navParams: NavParams,
     public modalController: ModalController,
+    public alertController: AlertController,
     public navCtrl: NavController,
     private postDataService: PostDataService) {
+
     this.JobID = this.navParams.data.JobID;
     this.CusID = this.navParams.data.CusID;
     this.EmpID = this.navParams.data.EmpID;
@@ -55,28 +58,33 @@ export class TakeNewPage implements OnInit {
   }
 
   PostSpare() {
-    let params = {
-      EmpID: this.EmpID,
-      CusID: this.CusID,
-      JobID: this.JobID,
-      ProID: this.ProID,
-      AsID: this.AsID,
-      Unit: this.Unit,
-      Qty: this.No,
-      Reference: this.Reference,
-      Remark: this.Remark,
-      EngineerTel:this.EngineerTel,
-      Type: "Job",
+    if (this.ProID != null && this.AsID != null) {
+      let params = {
+        EmpID: this.EmpID,
+        CusID: this.CusID,
+        JobID: this.JobID,
+        ProID: this.ProID,
+        AsID: this.AsID,
+        Unit: this.Unit,
+        Qty: this.No,
+        Reference: this.Reference,
+        Remark: this.Remark,
+        EngineerTel:this.EngineerTel,
+        Type: "Job",
+      }
+      console.log(params);
+      this.postDataService.PostCus(params).then(JobID => {
+        this.JobID = JobID
+        console.log(JobID); 
+        this.modalController.dismiss(this.JobID,this.list);
+      });
+    }else if (this.ProID == null){
+      this.alertMachine();
+    }else if (this.AsID == null){
+      this.alertDevice();
     }
-    console.log(params);
-    this.postDataService.PostCus(params).then(JobID => {
-      this.JobID = JobID
-      console.log(JobID); 
-      this.modalController.dismiss(this.JobID,this.list);
-      // this.navCtrl.navigateForward(['sparelist']);
-    });
+    }
     
-  }
 getProId(value) {
     this.ProID = value.detail.value;
     console.log(this.ProID);
@@ -95,5 +103,29 @@ getProId(value) {
     console.log(this.AsID);
     console.log(value);
   }
+
+  //#region alertMachine
+  async alertMachine() {
+    const alert = await this.alertController.create({
+      header: 'แจ้งเตือน',
+      message: 'กรุณาเลิอกประเภทเครื่อง',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  //#endregion
+
+    //#region alertDevice
+    async alertDevice() {
+      const alert = await this.alertController.create({
+        header: 'แจ้งเตือน',
+        message: 'กรุณาเลิอกอะไหล่',
+        buttons: ['OK']
+      });
+  
+      await alert.present();
+    }
+    //#endregion
 }
 
