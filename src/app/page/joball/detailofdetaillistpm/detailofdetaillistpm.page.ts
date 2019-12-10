@@ -1230,10 +1230,10 @@ export class DetailofdetaillistpmPage implements OnInit {
       let params = {
         planID: this.planID,
         installID: this.installID,
-        signature: this.sign,
         jobtype: this.jobtype + "resolution",
         empID: this.empID,
         resolution: this.resolution,
+        idold: this.idold,
         resolutiondetail: this.resolutiondetail
       }
       console.log(params);

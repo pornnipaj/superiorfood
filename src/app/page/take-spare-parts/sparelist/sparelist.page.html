@@ -51,6 +51,10 @@
                               <span class="label label-sm label-warning circle" #lblView
                               (click)="Detail(item)">แก้ไข</span>
                           </td>
+                          <td *ngIf="item.Status == 'กำลังดำเนินการ'; else lblView" > 
+                            <span class="label label-sm label-danger circle" #lblView
+                            (click)="Delete(item)">ลบ</span>
+                        </td>
                           </tr>
                         </tbody>
                       </table>

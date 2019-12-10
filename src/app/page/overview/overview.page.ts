@@ -438,7 +438,7 @@ export class OverviewPage implements OnInit {
       id: 1,
       text: 'งานทั้งหมด' + this.job + "งาน",
       data: { secret: 'key_data' },
-      trigger: { every: { hour: 24 }, count: 1 },
+      trigger: { every: { hour: 12 }, count: 1 },
     });
   }
 

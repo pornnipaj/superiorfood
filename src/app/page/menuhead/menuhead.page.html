@@ -9,20 +9,22 @@
         </ion-toolbar>
       </ion-header>
      <ion-content>
-    <ion-list >
+    <ion-list  *ngIf="status === true">
       <ion-item *ngFor="let p of pages">
       <ion-menu-toggle *ngIf="p.url">
-        <ion-item [routerLink]="p.url" routerDirection="root" routerLinkActive="active" *ngIf="status === true">
+        <ion-item [routerLink]="p.url" routerDirection="root" routerLinkActive="active">
           <ion-icon [name]="p.icon" slot="start"></ion-icon>
           <ion-label>
             {{ p.title }}
           </ion-label>
         </ion-item>
       </ion-menu-toggle>
-    </ion-item>
-    <ion-item *ngFor="let p of pagesspare">
+    </ion-item>   
+    </ion-list>
+    <ion-list  *ngIf="status === false">
+      <ion-item *ngFor="let p of pagesspare">
         <ion-menu-toggle *ngIf="p.url">
-          <ion-item [routerLink]="p.url" routerDirection="root" routerLinkActive="active" *ngIf="status === false">
+          <ion-item [routerLink]="p.url" routerDirection="root" routerLinkActive="active">
             <ion-icon [name]="p.icon" slot="start"></ion-icon>
             <ion-label>
               {{ p.title }}

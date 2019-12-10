@@ -17,7 +17,7 @@
                             <ion-label color="primary">ประเภทเครื่อง</ion-label>
                           </div>
                             <div class="col-8">
-                              <ion-select interface="popover" (ionChange)="getProId($event)">
+                              <ion-select  interface="popover" (ionChange)="getProId($event)">
                               <ion-select-option *ngFor="let title of Machine" [value]="title.ProductID"
                                 [selected]="title.ProductName">{{title.ProductName}}</ion-select-option>
                             </ion-select>
@@ -60,7 +60,7 @@
                           </ion-item>
                       </ion-list>
                       <div class="col-12" style="text-align: center;">
-                          <ion-button slot="end" (click)="PostSpare()">เบิกอะไหล่</ion-button> 
+                          <ion-button slot="end" (click)="PostSpare()">บันทึกอะไหล่</ion-button> 
                       </div> 
                     </div>
                   </div>

@@ -64,7 +64,7 @@ export class TakePage implements OnInit {
 
   }
   close() {
-    this.modalController.dismiss();
+    this.modalController.dismiss(this.JobID);
   }
   onSum() {
     this.Sum = this.No * this.UnitPrice

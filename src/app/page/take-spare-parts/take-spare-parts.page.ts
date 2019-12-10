@@ -5,8 +5,8 @@ import { StorageService, User } from '../../storage.service';
 import { PostDataService } from '../../post-data.service';
 import { ActivatedRoute } from '@angular/router';
 import { TakeNewPage } from '../take-spare-parts/take-new/take-new.page';
-import { NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
+import { NavController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-take-spare-parts',
@@ -15,9 +15,10 @@ import { NavigationExtras } from '@angular/router';
 })
 
 export class TakeSparePartsPage implements OnInit {
-  
+
   myDate: String = new Date().toISOString();
   isShowSpare = false;
+  cus;
   CustomerCode;
   CustomerName;
   empID;
@@ -46,12 +47,19 @@ export class TakeSparePartsPage implements OnInit {
     public modalController: ModalController,
     private postDataService: PostDataService,
     private navCtrl: NavController,
+    public alertController: AlertController,
     private route: ActivatedRoute) {
     this.loadItems()
 
     this.route.queryParams.subscribe(params => {
-      this.myId = JSON.parse(params["data"]);
-      this.item = this.myId.item
+      this.myId = JSON.parse(params["data"]);      
+      this.type = this.myId.type
+      if (this.type == "new") {
+        this.type = this.myId.type
+        console.log(this.type);
+        
+      }else{
+        this.item = this.myId.item
       this.CustomerCode = this.item.CustomerCode
       this.CustomerName = this.item.CustomerName
       this.AddressSite = this.item.AddressSite
@@ -61,29 +69,44 @@ export class TakeSparePartsPage implements OnInit {
       this.EngineerTel = this.item.EngineerTel
       this.Reference = this.item.Reference
       this.JobID = this.myId.JobID
-      this.type = this.myId.type
       this.CusID = this.myId.CusID
       console.log(this.JobID, this.type, this.CusID);
       console.log(this.item);
-
-      if (this.type == "edit") {
-        let params = {
-          JobID: this.JobID,
-          Type: "ListDetail",
-        }
-        this.postDataService.PostCus(params).then(list => {
-          this.list = list
-          console.log(list);
-          this.isShow = true;
-        });
-      }
-      else {
-        this.loadItems();
-      }
+      }  
     });
   }
 
   ngOnInit() {
+    if (this.type == "edit") {
+      let params = {
+        JobID: this.JobID,
+        Type: "ListDetail",
+      }
+      this.postDataService.PostCus(params).then(list => {
+        this.list = list
+        console.log(list);
+        if (this.list != null) {
+          this.isShow = true;
+          this.JobID = this.JobID
+        }
+      });
+    }
+    else if (this.type == "new") {     
+      let params = {
+        JobID: this.JobID,
+        Type: "ListDetail",
+      }
+      this.postDataService.PostCus(params).then(list => {
+        this.list = list
+        console.log(list);
+        if (this.list != null) {
+          this.list = list
+          this.isShow = true;
+          this.JobID = this.JobID
+        }
+      });
+    }
+      this.loadItems();
   }
 
   async spare() {
@@ -101,9 +124,32 @@ export class TakeSparePartsPage implements OnInit {
     modal.onDidDismiss().then(data => {
       this.JobID = data
       this.JobID = this.JobID.data
-      console.log(this.JobID) 
+      console.log(this.JobID)
+      if (this.JobID != null) {
+        if (this.type == "new") {
+          let params = {
+            JobID: this.JobID,
+            Type: "ListNew",
+          }
+          this.postDataService.PostCus(params).then(list => {
+            this.cus = list
+            console.log(list);
+            if (this.cus != null) {
+              this.isShow = true;
+              for (let i = 0; i < this.cus.length; i++) {
+                this.ServiceReportNo = this.cus[i].ServiceReportNo
+              this.CustomerName = this.cus[i].CustomerName
+              this.EngineerTel = this.cus[i].EngineerTel
+              this.Reference = this.cus[i].Reference
+              this.JobID = this.cus[i].JobID
+              }                  
+            }
+          });
+        }
+        this.ngOnInit();
+      }
     });
-    
+
     return await modal.present();
   }
 
@@ -133,7 +179,7 @@ export class TakeSparePartsPage implements OnInit {
     this.postDataService.PostCus(params).then(Cus => {
       this.Cus = Cus;
       console.log(this.Cus);
-      
+
       for (let i = 0; i < this.Cus.length; i++) {
         this.CustomerCode = this.Cus[i].CustomerCode
         this.CustomerName = this.Cus[i].CustomerName
@@ -147,20 +193,39 @@ export class TakeSparePartsPage implements OnInit {
         this.loadItems();
       }
       console.log(this.CusID);
-      
+
     });
   }
 
-  Delete(item) {
-    let params = {
-      JobDeviceID: item.JobDeviceID,
-      Type: "Delete",
-    }
-    this.postDataService.PostCus(params).then(list => {
-      console.log(list);
-      this.isShow = true;  
-      location.reload();     
+  async Delete(item) {
+    const alert = await this.alertController.create({
+      header: 'แจ้งเตือน!',
+      message: 'ต้องการลบข้อมูล',
+      buttons: [
+        {
+          text: 'ตกลง',
+          handler: () => {
+            let params = {
+              JobDeviceID: item.JobDeviceID,
+              EmpID: this.empID,
+              Type: "Delete",
+            }
+            this.postDataService.PostCus(params).then(list => {
+              console.log(list);
+              this.isShow = true;
+              this.ngOnInit();
+            });
+          }
+        }, {
+          text: 'ยกเลิก',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+          }
+        }
+      ]
     });
+    await alert.present();
   }
 
   async Edit(item) {
@@ -171,11 +236,16 @@ export class TakeSparePartsPage implements OnInit {
         item: item,
       }
     });
-    modal.onDidDismiss().then(data => { 
-      location.reload();    
+    modal.onDidDismiss().then(data => {
+      this.JobID = data
+      this.JobID = this.JobID.data
+      console.log(this.JobID)
+      if (this.JobID != null) {
+        this.ngOnInit();
+      }
     });
     return await modal.present();
-    
+
   }
 
   Save() {
@@ -190,11 +260,20 @@ export class TakeSparePartsPage implements OnInit {
     this.postDataService.PostCus(params).then(list => {
       this.list = list
       console.log(list);
-      for (let i = 0; i < this.list.length; i++) {
-        this.CustomerName = this.list[i].CustomerName;
-        this.CustomerCode = this.list[i].CustomerCode;
-        this.AddressSite = this.list[i].AddressSite;
-        this.TelCompany = this.list[i].TelCompany;
+      if (this.list != null) {
+        this.ngOnInit();
+      this.CustomerCode = this.list.CustomerCode
+      this.CustomerName = this.list.CustomerName
+      this.AddressSite = this.list.AddressSite
+      this.ServiceReportNo = this.list.ServiceReportNo
+      this.Status = this.list.Status
+      this.TelCompany = this.list.TelCompany
+      this.EngineerTel = this.list.EngineerTel
+      this.Reference = this.list.Reference
+      this.JobID = this.list.JobID
+      this.type = this.list.type
+      console.log(this.CustomerName);
+      
       }
     });
   }
@@ -202,7 +281,7 @@ export class TakeSparePartsPage implements OnInit {
   Requested() {
     let params = {
       JobID: this.JobID,
-      Type: "Job",
+      Type: "Approve",
     }
     this.postDataService.PostCus(params).then(list => {
       this.list = list

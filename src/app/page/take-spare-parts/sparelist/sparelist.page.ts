@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PostDataService } from '../../../post-data.service';
 import { StorageService, User } from '../../../storage.service';
-import { NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
+import { NavController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sparelist',
@@ -14,6 +14,7 @@ export class SparelistPage implements OnInit {
   list;
   constructor(private postDataService: PostDataService,
     private storageService: StorageService, 
+    public alertController: AlertController,
     public navCtrl: NavController) { }
 
   ngOnInit() {
@@ -69,6 +70,35 @@ export class SparelistPage implements OnInit {
     };
     console.log(navigationExtras);
     this.navCtrl.navigateForward(['take-spare-parts'], navigationExtras);
+  }
+  async Delete(item) {
+    const alert = await this.alertController.create({
+      header: 'แจ้งเตือน!',
+      message: 'ต้องการลบข้อมูล',
+      buttons: [
+        {
+          text: 'ตกลง',
+          handler: () => {
+            let params = {
+              JobID: item.JobID,
+              EmpID: this.empID,
+              Type: "DeleteJob",
+            }
+            this.postDataService.PostCus(params).then(list => {
+              console.log(list);
+              this.ngOnInit();
+            });
+          }
+        }, {
+          text: 'ยกเลิก',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 }
 

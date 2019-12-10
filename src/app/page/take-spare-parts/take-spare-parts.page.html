@@ -98,8 +98,8 @@
                           <div class="col-4">
                         <ion-label color="primary">เบอร์โทรศัพท์ช่าง</ion-label>
                         </div>
-                        <div class="col-8" *ngIf="Status != 'อนุมัติ' && Status != 'รออนุมัติ' && JobID != null; else lblNew">
-                        <ion-input [(ngModel)]="EngineerTel" #lblNew></ion-input>
+                        <div class="col-8" *ngIf="Status != 'อนุมัติ' && Status != 'รออนุมัติ' && JobID != null || type == 'new'; else lblNew">
+                        <ion-input type="number" [(ngModel)]="EngineerTel" #lblNew></ion-input>
                       </div>
                       <div class="col-8" *ngIf="JobID != null; else lblOld">
                           <ion-label #lblOld>{{EngineerTel}}</ion-label>
@@ -109,7 +109,7 @@
                           <div class="col-4">
                         <ion-label color="primary">อ้างอิง</ion-label>
                         </div>
-                        <div class="col-8" *ngIf="Status != 'อนุมัติ' && Status != 'รออนุมัติ' && JobID != null; else lblNew">
+                        <div class="col-8" *ngIf="Status != 'อนุมัติ' && Status != 'รออนุมัติ' && JobID != null || type == 'new'; else lblNew">
                         <ion-input [(ngModel)]="Reference" #lblNew></ion-input>
                       </div>
                       <div class="col-8" *ngIf="JobID != null; else lblOld">
@@ -135,8 +135,8 @@
       <div class="col-12" style="text-align: right; padding: 20px;" *ngIf="Status != 'อนุมัติ' && Status != 'รออนุมัติ' && CusID != null; else lblOld">
           <span class="label label-sm label-warning" (click)="spare()" #lblOld> เพิ่มอะไหล่ </span>
         </div>
-      <div class="col-md-12 col-12" *ngIf="isShow">
-      <div class="portlet light ">
+      <div class="col-md-12 col-12" *ngIf="JobID != null; else lbltable">
+      <div class="portlet light " #lbltable>
         <div class="portlet-body">
             <div class="table-scrollable">
                 <table class="table table-hover">
