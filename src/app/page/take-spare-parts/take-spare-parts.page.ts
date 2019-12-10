@@ -258,22 +258,23 @@ export class TakeSparePartsPage implements OnInit {
       Type: "UpdateJob",
     }
     this.postDataService.PostCus(params).then(list => {
-      this.list = list
+      this.cus = list
       console.log(list);
-      if (this.list != null) {
-        this.ngOnInit();
-      this.CustomerCode = this.list.CustomerCode
-      this.CustomerName = this.list.CustomerName
-      this.AddressSite = this.list.AddressSite
-      this.ServiceReportNo = this.list.ServiceReportNo
-      this.Status = this.list.Status
-      this.TelCompany = this.list.TelCompany
-      this.EngineerTel = this.list.EngineerTel
-      this.Reference = this.list.Reference
-      this.JobID = this.list.JobID
-      this.type = this.list.type
+      if (this.cus != null) {
+        for (let i = 0; i < this.cus.length; i++) {
+          this.CustomerCode = this.cus[i].CustomerCode
+      this.CustomerName = this.cus[i].CustomerName
+      this.AddressSite = this.cus[i].AddressSite
+      this.ServiceReportNo = this.cus[i].ServiceReportNo
+      this.Status = this.cus[i].Status
+      this.TelCompany = this.cus[i].TelCompany
+      this.EngineerTel = this.cus[i].EngineerTel
+      this.Reference = this.cus[i].Reference
+      this.JobID = this.cus[i].JobID
+      this.type = this.cus[i].type
       console.log(this.CustomerName);
-      
+        }      
+      this.alertSuccess();
       }
     });
   }
@@ -286,7 +287,20 @@ export class TakeSparePartsPage implements OnInit {
     this.postDataService.PostCus(params).then(list => {
       this.list = list
       console.log(list);
+      this.alertSuccess();
       this.navCtrl.navigateForward(['sparelist']);
     });
   }
+
+  //#region alert Success
+  async alertSuccess() {
+    const alert = await this.alertController.create({
+      header: 'แจ้งเตือน',
+      message: 'บันทึกสำเร็จ',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  //#endregion
 }

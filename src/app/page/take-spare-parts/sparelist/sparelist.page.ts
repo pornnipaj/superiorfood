@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostDataService } from '../../../post-data.service';
 import { StorageService, User } from '../../../storage.service';
 import { NavigationExtras } from '@angular/router';
-import { NavController, AlertController } from '@ionic/angular';
+import { NavController, AlertController,LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sparelist',
@@ -15,8 +15,28 @@ export class SparelistPage implements OnInit {
   constructor(private postDataService: PostDataService,
     private storageService: StorageService, 
     public alertController: AlertController,
-    public navCtrl: NavController) { }
+    public loadingController: LoadingController,
+    public navCtrl: NavController) { 
+      setTimeout(() => {
+        this.ngOnInit();
+      }, 500);
+    }
 
+    loadpage() {
+      setTimeout(() => {
+        this.loaddata();
+        this.ngOnInit();
+      }, 500);
+    }
+async loaddata() {
+    const loading = await this.loadingController.create({
+      message: 'กำลังโหลดข้อมูล...',
+      duration: 500,
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+    });
+    return await loading.present();
+  }
   ngOnInit() {
     this.load();
   }
