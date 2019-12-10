@@ -99,8 +99,7 @@ export class SignaturePage implements OnInit {
   }
 
   close() {
-    const base64 = this.signaturePad.toDataURL('image/png', 0.5);
-    this.image = base64;
+    this.image = false;
 
     this.modalController.dismiss(this.image);
   }

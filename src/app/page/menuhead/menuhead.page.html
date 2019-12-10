@@ -1,5 +1,4 @@
 <ion-menu side="start" menuId="first" contentId="content1">
-<<<<<<< HEAD
     <ion-header>
         <ion-toolbar color="primary">
           <ion-buttons slot="start"> 
@@ -33,29 +32,6 @@
       </ion-item>
     </ion-list>
   </ion-content>  
-=======
-  <ion-header>
-      <ion-toolbar color="primary">
-        <ion-buttons slot="start"> 
-          <img src="../../../assets/img/logo.png" width="20%"/>           
-          <ion-title>eService</ion-title>
-        </ion-buttons>
-        <ion-menu-button slot="end"></ion-menu-button>
-      </ion-toolbar>
-    </ion-header>
-   <ion-content>
-  <ion-list *ngFor="let p of pages">
-    <ion-menu-toggle *ngIf="p.url">
-      <ion-item [routerLink]="p.url" routerDirection="root" routerLinkActive="active">
-        <ion-icon [name]="p.icon" slot="start"></ion-icon>
-        <ion-label>
-          {{ p.title }}
-        </ion-label>
-      </ion-item>
-    </ion-menu-toggle>
-  </ion-list>
-</ion-content>  
->>>>>>> b1379be1fdbca94adb212ed7b6f29b1957f1d2de
 </ion-menu>
 
 <ion-router-outlet id="content1" main></ion-router-outlet>

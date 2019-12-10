@@ -36,7 +36,7 @@ export class CustomerpasswordPage implements OnInit {
       if (this.code != this.getpassword) {
         const alert = await this.alertController.create({
           header: 'แจ้งเตือน',
-          message: 'รหัสผ่านไม่ถูกต้อง',
+          message: 'รหัสยืนยันตัวตนลูกค้าไม่ถูกต้อง',
           buttons: ['OK']
         });
     

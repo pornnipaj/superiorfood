@@ -29,12 +29,6 @@
                       {{title1}} </span>
                   </div>
                 </div>
-
-                <!-- <ion-button (click)="takeSnap()">
-                Take Snap
-              </ion-button>
-
-              <img [src]="capturedSnapURL" /> -->
                 <div class="col-3 text-center">
                   <img [src]="img.src1" *ngIf="isShowImage1" />
                 </div>
@@ -62,60 +56,60 @@
 
                 <div class="col-md-1 col-1 text-center">
                 </div>
-
+                
                 <div class="col-md-2 col-2 text-center" *ngIf="isInstall">
-                  <div *ngIf="isTake1">
+                  <div #take1 *ngIf="isShow1 == false ; else take1">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(1)">
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
                     </ion-fab>
                   </div>
-                  <img [src]="photo1" *ngIf="isShow1">
+                  <img [src]="photo1" *ngIf="isShow1" (click)="Take(1)">
                 </div>
 
                 <div class="col-md-2 col-2 text-center" *ngIf="isInstall">
-                  <div *ngIf="isTake2">
+                  <div #take2 *ngIf="isShow2 == false ; else take2">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(2)">
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
                     </ion-fab>
                   </div>
-                  <img [src]="photo2" *ngIf="isShow2" />
+                  <img [src]="photo2" *ngIf="isShow2" (click)="Take(2)"/>
                 </div>
 
                 <div class="col-md-2 col-2 text-center" *ngIf="isInstall">
-                  <div *ngIf="isTake3">
+                  <div #take3 *ngIf="isShow3 == false ; else take3">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(3)">
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
                     </ion-fab>
                   </div>
-                  <img [src]="photo3" *ngIf="isShow3">
+                  <img [src]="photo3" *ngIf="isShow3" (click)="Take(3)">
                 </div>
 
                 <div class="col-md-2 col-2 text-center" *ngIf="isInstall">
-                  <div *ngIf="isTake4">
+                  <div #take4 *ngIf="isShow4 == false ; else take4">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(4)">
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
                     </ion-fab>
                   </div>
-                  <img [src]="photo4" *ngIf="isShow4">
+                  <img [src]="photo4" *ngIf="isShow4" (click)="Take(4)">
                 </div>
 
                 <div class="col-md-2 col-2 text-center" *ngIf="isInstall">
-                  <div *ngIf="isTake5">
+                  <div #take5 *ngIf="isShow5 == false ; else take5">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(5)">
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
                     </ion-fab>
                   </div>
-                  <img [src]="photo5" *ngIf="isShow5">
+                  <img [src]="photo5" *ngIf="isShow5" (click)="Take(5)">
                 </div>
               </div>
             </div>
@@ -135,56 +129,56 @@
                 <div class="col-md-1 col-1 text-center">
                 </div>
                 <div class="col-md-2 col-2 text-center">
-                  <div *ngIf="isTake6">
+                  <div #take6 *ngIf="isShow6 == false ; else take6">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(6)" [disabled]="!isenabledTakeback">
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
                     </ion-fab>
                   </div>
-                  <img [src]="photo6" *ngIf="isShow6">
+                  <img [src]="photo6" *ngIf="isShow6" (click)="Take(6)">
                 </div>
                 <div class="col-md-2 col-2 text-center">
-                  <div *ngIf="isTake7">
+                  <div #take7 *ngIf="isShow7 == false ; else take7">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(7)" [disabled]="!isenabledTakeback">
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
                     </ion-fab>
                   </div>
-                  <img [src]="photo7" *ngIf="isShow7">
+                  <img [src]="photo7" *ngIf="isShow7" (click)="Take(7)">
                 </div>
                 <div class="col-md-2 col-2 text-center">
-                  <div *ngIf="isTake8">
+                  <div #take8 *ngIf="isShow8 == false ; else take8">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(8)" [disabled]="!isenabledTakeback">
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
                     </ion-fab>
                   </div>
-                  <img [src]="photo8" *ngIf="isShow8">
+                  <img [src]="photo8" *ngIf="isShow8" (click)="Take(8)">
                 </div>
 
                 <div class="col-md-2 col-2 text-center">
-                  <div *ngIf="isTake9">
+                  <div #take9 *ngIf="isShow9 == false ; else take9">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(9)" [disabled]="!isenabledTakeback">
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
                     </ion-fab>
                   </div>
-                  <img [src]="photo9" *ngIf="isShow9">
+                  <img [src]="photo9" *ngIf="isShow9" (click)="Take(9)">
                 </div>
 
                 <div class="col-md-2 col-2 text-center">
-                  <div *ngIf="isTake10">
+                  <div #take10 *ngIf="isShow10 == false ; else take10">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(10)" [disabled]="!isenabledTakeback">
                         <ion-icon name="camera"></ion-icon>
                       </ion-fab-button>
                     </ion-fab>
                   </div>
-                  <img [src]="photo10" *ngIf="isShow10">
+                  <img [src]="photo10" *ngIf="isShow10" (click)="Take(10)">
                 </div>
               </div>
             </div>
@@ -204,6 +198,27 @@
                 <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
                   <button (click)="check()" [disabled]="!isenabledcheck" class="btn default">
                     รายการตรวจเช็ค </button>
+                </div>
+                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle5">
+            <div class="portlet light ">
+              <div class="row">
+                <div class="col-md-12 col-12">
+                  <div class="caption" style="margin-top: 15px;">
+                    <i class="fa fa-map-pin font-blue-sharp"></i>
+                    <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
+                      {{title5}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                  <button class="btn default" [disabled]="!isenabledeva" (click)="clickeva()">
+                    ประเมิน </button>
                 </div>
                 <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
                 </div>
@@ -234,27 +249,7 @@
               </div>
             </div>
           </div>
-          <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle5">
-            <div class="portlet light ">
-              <div class="row">
-                <div class="col-md-12 col-12">
-                  <div class="caption" style="margin-top: 15px;">
-                    <i class="fa fa-map-pin font-blue-sharp"></i>
-                    <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
-                      {{title5}}</span>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
-                  <button class="btn default" [disabled]="!isenabledeva" (click)="clickeva()">
-                    ประเมิน </button>
-                </div>
-                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
-                </div>
-              </div>
-            </div>
-          </div>
+          
           <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle6">
             <div class="portlet light ">
               <div class="row">
@@ -322,8 +317,8 @@
         </div>
       </div>
       <div class="col-6 col-md-6 col-sm-6 col-xs-12" style="padding-right: 0px; padding-left: 5px;" id="RightPhoto">
-        <div class="row" style="padding-left:15px;">
-          <div class="col-4 col-md-4 col-sm-4" style="padding: 0px; padding-right:2px;">
+        <div class="row hidden" style="padding-left:15px;">
+          <div class="col-4 col-md-4 col-sm-4 hidden" style="padding: 0px; padding-right:2px;">
             <div class="portlet box blue">
               <div class="portlet-title">
                 <div class="caption">
@@ -340,7 +335,7 @@
               </div>
             </div>
           </div>
-          <div class="col-8 col-md-8 col-sm-8 ex2" style="padding: 0px;">
+          <div class="col-12 col-md-12 col-sm-12 ex2" style="padding: 0px;">
             <div class="portlet box blue">
               <div class="portlet-title">
                 <div class="caption">
@@ -352,6 +347,23 @@
                     <div class="col-md-12 col-12">
                       <p class="profile-desc-text" style="text-align: center; padding: 5px;">รอการตรวจสอบ</p>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-12 col-sm-12 ex2" style="padding: 0px;">
+          <div class="portlet box blue">
+            <div class="portlet-title">
+              <div class="caption">
+                <i class="fa fa-bar-chart"></i>สถานะ</div>
+            </div>
+            <div class="portlet-body" style="margin: 0px;">
+              <div class="portlet light ">
+                <div class="row">
+                  <div class="col-md-12 col-12">
+                    <p class="profile-desc-text" style="text-align: center; padding: 5px;">รอการตรวจสอบ</p>
                   </div>
                 </div>
               </div>
