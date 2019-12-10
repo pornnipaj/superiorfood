@@ -65,6 +65,7 @@ export class DetaillistpmPage implements OnInit {
   //#region start
   ngOnInit() {
     if (this.type == "CM") {
+      this.imgbf = true
       this.storageService.getUser().then(items => {
         this.items = items;
         // console.log(items);      
@@ -258,7 +259,7 @@ export class DetaillistpmPage implements OnInit {
   async Imgbf(item) {
     console.log(item);
 
-    if (this.type == "INSTALL") {
+    if (this.type == "INSTALL" || this.type == "CM") {
       const modal = await this.modalController.create({
         component: ShowimginstallPage,
         cssClass: 'my-custom-modal-css',

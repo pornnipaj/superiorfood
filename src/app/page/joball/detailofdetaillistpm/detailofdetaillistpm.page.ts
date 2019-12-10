@@ -171,7 +171,8 @@ export class DetailofdetaillistpmPage implements OnInit {
   isShowImage6 = false;
   isShowImage7 = false;
   isShowImage8 = false;
-
+  resolution;
+  resolutiondetail;
   //#endregion
 
   //#region constructor
@@ -304,6 +305,10 @@ export class DetailofdetaillistpmPage implements OnInit {
 
     if (this.jobtype == "CM") {
       this.title3 = "รายการที่ 3 รายการที่ต้องตรวจซ่อม"
+      this.title4 = "รายการที่ 6 ลายเซ็นต์ผู้รับผิดชอบ"
+      this.title5 = "รายการที่ 5 ประเมินการทำงาน"
+      this.title6 = "รายการที่ 7 สรุปผลการตรวจเช็คและยืนยันการปิดงาน"
+      this.title7 = "รายการที่ 4 แบบประเมินปัญหา"
       this.isenabledTakeback = false;
       this.isenabledcheck = false;
       this.isenabledtitle7 = true;
@@ -1063,7 +1068,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.sparepart = this.list.data.sparepart
         this.typedevice = this.list.data.typedevice
         console.log(this.list.data)
-        this.isenabledeva = true;
+        this.isenabledcuseva = true;
       })
 
       return await modal.present();
@@ -1211,29 +1216,34 @@ export class DetailofdetaillistpmPage implements OnInit {
   async openModalcustomereva() {
     const modal = await this.modalController.create({
       component: CustomerevaluationPage,
-      componentProps: {}
+      componentProps: { resolution :  this.cusEva.resolution,
+        resolutiondetail :  this.cusEva.resolutiondetail}
     });
 
     modal.onDidDismiss().then(data => {
-      this.isenabledsave = true;
       this.cusEva = data
-      for (let i = 0; i < this.cusEva.length; i++) {
-        this.cusEva = this.cusEva[i]
+      this.resolution =  this.cusEva.data.resolution
+      this.resolutiondetail =  this.cusEva.data.resolutiondetail
+      console.log(this.resolution);
+      console.log(this.resolutiondetail);
+      
+      let params = {
+        planID: this.planID,
+        installID: this.installID,
+        signature: this.sign,
+        jobtype: this.jobtype + "resolution",
+        empID: this.empID,
+        resolution: this.resolution,
+        resolutiondetail: this.resolutiondetail
       }
-      console.log(this.cusEva);
-
-      // let params = {
-      //   planID: this.planID,
-      //   installID: this.installID,
-      //   signature: this.sign,
-      //   jobtype: this.jobtype + "2",
-      //   empID: this.empID
-      // }
-      // console.log(params);
-      // this.postDataService.SaveCaseAll(params).then(servicephoto => {
-      //   console.log(servicephoto);          
-      // });    
-      // this.isenabledeva = true;
+      console.log(params);
+      this.postDataService.SaveCaseAll(params).then(resolution => {
+        console.log(resolution);          
+        this.cusEva = resolution
+        this.resolution =  this.cusEva.resolution
+      this.resolutiondetail =  this.cusEva.resolutiondetail
+      });    
+      this.isenabledeva = true;
     })
 
     return await modal.present();

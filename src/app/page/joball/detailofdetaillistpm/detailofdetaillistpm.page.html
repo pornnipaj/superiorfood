@@ -204,6 +204,27 @@
               </div>
             </div>
           </div>
+          <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle7">
+            <div class="portlet light ">
+              <div class="row">
+                <div class="col-md-12 col-12">
+                  <div class="caption">
+                    <i class="fa fa-map-pin font-blue-sharp"></i>
+                    <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
+                      {{title7}}</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                  <button class="btn default" (click)="openModalcustomereva()" [disabled]="!isenabledcuseva">
+                    ประเมิน </button>
+                </div>
+                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle5">
             <div class="portlet light ">
               <div class="row">
@@ -270,29 +291,7 @@
                 </div>
               </div>
             </div>
-          </div>
-
-          <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle7">
-            <div class="portlet light ">
-              <div class="row">
-                <div class="col-md-12 col-12">
-                  <div class="caption">
-                    <i class="fa fa-map-pin font-blue-sharp"></i>
-                    <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
-                      {{title7}}</span>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
-                  <button class="btn default" (click)="openModalcustomereva()" [disabled]="!isenabledcuseva">
-                    ประเมิน </button>
-                </div>
-                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
-                </div>
-              </div>
-            </div>
-          </div>
+          </div>         
           <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle8">
             <div class="portlet light ">
               <div class="row">

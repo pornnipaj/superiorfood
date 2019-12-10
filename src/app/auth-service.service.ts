@@ -43,4 +43,10 @@ export class AuthServiceService {
       'http://superior.wingplusweb.com/API/ProductAndManual.ashx'
     );
   }
+  getresolution(){
+    return this.http.get
+    (
+    'http://superior.wingplusweb.com/API/Resolutio.asmx/Detail'
+    );
+  }
 }
