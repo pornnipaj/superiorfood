@@ -60,35 +60,35 @@ export class ShowimginstallPage implements OnInit {
       }
       for (let v = 0; v < this.resultimg.length; v++) {
         if (this.resultimg[v].type == "step1_pic1") {
-          this.img.src1 = 'http://superior.wingplusweb.com' + this.resultimg[v].file_path
+          this.img.src1 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.resultimg[v].file_path
           this.booimg1 = true;
           console.log("bf1", this.img.src1);
         } else if (this.resultimg[v].type == "step1_pic2") {
-          this.img.src2 = 'http://superior.wingplusweb.com' + this.resultimg[v].file_path
+          this.img.src2 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.resultimg[v].file_path
           this.booimg2 = true;
           console.log("bf1", this.img.src2);
         } else if (this.resultimg[v].type == "step1_pic3") {
-          this.img.src3 = 'http://superior.wingplusweb.com' + this.resultimg[v].file_path
+          this.img.src3 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.resultimg[v].file_path
           this.booimg3 = true;
           console.log("bf1", this.img.src3);
         } else if (this.resultimg[v].type == "step1_pic4") {
-          this.img.src4 = 'http://superior.wingplusweb.com' + this.resultimg[v].file_path
+          this.img.src4 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.resultimg[v].file_path
           this.booimg4 = true;
           console.log("bf1", this.img.src4);
         } else if (this.resultimg[v].type == "step1_pic5") {
-          this.img.src5 = 'http://superior.wingplusweb.com' + this.resultimg[v].file_path
+          this.img.src5 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.resultimg[v].file_path
           this.booimg5 = true;
           console.log("bf1", this.img.src5);
         } else if (this.resultimg[v].type == "step1_pic6") {
-          this.img.src6 = 'http://superior.wingplusweb.com' + this.resultimg[v].file_path
+          this.img.src6 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.resultimg[v].file_path
           this.booimg6 = true;
           console.log("bf1", this.img.src6);
         } else if (this.resultimg[v].type == "step1_pic7") {
-          this.img.src7 = 'http://superior.wingplusweb.com' + this.resultimg[v].file_path
+          this.img.src7 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.resultimg[v].file_path
           this.booimg7 = true;
           console.log("bf1", this.img.src7);
         } else if (this.resultimg[v].type == "step1_pic8") {
-          this.img.src8 = 'http://superior.wingplusweb.com' + this.resultimg[v].file_path
+          this.img.src8 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.resultimg[v].file_path
           this.booimg8 = true;
           console.log("bf1", this.img.src8);
         }

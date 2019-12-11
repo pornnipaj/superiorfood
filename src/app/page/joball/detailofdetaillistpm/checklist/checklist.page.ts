@@ -29,7 +29,7 @@ export class ChecklistPage implements OnInit {
     console.log(this.empID, this.planID, this.installID);
     this.tran = [];;
 
-    this.url = sanitizer.bypassSecurityTrustResourceUrl('http://superior.wingplusweb.com/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
+    this.url = sanitizer.bypassSecurityTrustResourceUrl('https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
     // this.url = sanitizer.bypassSecurityTrustResourceUrl('http://localhost:41605/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
   }
   //#endregion

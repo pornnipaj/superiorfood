@@ -10,43 +10,23 @@ export class AuthServiceService {
   constructor(private http: HttpClient) {
   }
 
-  // getJobAll() {
-  //   return this.http.get
-  //   (`${"http://superior.wingplusweb.com/API/Employee.ashx"}?apikey=${this.apiKey}`);
-  //   // (
-  //   //   'http://superior.wingplusweb.com/API/Employee.ashx'
-  //   // );
-  // }
-
-  // getuser(email, password) {
-  //   return this.http.get(
-  //     'http://superior.wingplusweb.com/API/Login.ashx?email=' + email + '&password=' + password
-  //   );
-  // }
-
   getnew() {
     return this.http.get
     (
-      'http://superior.wingplusweb.com/API/News.ashx'
+      'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com/API/News.ashx'
     );
   }
-
-  // getPlan() {
-  //   return this.http.get(
-  //     'http://superior.wingplusweb.com/API/ServicePlans.ashx'
-  //   );
-  // }
 
   getProduct() {
     return this.http.get
     (
-      'http://superior.wingplusweb.com/API/ProductAndManual.ashx'
+      'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com/API/ProductAndManual.ashx'
     );
   }
   getresolution(){
     return this.http.get
     (
-    'http://superior.wingplusweb.com/API/Resolutio.asmx/Detail'
+    'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com/API/Resolutio.asmx/Detail'
     );
   }
 }

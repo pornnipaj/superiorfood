@@ -52,7 +52,7 @@ export class CalendarpmPage implements OnInit {
       this.myempID = this.myempID
       this.month = month
       this.year = year
-      this.url = sanitizer.bypassSecurityTrustResourceUrl('http://superior.wingplusweb.com/Web/WebFormCalendar.aspx' + '?empid=' + this.myempID + '&year=' + this.year + '&month=' + this.month);
+      this.url = sanitizer.bypassSecurityTrustResourceUrl('https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com/Web/WebFormCalendar.aspx' + '?empid=' + this.myempID + '&year=' + this.year + '&month=' + this.month);
     });
   }
 
