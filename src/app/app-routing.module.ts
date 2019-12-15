@@ -30,7 +30,12 @@ const routes: Routes = [
   { path: 'customerevaluation', loadChildren: './page/joball/detailofdetaillistpm/customerevaluation/customerevaluation.module#CustomerevaluationPageModule' },
   { path: 'take', loadChildren: './page/take-spare-parts/take/take.module#TakePageModule' },
   { path: 'sparelist', loadChildren: './page/take-spare-parts/sparelist/sparelist.module#SparelistPageModule' },
-  { path: 'take-new', loadChildren: './page/take-spare-parts/take-new/take-new.module#TakeNewPageModule' }
+  { path: 'take-new', loadChildren: './page/take-spare-parts/take-new/take-new.module#TakeNewPageModule' },  { path: 'overview', loadChildren: './page_stock/overview/overview.module#OverviewPageModule' },
+  { path: 'check-stock', loadChildren: './page_stock/check-stock/check-stock.module#CheckStockPageModule' },
+  { path: 'incoming-goods', loadChildren: './page_stock/incoming-goods/incoming-goods.module#IncomingGoodsPageModule' },
+  { path: 'tranfer', loadChildren: './page_stock/tranfer/tranfer.module#TranferPageModule' },
+  { path: 'detail', loadChildren: './page_stock/overview/detail/detail.module#DetailPageModule' }
+
 
 
 ];

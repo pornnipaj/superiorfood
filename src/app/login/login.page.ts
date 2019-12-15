@@ -107,8 +107,7 @@ export class LoginPage implements OnInit {
         this.workall = this.data[i].WorkAll;
         this.workfinish = this.data[i].WorkFinish;
         this.empID = this.data[i].empID;
-        this.status = this.data[i].Status;
-        this.role = this.data[i].HeadTechnician;
+        this.role = this.data[i].roleID;
       }
       if (this.status == false) {
         this.false();
@@ -141,7 +140,14 @@ export class LoginPage implements OnInit {
   this.storageService.addUser(this.newUser).then(item => {
     this.newUser = <User>{};
   });
-  this.navCtrl.navigateForward(['/menuhead/overview']);
+  if (this.role == 3) {
+    this.navCtrl.navigateForward(['/menu/overview']);      
+  }else if (this.role == 12) {
+    this.navCtrl.navigateForward(['/menu/overview-stock']);
+  }else{
+    this.false();
+  }
+  
  }
 
   //#endregion

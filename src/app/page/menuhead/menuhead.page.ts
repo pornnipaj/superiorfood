@@ -8,9 +8,9 @@ import { StorageService, User } from '../../storage.service';
 })
 export class MenuheadPage implements OnInit {
   items;
-  status;
+  role;
 
-  pages = [
+  pageservice = [
     {
       title: 'ภาพรวมการทำงาน',
       url: '/menuhead/overview',
@@ -53,7 +53,7 @@ export class MenuheadPage implements OnInit {
     }
   ];
 
-  pagesspare = [
+  pagestock = [
     {
       title: 'ภาพรวมการทำงาน',
       url: '/menuhead/overview',
@@ -80,8 +80,8 @@ export class MenuheadPage implements OnInit {
       this.items = items;
       console.log(items);
       for (let i = 0; i < this.items.length; i++) {
-        this.status = this.items[i].status;
-        console.log(this.status);
+        this.role = this.items[i].role;
+        console.log(this.role);
       }
     });
   }

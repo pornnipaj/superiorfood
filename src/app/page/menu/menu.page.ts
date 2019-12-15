@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageService, User } from '../../storage.service';
 
 @Component({
   selector: 'app-menu',
@@ -7,12 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuPage implements OnInit {
 
-  pages = [
+  items;
+  role;
+
+  pageservice = [
     {
       title: 'ภาพรวมการทำงาน',
       url: '/menu/overview',
       icon: 'home'
     },
+    // {
+    //   title: 'แพลนงานช่าง',
+    //   url: '/menu/serviceplan',
+    //   icon: 'calendar'
+    // },
     {
       title: 'งานของในความรับผิดชอบ',
       url: '/menu/job',
@@ -45,9 +54,54 @@ export class MenuPage implements OnInit {
     }
   ];
 
-  constructor() { }
+  pagestock = [
+    {
+      title: 'ภาพรวม',
+      url: '/menu/overview-stock',
+      icon: 'home'
+    },    
+    {
+      title: 'เช็คสต็อก',
+      url: '/menu/check-stock',
+      icon: 'cube'
+    },
+    {
+      title: 'รับสินค้าข้าระบบ',
+      url: '/menu/incoming-goods',
+      icon: 'albums'
+    },
+    {
+      title: 'โอนสินค้า',
+      url: '/menu/tranfer',
+      icon: 'repeat'
+    },
+    {
+      title: 'ตั้งค่า',
+      url: '/menu/setting',
+      icon: 'settings'
+    }
+  ];
+  
+  constructor(private storageService: StorageService) { 
+    setTimeout(() => {
+      this.ngOnInit();
+      console.log("123");
+      
+    }, 100);  }
 
   ngOnInit() {
+    this.loadItems();
+  }
+
+  loadItems() {
+    this.storageService.getUser().then(items => {
+      this.items = items;
+      console.log(items);
+      for (let i = 0; i < this.items.length; i++) {
+        this.role = this.items[i].role;
+        console.log(this.role);
+      }
+    });
   }
 
 }

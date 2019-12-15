@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ModalController } from '@ionic/angular';
-import { NavParams } from '@ionic/angular';
+import { NavController, ModalController,NavParams } from '@ionic/angular';
 import { PostDataService } from '../../../post-data.service';
 import { StorageService } from '../../../storage.service';
 

@@ -112,6 +112,7 @@ export class TakeSparePartsPage implements OnInit {
   async spare() {
     const modal = await this.modalController.create({
       component: TakeNewPage,
+      cssClass: 'my-custom-modal-css',
       componentProps: {
         EmpID: this.empID,
         CusID: this.CusID,
@@ -232,6 +233,7 @@ export class TakeSparePartsPage implements OnInit {
     console.log(item);
     const modal = await this.modalController.create({
       component: TakePage,
+      cssClass: 'my-custom-modal-css',
       componentProps: {
         item: item,
       }

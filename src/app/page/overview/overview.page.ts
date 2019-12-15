@@ -417,22 +417,22 @@ export class OverviewPage implements OnInit {
         // console.log(this.empID);        
       }
       this.user.empID = this.empID;
-        this.user.month = this.intMonth;
-        this.user.year = this.intYear;
-        console.log(this.user);
-        this.postDataService.postjobOverview(this.user).then(work => {
-          console.log('worknow', work);
-          this.jobOverview = work;
-          for (let i = 0; i < this.jobOverview.length; i++) {
-            this.workall = this.jobOverview[i].WorkAll;
-            this.workfinish = this.jobOverview[i].WorkFinish;
-            this.cm = this.jobOverview[i].cm;
-            this.pm = this.jobOverview[i].pm;
-            this.install = this.jobOverview[i].install;
-            this.uninstall = this.jobOverview[i].uninstall;
-            this.job = this.jobOverview[i].job;
-          }
-        });
+      this.user.month = this.intMonth;
+      this.user.year = this.intYear;
+      console.log(this.user);
+      this.postDataService.postjobOverview(this.user).then(work => {
+        console.log('worknow', work);
+        this.jobOverview = work;
+        for (let i = 0; i < this.jobOverview.length; i++) {
+          this.workall = this.jobOverview[i].WorkAll;
+          this.workfinish = this.jobOverview[i].WorkFinish;
+          this.cm = this.jobOverview[i].cm;
+          this.pm = this.jobOverview[i].pm;
+          this.install = this.jobOverview[i].install;
+          this.uninstall = this.jobOverview[i].uninstall;
+          this.job = this.jobOverview[i].job;
+        }
+      });
     });
     this.localNotifications.schedule({
       id: 1,
@@ -443,10 +443,4 @@ export class OverviewPage implements OnInit {
   }
 
   //#endregion
-
-  ionViewDidLoad() {
-    setTimeout(() => {
-      this.ngOnInit();
-    }, 350);
-  }
 }

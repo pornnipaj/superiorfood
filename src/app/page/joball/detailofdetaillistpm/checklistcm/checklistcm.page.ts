@@ -38,7 +38,7 @@ export class ChecklistcmPage implements OnInit {
   installserial;
   installtype;
   assetnew;
-  assetold;
+  assetold; 
   chkdata;
   spareList = [];
   stock;

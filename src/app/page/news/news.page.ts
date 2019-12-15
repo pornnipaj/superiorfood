@@ -16,14 +16,14 @@ export class NewsPage implements OnInit {
   data;
   Show = false;
   //#endregion
-
+ 
   //#region constuctor
   constructor(public DataService: AuthServiceService) {
     this.DataService.getnew().subscribe(data => {
       console.log(data);
       this.data = data;
     });
-  }
+  } 
   //#endregion
 
   //#region onchang

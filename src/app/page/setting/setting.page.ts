@@ -34,7 +34,9 @@ export class SettingPage implements OnInit {
   //#region logout
   logout() {
     this.storageService.resetLocalStorage();
-    this.navCtrl.navigateForward(['/login']);
+    console.log("Logout Finish");
+    this.navCtrl.navigateForward(['/login']);    
+    
   }
   //#endregion
   

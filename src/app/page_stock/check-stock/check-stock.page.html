@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-title>เช็คสต็อก</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container-fluid">
+    <div class="page-content-inner">
+      <div class="row" style="padding:5px;">
+        <div class="col-12 col-md-12" style="padding: 0px;">
+          <div class="portlet box blue">
+            <div class="portlet-title">
+              <div class="caption">
+                <i class="fa fa-cube" style="font-size: 2em;"></i>เช็คสต็อก</div>
+              <div class="tools">
+                <span class="label label-sm label-info circle" (click)="save()"> Save </span>
+              </div>
+            </div>
+            <div class="portlet-body" style="padding: 2px;">
+              <div class="tab-content">
+                <div class="tab-pane active">
+                  <div class="row"> 
+                    <div class="col-12">
+                      <div class="table-scrollable">
+                        <table class="table table-hover">
+                          <thead>
+                            <tr>
+                              <th> ชื่อสินค้า </th>
+                              <th> จำนวนในระบบ </th>
+                              <th> จำนวนจริง </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- <tr *ngFor="let item of list; let i = index"> -->
+                            <tr>
+                              <!-- <td> {{i+1}}</td>
+                                          <td> {{item.ServiceReportNo}} </td>
+                                          <td> {{item.CustomerName}} </td>
+                                          <td> {{item.Status}} </td>
+                                          <td> {{item.CreatedDate}} </td> -->
+                              <td> </td>
+                              <td> </td>
+                              <td>
+                                <input type="number" [(ngModel)]="No">
+                              </td>
+                              <!-- <td>
+                                <span class="label label-sm label-warning circle">ดู</span>
+                              </td> -->
+                              <!-- <td *ngIf="item.Status == 'กำลังดำเนินการ'; else lblView" > 
+                                            <span class="label label-sm label-warning circle" #lblView
+                                            (click)="Detail(item)">แก้ไข</span>
+                                        </td>
+                                        <td *ngIf="item.Status == 'กำลังดำเนินการ'; else lblView" > 
+                                          <span class="label label-sm label-danger circle" #lblView
+                                          (click)="Delete(item)">ลบ</span> -->
+                              <!-- </td> -->
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
