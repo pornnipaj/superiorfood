@@ -1170,7 +1170,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.status = servicephoto
       if (this.status == true) {
         this.alertSuccess();
-        this.navCtrl.navigateForward(['/menuhead/overview']);
+        this.navCtrl.navigateForward(['/menu/overview']);
       }
       if (this.status == false) {
         this.alertFail();
@@ -1242,12 +1242,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.alertCusCode();
       }
       if (this.code == this.password) {
-        if (this.jobtype == "CM") {
-          this.isenabledcuseva = true;
-        }
-        else {
-          this.isenabledsave = true;
-        }
+        this.isenabledsave = true;
       }
 
     })
