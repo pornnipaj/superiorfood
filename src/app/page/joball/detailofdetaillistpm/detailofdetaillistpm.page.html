@@ -200,6 +200,10 @@
                     รายการตรวจเช็ค </button>
                 </div>
                 <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                  <div *ngIf="sparetype != '' && jobtype == 'PM'; else sparepart">
+                  <button (click)="check()" [disabled]="!isenabledspare" class="btn default" #sparepart>  
+                    รายการเปลี่ยนอะไหล่ </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -306,7 +310,7 @@
               <div class="row">
                 <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
                   <button class="btn default" [disabled]="!isenabledsave" (click)="saveData()">
-                    บันทึกและย้อนกลับ </button>
+                    บันทึก </button>
                 </div>
                 <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
                 </div>

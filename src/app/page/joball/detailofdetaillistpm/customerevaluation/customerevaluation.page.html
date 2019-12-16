@@ -1,5 +1,5 @@
 <ion-toolbar>
-  <ion-title>ประเมินร้านค้า</ion-title>
+  <ion-title>การแก้ปัญหา</ion-title>
   <ion-buttons slot="primary">
     <ion-icon slot="end" name="close" (click)="close()"></ion-icon>
   </ion-buttons>
@@ -13,8 +13,8 @@
               <label class="col-md-4 control-label">หัวข้อการแก้ปัญหา</label>
               <div class="col-md-8">
                 <ion-select interface="popover" (ionChange)="onChange($event)">
-                  <ion-select-option *ngFor="let title of data" [value]="title.id"
-                    [selected]="title.resolution">{{title.resolution}}</ion-select-option>
+                  <ion-select-option *ngFor="let title of data" [value]="title.SystemID"
+                    [selected]="title.SystemDataName">{{title.SystemDataName}}</ion-select-option>
                 </ion-select>
               </div>
             </div>

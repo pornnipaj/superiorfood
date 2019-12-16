@@ -103,9 +103,20 @@
               <label class="col-8 subtext">{{data.value.SerialNo}}</label>
               <label class="col-4 text" *ngIf="new">New Serial No:</label>
               <label class="col-8 subtext" *ngIf="new">{{data.value.SerialNoNew}}</label>
-              <label class="col-4 text">ประเภทงาน :</label>
-              <label class="col-8 subtext">{{data.value.JobType}}</label>
+              <div *ngIf="data.value.JobType != 'PM' else pmnot">
+              <label class="col-4 text" #pmnot>ประเภทงาน :</label>
+              <label class="col-8 subtext" #pmnot>{{data.value.JobType}}</label>
             </div>
+            <div *ngIf="data.value.JobType == 'PM' else pm">
+              <label class="col-4 text" #pm>ประเภทงาน :</label>
+              <label class="col-8 subtext" #pm>{{data.value.JobType}} ({{data.value.typePm}})</label>
+            </div>
+              <div *ngIf="data.value.sparepart != '' && data.value.JobType == 'PM' else spare">
+              <label class="col-4 text" #spare>อะไหล่ที่ต้องเปลี่ยน :</label>
+              <label class="col-8 subtext" #spare>{{data.value.sparepart}}</label>
+            </div>
+            </div>
+           
             <div class="col-12">
               <ion-button size="small" (click)="Imgbf(data.value)" *ngIf="imgbf">ภาพหน้างาน</ion-button>
             </div>

@@ -8,6 +8,7 @@ import { ModalController, NavParams, AlertController  } from '@ionic/angular';
 })
 export class CustomerpasswordPage implements OnInit {
   getpassword;
+  Cuscomment="";
   code="";
 
   constructor(private modalController: ModalController,
@@ -20,8 +21,8 @@ export class CustomerpasswordPage implements OnInit {
       
     }
    
-    async closeModal() {
-      await this.modalController.dismiss(this.code);
+    async closeModal() {  
+      await this.modalController.dismiss();
     }
 
     async submit(){
@@ -30,7 +31,11 @@ export class CustomerpasswordPage implements OnInit {
       
       
       if (this.code == this.getpassword) {    
-        await this.modalController.dismiss(this.code);
+        let params = {
+          code: this.code,
+          Cuscomment: this.Cuscomment
+        }
+        await this.modalController.dismiss(params);
       }
 
       if (this.code != this.getpassword) {

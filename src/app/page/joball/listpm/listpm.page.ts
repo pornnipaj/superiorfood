@@ -194,6 +194,7 @@ export class ListpmPage implements OnInit {
     else if (this.month == 'เมษายน') {
       this.month = 'พฤษภาคม'
       this.intMonth = 5;
+      this.textShow = this.month + " " + this.intYear
     }
     else if (this.month == 'พฤษภาคม') {
       this.month = 'มิถุนายน'

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController, NavParams } from '@ionic/angular';
-import { AuthServiceService } from '../../../../auth-service.service';
+import { PostDataService } from '../../../../post-data.service';
 
 @Component({
   selector: 'app-customerevaluation',
@@ -11,18 +11,25 @@ export class CustomerevaluationPage implements OnInit {
   resolution;
 resolutiondetail;
 data;
+installID;
 
-  constructor(private DataService: AuthServiceService,
+  constructor(private postDataService: PostDataService,
     public modalController: ModalController,
     private navParams: NavParams,) {
 
       console.table(this.navParams);
       this.resolution = this.navParams.data.resolution;
       this.resolutiondetail = this.navParams.data.resolutiondetail;
+      this.installID = this.navParams.data.installID
 
-      this.DataService.getresolution().subscribe(data => {
-        this.data = data;         
-          console.log(this.data); 
+      let params = {
+        installID: this.installID,
+        jobtype: "getresolution"
+      }
+      console.log(params);
+      this.postDataService.SaveCaseAll(params).then(data => {
+        this.data = data
+        console.log(data); 
       });    
      }
 

@@ -187,9 +187,7 @@ export class ReportcheckpmPage implements OnInit {
         for (let i = 0; i < this.listpm.length; i++) {
           this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
         }
-
         console.log('listpm', this.listpm);
-
       });
     });
   }
@@ -218,6 +216,7 @@ export class ReportcheckpmPage implements OnInit {
     else if (this.month == 'เมษายน') {
       this.month = 'พฤษภาคม'
       this.intMonth = 5;
+      this.textShow = this.month + " " + this.intYear
     }
     else if (this.month == 'พฤษภาคม') {
       this.month = 'มิถุนายน'

@@ -34,6 +34,7 @@ export class DetaillistpmPage implements OnInit {
   empID;
   new = false;
   imgbf = false;
+  sparetype;
   //#endregion
 
   //#region constructor
@@ -89,7 +90,6 @@ export class DetaillistpmPage implements OnInit {
           for (let i = 0; i < this.data.length; i++) {
             this.Customername = this.data[i].CustomerName;
             this.data[i].productInstall = JSON.parse(this.data[i].productInstall);
-
           }
         });
       });
@@ -190,6 +190,7 @@ export class DetaillistpmPage implements OnInit {
                 planID: item.planID,
                 install: item,
                 insID: item.installId,
+                sparetype: item.sparepart
               }
               console.log(params);
 
