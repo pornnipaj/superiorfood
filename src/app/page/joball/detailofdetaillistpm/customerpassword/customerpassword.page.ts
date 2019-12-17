@@ -22,7 +22,7 @@ export class CustomerpasswordPage implements OnInit {
     }
    
     async closeModal() {  
-      await this.modalController.dismiss();
+      await this.modalController.dismiss(0);
     }
 
     async submit(){

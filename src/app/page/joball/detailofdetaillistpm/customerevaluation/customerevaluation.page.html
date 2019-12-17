@@ -27,7 +27,14 @@
             </div>
             </div>
           </div>
-         
+          <div class="col-12">
+            <ion-item>
+              <ion-label>ความคิดเห็นเพิ่มเติมที่มีต่อร้าน</ion-label>
+            </ion-item>
+            <ion-item>    
+              <textarea class="form-control" rows="3" [(ngModel)]="TecComment"></textarea>
+            </ion-item>
+          </div>         
         </div> 
         <div class="col-md-12 text-center">
           <ion-button  (click)="submit()">บันทึก</ion-button>

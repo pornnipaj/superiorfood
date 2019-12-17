@@ -12,6 +12,7 @@ export class CustomerevaluationPage implements OnInit {
 resolutiondetail;
 data;
 installID;
+TecComment;
 
   constructor(private postDataService: PostDataService,
     public modalController: ModalController,
@@ -51,7 +52,8 @@ installID;
     
     let params = {
       resolution: this.resolution,
-      resolutiondetail: this.resolutiondetail
+      resolutiondetail: this.resolutiondetail,
+      TecComment: this.TecComment
     }
     this.modalController.dismiss(params);
   }
