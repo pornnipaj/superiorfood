@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, ModalController, NavParams } from '@ionic/angular';
+import { NavController, ModalController, NavParams, AlertController } from '@ionic/angular';
 import { PostDataService } from '../../../../post-data.service';
 
 @Component({
@@ -9,20 +9,27 @@ import { PostDataService } from '../../../../post-data.service';
 })
 export class CustomerevaluationPage implements OnInit {
   resolution;
-resolutiondetail;
-data;
-installID;
-TecComment;
-
+  resolutiondetail;
+  data;
+  installID;
+  TecComment;
+  jobtype;
+  planID;
+  detail;
   constructor(private postDataService: PostDataService,
     public modalController: ModalController,
-    private navParams: NavParams,) {
+    public alertController: AlertController,
+    private navParams: NavParams, ) {
 
-      console.table(this.navParams);
-      this.resolution = this.navParams.data.resolution;
-      this.resolutiondetail = this.navParams.data.resolutiondetail;
-      this.installID = this.navParams.data.installID
+    console.table(this.navParams);
+    this.resolution = this.navParams.data.resolution;
+    this.resolutiondetail = this.navParams.data.resolutiondetail;
+    this.installID = this.navParams.data.installID
+    this.jobtype = this.navParams.data.jobtype
+    this.planID = this.navParams.data.planID
+    console.log(this.jobtype);
 
+    if (this.jobtype == "CM") {
       let params = {
         installID: this.installID,
         jobtype: "getresolution"
@@ -30,32 +37,71 @@ TecComment;
       console.log(params);
       this.postDataService.SaveCaseAll(params).then(data => {
         this.data = data
-        console.log(data); 
-      });    
-     }
+        console.log(data);
+      });
+    }
+    let params = {
+      installID: this.installID,
+      planID: this.planID,
+      jobtype: "detailtran"
+    }
+    console.log(params);
+    this.postDataService.SaveCaseAll(params).then(detail => {
+      this.detail = detail
+      console.log(this.detail);
+      if (this.jobtype == "CM") {
+        this.resolutiondetail = this.detail.Resolutiondetail
+        this.data.SystemID = this.detail.ResolutionID
+      } else {
+        this.TecComment = this.detail.TecComment
+      }
+    });
+
+  }
 
   ngOnInit() {
+    
   }
   close() {
     this.modalController.dismiss();
   }
-  onChange(value){
+  onChange(value) {
     console.log(value);
-    
+
     this.resolution = value.detail.value
     console.log(value);
-    console.log(this.resolution);   
+    console.log(this.resolution);
   }
-  submit(){
-    console.log(this.resolution);    
+  async submit() {
+    console.log(this.resolution);
     console.log(this.resolutiondetail);
-    
-    let params = {
-      resolution: this.resolution,
-      resolutiondetail: this.resolutiondetail,
-      TecComment: this.TecComment
+    if (this.jobtype == "CM") {
+      if (this.resolutiondetail == null) {
+        const alert = await this.alertController.create({
+          header: 'แจ้งเตือน',
+          message: 'กรุณากรอกรายละเอียดของปัญหา',
+          buttons: ['OK']
+        });
+
+        await alert.present();
+      }
+    } else {
+      if (this.TecComment == null) {
+        const alert = await this.alertController.create({
+          header: 'แจ้งเตือน',
+          message: 'กรุณากรอกความคิดเห็นที่มีต่อร้าน',
+          buttons: ['OK']
+        });
+
+        await alert.present();
+      } else {
+        let params = {
+          resolution: this.resolution,
+          resolutiondetail: this.resolutiondetail,
+          TecComment: this.TecComment
+        }
+        this.modalController.dismiss(params);
+      }
     }
-    this.modalController.dismiss(params);
   }
- 
 }

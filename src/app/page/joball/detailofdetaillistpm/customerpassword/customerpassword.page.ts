@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams, AlertController  } from '@ionic/angular';
+import { PostDataService } from '../../../../post-data.service';
 
 @Component({
   selector: 'app-customerpassword',
@@ -10,14 +11,34 @@ export class CustomerpasswordPage implements OnInit {
   getpassword;
   Cuscomment="";
   code="";
+  installID;
+  planID;
+  data;
 
   constructor(private modalController: ModalController,
     public alertController: AlertController,
-    private navParams: NavParams) { }
+    private postDataService: PostDataService,
+    private navParams: NavParams) { 
 
-    ngOnInit() {
       console.table(this.navParams);
       this.getpassword = this.navParams.data.password;
+      this.planID = this.navParams.data.planID;
+      this.installID = this.navParams.data.installID;
+      let params = {
+        installID: this.installID,
+        planID: this.planID,
+        jobtype: "detailtran"
+      }
+      console.log(params);
+      this.postDataService.SaveCaseAll(params).then(data => {
+        this.data = data
+        this.Cuscomment = this.data.CusComment
+        console.log(this.data.CusComment);
+      });
+    }
+
+    ngOnInit() {
+      
       
     }
    
@@ -29,23 +50,33 @@ export class CustomerpasswordPage implements OnInit {
       console.log(this.code);
       console.log(this.getpassword);
       
+      if (this.Cuscomment == "" || this.Cuscomment == null || this.code != this.getpassword) {
+        if(this.Cuscomment == "" || this.Cuscomment == null){
+          const alert = await this.alertController.create({
+            header: 'แจ้งเตือน',
+            message: 'กรุณากรอกความคิดเห็นที่มีต่อช่าง',
+            buttons: ['OK']
+          });
       
-      if (this.code == this.getpassword) {    
+          await alert.present();
+        }
+        else if (this.code != this.getpassword) {
+          const alert = await this.alertController.create({
+            header: 'แจ้งเตือน',
+            message: 'รหัสยืนยันตัวตนลูกค้าไม่ถูกต้อง',
+            buttons: ['OK']
+          });
+      
+          await alert.present();
+        }
+      }
+      
+      if (this.code == this.getpassword && this.Cuscomment != "" && this.Cuscomment != null) {    
         let params = {
           code: this.code,
           Cuscomment: this.Cuscomment
         }
         await this.modalController.dismiss(params);
-      }
-
-      if (this.code != this.getpassword) {
-        const alert = await this.alertController.create({
-          header: 'แจ้งเตือน',
-          message: 'รหัสยืนยันตัวตนลูกค้าไม่ถูกต้อง',
-          buttons: ['OK']
-        });
-    
-        await alert.present();
       }
       
     }

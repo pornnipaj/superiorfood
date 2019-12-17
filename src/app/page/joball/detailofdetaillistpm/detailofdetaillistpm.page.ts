@@ -70,6 +70,7 @@ export class DetailofdetaillistpmPage implements OnInit {
   id8: any;
   id9: any;
   id10: any;
+  id11: any;
   idsig;
   status1 = "";
   status2 = "";
@@ -164,6 +165,7 @@ export class DetailofdetaillistpmPage implements OnInit {
   boo8 = false;
   boo9 = false;
   boo10 = false;
+  boo11 = false;
   isShowImage1 = false;
   isShowImage2 = false;
   isShowImage3 = false;
@@ -292,7 +294,12 @@ export class DetailofdetaillistpmPage implements OnInit {
             this.id10 = this.Photo[v].id
             this.boo10 = true;
             console.log("bf10", this.photo10);
-          }    
+          } else if (this.Photo[v].type == "signature") {
+            this.sign = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.Photo[v].file_path
+            this.id11 = this.Photo[v].id
+            this.boo11 = true;
+            console.log("bf10", this.sign);
+          }
         }
         this.isShow1 = this.boo1;
         this.isShow2 = this.boo2;
@@ -304,11 +311,19 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.isShow8 = this.boo8;
         this.isShow9 = this.boo9;
         this.isShow10 = this.boo10;
+        this.showSig = this.boo11;
+      }
+      if (this.boo11 == true) {
+        this.isenabledcuseva = true;
+        this.isenabledeva = true;
+        this.isenabledsig = true;
+        this.isenabledcuspass = true;
+        this.isenabledsave = false;
       }
       this.checktakeback();
       this.checklist();
     });
-   
+
 
     if (this.jobtype == "CM") {
       this.title3 = "รายการที่ 3 รายการที่ต้องตรวจซ่อม"
@@ -317,14 +332,14 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.title6 = "รายการที่ 7 สรุปผลการตรวจเช็คและยืนยันการปิดงาน"
       this.title7 = "รายการที่ 4 แบบประเมินปัญหา"
       this.isenabledTakeback = false;
-      this.isenabledcheck = false;      
+      this.isenabledcheck = false;
     } else if (this.jobtype == "INSTALL") {
       this.title1 = "รายการที่ 1 ถ่ายภาพก่อนการติดตั้ง"
       this.title2 = "รายการที่ 2 ถ่ายภาพหลังการติดตั้ง"
       this.title7 = "รายการที่ 3 ความคิดเห็น"
       this.title5 = "รายการที่ 4 ประเมินการทำงาน"
       this.title4 = "รายการที่ 5 ลายเซ็นต์ผู้รับผิดชอบ"
-      this.title6 = "รายการที่ 6 สรุปผลการตรวจเช็คและยืนยันการปิดงาน"      
+      this.title6 = "รายการที่ 6 สรุปผลการตรวจเช็คและยืนยันการปิดงาน"
       this.title8 = "รายการที่ 7 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
       this.isenabledtitle3 = false;
       this.isenabledTakeback = true;
@@ -343,8 +358,8 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.title4 = "รายการที่ 6 ลายเซ็นต์ผู้รับผิดชอบ"
       this.title6 = "รายการที่ 7 สรุปผลการตรวจเช็คและยืนยันการปิดงาน"
       this.title8 = "รายการที่ 8 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
-    } 
-    
+    }
+
   }
 
   loadItems() {
@@ -507,7 +522,7 @@ export class DetailofdetaillistpmPage implements OnInit {
             this.checktakeback();
             this.isTake2 = false;
             this.isShow2 = true;
-            
+
           });
         }
       }, (err) => {
@@ -528,7 +543,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.status2 = "2"
           this.checktakeback();
           this.isTake2 = false;
-          this.isShow2 = true;          
+          this.isShow2 = true;
         });
       });
     }
@@ -558,7 +573,7 @@ export class DetailofdetaillistpmPage implements OnInit {
             this.checktakeback();
             this.isTake3 = false;
             this.isShow3 = true;
-            
+
           });
         }
       }, (err) => {
@@ -579,7 +594,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.status3 = "2"
           this.checktakeback();
           this.isTake3 = false;
-          this.isShow3 = true;          
+          this.isShow3 = true;
         });
       });
 
@@ -609,7 +624,7 @@ export class DetailofdetaillistpmPage implements OnInit {
             this.status4 = "2"
             this.checktakeback();
             this.isTake4 = false;
-            this.isShow4 = true;            
+            this.isShow4 = true;
           });
         }
       }, (err) => {
@@ -631,7 +646,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.status4 = "2"
           this.checktakeback();
           this.isTake4 = false;
-          this.isShow4 = true;          
+          this.isShow4 = true;
         });
       });
     }
@@ -660,7 +675,7 @@ export class DetailofdetaillistpmPage implements OnInit {
             this.status5 = "2"
             this.checktakeback();
             this.isTake5 = false;
-            this.isShow5 = true;            
+            this.isShow5 = true;
           });
         }
       }, (err) => {
@@ -681,7 +696,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.status5 = "2"
           this.checktakeback();
           this.isTake5 = false;
-          this.isShow5 = true;          
+          this.isShow5 = true;
         });
       });
 
@@ -712,7 +727,7 @@ export class DetailofdetaillistpmPage implements OnInit {
             this.checklist();
             this.isTake6 = false;
             this.isShow6 = true;
-            
+
           });
         }
       }, (err) => {
@@ -733,7 +748,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.status6 = "2"
           this.checklist();
           this.isTake6 = false;
-          this.isShow6 = true;          
+          this.isShow6 = true;
         });
       });
 
@@ -765,7 +780,7 @@ export class DetailofdetaillistpmPage implements OnInit {
             this.checklist();
             this.isTake7 = false;
             this.isShow7 = true;
-            
+
           });
         }
       }, (err) => {
@@ -786,7 +801,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.status7 = "2"
           this.checklist();
           this.isTake7 = false;
-          this.isShow7 = true;          
+          this.isShow7 = true;
         });
       });
 
@@ -817,7 +832,7 @@ export class DetailofdetaillistpmPage implements OnInit {
             this.checklist();
             this.isTake8 = false;
             this.isShow8 = true;
-            
+
           });
         }
       }, (err) => {
@@ -838,7 +853,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.status8 = "2"
           this.checklist();
           this.isTake8 = false;
-          this.isShow8 = true;          
+          this.isShow8 = true;
         });
       });
 
@@ -869,7 +884,7 @@ export class DetailofdetaillistpmPage implements OnInit {
             this.checklist();
             this.isTake9 = false;
             this.isShow9 = true;
-            
+
           });
         }
       }, (err) => {
@@ -890,7 +905,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.status9 = "2"
           this.checklist();
           this.isTake9 = false;
-          this.isShow9 = true;          
+          this.isShow9 = true;
         });
       });
 
@@ -921,7 +936,7 @@ export class DetailofdetaillistpmPage implements OnInit {
             this.checklist();
             this.isTake10 = false;
             this.isShow10 = true;
-            
+
           });
         }
       }, (err) => {
@@ -942,7 +957,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.status10 = "2"
           this.checklist();
           this.isTake10 = false;
-          this.isShow10 = true;          
+          this.isShow10 = true;
         });
       });
 
@@ -979,9 +994,9 @@ export class DetailofdetaillistpmPage implements OnInit {
       else if (this.jobtype == "PM") {
         if (this.sparetype != "") {
           this.isenabledspare = true;
-        }else{
+        } else {
           this.isenabledcheck = true;
-        }    
+        }
       }
     }
   }
@@ -1047,10 +1062,10 @@ export class DetailofdetaillistpmPage implements OnInit {
         console.log(this.list.data)
         if (this.list.data == 0) {
           this.isenabledcuseva = false;
-        }else{
+        } else {
           this.isenabledcuseva = true;
         }
-        
+
       })
 
       return await modal.present();
@@ -1066,102 +1081,67 @@ export class DetailofdetaillistpmPage implements OnInit {
       componentProps: { sign: this.sign }
     });
 
-    modal.onDidDismiss().then(data => {     
+    modal.onDidDismiss().then(data => {
       this.sign = data.data
       console.log(this.sign);
-      
+
       if (this.sign == false) {
         this.showSig = false;
-      }else{        
+      } else {
         let params = {
           planID: this.planID,
           installID: this.installID,
           signature: this.sign,
           jobtype: this.jobtype + "2",
           empID: this.empID,
-          photoID:this.idsig
+          photoID: this.idsig
         }
         console.log(params);
         this.postDataService.SaveCaseAll(params).then(photoID => {
           console.log(photoID);
           this.photoID = photoID
           this.idsig = this.photoID.id
-        }); 
+        });
         this.showSig = true;
         this.isenabledcuspass = true;
-      }           
-    })    
+      }
+    })
     return await modal.present();
   }
   //#endregion
 
   //#region Evaluation  
   async clickeva() {
-    if (this.jobtype == "INSTALL") {
-      const modal = await this.modalController.create({
-        component: CheckevaluationPage,
-        cssClass: 'my-custom-modal-css',
-        componentProps: {
-          empID: this.empID,
-          planID: this.planID,
-          install: this.installID
-        }
-      });
+    const modal = await this.modalController.create({
+      component: CheckevaluationPage,
+      cssClass: 'my-custom-modal-css',
+      componentProps: {
+        empID: this.empID,
+        planID: this.planID,
+        install: this.installID
+      }
+    });
 
-      modal.onDidDismiss().then(data => {
-        this.list = data
-        console.log(data);
+    modal.onDidDismiss().then(data => {
+      this.list = data
+      console.log(data);
 
-        for (let i = 0; i < this.list.length; i++) {
-          this.list = this.list[i]
-        }
+      for (let i = 0; i < this.list.length; i++) {
+        this.list = this.list[i]
+      }
 
-        this.list = this.list.data
-        console.log(this.list)
+      this.list = this.list.data
+      console.log(this.list)
 
-        if (this.list == "") {
+      if (this.list == "") {
 
-        }
-        if (this.list == 0) {
-          this.isenabledsig = true;
-        }
+      }
+      if (this.list == 0) {
+        this.isenabledsig = true;
+      }
 
-      })
-      return await modal.present();
-    }
-
-    if (this.jobtype != "INSTALL") {
-      const modal = await this.modalController.create({
-        component: CheckevaluationPage,
-        cssClass: 'my-custom-modal-css',
-        componentProps: {
-          empID: this.empID,
-          planID: this.planID,
-          install: this.installID
-        }
-      });
-
-      modal.onDidDismiss().then(data => {
-        this.list = data
-        console.log(data);
-
-        for (let i = 0; i < this.list.length; i++) {
-          this.list = this.list[i]
-        }
-
-        this.list = this.list.data
-        console.log(this.list)
-
-        if (this.list == "") {
-
-        }
-        if (this.list == 0) {
-          this.isenabledsig = true;          
-        }
-
-      })
-      return await modal.present();
-    }
+    })
+    return await modal.present();
   }
 
   //#endregion
@@ -1200,19 +1180,22 @@ export class DetailofdetaillistpmPage implements OnInit {
     const modal = await this.modalController.create({
       component: CustomerevaluationPage,
       cssClass: 'my-custom-modal-css',
-      componentProps: { 
-        installID: this.installID}
+      componentProps: {
+        installID: this.installID,
+        planID: this.planID,
+        jobtype: this.jobtype
+      }
     });
 
     modal.onDidDismiss().then(data => {
       this.cusEva = data
-      this.resolution =  this.cusEva.data.resolution
-      this.resolutiondetail =  this.cusEva.data.resolutiondetail
+      this.resolution = this.cusEva.data.resolution
+      this.resolutiondetail = this.cusEva.data.resolutiondetail
       this.TecComment = this.cusEva.data.TecComment
       console.log(this.resolution);
       console.log(this.resolutiondetail);
-      console.log(this.TecComment);      
-      
+      console.log(this.TecComment);
+
       if (this.jobtype == "CM") {
         let params = {
           planID: this.planID,
@@ -1222,14 +1205,14 @@ export class DetailofdetaillistpmPage implements OnInit {
           resolution: this.resolution,
           idold: this.idold,
           TecComment: this.TecComment,
-          resolutiondetail: this.resolutiondetail
+          resolutiondetail: this.resolutiondetail,
         }
         console.log(params);
         this.postDataService.SaveCaseAll(params).then(resolution => {
-          console.log(resolution);          
-        });    
+          console.log(resolution);
+        });
         this.isenabledeva = true;
-      }else{
+      } else {
         let params = {
           planID: this.planID,
           installID: this.installID,
@@ -1239,11 +1222,11 @@ export class DetailofdetaillistpmPage implements OnInit {
         }
         console.log(params);
         this.postDataService.SaveCaseAll(params).then(resolution => {
-          console.log(resolution); 
-        });    
+          console.log(resolution);
+        });
         this.isenabledeva = true;
       }
-      
+
     })
 
     return await modal.present();
@@ -1256,15 +1239,17 @@ export class DetailofdetaillistpmPage implements OnInit {
       component: CustomerpasswordPage,
       cssClass: 'my-custom-modal-css',
       componentProps: {
-        password: this.password
+        password: this.password,
+        planID: this.planID,
+        installID: this.installID,
       }
     });
 
     modal.onDidDismiss().then(data => {
       this.cuscom = data
-        this.code = this.cuscom.data.code;
-        this.Cuscomment = this.cuscom.data.Cuscomment;   
-console.log(this.cuscom);
+      this.code = this.cuscom.data.code;
+      this.Cuscomment = this.cuscom.data.Cuscomment;
+      console.log(this.cuscom);
 
       if (this.cuscom.data == 0) {
         this.alertCusCode();
@@ -1279,8 +1264,8 @@ console.log(this.cuscom);
         }
         console.log(params);
         this.postDataService.SaveCaseAll(params).then(comment => {
-          console.log(comment);      
-        });    
+          console.log(comment);
+        });
         this.isenabledsave = true;
       }
 
