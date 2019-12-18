@@ -9,7 +9,8 @@
       </ion-toolbar>
     </ion-header>
    <ion-content>
-  <ion-list  *ngIf="role === 3">
+  <ion-list>
+    <ion-item>
     <ion-menu-toggle *ngIf="p.url">
       <ion-item [routerLink]="p.url" routerDirection="root" routerLinkActive="active" *ngFor="let p of pageservice">
         <ion-icon [name]="p.icon" slot="start"></ion-icon>
@@ -17,9 +18,10 @@
           {{ p.title }}
         </ion-label>
       </ion-item>
-    </ion-menu-toggle> 
+    </ion-menu-toggle>
+  </ion-item>   
   </ion-list>
-  <ion-list  *ngIf="role === 12">
+  <!-- <ion-list  *ngIf="role === 12">
     <ion-item *ngFor="let p of pagestock">
       <ion-menu-toggle *ngIf="p.url">
         <ion-item [routerLink]="p.url" routerDirection="root" routerLinkActive="active">
@@ -30,7 +32,7 @@
         </ion-item>
       </ion-menu-toggle>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 </ion-content>  
 </ion-menu>
 
