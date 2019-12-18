@@ -475,6 +475,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
+        this.photo1 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
         // let params = {
         //   planID: this.planID,
         //   installID: this.installID,
@@ -527,6 +528,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
+        this.photo2 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
         // let params = {
         //   planID: this.planID,
         //   installID: this.installID,
@@ -578,6 +580,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
+        this.photo3 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
         // let params = {
         //   planID: this.planID,
         //   installID: this.installID,
@@ -629,6 +632,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
+        this.photo4 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
         // console.log(err);
         // let params = {
         //   planID: this.planID,
@@ -680,6 +684,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
+        this.photo5 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
         // let params = {
         //   planID: this.planID,
         //   installID: this.installID,
@@ -732,6 +737,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
+        this.photo6 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
         // let params = {
         //   planID: this.planID,
         //   installID: this.installID,
@@ -785,6 +791,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
+        this.photo7 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
         // let params = {
         //   planID: this.planID,
         //   installID: this.installID,
@@ -837,6 +844,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
+        this.photo8 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
         // let params = {
         //   planID: this.planID,
         //   installID: this.installID,
@@ -889,6 +897,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
+        this.photo9 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
         // let params = {
         //   planID: this.planID,
         //   installID: this.installID,
@@ -941,6 +950,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
+        this.photo10 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
         // let params = {
         //   planID: this.planID,
         //   installID: this.installID,
