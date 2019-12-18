@@ -8,8 +8,7 @@
 <ion-content>
   <div class="container">
       <div class="row">
-        <div #show *ngIf="jobtype == 'CM'; else show" class="col-12">
-          <div class="col-12" style="margin-top: 20px;">
+          <div class="col-12" style="margin-top: 20px;" #show *ngIf="jobtype == 'CM'; else show">
               <label class="col-md-4 control-label">หัวข้อการแก้ปัญหา</label>
               <div class="col-md-8" style="padding: 0px;">
                 <ion-select interface="popover" (ionChange)="onChange($event)">
@@ -18,15 +17,15 @@
                 </ion-select>
             </div>
           </div>
-          <div class="col-12">
-            <div class="form-group" style="margin-top: 20px;">
-              <label class="col-md-4 control-label">สาเหตุของปัญหา</label>
-              <div class="col-md-8">
+          <div class="col-12" #show *ngIf="jobtype == 'CM'; else show">
+            <ion-item>
+              <ion-label>สาเหตุของปัญหา</ion-label>
+            </ion-item>
+            <ion-item>    
               <textarea class="form-control" rows="3" [(ngModel)]="resolutiondetail"></textarea>
-            </div>
-            </div>
+            </ion-item>
           </div>
-        </div>
+        
           <div class="col-12">
             <ion-item>
               <ion-label>ความคิดเห็นเพิ่มเติมที่มีต่อร้าน</ion-label>

@@ -49,12 +49,10 @@ export class CustomerevaluationPage implements OnInit {
     this.postDataService.SaveCaseAll(params).then(detail => {
       this.detail = detail
       console.log(this.detail);
+      this.TecComment = this.detail.TecComment 
       if (this.jobtype == "CM") {
         this.resolutiondetail = this.detail.Resolutiondetail
-        this.data.SystemID = this.detail.ResolutionID
-      } else {
-        this.TecComment = this.detail.TecComment
-      }
+      }               
     });
 
   }
@@ -76,7 +74,7 @@ export class CustomerevaluationPage implements OnInit {
     console.log(this.resolution);
     console.log(this.resolutiondetail);
     if (this.jobtype == "CM") {
-      if (this.resolutiondetail == null) {
+      if (this.resolutiondetail == null || this.resolutiondetail == "") {
         const alert = await this.alertController.create({
           header: 'แจ้งเตือน',
           message: 'กรุณากรอกรายละเอียดของปัญหา',
@@ -85,7 +83,7 @@ export class CustomerevaluationPage implements OnInit {
 
         await alert.present();
       }
-    } else {
+    } 
       if (this.TecComment == null) {
         const alert = await this.alertController.create({
           header: 'แจ้งเตือน',
@@ -101,7 +99,6 @@ export class CustomerevaluationPage implements OnInit {
           TecComment: this.TecComment
         }
         this.modalController.dismiss(params);
-      }
-    }
+      }    
   }
 }
