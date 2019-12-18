@@ -1,40 +1,40 @@
 <ion-menu side="start" menuId="first" contentId="content1" *ngIf="role == 3">
   <ion-header>
-      <ion-toolbar color="primary">
-        <ion-buttons slot="start"> 
-          <img src="../../../assets/img/logo.png" width="20%"/>           
-          <ion-title>eService</ion-title>
-        </ion-buttons>
-        <ion-menu-button slot="end"></ion-menu-button>
-      </ion-toolbar>
-    </ion-header>
-   <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let p of pageservice">
-    <ion-menu-toggle *ngIf="p.url">
-      <ion-item [routerLink]="p.url" routerDirection="root" routerLinkActive="active">
-        <ion-icon [name]="p.icon" slot="start"></ion-icon>
-        <ion-label>
-          {{ p.title }}
-        </ion-label>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <img src="../../../assets/img/logo.png" width="20%" />
+        <ion-title>eService</ion-title>
+      </ion-buttons>
+      <ion-menu-button slot="end"></ion-menu-button>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item *ngFor="let p of pageservice">
+        <ion-menu-toggle *ngIf="p.url">
+          <ion-item [routerLink]="p.url" routerDirection="root" routerLinkActive="active">
+            <ion-icon [name]="p.icon" slot="start"></ion-icon>
+            <ion-label>
+              {{ p.title }}
+            </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
       </ion-item>
-    </ion-menu-toggle>
-  </ion-item>   
-  </ion-list>  
-</ion-content>  
+    </ion-list>
+  </ion-content>
 </ion-menu>
 
 <ion-menu side="start" menuId="first" contentId="content1" *ngIf="role == 12">
   <ion-header>
-      <ion-toolbar color="primary">
-        <ion-buttons slot="start"> 
-          <img src="../../../assets/img/logo.png" width="20%"/>           
-          <ion-title>Stock</ion-title>
-        </ion-buttons>
-        <ion-menu-button slot="end"></ion-menu-button>
-      </ion-toolbar>
-    </ion-header>
-   <ion-content>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <img src="../../../assets/img/logo.png" width="20%" />
+        <ion-title>Stock</ion-title>
+      </ion-buttons>
+      <ion-menu-button slot="end"></ion-menu-button>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
     <ion-list>
       <ion-item *ngFor="let p of pagestock">
         <ion-menu-toggle *ngIf="p.url">
@@ -47,7 +47,7 @@
         </ion-menu-toggle>
       </ion-item>
     </ion-list>
-</ion-content>  
+  </ion-content>
 </ion-menu>
 
 
