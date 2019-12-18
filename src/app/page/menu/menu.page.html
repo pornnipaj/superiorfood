@@ -10,16 +10,14 @@
     </ion-header>
    <ion-content>
   <ion-list  *ngIf="role === 3">
-    <ion-item *ngFor="let p of pageservice">
     <ion-menu-toggle *ngIf="p.url">
-      <ion-item [routerLink]="p.url" routerDirection="root" routerLinkActive="active">
+      <ion-item [routerLink]="p.url" routerDirection="root" routerLinkActive="active" *ngFor="let p of pageservice">
         <ion-icon [name]="p.icon" slot="start"></ion-icon>
         <ion-label>
           {{ p.title }}
         </ion-label>
       </ion-item>
-    </ion-menu-toggle>
-  </ion-item>   
+    </ion-menu-toggle> 
   </ion-list>
   <ion-list  *ngIf="role === 12">
     <ion-item *ngFor="let p of pagestock">
