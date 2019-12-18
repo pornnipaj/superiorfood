@@ -201,7 +201,7 @@
                 </div>
                 <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
                   <div *ngIf="sparetype != '' && jobtype == 'PM'; else sparepart">
-                  <button (click)="check()" [disabled]="!isenabledspare" class="btn default" #sparepart>  
+                  <button (click)="changspare()" [disabled]="!isenabledspare" class="btn default" #sparepart>  
                     รายการเปลี่ยนอะไหล่ </button>
                   </div>
                 </div>

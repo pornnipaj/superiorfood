@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { StorageService, Sig } from '../../../storage.service';
 import { PostDataService } from '../../../post-data.service';
 import { CustomerpasswordPage } from '../detailofdetaillistpm/customerpassword/customerpassword.page';
+import { ChangsparepartPage} from '../detailofdetaillistpm/changsparepart/changsparepart.page';
 import { AlertController } from '@ionic/angular';
 import { from } from 'rxjs';
 import { NavController } from '@ionic/angular';
@@ -960,7 +961,6 @@ export class DetailofdetaillistpmPage implements OnInit {
         //   this.isShow10 = true;
         // });
       });
-
     }
     this.checktakeback()
   }
@@ -994,9 +994,8 @@ export class DetailofdetaillistpmPage implements OnInit {
       else if (this.jobtype == "PM") {
         if (this.sparetype != "") {
           this.isenabledspare = true;
-        } else {
-          this.isenabledcheck = true;
-        }
+        } 
+          this.isenabledcheck = true;        
       }
     }
   }
@@ -1232,6 +1231,32 @@ export class DetailofdetaillistpmPage implements OnInit {
     return await modal.present();
   }
   //#endregion
+
+//#region changspare
+async changspare(){
+  const modal = await this.modalController.create({
+    component: ChangsparepartPage,
+    cssClass: 'my-custom-modal-css',
+    componentProps: {
+      planID: this.planID,
+      installID: this.installID,
+    }
+  });
+
+  modal.onDidDismiss().then(data => {
+    this.list = data
+    this.list = this.list.data
+    console.log(this.list);
+    
+    if (this.list == 0) {
+      this.isenabledcuseva = true;
+    } 
+
+  })
+
+  return await modal.present();
+}
+//#endregion
 
   //#region Modal Cuscode
   async openModalcustomerpw() {

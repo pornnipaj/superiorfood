@@ -1,0 +1,17 @@
+<ion-toolbar>
+  <ion-title>เปลี่ยนอะไหล่</ion-title>
+  <ion-buttons slot="primary">
+    <ion-icon slot="end" name="close" (click)="closeModal()"></ion-icon>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content>
+  <ion-item *ngFor="let item of data">
+    <ion-label class="col-4">{{item.SpareName}}</ion-label>
+    <ion-input type="text" [(ngModel)]="item.SerialNo" ></ion-input>
+    <ion-icon name="barcode" slot="end" (click)="scan()"></ion-icon>
+  </ion-item>
+  <div class="text-center" style="margin-top: 10px;">
+    <ion-button shape="round" class="text-center" (click)="submit(item)">ยืนยัน</ion-button>
+  </div>
+</ion-content>

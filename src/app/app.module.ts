@@ -18,6 +18,7 @@ import { SignaturePadModule } from 'angular2-signaturepad';
 import { SignaturePageModule } from '../app/page/joball/detailofdetaillistpm/signature/signature.module';
 import { CustomerevaluationPageModule } from '../app/page/joball/detailofdetaillistpm/customerevaluation/customerevaluation.module';
 import { CustomerpasswordPageModule } from '../app/page/joball/detailofdetaillistpm/customerpassword/customerpassword.module';
+import { ChangsparepartPageModule } from '../app/page/joball/detailofdetaillistpm/changsparepart/changsparepart.module';
 import { TakePageModule } from '../app/page/take-spare-parts/take/take.module';
 import { TakeNewPageModule } from '../app/page/take-spare-parts/take-new/take-new.module';
 import { DetailPageModule } from '../app/page_stock/overview/detail/detail.module';
@@ -53,6 +54,7 @@ import { Network } from '@ionic-native/network/ngx';
     ModalpopPageModule,
     ChecklistPageModule,
     DetailPageModule,
+    ChangsparepartPageModule,
     ChecklistcmPageModule,
     ShowimginstallPageModule,
     HttpClientModule,

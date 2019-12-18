@@ -34,7 +34,8 @@ const routes: Routes = [
   { path: 'check-stock', loadChildren: './page_stock/check-stock/check-stock.module#CheckStockPageModule' },
   { path: 'incoming-goods', loadChildren: './page_stock/incoming-goods/incoming-goods.module#IncomingGoodsPageModule' },
   { path: 'tranfer', loadChildren: './page_stock/tranfer/tranfer.module#TranferPageModule' },
-  { path: 'detail', loadChildren: './page_stock/overview/detail/detail.module#DetailPageModule' }
+  { path: 'detail', loadChildren: './page_stock/overview/detail/detail.module#DetailPageModule' },
+  { path: 'changsparepart', loadChildren: './page/joball/detailofdetaillistpm/changsparepart/changsparepart.module#ChangsparepartPageModule' }
 
 
 

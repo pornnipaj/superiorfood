@@ -38,7 +38,7 @@ export class ChecklistcmPage implements OnInit {
   installserial;
   installtype;
   assetnew;
-  assetold; 
+  assetold;
   chkdata;
   spareList = [];
   stock;
@@ -51,7 +51,7 @@ export class ChecklistcmPage implements OnInit {
     private navParams: NavParams,
     public navCtrl: NavController,
     public alertController: AlertController,
-    private postDataService:PostDataService,
+    private postDataService: PostDataService,
     sanitizer: DomSanitizer, ) {
     this.empID = this.navParams.data.empID;
     this.planID = this.navParams.data.planID;
@@ -71,7 +71,7 @@ export class ChecklistcmPage implements OnInit {
   //#region start
 
   ngOnInit() {
-    
+
   }
 
   //#endregion
@@ -95,10 +95,10 @@ export class ChecklistcmPage implements OnInit {
     }
     if (type == "non") {
       let param = {
-        typedevice:"non"
+        typedevice: "non"
       }
       console.log(param);
-      
+
       this.modalController.dismiss(param);
     }
   }
@@ -109,30 +109,30 @@ export class ChecklistcmPage implements OnInit {
 
   search() {
     console.log(this.serial);
-    console.log(this.SerialNo);   
-    
+    console.log(this.SerialNo);
+
     if (this.serial == "") {
       this.alertSN();
     }
     else if (this.serial == this.SerialNo) {
       this.alertMeanSN();
     }
-    else if (this.serial != this.SerialNo) {      
-      
+    else if (this.serial != this.SerialNo) {
+
       let params = {
         installID: this.installID,
       }
       this.postDataService.postdevice(params).then(asset => {
         this.asset = asset
-         this.chkdata = 0;
+        this.chkdata = 0;
         console.log(this.asset);
-        
-        for (let i = 0; i < this.asset.length; i++) {          
+
+        for (let i = 0; i < this.asset.length; i++) {
           const a = this.asset[i].SerialNo
           if (this.serial == a) {
             this.productname = this.asset[i].type;
             this.installcode = this.asset[i].AssetCode;
-            this.installname= this.asset[i].AssetNo;
+            this.installname = this.asset[i].AssetNo;
             this.installserial = this.asset[i].SerialNo;
             this.assetnew = this.asset[i].AssetID;
             this.assetold = this.asset[i].assetid;
@@ -141,13 +141,13 @@ export class ChecklistcmPage implements OnInit {
             this.chkdata = 1;
             console.log(1);
             break;
-          }             
+          }
         }
 
         if (this.chkdata == 0) {
-          this.alertNotSearch();         
+          this.alertNotSearch();
         }
-      }); 
+      });
     }
   }
 
@@ -155,122 +155,122 @@ export class ChecklistcmPage implements OnInit {
 
   //#region spare
 
-  Add() {    
+  Add() {
     this.isShowSpareDetail = true;
     if (this.sparepart == "") {
       this.alertSN();
     }
-    if (this.sparepart.length > 0) {      
+    if (this.sparepart.length > 0) {
       let params = {
         installID: this.installID,
-      }  
-        this.postDataService.postdevice(params).then(asset => {
-          this.asset = asset
-          this.chkdata = 0;
-          console.log(this.asset);
-    
-          for (let i = 0; i < this.asset.length; i++) {
-            const a = this.asset[i].SerialNo
-            if (this.sparepart == a) {
-              this.productname = this.asset[i].type;
-              this.installcode = this.asset[i].AssetCode;
-              this.installname = this.asset[i].AssetNo;
-              this.installserial = this.asset[i].SerialNo;
-              this.assetnew = this.asset[i].AssetID;
-              this.assetold = this.asset[i].assetid;          
-              let task = this.sparepart;
-              this.spareList.push(task);
-              this.sparepart = ""; 
-              this.isShowSpareDetail = true;        
-              break;
-            } 
+      }
+      this.postDataService.postdevice(params).then(asset => {
+        this.asset = asset
+        this.chkdata = 0;
+        console.log(this.asset);
+
+        for (let i = 0; i < this.asset.length; i++) {
+          const a = this.asset[i].SerialNo
+          if (this.sparepart == a) {
+            this.productname = this.asset[i].type;
+            this.installcode = this.asset[i].AssetCode;
+            this.installname = this.asset[i].AssetNo;
+            this.installserial = this.asset[i].SerialNo;
+            this.assetnew = this.asset[i].AssetID;
+            this.assetold = this.asset[i].assetid;
+            let task = this.sparepart;
+            this.spareList.push(task);
+            this.sparepart = "";
+            this.isShowSpareDetail = true;
+            break;
+          }
         }
       });
-    }     
-  
+    }
+
     // if (this.sparepart != "sparepart" && this.sparepart != "") {
     //   this.alertStock();   
     //   this.isShowSpareDetail = false;
     // }
   }
 
-  remove(index){
+  remove(index) {
     this.spareList.splice(index, 1);
-}
+  }
 
   //#endregion
 
   //#region barcode
 
-  scan(){
+  scan() {
     this.barcodeScanner.scan().then(barcodeData => {
       console.log('Barcode data', barcodeData);
       let barcode = barcodeData
       this.serial = barcode.text
       this.sparepart = barcode.text
-     }).catch(err => {
-         console.log('Error', err);
-     });
+    }).catch(err => {
+      console.log('Error', err);
+    });
   }
-  
-  DeviceNew(){
-    
+
+  DeviceNew() {
+
   }
   //#endregion
-//#region Add Spare
-AddCM(type){
-  if (type == "Device") {
-    let param = {
-      idnew:this.assetnew,
-      idold:this.assetold,
-      typedevice:"device"
+  //#region Add Spare
+  AddCM(type) {
+    if (type == "Device") {
+      let param = {
+        idnew: this.assetnew,
+        idold: this.assetold,
+        typedevice: "device"
+      }
+      console.log(param);
+      this.modalController.dismiss(param);
     }
-    console.log(param);
-    this.modalController.dismiss(param);
-  }
-  if (type == "Sparepart") {
-    let param = {
-      sparepart:this.spareList,
-      typedevice:"sparepart"
+    if (type == "Sparepart") {
+      let param = {
+        sparepart: this.spareList,
+        typedevice: "sparepart"
+      }
+      console.log(param);
+      this.modalController.dismiss(param);
     }
-    console.log(param);
-    this.modalController.dismiss(param);
   }
-}
-//#endregion
+  //#endregion
   //#region alert
-async alertSN() {
-  const alert = await this.alertController.create({
-    message: 'กรุณากรอก S/N',
-    buttons: ['OK']
-  });
+  async alertSN() {
+    const alert = await this.alertController.create({
+      message: 'กรุณากรอก S/N',
+      buttons: ['OK']
+    });
 
-  await alert.present();
-}
+    await alert.present();
+  }
 
-async alertMeanSN() {
-  const alert = await this.alertController.create({
-    message: 'S/N ตรงกับเครื่องเดิม',
-    buttons: ['OK']
-  });
+  async alertMeanSN() {
+    const alert = await this.alertController.create({
+      message: 'S/N ตรงกับเครื่องเดิม',
+      buttons: ['OK']
+    });
 
-  await alert.present();
-}
-async alertNotSearch() {
-  const alert = await this.alertController.create({
-    message: 'ไม่พบ S/N นี้',
-    buttons: ['OK']
-  });
-  await alert.present();
-}
+    await alert.present();
+  }
+  async alertNotSearch() {
+    const alert = await this.alertController.create({
+      message: 'ไม่พบ S/N นี้',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
 
-async alertStock() {
-  const alert = await this.alertController.create({
-    message: 'S/N ไม่ตรงกับเลขในสต็อก',
-    buttons: ['OK']
-  });
+  async alertStock() {
+    const alert = await this.alertController.create({
+      message: 'S/N ไม่ตรงกับเลขในสต็อก',
+      buttons: ['OK']
+    });
 
-  await alert.present();
-}
-//#endregion
+    await alert.present();
+  }
+  //#endregion
 } 
