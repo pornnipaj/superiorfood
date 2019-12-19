@@ -410,7 +410,10 @@ export class ListpmPage implements OnInit {
     this.postDataService.postJobList(this.job).then(work => {
       this.listpm = work;
       console.log(this.listpm);
-
+      for (let i = 0; i < this.listpm.length; i++) {
+        this.listpm[i].customerdata = JSON.parse(this.listpm[i].customerdata);
+      }
+      console.log('listpm', this.listpm);
     });
 
   }
