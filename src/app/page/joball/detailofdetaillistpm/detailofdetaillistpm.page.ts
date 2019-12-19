@@ -245,58 +245,58 @@ export class DetailofdetaillistpmPage implements OnInit {
       if (this.Photo != null) {
         for (let v = 0; v < this.Photo.length; v++) {
           if (this.Photo[v].type == "step1_pic1") {
-            this.photo1 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.Photo[v].file_path
+            this.photo1 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.Photo[v].file_path
             this.id1 = this.Photo[v].id
             this.boo1 = true;
             console.log(this.boo1);
             console.log("bf1", this.photo1);
           } else if (this.Photo[v].type == "step1_pic2") {
-            this.photo2 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.Photo[v].file_path
+            this.photo2 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.Photo[v].file_path
             this.id2 = this.Photo[v].id
             this.boo2 = true;
             console.log("bf2", this.photo2);
           } else if (this.Photo[v].type == "step1_pic3") {
-            this.photo3 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.Photo[v].file_path
+            this.photo3 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.Photo[v].file_path
             this.id3 = this.Photo[v].id
             this.boo3 = true;
             console.log("bf3", this.photo3);
           } else if (this.Photo[v].type == "step1_pic4") {
-            this.photo4 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.Photo[v].file_path
+            this.photo4 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.Photo[v].file_path
             this.id4 = this.Photo[v].id
             this.boo4 = true;
             console.log("bf4", this.photo4);
           } else if (this.Photo[v].type == "step1_pic5") {
-            this.photo5 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.Photo[v].file_path
+            this.photo5 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.Photo[v].file_path
             this.id5 = this.Photo[v].id
             this.boo5 = true;
             console.log("bf5", this.photo5);
           } else if (this.Photo[v].type == "step3_pic1") {
-            this.photo6 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.Photo[v].file_path
+            this.photo6 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.Photo[v].file_path
             this.id6 = this.Photo[v].id
             this.boo6 = true;
             console.log("bf6", this.photo6);
           } else if (this.Photo[v].type == "step3_pic2") {
-            this.photo7 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.Photo[v].file_path
+            this.photo7 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.Photo[v].file_path
             this.id7 = this.Photo[v].id
             this.boo7 = true;
             console.log("bf7", this.photo7);
           } else if (this.Photo[v].type == "step3_pic3") {
-            this.photo8 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.Photo[v].file_path
+            this.photo8 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.Photo[v].file_path
             this.id8 = this.Photo[v].id
             this.boo8 = true;
             console.log("bf8", this.photo8);
           } else if (this.Photo[v].type == "step3_pic4") {
-            this.photo9 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.Photo[v].file_path
+            this.photo9 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.Photo[v].file_path
             this.id9 = this.Photo[v].id
             this.boo9 = true;
             console.log("bf9", this.photo9);
           } else if (this.Photo[v].type == "step3_pic5") {
-            this.photo10 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.Photo[v].file_path
+            this.photo10 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.Photo[v].file_path
             this.id10 = this.Photo[v].id
             this.boo10 = true;
             console.log("bf10", this.photo10);
           } else if (this.Photo[v].type == "signature") {
-            this.sign = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.Photo[v].file_path
+            this.sign = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.Photo[v].file_path
             this.id11 = this.Photo[v].id
             this.boo11 = true;
             console.log("bf10", this.sign);
@@ -395,35 +395,35 @@ export class DetailofdetaillistpmPage implements OnInit {
         console.log(this.resultimg)
         for (let v = 0; v < this.resultimg.length; v++) {
           if (this.resultimg[v].type == "step1_pic1") {
-            this.img.src1 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.resultimg[v].file_path
+            this.img.src1 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.resultimg[v].file_path
             this.booimg1 = true;
             console.log("bf1", this.img.src1);
           } else if (this.resultimg[v].type == "step1_pic2") {
-            this.img.src2 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.resultimg[v].file_path
+            this.img.src2 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.resultimg[v].file_path
             this.booimg2 = true;
             console.log("bf1", this.img.src2);
           } else if (this.resultimg[v].type == "step1_pic3") {
-            this.img.src3 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.resultimg[v].file_path
+            this.img.src3 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.resultimg[v].file_path
             this.booimg3 = true;
             console.log("bf1", this.img.src3);
           } else if (this.resultimg[v].type == "step1_pic4") {
-            this.img.src4 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.resultimg[v].file_path
+            this.img.src4 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.resultimg[v].file_path
             this.booimg4 = true;
             console.log("bf1", this.img.src4);
           } else if (this.resultimg[v].type == "step1_pic5") {
-            this.img.src5 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.resultimg[v].file_path
+            this.img.src5 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.resultimg[v].file_path
             this.booimg5 = true;
             console.log("bf1", this.img.src5);
           } else if (this.resultimg[v].type == "step1_pic6") {
-            this.img.src6 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.resultimg[v].file_path
+            this.img.src6 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.resultimg[v].file_path
             this.booimg6 = true;
             console.log("bf1", this.img.src6);
           } else if (this.resultimg[v].type == "step1_pic7") {
-            this.img.src7 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.resultimg[v].file_path
+            this.img.src7 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.resultimg[v].file_path
             this.booimg7 = true;
             console.log("bf1", this.img.src7);
           } else if (this.resultimg[v].type == "step1_pic8") {
-            this.img.src8 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.resultimg[v].file_path
+            this.img.src8 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.resultimg[v].file_path
             this.booimg8 = true;
             console.log("bf1", this.img.src8);
           }
@@ -465,7 +465,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.postDataService.SaveCaseAll(params).then(photoID => {
             this.photoID = photoID
             this.id1 = this.photoID.id
-            this.photo1 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+            this.photo1 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
             console.log(this.photo1);
             this.status1 = "1"
             this.checktakeback();
@@ -475,7 +475,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
-        this.photo1 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        this.photo1 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         // let params = {
         //   planID: this.planID,
         //   installID: this.installID,
@@ -488,7 +488,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         // this.postDataService.SaveCaseAll(params).then(photoID => {
         //   this.photoID = photoID
         //   this.id1 = this.photoID.id
-        //   this.photo1 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        //   this.photo1 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         //   console.log(this.photo1);
         //   this.status1 = "1"
         //   this.checktakeback();
@@ -518,7 +518,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.postDataService.SaveCaseAll(params).then(photoID => {
             this.photoID = photoID
             this.id2 = this.photoID.id
-            this.photo2 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+            this.photo2 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
             console.log(this.photo2);
             this.status2 = "2"
             this.checktakeback();
@@ -528,7 +528,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
-        this.photo2 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        this.photo2 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         // let params = {
         //   planID: this.planID,
         //   installID: this.installID,
@@ -541,7 +541,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         // this.postDataService.SaveCaseAll(params).then(photoID => {
         //   this.photoID = photoID
         //   this.id2 = this.photoID.id
-        //   this.photo2 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        //   this.photo2 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         //   console.log(this.photo2);
         //   this.status2 = "2"
         //   this.checktakeback();
@@ -570,7 +570,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.postDataService.SaveCaseAll(params).then(photoID => {
             this.photoID = photoID
             this.id3 = this.photoID.id
-            this.photo3 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+            this.photo3 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
             console.log(this.photo3);
             this.status3 = "2"
             this.checktakeback();
@@ -580,7 +580,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
-        this.photo3 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        this.photo3 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         // let params = {
         //   planID: this.planID,
         //   installID: this.installID,
@@ -593,7 +593,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         // this.postDataService.SaveCaseAll(params).then(photoID => {
         //   this.photoID = photoID
         //   this.id3 = this.photoID.id
-        //   this.photo3 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        //   this.photo3 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         //   console.log(this.photo3);
         //   this.status3 = "2"
         //   this.checktakeback();
@@ -623,7 +623,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.postDataService.SaveCaseAll(params).then(photoID => {
             this.photoID = photoID
             this.id4 = this.photoID.id
-            this.photo4 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+            this.photo4 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
             console.log(this.photo1);
             this.status4 = "2"
             this.checktakeback();
@@ -632,7 +632,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
-        this.photo4 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        this.photo4 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         // console.log(err);
         // let params = {
         //   planID: this.planID,
@@ -646,7 +646,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         // this.postDataService.SaveCaseAll(params).then(photoID => {
         //   this.photoID = photoID
         //   this.id4 = this.photoID.id
-        //   this.photo4 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        //   this.photo4 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         //   console.log(this.photo4);
         //   this.status4 = "2"
         //   this.checktakeback();
@@ -675,7 +675,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.postDataService.SaveCaseAll(params).then(photoID => {
             this.photoID = photoID
             this.id5 = this.photoID.id
-            this.photo5 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+            this.photo5 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
             console.log(this.photo5);
             this.status5 = "2"
             this.checktakeback();
@@ -684,7 +684,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
-        this.photo5 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        this.photo5 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         // let params = {
         //   planID: this.planID,
         //   installID: this.installID,
@@ -697,7 +697,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         // this.postDataService.SaveCaseAll(params).then(photoID => {
         //   this.photoID = photoID
         //   this.id5 = this.photoID.id
-        //   this.photo5 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        //   this.photo5 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         //   console.log(this.photo5);
         //   this.status5 = "2"
         //   this.checktakeback();
@@ -727,7 +727,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.postDataService.SaveCaseAll(params).then(photoID => {
             this.photoID = photoID
             this.id6 = this.photoID.id
-            this.photo6 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+            this.photo6 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
             console.log(this.photo1);
             this.status6 = "2"
             this.checklist();
@@ -737,7 +737,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
-        this.photo6 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        this.photo6 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         // let params = {
         //   planID: this.planID,
         //   installID: this.installID,
@@ -750,7 +750,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         // this.postDataService.SaveCaseAll(params).then(photoID => {
         //   this.photoID = photoID
         //   this.id6 = this.photoID.id
-        //   this.photo6 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        //   this.photo6 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         //   console.log(this.photo6);
         //   this.status6 = "2"
         //   this.checklist();
@@ -781,7 +781,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.postDataService.SaveCaseAll(params).then(photoID => {
             this.photoID = photoID
             this.id7 = this.photoID.id
-            this.photo7 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+            this.photo7 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
             console.log(this.photo1);
             this.status7 = "2"
             this.checklist();
@@ -791,7 +791,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
-        this.photo7 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        this.photo7 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         // let params = {
         //   planID: this.planID,
         //   installID: this.installID,
@@ -804,7 +804,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         // this.postDataService.SaveCaseAll(params).then(photoID => {
         //   this.photoID = photoID
         //   this.id7 = this.photoID.id
-        //   this.photo7 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        //   this.photo7 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         //   console.log(this.photo7);
         //   this.status7 = "2"
         //   this.checklist();
@@ -834,7 +834,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.postDataService.SaveCaseAll(params).then(photoID => {
             this.photoID = photoID
             this.id8 = this.photoID.id
-            this.photo8 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+            this.photo8 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
             console.log(this.photo8);
             this.status8 = "2"
             this.checklist();
@@ -844,7 +844,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
-        this.photo8 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        this.photo8 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         // let params = {
         //   planID: this.planID,
         //   installID: this.installID,
@@ -857,7 +857,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         // this.postDataService.SaveCaseAll(params).then(photoID => {
         //   this.photoID = photoID
         //   this.id8 = this.photoID.id
-        //   this.photo8 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        //   this.photo8 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         //   console.log(this.photo8);
         //   this.status8 = "2"
         //   this.checklist();
@@ -887,7 +887,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.postDataService.SaveCaseAll(params).then(photoID => {
             this.photoID = photoID
             this.id9 = this.photoID.id
-            this.photo9 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+            this.photo9 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
             console.log(this.photo1);
             this.status9 = "2"
             this.checklist();
@@ -897,7 +897,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
-        this.photo9 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        this.photo9 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         // let params = {
         //   planID: this.planID,
         //   installID: this.installID,
@@ -910,7 +910,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         // this.postDataService.SaveCaseAll(params).then(photoID => {
         //   this.photoID = photoID
         //   this.id9 = this.photoID.id
-        //   this.photo9 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        //   this.photo9 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         //   console.log(this.photo9);
         //   this.status9 = "2"
         //   this.checklist();
@@ -940,7 +940,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.postDataService.SaveCaseAll(params).then(photoID => {
             this.photoID = photoID
             this.id10 = this.photoID.id
-            this.photo10 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+            this.photo10 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
             console.log(this.photo10);
             this.status10 = "2"
             this.checklist();
@@ -950,7 +950,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         }
       }, (err) => {
-        this.photo10 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        this.photo10 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         // let params = {
         //   planID: this.planID,
         //   installID: this.installID,
@@ -963,7 +963,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         // this.postDataService.SaveCaseAll(params).then(photoID => {
         //   this.photoID = photoID
         //   this.id10 = this.photoID.id
-        //   this.photo10 = 'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com' + this.photoID.file_path
+        //   this.photo10 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
         //   console.log(this.photo10);
         //   this.status10 = "2"
         //   this.checklist();

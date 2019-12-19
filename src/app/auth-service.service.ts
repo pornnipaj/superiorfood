@@ -13,20 +13,20 @@ export class AuthServiceService {
   getnew() {
     return this.http.get
     (
-      'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com/API/News.ashx'
+      'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com//API/News.ashx'
     );
   }
 
   getProduct() {
     return this.http.get
     (
-      'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com/API/ProductAndManual.ashx'
+      'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com//API/ProductAndManual.ashx'
     );
   }
   getresolution(){
     return this.http.get
     (
-    'https://cors-anywhere.herokuapp.com/http://superior.wingplusweb.com/API/Resolutio.asmx/Detail'
+    'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com//API/Resolutio.asmx/Detail'
     );
   }
 }
