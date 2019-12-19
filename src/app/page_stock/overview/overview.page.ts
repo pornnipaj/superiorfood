@@ -46,14 +46,14 @@ export class OverviewPage implements OnInit {
   }
 
   loadStock(){
-    this.DataService.getnew().subscribe(data => {
-      console.log(data);
-      this.data = data;
-      for (let i = 0; i < this.data.length; i++) {
-        this.header = this.data[i].header;
-        this.type = this.data[i].type;        
-      }
-    });
+    // this.DataService.getnew().subscribe(data => {
+    //   console.log(data);
+    //   this.data = data;
+    //   for (let i = 0; i < this.data.length; i++) {
+    //     this.header = this.data[i].header;
+    //     this.type = this.data[i].type;        
+    //   }
+    // });
   }
 
   onChange(item) {
