@@ -106,7 +106,7 @@ export class JobdetailPage implements OnInit {
 
         console.log(this.empID);
       }
-      this.url = sanitizer.bypassSecurityTrustResourceUrl('http://superior2.wingplusweb.com//Web/CK_CheckInfo.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.insID);
+      this.url = sanitizer.bypassSecurityTrustResourceUrl('http://superior2.wingplusweb.com/Web/CK_CheckInfo.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.insID);
     });
   }
   //#endregion
