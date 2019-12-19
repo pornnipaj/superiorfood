@@ -226,14 +226,40 @@ export class ChecklistcmPage implements OnInit {
         typedevice: "device"
       }
       console.log(param);
+      let params = {
+        planID: this.planID,
+        installID: this.installID,
+        idold: this.assetold,
+        idnew: this.assetnew,
+        typedevice: "device",
+        empID: this.empID,
+        sparepart: this.sparepart
+      }
+      console.log(params);
+      this.postDataService.SaveCaseAll(params).then(servicephoto => {
+        console.log(servicephoto);
+      });
       this.modalController.dismiss(param);
     }
     if (type == "Sparepart") {
       let param = {
-        sparepart: this.spareList,
+        sparepart: this.spareList,        
         typedevice: "sparepart"
       }
       console.log(param);
+      let params = {
+        planID: this.planID,
+        installID: this.installID,
+        idold: this.assetold,
+        idnew: this.assetnew,
+        typedevice: "sparepart",
+        empID: this.empID,
+        spare: this.sparepart
+      }
+      console.log(params);
+      this.postDataService.SaveCaseAll(params).then(servicephoto => {
+        console.log(servicephoto);
+      });
       this.modalController.dismiss(param);
     }
   }
