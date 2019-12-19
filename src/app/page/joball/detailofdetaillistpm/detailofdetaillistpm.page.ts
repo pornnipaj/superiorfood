@@ -489,7 +489,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.postDataService.SaveCaseAll(params).then(photoID => {
           this.photoID = photoID
           this.id1 = this.photoID.id
-          // this.photo1 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
+          this.photo1 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
           console.log(this.photo1);
           this.status1 = "1"
           this.checktakeback();
@@ -543,7 +543,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.postDataService.SaveCaseAll(params).then(photoID => {
           this.photoID = photoID
           this.id2 = this.photoID.id
-          // this.photo2 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
+          this.photo2 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
           console.log(this.photo2);
           this.status2 = "2"
           this.checktakeback();
@@ -596,7 +596,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.postDataService.SaveCaseAll(params).then(photoID => {
           this.photoID = photoID
           this.id3 = this.photoID.id
-          // this.photo3 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
+          this.photo3 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
           console.log(this.photo3);
           this.status3 = "2"
           this.checktakeback();
@@ -650,7 +650,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.postDataService.SaveCaseAll(params).then(photoID => {
           this.photoID = photoID
           this.id4 = this.photoID.id
-          // this.photo4 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
+          this.photo4 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
           console.log(this.photo4);
           this.status4 = "2"
           this.checktakeback();
@@ -702,7 +702,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.postDataService.SaveCaseAll(params).then(photoID => {
           this.photoID = photoID
           this.id5 = this.photoID.id
-          // this.photo5 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
+          this.photo5 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
           console.log(this.photo5);
           this.status5 = "2"
           this.checktakeback();
@@ -756,7 +756,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.postDataService.SaveCaseAll(params).then(photoID => {
           this.photoID = photoID
           this.id6 = this.photoID.id
-          // this.photo6 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
+          this.photo6 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
           console.log(this.photo6);
           this.status6 = "2"
           this.checklist();
@@ -811,7 +811,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.postDataService.SaveCaseAll(params).then(photoID => {
           this.photoID = photoID
           this.id7 = this.photoID.id
-          // this.photo7 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
+          this.photo7 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
           console.log(this.photo7);
           this.status7 = "2"
           this.checklist();
@@ -865,7 +865,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.postDataService.SaveCaseAll(params).then(photoID => {
           this.photoID = photoID
           this.id8 = this.photoID.id
-          // this.photo8 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
+          this.photo8 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
           console.log(this.photo8);
           this.status8 = "2"
           this.checklist();
@@ -919,7 +919,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.postDataService.SaveCaseAll(params).then(photoID => {
           this.photoID = photoID
           this.id9 = this.photoID.id,
-          // this.photo9 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
+          this.photo9 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
           console.log(this.photo9);
           this.status9 = "2"
           this.checklist();
@@ -973,7 +973,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.postDataService.SaveCaseAll(params).then(photoID => {
           this.photoID = photoID
           this.id10 = this.photoID.id
-          // this.photo10 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
+          this.photo10 = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/' + this.photoID.file_path
           console.log(this.photo10);
           this.status10 = "2"
           this.checklist();
