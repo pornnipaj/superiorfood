@@ -9,10 +9,10 @@ import { PostDataService } from '../../../../post-data.service';
 })
 export class CustomerevaluationPage implements OnInit {
   resolution;
-  resolutiondetail;
+  resolutiondetail="";
   data;
   installID;
-  TecComment;
+  TecComment="";
   jobtype;
   planID;
   detail;
@@ -84,7 +84,7 @@ export class CustomerevaluationPage implements OnInit {
         await alert.present();
       }
     } 
-      if (this.TecComment == null) {
+      if (this.TecComment == null || this.TecComment == "") {
         const alert = await this.alertController.create({
           header: 'แจ้งเตือน',
           message: 'กรุณากรอกความคิดเห็นที่มีต่อร้าน',
