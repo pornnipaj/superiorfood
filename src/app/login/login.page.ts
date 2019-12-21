@@ -140,13 +140,9 @@ export class LoginPage implements OnInit {
   this.storageService.addUser(this.newUser).then(item => {
     this.newUser = <User>{};
   });
-  if (this.role == 3) {
-    this.navCtrl.navigateForward(['/menu/overview']);      
-  }else if (this.role == 12) {
-    this.navCtrl.navigateForward(['/menu/overview-stock']);
-  }else{
-    this.false();
-  }
+    this.navCtrl.navigateForward(['/menu/overview']);     
+    
+  
   
  }
 
