@@ -10,7 +10,6 @@
       <div class="row">
           <div class="col-12" style="margin-top: 20px;" #show *ngIf="jobtype == 'CM'; else show">
               <label class="col-md-4 control-label" #show *ngIf="jobtype == 'CM'; else show">หัวข้อการแก้ปัญหา</label>
-              <label class="col-md-4 control-label" #comment *ngIf="jobtype != 'CM'; else comment">ความคิดเห็นเพิ่มเติม</label>
               <div class="col-md-8" style="padding: 0px;">
                 <ion-select interface="popover" (ionChange)="onChange($event)">
                   <ion-select-option *ngFor="let title of data" [value]="title.SystemID"
