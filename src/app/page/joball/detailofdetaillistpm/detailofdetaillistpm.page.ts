@@ -247,52 +247,62 @@ export class DetailofdetaillistpmPage implements OnInit {
           if (this.Photo[v].type == "step1_pic1") {
             this.photo1 = this.postDataService.apiServer_url + this.Photo[v].file_path
             this.id1 = this.Photo[v].id
+            this.status1 = "1";
             this.boo1 = true;
             console.log(this.boo1);
             console.log("bf1", this.photo1);
           } else if (this.Photo[v].type == "step1_pic2") {
             this.photo2 = this.postDataService.apiServer_url + this.Photo[v].file_path
             this.id2 = this.Photo[v].id
+            this.status2 = "1";
             this.boo2 = true;
             console.log("bf2", this.photo2);
           } else if (this.Photo[v].type == "step1_pic3") {
             this.photo3 = this.postDataService.apiServer_url + this.Photo[v].file_path
             this.id3 = this.Photo[v].id
+            this.status3 = "1";
             this.boo3 = true;
             console.log("bf3", this.photo3);
           } else if (this.Photo[v].type == "step1_pic4") {
             this.photo4 = this.postDataService.apiServer_url + this.Photo[v].file_path
             this.id4 = this.Photo[v].id
+            this.status4 = "1";
             this.boo4 = true;
             console.log("bf4", this.photo4);
           } else if (this.Photo[v].type == "step1_pic5") {
             this.photo5 = this.postDataService.apiServer_url + this.Photo[v].file_path
             this.id5 = this.Photo[v].id
+            this.status5 = "1";
             this.boo5 = true;
             console.log("bf5", this.photo5);
           } else if (this.Photo[v].type == "step3_pic1") {
             this.photo6 = this.postDataService.apiServer_url + this.Photo[v].file_path
             this.id6 = this.Photo[v].id
+            this.status5 = "1";
             this.boo6 = true;
             console.log("bf6", this.photo6);
           } else if (this.Photo[v].type == "step3_pic2") {
             this.photo7 = this.postDataService.apiServer_url + this.Photo[v].file_path
             this.id7 = this.Photo[v].id
+            this.status7 = "1";
             this.boo7 = true;
             console.log("bf7", this.photo7);
           } else if (this.Photo[v].type == "step3_pic3") {
             this.photo8 = this.postDataService.apiServer_url + this.Photo[v].file_path
             this.id8 = this.Photo[v].id
+            this.status8 = "1";
             this.boo8 = true;
             console.log("bf8", this.photo8);
           } else if (this.Photo[v].type == "step3_pic4") {
             this.photo9 = this.postDataService.apiServer_url + this.Photo[v].file_path
             this.id9 = this.Photo[v].id
+            this.status9 = "1";
             this.boo9 = true;
             console.log("bf9", this.photo9);
           } else if (this.Photo[v].type == "step3_pic5") {
             this.photo10 = this.postDataService.apiServer_url + this.Photo[v].file_path
             this.id10 = this.Photo[v].id
+            this.status10 = "1";
             this.boo10 = true;
             console.log("bf10", this.photo10);
           } else if (this.Photo[v].type == "signature") {
