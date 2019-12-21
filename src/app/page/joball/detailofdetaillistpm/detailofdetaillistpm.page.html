@@ -204,6 +204,10 @@
                   <button (click)="changspare()" [disabled]="!isenabledspare" class="btn default" #sparepart>  
                     รายการเปลี่ยนอะไหล่ </button>
                   </div>
+                  <div *ngIf="jobtype == 'CM'; else request">
+                    <button (click)="takerequest()" [disabled]="!isenabledrequest" class="btn default" #request>  
+                      ใบเบิกอะไหล่ </button>
+                    </div>
                 </div>
               </div>
             </div>
