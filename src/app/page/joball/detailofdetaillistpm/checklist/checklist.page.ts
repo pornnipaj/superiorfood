@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController, NavParams } from '@ionic/angular';
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+import { PostDataService } from '../../../../post-data.service';
 
 @Component({
   selector: 'app-checklist',
@@ -21,6 +22,7 @@ export class ChecklistPage implements OnInit {
   //#region constructor
   constructor(public modalController: ModalController,
     private navParams: NavParams,
+    private postDataService: PostDataService,
     sanitizer: DomSanitizer, ) {
 
     this.empID = this.navParams.data.empID;
@@ -29,7 +31,7 @@ export class ChecklistPage implements OnInit {
     console.log(this.empID, this.planID, this.installID);
     this.tran = [];;
 
-    this.url = sanitizer.bypassSecurityTrustResourceUrl('https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
+    this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
     // this.url = sanitizer.bypassSecurityTrustResourceUrl('http://localhost:41605/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
   }
   //#endregion

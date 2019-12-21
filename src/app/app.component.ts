@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-
+cor;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -19,7 +19,6 @@ export class AppComponent {
     private http: HttpClient,
   ) {
     this.initializeApp();
-
     // const req = this.http.post('http://jsonplaceholder.typicode.com/posts', {
     //   title: 'foo',
     //   body: 'bar',
