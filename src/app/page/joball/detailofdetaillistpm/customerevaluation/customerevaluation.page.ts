@@ -52,7 +52,9 @@ export class CustomerevaluationPage implements OnInit {
       this.TecComment = this.detail.TecComment 
       if (this.jobtype == "CM") {
         this.resolutiondetail = this.detail.Resolutiondetail
-      }               
+      }   else{
+        this.resolutiondetail = "resolutiondetail"
+      }            
     });
 
   }

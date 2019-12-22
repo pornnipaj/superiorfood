@@ -173,7 +173,7 @@ export class DetaillistpmPage implements OnInit {
           {
             text: 'ตกลง',
             handler: () => {
-              let data = {
+              let tran = {
                 AssetID: item.AssetID,
                 Serial: item.Serial,
                 planID: item.planID,
@@ -181,14 +181,15 @@ export class DetaillistpmPage implements OnInit {
                 insID: item.installId,
                 type: this.type
               }
-              console.log(data);
+              console.log(tran);
 
-              this.postDataService.postTranService(data).then(TranService => {
+              this.postDataService.postTranService(tran).then(TranService => {
                 // console.log(TranService);  
               });
               let params = {
                 planID: item.planID,
                 install: item,
+                data:data,
                 insID: item.installId,
                 sparetype: item.sparepart
               }
