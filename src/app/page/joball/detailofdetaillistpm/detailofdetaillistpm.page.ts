@@ -490,7 +490,6 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.postDataService.SaveCaseAll(params).then(photoID => {
           console.log(photoID);
           this.isShowrequest = true;
-        this.isenabledrequest = false;
         });
         
       }
@@ -506,8 +505,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       console.log(params);
       this.postDataService.SaveCaseAll(params).then(photoID => {
         console.log(photoID);
-        this.isShowrequest = true;
-      this.isenabledrequest = false;
+        // this.isShowrequest = true;
       });
       
     });
