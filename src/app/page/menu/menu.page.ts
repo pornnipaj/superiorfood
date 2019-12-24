@@ -17,11 +17,6 @@ export class MenuPage implements OnInit {
       url: '/menu/overview',
       icon: 'home'
     },
-    // {
-    //   title: 'แพลนงานช่าง',
-    //   url: '/menu/serviceplan',
-    //   icon: 'calendar'
-    // },
     {
       title: 'งานของในความรับผิดชอบ',
       url: '/menu/job',
@@ -103,5 +98,4 @@ export class MenuPage implements OnInit {
       }
     });
   }
-
 }

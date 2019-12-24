@@ -370,12 +370,14 @@ export class DetailofdetaillistpmPage implements OnInit {
     } else if (this.jobtype == "INSTALL") {
       this.title1 = "รายการที่ 1 ถ่ายภาพก่อนการติดตั้ง"
       this.title2 = "รายการที่ 2 ถ่ายภาพหลังการติดตั้ง"
-      this.title7 = "รายการที่ 3 ความคิดเห็น"
-      this.title5 = "รายการที่ 4 ประเมินการทำงาน"
-      this.title4 = "รายการที่ 5 ลายเซ็นต์ผู้รับผิดชอบ"
-      this.title6 = "รายการที่ 6 สรุปผลการตรวจเช็คและยืนยันการปิดงาน"
-      this.title8 = "รายการที่ 7 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
-      this.isenabledtitle3 = false;
+      this.title3 = "รายการที่ 3 เพิ่มอะไหล่"
+      this.title7 = "รายการที่ 4 ความคิดเห็น"
+      this.title5 = "รายการที่ 5 ประเมินการทำงาน"
+      this.title4 = "รายการที่ 6 ลายเซ็นต์ผู้รับผิดชอบ"
+      this.title6 = "รายการที่ 7 สรุปผลการตรวจเช็คและยืนยันการปิดงาน"
+      this.title8 = "รายการที่ 8 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
+      this.isenabledtitle3 = true;
+      this.isenabledcheck = false;
       this.isenabledTakeback = true;
       this.isInstall = false;
       this.getImgInstall();
@@ -1428,6 +1430,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       componentProps: {
         planID: this.planID,
         installID: this.installID,
+        jobtype: this.jobtype
       }
     });
 

@@ -141,7 +141,7 @@ export class LoginPage implements OnInit {
   this.storageService.addUser(this.newUser).then(item => {
     this.newUser = <User>{};
   });
-    this.navCtrl.navigateForward(['/menu/overview']);     
+    this.navCtrl.navigateForward(['/menu/overview']);    
     
   
   

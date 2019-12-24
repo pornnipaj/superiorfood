@@ -195,9 +195,13 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                <div #nospare class="col-md-6 col-6 text-center" style="padding-left: 10px;" *ngIf="jobtype != 'INSTALL' else nospare">
                   <button (click)="check()" [disabled]="!isenabledcheck" class="btn default">
                     รายการตรวจเช็ค </button>
+                </div>
+                <div #spare class="col-md-6 col-6 text-center" style="padding-left: 10px;" *ngIf="jobtype == 'INSTALL' else spare">
+                  <button (click)="changspare()" class="btn default">
+                    เพิ่มอะไหล่ </button>
                 </div>
                 <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
                   <div *ngIf="sparetype != '' && jobtype == 'PM'; else sparepart">
@@ -205,7 +209,7 @@
                     รายการเปลี่ยนอะไหล่ </button>
                   </div>
                   <div *ngIf="jobtype == 'CM' && request == null; else CM">
-                    <button (click)="takerequest()" class="btn default" #CM>  
+                    <button (click)="takerequest()" class="btn default" #CM [disabled]="!isenabledrequest">  
                       ใบเบิกอะไหล่ </button>
                     </div>
                       <img *ngIf="jobtype == 'CM' && request != null ; else imgrequest" [src]="request"  (click)="takerequest()" #imgrequest>                    
@@ -217,7 +221,7 @@
             <div class="portlet light ">
               <div class="row">
                 <div class="col-md-12 col-12">
-                  <div class="caption">
+                  <div class="caption" style="margin-top: 20px;">
                     <i class="fa fa-map-pin font-blue-sharp"></i>
                     <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
                       {{title7}}</span>

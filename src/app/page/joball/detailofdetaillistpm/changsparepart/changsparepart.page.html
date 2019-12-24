@@ -1,17 +1,31 @@
 <ion-toolbar>
-  <ion-title>เปลี่ยนอะไหล่</ion-title>
+  <ion-title *ngIf="jobtype == 'PM' else pm" #pm>เปลี่ยนอะไหล่</ion-title>
+  <ion-title *ngIf="jobtype == 'INSTALL' else pm" #install>เพิ่มอะไหล่</ion-title>
   <ion-buttons slot="primary">
     <ion-icon slot="end" name="close" (click)="closeModal()"></ion-icon>
   </ion-buttons>
 </ion-toolbar>
 
 <ion-content>
-  <ion-item no-line *ngFor="let item of data">
-    <ion-label class="col-4">{{item.SpareName}}</ion-label>
-    <ion-input type="text" [(ngModel)]="item.SerialNo" ></ion-input>
-    <ion-icon name="barcode" slot="end" (click)="scan()"></ion-icon>  
-  <div class="text-center" style="margin-top: 10px;">
-    <ion-button shape="round" class="text-center" (click)="submit(data)">ยืนยัน</ion-button>
+  <div *ngIf="jobtype == 'PM' else pm" #pm>
+    <ion-item no-line *ngFor="let item of data">
+      <ion-label class="col-4">{{item.SpareName}}</ion-label>
+      <ion-input type="text" [(ngModel)]="item.SerialNo"></ion-input>
+      <ion-icon name="barcode" slot="end" (click)="scan()"></ion-icon>
+      <div class="text-center" style="margin-top: 10px;">
+        <ion-button shape="round" class="text-center" (click)="submit(data)">ยืนยัน</ion-button>
+      </div>
+    </ion-item>
   </div>
-</ion-item>
+
+  <div *ngIf="jobtype == 'INSTALL' else pm" #install>
+    <ion-item no-line *ngFor="let item of data">
+      <ion-label class="col-4">{{item.SpareName}}</ion-label>
+      <ion-input type="text" [(ngModel)]="item.SerialNo"></ion-input>
+      <ion-icon name="barcode" slot="end" (click)="scan()"></ion-icon>
+      <div class="text-center" style="margin-top: 10px;">
+        <ion-button shape="round" class="text-center" (click)="submit(data)">IN</ion-button>
+      </div>
+    </ion-item>
+  </div>
 </ion-content>

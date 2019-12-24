@@ -14,6 +14,7 @@ export class ChangsparepartPage implements OnInit {
   planID;
   data;
   SerialNo;
+  jobtype;
 
   constructor(private modalController: ModalController,
     private postDataService: PostDataService,
@@ -22,17 +23,32 @@ export class ChangsparepartPage implements OnInit {
 
       this.planID = this.navParams.data.planID;
       this.installID = this.navParams.data.installID;
+      this.jobtype = this.navParams.data.jobtype;
 
-      let params = {
-        installID: this.installID,
-        planID: this.planID,
-        jobtype: "changspare"
+      if (this.jobtype == "PM") {
+        let params = {
+          installID: this.installID,
+          planID: this.planID,
+          typedevice: "changspare"
+        }
+        console.log(params);
+        this.postDataService.postdevice(params).then(data => {
+          this.data = data
+          console.log(this.data);
+        });
+      }else if (this.jobtype == "INSTALL") {
+        let params = {
+          installID: this.installID,
+          planID: this.planID,
+          typedevice: "pmspare"
+        }
+        console.log(params);
+        this.postDataService.postdevice(params).then(data => {
+          this.data = data
+          console.log(this.data);
+        });
       }
-      console.log(params);
-      this.postDataService.SaveCaseAll(params).then(data => {
-        this.data = data
-        console.log(this.data);
-      });
+     
     }
 
   ngOnInit() {
