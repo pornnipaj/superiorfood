@@ -52,15 +52,17 @@ export class ChangsparepartPage implements OnInit {
      });
   }
 
-  async submit(item){
+  async submit(data){
+    console.log(data);
+    
     let params = {
       installID: this.installID,
       planID: this.planID,
-      jobtype: "savespare",
-      spare:item
+      typedevice: "savespare",
+      spare:data
     }
     console.log(params);
-    this.postDataService.SaveCaseAll(params).then(data => {
+    this.postDataService.postdevice(params).then(data => {
       this.data = data
       console.log(this.data);
     });

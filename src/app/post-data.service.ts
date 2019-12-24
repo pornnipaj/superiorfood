@@ -24,7 +24,7 @@ export class PostDataService {
 
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-      this.http.post(this.apiLocal_url + '/API/Login.ashx' + '?email=' + user.email + '&password=' + user.password,
+      this.http.post(this.apiLocal_url + '/API/Login.ashx' + '?email=' + user.email + '&password=' + user.password  + '&type=' + user.type,
         JSON.stringify(user), option).subscribe(data => {
           resovle(data);
         }, error => {

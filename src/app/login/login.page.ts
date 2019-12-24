@@ -96,6 +96,7 @@ export class LoginPage implements OnInit {
     this.load();
     this.user.email = this.user.email;
     this.user.password = this.user.password;
+    this.user.type = "eservice"
     this.postDataService.login(this.user).then(data => {
       this.data = data;
       console.log('Data Returner', this.data);

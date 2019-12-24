@@ -204,11 +204,11 @@
                   <button (click)="changspare()" [disabled]="!isenabledspare" class="btn default" #sparepart>  
                     รายการเปลี่ยนอะไหล่ </button>
                   </div>
-                  <div *ngIf="jobtype == 'CM' ; else CM">
+                  <div *ngIf="jobtype == 'CM' && request == null; else CM">
                     <button (click)="takerequest()" class="btn default" #CM>  
                       ใบเบิกอะไหล่ </button>
                     </div>
-                      <img *ngIf="jobtype == 'CM' ; else CM" [src]="request"  (click)="takerequest()" #CM>                    
+                      <img *ngIf="jobtype == 'CM' && request != null ; else imgrequest" [src]="request"  (click)="takerequest()" #imgrequest>                    
                 </div>
               </div>
             </div>

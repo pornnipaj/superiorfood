@@ -81,7 +81,9 @@
             <ion-icon name="remove" slot="end" (click)="remove(att)"></ion-icon>
           </ion-item> -->
               <ion-item *ngFor="let todo of spareList; let i = index">
-                {{todo}}                
+                {{todo.SN}}  
+                <ion-label slot="end">จำนวน</ion-label>
+                <ion-input slot="end" style="color: red;;" [(ngModel)]="todo.NO"></ion-input>              
             <ion-icon name="remove" slot="end" (click)="remove(i)"></ion-icon>
               </ion-item>
               <ion-button expand="block" (click)="AddCM('Sparepart')">ยืนยัน</ion-button>

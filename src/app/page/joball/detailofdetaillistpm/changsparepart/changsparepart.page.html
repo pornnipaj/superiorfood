@@ -6,12 +6,12 @@
 </ion-toolbar>
 
 <ion-content>
-  <ion-item *ngFor="let item of data">
+  <ion-item no-line *ngFor="let item of data">
     <ion-label class="col-4">{{item.SpareName}}</ion-label>
     <ion-input type="text" [(ngModel)]="item.SerialNo" ></ion-input>
-    <ion-icon name="barcode" slot="end" (click)="scan()"></ion-icon>
-  </ion-item>
+    <ion-icon name="barcode" slot="end" (click)="scan()"></ion-icon>  
   <div class="text-center" style="margin-top: 10px;">
-    <ion-button shape="round" class="text-center" (click)="submit(item)">ยืนยัน</ion-button>
+    <ion-button shape="round" class="text-center" (click)="submit(data)">ยืนยัน</ion-button>
   </div>
+</ion-item>
 </ion-content>

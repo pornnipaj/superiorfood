@@ -41,7 +41,9 @@ export class ChecklistcmPage implements OnInit {
   assetold;
   chkdata;
   spareList = [];
+  list;
   stock;
+  No;
   //#endregion
 
   //#region constructor
@@ -121,6 +123,7 @@ export class ChecklistcmPage implements OnInit {
 
       let params = {
         installID: this.installID,
+        typedevice: "GetDevice"
       }
       this.postDataService.postdevice(params).then(asset => {
         this.asset = asset
@@ -156,13 +159,13 @@ export class ChecklistcmPage implements OnInit {
   //#region spare
 
   Add() {
-    this.isShowSpareDetail = true;
     if (this.sparepart == "") {
       this.alertSN();
     }
     if (this.sparepart.length > 0) {
       let params = {
         installID: this.installID,
+        typedevice: "GetDevice"
       }
       this.postDataService.postdevice(params).then(asset => {
         this.asset = asset
@@ -179,25 +182,27 @@ export class ChecklistcmPage implements OnInit {
             this.assetnew = this.asset[i].AssetID;
             this.assetold = this.asset[i].assetid;
             let task = this.sparepart;
-            this.spareList.push(task);
+            let no = 1;
+            this.spareList.push({SN:task,NO:no});
             this.sparepart = "";
+            this.chkdata = 1;
             this.isShowSpareDetail = true;
             break;
-          }
         }
+      }
       });
     }
 
-    // if (this.sparepart != "sparepart" && this.sparepart != "") {
-    //   this.alertStock();   
-    //   this.isShowSpareDetail = false;
-    // }
+    if (this.sparepart == "" || this.sparepart == null) { 
+      this.alertSN();               
+    }else if(this.chkdata == 0 ){
+      this.alertStock();   
+    }
   }
 
   remove(index) {
     this.spareList.splice(index, 1);
   }
-
   //#endregion
 
   //#region barcode
@@ -213,19 +218,10 @@ export class ChecklistcmPage implements OnInit {
     });
   }
 
-  DeviceNew() {
-
-  }
   //#endregion
   //#region Add Spare
   AddCM(type) {
-    if (type == "Device") {
-      let param = {
-        idnew: this.assetnew,
-        idold: this.assetold,
-        typedevice: "device"
-      }
-      console.log(param);
+    if (type == "Device") {      
       let params = {
         planID: this.planID,
         installID: this.installID,
@@ -236,9 +232,15 @@ export class ChecklistcmPage implements OnInit {
         sparepart: this.sparepart
       }
       console.log(params);
-      this.postDataService.SaveCaseAll(params).then(servicephoto => {
-        console.log(servicephoto);
+      this.postDataService.postdevice(params).then(asset => {
+        console.log(asset);
       });
+      let param = {
+        idnew: this.assetnew,
+        idold: this.assetold,
+        typedevice: "device"
+      }
+      console.log(param);
       this.modalController.dismiss(param);
     }
     if (type == "Sparepart") {
@@ -246,7 +248,12 @@ export class ChecklistcmPage implements OnInit {
         sparepart: this.spareList,        
         typedevice: "sparepart"
       }
-      console.log(param);
+      // console.log(param);
+      console.log(this.spareList);
+      this.list = JSON.stringify(this.spareList)
+        console.log(this.list);
+        console.log(JSON.parse(this.list));
+
       let params = {
         planID: this.planID,
         installID: this.installID,
@@ -254,11 +261,12 @@ export class ChecklistcmPage implements OnInit {
         idnew: this.assetnew,
         typedevice: "sparepart",
         empID: this.empID,
-        spare: this.sparepart
+        spare: this.spareList
+      
       }
       console.log(params);
-      this.postDataService.SaveCaseAll(params).then(servicephoto => {
-        console.log(servicephoto);
+      this.postDataService.postdevice(params).then(asset => {
+        console.log(asset);
       });
       this.modalController.dismiss(param);
     }
