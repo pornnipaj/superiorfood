@@ -55,7 +55,7 @@ export class ChangsparepartPage implements OnInit {
   }
 
   async closeModal() {
-    await this.modalController.dismiss();
+    await this.modalController.dismiss(0);
   }
 
   scan(){

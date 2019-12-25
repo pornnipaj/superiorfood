@@ -200,8 +200,8 @@
                     รายการตรวจเช็ค </button>
                 </div>
                 <div #spare class="col-md-6 col-6 text-center" style="padding-left: 10px;" *ngIf="jobtype == 'INSTALL' else spare">
-                  <button (click)="changspare()" class="btn default">
-                    เพิ่มอะไหล่ </button>
+                  <button (click)="changspare()" [disabled]="!isenabledadddevice"  class="btn default">
+                    เพิ่มอุปกรณ์เสริม </button>
                 </div>
                 <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
                   <div *ngIf="sparetype != '' && jobtype == 'PM'; else sparepart">

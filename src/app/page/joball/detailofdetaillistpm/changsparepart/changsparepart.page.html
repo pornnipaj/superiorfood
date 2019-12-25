@@ -1,31 +1,99 @@
 <ion-toolbar>
   <ion-title *ngIf="jobtype == 'PM' else pm" #pm>เปลี่ยนอะไหล่</ion-title>
-  <ion-title *ngIf="jobtype == 'INSTALL' else pm" #install>เพิ่มอะไหล่</ion-title>
+  <ion-title *ngIf="jobtype == 'INSTALL' else pm" #install>เพิ่มอุปกรณ์เสริม</ion-title>
   <ion-buttons slot="primary">
     <ion-icon slot="end" name="close" (click)="closeModal()"></ion-icon>
   </ion-buttons>
 </ion-toolbar>
 
 <ion-content>
-  <div *ngIf="jobtype == 'PM' else pm" #pm>
-    <ion-item no-line *ngFor="let item of data">
-      <ion-label class="col-4">{{item.SpareName}}</ion-label>
-      <ion-input type="text" [(ngModel)]="item.SerialNo"></ion-input>
-      <ion-icon name="barcode" slot="end" (click)="scan()"></ion-icon>
-      <div class="text-center" style="margin-top: 10px;">
-        <ion-button shape="round" class="text-center" (click)="submit(data)">ยืนยัน</ion-button>
-      </div>
-    </ion-item>
-  </div>
+  <div class="container-fluid">
+    <div *ngIf="jobtype == 'PM' else pm" #pm>
+      <ion-item no-line *ngFor="let item of data">
+        <ion-label class="col-4">{{item.SpareName}}</ion-label>
+        <ion-input type="text" [(ngModel)]="item.SerialNo"></ion-input>
+        <ion-icon name="barcode" slot="end" (click)="scan()"></ion-icon>
+        <div class="text-center" style="margin-top: 10px;">
+          <ion-button shape="round" class="text-center" (click)="submit(data)">ยืนยัน</ion-button>
+        </div>
+      </ion-item>
+    </div>
 
-  <div *ngIf="jobtype == 'INSTALL' else pm" #install>
-    <ion-item no-line *ngFor="let item of data">
-      <ion-label class="col-4">{{item.SpareName}}</ion-label>
-      <ion-input type="text" [(ngModel)]="item.SerialNo"></ion-input>
-      <ion-icon name="barcode" slot="end" (click)="scan()"></ion-icon>
-      <div class="text-center" style="margin-top: 10px;">
-        <ion-button shape="round" class="text-center" (click)="submit(data)">IN</ion-button>
-      </div>
-    </ion-item>
+    <div *ngIf="jobtype == 'INSTALL' else install" #install>
+        <div class="tab-content">
+          <div class="tab-pane active">
+            <div class="row">
+              <div class="col-12">
+                <div class="table-scrollable">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th> ลำดับที่ </th>
+                        <th> ประเภทอุปกรณ์เสริม </th>
+                        <th> ชื่ออุปกรณ์เสริม </th>
+                        <th> Part No. </th>
+                        <th> จำนวน </th>
+                        <th> ยอดคงเหลือ </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of data">
+                        <td style="padding-top:15px;"> 
+                          12
+                           </td>
+                        <td style="padding-top:15px;">12{{item.SpareType}} </td>
+                        <td style="padding-top:15px;"> 12{{item.SpareName}} </td>
+                        <td style="padding-top:15px;"> 12 {{item.PartNo}}</td>
+                        <td>  <input type="text" style="padding: 8px;" [(ngModel)]="item.No"/></td>   
+                        <td style="padding-top:15px;">{{item.Balance}} {{item.Unit}}</td>                  
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="row">
+          <ion-item no-line class="col-4">
+            <ion-label>ประเภทอุปกรณ์เสริม :</ion-label>
+          </ion-item>
+          <ion-item no-line class="col-8">
+            <ion-label class="col-8">{{item.SpareType}}</ion-label>
+          </ion-item>
+          <ion-item no-line class="col-4">
+            <ion-label>ชื่ออุปกรณ์เสริม :</ion-label>
+          </ion-item>
+          <ion-item no-line class="col-8">
+            <ion-label>{{item.SpareName}}</ion-label>
+          </ion-item>
+          <ion-item no-line class="col-4">
+            <ion-label>Part No. :</ion-label>
+          </ion-item>
+          <ion-item no-line class="col-8">
+            <ion-label>{{item.PartNo}}</ion-label>
+          </ion-item>
+          <ion-item no-line class="col-4">
+            <ion-label>จำนวน :</ion-label>
+          </ion-item>
+          <ion-item no-line class="col-8">
+            <ion-input type="text" [(ngModel)]="item.No"></ion-input>
+          </ion-item>
+          <ion-item no-line class="col-4">
+            <ion-label>ยอดคงเหลือ :</ion-label>
+          </ion-item>
+          <ion-item no-line class="col-4">
+            <ion-label>{{item.Balance}}</ion-label>
+          </ion-item>
+          <ion-item no-line class="col-4">
+            <ion-label>{{item.Unit}}</ion-label>
+          </ion-item>
+        </div> -->
+        <!-- <ion-icon name="barcode" slot="end" (click)="scan()"></ion-icon> -->
+
+        <div class="text-center" style="margin-top: 10px;">
+          <ion-button shape="round" class="text-center" (click)="submit(data)">บันทึก</ion-button>
+        </div>
+    </div>
   </div>
 </ion-content>

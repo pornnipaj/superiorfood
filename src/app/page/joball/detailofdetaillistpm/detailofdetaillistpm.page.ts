@@ -51,6 +51,7 @@ export class DetailofdetaillistpmPage implements OnInit {
   isenabledsig = false;
   isenabledcuspass = false;
   isenabledcuseva = false;
+  isenabledadddevice = false;  
   DateStart;
   DateEnd;
   photo1: any;
@@ -345,6 +346,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.isShowrequest = this.boo12
       }
       if (this.boo11 == true) {
+        this.isenabledadddevice = true;
         this.isenabledcuseva = true;
         this.isenabledeva = true;
         this.isenabledsig = true;
@@ -370,13 +372,14 @@ export class DetailofdetaillistpmPage implements OnInit {
     } else if (this.jobtype == "INSTALL") {
       this.title1 = "รายการที่ 1 ถ่ายภาพก่อนการติดตั้ง"
       this.title2 = "รายการที่ 2 ถ่ายภาพหลังการติดตั้ง"
-      this.title3 = "รายการที่ 3 เพิ่มอะไหล่"
+      this.title3 = "รายการที่ 3 เพิ่มอุปกรณ์เสริม"
       this.title7 = "รายการที่ 4 ความคิดเห็น"
       this.title5 = "รายการที่ 5 ประเมินการทำงาน"
       this.title4 = "รายการที่ 6 ลายเซ็นต์ผู้รับผิดชอบ"
       this.title6 = "รายการที่ 7 สรุปผลการตรวจเช็คและยืนยันการปิดงาน"
       this.title8 = "รายการที่ 8 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
       this.isenabledtitle3 = true;
+      this.isenabledadddevice = true;
       this.isenabledcheck = false;
       this.isenabledTakeback = true;
       this.isInstall = false;
@@ -1172,7 +1175,7 @@ export class DetailofdetaillistpmPage implements OnInit {
   checklist() {
     if (this.status6 && this.status7 && this.status8 && this.status9 && this.status10 != "") {
       if (this.jobtype == "INSTALL") {
-        this.isenabledcuseva = true;
+        this.isenabledadddevice = true;
       }
       else if (this.jobtype == "CM") {
         this.isenabledcheck = true;

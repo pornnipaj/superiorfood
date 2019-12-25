@@ -8,7 +8,7 @@
 <ion-content>
   <!-- <iframe [src]="url" style="width:100%;height:100%"></iframe> -->
   <div class="row">
-    <div class="col-6" style="padding-right: 0px;">
+    <div class="col-4" style="padding-right: 0px;">
       <ion-card>
         <ion-card-content>
           <ion-item>
@@ -26,7 +26,7 @@
         </ion-card-content>
       </ion-card>
     </div>
-    <div class="col-6" style="padding-left: 0px;">
+    <div class="col-8" style="padding-left: 0px;">
       <ion-card *ngIf="isShowType">
         <ion-card-content>
         <ion-button expand="block" (click)="chang('sparepart')">เปลี่ยนอะไหล่</ion-button>
@@ -67,7 +67,7 @@
         <ion-card-content>
           <ion-card-title>เปลี่ยนอะไหล่</ion-card-title>
           <ion-item>
-            <ion-input type="text" placeholder="Serial No." [(ngModel)]="sparepart" name="serial"></ion-input>
+            <ion-input type="text" placeholder="Part No." [(ngModel)]="sparepart" name="serial"></ion-input>
             <ion-icon name="barcode" (click)="scan()"></ion-icon>
             <ion-icon name="add" (click)="Add('Sparepart')"></ion-icon>            
           </ion-item>

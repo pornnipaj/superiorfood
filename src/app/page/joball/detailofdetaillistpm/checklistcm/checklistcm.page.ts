@@ -159,10 +159,11 @@ export class ChecklistcmPage implements OnInit {
   //#region spare
 
   Add() {
-    if (this.sparepart == "") {
-      this.alertSN();
+    if (this.sparepart == "" || this.sparepart == null) { 
+      this.alertSN();               
     }
     if (this.sparepart.length > 0) {
+
       let params = {
         installID: this.installID,
         typedevice: "GetDevice"
@@ -171,33 +172,58 @@ export class ChecklistcmPage implements OnInit {
         this.asset = asset
         this.chkdata = 0;
         console.log(this.asset);
-
-        for (let i = 0; i < this.asset.length; i++) {
-          const a = this.asset[i].SerialNo
-          if (this.sparepart == a) {
-            this.productname = this.asset[i].type;
-            this.installcode = this.asset[i].AssetCode;
-            this.installname = this.asset[i].AssetNo;
-            this.installserial = this.asset[i].SerialNo;
-            this.assetnew = this.asset[i].AssetID;
-            this.assetold = this.asset[i].assetid;
-            let task = this.sparepart;
-            let no = 1;
-            this.spareList.push({SN:task,NO:no});
-            this.sparepart = "";
-            this.chkdata = 1;
-            this.isShowSpareDetail = true;
-            break;
+        if (this.spareList.length == 0) {
+          for (let i = 0; i < this.asset.length; i++) {
+            const a = this.asset[i].SerialNo  
+            if (this.sparepart == a) {
+              this.productname = this.asset[i].type;
+              this.installcode = this.asset[i].AssetCode;
+              this.installname = this.asset[i].AssetNo;
+              this.installserial = this.asset[i].SerialNo;
+              this.assetnew = this.asset[i].AssetID;
+              this.assetold = this.asset[i].assetid;
+              let task = this.sparepart;
+              let no = 1;
+              this.spareList.push({SN:task,NO:no});
+              this.sparepart = "";
+              this.chkdata = 1;
+              this.isShowSpareDetail = true;
+              break;     
+            }
+          } 
         }
-      }
+        
+        for (let s = 0; s < this.spareList.length; s++) {
+          if (this.sparepart == this.spareList[s].SN) {
+            alert(123)
+            console.log(this.spareList[s].SN);            
+          }else{
+            
+            for (let i = 0; i < this.asset.length; i++) {
+              const a = this.asset[i].SerialNo  
+              if (this.sparepart == a) {
+                this.productname = this.asset[i].type;
+                this.installcode = this.asset[i].AssetCode;
+                this.installname = this.asset[i].AssetNo;
+                this.installserial = this.asset[i].SerialNo;
+                this.assetnew = this.asset[i].AssetID;
+                this.assetold = this.asset[i].assetid;
+                let task = this.sparepart;
+                let no = 1;
+                this.spareList.push({SN:task,NO:no});
+                this.sparepart = "";
+                this.chkdata = 1;
+                this.isShowSpareDetail = true;
+                break;      
+            }
+          }
+          }
+
+        }
       });
     }
 
-    if (this.sparepart == "" || this.sparepart == null) { 
-      this.alertSN();               
-    }else if(this.chkdata == 0 ){
-      this.alertStock();   
-    }
+    
   }
 
   remove(index) {
