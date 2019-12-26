@@ -123,7 +123,8 @@ export class ChecklistcmPage implements OnInit {
 
       let params = {
         installID: this.installID,
-        typedevice: "GetDevice"
+        typedevice: "GetDevice",
+        empID: this.empID
       }
       this.postDataService.postdevice(params).then(asset => {
         this.asset = asset
@@ -166,7 +167,8 @@ export class ChecklistcmPage implements OnInit {
 
       let params = {
         installID: this.installID,
-        typedevice: "GetDevice"
+        typedevice: "GetSpare",
+        empID: this.empID
       }
       this.postDataService.postdevice(params).then(asset => {
         this.asset = asset
@@ -180,11 +182,10 @@ export class ChecklistcmPage implements OnInit {
               this.installcode = this.asset[i].AssetCode;
               this.installname = this.asset[i].AssetNo;
               this.installserial = this.asset[i].SerialNo;
-              this.assetnew = this.asset[i].AssetID;
-              this.assetold = this.asset[i].assetid;
+              this.asset = this.asset[i].AssetID;
               let task = this.sparepart;
               let no = 1;
-              this.spareList.push({SN:task,NO:no});
+              this.spareList.push({PartNo:task,NO:no,assetID:this.asset});
               this.sparepart = "";
               this.chkdata = 1;
               this.isShowSpareDetail = true;
@@ -194,9 +195,8 @@ export class ChecklistcmPage implements OnInit {
         }
         
         for (let s = 0; s < this.spareList.length; s++) {
-          if (this.sparepart == this.spareList[s].SN) {
-            alert(123)
-            console.log(this.spareList[s].SN);            
+          if (this.sparepart == this.spareList[s].PartNo) {
+            console.log(this.spareList[s].PartNo);            
           }else{
             
             for (let i = 0; i < this.asset.length; i++) {
@@ -206,11 +206,10 @@ export class ChecklistcmPage implements OnInit {
                 this.installcode = this.asset[i].AssetCode;
                 this.installname = this.asset[i].AssetNo;
                 this.installserial = this.asset[i].SerialNo;
-                this.assetnew = this.asset[i].AssetID;
-                this.assetold = this.asset[i].assetid;
+                this.asset = this.asset[i].AssetID;
                 let task = this.sparepart;
                 let no = 1;
-                this.spareList.push({SN:task,NO:no});
+                this.spareList.push({PartNo:task,NO:no,assetID:this.asset});
                 this.sparepart = "";
                 this.chkdata = 1;
                 this.isShowSpareDetail = true;
@@ -261,39 +260,33 @@ export class ChecklistcmPage implements OnInit {
       this.postDataService.postdevice(params).then(asset => {
         console.log(asset);
       });
+
       let param = {
-        idnew: this.assetnew,
-        idold: this.assetold,
         typedevice: "device"
       }
       console.log(param);
       this.modalController.dismiss(param);
     }
     if (type == "Sparepart") {
-      let param = {
-        sparepart: this.spareList,        
-        typedevice: "sparepart"
-      }
-      // console.log(param);
-      console.log(this.spareList);
-      this.list = JSON.stringify(this.spareList)
-        console.log(this.list);
-        console.log(JSON.parse(this.list));
-
       let params = {
         planID: this.planID,
         installID: this.installID,
         idold: this.assetold,
         idnew: this.assetnew,
+        sparepart: this.spareList,        
         typedevice: "sparepart",
         empID: this.empID,
-        spare: this.spareList
-      
       }
-      console.log(params);
       this.postDataService.postdevice(params).then(asset => {
         console.log(asset);
       });
+
+
+      let param = {
+        typedevice: "sparepart"
+      }
+      console.log(params);
+      
       this.modalController.dismiss(param);
     }
   }
