@@ -166,53 +166,61 @@ export class DetaillistpmPage implements OnInit {
     console.log('Data', data);
     console.log('item', item);
     if (item.Workfinish == 0) {
-      const alert = await this.alertController.create({
-        header: 'แจ้งเตือน!',
-        message: 'ต้องการเริ่มทำงาน',
-        buttons: [
-          {
-            text: 'ตกลง',
-            handler: () => {
-              let tran = {
-                AssetID: item.AssetID,
-                Serial: item.Serial,
-                planID: item.planID,
-                empID: this.empID,
-                insID: item.installId,
-                type: this.type
-              }
-              console.log(tran);
-
-              this.postDataService.postTranService(tran).then(TranService => {
-                // console.log(TranService);  
-              });
-              let params = {
-                planID: item.planID,
-                install: item,
-                data:data,
-                insID: item.installId,
-                sparetype: item.sparepart
-              }
-              console.log(params);
-
-              const navigationExtras: NavigationExtras = {
-                queryParams: {
-                  data: JSON.stringify(params)
+      if (item.status == "Pending") {
+        const alert = await this.alertController.create({
+          message: 'กรุณาติดต่อผู้ดูลระบบ',
+          buttons: ['OK']
+        });
+        await alert.present();
+      }else{
+        const alert = await this.alertController.create({
+          header: 'แจ้งเตือน!',
+          message: 'ต้องการเริ่มทำงาน',
+          buttons: [
+            {
+              text: 'ตกลง',
+              handler: () => {
+                let tran = {
+                  AssetID: item.AssetID,
+                  Serial: item.Serial,
+                  planID: item.planID,
+                  empID: this.empID,
+                  insID: item.installId,
+                  type: this.type
                 }
-              };
-              this.navCtrl.navigateForward(['joball/listpm/detailofdetaillistpm'], navigationExtras);
-              console.log("sent", navigationExtras);
+                console.log(tran);
+  
+                this.postDataService.postTranService(tran).then(TranService => {
+                  // console.log(TranService);  
+                });
+                let params = {
+                  planID: item.planID,
+                  install: item,
+                  data:data,
+                  insID: item.installId,
+                  sparetype: item.sparepart
+                }
+                console.log(params);
+  
+                const navigationExtras: NavigationExtras = {
+                  queryParams: {
+                    data: JSON.stringify(params)
+                  }
+                };
+                this.navCtrl.navigateForward(['joball/listpm/detailofdetaillistpm'], navigationExtras);
+                console.log("sent", navigationExtras);
+              }
+            }, {
+              text: 'ยกเลิก',
+              role: 'cancel',
+              cssClass: 'secondary',
+              handler: (blah) => {
+              }
             }
-          }, {
-            text: 'ยกเลิก',
-            role: 'cancel',
-            cssClass: 'secondary',
-            handler: (blah) => {
-            }
-          }
-        ]
-      });
-      await alert.present();
+          ]
+        });
+        await alert.present();
+      }   
     }
 
     if (item.Workfinish == 1) {

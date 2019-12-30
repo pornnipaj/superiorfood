@@ -18,38 +18,38 @@
                     </div>
                     <div class="portlet-body">
                         <div>
-                            <label class="col-8">ชื่อลูกค้า&nbsp;:&nbsp;{{item.CustomerName}}</label>
-                            <label class="col-4">ผู้ตรวจเช็ค&nbsp;:&nbsp;{{item.Name}}</label>
+                            <label class="col-9">ชื่อลูกค้า&nbsp;:&nbsp;{{item.CustomerName}}</label>
+                            <label class="col-3">ผู้ตรวจเช็ค&nbsp;:&nbsp;{{item.Name}}</label>
                         </div>
                         <div>
-                            <label class="col-8">โทรศัพท์&nbsp;:&nbsp;{{item.Phone}} </label>
-                            <label class="col-4">วันที่กำหนด&nbsp;:&nbsp;{{item.start_service_date}}</label>
+                            <label class="col-9">โทรศัพท์&nbsp;:&nbsp;{{item.Phone}} </label>
+                            <label class="col-3">วันที่กำหนด&nbsp;:&nbsp;{{item.start_service_date}}</label>
                         </div>
                         <div>
-                            <label class="col-8">ที่อยู่ร้าน&nbsp;:&nbsp;{{item.Address}}</label>
-                            <label class="col-4">ต่างจากวันกำหนด&nbsp;:&nbsp;{{item.TimeDiff}}</label>
+                            <label class="col-9">ที่อยู่ร้าน&nbsp;:&nbsp;{{item.Address}}</label>
+                            <label class="col-3">ต่างจากวันกำหนด&nbsp;:&nbsp;{{item.TimeDiff}}</label>
                         </div>
                         <div>
-                            <label class="col-8">สินค้าที่ติดตั้ง&nbsp;:&nbsp;{{item.InstallPlanName}} </label>
-                            <label class="col-4">เริ่มทำงาน&nbsp;:&nbsp;{{item.start_service_date}}</label>
+                            <label class="col-9">สินค้าที่ติดตั้ง&nbsp;:&nbsp;{{item.InstallPlanName}} </label>
+                            <label class="col-3">เริ่มทำงาน&nbsp;:&nbsp;{{item.start_service_date}}</label>
                         </div>
                         <div>
-                            <label class="col-8" *ngIf="HideCM">Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNo}}</label>
-                            <label class="col-3" *ngIf="ShowCM">Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNoNew}}</label>
+                            <label class="col-9" *ngIf="type != 'CM'else show" #show>Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNo}}</label>
+                            <label class="col-4" *ngIf="item.SerialNoNew == item.SerialNo && type == 'CM' else device" #device>Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNoNew}}</label>
                             <label class="col-5"
-                                *ngIf="ShowCM">Serial&nbsp;No&nbsp;(ใหม่)&nbsp;:&nbsp;{{item.SerialNo}}</label>
-                            <label class="col-4">เสร็จงาน&nbsp;:&nbsp;{{item.end_service_date}}</label>
+                            *ngIf="item.SerialNoNew == item.SerialNo && type == 'CM' else device" #device>Serial&nbsp;No&nbsp;(ใหม่)&nbsp;:&nbsp;{{item.SerialNo}}</label>
+                            <label class="col-3">เสร็จงาน&nbsp;:&nbsp;{{item.end_service_date}}</label>
                         </div>
                         <div>
-                            <label class="col-8" *ngIf="HideCM">ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsName}}</label>
-                            <label class="col-3" *ngIf="ShowCM">ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsNameNew}}</label>
+                            <label class="col-9"  *ngIf="type != 'CM'else show" #show>ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsName}}</label>
+                            <label class="col-4" *ngIf="item.SerialNoNew == item.SerialNo && type == 'CM' else device" #device>ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsNameNew}}</label>
                             <label class="col-5"
-                                *ngIf="ShowCM">ชื่อสินค้า&nbsp;(ใหม่)&nbsp;:&nbsp;{{item.ItemsName}}</label>
-                            <label class="col-4">เวลาที่ใช้&nbsp;:&nbsp;{{item.TimeSpent}}</label>
+                            *ngIf="item.SerialNoNew == item.SerialNo && type == 'CM' else device" #device>ชื่อสินค้า&nbsp;(ใหม่)&nbsp;:&nbsp;{{item.ItemsName}}</label>
+                            <label class="col-3">เวลาที่ใช้&nbsp;:&nbsp;{{item.TimeSpent}}</label>
                         </div>
                         <div>
-                            <label class="col-8">ประเภทงาน&nbsp;:&nbsp;{{typethai}}&nbsp;({{type}})</label>
-                            <label class="col-4"></label>
+                            <label class="col-9">ประเภทงาน&nbsp;:&nbsp;{{typethai}}&nbsp;({{type}})</label>
+                            <label class="col-3"></label>
                         </div>
                     </div>
                 </div>

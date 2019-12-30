@@ -120,8 +120,6 @@ export class JobdetailPage implements OnInit {
       console.log(this.typethai);
     }
     else if (this.type == "CM") {
-      this.HideCM = false;
-      this.ShowCM = true;
       this.typethai = "งานซ๋อม"
     }
     else if (this.type == "PM") {
