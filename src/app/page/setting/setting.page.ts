@@ -3,6 +3,7 @@ import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { Platform, IonList } from '@ionic/angular';
 import { StorageService, User } from '../../storage.service';
 import { NavController } from '@ionic/angular';
+import { AuthenticationService } from '../../auth/authentication.service';
 
 @Component({
   selector: 'app-setting',
@@ -21,6 +22,7 @@ export class SettingPage implements OnInit {
     private platform: Platform,
     private sqlite: SQLite,
     private storageService: StorageService,
+    private authService: AuthenticationService,
     public navCtrl: NavController
   ) {
   }
@@ -35,7 +37,7 @@ export class SettingPage implements OnInit {
   logout() {
     this.storageService.resetLocalStorage();
     console.log("Logout Finish");
-    this.navCtrl.navigateForward(['/login']);    
+    this.authService.logout();   
     
   }
   //#endregion

@@ -5,6 +5,7 @@ import { PostDataService } from '../post-data.service';
 import { NavController, LoadingController } from '@ionic/angular';
 import { StorageService, User } from '../storage.service';
 import { Network } from '@ionic-native/network/ngx';
+import { AuthenticationService } from '../auth/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -38,6 +39,7 @@ export class LoginPage implements OnInit {
     private platform: Platform,
     private storageService: StorageService,
     private network: Network,
+    private authService: AuthenticationService,
     private DataService: AuthServiceService) {
       // this.checkNetwork();
     setTimeout(() => {
@@ -141,10 +143,7 @@ export class LoginPage implements OnInit {
   this.storageService.addUser(this.newUser).then(item => {
     this.newUser = <User>{};
   });
-    this.navCtrl.navigateForward(['/menu/overview']);    
-    
-  
-  
+    this.authService.login(this.username);   
  }
 
   //#endregion

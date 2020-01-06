@@ -21,7 +21,6 @@ import { CustomerpasswordPageModule } from '../app/page/joball/detailofdetaillis
 import { ChangsparepartPageModule } from '../app/page/joball/detailofdetaillistpm/changsparepart/changsparepart.module';
 import { TakePageModule } from '../app/page/take-spare-parts/take/take.module';
 import { TakeNewPageModule } from '../app/page/take-spare-parts/take-new/take-new.module';
-import { DetailPageModule } from '../app/page_stock/overview/detail/detail.module';
 import { CheckevaluationPageModule } from '../app/page/joball/detailofdetaillistpm/checkevaluation/checkevaluation.module';
 import { ChecklistPageModule } from '../app/page/joball/detailofdetaillistpm/checklist/checklist.module';
 import { ModalpopPageModule } from '../app/page/overview/modalpop/modalpop.module';
@@ -53,7 +52,6 @@ import { Network } from '@ionic-native/network/ngx';
     CheckevaluationPageModule,
     ModalpopPageModule,
     ChecklistPageModule,
-    DetailPageModule,
     ChangsparepartPageModule,
     ChecklistcmPageModule,
     ShowimginstallPageModule,

@@ -40,18 +40,6 @@ const routes: Routes = [
       {
         path: 'news',
         loadChildren: '../news/news.module#NewsPageModule'
-      },{
-        path: 'overview-stock',
-        loadChildren: '../../page_stock/overview/overview.module#OverviewPageModule'
-      },{
-        path: 'check-stock',
-        loadChildren: '../../page_stock/check-stock/check-stock.module#CheckStockPageModule'
-      },{
-        path: 'incoming-goods',
-        loadChildren: '../../page_stock/incoming-goods/incoming-goods.module#IncomingGoodsPageModule'
-      },{
-        path: 'tranfer',
-        loadChildren: '../../page_stock/tranfer/tranfer.module#TranferPageModule'
       },
       {
         path: 'setting',

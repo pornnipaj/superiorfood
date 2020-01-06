@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { PostDataService} from '../app/post-data.service';
+
 @Injectable({
   providedIn: 'root'
 })

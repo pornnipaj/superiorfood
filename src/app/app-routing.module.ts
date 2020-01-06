@@ -24,18 +24,12 @@ const routes: Routes = [
   { path: 'checklist', loadChildren: './page/joball/detailofdetaillistpm/checklist/checklist.module#ChecklistPageModule' },
   { path: 'checkevaluation', loadChildren: './page/joball/detailofdetaillistpm/checkevaluation/checkevaluation.module#CheckevaluationPageModule' },
   { path: 'checklistcm', loadChildren: './page/joball/detailofdetaillistpm/checklistcm/checklistcm.module#ChecklistcmPageModule' },
-  { path: 'menuhead', loadChildren: './page/menuhead/menuhead.module#MenuheadPageModule' },
   { path: 'modalpop', loadChildren: './page/overview/modalpop/modalpop.module#ModalpopPageModule' },
   { path: 'showimginstall', loadChildren: './page/job/showimginstall/showimginstall.module#ShowimginstallPageModule' },
   { path: 'customerevaluation', loadChildren: './page/joball/detailofdetaillistpm/customerevaluation/customerevaluation.module#CustomerevaluationPageModule' },
   { path: 'take', loadChildren: './page/take-spare-parts/take/take.module#TakePageModule' },
   { path: 'sparelist', loadChildren: './page/take-spare-parts/sparelist/sparelist.module#SparelistPageModule' },
   { path: 'take-new', loadChildren: './page/take-spare-parts/take-new/take-new.module#TakeNewPageModule' },
-  { path: 'overview', loadChildren: './page_stock/overview/overview.module#OverviewPageModule' },
-  { path: 'check-stock', loadChildren: './page_stock/check-stock/check-stock.module#CheckStockPageModule' },
-  { path: 'incoming-goods', loadChildren: './page_stock/incoming-goods/incoming-goods.module#IncomingGoodsPageModule' },
-  { path: 'tranfer', loadChildren: './page_stock/tranfer/tranfer.module#TranferPageModule' },
-  { path: 'detail', loadChildren: './page_stock/overview/detail/detail.module#DetailPageModule' },
   { path: 'changsparepart', loadChildren: './page/joball/detailofdetaillistpm/changsparepart/changsparepart.module#ChangsparepartPageModule' }
 
 
