@@ -101,7 +101,6 @@ export class LoginPage implements OnInit {
     this.user.type = "eservice"
     this.postDataService.login(this.user).then(data => {
       this.data = data;
-      console.log('Data Returner', this.data);
       for (let i = 0; i < this.data.length; i++) {
         this.status = this.data[i].Status;
         this.name = this.data[i].Name;
@@ -139,7 +138,9 @@ export class LoginPage implements OnInit {
     this.newUser.empID = this.empID;
     this.newUser.role = this.role;
     this.newUser.status = this.status;
-    this.authService.login(this.username);
+    console.log(this.newUser);
+    
+    this.authService.login(this.newUser);
   }
 
   //#endregion

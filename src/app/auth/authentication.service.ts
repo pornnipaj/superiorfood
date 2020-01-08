@@ -25,8 +25,7 @@ export class AuthenticationService {
    checkToken() {
     this.storage.get(TOKEN_KEY).then(res => {
       if (res) {
-        this.authenticationState.next(true);
-        this.saveuser(res);
+        this.authenticationState.next(true);        
       }
     })
   }
@@ -53,6 +52,7 @@ export class AuthenticationService {
     let name = JSON.stringify(id);
     return this.storage.set(TOKEN_KEY, name).then(() => {
       this.authenticationState.next(true);
+      this.saveuser(name);
     });
   }
  
