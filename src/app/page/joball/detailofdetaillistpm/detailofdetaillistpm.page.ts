@@ -1433,7 +1433,8 @@ export class DetailofdetaillistpmPage implements OnInit {
       componentProps: {
         planID: this.planID,
         installID: this.installID,
-        jobtype: this.jobtype
+        jobtype: this.jobtype,
+        empID: this.empID
       }
     });
 

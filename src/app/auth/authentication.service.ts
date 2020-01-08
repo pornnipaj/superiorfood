@@ -2,6 +2,7 @@ import { Platform } from '@ionic/angular';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { BehaviorSubject } from 'rxjs';
+import { StorageService, User } from '../storage.service';
 
 const TOKEN_KEY = 'auth-token';
 
@@ -9,10 +10,13 @@ const TOKEN_KEY = 'auth-token';
   providedIn: 'root'
 })
 export class AuthenticationService {
-
+  user;
+  newUser: User = <User>{};
   authenticationState = new BehaviorSubject(false);
 
-  constructor(private storage: Storage, private plt: Platform) {
+  constructor(private storage: Storage, 
+    private plt: Platform,
+    private storageService: StorageService) {
     this.plt.ready().then(() => {
       this.checkToken();
     });
@@ -22,8 +26,27 @@ export class AuthenticationService {
     this.storage.get(TOKEN_KEY).then(res => {
       if (res) {
         this.authenticationState.next(true);
+        this.saveuser(res);
       }
     })
+  }
+
+
+  saveuser(res){
+    this.storageService.resetLocalStorage();
+    this.user = JSON.parse(res);
+    this.newUser.id = 1;
+    this.newUser.name = this.user.name;
+    this.newUser.username = this.user.username;
+    this.newUser.position = this.user.position;
+    this.newUser.empID = this.user.empID;
+    this.newUser.role = this.user.role;
+    this.newUser.status = this.user.status;
+    console.log(this.newUser);
+
+    this.storageService.addUser(this.newUser).then(item => {
+      this.newUser = <User>{};
+    });
   }
 
   login(id) {

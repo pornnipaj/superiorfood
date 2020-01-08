@@ -13,6 +13,7 @@ export class ChangsparepartPage implements OnInit {
   installID;
   planID;
   data;
+  empID;
   SerialNo;
   jobtype;
 
@@ -24,6 +25,7 @@ export class ChangsparepartPage implements OnInit {
       this.planID = this.navParams.data.planID;
       this.installID = this.navParams.data.installID;
       this.jobtype = this.navParams.data.jobtype;
+      this.empID = this.navParams.data.empID;
 
       if (this.jobtype == "PM") {
         let params = {
@@ -36,11 +38,12 @@ export class ChangsparepartPage implements OnInit {
           this.data = data
           console.log(this.data);
         });
-      }else if (this.jobtype == "INSTALL") {
+      }
+      else if (this.jobtype == "INSTALL") {
         let params = {
-          installID: this.installID,
-          planID: this.planID,
-          typedevice: "pmspare"
+          installID: this.installID,          
+          typedevice: "AddNewEqm",
+          empID: this.empID
         }
         console.log(params);
         this.postDataService.postdevice(params).then(data => {
@@ -70,8 +73,21 @@ export class ChangsparepartPage implements OnInit {
 
   async submit(data){
     console.log(data);
-    
-    let params = {
+    if (this.jobtype == "INSTALL") {
+      let params = {
+        installID: this.installID,
+        planID: this.planID,
+        typedevice: "SaveNewEqm",
+        spare:data
+      }
+      console.log(params);
+      this.postDataService.postdevice(params).then(data => {
+        this.data = data
+        console.log(this.data);
+      });   
+          
+    } else if (this.jobtype == "PM"){
+      let params = {
       installID: this.installID,
       planID: this.planID,
       typedevice: "savespare",
@@ -82,6 +98,8 @@ export class ChangsparepartPage implements OnInit {
       this.data = data
       console.log(this.data);
     });
+    }
+    
     await this.modalController.dismiss(0);
   }
 }

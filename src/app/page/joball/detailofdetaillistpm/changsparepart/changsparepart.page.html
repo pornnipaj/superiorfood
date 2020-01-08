@@ -29,7 +29,6 @@
                     <thead>
                       <tr>
                         <th> ลำดับที่ </th>
-                        <th> ประเภทอุปกรณ์เสริม </th>
                         <th> ชื่ออุปกรณ์เสริม </th>
                         <th> Part No. </th>
                         <th> จำนวน </th>
@@ -37,13 +36,12 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let item of data">
+                      <tr *ngFor="let item of data; let i = index">
                         <td style="padding-top:15px;"> 
-                          12
+                          {{i+1}}
                            </td>
-                        <td style="padding-top:15px;">12{{item.SpareType}} </td>
-                        <td style="padding-top:15px;"> 12{{item.SpareName}} </td>
-                        <td style="padding-top:15px;"> 12 {{item.PartNo}}</td>
+                        <td style="padding-top:15px;"> {{item.AssetNo}} </td>
+                        <td style="padding-top:15px;">  {{item.SerialNo}}</td>
                         <td>  <input type="text" style="padding: 8px;" [(ngModel)]="item.No"/></td>   
                         <td style="padding-top:15px;">{{item.Balance}} {{item.Unit}}</td>                  
                       </tr>

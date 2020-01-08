@@ -41,7 +41,7 @@ export class LoginPage implements OnInit {
     private network: Network,
     private authService: AuthenticationService,
     private DataService: AuthServiceService) {
-      // this.checkNetwork();
+    // this.checkNetwork();
     setTimeout(() => {
       this.ngOnInit();
     }, 500);
@@ -115,36 +115,32 @@ export class LoginPage implements OnInit {
       if (this.status == false) {
         this.false();
       }
-      else if (this.status == true){
+      else if (this.status == true) {
         this.true();
       }
-    });    
+    });
   }
   //#endregion
 
   //#region check  
-  async false() {    
-      const alert = await this.alertController.create({
-        message: 'อีเมลล์ หรือ รหัสผ่านไม่ถูกต้อง',
-        buttons: ['OK']
-      });
-      await alert.present();
-      this.storageService.resetLocalStorage();
-    }
- true(){
-  this.newUser.id = 1;
-  this.newUser.name = this.name;
-  this.newUser.username = this.username;
-  this.newUser.position = this.position;
-  this.newUser.empID = this.empID;
-  this.newUser.role = this.role;      
-  this.newUser.status = this.status;
-
-  this.storageService.addUser(this.newUser).then(item => {
-    this.newUser = <User>{};
-  });
-    this.authService.login(this.username);   
- }
+  async false() {
+    const alert = await this.alertController.create({
+      message: 'อีเมลล์ หรือ รหัสผ่านไม่ถูกต้อง',
+      buttons: ['OK']
+    });
+    await alert.present();
+    this.storageService.resetLocalStorage();
+  }
+  true() {
+    this.newUser.id = 1;
+    this.newUser.name = this.name;
+    this.newUser.username = this.username;
+    this.newUser.position = this.position;
+    this.newUser.empID = this.empID;
+    this.newUser.role = this.role;
+    this.newUser.status = this.status;
+    this.authService.login(this.username);
+  }
 
   //#endregion
 
