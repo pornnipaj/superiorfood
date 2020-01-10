@@ -2,7 +2,7 @@
     <ion-toolbar color="primary">
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
-            <ion-title>สรุปผลการตรวจเช็ค</ion-title>
+            <ion-title>สรุปผลงาน{{typethai}}&nbsp;({{type}})</ion-title>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
@@ -23,7 +23,7 @@
                         </div>
                         <div>
                             <label class="col-9">โทรศัพท์&nbsp;:&nbsp;{{item.Phone}} </label>
-                            <label class="col-3">วันที่กำหนด&nbsp;:&nbsp;{{item.start_service_date}}</label>
+                            <label class="col-3">วันที่กำหนด&nbsp;:&nbsp;{{item.service_date_plan}}</label>
                         </div>
                         <div>
                             <label class="col-9">ที่อยู่ร้าน&nbsp;:&nbsp;{{item.Address}}</label>
@@ -47,15 +47,11 @@
                             *ngIf="item.SerialNoNew == item.SerialNo && type == 'CM' else device" #device>ชื่อสินค้า&nbsp;(ใหม่)&nbsp;:&nbsp;{{item.ItemsName}}</label>
                             <label class="col-3">เวลาที่ใช้&nbsp;:&nbsp;{{item.TimeSpent}}</label>
                         </div>
-                        <div>
-                            <label class="col-9">ประเภทงาน&nbsp;:&nbsp;{{typethai}}&nbsp;({{type}})</label>
-                            <label class="col-3"></label>
-                        </div>
                     </div>
                 </div>
             </div>
             <div class="row" *ngIf="isShowImage">
-                <div class="col-6">
+                <div class="col-6" style="padding-right: 0px;">
                     <div class="portlet blue box">
                         <div class="portlet-title">
                             <div class="caption">
@@ -73,7 +69,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-6" style="padding-left: 0px;">
                     <div class="portlet blue box">
                         <div class="portlet-title">
                             <div class="caption">
@@ -81,11 +77,11 @@
 
                         </div>
                         <div class="portlet-body">
-                            <img [src]="img.src9" />
-                            <img [src]="img.src10" />
-                            <img [src]="img.src11" />
-                            <img [src]="img.src12" />
-                            <img [src]="img.src13" />
+                            <img [src]="img.src9" *ngIf="isShowImage9"/>
+                            <img [src]="img.src10" *ngIf="isShowImage10"/>
+                            <img [src]="img.src11" *ngIf="isShowImage11"/>
+                            <img [src]="img.src12" *ngIf="isShowImage12"/>
+                            <img [src]="img.src13" *ngIf="isShowImage13"/>
                         </div>
                     </div>
                 </div>

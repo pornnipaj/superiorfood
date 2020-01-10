@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController, NavParams } from '@ionic/angular';
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { PostDataService } from '../../../../post-data.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-checklist',
@@ -23,7 +24,8 @@ export class ChecklistPage implements OnInit {
   constructor(public modalController: ModalController,
     private navParams: NavParams,
     private postDataService: PostDataService,
-    sanitizer: DomSanitizer, ) {
+    sanitizer: DomSanitizer,
+    public alertController: AlertController,) {
 
     this.empID = this.navParams.data.empID;
     this.planID = this.navParams.data.planID;
@@ -31,8 +33,8 @@ export class ChecklistPage implements OnInit {
     console.log(this.empID, this.planID, this.installID);
     this.tran = [];;
 
-    this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
-    // this.url = sanitizer.bypassSecurityTrustResourceUrl('http://localhost:41605/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
+    // this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
+    this.url = sanitizer.bypassSecurityTrustResourceUrl('http://localhost:41669/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
   }
   //#endregion
 
@@ -44,7 +46,32 @@ export class ChecklistPage implements OnInit {
   
   //#region close  
   close() {
-    this.modalController.dismiss(0);
+    let params = {
+      jobtype: "CheckList",
+      installID: this.installID,
+      planID: this.planID
+    }
+    console.log(params);
+    this.postDataService.SaveCaseAll(params).then(data => {
+      console.log(data);
+      if (data == "true") {
+        this.modalController.dismiss(0);
+      }else{
+        this.alertFail()
+        // this.modalController.dismiss(1);
+      }
+    });
+    
   }
   //#endregion
+
+  async alertFail() {
+    const alert = await this.alertController.create({
+      header: 'แจ้งเตือน',
+      message: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
 }

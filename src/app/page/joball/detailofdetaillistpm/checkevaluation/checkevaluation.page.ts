@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController, NavParams } from '@ionic/angular';
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
-import { PostDataService} from '../../../../post-data.service';
+import { PostDataService } from '../../../../post-data.service';
+import { AlertController } from '@ionic/angular';
+
 @Component({
   selector: 'app-checkevaluation',
   templateUrl: './checkevaluation.page.html',
@@ -25,11 +27,12 @@ export class CheckevaluationPage implements OnInit {
   constructor(public modalController: ModalController,
     private postDataService: PostDataService,
     private navParams: NavParams,
+    public alertController: AlertController,
     sanitizer: DomSanitizer, ) {
     this.empID = this.navParams.data.empID;
     this.planID = this.navParams.data.planID;
     this.installID = this.navParams.data.install,
-    console.log(this.empID, this.planID, this.installID);
+      console.log(this.empID, this.planID, this.installID);
     this.tran = [];;
     // this.getEva();
 
@@ -41,19 +44,19 @@ export class CheckevaluationPage implements OnInit {
 
   onChange(value) {
     console.log(value.detail.value);
-     
-  }
-
-  setQuantity(value){
-console.log(value);
 
   }
-  test(event){
+
+  setQuantity(value) {
+    console.log(value);
+
+  }
+  test(event) {
     console.log(event.detail);
     alert("test");
 
   }
-  
+
   // getvalue(data){
   //   var input1 = (<HTMLInputElement>document.getElementById("rdo11")).value;
 
@@ -80,25 +83,41 @@ console.log(value);
   //#region close
   close() {
     let params = {
-          type: "CheckEva",
-          installID:this.installID,
-          planID:this.planID
-        }
-        console.log(params);
-        this.postDataService.SaveCaseAll(params).then(data => {
-          console.log(this.data);
-        });  
-    this.modalController.dismiss(0);
+      jobtype: "CheckEva",
+      installID: this.installID,
+      planID: this.planID
+    }
+    console.log(params);
+    this.postDataService.SaveCaseAll(params).then(data => {
+      console.log(data);
+      if (data == "true") {
+        this.modalController.dismiss(0);
+      }else{
+        this.alertFail()
+        // this.modalController.dismiss(1);
+      }
+    });
+    
   }
   //#endregion
-// getEva(){
-//   let params = {
-//     type: "Evaluation"
-//   }
-//   console.log(params);
-//   this.postDataService.getEvaluation(params).then(data => {
-//     this.data = data
-//     console.log(this.data);
-//   });
-// }
+  // getEva(){
+  //   let params = {
+  //     type: "Evaluation"
+  //   }
+  //   console.log(params);
+  //   this.postDataService.getEvaluation(params).then(data => {
+  //     this.data = data
+  //     console.log(this.data);
+  //   });
+  // }
+
+  async alertFail() {
+    const alert = await this.alertController.create({
+      header: 'แจ้งเตือน',
+      message: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
 }

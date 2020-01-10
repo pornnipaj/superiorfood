@@ -212,6 +212,9 @@ export class JobdetailPage implements OnInit {
           this.booimg13 = true;
           console.log("13", this.img.src13);
         }
+        console.log(this.booimg12);
+        
+        console.log(this.booimg13)
       }
       this.isShowImage1 = this.booimg1;
       this.isShowImage2 = this.booimg2;
