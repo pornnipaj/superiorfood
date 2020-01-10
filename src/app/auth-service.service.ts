@@ -25,10 +25,10 @@ export class AuthServiceService {
       this.postDataService.apiServer_url + 'API/ProductAndManual.ashx'
     );
   }
-  getresolution(){
-    return this.http.get
-    (
-    this.postDataService.apiServer_url + 'API/Resolutio.asmx/Detail'
-    );
-  }
+  // getresolution(){
+  //   return this.http.get
+  //   (
+  //   this.postDataService.apiServer_url + 'API/Resolutio.asmx/Detail'
+  //   );
+  // }
 }

@@ -21,6 +21,7 @@ export class ProductPage implements OnInit {
   cat3
   ProductName;
   ProductCode;
+  head;
   //#endregion data
 
   //#region constructor
@@ -31,7 +32,7 @@ export class ProductPage implements OnInit {
         this.data[i].DetailProduct = JSON.parse(this.data[i].DetailProduct);             
         if (this.data[i].ProductID == 'd0506370-b111-45d5-8532-69ff00d833de') {          
           this.product = this.data[i].DetailProduct;
-          this.title = this.data[i].ProductName;
+          this.title = 'd0506370-b111-45d5-8532-69ff00d833de';
         console.log(this.title);
         }        
       }

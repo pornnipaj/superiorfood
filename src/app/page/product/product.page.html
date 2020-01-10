@@ -16,7 +16,7 @@
             <ul class="list-group list-group-flush">
               <ion-item>
                 <ion-label>กลุ่ม</ion-label>
-                <ion-select interface="popover" placeholder="Accessories" (ionChange)="onChange($event)">
+                <ion-select interface="popover" [(ngModel)]="title" (ionChange)="onChange($event)">
                   <ion-select-option *ngFor="let title of data" [value]="title.ProductID"
                     [selected]="title.ProductName">{{title.ProductName}}</ion-select-option>
                 </ion-select>

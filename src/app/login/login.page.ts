@@ -6,6 +6,7 @@ import { NavController, LoadingController } from '@ionic/angular';
 import { StorageService, User } from '../storage.service';
 import { Network } from '@ionic-native/network/ngx';
 import { AuthenticationService } from '../auth/authentication.service';
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-login',
@@ -28,6 +29,7 @@ export class LoginPage implements OnInit {
   items: User[] = [];
   newUser: User = <User>{};
   newtest;
+  url: SafeResourceUrl;
   //#endregion
 
   //#region constructor
@@ -40,13 +42,16 @@ export class LoginPage implements OnInit {
     private storageService: StorageService,
     private network: Network,
     private authService: AuthenticationService,
-    private DataService: AuthServiceService) {
+    private DataService: AuthServiceService,
+    sanitizer: DomSanitizer,) {
     // this.checkNetwork();
     setTimeout(() => {
       this.ngOnInit();
     }, 500);
 
     this.user = [];
+    this.url = sanitizer.bypassSecurityTrustResourceUrl('http://localhost:41669/Web/CK_Evaluation.aspx' + '?empID=b99f4959-d1e7-44ec-98e2-07a6d0247a6b' + '&serviceplanid=74179' + '&installplanid=f2682a00-469c-49d6-9fc6-a371c5c21781');
+
   }
   //#endregion
 
@@ -99,8 +104,12 @@ export class LoginPage implements OnInit {
     this.user.email = this.user.email;
     this.user.password = this.user.password;
     this.user.type = "eservice"
+    console.log(this.user);
+    
     this.postDataService.login(this.user).then(data => {
       this.data = data;
+      console.log(this.data);
+      
       for (let i = 0; i < this.data.length; i++) {
         this.status = this.data[i].Status;
         this.name = this.data[i].Name;
