@@ -50,7 +50,7 @@ export class LoginPage implements OnInit {
     }, 500);
 
     this.user = [];
-    this.url = sanitizer.bypassSecurityTrustResourceUrl('http://localhost:41669/Web/CK_Evaluation.aspx' + '?empID=b99f4959-d1e7-44ec-98e2-07a6d0247a6b' + '&serviceplanid=74179' + '&installplanid=f2682a00-469c-49d6-9fc6-a371c5c21781');
+    this.url = sanitizer.bypassSecurityTrustResourceUrl('http://superior2.wingplusweb.com/Web/CK_Evaluation.aspx' + '?empID=b99f4959-d1e7-44ec-98e2-07a6d0247a6b' + '&serviceplanid=74179' + '&installplanid=f2682a00-469c-49d6-9fc6-a371c5c21781');
 
   }
   //#endregion

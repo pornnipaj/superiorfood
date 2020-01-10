@@ -79,6 +79,15 @@ console.log(value);
 
   //#region close
   close() {
+    let params = {
+          type: "CheckEva",
+          installID:this.installID,
+          planID:this.planID
+        }
+        console.log(params);
+        this.postDataService.SaveCaseAll(params).then(data => {
+          console.log(this.data);
+        });  
     this.modalController.dismiss(0);
   }
   //#endregion
