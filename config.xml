@@ -14,7 +14,7 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <allow-navigation href="*" />
-    <allow-navigation href="http://superior2.wingplusweb.com/" />
+    <allow-navigation href="http://superior2.wingplusweb.com/*" />
     <allow-intent href="http://*/*" launch-external="yes" />
     <allow-intent href="https://*/*" launch-exterFnal="yes" />
     <preference name="orientation" value="landscape" />
