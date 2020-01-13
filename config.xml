@@ -5,6 +5,7 @@
     <author email="PM@WingPlusSolution.com" href="https://www.wingplussolution.com/">WingPlusSolution</author>
     <content src="index.html" />
     <access origin="*" />
+    <access origin = "http://*.superior2.wingplusweb.com" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="http://*/*" launch-external="yes"/>
