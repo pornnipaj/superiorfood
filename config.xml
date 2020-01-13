@@ -7,6 +7,8 @@
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+    <allow-intent href="http://*/*" launch-external="yes"/>
+    <allow-intent href="https://*/*" launch-external="yes"/>
     <allow-intent href="tel:*" />
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
@@ -14,7 +16,7 @@
     <allow-navigation href="*" />
     <allow-navigation href="http://superior2.wingplusweb.com/" />
     <allow-intent href="http://*/*" launch-external="yes" />
-    <allow-intent href="https://*/*" launch-external="yes" />
+    <allow-intent href="https://*/*" launch-exterFnal="yes" />
     <preference name="orientation" value="landscape" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
