@@ -546,12 +546,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.galleryOptions).then((imageData1) => {
                 let base64Image1 = 'data:image/jpeg;base64,' + imageData1;
                 this.photo1 = base64Image1;
-                watermark([this.photo1])
-                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                  .then(img => {
-                    this.photo1 = img.src;
-                  });
+                // watermark([this.photo1])
+                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                //   .then(img => {
+                //     this.photo1 = img.src;
+                //   });
                 if (this.photo1 == null || "") {
 
                 } else {
@@ -614,12 +614,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.cameraOptions).then((imageData1) => {
                 let base64Image1 = 'data:image/jpeg;base64,' + imageData1;
                 this.photo1 = base64Image1;
-                watermark([this.photo1])
-                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                  .then(img => {
-                    this.photo1 = img.src;
-                  });
+                // watermark([this.photo1])
+                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                //   .then(img => {
+                //     this.photo1 = img.src;
+                //   });
                 if (this.photo1 == null || "") {
 
                 } else {
@@ -689,12 +689,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.galleryOptions).then((imageData2) => {
                 let base64Image2 = 'data:image/jpeg;base64,' + imageData2;
                 this.photo2 = base64Image2;
-                watermark([this.photo2])
-                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                  .then(img => {
-                    this.photo2 = img.src;
-                  });
+                // watermark([this.photo2])
+                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                //   .then(img => {
+                //     this.photo2 = img.src;
+                //   });
                 if (this.photo2 == null || "") {
 
                 } else {
@@ -756,12 +756,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.cameraOptions).then((imageData2) => {
                 let base64Image2 = 'data:image/jpeg;base64,' + imageData2;
                 this.photo2 = base64Image2;
-                watermark([this.photo2])
-                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                  .then(img => {
-                    this.photo2 = img.src;
-                  });
+                // watermark([this.photo2])
+                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                //   .then(img => {
+                //     this.photo2 = img.src;
+                //   });
                 if (this.photo2 == null || "") {
 
                 } else {
@@ -831,12 +831,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.galleryOptions).then((imageData3) => {
                 let base64Image3 = 'data:image/jpeg;base64,' + imageData3;
                 this.photo3 = base64Image3;
-                watermark([this.photo3])
-                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                  .then(img => {
-                    this.photo3 = img.src;
-                  });
+                // watermark([this.photo3])
+                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                //   .then(img => {
+                //     this.photo3 = img.src;
+                //   });
                 if (this.photo3 == null || "") {
 
                 } else {
@@ -898,12 +898,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.cameraOptions).then((imageData3) => {
                 let base64Image3 = 'data:image/jpeg;base64,' + imageData3;
                 this.photo3 = base64Image3;
-                watermark([this.photo3])
-                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                  .then(img => {
-                    this.photo3 = img.src;
-                  });
+                // watermark([this.photo3])
+                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                //   .then(img => {
+                //     this.photo3 = img.src;
+                //   });
                 if (this.photo3 == null || "") {
 
                 } else {
@@ -973,12 +973,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.galleryOptions).then((imageData4) => {
                 let base64Image4 = 'data:image/jpeg;base64,' + imageData4;
                 this.photo4 = base64Image4;
-                watermark([this.photo4])
-                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                  .then(img => {
-                    this.photo4 = img.src;
-                  });
+                // watermark([this.photo4])
+                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                //   .then(img => {
+                //     this.photo4 = img.src;
+                //   });
                 if (this.photo4 == null || "") {
 
                 } else {
@@ -1040,12 +1040,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.cameraOptions).then((imageData4) => {
                 let base64Image4 = 'data:image/jpeg;base64,' + imageData4;
                 this.photo4 = base64Image4;
-                watermark([this.photo4])
-                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                  .then(img => {
-                    this.photo4 = img.src;
-                  });
+                // watermark([this.photo4])
+                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                //   .then(img => {
+                //     this.photo4 = img.src;
+                //   });
                 if (this.photo4 == null || "") {
 
                 } else {
