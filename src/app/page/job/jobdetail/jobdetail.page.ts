@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 import { StorageService } from '../../../storage.service';
 import { PostDataService } from '../../../post-data.service';
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+import { ChecklistPage } from '../../joball/detailofdetaillistpm/checklist/checklist.page';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-jobdetail',
@@ -83,6 +85,7 @@ export class JobdetailPage implements OnInit {
     private route: ActivatedRoute,
     sanitizer: DomSanitizer,
     private storageService: StorageService,
+    public modalController: ModalController,
     private postDataService: PostDataService) {
     this.jobdetail = [];
     this.img = [];
@@ -230,6 +233,24 @@ export class JobdetailPage implements OnInit {
       this.isShowImage12 = this.booimg12;
       this.isShowImage13 = this.booimg13;
     });
+  }
+  //#endregion
+
+  //#region 
+  async editChecklist(){
+    const modal = await this.modalController.create({
+      component: ChecklistPage,
+      cssClass: 'my-custom-modal-css-pm',
+      componentProps: {
+        empID: this.empID,
+        planID: this.planID,
+        install: this.insID,
+        type: "edit"
+      }
+    });
+    modal.onDidDismiss().then(data => {
+    })
+    return await modal.present();
   }
   //#endregion
 

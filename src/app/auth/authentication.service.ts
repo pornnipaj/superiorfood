@@ -19,17 +19,18 @@ export class AuthenticationService {
     private storageService: StorageService) {
     this.plt.ready().then(() => {
       this.checkToken();
-    });
-   }
+    });    
+  }
 
    checkToken() {
     this.storage.get(TOKEN_KEY).then(res => {
       if (res) {
-        this.authenticationState.next(true);        
+        this.authenticationState.next(true);   
+        console.log(res);
+                    
       }
     })
   }
-
 
   saveuser(res){
     this.storageService.resetLocalStorage();
@@ -41,6 +42,7 @@ export class AuthenticationService {
     this.newUser.empID = this.user.empID;
     this.newUser.role = this.user.role;
     this.newUser.status = this.user.status;
+    this.newUser.link = this.user.link;
     console.log(this.newUser);
 
     this.storageService.addUser(this.newUser).then(item => {

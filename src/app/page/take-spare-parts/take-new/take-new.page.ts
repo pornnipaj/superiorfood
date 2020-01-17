@@ -58,7 +58,7 @@ export class TakeNewPage implements OnInit {
   }
 
   PostSpare() {
-    if (this.ProID != null && this.AsID != null) {
+    if (this.ProID != null && this.AsID != null && this.No != null) {
       let params = {
         EmpID: this.EmpID,
         CusID: this.CusID,
@@ -82,6 +82,8 @@ export class TakeNewPage implements OnInit {
       this.alertMachine();
     }else if (this.AsID == null){
       this.alertDevice();
+    }else if (this.No == null || this.No == ""){
+      this.alertQty();
     }
     }
     
@@ -90,6 +92,7 @@ getProId(value) {
     console.log(this.ProID);
     let params = {
       ProID: this.ProID,
+      EmpID:this.EmpID,
       Type: "Device",
     }
     console.log(params);
@@ -121,6 +124,18 @@ getProId(value) {
       const alert = await this.alertController.create({
         header: 'แจ้งเตือน',
         message: 'กรุณาเลิอกอะไหล่',
+        buttons: ['OK']
+      });
+  
+      await alert.present();
+    }
+    //#endregion
+
+    //#region alertQty
+    async alertQty() {
+      const alert = await this.alertController.create({
+        header: 'แจ้งเตือน',
+        message: 'กรุณากรอกจำนวนที่ต้องการเบิก',
         buttons: ['OK']
       });
   

@@ -6,7 +6,7 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { PostDataService } from '../../../post-data.service';
 import { StorageService } from '../../../storage.service';
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
-
+import { AuthenticationService } from '../../../auth/authentication.service';
 @Component({
   selector: 'app-calendarpm',
   templateUrl: './calendarpm.page.html',
@@ -39,7 +39,9 @@ export class CalendarpmPage implements OnInit {
   //#region constructor
   constructor(private postDataService: PostDataService,
     private storageService: StorageService,
+    private auth:AuthenticationService,
     sanitizer: DomSanitizer) {
+      this.auth.checkToken();
     this.storageService.getUser().then(items => {
       this.items = items;
       // console.log(items);      
@@ -53,6 +55,7 @@ export class CalendarpmPage implements OnInit {
       this.month = month
       this.year = year
       this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/WebFormCalendar.aspx' + '?empid=' + this.myempID + '&year=' + this.year + '&month=' + this.month);
+      // this.url = sanitizer.bypassSecurityTrustResourceUrl('http://localhost:41669/Web/RP_CusTransToReport.aspx' + '?tranID=83203a1c-89d7-4090-a9cb-a351e4c90953');
     });
   }
 

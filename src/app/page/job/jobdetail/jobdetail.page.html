@@ -87,7 +87,9 @@
                 </div>
             </div>
         </div>
-
+    </div>
+    <div *ngIf="type == 'PM'; else checklist" #checklist class="text-center">
+        <ion-button *ngFor="let item of result" shape="round" (click)="editChecklist()">แก้ไขใบรายงานตรวจสอบ{{item.InstallPlanName}}</ion-button>
     </div>
     <div class="col-12 col-sm-12 col-md-12" style="width:100%;height:100%;padding: 0px;" *ngIf="ShowList">
         <iframe [src]="url" style="width:100%;height:100%">

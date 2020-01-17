@@ -18,6 +18,7 @@ export class ChecklistPage implements OnInit {
   installID;
   tran;
   url: SafeResourceUrl;
+  type;
   //#endregion data
 
   //#region constructor
@@ -30,11 +31,18 @@ export class ChecklistPage implements OnInit {
     this.empID = this.navParams.data.empID;
     this.planID = this.navParams.data.planID;
     this.installID = this.navParams.data.install
-    console.log(this.empID, this.planID, this.installID);
+    this.type = this.navParams.data.type;
+    console.log(this.empID, this.planID, this.installID, this.type);
     this.tran = [];;
-
-    this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
+if (this.type == "new") {
+  this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
     // this.url = sanitizer.bypassSecurityTrustResourceUrl('http://localhost:41669/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
+
+}else if(this.type == "edit"){
+  this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
+    // this.url = sanitizer.bypassSecurityTrustResourceUrl('http://localhost:41669/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
+
+}
   }
   //#endregion
 

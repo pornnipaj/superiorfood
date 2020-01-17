@@ -71,6 +71,7 @@ export class OverviewPage implements OnInit {
     private events: Events,
     private localNotifications: LocalNotifications,
     private storageService: StorageService) {
+
     setTimeout(() => {
       this.ngOnInit();
     }, 500);

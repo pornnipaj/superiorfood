@@ -29,7 +29,10 @@ export class LoginPage implements OnInit {
   items: User[] = [];
   newUser: User = <User>{};
   newtest;
+  type;
   url: SafeResourceUrl;
+  Tablet;
+  link;
   //#endregion
 
   //#region constructor
@@ -44,7 +47,7 @@ export class LoginPage implements OnInit {
     private authService: AuthenticationService,
     private DataService: AuthServiceService,
     sanitizer: DomSanitizer,) {
-    // this.checkNetwork();
+    this.checkNetwork();
     setTimeout(() => {
       this.ngOnInit();
     }, 500);
@@ -119,12 +122,17 @@ export class LoginPage implements OnInit {
         this.workfinish = this.data[i].WorkFinish;
         this.empID = this.data[i].empID;
         this.role = this.data[i].roleID;
+        this.Tablet = this.data[i].Tablet;
+        this.link = this.data[i].Link;
       }
       if (this.status == false) {
         this.false();
       }
-      else if (this.status == true) {
+      else if (this.Tablet == "On" && this.status == true) {
         this.true();
+      }
+      else  {
+        this.access();
       }
     });
   }
@@ -139,6 +147,15 @@ export class LoginPage implements OnInit {
     await alert.present();
     this.storageService.resetLocalStorage();
   }
+
+  async access() {
+    const alert = await this.alertController.create({
+      message: 'ระบบยังไม่เปิดใช้งาน',
+      buttons: ['OK']
+    });
+    await alert.present();
+    this.storageService.resetLocalStorage();
+  }
   true() {
     this.newUser.id = 1;
     this.newUser.name = this.name;
@@ -147,6 +164,7 @@ export class LoginPage implements OnInit {
     this.newUser.empID = this.empID;
     this.newUser.role = this.role;
     this.newUser.status = this.status;
+    this.newUser.link = this.link;
     console.log(this.newUser);
     
     this.authService.login(this.newUser);

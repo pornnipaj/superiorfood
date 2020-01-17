@@ -7,19 +7,8 @@
 </ion-toolbar>
 
 <ion-content>
-  <div class="container-fluid">
-    <div *ngIf="jobtype == 'PM' else pm" #pm>
-      <ion-item no-line *ngFor="let item of data">
-        <ion-label class="col-4">{{item.SpareName}}</ion-label>
-        <ion-input type="text" [(ngModel)]="item.SerialNo"></ion-input>
-        <ion-icon name="barcode" slot="end" (click)="scan()"></ion-icon>
-        <div class="text-center" style="margin-top: 10px;">
-          <ion-button shape="round" class="text-center" (click)="submit(data)">ยืนยัน</ion-button>
-        </div>
-      </ion-item>
-    </div>
-
-    <div *ngIf="jobtype == 'INSTALL' else install" #install>
+  <div class="container-fluid">  
+    <div *ngIf="jobtype == 'PM' else pm" #pm> 
         <div class="tab-content">
           <div class="tab-pane active">
             <div class="row">
@@ -33,6 +22,7 @@
                         <th> Part No. </th>
                         <th> จำนวน </th>
                         <th> ยอดคงเหลือ </th>
+                        <th> หน่วย </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -40,10 +30,11 @@
                         <td style="padding-top:15px;"> 
                           {{i+1}}
                            </td>
-                        <td style="padding-top:15px;"> {{item.AssetNo}} </td>
-                        <td style="padding-top:15px;">  {{item.SerialNo}}</td>
-                        <td>  <input type="text" style="padding: 8px;" [(ngModel)]="item.No"/></td>   
-                        <td style="padding-top:15px;">{{item.Balance}} {{item.Unit}}</td>                  
+                        <td style="padding-top:15px;"> {{item.Name}} </td>
+                        <td style="padding-top:15px;">  {{item.SKUCode}}</td>
+                        <td>  <input type="text" style="padding: 8px;" [(ngModel)]="item.No" /></td>   
+                        <td style="padding-top:15px;">{{item.Balance}}</td>    
+                        <td style="padding-top:15px;">{{item.Unit}}</td>                
                       </tr>
                     </tbody>
                   </table>
@@ -93,5 +84,44 @@
           <ion-button shape="round" class="text-center" (click)="submit(data)">บันทึก</ion-button>
         </div>
     </div>
+    <div *ngIf="jobtype == 'INSTALL' else install" #install> 
+      <div class="tab-content">
+        <div class="tab-pane active">
+          <div class="row">
+            <div class="col-12">
+              <div class="table-scrollable">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th> ลำดับที่ </th>
+                      <th> ชื่ออุปกรณ์เสริม </th>
+                      <th> Part No. </th>
+                      <th> จำนวน </th>
+                      <th> ยอดคงเหลือ </th>
+                      <th> หน่วย </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of data; let i = index">
+                      <td style="padding-top:15px;"> 
+                        {{i+1}}
+                         </td>
+                      <td style="padding-top:15px;"> {{item.Name}} </td>
+                      <td style="padding-top:15px;">  {{item.SKUCode}}</td>
+                      <td>  <input type="text" style="padding: 8px;" [(ngModel)]="item.No" /></td>   
+                      <td style="padding-top:15px;">{{item.Balance}}</td>   
+                      <td style="padding-top:15px;">{{item.Unit}}</td>                 
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center" style="margin-top: 10px;">
+        <ion-button shape="round" class="text-center" (click)="submit(data)">บันทึก</ion-button>
+      </div>
+  </div>
   </div>
 </ion-content>

@@ -21,6 +21,10 @@ export class ChecklistcmPage implements OnInit {
   ItemsName;
   ItemCode;
   SerialNo;
+  InstallPlanNameNew;
+  ItemsNameNew;
+  ItemCodeNew;
+  SerialNoNew;
   cat;
   public anArray: any = [];
   data;
@@ -40,10 +44,14 @@ export class ChecklistcmPage implements OnInit {
   assetnew;
   assetold;
   chkdata;
+  listreal = [];
   spareList = [];
   list;
   stock;
   No;
+  true;
+  AsList = [];
+  status;
   //#endregion
 
   //#region constructor
@@ -85,15 +93,79 @@ export class ChecklistcmPage implements OnInit {
   }
 
   chang(type) {
-    if (type == "sparepart") {
+    if (type == "sparepart") {      
+    // let sparetran = {
+    //   planID: this.planID,
+    //   installID: this.installID,
+    //   typedevice: "GetSpareTran",
+    //   empID: this.empID
+    // }
+    // this.postDataService.postdevice(sparetran).then(status => {
+    //   this.status = status
+    //   console.log(this.status);        
+    // });
       this.isShowType = false;
       this.isShowSpare = true;
       this.isShowDevice = false;
+      // if (this.status != false) {
+      //   for (let j = 0; j < this.status.length; j++) {
+      //     this.listreal.push(
+      //       {
+      //         SKUID: this.data[j].SKUID,
+      //         SKUCode: this.data[j].SKUCode,
+      //         Name: this.data[j].Name,
+      //         No: this.data[j].No,
+      //         Unit: this.data[j].Unit,
+      //         Balance: this.data[j].Balance,
+      //       });
+      //   }    
+      //   console.log(this.listreal);
+            
+      // }else{
+        let params = {
+          planID: this.planID,
+          installID: this.installID,
+          typedevice: "GetSpareCM",
+          empID: this.empID
+        }
+        this.postDataService.postdevice(params).then(data => {
+          this.data = data
+          for (let j = 0; j < this.data.length; j++) {
+            this.listreal.push(
+              {
+                SKUID: this.data[j].SKUID,
+                SKUCode: this.data[j].SKUCode,
+                Name: this.data[j].Name,
+                No: this.data[j].No,
+                Unit: this.data[j].Unit,
+                Balance: this.data[j].Balance,
+              });
+          }
+        });
+      // }      
     }
     if (type == "device") {
       this.isShowType = false;
       this.isShowDevice = true;
-      this.isShowSpare = false;
+      this.isShowSpare = false; 
+      let devicetran = {
+        planID: this.planID,
+        installID: this.installID,
+        typedevice: "GetDeviceTran",
+        empID: this.empID
+      }
+      this.postDataService.postdevice(devicetran).then(status => {
+        this.status = status
+        console.log(this.status);        
+      });     
+      let params = {
+        installID: this.installID,
+        typedevice: "GetDevice",
+        empID: this.empID
+      }
+      this.postDataService.postdevice(params).then(data => {
+        this.data = data
+      });
     }
     if (type == "non") {
       let param = {
@@ -160,73 +232,109 @@ export class ChecklistcmPage implements OnInit {
   //#region spare
 
   Add() {
-    if (this.sparepart == "" || this.sparepart == null) { 
-      this.alertSN();               
+    if (this.sparepart == "" || this.sparepart == null) {
+      this.alertPt();
     }
-    if (this.sparepart.length > 0) {
+    if (this.listreal.length > 0) {
 
+      // let params = {
+      //   installID: this.installID,
+      //   typedevice: "GetSpareCM",
+      //   empID: this.empID
+      // }
+      // this.postDataService.postdevice(params).then(data => {
+      //   this.data = data
+      //   this.chkdata = 0;
+      //   console.log(this.asset);
+      //   if (this.spareList.length == 0) {
+      //     for (let i = 0; i < this.asset.length; i++) {
+      //       const a = this.asset[i].SerialNo  
+      //       if (this.sparepart == a) {
+      //         this.productname = this.asset[i].type;
+      //         this.installcode = this.asset[i].AssetCode;
+      //         this.installname = this.asset[i].AssetNo;
+      //         this.installserial = this.asset[i].SerialNo;
+      //         this.asset = this.asset[i].AssetID;
+      //         let task = this.sparepart;
+      //         let no = 1;
+      //         this.spareList.push({PartNo:task,NO:no,assetID:this.asset});
+      //         this.sparepart = "";
+      //         this.chkdata = 1;
+      //         this.isShowSpareDetail = true;
+      //         break;     
+      //       }
+      //     } 
       let params = {
         installID: this.installID,
-        typedevice: "GetSpare",
-        empID: this.empID
+        typedevice: "GetSpareCMAll",
+        empID: this.empID,
+        // SKUCode: this
       }
-      this.postDataService.postdevice(params).then(asset => {
-        this.asset = asset
+      this.postDataService.postdevice(params).then(data => {
+        this.data = data
         this.chkdata = 0;
-        console.log(this.asset);
-        if (this.spareList.length == 0) {
-          for (let i = 0; i < this.asset.length; i++) {
-            const a = this.asset[i].SerialNo  
-            if (this.sparepart == a) {
-              this.productname = this.asset[i].type;
-              this.installcode = this.asset[i].AssetCode;
-              this.installname = this.asset[i].AssetNo;
-              this.installserial = this.asset[i].SerialNo;
-              this.asset = this.asset[i].AssetID;
-              let task = this.sparepart;
-              let no = 1;
-              this.spareList.push({PartNo:task,NO:no,assetID:this.asset});
-              this.sparepart = "";
-              this.chkdata = 1;
-              this.isShowSpareDetail = true;
-              break;     
-            }
-          } 
-        }
-        
-        for (let s = 0; s < this.spareList.length; s++) {
-          if (this.sparepart == this.spareList[s].PartNo) {
-            console.log(this.spareList[s].PartNo);            
-          }else{
-            
-            for (let i = 0; i < this.asset.length; i++) {
-              const a = this.asset[i].SerialNo  
-              if (this.sparepart == a) {
-                this.productname = this.asset[i].type;
-                this.installcode = this.asset[i].AssetCode;
-                this.installname = this.asset[i].AssetNo;
-                this.installserial = this.asset[i].SerialNo;
-                this.asset = this.asset[i].AssetID;
-                let task = this.sparepart;
-                let no = 1;
-                this.spareList.push({PartNo:task,NO:no,assetID:this.asset});
-                this.sparepart = "";
-                this.chkdata = 1;
-                this.isShowSpareDetail = true;
-                break;      
-            }
-          }
-          }
+        console.log(this.data);
+        console.log(this.listreal);
 
+        for (let i = 0; i < this.data.length; i++) {
+          const a = this.data[i].SKUCode
+          if (this.sparepart == a) {
+            for (let j = 0; j < this.listreal.length; j++) {
+              const b = this.listreal[j].SKUCode
+              if (this.sparepart != b) {
+                console.log(this.data[i].SKUCode);
+                this.listreal.push({
+                  SKUID: this.data[i].SKUID,
+                  SKUCode: this.data[i].SKUCode,
+                  Name: this.data[i].Name,
+                  No: this.data[i].No,
+                  Unit: this.data[i].Unit,
+                  Balance: this.data[i].Balance,
+                });
+                break;
+              } else {
+                this.alertNotPart();
+              }
+            }
+          }
         }
       });
     }
-
-    
   }
+
+  // for (let s = 0; s < this.spareList.length; s++) {
+  //   if (this.sparepart == this.spareList[s].PartNo) {
+  //     console.log(this.spareList[s].PartNo);            
+  //   }else{
+
+  //     for (let i = 0; i < this.asset.length; i++) {
+  //       const a = this.asset[i].SerialNo  
+  //       if (this.sparepart == a) {
+  //         this.productname = this.asset[i].type;
+  //         this.installcode = this.asset[i].AssetCode;
+  //         this.installname = this.asset[i].AssetNo;
+  //         this.installserial = this.asset[i].SerialNo;
+  //         this.asset = this.asset[i].AssetID;
+  //         let task = this.sparepart;
+  //         let no = 1;
+  //         this.spareList.push({PartNo:task,NO:no,assetID:this.asset});
+  //         this.sparepart = "";
+  //         this.chkdata = 1;
+  //         this.isShowSpareDetail = true;
+  //         break;      
+  //     }
+  //   }
+  //   }
+
+  // }
+
 
   remove(index) {
     this.spareList.splice(index, 1);
+  }
+
+  removelist(index) {
+    this.listreal.splice(index, 1);
   }
   //#endregion
 
@@ -245,16 +353,15 @@ export class ChecklistcmPage implements OnInit {
 
   //#endregion
   //#region Add Spare
-  AddCM(type) {
-    if (type == "Device") {      
+  AddCM(type, item) {
+    if (type == "Device") {
       let params = {
         planID: this.planID,
         installID: this.installID,
         idold: this.assetold,
         idnew: this.assetnew,
-        typedevice: "device",
+        typedevice: "SaveDeviceCM",
         empID: this.empID,
-        sparepart: this.sparepart
       }
       console.log(params);
       this.postDataService.postdevice(params).then(asset => {
@@ -267,34 +374,94 @@ export class ChecklistcmPage implements OnInit {
       console.log(param);
       this.modalController.dismiss(param);
     }
-    if (type == "Sparepart") {
+    else if (type == "Devices") {
       let params = {
         planID: this.planID,
         installID: this.installID,
-        idold: this.assetold,
-        idnew: this.assetnew,
-        sparepart: this.spareList,        
-        typedevice: "sparepart",
+        idold: item.assetid,
+        idnew: item.AssetID,
+        typedevice: "SaveDeviceCM",
         empID: this.empID,
       }
+      console.log(params);
       this.postDataService.postdevice(params).then(asset => {
         console.log(asset);
       });
 
+      let param = {
+        typedevice: "device"
+      }
+      console.log(param);
+      this.modalController.dismiss(param);
+    }
+    else if (type == "Sparepart" || type == "Spareparts") {
+      for (let s = 0; s < item.length; s++) {
+        this.true = 0;
+        if (item[s].No > item[s].Balance) {
+          this.alertQty();
+          this.true = 1;
+          break;
+        }
+      }
+      if (this.true == 0) {
+        this.check()
+      }
+    }
+  }
+  //#endregion
+
+  check() {
+    console.log();
+
+    for (let i = 0; i < this.listreal.length; i++) {
+      if (this.listreal[i].No <= this.listreal[i].Balance
+        && this.listreal[i].No != 0) {
+        this.AsList.push(
+          {
+            SKUID: this.listreal[i].SKUID,
+            SKUCode: this.listreal[i].SKUCode,
+            Name: this.listreal[i].Name,
+            Qty: this.listreal[i].No,
+            Unit: this.listreal[i].Unit
+          });
+        console.log(this.AsList);
+      }
+    }
+    if (this.AsList.length > 0) {
+      let params = {
+        planID: this.planID,
+        installID: this.installID,
+        spare: this.AsList,
+        typedevice: "SaveSpareCM",
+        empID: this.empID,
+      }
+      console.log(params);
+
+      this.postDataService.postdevice(params).then(asset => {
+        console.log(asset);
+      });
 
       let param = {
         typedevice: "sparepart"
       }
       console.log(params);
-      
       this.modalController.dismiss(param);
     }
   }
-  //#endregion
+
   //#region alert
   async alertSN() {
     const alert = await this.alertController.create({
       message: 'กรุณากรอก S/N',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+
+  async alertPt() {
+    const alert = await this.alertController.create({
+      message: 'กรุณากรอก Part No.',
       buttons: ['OK']
     });
 
@@ -326,4 +493,21 @@ export class ChecklistcmPage implements OnInit {
     await alert.present();
   }
   //#endregion
+
+  async alertQty() {
+    const alert = await this.alertController.create({
+      header: 'แจ้งเตือน',
+      message: 'กรุณากรอกจำนวนให้ถูกต้อง',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
+  async alertNotPart() {
+    const alert = await this.alertController.create({
+      message: 'ไม่พบ Patr No. นี้',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
 } 

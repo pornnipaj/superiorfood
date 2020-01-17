@@ -29,22 +29,67 @@
     <div class="col-8" style="padding-left: 0px;">
       <ion-card *ngIf="isShowType">
         <ion-card-content>
-        <ion-button expand="block" (click)="chang('sparepart')">เปลี่ยนอะไหล่</ion-button>
-        <ion-button expand="block" (click)="chang('device')">เปลี่ยนเครื่อง</ion-button>
-        <ion-button expand="block" (click)="chang('non')">ไม่เปลี่ยนเครื่อง/อะไหล่</ion-button>
-      </ion-card-content>
+          <ion-button expand="block" (click)="chang('sparepart')">เปลี่ยนอะไหล่</ion-button>
+          <ion-button expand="block" (click)="chang('device')">เปลี่ยนเครื่อง</ion-button>
+        </ion-card-content>
       </ion-card>
-      <ion-card *ngIf="isShowDevice">
+      <ion-card *ngIf="isShowDevice == false && status == false; device" #device>
         <ion-card-content>
           <ion-card-title>เปลี่ยนเครื่อง</ion-card-title>
           <ion-item>
             <ion-input type="text" placeholder="Serial No." [(ngModel)]="serial" name="serial"></ion-input>
             <ion-icon name="barcode" slot="end" (click)="scan()"></ion-icon>
-            <ion-icon name="search" slot="end"  (click)="search()">Search</ion-icon>            
+            <ion-icon name="search" slot="end" (click)="search()">Search</ion-icon>
           </ion-item>
+          <div class="tab-content" *ngIf="isShowDeviceDetail == false ;hide" #hide>
+            <div class="tab-pane active">
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-scrollable">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th> ชื่อเครื่อง </th>
+                          <th> Serial No. </th>
+                          <th> ประเภทเครื่อง </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of data; let i = index">
+                          <td style="padding-top:15px;"> {{item.AssetNo}} </td>
+                          <td style="padding-top:15px;"> {{item.SerialNo}}</td>
+                          <td style="padding-top:15px;">{{item.type}}</td>
+                          <td>
+                            <span class="label label-sm label-warning" (click)="AddCM('Devices',item)"> เลือก </span>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </ion-card-content>
       </ion-card>
-
+      <div *ngIf="isShowDevice == true && status != false; show">
+        <ion-card #show *ngFor="let item of status;">
+          <ion-card-content>
+            <ion-item>
+              <ion-label>เครื่องที่เปลี่ยน : {{item.InstallPlanName}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>รหัสสินค้า : {{item.ItemCode}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>ชื่อสินค้า : {{item.ItemsName}}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Serial No : {{item.SerialNo}}</ion-label>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </div>
       <ion-card *ngIf="isShowDeviceDetail">
         <ion-card-content>
           <ion-item>
@@ -69,8 +114,45 @@
           <ion-item>
             <ion-input type="text" placeholder="Part No." [(ngModel)]="sparepart" name="serial"></ion-input>
             <ion-icon name="barcode" (click)="scan()"></ion-icon>
-            <ion-icon name="add" (click)="Add('Sparepart')"></ion-icon>            
+            <ion-icon name="add" (click)="Add('Sparepart')"></ion-icon>
           </ion-item>
+          <div class="tab-content">
+            <div class="tab-pane active">
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-scrollable">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th> ลำดับที่ </th>
+                          <th> ชื่ออุปกรณ์เสริม </th>
+                          <th> Part No. </th>
+                          <th> จำนวน </th>
+                          <th> ยอดคงเหลือ </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of listreal; let i = index">
+                          <td style="padding-top:15px;">
+                            {{i+1}}
+                          </td>
+                          <td style="padding-top:15px;"> {{item.Name}} </td>
+                          <td style="padding-top:15px;"> {{item.SKUCode}}</td>
+                          <td> <input type="text" style="padding: 8px;" [(ngModel)]="item.No" /></td>
+                          <td style="padding-top:15px;">{{item.Balance}}</td>
+                          <td style="padding-top:15px;">{{item.Unit}}</td>
+                          <td style="padding-top:15px;"><span class="label label-sm label-danger" (click)="removelist(i)"> ลบ </span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="text-center">
+                    <span class="label label-sm label-info" (click)="AddCM('Spareparts',listreal)"> ยืนยัน </span>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </ion-card-content>
       </ion-card>
 
@@ -80,13 +162,13 @@
             <ion-label type="text" >{{att.value}}</ion-label>
             <ion-icon name="remove" slot="end" (click)="remove(att)"></ion-icon>
           </ion-item> -->
-              <ion-item *ngFor="let todo of spareList; let i = index">
-                {{todo.PartNo}}  
-                <ion-label slot="end">จำนวน</ion-label>
-                <ion-input slot="end" style="color: red;;" [(ngModel)]="todo.NO"></ion-input>              
+          <ion-item *ngFor="let todo of spareList; let i = index">
+            {{todo.PartNo}}
+            <ion-label slot="end">จำนวน</ion-label>
+            <ion-input slot="end" style="color: red;;" [(ngModel)]="todo.NO"></ion-input>
             <ion-icon name="remove" slot="end" (click)="remove(i)"></ion-icon>
-              </ion-item>
-              <ion-button expand="block" (click)="AddCM('Sparepart')">ยืนยัน</ion-button>
+          </ion-item>
+          <ion-button expand="block" (click)="AddCM('Sparepart')">ยืนยัน</ion-button>
         </ion-card-content>
       </ion-card>
     </div>

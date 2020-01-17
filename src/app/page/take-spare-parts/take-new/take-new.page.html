@@ -1,71 +1,70 @@
-<ion-header>
     <ion-toolbar>
       <ion-title>เบิกอะไหล่</ion-title>
-      <ion-icon slot="end" name="close" (click)="close()"></ion-icon>
+      <ion-buttons slot="primary">
+        <ion-icon slot="end" name="close" (click)="close()"></ion-icon>
+      </ion-buttons>
     </ion-toolbar>
-  </ion-header>
-  
-  <ion-content>
-      <div class="col-md-12 col-12" style="padding: 0;">        
-              <div class="tab-content">
-                <div class="tab-pane active">
-                  <div class="row">
-                    <div class="col-12">
-                      <ion-list>
-                        <ion-item>
-                          <div class="col-4">
-                            <ion-label color="primary">ประเภทเครื่อง</ion-label>
-                          </div>
-                            <div class="col-8">
-                              <ion-select  interface="popover" (ionChange)="getProId($event)">
-                              <ion-select-option *ngFor="let title of Machine" [value]="title.ProductID"
-                                [selected]="title.ProductName">{{title.ProductName}}</ion-select-option>
-                            </ion-select>
-                            </div>                          
-                        </ion-item>
-                            <ion-item>
-                                <div class="col-4">
-                                <ion-label color="primary">อุปกรณ์</ion-label>
-                                </div>
-                                <div class="col-8" >
-                                <ion-select interface="popover" (ionChange)="getAsID($event)" >
-                                  <ion-select-option *ngFor="let title of Device" [value]="title.AssID"                                
-                                    [selected]="title.AssetNo">{{title.AssetNo}}</ion-select-option>
-                                </ion-select>
-                              </div>
-                              </ion-item>
-                        <ion-item>
-                            <div class="col-4">
-                          <ion-label color="primary">จำนวน</ion-label>
-                            </div>
-                            <div class="col-8">
-                          <ion-input type="number" [(ngModel)]="No"></ion-input>
-                        </div>
-                        </ion-item>
-                        <ion-item>
-                            <div class="col-4">
-                          <ion-label color="primary">Unit</ion-label>
-                          </div>
-                          <div class="col-8">
-                          <ion-input type="text" [(ngModel)]="Unit"></ion-input>
-                        </div>
-                        </ion-item>                        
-                        <ion-item>
-                            <div class="col-4">
-                            <ion-label color="primary">หมายเหตุ</ion-label>
-                            </div>
-                            <div class="col-8">
-                            <ion-textarea [(ngModel)]="Remark"></ion-textarea>
-                          </div>
-                          </ion-item>
-                      </ion-list>
-                      <div class="col-12" style="text-align: center;">
-                          <ion-button slot="end" (click)="PostSpare()">บันทึกอะไหล่</ion-button> 
-                      </div> 
+
+    <ion-content>
+      <div class="col-md-12 col-12" style="padding: 0;">
+        <div class="tab-content">
+          <div class="tab-pane active">
+            <div class="row">
+              <div class="col-12">
+                <ion-list>
+                  <ion-item>
+                    <div class="col-4">
+                      <ion-label color="primary">ประเภทเครื่อง</ion-label>
                     </div>
-                  </div>
+                    <div class="col-8">
+                      <ion-select interface="popover" (ionChange)="getProId($event)">
+                        <ion-select-option *ngFor="let title of Machine" [value]="title.ProductID"
+                          [selected]="title.ProductName">{{title.ProductName}}</ion-select-option>
+                      </ion-select>
+                    </div>
+                  </ion-item>
+                  <ion-item>
+                    <div class="col-4">
+                      <ion-label color="primary">อุปกรณ์</ion-label>
+                    </div>
+                    <div class="col-8">
+                      <ion-select interface="popover" (ionChange)="getAsID($event)">
+                        <ion-select-option *ngFor="let title of Device" [value]="title.AssID"
+                          [selected]="title.AssetNo">{{title.AssetNo}}</ion-select-option>
+                      </ion-select>
+                    </div>
+                  </ion-item>
+                  <ion-item>
+                    <div class="col-4">
+                      <ion-label color="primary">จำนวน</ion-label>
+                    </div>
+                    <div class="col-8">
+                      <ion-input type="number" [(ngModel)]="No"></ion-input>
+                    </div>
+                  </ion-item>
+                  <ion-item>
+                    <div class="col-4">
+                      <ion-label color="primary">Unit</ion-label>
+                    </div>
+                    <div class="col-8">
+                      <ion-input type="text" [(ngModel)]="Unit"></ion-input>
+                    </div>
+                  </ion-item>
+                  <ion-item>
+                    <div class="col-4">
+                      <ion-label color="primary">หมายเหตุ</ion-label>
+                    </div>
+                    <div class="col-8">
+                      <ion-textarea [(ngModel)]="Remark"></ion-textarea>
+                    </div>
+                  </ion-item>
+                </ion-list>
+                <div class="col-12" style="text-align: center;">
+                  <ion-button slot="end" (click)="PostSpare()">บันทึกอะไหล่</ion-button>
                 </div>
               </div>
             </div>
-  </ion-content>
-  
+          </div>
+        </div>
+      </div>
+    </ion-content>

@@ -8,7 +8,8 @@ export interface User {
   position: string,
   empID: string,
   role: string,
-  status: string
+  status: string,
+  link: string
 }
 
 export interface Sig {
