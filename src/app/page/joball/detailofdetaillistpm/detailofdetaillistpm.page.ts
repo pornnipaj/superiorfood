@@ -1908,7 +1908,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.isenabledTakeback = true;
     }
     if (this.jobtype != "INSTALL") {
-      this.Take("11")
+      this.checktakeback();
       if (this.status1 == "1" && this.status2 == "1" && this.status3 == "1" && this.status4 == "1" && this.status5  == "1") {
         this.isenabledTakeback = true;
       }
@@ -1918,7 +1918,7 @@ export class DetailofdetaillistpmPage implements OnInit {
 
   //#region Check Take After  
   checklist() {
-    this.Take("11")
+    this.checklist();
     if (this.status6 == "1" && this.status7 == "1" && this.status8  == "1" && this.status9  == "1" && this.status10  == "1") 
     {
       if (this.jobtype == "INSTALL") {
