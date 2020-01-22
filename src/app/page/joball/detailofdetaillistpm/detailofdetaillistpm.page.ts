@@ -1907,7 +1907,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.isenabledTakeback = true;
     }
     if (this.jobtype != "INSTALL") {
-      if (this.status1 && this.status2 && this.status3 && this.status4 && this.status5 != "") {
+      if (this.status1 == "1" && this.status2 == "1" && this.status3 == "1" && this.status4 == "1" && this.status5  == "1") {
         this.isenabledTakeback = true;
       }
     }
@@ -1916,7 +1916,8 @@ export class DetailofdetaillistpmPage implements OnInit {
 
   //#region Check Take After  
   checklist() {
-    if (this.status6 && this.status7 && this.status8 && this.status9 && this.status10 != "") {
+    if (this.status6 == "1" && this.status7  == "1" && this.status8  == "1" && this.status9  == "1" && this.status10  == "1") 
+    {
       if (this.jobtype == "INSTALL") {
         this.isenabledadddevice = true;
       }
@@ -1928,9 +1929,11 @@ export class DetailofdetaillistpmPage implements OnInit {
         this.isenabledcuseva = true;
       }
       else if (this.jobtype == "PM") {
-        if (this.sparetype != "") {
+        //console.log('sparetype', Array.isArray(this.sparetype));
+        if (this.sparetype != "undefined" && Array.isArray(this.sparetype) && this.sparetype.length != null && this.sparetype.length > 0) {
           this.isenabledspare = true;
         }
+
         this.isenabledcheck = true;
       }
     }
@@ -2035,8 +2038,11 @@ export class DetailofdetaillistpmPage implements OnInit {
         console.log(params);
         this.postDataService.SaveCaseAll(params).then(photoID => {
           console.log(photoID);
+          this.sign = this.postDataService.apiServer_url + photoID
           this.photoID = photoID
           this.idsig = this.photoID.id
+          console.log('url',this.sign);
+          
         });
         this.showSig = true;
         this.isenabledcuspass = true;
