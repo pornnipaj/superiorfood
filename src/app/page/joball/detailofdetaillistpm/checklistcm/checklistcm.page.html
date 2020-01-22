@@ -33,7 +33,7 @@
           <ion-button expand="block" (click)="chang('device')">เปลี่ยนเครื่อง</ion-button>
         </ion-card-content>
       </ion-card>
-      <ion-card *ngIf="isShowDevice == false && status == false; device" #device>
+      <ion-card *ngIf="isShowDevice == true && status == false; device" #device>
         <ion-card-content>
           <ion-card-title>เปลี่ยนเครื่อง</ion-card-title>
           <ion-item>

@@ -8,8 +8,8 @@ import { Http, Headers } from "@angular/http";
 export class PostDataService {
   data;
   apiLocal_url = 'http://localhost:41669';
-  // apiServer_url = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/';
-apiServer_url = 'http://superior2.wingplusweb.com/';
+  //apiServer_url = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/';
+ apiServer_url = 'http://superior2.wingplusweb.com/';
 //  apiServer_url = 'http://superiortest.wingplusweb.com/';
   // apiServer_url = 'https://cors-anywhere.herokuapp.com/http://superiortest.wingplusweb.com/';
 
