@@ -1909,6 +1909,12 @@ export class DetailofdetaillistpmPage implements OnInit {
     if (this.jobtype != "INSTALL") {
       if (this.status1 == "1" && this.status2 == "1" && this.status3 == "1" && this.status4 == "1" && this.status5  == "1") {
         this.isenabledTakeback = true;
+      }else{
+        alert('this.status1: ' + this.status1);
+        alert('this.status2: ' + this.status2);
+        alert('this.status3: ' + this.status3);
+        alert('this.status4: ' + this.status4);
+        alert('this.status5: ' + this.status5);
       }
     }
   }
@@ -1916,7 +1922,7 @@ export class DetailofdetaillistpmPage implements OnInit {
 
   //#region Check Take After  
   checklist() {
-    if (this.status6 == "1" && this.status7  == "1" && this.status8  == "1" && this.status9  == "1" && this.status10  == "1") 
+    if (this.status6 == "1" && this.status7 == "1" && this.status8  == "1" && this.status9  == "1" && this.status10  == "1") 
     {
       if (this.jobtype == "INSTALL") {
         this.isenabledadddevice = true;
