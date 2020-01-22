@@ -566,11 +566,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photo1 = this.postDataService.apiServer_url + photoID
-                    this.checktakeback();
+                    this.photo1 = this.postDataService.apiServer_url + photoID                    
                     this.isTake1 = false;
                     this.isShow1 = true;    
-                    this.status1 = "1"                
+                    this.status1 = "1" 
+                    this.checktakeback();               
                   });
                 }
               }, (err) => {
@@ -631,11 +631,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photo1 = this.postDataService.apiServer_url + photoID
-                    this.checktakeback();
+                    this.photo1 = this.postDataService.apiServer_url + photoID                   
                     this.isTake1 = false;
                     this.isShow1 = true;     
-                    this.status1 = "1"               
+                    this.status1 = "1"    
+                    this.checktakeback();           
                   });
                 }
               }, (err) => {
@@ -702,11 +702,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photo2 = this.postDataService.apiServer_url + photoID
-                    this.checktakeback();
+                    this.photo2 = this.postDataService.apiServer_url + photoID                    
                     this.isTake2 = false;
                     this.isShow2 = true;    
                     this.status2 = "1"
+                    this.checktakeback();
                   });
                 }
               }, (err) => {
@@ -766,11 +766,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                     this.postDataService.SaveCaseAll(params).then(photoID => {
-                      this.photo2 = this.postDataService.apiServer_url + photoID
-                      this.checktakeback();
+                      this.photo2 = this.postDataService.apiServer_url + photoID                      
                       this.isTake2 = false;
                       this.isShow2 = true; 
                       this.status2 = "1"   
+                      this.checktakeback();
                   });
                 }
               }, (err) => {
@@ -838,11 +838,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photo3 = this.postDataService.apiServer_url + photoID
-                    this.checktakeback();
+                    this.photo3 = this.postDataService.apiServer_url + photoID                    
                     this.isTake3 = false;
                     this.isShow3 = true; 
-                    this.status3 = "1"   
+                    this.status3 = "1" 
+                    this.checktakeback();  
                   });
                 }
               }, (err) => {
@@ -902,11 +902,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photo3 = this.postDataService.apiServer_url + photoID
-                    this.checktakeback();
+                    this.photo3 = this.postDataService.apiServer_url + photoID                    
                     this.isTake3 = false;
                     this.isShow3 = true;  
                     this.status3 = "1"  
+                    this.checktakeback();
                   });
                 }
               }, (err) => {
@@ -974,11 +974,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photo4 = this.postDataService.apiServer_url + photoID
-                    this.checktakeback();
+                    this.photo4 = this.postDataService.apiServer_url + photoID                    
                     this.isTake4 = false;
                     this.isShow4 = true;
                     this.status4 = "1"    
+                    this.checktakeback();
                   });
                 }
               }, (err) => {
@@ -1038,11 +1038,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photo4 = this.postDataService.apiServer_url + photoID
-                    this.checktakeback();
+                    this.photo4 = this.postDataService.apiServer_url + photoID                    
                     this.isTake4 = false;
                     this.isShow4 = true;    
                     this.status4 = "1"
+                    this.checktakeback();
                   });
                 }
               }, (err) => {
@@ -1110,11 +1110,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photo5 = this.postDataService.apiServer_url + photoID
-                    this.checktakeback();
+                    this.photo5 = this.postDataService.apiServer_url + photoID                    
                     this.isTake5 = false;
                     this.isShow5 = true;  
                     this.status5 = "1"  
+                    this.checktakeback();
                   });
                 }
               }, (err) => {
@@ -1174,11 +1174,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photo5 = this.postDataService.apiServer_url + photoID
-                    this.checktakeback();
+                    this.photo5 = this.postDataService.apiServer_url + photoID                    
                     this.isTake5 = false;
                     this.isShow5 = true; 
-                    this.status5 = "1"   
+                    this.status5 = "1"
+                    this.checktakeback();   
                   });
                 }
               }, (err) => {
@@ -1246,11 +1246,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photo6 = this.postDataService.apiServer_url + photoID
-                    this.checklist();
+                    this.photo6 = this.postDataService.apiServer_url + photoID                    
                     this.isTake6 = false;
                     this.isShow6 = true; 
-                    this.status6 = "1"   
+                    this.status6 = "1"
+                    this.checklist();   
                   });
                 }
               }, (err) => {
@@ -1310,11 +1310,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photo6 = this.postDataService.apiServer_url + photoID
-                    this.checklist();
+                    this.photo6 = this.postDataService.apiServer_url + photoID                    
                     this.isTake6 = false;
                     this.isShow6 = true; 
                     this.status6 = "1"   
+                    this.checklist();
                   });
                 }
               }, (err) => {
@@ -1382,11 +1382,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photo7 = this.postDataService.apiServer_url + photoID
-                    this.checklist();
+                    this.photo7 = this.postDataService.apiServer_url + photoID                    
                     this.isTake7 = false;
                     this.isShow7 = true; 
-                    this.status7 = "1"   
+                    this.status7 = "1" 
+                    this.checklist();  
                   });
                 }
               }, (err) => {
@@ -1446,11 +1446,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photo7 = this.postDataService.apiServer_url + photoID
-                    this.checklist();
+                    this.photo7 = this.postDataService.apiServer_url + photoID                    
                     this.isTake7 = false;
                     this.isShow7 = true;
                     this.status7 = "1"    
+                    this.checklist();
                   });
                 }
               }, (err) => {
@@ -1518,11 +1518,12 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photo8 = this.postDataService.apiServer_url + photoID
-                    this.checklist();
+                    this.photo8 = this.postDataService.apiServer_url + photoID                   
                     this.isTake8 = false;
-                    this.isShow8 = true;   
+                    this.isShow8 = true;  
                     this.status8 = "1" 
+                    this.checklist(); 
+                    
                   });
                 }
               }, (err) => {
@@ -1582,11 +1583,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photo8 = this.postDataService.apiServer_url + photoID
-                    this.checklist();
+                    this.photo8 = this.postDataService.apiServer_url + photoID                    
                     this.isTake8 = false;
                     this.isShow8 = true;
                     this.status8 = "1"    
+                    this.checklist();
                   });
                 }
               }, (err) => {
@@ -1654,11 +1655,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photo9 = this.postDataService.apiServer_url + photoID
-                    this.checklist();
+                    this.photo9 = this.postDataService.apiServer_url + photoID                    
                     this.isTake9 = false;
                     this.isShow9 = true; 
                     this.status9 = "1"   
+                    this.checklist();
                   });
                 }
               }, (err) => {
@@ -1719,10 +1720,10 @@ export class DetailofdetaillistpmPage implements OnInit {
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
                     this.photo9 = this.postDataService.apiServer_url + photoID
-                    this.checklist();
                     this.isTake9 = false;
                     this.isShow9 = true;  
                     this.status9 = "1"  
+                    this.checklist();
                   });
                 }
               }, (err) => {
@@ -1790,11 +1791,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photo10 = this.postDataService.apiServer_url + photoID
-                    this.checklist();
-                    this.status10 = "1"
+                    this.photo10 = this.postDataService.apiServer_url + photoID                                      
                     this.isTake10 = false;
-                    this.isShow10 = true;    
+                    this.isShow10 = true;  
+                    this.status10 = "1"  
+                    this.checklist();  
                   });
                 }
               }, (err) => {
@@ -1854,11 +1855,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photo10 = this.postDataService.apiServer_url + photoID
-                    this.checklist();
+                    this.photo10 = this.postDataService.apiServer_url + photoID                    
                     this.isTake10 = false;
                     this.isShow10 = true;  
                     this.status10 = "1"  
+                    this.checklist();
                   });
                 }
               }, (err) => {
@@ -1908,7 +1909,6 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.isenabledTakeback = true;
     }
     if (this.jobtype != "INSTALL") {
-      this.checktakeback();
       if (this.status1 == "1" && this.status2 == "1" && this.status3 == "1" && this.status4 == "1" && this.status5  == "1") {
         this.isenabledTakeback = true;
       }
@@ -1918,7 +1918,6 @@ export class DetailofdetaillistpmPage implements OnInit {
 
   //#region Check Take After  
   checklist() {
-    this.checklist();
     if (this.status6 == "1" && this.status7 == "1" && this.status8  == "1" && this.status9  == "1" && this.status10  == "1") 
     {
       if (this.jobtype == "INSTALL") {
