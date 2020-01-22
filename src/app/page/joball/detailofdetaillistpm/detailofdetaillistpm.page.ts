@@ -142,14 +142,14 @@ export class DetailofdetaillistpmPage implements OnInit {
   interval;
   cameraOptions: CameraOptions = {
     quality: 100,
-    destinationType: this.camera.DestinationType.FILE_URI,
+    destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE,
   }
   galleryOptions: CameraOptions = {
     quality: 100,
     sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-    destinationType: this.camera.DestinationType.FILE_URI,
+    destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE
   }
@@ -510,6 +510,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         console.log(params);
         this.postDataService.SaveCaseAll(params).then(photoID => {
           console.log(photoID);
+          this.request = this.postDataService.apiServer_url + photoID
           this.isShowrequest = true;
         });
 
@@ -542,16 +543,15 @@ export class DetailofdetaillistpmPage implements OnInit {
           {
             text: 'เลือกจากคลังรูปภาพ',
             handler: () => {
-              
               this.camera.getPicture(this.galleryOptions).then((imageData1) => {
                 let base64Image1 = 'data:image/jpeg;base64,' + imageData1;
                 this.photo1 = base64Image1;
-                // watermark([this.photo1])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo1 = img.src;
-                //   });
+                watermark([this.photo1])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo1 = img.src;
+                  });
                 if (this.photo1 == null || "") {
 
                 } else {
@@ -566,14 +566,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id1 = this.photoID.id
-                    console.log(this.photo1);
-                    this.status1 = "1"
+                    this.photo1 = this.postDataService.apiServer_url + photoID
                     this.checktakeback();
                     this.isTake1 = false;
-                    this.isShow1 = true;
-                    this.startTimer();
+                    this.isShow1 = true;    
+                    this.status1 = "1"                
                   });
                 }
               }, (err) => {
@@ -614,12 +611,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.cameraOptions).then((imageData1) => {
                 let base64Image1 = 'data:image/jpeg;base64,' + imageData1;
                 this.photo1 = base64Image1;
-                // watermark([this.photo1])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo1 = img.src;
-                //   });
+                watermark([this.photo1])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo1 = img.src;
+                  });
                 if (this.photo1 == null || "") {
 
                 } else {
@@ -634,14 +631,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id1 = this.photoID.id
-                    console.log(this.photo1);
-                    this.status1 = "1"
+                    this.photo1 = this.postDataService.apiServer_url + photoID
                     this.checktakeback();
                     this.isTake1 = false;
-                    this.isShow1 = true;
-                    this.startTimer();
+                    this.isShow1 = true;     
+                    this.status1 = "1"               
                   });
                 }
               }, (err) => {
@@ -664,14 +658,13 @@ export class DetailofdetaillistpmPage implements OnInit {
                 //   }
                 //   console.log(params);
                 //   this.postDataService.SaveCaseAll(params).then(photoID => {
-                //     this.photoID = photoID
-                //     this.id1 = this.photoID.id
-                //     console.log(this.photo1);
+                //     console.log(photoID);
+                //     this.photo1 = this.postDataService.apiServer_url + photoID
+                //     console.log(this.photo1);                    
                 //     this.status1 = "1"
-                //     this.checktakeback();
                 //     this.isTake1 = false;
-                //     this.isShow1 = true;
-                //     this.startTimer();
+                //     this.isShow1 = true;  
+                //     this.checktakeback();
                 //   });
               });
             }
@@ -689,12 +682,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.galleryOptions).then((imageData2) => {
                 let base64Image2 = 'data:image/jpeg;base64,' + imageData2;
                 this.photo2 = base64Image2;
-                // watermark([this.photo2])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo2 = img.src;
-                //   });
+                watermark([this.photo2])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo2 = img.src;
+                  });
                 if (this.photo2 == null || "") {
 
                 } else {
@@ -709,14 +702,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id2 = this.photoID.id
-                    console.log(this.photo2);
-                    this.status2 = "2"
+                    this.photo2 = this.postDataService.apiServer_url + photoID
                     this.checktakeback();
                     this.isTake2 = false;
-                    this.isShow2 = true;
-                    this.startTimer();
+                    this.isShow2 = true;    
+                    this.status2 = "1"
                   });
                 }
               }, (err) => {
@@ -756,12 +746,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.cameraOptions).then((imageData2) => {
                 let base64Image2 = 'data:image/jpeg;base64,' + imageData2;
                 this.photo2 = base64Image2;
-                // watermark([this.photo2])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo2 = img.src;
-                //   });
+                watermark([this.photo2])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo2 = img.src;
+                  });
                 if (this.photo2 == null || "") {
 
                 } else {
@@ -775,15 +765,12 @@ export class DetailofdetaillistpmPage implements OnInit {
                     jobtype: this.jobtype
                   }
                   console.log(params);
-                  this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id2 = this.photoID.id
-                    console.log(this.photo2);
-                    this.status2 = "2"
-                    this.checktakeback();
-                    this.isTake2 = false;
-                    this.isShow2 = true;
-                    this.startTimer();
+                    this.postDataService.SaveCaseAll(params).then(photoID => {
+                      this.photo2 = this.postDataService.apiServer_url + photoID
+                      this.checktakeback();
+                      this.isTake2 = false;
+                      this.isShow2 = true; 
+                      this.status2 = "1"   
                   });
                 }
               }, (err) => {
@@ -831,12 +818,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.galleryOptions).then((imageData3) => {
                 let base64Image3 = 'data:image/jpeg;base64,' + imageData3;
                 this.photo3 = base64Image3;
-                // watermark([this.photo3])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo3 = img.src;
-                //   });
+                watermark([this.photo3])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo3 = img.src;
+                  });
                 if (this.photo3 == null || "") {
 
                 } else {
@@ -851,14 +838,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id3 = this.photoID.id
-                    console.log(this.photo3);
-                    this.status3 = "3"
+                    this.photo3 = this.postDataService.apiServer_url + photoID
                     this.checktakeback();
                     this.isTake3 = false;
-                    this.isShow3 = true;
-                    this.startTimer();
+                    this.isShow3 = true; 
+                    this.status3 = "1"   
                   });
                 }
               }, (err) => {
@@ -898,12 +882,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.cameraOptions).then((imageData3) => {
                 let base64Image3 = 'data:image/jpeg;base64,' + imageData3;
                 this.photo3 = base64Image3;
-                // watermark([this.photo3])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo3 = img.src;
-                //   });
+                watermark([this.photo3])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo3 = img.src;
+                  });
                 if (this.photo3 == null || "") {
 
                 } else {
@@ -918,14 +902,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id3 = this.photoID.id
-                    console.log(this.photo3);
-                    this.status3 = "3"
+                    this.photo3 = this.postDataService.apiServer_url + photoID
                     this.checktakeback();
                     this.isTake3 = false;
-                    this.isShow3 = true;
-                    this.startTimer();
+                    this.isShow3 = true;  
+                    this.status3 = "1"  
                   });
                 }
               }, (err) => {
@@ -973,12 +954,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.galleryOptions).then((imageData4) => {
                 let base64Image4 = 'data:image/jpeg;base64,' + imageData4;
                 this.photo4 = base64Image4;
-                // watermark([this.photo4])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo4 = img.src;
-                //   });
+                watermark([this.photo4])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo4 = img.src;
+                  });
                 if (this.photo4 == null || "") {
 
                 } else {
@@ -993,14 +974,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id4 = this.photoID.id
-                    console.log(this.photo4);
-                    this.status4 = "4"
+                    this.photo4 = this.postDataService.apiServer_url + photoID
                     this.checktakeback();
                     this.isTake4 = false;
                     this.isShow4 = true;
-                    this.startTimer();
+                    this.status4 = "1"    
                   });
                 }
               }, (err) => {
@@ -1040,12 +1018,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.cameraOptions).then((imageData4) => {
                 let base64Image4 = 'data:image/jpeg;base64,' + imageData4;
                 this.photo4 = base64Image4;
-                // watermark([this.photo4])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo4 = img.src;
-                //   });
+                watermark([this.photo4])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo4 = img.src;
+                  });
                 if (this.photo4 == null || "") {
 
                 } else {
@@ -1060,14 +1038,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id4 = this.photoID.id
-                    console.log(this.photo4);
-                    this.status4 = "4"
+                    this.photo4 = this.postDataService.apiServer_url + photoID
                     this.checktakeback();
                     this.isTake4 = false;
-                    this.isShow4 = true;
-                    this.startTimer();
+                    this.isShow4 = true;    
+                    this.status4 = "1"
                   });
                 }
               }, (err) => {
@@ -1115,12 +1090,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.galleryOptions).then((imageData5) => {
                 let base64Image5 = 'data:image/jpeg;base64,' + imageData5;
                 this.photo5 = base64Image5;
-                // watermark([this.photo5])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo5 = img.src;
-                //   });
+                watermark([this.photo5])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo5 = img.src;
+                  });
                 if (this.photo5 == null || "") {
 
                 } else {
@@ -1135,14 +1110,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id5 = this.photoID.id
-                    console.log(this.photo5);
-                    this.status5 = "5"
+                    this.photo5 = this.postDataService.apiServer_url + photoID
                     this.checktakeback();
                     this.isTake5 = false;
-                    this.isShow5 = true;
-                    this.startTimer();
+                    this.isShow5 = true;  
+                    this.status5 = "1"  
                   });
                 }
               }, (err) => {
@@ -1182,12 +1154,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.cameraOptions).then((imageData5) => {
                 let base64Image5 = 'data:image/jpeg;base64,' + imageData5;
                 this.photo5 = base64Image5;
-                // watermark([this.photo5])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo5 = img.src;
-                //   });
+                watermark([this.photo5])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo5 = img.src;
+                  });
                 if (this.photo5 == null || "") {
 
                 } else {
@@ -1202,14 +1174,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id5 = this.photoID.id
-                    console.log(this.photo5);
-                    this.status5 = "5"
+                    this.photo5 = this.postDataService.apiServer_url + photoID
                     this.checktakeback();
                     this.isTake5 = false;
-                    this.isShow5 = true;
-                    this.startTimer();
+                    this.isShow5 = true; 
+                    this.status5 = "1"   
                   });
                 }
               }, (err) => {
@@ -1257,12 +1226,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.galleryOptions).then((imageData6) => {
                 let base64Image6 = 'data:image/jpeg;base64,' + imageData6;
                 this.photo6 = base64Image6;
-                // watermark([this.photo6])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo6 = img.src;
-                //   });
+                watermark([this.photo6])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo6 = img.src;
+                  });
                 if (this.photo6 == null || "") {
 
                 } else {
@@ -1277,14 +1246,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id6 = this.photoID.id
-                    console.log(this.photo6);
-                    this.status6 = "6"
-                    this.checktakeback();
+                    this.photo6 = this.postDataService.apiServer_url + photoID
+                    this.checklist();
                     this.isTake6 = false;
-                    this.isShow6 = true;
-                    this.startTimer();
+                    this.isShow6 = true; 
+                    this.status6 = "1"   
                   });
                 }
               }, (err) => {
@@ -1324,12 +1290,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.cameraOptions).then((imageData6) => {
                 let base64Image6 = 'data:image/jpeg;base64,' + imageData6;
                 this.photo6 = base64Image6;
-                // watermark([this.photo6])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo6 = img.src;
-                //   });
+                watermark([this.photo6])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo6 = img.src;
+                  });
                 if (this.photo6 == null || "") {
 
                 } else {
@@ -1344,14 +1310,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id6 = this.photoID.id
-                    console.log(this.photo6);
-                    this.status6 = "6"
-                    this.checktakeback();
+                    this.photo6 = this.postDataService.apiServer_url + photoID
+                    this.checklist();
                     this.isTake6 = false;
-                    this.isShow6 = true;
-                    this.startTimer();
+                    this.isShow6 = true; 
+                    this.status6 = "1"   
                   });
                 }
               }, (err) => {
@@ -1399,12 +1362,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.galleryOptions).then((imageData7) => {
                 let base64Image7 = 'data:image/jpeg;base64,' + imageData7;
                 this.photo7 = base64Image7;
-                // watermark([this.photo7])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo7 = img.src;
-                //   });
+                watermark([this.photo7])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo7 = img.src;
+                  });
                 if (this.photo7 == null || "") {
 
                 } else {
@@ -1419,14 +1382,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id7 = this.photoID.id
-                    console.log(this.photo7);
-                    this.status7 = "7"
-                    this.checktakeback();
+                    this.photo7 = this.postDataService.apiServer_url + photoID
+                    this.checklist();
                     this.isTake7 = false;
-                    this.isShow7 = true;
-                    this.startTimer();
+                    this.isShow7 = true; 
+                    this.status7 = "1"   
                   });
                 }
               }, (err) => {
@@ -1466,12 +1426,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.cameraOptions).then((imageData7) => {
                 let base64Image7 = 'data:image/jpeg;base64,' + imageData7;
                 this.photo7 = base64Image7;
-                // watermark([this.photo7])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo7 = img.src;
-                //   });
+                watermark([this.photo7])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo7 = img.src;
+                  });
                 if (this.photo7 == null || "") {
 
                 } else {
@@ -1486,14 +1446,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id7 = this.photoID.id
-                    console.log(this.photo7);
-                    this.status7 = "7"
-                    this.checktakeback();
+                    this.photo7 = this.postDataService.apiServer_url + photoID
+                    this.checklist();
                     this.isTake7 = false;
                     this.isShow7 = true;
-                    this.startTimer();
+                    this.status7 = "1"    
                   });
                 }
               }, (err) => {
@@ -1541,12 +1498,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.galleryOptions).then((imageData8) => {
                 let base64Image8 = 'data:image/jpeg;base64,' + imageData8;
                 this.photo8 = base64Image8;
-                // watermark([this.photo8])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo8 = img.src;
-                //   });
+                watermark([this.photo8])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo8 = img.src;
+                  });
                 if (this.photo8 == null || "") {
 
                 } else {
@@ -1561,14 +1518,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id8 = this.photoID.id
-                    console.log(this.photo8);
-                    this.status8 = "8"
-                    this.checktakeback();
+                    this.photo8 = this.postDataService.apiServer_url + photoID
+                    this.checklist();
                     this.isTake8 = false;
-                    this.isShow8 = true;
-                    this.startTimer();
+                    this.isShow8 = true;   
+                    this.status8 = "1" 
                   });
                 }
               }, (err) => {
@@ -1608,12 +1562,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.cameraOptions).then((imageData8) => {
                 let base64Image8 = 'data:image/jpeg;base64,' + imageData8;
                 this.photo8 = base64Image8;
-                // watermark([this.photo8])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo8 = img.src;
-                //   });
+                watermark([this.photo8])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo8 = img.src;
+                  });
                 if (this.photo8 == null || "") {
 
                 } else {
@@ -1628,14 +1582,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id8 = this.photoID.id
-                    console.log(this.photo8);
-                    this.status8 = "8"
-                    this.checktakeback();
+                    this.photo8 = this.postDataService.apiServer_url + photoID
+                    this.checklist();
                     this.isTake8 = false;
                     this.isShow8 = true;
-                    this.startTimer();
+                    this.status8 = "1"    
                   });
                 }
               }, (err) => {
@@ -1683,12 +1634,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.galleryOptions).then((imageData9) => {
                 let base64Image9 = 'data:image/jpeg;base64,' + imageData9;
                 this.photo9 = base64Image9;
-                // watermark([this.photo9])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo9 = img.src;
-                //   });
+                watermark([this.photo9])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo9 = img.src;
+                  });
                 if (this.photo9 == null || "") {
 
                 } else {
@@ -1703,14 +1654,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id9 = this.photoID.id
-                    console.log(this.photo9);
-                    this.status9 = "9"
-                    this.checktakeback();
+                    this.photo9 = this.postDataService.apiServer_url + photoID
+                    this.checklist();
                     this.isTake9 = false;
-                    this.isShow9 = true;
-                    this.startTimer();
+                    this.isShow9 = true; 
+                    this.status9 = "1"   
                   });
                 }
               }, (err) => {
@@ -1750,12 +1698,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.cameraOptions).then((imageData9) => {
                 let base64Image9 = 'data:image/jpeg;base64,' + imageData9;
                 this.photo9 = base64Image9;
-                // watermark([this.photo9])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo9 = img.src;
-                //   });
+                watermark([this.photo9])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo9 = img.src;
+                  });
                 if (this.photo9 == null || "") {
 
                 } else {
@@ -1770,14 +1718,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id9 = this.photoID.id
-                    console.log(this.photo9);
-                    this.status9 = "9"
-                    this.checktakeback();
+                    this.photo9 = this.postDataService.apiServer_url + photoID
+                    this.checklist();
                     this.isTake9 = false;
-                    this.isShow9 = true;
-                    this.startTimer();
+                    this.isShow9 = true;  
+                    this.status9 = "1"  
                   });
                 }
               }, (err) => {
@@ -1825,12 +1770,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.galleryOptions).then((imageData10) => {
                 let base64Image10 = 'data:image/jpeg;base64,' + imageData10;
                 this.photo10 = base64Image10;
-                // watermark([this.photo10])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo10 = img.src;
-                //   });
+                watermark([this.photo10])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo10 = img.src;
+                  });
                 if (this.photo10 == null || "") {
 
                 } else {
@@ -1845,14 +1790,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id10 = this.photoID.id
-                    console.log(this.photo10);
-                    this.status10 = "10"
-                    this.checktakeback();
+                    this.photo10 = this.postDataService.apiServer_url + photoID
+                    this.checklist();
+                    this.status10 = "1"
                     this.isTake10 = false;
-                    this.isShow10 = true;
-                    this.startTimer();
+                    this.isShow10 = true;    
                   });
                 }
               }, (err) => {
@@ -1892,12 +1834,12 @@ export class DetailofdetaillistpmPage implements OnInit {
               this.camera.getPicture(this.cameraOptions).then((imageData10) => {
                 let base64Image10 = 'data:image/jpeg;base64,' + imageData10;
                 this.photo10 = base64Image10;
-                // watermark([this.photo10])
-                //   .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
-                //     '28px Tahoma bold', '#FBFBF7', 0.8, 48))
-                //   .then(img => {
-                //     this.photo10 = img.src;
-                //   });
+                watermark([this.photo10])
+                  .image(watermark.text.upperLeft('ร้าน' + this.CustomerName + ' ' + 'ชื่อสินค้า' + this.ItemsName,
+                    '28px Tahoma bold', '#FBFBF7', 0.8, 48))
+                  .then(img => {
+                    this.photo10 = img.src;
+                  });
                 if (this.photo10 == null || "") {
 
                 } else {
@@ -1912,14 +1854,11 @@ export class DetailofdetaillistpmPage implements OnInit {
                   }
                   console.log(params);
                   this.postDataService.SaveCaseAll(params).then(photoID => {
-                    this.photoID = photoID
-                    this.id10 = this.photoID.id
-                    console.log(this.photo10);
-                    this.status10 = "10"
-                    this.checktakeback();
+                    this.photo10 = this.postDataService.apiServer_url + photoID
+                    this.checklist();
                     this.isTake10 = false;
-                    this.isShow10 = true;
-                    this.startTimer();
+                    this.isShow10 = true;  
+                    this.status10 = "1"  
                   });
                 }
               }, (err) => {

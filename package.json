@@ -53,7 +53,7 @@
     "ap-angular2-fullcalendar": "^1.6.4",
     "bootstrap": "^4.3.1",
     "com-badrit-base64": "^0.2.0",
-    "cordova-android": "8.0.0",
+    "cordova-android": "^8.1.0",
     "cordova-browser": "^6.0.0",
     "cordova-plugin-advanced-http": "^2.1.1",
     "cordova-plugin-badge": "^0.8.8",
@@ -69,7 +69,7 @@
     "jquery": "^3.4.1",
     "json-server": "^0.15.1",
     "ngx-bootstrap": "^5.1.2",
-    "phonegap-plugin-barcodescanner": "^6.0.8",
+    "phonegap-plugin-barcodescanner": "git+https://github.com/phonegap/phonegap-plugin-barcodescanner.git",
     "rxjs": "^6.5.2",
     "rxjs-compat": "^6.5.3",
     "rxjs-observable": "0.0.7",
@@ -129,8 +129,8 @@
       "cordova-plugin-local-notification": {}
     },
     "platforms": [
-      "android",
-      "browser"
+      "browser",
+      "android"
     ]
   }
 }
