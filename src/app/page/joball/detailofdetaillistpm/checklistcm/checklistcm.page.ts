@@ -168,6 +168,17 @@ export class ChecklistcmPage implements OnInit {
       });
     }
     if (type == "non") {
+      let devicetran = {
+        planID: this.planID,
+        installID: this.installID,
+        typedevice: "non",
+        empID: this.empID
+      }
+      this.postDataService.postdevice(devicetran).then(status => {
+        this.status = status
+        console.log(this.status);        
+      });     
+
       let param = {
         typedevice: "non"
       }
