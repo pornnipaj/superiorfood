@@ -28,6 +28,7 @@ export class DetailofdetaillistpmPage implements OnInit {
   Photo;
   header;
   photoID;
+  workclose;
   url: SafeResourceUrl;
   title1 = "รายการที่ 1 ถ่ายภาพก่อนการตรวจสอบ"
   title2 = "รายการที่ 2 ถ่ายภาพหลังการตรวจสอบ"
@@ -252,8 +253,9 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.Category = this.install.Category;
       this.planDate = this.install.planDate;
       this.jobtype = this.install.JobType;
+      console.log(this.install);
     });
-    console.log();
+
 
     let params = {
       planID: this.planID,
@@ -377,6 +379,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.title7 = "รายการที่ 4 แบบประเมินปัญหา"
       this.isenabledTakeback = false;
       this.isenabledcheck = false;
+      this.isenabledcuseva = true;
       this.isenabledrequest = false;
 
     } else if (this.jobtype == "INSTALL") {
@@ -389,7 +392,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.title6 = "รายการที่ 7 สรุปผลการตรวจเช็คและยืนยันการปิดงาน"
       this.title8 = "รายการที่ 8 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
       this.isenabledtitle3 = true;
-      this.isenabledadddevice = true;
+      this.isenabledadddevice = false;
       this.isenabledcheck = false;
       this.isenabledTakeback = true;
       this.isInstall = false;
@@ -537,7 +540,7 @@ export class DetailofdetaillistpmPage implements OnInit {
 
   //#region take
   async Take(id) {
-    if (id == 1) {    
+    if (id == 1) {
       //#region gallery  
       // const alert = await this.alertController.create({
       //   buttons: [
@@ -608,7 +611,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       //     }, {
       //       text: 'ถ่ายภาพ',
       //       handler: () => {
-              
+
       //         this.camera.getPicture(this.cameraOptions).then((imageData1) => {
       //           let base64Image1 = 'data:image/jpeg;base64,' + imageData1;
       //           this.photo1 = base64Image1;
@@ -691,11 +694,11 @@ export class DetailofdetaillistpmPage implements OnInit {
           }
           console.log(params);
           this.postDataService.SaveCaseAll(params).then(photoID => {
-            this.photo1 = this.postDataService.apiServer_url + photoID                   
+            this.photo1 = this.postDataService.apiServer_url + photoID
             this.isTake1 = false;
-            this.isShow1 = true;     
-            this.status1 = "1"    
-            this.checktakeback();           
+            this.isShow1 = true;
+            this.status1 = "1"
+            this.checktakeback();
           });
         }
       }, (err) => {
@@ -719,7 +722,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         //     this.isShow1 = true;  
         //     this.checktakeback();
         //   });
-      });    
+      });
     }
     if (id == 2) {
       //#region gallery
@@ -874,12 +877,12 @@ export class DetailofdetaillistpmPage implements OnInit {
             jobtype: this.jobtype
           }
           console.log(params);
-            this.postDataService.SaveCaseAll(params).then(photoID => {
-              this.photo2 = this.postDataService.apiServer_url + photoID                      
-              this.isTake2 = false;
-              this.isShow2 = true; 
-              this.status2 = "1"   
-              this.checktakeback();
+          this.postDataService.SaveCaseAll(params).then(photoID => {
+            this.photo2 = this.postDataService.apiServer_url + photoID
+            this.isTake2 = false;
+            this.isShow2 = true;
+            this.status2 = "1"
+            this.checktakeback();
           });
         }
       }, (err) => {
@@ -1067,10 +1070,10 @@ export class DetailofdetaillistpmPage implements OnInit {
           }
           console.log(params);
           this.postDataService.SaveCaseAll(params).then(photoID => {
-            this.photo3 = this.postDataService.apiServer_url + photoID                    
+            this.photo3 = this.postDataService.apiServer_url + photoID
             this.isTake3 = false;
-            this.isShow3 = true;  
-            this.status3 = "1"  
+            this.isShow3 = true;
+            this.status3 = "1"
             this.checktakeback();
           });
         }
@@ -1244,7 +1247,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       //#endregion
       this.camera.getPicture(this.cameraOptions).then((imageData4) => {
         let base64Image4 = 'data:image/jpeg;base64,' + imageData4;
-        this.photo4 = base64Image4;        
+        this.photo4 = base64Image4;
         if (this.photo4 == null || "") {
 
         } else {
@@ -1259,9 +1262,9 @@ export class DetailofdetaillistpmPage implements OnInit {
           }
           console.log(params);
           this.postDataService.SaveCaseAll(params).then(photoID => {
-            this.photo4 = this.postDataService.apiServer_url + photoID                    
+            this.photo4 = this.postDataService.apiServer_url + photoID
             this.isTake4 = false;
-            this.isShow4 = true;    
+            this.isShow4 = true;
             this.status4 = "1"
             this.checktakeback();
           });
@@ -1436,7 +1439,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       //#endregion
       this.camera.getPicture(this.cameraOptions).then((imageData5) => {
         let base64Image5 = 'data:image/jpeg;base64,' + imageData5;
-        this.photo5 = base64Image5;       
+        this.photo5 = base64Image5;
         if (this.photo5 == null || "") {
 
         } else {
@@ -1451,11 +1454,11 @@ export class DetailofdetaillistpmPage implements OnInit {
           }
           console.log(params);
           this.postDataService.SaveCaseAll(params).then(photoID => {
-            this.photo5 = this.postDataService.apiServer_url + photoID                    
+            this.photo5 = this.postDataService.apiServer_url + photoID
             this.isTake5 = false;
-            this.isShow5 = true; 
+            this.isShow5 = true;
             this.status5 = "1"
-            this.checktakeback();   
+            this.checktakeback();
           });
         }
       }, (err) => {
@@ -1628,7 +1631,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       //#endregion
       this.camera.getPicture(this.cameraOptions).then((imageData6) => {
         let base64Image6 = 'data:image/jpeg;base64,' + imageData6;
-        this.photo6 = base64Image6;       
+        this.photo6 = base64Image6;
         if (this.photo6 == null || "") {
 
         } else {
@@ -1643,10 +1646,10 @@ export class DetailofdetaillistpmPage implements OnInit {
           }
           console.log(params);
           this.postDataService.SaveCaseAll(params).then(photoID => {
-            this.photo6 = this.postDataService.apiServer_url + photoID                    
+            this.photo6 = this.postDataService.apiServer_url + photoID
             this.isTake6 = false;
-            this.isShow6 = true; 
-            this.status6 = "1"   
+            this.isShow6 = true;
+            this.status6 = "1"
             this.checklist();
           });
         }
@@ -1820,7 +1823,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       //#endregion
       this.camera.getPicture(this.cameraOptions).then((imageData7) => {
         let base64Image7 = 'data:image/jpeg;base64,' + imageData7;
-        this.photo7 = base64Image7;        
+        this.photo7 = base64Image7;
         if (this.photo7 == null || "") {
 
         } else {
@@ -1835,10 +1838,10 @@ export class DetailofdetaillistpmPage implements OnInit {
           }
           console.log(params);
           this.postDataService.SaveCaseAll(params).then(photoID => {
-            this.photo7 = this.postDataService.apiServer_url + photoID                    
+            this.photo7 = this.postDataService.apiServer_url + photoID
             this.isTake7 = false;
             this.isShow7 = true;
-            this.status7 = "1"    
+            this.status7 = "1"
             this.checklist();
           });
         }
@@ -1908,7 +1911,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       //               this.isShow8 = true;  
       //               this.status8 = "1" 
       //               this.checklist(); 
-                    
+
       //             });
       //           }
       //         }, (err) => {
@@ -2013,7 +2016,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       //#endregion
       this.camera.getPicture(this.cameraOptions).then((imageData8) => {
         let base64Image8 = 'data:image/jpeg;base64,' + imageData8;
-        this.photo8 = base64Image8;       
+        this.photo8 = base64Image8;
         if (this.photo8 == null || "") {
 
         } else {
@@ -2028,10 +2031,10 @@ export class DetailofdetaillistpmPage implements OnInit {
           }
           console.log(params);
           this.postDataService.SaveCaseAll(params).then(photoID => {
-            this.photo8 = this.postDataService.apiServer_url + photoID                    
+            this.photo8 = this.postDataService.apiServer_url + photoID
             this.isTake8 = false;
             this.isShow8 = true;
-            this.status8 = "1"    
+            this.status8 = "1"
             this.checklist();
           });
         }
@@ -2206,7 +2209,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       //#endregion
       this.camera.getPicture(this.cameraOptions).then((imageData9) => {
         let base64Image9 = 'data:image/jpeg;base64,' + imageData9;
-        this.photo9 = base64Image9;        
+        this.photo9 = base64Image9;
         if (this.photo9 == null || "") {
 
         } else {
@@ -2223,8 +2226,8 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.postDataService.SaveCaseAll(params).then(photoID => {
             this.photo9 = this.postDataService.apiServer_url + photoID
             this.isTake9 = false;
-            this.isShow9 = true;  
-            this.status9 = "1"  
+            this.isShow9 = true;
+            this.status9 = "1"
             this.checklist();
           });
         }
@@ -2399,7 +2402,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       //#endregion
       this.camera.getPicture(this.cameraOptions).then((imageData10) => {
         let base64Image10 = 'data:image/jpeg;base64,' + imageData10;
-        this.photo10 = base64Image10;       
+        this.photo10 = base64Image10;
         if (this.photo10 == null || "") {
 
         } else {
@@ -2414,10 +2417,10 @@ export class DetailofdetaillistpmPage implements OnInit {
           }
           console.log(params);
           this.postDataService.SaveCaseAll(params).then(photoID => {
-            this.photo10 = this.postDataService.apiServer_url + photoID                    
+            this.photo10 = this.postDataService.apiServer_url + photoID
             this.isTake10 = false;
-            this.isShow10 = true;  
-            this.status10 = "1"  
+            this.isShow10 = true;
+            this.status10 = "1"
             this.checklist();
           });
         }
@@ -2463,7 +2466,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.isenabledTakeback = true;
     }
     if (this.jobtype != "INSTALL") {
-      if (this.status1 == "1" && this.status2 == "1" && this.status3 == "1" && this.status4 == "1" && this.status5  == "1") {
+      if (this.status1 == "1" && this.status2 == "1" && this.status3 == "1" && this.status4 == "1" && this.status5 == "1") {
         this.isenabledTakeback = true;
       }
     }
@@ -2472,8 +2475,7 @@ export class DetailofdetaillistpmPage implements OnInit {
 
   //#region Check Take After  
   checklist() {
-    if (this.status6 == "1" && this.status7 == "1" && this.status8  == "1" && this.status9  == "1" && this.status10  == "1") 
-    {
+    if (this.status6 == "1" && this.status7 == "1" && this.status8 == "1" && this.status9 == "1" && this.status10 == "1") {
       if (this.jobtype == "INSTALL") {
         this.isenabledadddevice = true;
       }
@@ -2597,8 +2599,8 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.sign = this.postDataService.apiServer_url + photoID
           this.photoID = photoID
           this.idsig = this.photoID.id
-          console.log('url',this.sign);
-          
+          console.log('url', this.sign);
+
         });
         this.showSig = true;
         this.isenabledcuspass = true;
@@ -2690,9 +2692,12 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.resolution = this.cusEva.data.resolution
       this.resolutiondetail = this.cusEva.data.resolutiondetail
       this.TecComment = this.cusEva.data.TecComment
+      this.workclose = this.cusEva.data.workclose
       console.log(this.resolution);
       console.log(this.resolutiondetail);
       console.log(this.TecComment);
+      console.log(this.workclose);
+      
 
       if (this.jobtype == "CM") {
         let params = {
@@ -2704,6 +2709,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           idold: this.idold,
           TecComment: this.TecComment,
           resolutiondetail: this.resolutiondetail,
+          workclose:this.workclose
         }
         console.log(params);
         this.postDataService.SaveCaseAll(params).then(resolution => {
@@ -2732,30 +2738,69 @@ export class DetailofdetaillistpmPage implements OnInit {
   //#endregion
 
   //#region changspare
-  async changspare() {
-    const modal = await this.modalController.create({
-      component: ChangsparepartPage,
-      cssClass: 'my-custom-modal-css',
-      componentProps: {
-        planID: this.planID,
-        installID: this.installID,
-        jobtype: this.jobtype,
-        empID: this.empID
-      }
-    });
+  async changspare(type) {
+    if (type == 'device') {
+      const modal = await this.modalController.create({
+        component: ChangsparepartPage,
+        cssClass: 'my-custom-modal-css',
+        componentProps: {
+          planID: this.planID,
+          installID: this.installID,
+          jobtype: this.jobtype,
+          empID: this.empID,
+          type: type
+        }
+      });
 
-    modal.onDidDismiss().then(data => {
-      this.list = data
-      this.list = this.list.data
-      console.log(this.list);
+      modal.onDidDismiss().then(data => {
+        this.list = data
+        this.list = this.list.data
+        console.log(this.list);
+        console.log(this.installID);
 
-      if (this.list == 0) {
-        this.isenabledcuseva = true;
-      }
+        if (this.list == 0) {
+          this.isenabledcuseva = true;
+        }
+        if (this.installID == '-') {
+          if (this.list.InstallPlanID != null) {
+            this.installID = this.list.InstallPlanID
+            this.InstallPlanName = this.list.InstallPlanName
+            this.ItemCode = this.list.ItemCode
+            this.ItemsName = this.list.ItemsName
+            this.SerialNo = this.list.SerialNo
+            console.log(this.InstallPlanName);
+          }
 
-    })
+        }
 
-    return await modal.present();
+      })
+
+      return await modal.present();
+    }
+    else {
+      const modal = await this.modalController.create({
+        component: ChangsparepartPage,
+        cssClass: 'my-custom-modal-css',
+        componentProps: {
+          planID: this.planID,
+          installID: this.installID,
+          jobtype: this.jobtype,
+          empID: this.empID
+        }
+      });
+
+      modal.onDidDismiss().then(data => {
+        this.list = data
+        this.list = this.list.data
+        console.log(this.list);
+
+        if (this.list == 0) {
+          this.isenabledcuseva = true;
+        }
+      })
+
+      return await modal.present();
+    }
   }
   //#endregion
 

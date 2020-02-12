@@ -1,49 +1,50 @@
 <ion-toolbar>
   <ion-title *ngIf="jobtype == 'PM' else pm" #pm>เปลี่ยนอะไหล่</ion-title>
-  <ion-title *ngIf="jobtype == 'INSTALL' else pm" #install>เพิ่มอุปกรณ์เสริม</ion-title>
+  <ion-title *ngIf="jobtype == 'INSTALL' && type!= 'device' else install" #install>เพิ่มอุปกรณ์เสริม</ion-title>
+  <ion-title *ngIf="type == 'device' else device" #device>เพิ่มเครื่อง</ion-title>
   <ion-buttons slot="primary">
     <ion-icon slot="end" name="close" (click)="closeModal()"></ion-icon>
   </ion-buttons>
 </ion-toolbar>
 
 <ion-content>
-  <div class="container-fluid">  
-    <div *ngIf="jobtype == 'PM' else pm" #pm> 
-        <div class="tab-content">
-          <div class="tab-pane active">
-            <div class="row">
-              <div class="col-12">
-                <div class="table-scrollable">
-                  <table class="table table-hover">
-                    <thead>
-                      <tr>
-                        <th> ลำดับที่ </th>
-                        <th> ชื่ออุปกรณ์เสริม </th>
-                        <th> Part No. </th>
-                        <th> จำนวน </th>
-                        <th> ยอดคงเหลือ </th>
-                        <th> หน่วย </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let item of data; let i = index">
-                        <td style="padding-top:15px;"> 
-                          {{i+1}}
-                           </td>
-                        <td style="padding-top:15px;"> {{item.Name}} </td>
-                        <td style="padding-top:15px;">  {{item.SKUCode}}</td>
-                        <td>  <input type="text" style="padding: 8px;" [(ngModel)]="item.No" /></td>   
-                        <td style="padding-top:15px;">{{item.Balance}}</td>    
-                        <td style="padding-top:15px;">{{item.Unit}}</td>                
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+  <div class="container-fluid">
+    <div *ngIf="jobtype == 'PM' else pm" #pm>
+      <div class="tab-content">
+        <div class="tab-pane active">
+          <div class="row">
+            <div class="col-12">
+              <div class="table-scrollable">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th> ลำดับที่ </th>
+                      <th> ชื่ออุปกรณ์เสริม </th>
+                      <th> Part No. </th>
+                      <th> จำนวน </th>
+                      <th> ยอดคงเหลือ </th>
+                      <th> หน่วย </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of data; let i = index">
+                      <td style="padding-top:15px;">
+                        {{i+1}}
+                      </td>
+                      <td style="padding-top:15px;"> {{item.Name}} </td>
+                      <td style="padding-top:15px;"> {{item.SKUCode}}</td>
+                      <td> <input type="text" style="padding: 8px;" [(ngModel)]="item.No" /></td>
+                      <td style="padding-top:15px;">{{item.Balance}}</td>
+                      <td style="padding-top:15px;">{{item.Unit}}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
-        <!-- <div class="row">
+      </div>
+      <!-- <div class="row">
           <ion-item no-line class="col-4">
             <ion-label>ประเภทอุปกรณ์เสริม :</ion-label>
           </ion-item>
@@ -78,13 +79,13 @@
             <ion-label>{{item.Unit}}</ion-label>
           </ion-item>
         </div> -->
-        <!-- <ion-icon name="barcode" slot="end" (click)="scan()"></ion-icon> -->
+      <!-- <ion-icon name="barcode" slot="end" (click)="scan()"></ion-icon> -->
 
-        <div class="text-center" style="margin-top: 10px;">
-          <ion-button shape="round" class="text-center" (click)="submit(data)">บันทึก</ion-button>
-        </div>
+      <div class="text-center" style="margin-top: 10px;">
+        <ion-button shape="round" class="text-center" (click)="submit(data)">บันทึก</ion-button>
+      </div>
     </div>
-    <div *ngIf="jobtype == 'INSTALL' else install" #install> 
+    <div *ngIf="jobtype == 'INSTALL' && type!= 'device' else install" #install>
       <div class="tab-content">
         <div class="tab-pane active">
           <div class="row">
@@ -103,14 +104,14 @@
                   </thead>
                   <tbody>
                     <tr *ngFor="let item of data; let i = index">
-                      <td style="padding-top:15px;"> 
+                      <td style="padding-top:15px;">
                         {{i+1}}
-                         </td>
+                      </td>
                       <td style="padding-top:15px;"> {{item.Name}} </td>
-                      <td style="padding-top:15px;">  {{item.SKUCode}}</td>
-                      <td>  <input type="text" style="padding: 8px;" [(ngModel)]="item.No" /></td>   
-                      <td style="padding-top:15px;">{{item.Balance}}</td>   
-                      <td style="padding-top:15px;">{{item.Unit}}</td>                 
+                      <td style="padding-top:15px;"> {{item.SKUCode}}</td>
+                      <td> <input type="text" style="padding: 8px;" [(ngModel)]="item.No" /></td>
+                      <td style="padding-top:15px;">{{item.Balance}}</td>
+                      <td style="padding-top:15px;">{{item.Unit}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -122,6 +123,46 @@
       <div class="text-center" style="margin-top: 10px;">
         <ion-button shape="round" class="text-center" (click)="submit(data)">บันทึก</ion-button>
       </div>
-  </div>
+    </div>
+    <div *ngIf="type == 'device' else device" #device>
+      <ion-item>
+        <ion-input type="text" placeholder="รหัสเครื่อง" name="skuID" [(ngModel)]="skuID"></ion-input>
+        <ion-icon name="barcode" (click)="scan()"></ion-icon>
+        <ion-icon name="search" (click)="Searchsku()"></ion-icon>
+      </ion-item>
+      <div class="tab-content">
+        <div class="tab-pane active">
+          <div class="row">
+            <div class="col-12">
+              <div class="table-scrollable">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th> ลำดับที่ </th>
+                      <th> ชื่อเครื่อง </th>
+                      <th> Serial No. </th>
+                      <th> ประเภทเครื่อง </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of data; let i = index">
+                      <td style="padding-top:15px;">
+                        {{i+1}}
+                      </td>
+                      <td style="padding-top:15px;"> {{item.AssetNo}} </td>
+                      <td style="padding-top:15px;"> {{item.SerialNo}}</td>
+                      <td style="padding-top:15px;">{{item.AssetTypeID}}</td>
+                      <td>
+                        <span class="label label-sm label-warning" (click)="saveDevice(item)"> เลือก </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </ion-content>

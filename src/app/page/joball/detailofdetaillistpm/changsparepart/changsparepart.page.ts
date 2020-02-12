@@ -18,6 +18,9 @@ export class ChangsparepartPage implements OnInit {
   jobtype;
   AsList = [];
   true;
+  type;
+  skuID;
+
   constructor(private modalController: ModalController,
     private postDataService: PostDataService,
     private barcodeScanner: BarcodeScanner,
@@ -28,22 +31,39 @@ export class ChangsparepartPage implements OnInit {
     this.installID = this.navParams.data.installID;
     this.jobtype = this.navParams.data.jobtype;
     this.empID = this.navParams.data.empID;
+    this.type = this.navParams.data.type;
+    console.log(this.type);
+
     if (this.jobtype == "INSTALL") {
-      let params = {
-        planID: this.planID,
-        installID: this.installID,
-        typedevice: "GetSpareIN",
-        empID: this.empID
+      if (this.type == 'device') {
+        let params = {
+          planID: this.planID,
+          installID: this.installID,
+          typedevice: "GetDeviceIN",
+          empID: this.empID
+        }
+        console.log(params);
+        this.postDataService.postdevice(params).then(data => {
+          this.data = data
+          console.log(this.data);
+        });
+      } else {
+        let params = {
+          planID: this.planID,
+          installID: this.installID,
+          typedevice: "GetSpareIN",
+          empID: this.empID
+        }
+        console.log(params);
+        this.postDataService.postdevice(params).then(data => {
+          this.data = data
+          console.log(this.data);
+        });
       }
-      console.log(params);
-      this.postDataService.postdevice(params).then(data => {
-        this.data = data
-        console.log(this.data);
-      }); 
     }
     else if (this.jobtype == "PM") {
       let params = {
-        planID:this.planID,
+        planID: this.planID,
         installID: this.installID,
         typedevice: "GetSparePM",
         empID: this.empID
@@ -52,7 +72,7 @@ export class ChangsparepartPage implements OnInit {
       this.postDataService.postdevice(params).then(data => {
         this.data = data
         console.log(this.data);
-      }); 
+      });
     }
   }
 
@@ -67,7 +87,10 @@ export class ChangsparepartPage implements OnInit {
     this.barcodeScanner.scan().then(barcodeData => {
       console.log('Barcode data', barcodeData);
       let barcode = barcodeData
-      this.SerialNo = barcode.text
+      this.skuID = barcode.text
+      if (this.skuID != null) {
+        this.Searchsku();
+      }
     }).catch(err => {
       console.log('Error', err);
     });
@@ -81,7 +104,7 @@ export class ChangsparepartPage implements OnInit {
             SKUCode: data[i].SKUCode,
             Name: data[i].Name,
             Qty: data[i].No,
-            Unit:data[i].Unit
+            Unit: data[i].Unit
           });
         console.log(this.AsList);
       }
@@ -93,7 +116,7 @@ export class ChangsparepartPage implements OnInit {
           planID: this.planID,
           typedevice: "SaveSpareIN",
           spare: this.AsList,
-          empID:this.empID
+          empID: this.empID
         }
         console.log(params);
         this.postDataService.postdevice(params).then(data => {
@@ -104,39 +127,39 @@ export class ChangsparepartPage implements OnInit {
           }
         });
       }
-        else if (this.jobtype == "PM") {
-          let params = {
-            installID: this.installID,
-            planID: this.planID,
-            typedevice: "SaveSparePM",
-            spare: this.AsList,
-            empID:this.empID
+      else if (this.jobtype == "PM") {
+        let params = {
+          installID: this.installID,
+          planID: this.planID,
+          typedevice: "SaveSparePM",
+          spare: this.AsList,
+          empID: this.empID
+        }
+        console.log(params);
+        this.postDataService.postdevice(params).then(data => {
+          this.data = data
+          console.log(this.data);
+          if (data == true) {
+            this.modalController.dismiss(1);
           }
-          console.log(params);
-          this.postDataService.postdevice(params).then(data => {
-            this.data = data
-            console.log(this.data);
-            if (data == true) {
-              this.modalController.dismiss(1);
-            }
-          });        
-      }      
+        });
+      }
     }
   }
 
   async submit(data) {
     console.log(data);
-      for (let s = 0; s < data.length; s++) {
-        this.true = 0;
-        if (data[s].No > data[s].Balance) {
-          this.alertQty();
-          this.true = 1;
-          break;
-        }
+    for (let s = 0; s < data.length; s++) {
+      this.true = 0;
+      if (data[s].No > data[s].Balance) {
+        this.alertQty();
+        this.true = 1;
+        break;
       }
-      if (this.true == 0) {
-        this.check(data)      
-    } 
+    }
+    if (this.true == 0) {
+      this.check(data)
+    }
   }
 
   async alertQty() {
@@ -146,5 +169,46 @@ export class ChangsparepartPage implements OnInit {
       buttons: ['OK']
     });
     await alert.present();
+  }
+
+  saveDevice(item){
+    let params = {
+      planID: this.planID,
+      installID: this.installID,
+      typedevice: "SaveDeviceIN",
+      empID: this.empID,
+      assID:item.AssetID
+    }
+    console.log(params);
+    this.postDataService.postdevice(params).then(data => {
+      this.modalController.dismiss(data);
+    });    
+  }
+
+  Searchsku(){
+    if (this.skuID == null || this.skuID == "") {
+      let params = {
+        planID: this.planID,
+        installID: this.installID,
+        typedevice: "GetDeviceIN",
+        empID: this.empID
+      }
+      console.log(params);
+      this.postDataService.postdevice(params).then(data => {
+        this.data = data
+        console.log(this.data);
+      });
+    }else{
+    let params = {
+      skuID: this.skuID,
+      typedevice: "Searchsku",
+      empID: this.empID
+    }
+    console.log(params);
+    this.postDataService.postdevice(params).then(data => {
+      this.data = data
+      console.log(this.data);
+    });  
+  }
   }
 }

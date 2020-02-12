@@ -16,6 +16,9 @@ export class CustomerevaluationPage implements OnInit {
   jobtype;
   planID;
   detail;
+  getworkclose;
+  workclose;
+
   constructor(private postDataService: PostDataService,
     public modalController: ModalController,
     public alertController: AlertController,
@@ -27,7 +30,7 @@ export class CustomerevaluationPage implements OnInit {
     this.installID = this.navParams.data.installID
     this.jobtype = this.navParams.data.jobtype
     this.planID = this.navParams.data.planID
-    console.log(this.jobtype);
+    console.log(this.resolution);
 
     if (this.jobtype == "CM") {
       let params = {
@@ -37,6 +40,16 @@ export class CustomerevaluationPage implements OnInit {
       console.log(params);
       this.postDataService.SaveCaseAll(params).then(data => {
         this.data = data
+        console.log(data);
+      });
+      let workclose = {
+        planID:this.planID,
+        installID: this.installID,
+        jobtype: "getworkclose"
+      }
+      console.log(params);
+      this.postDataService.SaveCaseAll(workclose).then(data => {
+        this.getworkclose = data
         console.log(data);
       });
     }
@@ -51,6 +64,8 @@ export class CustomerevaluationPage implements OnInit {
       console.log(this.detail);
       this.TecComment = this.detail.TecComment 
       if (this.jobtype == "CM") {
+        this.workclose = this.detail.remark
+        this.resolution = this.detail.ResolutionID
         this.resolutiondetail = this.detail.Resolutiondetail
       }   else{
         this.resolutiondetail = "resolutiondetail"
@@ -65,16 +80,23 @@ export class CustomerevaluationPage implements OnInit {
   close() {
     this.modalController.dismiss();
   }
-  onChange(value) {
+  onChange(value,type) {
     console.log(value);
-
-    this.resolution = value.detail.value
-    console.log(value);
-    console.log(this.resolution);
+if (type == 'resolution') {
+  this.resolution = value.detail.value
+  console.log(this.resolution);
+}
+if (type == 'work') {
+  this.workclose = value.detail.value
+  console.log(this.workclose);
+}
+   
   }
   async submit() {
     console.log(this.resolution);
     console.log(this.resolutiondetail);
+    console.log(this.workclose);
+    
     if (this.jobtype == "CM") {
       if (this.resolutiondetail == null || this.resolutiondetail == "") {
         const alert = await this.alertController.create({
@@ -98,6 +120,7 @@ export class CustomerevaluationPage implements OnInit {
         let params = {
           resolution: this.resolution,
           resolutiondetail: this.resolutiondetail,
+          workclose: this.workclose,
           TecComment: this.TecComment
         }
         this.modalController.dismiss(params);

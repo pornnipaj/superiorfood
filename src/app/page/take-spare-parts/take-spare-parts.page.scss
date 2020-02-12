@@ -19,8 +19,22 @@ ion-textarea{
 ion-select{
     font-size: 0.8em!important;
     --ion-background-color: white;
+    max-width: 100% !important;
 }
 ion-select-option{
     font-size: 0.8em!important;
     --ion-background-color: white;
 }
+ion-popover{
+    ion-backdrop{
+    opacity: 0.5 !important;  
+    }
+    .popover-wrapper{
+    .popover-content{
+      background-color: white;
+    width:40vw;
+    left: 0px;
+    max-width:500px;
+    }
+    }
+    }

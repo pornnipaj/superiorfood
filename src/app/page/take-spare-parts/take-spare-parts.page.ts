@@ -41,6 +41,8 @@ export class TakeSparePartsPage implements OnInit {
   Status;
   ServiceReportNo;
   JobDeviceID;
+  code;
+  CustomerID;
 
   constructor(
     private storageService: StorageService,
@@ -52,27 +54,27 @@ export class TakeSparePartsPage implements OnInit {
     this.loadItems()
 
     this.route.queryParams.subscribe(params => {
-      this.myId = JSON.parse(params["data"]);      
+      this.myId = JSON.parse(params["data"]);
       this.type = this.myId.type
       if (this.type == "new") {
         this.type = this.myId.type
         console.log(this.type);
-        
-      }else{
+
+      } else {
         this.item = this.myId.item
-      this.CustomerCode = this.item.CustomerCode
-      this.CustomerName = this.item.CustomerName
-      this.AddressSite = this.item.AddressSite
-      this.ServiceReportNo = this.item.ServiceReportNo
-      this.Status = this.item.Status
-      this.TelCompany = this.item.TelCompany
-      this.EngineerTel = this.item.EngineerTel
-      this.Reference = this.item.Reference
-      this.JobID = this.myId.JobID
-      this.CusID = this.myId.CusID
-      console.log(this.JobID, this.type, this.CusID);
-      console.log(this.item);
-      }  
+        this.CustomerCode = this.item.CustomerCode
+        this.CustomerName = this.item.CustomerName
+        this.AddressSite = this.item.AddressSite
+        this.ServiceReportNo = this.item.ServiceReportNo
+        this.Status = this.item.Status
+        this.TelCompany = this.item.TelCompany
+        this.EngineerTel = this.item.EngineerTel
+        this.Reference = this.item.Reference
+        this.JobID = this.myId.JobID
+        this.CusID = this.myId.CusID
+        console.log(this.JobID, this.type, this.CusID);
+        console.log(this.item);
+      }
     });
   }
 
@@ -91,7 +93,7 @@ export class TakeSparePartsPage implements OnInit {
         }
       });
     }
-    else if (this.type == "new") {     
+    else if (this.type == "new") {
       let params = {
         JobID: this.JobID,
         Type: "ListDetail",
@@ -106,7 +108,7 @@ export class TakeSparePartsPage implements OnInit {
         }
       });
     }
-      this.loadItems();
+    this.loadItems();
   }
 
   async spare() {
@@ -139,11 +141,11 @@ export class TakeSparePartsPage implements OnInit {
               this.isShow = true;
               for (let i = 0; i < this.cus.length; i++) {
                 this.ServiceReportNo = this.cus[i].ServiceReportNo
-              this.CustomerName = this.cus[i].CustomerName
-              this.EngineerTel = this.cus[i].EngineerTel
-              this.Reference = this.cus[i].Reference
-              this.JobID = this.cus[i].JobID
-              }                  
+                this.CustomerName = this.cus[i].CustomerName
+                this.EngineerTel = this.cus[i].EngineerTel
+                this.Reference = this.cus[i].Reference
+                this.JobID = this.cus[i].JobID
+              }
             }
           });
         }
@@ -171,31 +173,61 @@ export class TakeSparePartsPage implements OnInit {
     });
   }
 
-  onChange(value) {
-    this.CusID = value.detail.value
-    let params = {
-      CusID: this.CusID,
-      Type: "Detail"
-    }
-    this.postDataService.PostCus(params).then(Cus => {
-      this.Cus = Cus;
-      console.log(this.Cus);
-
-      for (let i = 0; i < this.Cus.length; i++) {
-        this.CustomerCode = this.Cus[i].CustomerCode
-        this.CustomerName = this.Cus[i].CustomerName
-        this.AddressSite = this.Cus[i].Address
-        this.ServiceReportNo = this.Cus[i].ServiceReportNo
-        this.Status = this.Cus[i].Status
-        this.TelCompany = this.Cus[i].TelCompany
-        this.EngineerTel = this.Cus[i].EngineerTel
-        this.Reference = this.Cus[i].Reference
-        this.JobID = this.Cus[i].JobID
-        this.loadItems();
+  onChange(value, type) {
+    if (type == 'cus') {
+      this.CusID = value.detail.value
+      let params = {
+        CusID: this.CusID,
+        Type: "Detail"
       }
-      console.log(this.CusID);
+      this.postDataService.PostCus(params).then(Cus => {
+        this.Cus = Cus;
+        console.log(this.Cus);
 
-    });
+        for (let i = 0; i < this.Cus.length; i++) {
+          this.CustomerID = this.Cus[i].CustomerID
+          this.CustomerCode = this.Cus[i].CustomerCode
+          this.CustomerName = this.Cus[i].CustomerName
+          this.AddressSite = this.Cus[i].Address
+          this.ServiceReportNo = this.Cus[i].ServiceReportNo
+          this.Status = this.Cus[i].Status
+          this.TelCompany = this.Cus[i].TelCompany
+          this.EngineerTel = this.Cus[i].EngineerTel
+          this.Reference = this.Cus[i].Reference
+          this.JobID = this.Cus[i].JobID
+          this.loadItems();
+        }
+        console.log(this.CusID);
+
+      });
+    }
+     if (type == 'code') {
+      let params = {
+        CusID: this.CustomerCode,
+        Type: "Cuscode"
+      }
+      this.postDataService.PostCus(params).then(Cus => {
+        this.code = Cus;
+        console.log(this.code);
+
+        for (let i = 0; i < this.code.length; i++) {
+          this.CustomerID = this.code[i].CustomerID
+          this.CustomerCode = this.code[i].CustomerCode
+          this.CustomerName = this.code[i].CustomerName
+          this.AddressSite = this.code[i].Address
+          this.ServiceReportNo = this.code[i].ServiceReportNo
+          this.Status = this.code[i].Status
+          this.TelCompany = this.code[i].TelCompany
+          this.EngineerTel = this.code[i].EngineerTel
+          this.Reference = this.code[i].Reference
+          this.JobID = this.code[i].JobID
+          this.loadItems();
+        }
+        console.log(this.CusID);
+
+      });
+    }
+
   }
 
   async Delete(item) {
@@ -265,18 +297,18 @@ export class TakeSparePartsPage implements OnInit {
       if (this.cus != null) {
         for (let i = 0; i < this.cus.length; i++) {
           this.CustomerCode = this.cus[i].CustomerCode
-      this.CustomerName = this.cus[i].CustomerName
-      this.AddressSite = this.cus[i].AddressSite
-      this.ServiceReportNo = this.cus[i].ServiceReportNo
-      this.Status = this.cus[i].Status
-      this.TelCompany = this.cus[i].TelCompany
-      this.EngineerTel = this.cus[i].EngineerTel
-      this.Reference = this.cus[i].Reference
-      this.JobID = this.cus[i].JobID
-      this.type = this.cus[i].type
-      console.log(this.CustomerName);
-        }      
-      this.alertSuccess();
+          this.CustomerName = this.cus[i].CustomerName
+          this.AddressSite = this.cus[i].AddressSite
+          this.ServiceReportNo = this.cus[i].ServiceReportNo
+          this.Status = this.cus[i].Status
+          this.TelCompany = this.cus[i].TelCompany
+          this.EngineerTel = this.cus[i].EngineerTel
+          this.Reference = this.cus[i].Reference
+          this.JobID = this.cus[i].JobID
+          this.type = this.cus[i].type
+          console.log(this.CustomerName);
+        }
+        this.alertSuccess();
       }
     });
   }

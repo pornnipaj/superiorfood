@@ -9,13 +9,13 @@
   <div class="container">
       <div class="row">
           <div class="col-12" style="margin-top: 20px;" #show *ngIf="jobtype == 'CM'; else show">
-              <label class="col-md-4 control-label">หัวข้อการแก้ปัญหา</label>
-              <div class="col-md-8" style="padding: 0px;">
-                <ion-select interface="popover" (ionChange)="onChange($event)">
-                  <ion-select-option *ngFor="let title of data" [value]="title.SystemID"
+            <ion-item>
+              <ion-label>หัวข้อการแก้ปัญหา</ion-label>
+              <ion-select interface="popover" (ionChange)="onChange($event,'resolution')" [(ngModel)]="resolution">
+                <ion-select-option *ngFor="let title of data" [value]="title.SystemID"
                     [selected]="title.SystemDataName">{{title.SystemDataName}}</ion-select-option>
-                </ion-select>
-            </div>
+              </ion-select>
+            </ion-item>
           </div>
           <div class="col-12" #show *ngIf="jobtype == 'CM'; else show">
             <ion-item>
@@ -25,7 +25,15 @@
               <textarea class="form-control" rows="3" [(ngModel)]="resolutiondetail"></textarea>
             </ion-item>
           </div>
-        
+          <div class="col-12" style="margin-top: 20px;" #show *ngIf="jobtype == 'CM'; else show">
+            <ion-item>
+              <ion-label>การปิดงาน</ion-label>
+              <ion-select interface="popover" (ionChange)="onChange($event,'work')" [(ngModel)]="workclose">
+                <ion-select-option *ngFor="let title of getworkclose" [value]="title.SystemID"
+                    [selected]="title.SystemDataName">{{title.SystemDataName}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </div>
           <div class="col-12">
             <ion-item>
               <ion-label>ความคิดเห็นเพิ่มเติมที่มีต่อร้าน</ion-label>
