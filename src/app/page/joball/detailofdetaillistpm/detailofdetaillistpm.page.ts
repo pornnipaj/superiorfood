@@ -378,7 +378,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.title7 = "รายการที่ 4 แบบประเมินปัญหา"
       this.isenabledTakeback = false;
       this.isenabledcheck = false;
-      this.isenabledcuseva = true;
+      this.isenabledcuseva = false;
       this.isenabledrequest = false;
 
     } else if (this.jobtype == "INSTALL") {
