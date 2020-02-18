@@ -1,5 +1,6 @@
 <ion-toolbar>
-  <ion-title>ความคิดเห็นเพิ่มเติม</ion-title>
+  <ion-title #hide *ngIf="jobtype != 'CM'; else hide">ความคิดเห็นของช่าง</ion-title>
+  <ion-title #show *ngIf="jobtype == 'CM'; else show">{{header}}</ion-title>
   <ion-buttons slot="primary">
     <ion-icon slot="end" name="close" (click)="close()"></ion-icon>
   </ion-buttons>
@@ -19,24 +20,15 @@
           </div>
           <div class="col-12" #show *ngIf="jobtype == 'CM'; else show">
             <ion-item>
-              <ion-label>สาเหตุของปัญหา</ion-label>
+              <ion-label>วิธีการแก้ปัญหา</ion-label>
             </ion-item>
             <ion-item>    
               <textarea class="form-control" rows="3" [(ngModel)]="resolutiondetail"></textarea>
             </ion-item>
           </div>
-          <div class="col-12" style="margin-top: 20px;" #show *ngIf="jobtype == 'CM'; else show">
+          <div class="col-12" #hide *ngIf="jobtype != 'CM'; else hide">
             <ion-item>
-              <ion-label>การปิดงาน</ion-label>
-              <ion-select interface="popover" (ionChange)="onChange($event,'work')" [(ngModel)]="workclose">
-                <ion-select-option *ngFor="let title of getworkclose" [value]="title.SystemID"
-                    [selected]="title.SystemDataName">{{title.SystemDataName}}</ion-select-option>
-              </ion-select>
-            </ion-item>
-          </div>
-          <div class="col-12">
-            <ion-item>
-              <ion-label>ความคิดเห็นเพิ่มเติมที่มีต่อร้าน</ion-label>
+              <ion-label>ความคิดเห็นเพิ่มเติมของช่าง</ion-label>
             </ion-item>
             <ion-item>    
               <textarea class="form-control" rows="3" [(ngModel)]="TecComment"></textarea>

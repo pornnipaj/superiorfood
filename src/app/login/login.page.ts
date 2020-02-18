@@ -168,6 +168,9 @@ export class LoginPage implements OnInit {
     console.log(this.newUser);
     
     this.authService.login(this.newUser);
+    this.storageService.addUser(this.newUser).then(item => {
+      this.newUser = <User>{};
+    });
   }
 
   //#endregion

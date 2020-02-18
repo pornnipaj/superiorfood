@@ -46,3 +46,11 @@
    width: 60%; 
    height: 90%;
 }
+.custom-alert .modal-wrapper {
+   width: 1200px; 
+ }
+
+ .sc-ion-alert-md-h{
+   --max-width:600px !important;
+   --min-width:599px !important; 
+ }

@@ -36,7 +36,7 @@ export class ChecklistPage implements OnInit {
     this.tran = [];;
 if (this.type == "new") {
   this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
-    // this.url = sanitizer.bypassSecurityTrustResourceUrl('http://localhost:41669/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
+     //this.url = sanitizer.bypassSecurityTrustResourceUrl('http://localhost:41669/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
 
 }else if(this.type == "edit"){
   this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);

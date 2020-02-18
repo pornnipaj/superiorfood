@@ -14,10 +14,8 @@
         <div class="portlet box blue">
           <div class="portlet-title">
             <div class="caption">
-              <i class="fa fa-sticky-note-o"></i>รายการการตรวจเช็ค
-            </div>
-            <div class="tools">
-              <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="planDate"></ion-datetime>
+              <i class="fa fa-sticky-note-o"></i>รายการตรวจเช็ค
+              <ion-label>{{planDate}}</ion-label>
             </div>
           </div>
 
@@ -201,7 +199,7 @@
                   <button (click)="check()" [disabled]="!isenabledcheck" class="btn default">
                     รายการตรวจเช็ค </button>
                 </div>
-                <div #device class="col-md-6 col-6 text-center" style="padding-left: 10px;" *ngIf="installID == '-' else device">
+                <div #device class="col-md-6 col-6 text-center" style="padding-left: 10px;" *ngIf="SerialNo == '-' && jobtype == 'INSTALL' else device">
                   <button (click)="changspare('device')" [disabled]="!isenabledadddevice" class="btn default">
                     เพิ่มเครื่อง </button>
                 </div>
@@ -388,33 +386,7 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-12 col-sm-12 ex2" style="padding: 0px;" *ngIf="installID != '-' else havedevice" #havedevice>
-          <div class="portlet box blue">
-            <div class="portlet-title">
-              <div class="caption">
-                <i class="fa fa-cube"></i>สินค้า</div>
-            </div>
-            <div class="portlet-body" style="margin: 0px;">
-              <div class="portlet light ">
-                <div class="row">
-                  <div class="col-md-4 col-4">
-                    <p class="profile-desc-text">สินค้าที่ติดตั้ง:</p>
-                    <p class="profile-desc-text">รหัสสินค้า:</p>
-                    <p class="profile-desc-text">ชื่อสินค้า:</p>
-                    <p class="profile-desc-text">Serial No:</p>
-                  </div>
-                  <div class="col-md-8 col-8">
-                    <p class="profile-desc-text">{{InstallPlanName}}</p>
-                    <p class="profile-desc-text">{{ItemCode}}</p>
-                    <p class="profile-desc-text">{{ItemsName}}</p>
-                    <p class="profile-desc-text">{{SerialNo}}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-12 col-sm-12 ex2" style="padding: 0px;" *ngIf="installID == '-' else device" #device>
+        <div class="col-12 col-md-12 col-sm-12 ex2" style="padding: 0px;">
           <div class="portlet box blue">
             <div class="portlet-title">
               <div class="caption">
