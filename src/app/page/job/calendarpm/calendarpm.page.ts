@@ -41,7 +41,6 @@ export class CalendarpmPage implements OnInit {
     private storageService: StorageService,
     private auth:AuthenticationService,
     sanitizer: DomSanitizer) {
-      this.auth.checkToken();
     this.storageService.getUser().then(items => {
       this.items = items;
       // console.log(items);      

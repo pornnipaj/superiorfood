@@ -119,7 +119,7 @@
            
             <div class="col-12">
               <ion-button size="small" (click)="Imgbf(data.value)" *ngIf="imgbf">ภาพหน้างาน</ion-button>
-              <ion-button color="success" size="small" (click)="click(item, data.value)" >เริ่มงาน</ion-button>
+              <ion-button color="success" size="small" (click)="click(item, data.value)" *ngIf="data.value.Workfinish == 0 else wait" #wait >เริ่มงาน</ion-button>
             </div>
           </div>
         </div>
