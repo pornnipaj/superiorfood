@@ -9,7 +9,7 @@
 <ion-content>
   <div class="container">
       <div class="row">
-          <div class="col-12" style="margin-top: 20px;" #show *ngIf="jobtype == 'CM'; else show">
+          <div class="col-12" style="margin-top: 20px;" #show *ngIf="jobtype == 'CM' && this.workclose != 'workclose'; else show">
             <ion-item>
               <ion-label>หัวข้อการแก้ปัญหา</ion-label>
               <ion-select interface="popover" (ionChange)="onChange($event,'resolution')" [(ngModel)]="resolution">
@@ -18,7 +18,7 @@
               </ion-select>
             </ion-item>
           </div>
-          <div class="col-12" #show *ngIf="jobtype == 'CM'; else show">
+          <div class="col-12" #show *ngIf="jobtype == 'CM' && this.workclose != 'workclose'; else show">
             <ion-item>
               <ion-label>วิธีการแก้ปัญหา</ion-label>
             </ion-item>
@@ -26,7 +26,7 @@
               <textarea class="form-control" rows="3" [(ngModel)]="resolutiondetail"></textarea>
             </ion-item>
           </div>
-          <div class="col-12" #hide *ngIf="jobtype != 'CM'; else hide">
+          <div class="col-12" #hide *ngIf="this.workclose == 'workclose'; else hide">
             <ion-item>
               <ion-label>ความคิดเห็นเพิ่มเติมของช่าง</ion-label>
             </ion-item>

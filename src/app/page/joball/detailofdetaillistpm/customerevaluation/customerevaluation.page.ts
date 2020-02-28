@@ -35,9 +35,9 @@ export class CustomerevaluationPage implements OnInit {
     this.header = this.navParams.data.header
     this.empID = this.navParams.data.empID
     this.workclose = this.navParams.data.workclose
-    console.log(this.header);
+    console.log(this.workclose);
 
-    if (this.jobtype == "CM") {
+    if (this.jobtype == "CM" && this.workclose != 'workclose') {
       let params = {
         installID: this.installID,
         jobtype: "getresolution"
@@ -86,7 +86,7 @@ if (type == 'resolution') {
     console.log(this.resolution);
     console.log(this.resolutiondetail);
     
-    if (this.jobtype == "CM") {
+    if (this.jobtype == "CM" && this.workclose != 'workclose') {
       if (this.resolutiondetail == null || this.resolutiondetail == "") {
         const alert = await this.alertController.create({
           header: 'แจ้งเตือน',
