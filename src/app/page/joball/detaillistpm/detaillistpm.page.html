@@ -111,6 +111,10 @@
               <label class="col-4 text" #pm>ประเภทงาน :</label>
               <label class="col-8 subtext" #pm>{{data.value.JobType}} ({{data.value.typePm}})</label>
             </div>
+            <div *ngIf="data.value.JobType == 'CM' && data.value.Workfinish == 1 else cm">
+              <label class="col-4 text" #cm>การปิดงาน :</label>
+              <label class="col-8 subtext" #cm>{{data.value.WorkClose}}</label>
+            </div>
               <div *ngIf="data.value.sparepart != '' && data.value.JobType == 'PM' else spare">
               <label class="col-4 text" #spare>อะไหล่ที่ต้องเปลี่ยน :</label>
               <label class="col-8 subtext" #spare>{{data.value.sparepart}}</label>

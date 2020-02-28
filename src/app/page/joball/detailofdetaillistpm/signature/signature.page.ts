@@ -37,7 +37,7 @@ export class SignaturePage implements OnInit {
 
   public signaturePadOptions: Object = {
     'minWidth': 2,
-    canvasWidth: 600,
+    canvasWidth: 1000,
     canvasHeight: 380,
     backgroundColor: 'white',
     penColor: 'black'

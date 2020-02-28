@@ -43,8 +43,16 @@ export class JobPage implements OnInit {
 
   //#region click
   click(item) {
-    console.log(item.JobType);
+    console.log(item.WorkCloseID);
     if (item.JobType == "CM") {
+      if (item.WorkCloseID == "WorkClose001") {
+        
+        
+      }
+      else if (item.WorkCloseID == "WorkClose002") {
+        
+        
+      }else{
       console.log(item);
       let params = {
         data: item,
@@ -62,7 +70,9 @@ export class JobPage implements OnInit {
       };
       this.navCtrl.navigateForward(['/job/jobdetail'], navigationExtras);
       console.log("sent", navigationExtras);
-    } else {
+    } 
+  }
+  else {
       console.log(item);
       let params = {
         data: item,

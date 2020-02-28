@@ -112,23 +112,23 @@ export class DetaillistpmPage implements OnInit {
       this.postDataService.SaveCaseAll(workclose).then(data => {
         this.getworkclose = data
         console.log(data);
-        for (let i = 0; i < this.getworkclose.length; i++) {  
+        for (let i = 0; i < this.getworkclose.length; i++) {
           console.log(this.getworkclose);
-          if (i==0) {
+          if (i == 0) {
             this.getworkclose1 = this.getworkclose[0].SystemDataName;
             this.getworkclosevalue1 = this.getworkclose[0].SystemID;
             this.text = 'ปิดงาน'
-          }else if (i == 1) {
+          } else if (i == 1) {
             this.getworkclose2 = this.getworkclose[1].SystemDataName;
             this.getworkclosevalue2 = this.getworkclose[1].SystemID;
             this.text = 'เริ่มงาน'
-          }else if (i == 2) {
+          } else if (i == 2) {
             this.getworkclose3 = this.getworkclose[2].SystemDataName;
             this.getworkclosevalue3 = this.getworkclose[2].SystemID;
             this.text = 'บันทึก'
-          }         
-        }        
-      });  
+          }
+        }
+      });
     }
     if (this.type == "INSTALL") {
       this.imgbf = true
@@ -197,9 +197,9 @@ export class DetaillistpmPage implements OnInit {
 
   //#endregion
 
-  async popupclose(item,header,workclose){
+  async popupclose(item, header, workclose) {
     console.log(item);
-    
+
     const modal = await this.modalController.create({
       component: CustomerevaluationPage,
       cssClass: 'my-custom-modal-css',
@@ -207,111 +207,177 @@ export class DetaillistpmPage implements OnInit {
         installID: item.installId,
         planID: item.planID,
         jobtype: this.type,
-        header:header,
-        empID:this.empID,
-        workclose:workclose
+        header: header,
+        empID: this.empID,
+        workclose: workclose
       }
     });
     modal.onDidDismiss().then(data => {
-  })
-  return await modal.present();
+    })
+    return await modal.present();
   }
   //#region click
   async click(data, item) {
     console.log('Data', data);
     console.log('item', item);
-    if (item.Workfinish == 0) {
+    if (item.Workfinish == 0) {      
       if (item.status == "Pending") {
         const alert = await this.alertController.create({
           message: 'กรุณาติดต่อผู้ดูลระบบ',
           buttons: ['OK']
         });
         await alert.present();
-      } else if (this.type == "CM") {
-       
+      } 
+      if (this.type == "CM") {
+        if (item.tranID != null) {
+          let tran = {
+            AssetID: item.AssetID,
+            Serial: item.Serial,
+            planID: item.planID,
+            empID: this.empID,
+            insID: item.installId,
+            type: this.type
+          }
+          console.log(tran);
+  
+          this.postDataService.postTranService(tran).then(TranService => {
+            // console.log(TranService);  
+          });
+          let params = {
+            planID: item.planID,
+            install: item,
+            data: data,
+            insID: item.installId,
+            sparetype: item.sparepart
+          }
+          console.log(params);
+  
+          const navigationExtras: NavigationExtras = {
+            queryParams: {
+              data: JSON.stringify(params)
+            }
+          };
+          this.navCtrl.navigateForward(['joball/listpm/detailofdetaillistpm'], navigationExtras);
+          console.log("sent", navigationExtras);      
+        }else{
         let alert = await this.alertController.create({
           cssClass: 'custom-alert',
           message: 'กรุณาเลือกการปิดงาน',
           inputs: [
             {
               type: 'radio',
-              label:this.getworkclose1,
-              value: this.getworkclosevalue1              
+              label: this.getworkclose1,
+              value: this.getworkclosevalue1
             },
             {
               type: 'radio',
-              label:this.getworkclose2,
+              label: this.getworkclose2,
               value: this.getworkclosevalue2
             },
             {
               type: 'radio',
-              label:this.getworkclose3,
+              label: this.getworkclose3,
               value: this.getworkclosevalue3
             }
           ],
-          buttons: 
-          [{text: this.text,
-          handler: data => {
-    console.log(data);
-    if (data == this.getworkclosevalue1) {
-      let params = {
-        planID: item.planID,
-        installID: item.installId,
-        empID:this.empID,
-        jobtype: "saveclose",
-        workclose:data
-      }
-      console.log(params);
-      this.postDataService.SaveCaseAll(params).then(data => {
-        console.log(data);
-        if (data == true) {
-          this.alertSuccess();
-          this.navCtrl.navigateForward(['/menu/overview']);
-        }
-        if (data == false) {
-          this.alertFail();
-        }
-      });
-    }
-    else if (data == this.getworkclosevalue2) {
-      let tran = {
-        AssetID: item.AssetID,
-        Serial: item.Serial,
-        planID: item.planID,
-        empID: this.empID,
-        insID: item.installId,
-        type: this.type,        
-        workclose:data
-      }
-      console.log(tran);
+          buttons:
+            [{
+              text: this.text,
+              handler: data => {
+                console.log(data);
+                if (data == this.getworkclosevalue1) {
+                  let params = {
+                    planID: item.planID,
+                    installID: item.installId,
+                    empID: this.empID,
+                    jobtype: "saveclose",
+                    workclose: data
+                  }
+                  console.log(params);
+                  this.postDataService.SaveCaseAll(params).then(data => {
+                    console.log(data);
+                    if (data == true) {
+                      this.alertSuccess();
+                      this.navCtrl.navigateForward(['/menu/overview']);
+                    }
+                    if (data == false) {
+                      this.alertFail();
+                    }
+                  });
+                }
+                else if (data == this.getworkclosevalue2) {
+                  let tran = {
+                    AssetID: item.AssetID,
+                    Serial: item.Serial,
+                    planID: item.planID,
+                    empID: this.empID,
+                    insID: item.installId,
+                    type: this.type,
+                    workclose: data
+                  }
+                  console.log(tran);
 
-      this.postDataService.postTranService(tran).then(TranService => {
-        // console.log(TranService);  
-      });
-      let params = {
-        planID: item.planID,
-        install: item,
-        data:data,
-        insID: item.installId,
-        sparetype: item.sparepart
-      }
-      console.log(params);
+                  this.postDataService.postTranService(tran).then(TranService => {
+                    // console.log(TranService);  
+                  });
+                  let params = {
+                    planID: item.planID,
+                    install: item,
+                    data: data,
+                    insID: item.installId,
+                    sparetype: item.sparepart
+                  }
+                  console.log(params);
 
-      const navigationExtras: NavigationExtras = {
-        queryParams: {
-          data: JSON.stringify(params)
-        }
-      };
-      this.navCtrl.navigateForward(['joball/listpm/detailofdetaillistpm'], navigationExtras);
-      console.log("sent", navigationExtras);
-    }
-    else if (data == this.getworkclosevalue3) {
-      this.popupclose(item,this.getworkclose3,data)
-  }
-        }}]});
+                  const navigationExtras: NavigationExtras = {
+                    queryParams: {
+                      data: JSON.stringify(params)
+                    }
+                  };
+                  this.navCtrl.navigateForward(['joball/listpm/detailofdetaillistpm'], navigationExtras);
+                  console.log("sent", navigationExtras);
+                }
+                else if (data == this.getworkclosevalue3) {
+                  this.popupclose(item, this.getworkclose3, data)
+                }
+              }
+            }]
+        });
         await alert.present();
-      
-      }else{
+      }
+      } 
+      if (item.tranID != null && this.type != "CM") {
+        let tran = {
+          AssetID: item.AssetID,
+          Serial: item.Serial,
+          planID: item.planID,
+          empID: this.empID,
+          insID: item.installId,
+          type: this.type
+        }
+        console.log(tran);
+
+        this.postDataService.postTranService(tran).then(TranService => {
+          // console.log(TranService);  
+        });
+        let params = {
+          planID: item.planID,
+          install: item,
+          data: data,
+          insID: item.installId,
+          sparetype: item.sparepart
+        }
+        console.log(params);
+
+        const navigationExtras: NavigationExtras = {
+          queryParams: {
+            data: JSON.stringify(params)
+          }
+        };
+        this.navCtrl.navigateForward(['joball/listpm/detailofdetaillistpm'], navigationExtras);
+        console.log("sent", navigationExtras);      
+      }
+      else if((item.tranID == null && this.type != "CM")) {
         const alert = await this.alertController.create({
           header: 'แจ้งเตือน!',
           message: 'ต้องการเริ่มทำงาน',
@@ -328,19 +394,19 @@ export class DetaillistpmPage implements OnInit {
                   type: this.type
                 }
                 console.log(tran);
-  
+
                 this.postDataService.postTranService(tran).then(TranService => {
                   // console.log(TranService);  
                 });
                 let params = {
                   planID: item.planID,
                   install: item,
-                  data:data,
+                  data: data,
                   insID: item.installId,
                   sparetype: item.sparepart
                 }
                 console.log(params);
-  
+
                 const navigationExtras: NavigationExtras = {
                   queryParams: {
                     data: JSON.stringify(params)
@@ -359,27 +425,36 @@ export class DetaillistpmPage implements OnInit {
           ]
         });
         await alert.present();
-      }   
+      }
     }
 
     if (item.Workfinish == 1) {
       if (this.type == "CM") {
-        let params = {
-          data: data,
-          installID: item.newinstallID,
-          tranID: item.tranID,
-          planID: item.planID,
-          type: this.type
-        }
-        console.log(params);
+        if (item.WorkCloseID == "WorkClose001") {
 
-        const navigationExtras: NavigationExtras = {
-          queryParams: {
-            data: JSON.stringify(params)
+
+        }
+        else if (item.WorkCloseID == "WorkClose002") {
+
+
+        } else {
+          let params = {
+            data: data,
+            installID: item.newinstallID,
+            tranID: item.tranID,
+            planID: item.planID,
+            type: this.type
           }
-        };
-        this.navCtrl.navigateForward(['/job/jobdetail'], navigationExtras);
-        console.log("sent", navigationExtras);
+          console.log(params);
+
+          const navigationExtras: NavigationExtras = {
+            queryParams: {
+              data: JSON.stringify(params)
+            }
+          };
+          this.navCtrl.navigateForward(['/job/jobdetail'], navigationExtras);
+          console.log("sent", navigationExtras);
+        }
       }
       else if (this.type != "CM") {
         let params = {
@@ -423,28 +498,28 @@ export class DetaillistpmPage implements OnInit {
   }
   //#endregion
 
-    //#region alert success
-    async alertSuccess() {
-      const alert = await this.alertController.create({
-        header: 'แจ้งเตือน',
-        message: 'บันทึกสำเร็จ',
-        buttons: ['OK']
-      });
-  
-      await alert.present();
-    }
-    //#endregion
-  
-    //#region alert success
-    async alertFail() {
-      const alert = await this.alertController.create({
-        header: 'แจ้งเตือน',
-        message: 'บันทึกไม่สำเร็จ',
-        buttons: ['OK']
-      });
-  
-      await alert.present();
-    }
-    //#endregion
-  
+  //#region alert success
+  async alertSuccess() {
+    const alert = await this.alertController.create({
+      header: 'แจ้งเตือน',
+      message: 'บันทึกสำเร็จ',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  //#endregion
+
+  //#region alert success
+  async alertFail() {
+    const alert = await this.alertController.create({
+      header: 'แจ้งเตือน',
+      message: 'บันทึกไม่สำเร็จ',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  //#endregion
+
 }
