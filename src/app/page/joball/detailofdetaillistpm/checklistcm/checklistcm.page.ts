@@ -197,7 +197,7 @@ export class ChecklistcmPage implements OnInit {
     console.log(this.SerialNo);
 
     if (this.serial == "") {
-      this.alertSN();
+      this.isShowDeviceDetail = false;
     }
     else if (this.serial == this.SerialNo) {
       this.alertMeanSN();
