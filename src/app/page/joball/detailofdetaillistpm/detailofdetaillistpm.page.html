@@ -301,8 +301,10 @@
               </div>
               <div class="row">
                 <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
-                  <button class="btn default" (click)="openModalcustomerpw()" [disabled]="!isenabledcuspass">
-                    รหัสยืนยันตัวตนลูกค้า </button>
+                  <button class="btn default" *ngIf="jobtype == 'INSTALL' else spare" #spare (click)="openModalcustomerpw()" [disabled]="!isenabledcuspass">
+                    ยืนยันการปิดงาน </button>
+                    <button class="btn default" *ngIf="jobtype != 'INSTALL' else all" #all (click)="openModalcustomerpw()" [disabled]="!isenabledcuspass">
+                      รหัสยืนยันตัวตนลูกค้า   </button>
                 </div>
                 <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
                 </div>

@@ -252,7 +252,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.Category = this.install.Category;
       this.planDate = this.install.planDate;
       this.jobtype = this.install.JobType;
-      console.log(this.planDate);
+      console.log(this.sparetype);
     });
 
 
@@ -374,7 +374,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.title3 = "รายการที่ 3 รายการที่ต้องตรวจซ่อม"
       this.title4 = "รายการที่ 6 ลายเซ็นต์ผู้รับผิดชอบ"
       this.title5 = "รายการที่ 5 ประเมินการทำงาน"
-      this.title6 = "รายการที่ 7 สรุปผลการตรวจเช็คและยืนยันการปิดงาน"
+      this.title6 = "รายการที่ 7 ยืนยันการปิดงาน"
       this.title7 = "รายการที่ 4 แบบประเมินปัญหา"
       this.isenabledTakeback = false;
       this.isenabledcheck = false;
@@ -388,7 +388,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.title7 = "รายการที่ 4 ความคิดเห็น"
       this.title5 = "รายการที่ 5 ประเมินการทำงาน"
       this.title4 = "รายการที่ 6 ลายเซ็นต์ผู้รับผิดชอบ"
-      this.title6 = "รายการที่ 7 สรุปผลการตรวจเช็คและยืนยันการปิดงาน"
+      this.title6 = "รายการที่ 7 ยืนยันการปิดงาน"
       this.title8 = "รายการที่ 8 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
       this.isenabledtitle3 = true;
       this.isenabledadddevice = false;
@@ -400,14 +400,14 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.title7 = "รายการที่ 3 ความคิดเห็น"
       this.title5 = "รายการที่ 4 ประเมินการทำงาน"
       this.title4 = "รายการที่ 5 ลายเซ็นต์ผู้รับผิดชอบ"
-      this.title6 = "รายการที่ 6 สรุปผลการตรวจเช็คและยืนยันการปิดงาน"
+      this.title6 = "รายการที่ 6 ยืนยันการปิดงาน"
       this.title8 = "รายการที่ 7 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
       this.isenabledtitle3 = false;
     } else if (this.jobtype == "PM") {
       this.title7 = "รายการที่ 4 ความคิดเห็น"
       this.title5 = "รายการที่ 5 ประเมินการทำงาน"
       this.title4 = "รายการที่ 6 ลายเซ็นต์ผู้รับผิดชอบ"
-      this.title6 = "รายการที่ 7 สรุปผลการตรวจเช็คและยืนยันการปิดงาน"
+      this.title6 = "รายการที่ 7 ยืนยันการปิดงาน"
       this.title8 = "รายการที่ 8 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
     }
 
@@ -715,11 +715,11 @@ export class DetailofdetaillistpmPage implements OnInit {
       //   this.postDataService.SaveCaseAll(params).then(photoID => {
       //     console.log(photoID);
       //     this.photo1 = this.postDataService.apiServer_url + photoID
-      //     console.log(this.photo1);
-      //     this.status1 = "1"
+      //     console.log(this.photo1);          
       //     this.isTake1 = false;
       //     this.isShow1 = true;
-      //     this.checktakeback();
+      //     this.status1 = "1"
+      //     this.checktakeback();          
       //   });
       });
     }
@@ -1676,7 +1676,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         //   this.id6 = this.photoID.id
         //   console.log(this.photo6);
         //   this.status6 = "6"
-        //   this.checktakeback();
+        //   this.checklist();
         //   this.isTake6 = false;
         //   this.isShow6 = true;
         //   this.startTimer();
@@ -1868,10 +1868,10 @@ export class DetailofdetaillistpmPage implements OnInit {
         //   this.id7 = this.photoID.id
         //   console.log(this.photo7);
         //   this.status7 = "7"
-        //   this.checktakeback();
+        //   this.checklist();
         //   this.isTake7 = false;
         //   this.isShow7 = true;
-        //   this.startTimer();
+          // this.startTimer();
         // });
       });
     }
@@ -2061,7 +2061,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         //   this.id8 = this.photoID.id
         //   console.log(this.photo8);
         //   this.status8 = "8"
-        //   this.checktakeback();
+        //   this.checklist();
         //   this.isTake8 = false;
         //   this.isShow8 = true;
         //   this.startTimer();
@@ -2254,8 +2254,8 @@ export class DetailofdetaillistpmPage implements OnInit {
         //   this.photoID = photoID
         //   this.id9 = this.photoID.id
         //   console.log(this.photo9);
-        //   this.status9 = "9"
-        //   this.checktakeback();
+        //   this.status9 = "1"
+        //   this.checklist();
         //   this.isTake9 = false;
         //   this.isShow9 = true;
         //   this.startTimer();
@@ -2447,7 +2447,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         //   this.id10 = this.photoID.id
         //   console.log(this.photo10);
         //   this.status10 = "10"
-        //   this.checktakeback();
+        //   this.checklist();
         //   this.isTake10 = false;
         //   this.isShow10 = true;
         //   this.startTimer();
@@ -2487,7 +2487,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       }
       else if (this.jobtype == "PM") {
         //console.log('sparetype', Array.isArray(this.sparetype));
-        if (this.sparetype != "undefined" && Array.isArray(this.sparetype) && this.sparetype.length != null && this.sparetype.length > 0) {
+        if (this.sparetype != "" ){
           this.isenabledspare = true;
         }
 
@@ -2682,7 +2682,8 @@ export class DetailofdetaillistpmPage implements OnInit {
       componentProps: {
         installID: this.installID,
         planID: this.planID,
-        jobtype: this.jobtype
+        jobtype: this.jobtype,
+        workclose: 'workclose'
       }
     });
 
@@ -2818,9 +2819,19 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.Cuscomment = this.cuscom.data.Cuscomment;
       console.log(this.cuscom);
       if (this.jobtype == 'INSTALL') {
-        if (this.cuscom.data == 1) {
+          let params = {
+            planID: this.planID,
+            installID: this.installID,
+            jobtype: "Cuscomment",
+            empID: this.empID,
+            Cuscomment: this.Cuscomment,
+          }
+          console.log(params);
+          this.postDataService.SaveCaseAll(params).then(comment => {
+            console.log(comment);
+          });
           this.isenabledsave = true;
-        }
+        
       } else {
         if (this.cuscom.data == 0) {
           this.alertCusCode();

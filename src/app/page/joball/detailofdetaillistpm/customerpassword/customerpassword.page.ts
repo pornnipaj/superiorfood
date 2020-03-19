@@ -81,7 +81,10 @@ export class CustomerpasswordPage implements OnInit {
           await this.modalController.dismiss(params);
         }        
       }else{
-        this.modalController.dismiss(1);
+        let params = {
+          Cuscomment: this.Cuscomment
+        }
+        this.modalController.dismiss(params);
       }
       }
       
