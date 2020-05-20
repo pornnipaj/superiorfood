@@ -17,7 +17,7 @@
                       <ion-label color="primary">ประเภทเครื่อง</ion-label>
                     </div>
                     <div class="col-8">
-                      <ion-select interface="popover" (ionChange)="getProId($event)">
+                      <ion-select interface="popover" (ionChange)="getProId($event)" [(ngModel)]="ProductID"> 
                         <ion-select-option *ngFor="let title of Machine" [value]="title.ProductID"
                           [selected]="title.ProductName">{{title.ProductName}}</ion-select-option>
                       </ion-select>
@@ -28,7 +28,7 @@
                       <ion-label color="primary">อุปกรณ์</ion-label>
                     </div>
                     <div class="col-8">
-                      <ion-select interface="popover" (ionChange)="getAsID($event)">
+                      <ion-select interface="popover" (ionChange)="getAsID($event)" [(ngModel)]="AsID">
                         <ion-select-option *ngFor="let title of Device" [value]="title.AssID"
                           [selected]="title.AssetNo">{{title.AssetNo}}</ion-select-option>
                       </ion-select>

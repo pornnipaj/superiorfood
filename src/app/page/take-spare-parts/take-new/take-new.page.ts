@@ -26,7 +26,10 @@ export class TakeNewPage implements OnInit {
   Reference;
   EngineerTel;
   list;
-
+  ProductID;
+  AssID;
+  type;
+  JobDeviceID;
   constructor(private navParams: NavParams,
     public modalController: ModalController,
     public alertController: AlertController,
@@ -38,19 +41,54 @@ export class TakeNewPage implements OnInit {
     this.EmpID = this.navParams.data.EmpID;
     this.Reference = this.navParams.data.Reference;
     this.EngineerTel = this.navParams.data.EngineerTel;
-    console.log(this.JobID, this.CusID,this.EmpID,this.Reference);
-    
-    let params = {
-      Type: "Machine",
+    this.type = this.navParams.data.type;
+    if (this.type == "edit") {
+      this.ProID = this.navParams.data.item.AssetTypeID;
+      this.AsID = this.navParams.data.item.AssetID;
+      this.No = this.navParams.data.item.Qty;
+      this.Unit = this.navParams.data.item.Unit;
+      this.Remark = this.navParams.data.item.Remark;
+      this.JobDeviceID = this.navParams.data.item.JobDeviceID;
+      console.log(this.navParams.data.item);
+      let params = {
+        Type: "Machine",
+      }
+      this.postDataService.PostCus(params).then(Machine => {
+        this.Machine = Machine;
+        for (let i = 0; i < this.Machine.length; i++) {
+          if (this.Machine[i].ProductID == this.ProID) {
+            this.ProductID = this.Machine[i].ProductID;
+            console.log(this.ProductID);
+          }
+        }
+      });
+      let param = {
+        ProID: this.ProID,
+        EmpID: this.EmpID,
+        Type: "Device",
+      }
+      console.log(param);
+      this.postDataService.PostCus(param).then(Device => {
+        this.Device = Device;
+        for (let i = 0; i < this.Device.length; i++) {
+          if (this.Device[i].AssID == this.AsID) {
+            this.AsID = this.Device[i].AssID;
+          }
+        }
+        console.log(this.AssID);
+      });
+    } else {
+      let params = {
+        Type: "Machine",
+      }
+      this.postDataService.PostCus(params).then(Machine => {
+        this.Machine = Machine;
+      });
     }
-    this.postDataService.PostCus(params).then(Machine => {
-      this.Machine = Machine;
-    });
-
   }
 
   ngOnInit() {
-   
+
   }
 
   close() {
@@ -60,6 +98,7 @@ export class TakeNewPage implements OnInit {
   PostSpare() {
     if (this.ProID != null && this.AsID != null && this.No != null) {
       let params = {
+        JobDeviceID: this.JobDeviceID,
         EmpID: this.EmpID,
         CusID: this.CusID,
         JobID: this.JobID,
@@ -69,36 +108,38 @@ export class TakeNewPage implements OnInit {
         Qty: this.No,
         Reference: this.Reference,
         Remark: this.Remark,
-        EngineerTel:this.EngineerTel,
+        EngineerTel: this.EngineerTel,
         Type: "Job",
       }
       console.log(params);
       this.postDataService.PostCus(params).then(JobID => {
         this.JobID = JobID
-        console.log(JobID); 
-        this.modalController.dismiss(this.JobID,this.list);
+        console.log(JobID);
+        this.modalController.dismiss(this.JobID, this.list);
       });
-    }else if (this.ProID == null){
+    } else if (this.ProID == null) {
       this.alertMachine();
-    }else if (this.AsID == null){
+    } else if (this.AsID == null) {
       this.alertDevice();
-    }else if (this.No == null || this.No == ""){
+    } else if (this.No == null || this.No == "") {
       this.alertQty();
     }
-    }
-    
-getProId(value) {
+  }
+
+  getProId(value) {
     this.ProID = value.detail.value;
     console.log(this.ProID);
     let params = {
       ProID: this.ProID,
-      EmpID:this.EmpID,
+      EmpID: this.EmpID,
       Type: "Device",
     }
     console.log(params);
     this.postDataService.PostCus(params).then(Device => {
       this.Device = Device;
     });
+    console.log(this.Device);
+
   }
 
   getAsID(value) {
@@ -111,7 +152,7 @@ getProId(value) {
   async alertMachine() {
     const alert = await this.alertController.create({
       header: 'แจ้งเตือน',
-      message: 'กรุณาเลิอกประเภทเครื่อง',
+      message: 'กรุณาเลือกประเภทเครื่อง',
       buttons: ['OK']
     });
 
@@ -119,28 +160,28 @@ getProId(value) {
   }
   //#endregion
 
-    //#region alertDevice
-    async alertDevice() {
-      const alert = await this.alertController.create({
-        header: 'แจ้งเตือน',
-        message: 'กรุณาเลิอกอะไหล่',
-        buttons: ['OK']
-      });
-  
-      await alert.present();
-    }
-    //#endregion
+  //#region alertDevice
+  async alertDevice() {
+    const alert = await this.alertController.create({
+      header: 'แจ้งเตือน',
+      message: 'กรุณาเลือกอะไหล่',
+      buttons: ['OK']
+    });
 
-    //#region alertQty
-    async alertQty() {
-      const alert = await this.alertController.create({
-        header: 'แจ้งเตือน',
-        message: 'กรุณากรอกจำนวนที่ต้องการเบิก',
-        buttons: ['OK']
-      });
-  
-      await alert.present();
-    }
-    //#endregion
+    await alert.present();
+  }
+  //#endregion
+
+  //#region alertQty
+  async alertQty() {
+    const alert = await this.alertController.create({
+      header: 'แจ้งเตือน',
+      message: 'กรุณากรอกจำนวนที่ต้องการเบิก',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  //#endregion
 }
 

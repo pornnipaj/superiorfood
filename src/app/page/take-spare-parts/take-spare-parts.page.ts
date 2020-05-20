@@ -133,8 +133,6 @@ export class TakeSparePartsPage implements OnInit {
     });
 
     modal.onDidDismiss().then(data => {
-      this.JobID = data
-      this.JobID = this.JobID.data
       console.log(this.JobID)
       if (this.JobID != null) {
         if (this.type == "new") {
@@ -301,15 +299,19 @@ export class TakeSparePartsPage implements OnInit {
   async Edit(item) {
     console.log(item);
     const modal = await this.modalController.create({
-      component: TakePage,
+      component: TakeNewPage,
       cssClass: 'my-custom-modal-css',
       componentProps: {
         item: item,
+        EmpID: this.empID,
+        CusID: this.CusID,
+        JobID: this.JobID,
+        Reference: this.Reference,
+        EngineerTel: this.EngineerTel,
+        type:"edit"
       }
     });
     modal.onDidDismiss().then(data => {
-      this.JobID = data
-      this.JobID = this.JobID.data
       console.log(this.JobID)
       if (this.JobID != null) {
         this.ngOnInit();
