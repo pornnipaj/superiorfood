@@ -96,7 +96,6 @@
                     <tr>
                       <th> ลำดับที่ </th>
                       <th> ชื่ออุปกรณ์เสริม </th>
-                      <th> Part No. </th>
                       <th> จำนวน </th>
                       <th> ยอดคงเหลือ </th>
                       <th> หน่วย </th>
@@ -108,7 +107,6 @@
                         {{i+1}}
                       </td>
                       <td style="padding-top:15px;"> {{item.Name}} </td>
-                      <td style="padding-top:15px;"> {{item.SKUCode}}</td>
                       <td> <input type="text" style="padding: 8px;" [(ngModel)]="item.No" /></td>
                       <td style="padding-top:15px;">{{item.Balance}}</td>
                       <td style="padding-top:15px;">{{item.Unit}}</td>

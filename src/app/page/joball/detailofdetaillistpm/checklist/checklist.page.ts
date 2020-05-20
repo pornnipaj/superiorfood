@@ -26,7 +26,7 @@ export class ChecklistPage implements OnInit {
     private navParams: NavParams,
     private postDataService: PostDataService,
     sanitizer: DomSanitizer,
-    public alertController: AlertController,) {
+    public alertController: AlertController, ) {
 
     this.empID = this.navParams.data.empID;
     this.planID = this.navParams.data.planID;
@@ -34,15 +34,15 @@ export class ChecklistPage implements OnInit {
     this.type = this.navParams.data.type;
     console.log(this.empID, this.planID, this.installID, this.type);
     this.tran = [];;
-if (this.type == "new") {
-  this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
-     //this.url = sanitizer.bypassSecurityTrustResourceUrl('http://localhost:41669/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
+    if (this.type == "new") {
+      // this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
+       this.url = sanitizer.bypassSecurityTrustResourceUrl('http://localhost:41669/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
 
-}else if(this.type == "edit"){
-  this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
-    // this.url = sanitizer.bypassSecurityTrustResourceUrl('http://localhost:41669/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
+    } else if (this.type == "edit") {
+      // this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
+      this.url = sanitizer.bypassSecurityTrustResourceUrl('http://localhost:41669/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
 
-}
+    }
   }
   //#endregion
 
@@ -51,7 +51,7 @@ if (this.type == "new") {
   ngOnInit() {
   }
   //#endregion
-  
+
   //#region close  
   close() {
     let params = {
@@ -64,12 +64,12 @@ if (this.type == "new") {
       console.log(data);
       if (data == "true") {
         this.modalController.dismiss(0);
-      }else{
+      } else {
         this.alertFail()
         // this.modalController.dismiss(1);
       }
     });
-    
+
   }
   //#endregion
 

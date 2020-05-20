@@ -223,7 +223,7 @@ export class DetaillistpmPage implements OnInit {
     if (item.Workfinish == 0) {      
       if (item.status == "Pending") {
         const alert = await this.alertController.create({
-          message: 'กรุณาติดต่อผู้ดูลระบบ',
+          message: 'กรุณาติดต่อผู้ดูแลระบบ',
           buttons: ['OK']
         });
         await alert.present();

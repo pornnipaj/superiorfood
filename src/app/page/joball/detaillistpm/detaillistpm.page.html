@@ -26,8 +26,8 @@
             <label class="col-8 subtext padding">{{item.Phone}}</label>
             <label class="col-4 text">แฟกซ์</label>
             <label class="col-8 subtext padding">{{item.Fax}}</label>
-                <label class="col-4 text">ที่อยู่</label>
-                <label class="col-8 subtext">{{item.Address}}</label>
+            <label class="col-4 text">ที่อยู่</label>
+            <label class="col-8 subtext">{{item.Address}}</label>
             <label class="col-4 text">ชื่อบิล</label>
             <label class="col-8 subtext padding">{{item.BillName}}</label>
           </div>
@@ -85,45 +85,58 @@
           </div>
           <div style="padding: 5px;" *ngFor="let data of item.productInstall | keyvalue">
             <div (click)="click(item, data.value)">
-              <div
-                style="background-color: #EEEEEE; margin-left:10px; padding: 0px; margin-bottom: 5px; margin-right:10px;">
-                <label class="col-4 text" style="margin:0px; padding-left: 5px;">สถานะ:</label>
-                <label class="col-8 subtext" #lblWait style="margin-bottom: 0px; color: #E78D8D; padding-left: 10px;"
-                  *ngIf="data.value.Workfinish == 0; else lblWait">รอการตรวจสอบ</label>
-                <label class="col-8 subtext" #lblSuccess style="margin-bottom: 0px; color: green; padding-left: 10px;"
-                  *ngIf="data.value.Workfinish == 1; else lblSuccess">สำเร็จ</label>
+              <div class="row col-12">
+                <div class="col-4 text">สถานะ:</div>
+                <div class="col-8 subtext" #lblWait style="color: #E78D8D;"
+                  *ngIf="data.value.Workfinish == 0; else lblWait">รอการตรวจสอบ</div>
+                <div class="col-8 subtext" #lblSuccess style="color: green;"
+                  *ngIf="data.value.Workfinish == 1; else lblSuccess">สำเร็จ</div>
               </div>
-              <label class="col-4 text">สินค้าที่ติดตั้ง:</label>
-              <label class="col-8 subtext">{{data.value.InstallPlanName}}</label>
-              <label class="col-4 text">รหัสสินค้า:</label>
-              <label class="col-8 subtext">{{data.value.ItemCode}}</label>
-              <label class="col-4 text">ชื่อสินค้า:</label>
-              <label class="col-8 subtext">{{data.value.ItemsName}}</label>
-              <label class="col-4 text">Serial No:</label>
-              <label class="col-8 subtext">{{data.value.SerialNo}}</label>
-              <label class="col-4 text" *ngIf="new">New Serial No:</label>
-              <label class="col-8 subtext" *ngIf="new">{{data.value.SerialNoNew}}</label>
-              <div *ngIf="data.value.JobType != 'PM' else pmnot">
-              <label class="col-4 text" #pmnot>ประเภทงาน :</label>
-              <label class="col-8 subtext" #pmnot>{{data.value.JobType}}</label>
+              <div class="row col-12">
+                <div class="col-4 text">สินค้าที่ติดตั้ง:</div>
+                <div class="col-8 subtext">{{data.value.InstallPlanName}}</div>
+              </div>
+              <div class="row col-12">
+                <label class="col-4 text">รหัสสินค้า:</label>
+                <label class="col-8 subtext">{{data.value.ItemCode}}</label>  
+              </div>
+              <div class="row col-12">
+                <label class="col-4 text">ชื่อสินค้า:</label>
+                <label class="col-8 subtext">{{data.value.ItemsName}}</label>  
+              </div>
+              <div class="row col-12">
+                <label class="col-4 text">Serial No:</label>
+                <label class="col-8 subtext">{{data.value.SerialNo}}</label>  
+              </div>
+              <div class="row col-12">
+                <label class="col-4 text" *ngIf="new">New Serial No:</label>
+                <label class="col-8 subtext" *ngIf="new">{{data.value.SerialNoNew}}</label>  
+              </div>
+              <div class="row col-12" *ngIf="data.value.JobType != 'PM' else pmnot">
+                <label class="col-4 text" #pmnot>ประเภทงาน :</label>
+                <label class="col-8 subtext" #pmnot>{{data.value.JobType}}</label>
+              </div>
+              <div class="row col-12" *ngIf="data.value.JobType == 'PM' else pm">
+                <label class="col-4 text" #pm>ประเภทงาน :</label>
+                <label class="col-8 subtext" #pm>{{data.value.typePm}}</label>
+              </div>
+              <div class="row col-12" *ngIf="data.value.JobType == 'CM' && data.value.Workfinish == 1 else cm">
+                <div class="col-4 text" #cm>การปิดงาน :</div>
+                <div class="col-8 subtext" #cm>{{data.value.WorkClose}}</div>
+              </div>
+              <div class="row col-12" *ngIf="data.value.sparepart != '' && data.value.JobType == 'PM' else spare">
+                <div class="col-4 text" #spare>อะไหล่ที่ต้องเปลี่ยน :</div>
+                <div class="col-8 subtext" #spare>
+                  <div [innerHTML]="data.value.sparepart"></div>
+                </div>
+              </div>
+              <hr/>
             </div>
-            <div *ngIf="data.value.JobType == 'PM' else pm">
-              <label class="col-4 text" #pm>ประเภทงาน :</label>
-              <label class="col-8 subtext" #pm>{{data.value.JobType}} ({{data.value.typePm}})</label>
-            </div>
-            <div *ngIf="data.value.JobType == 'CM' && data.value.Workfinish == 1 else cm">
-              <label class="col-4 text" #cm>การปิดงาน :</label>
-              <label class="col-8 subtext" #cm>{{data.value.WorkClose}}</label>
-            </div>
-              <div *ngIf="data.value.sparepart != '' && data.value.JobType == 'PM' else spare">
-              <label class="col-4 text" #spare>อะไหล่ที่ต้องเปลี่ยน :</label>
-              <label class="col-8 subtext" #spare>{{data.value.sparepart}}</label>
-            </div>
-            </div>
-           
+
             <div class="col-12">
               <ion-button size="small" (click)="Imgbf(data.value)" *ngIf="imgbf">ภาพหน้างาน</ion-button>
-              <ion-button color="success" size="small" (click)="click(item, data.value)" *ngIf="data.value.Workfinish == 0 else wait" #wait >เริ่มงาน</ion-button>
+              <ion-button color="success" size="small" (click)="click(item, data.value)"
+                *ngIf="data.value.Workfinish == 0 else wait" #wait>เริ่มงาน</ion-button>
             </div>
           </div>
         </div>

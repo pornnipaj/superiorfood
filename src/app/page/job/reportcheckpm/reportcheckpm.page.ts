@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../../../auth-service.service';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
 import { StorageService } from '../../../storage.service';
 import { PostDataService } from '../../../post-data.service';
+import { NavController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-reportcheckpm',
@@ -33,6 +33,7 @@ export class ReportcheckpmPage implements OnInit {
 
   //#region constructor
   constructor(public DataService: AuthServiceService,
+    public alertController: AlertController,
     private route: ActivatedRoute,
     public navCtrl: NavController,
     private storageService: StorageService,
@@ -73,23 +74,49 @@ export class ReportcheckpmPage implements OnInit {
   //#region click
   click(item, data) {
     console.log(item);
-    let params = {
-      item: item.value,
-      type: this.type,
-      date: data.planDate,
+    let param = {
+      planID: item.value.planID,
+      empID: this.empid,
+      type: "checkstatus",
     }
-    console.log(params);
+    console.log(param);
+    
+    this.postDataService.postcheck(param).then(status => {
+      console.log(status);
 
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        data: JSON.stringify(params)
+      if (status == true) {
+        let params = {
+          item: item.value,
+          type: this.type,
+          date: data.planDate,
+        }
+        console.log(params);
+    
+        let navigationExtras: NavigationExtras = {
+          queryParams: {
+            data: JSON.stringify(params)
+          }
+        };
+        console.log(navigationExtras);
+        this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
+      }else{
+        this.status();
       }
-    };
-    console.log(navigationExtras);
-    this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
+    });
+
+    
   }
   //#endregion
 
+  //#region alert status
+  async status(){
+    const alert = await this.alertController.create({
+      message: 'ยังไม่ถึงกำหนดรอบการตรวจเช็ค',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }  
+  //#endregion
   //#region ChangMonth
   ChangeMonth() {
     const month = new Date().getMonth() + 1;

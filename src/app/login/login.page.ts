@@ -187,7 +187,7 @@ export class LoginPage implements OnInit {
 
   //#region start
   ngOnInit() {
-    this.storageService.resetLocalStorage();
+    //this.storageService.resetLocalStorage();
     // this.checkspace();
   }
   //#endregion

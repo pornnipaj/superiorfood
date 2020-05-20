@@ -199,7 +199,7 @@
                   <button (click)="check()" [disabled]="!isenabledcheck" class="btn default">
                     รายการตรวจเช็ค </button>
                 </div>
-                <div #device class="col-md-6 col-6 text-center" style="padding-left: 10px;" *ngIf="SerialNo == '-' && jobtype == 'INSTALL' else device">
+                <div #device class="col-md-6 col-6 text-center" style="padding-left: 10px;" *ngIf="SerialNoInstall == '-' && jobtype == 'INSTALL' else device">
                   <button (click)="changspare('device')" [disabled]="!isenabledadddevice" class="btn default">
                     เพิ่มเครื่อง </button>
                 </div>

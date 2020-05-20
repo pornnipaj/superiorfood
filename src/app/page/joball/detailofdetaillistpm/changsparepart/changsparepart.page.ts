@@ -151,7 +151,7 @@ export class ChangsparepartPage implements OnInit {
     console.log(data);
     for (let s = 0; s < data.length; s++) {
       this.true = 0;
-      if (data[s].No > data[s].Balance) {
+      if (data[s].No > data[s].Balance || data[s].No == 0) {
         this.alertQty();
         this.true = 1;
         break;
