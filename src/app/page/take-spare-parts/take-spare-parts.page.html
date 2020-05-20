@@ -28,6 +28,17 @@
                 <div class="row">
                   <div class="col-6">
                     <ion-list>
+                      <ion-item *ngIf="JobID == null; else lblNew" #lblNew>
+                        <div class="col-4">
+                          <ion-label color="primary">ค้นหา</ion-label>
+                        </div>
+                        <div class="col-6">
+                          <ion-input [(ngModel)]="CustomerNameSearch"></ion-input>
+                        </div>
+                        <div class="col-2 pull-right">
+                          <ion-icon name="search" (click)="onChange($event,'SearchCustomerName')"></ion-icon>                          
+                        </div>
+                      </ion-item>
                       <ion-item>
                         <div class="col-4">
                           <ion-label color="primary">รหัสลูกค้า</ion-label>
@@ -35,8 +46,8 @@
                         <div class="col-6" *ngIf="JobID == null; else lblNew">
                           <ion-input #lblNew [(ngModel)]="CustomerCode"></ion-input>
                         </div>
-                        <div class="col-2 pull-right">
-                          <ion-icon name="search" (click)="onChange($event,'code')"></ion-icon>
+                        <div class="col-2 pull-right" *ngIf="JobID == null; else lblNew">
+                          <ion-icon name="search" (click)="onChange($event,'code')" #lblNew></ion-icon>
                           
                         </div>
                         <div class="col-8" *ngIf="JobID != null; else lblOld">

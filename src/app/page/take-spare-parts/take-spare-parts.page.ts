@@ -43,7 +43,8 @@ export class TakeSparePartsPage implements OnInit {
   JobDeviceID;
   code;
   CustomerID;
-
+  CustomerNameSearch;
+  value;
   constructor(
     private storageService: StorageService,
     public modalController: ModalController,
@@ -51,7 +52,14 @@ export class TakeSparePartsPage implements OnInit {
     private navCtrl: NavController,
     public alertController: AlertController,
     private route: ActivatedRoute) {
-    this.loadItems()
+
+    let params = {
+      EmpID: this.empID,
+      Type: "Customer"
+    }
+    this.postDataService.PostCus(params).then(Cus => {
+      this.Cus = Cus;
+    });
 
     this.route.queryParams.subscribe(params => {
       this.myId = JSON.parse(params["data"]);
@@ -168,21 +176,20 @@ export class TakeSparePartsPage implements OnInit {
         Type: "Customer"
       }
       this.postDataService.PostCus(params).then(Cus => {
-        this.Cus = Cus;
+        // this.Cus = Cus;
       });
     });
   }
 
   onChange(value, type) {
-    if (type == 'cus') {
-      this.CusID = value.detail.value
+    if (type == 'SearchCustomerName') {
       let params = {
-        CusID: this.CusID,
-        Type: "Detail"
+        CusID: this.CustomerNameSearch,
+        Type: "SearchCustomerName"
       }
       this.postDataService.PostCus(params).then(Cus => {
         this.Cus = Cus;
-        console.log(this.Cus);
+        console.log(this.CusID);
 
         for (let i = 0; i < this.Cus.length; i++) {
           this.CustomerID = this.Cus[i].CustomerID
@@ -195,13 +202,43 @@ export class TakeSparePartsPage implements OnInit {
           this.EngineerTel = this.Cus[i].EngineerTel
           this.Reference = this.Cus[i].Reference
           this.JobID = this.Cus[i].JobID
-          this.loadItems();
         }
+        console.log(this.Cus);
+
+      });
+    }
+    if (type == 'cus') {
+      this.CusID = value.detail.value
+      console.log(this.CusID);
+
+      let params = {
+        CusID: this.CusID,
+        Type: "Detail"
+      }
+      this.postDataService.PostCus(params).then(Cus => {
+        this.value = Cus
+        console.log(Cus);
+        this.CustomerID = this.value.CustomerID;
+        this.CustomerCode = this.value.CustomerCode
+        this.TelCompany = this.value.EngineerTel
+        this.AddressSite = this.value.Address
+        // for (let i = 0; i < this.Cus.length; i++) {
+        //   this.CustomerID = this.Cus[i].CustomerID
+        //   this.CustomerCode = this.Cus[i].CustomerCode
+        //   this.CustomerName = this.Cus[i].CustomerName
+        //   this.AddressSite = this.Cus[i].Address
+        //   this.ServiceReportNo = this.Cus[i].ServiceReportNo
+        //   this.Status = this.Cus[i].Status
+        //   this.TelCompany = this.Cus[i].TelCompany
+        //   this.EngineerTel = this.Cus[i].EngineerTel
+        //   this.Reference = this.Cus[i].Reference
+        //   this.JobID = this.Cus[i].JobID
+        // }
         console.log(this.CusID);
 
       });
     }
-     if (type == 'code') {
+    if (type == 'code') {
       let params = {
         CusID: this.CustomerCode,
         Type: "Cuscode"
@@ -221,8 +258,8 @@ export class TakeSparePartsPage implements OnInit {
           this.EngineerTel = this.code[i].EngineerTel
           this.Reference = this.code[i].Reference
           this.JobID = this.code[i].JobID
-          this.loadItems();
         }
+
         console.log(this.CusID);
 
       });
@@ -336,5 +373,12 @@ export class TakeSparePartsPage implements OnInit {
 
     await alert.present();
   }
+  //#endregion
+
+  //#region  
+  SearchCustomer(value) {
+
+  }
+
   //#endregion
 }
