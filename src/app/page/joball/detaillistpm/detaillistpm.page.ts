@@ -433,10 +433,6 @@ export class DetaillistpmPage implements OnInit {
         if (item.WorkCloseID == "WorkClose001") {
 
 
-        }
-        else if (item.WorkCloseID == "WorkClose002") {
-
-
         } else {
           let params = {
             data: data,

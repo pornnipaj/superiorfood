@@ -48,10 +48,6 @@ export class JobPage implements OnInit {
       if (item.WorkCloseID == "WorkClose001") {
         
         
-      }
-      else if (item.WorkCloseID == "WorkClose002") {
-        
-        
       }else{
       console.log(item);
       let params = {

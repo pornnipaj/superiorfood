@@ -90,6 +90,7 @@
             </ion-item>
           </ion-card-content>
         </ion-card>
+        <ion-button expand="block" (click)="EditDevice(item)">แก้ไข</ion-button>
       </div>
       <ion-card *ngIf="isShowDeviceDetail">
         <ion-card-content>
@@ -138,7 +139,7 @@
                             {{i+1}}
                           </td>
                           <td style="padding-top:15px;"> {{item.Name}} </td>
-                          <td style="padding-top:15px;"> {{item.SKUCode}}</td>
+                          <td style="padding-top:15px;"> {{item.SerialNo}}</td>
                           <td> <input type="text" style="padding: 8px;" [(ngModel)]="item.No" /></td>
                           <td style="padding-top:15px;">{{item.Balance}}</td>
                           <td style="padding-top:15px;">{{item.Unit}}</td>

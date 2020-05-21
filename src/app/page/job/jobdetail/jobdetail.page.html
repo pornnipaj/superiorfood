@@ -2,7 +2,7 @@
     <ion-toolbar color="primary">
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
-            <ion-title>สรุปผลงาน{{typethai}}&nbsp;({{type}})</ion-title>
+            <ion-title>สรุปผล{{typethai}}&nbsp;({{type}})</ion-title>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
@@ -33,18 +33,23 @@
                             <label class="col-9">สินค้าที่ติดตั้ง&nbsp;:&nbsp;{{item.InstallPlanName}} </label>
                             <label class="col-3">เริ่มทำงาน&nbsp;:&nbsp;{{item.start_service_date}}</label>
                         </div>
-                        <div>
-                            <label class="col-9" *ngIf="type != 'CM'else show" #show>Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNo}}</label>
-                            <label class="col-4" *ngIf="item.SerialNoNew == item.SerialNo && type == 'CM' else device" #device>Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNoNew}}</label>
-                            <label class="col-5"
-                            *ngIf="item.SerialNoNew == item.SerialNo && type == 'CM' else device" #device>Serial&nbsp;No&nbsp;(ใหม่)&nbsp;:&nbsp;{{item.SerialNo}}</label>
+                        <div *ngIf="type != 'CM'else show" #show>
+                            <label class="col-9">Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNo}}</label>                           
                             <label class="col-3">เสร็จงาน&nbsp;:&nbsp;{{item.end_service_date}}</label>
                         </div>
-                        <div>
-                            <label class="col-9"  *ngIf="type != 'CM'else show" #show>ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsName}}</label>
-                            <label class="col-4" *ngIf="item.SerialNoNew == item.SerialNo && type == 'CM' else device" #device>ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsNameNew}}</label>
+                        <div *ngIf="item.SerialNoNew != item.SerialNo && type == 'CM' else device" #device>
+                            <label class="col-4">Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNoNew}}</label>
+                            <label class="col-5">Serial&nbsp;No&nbsp;(ใหม่)&nbsp;:&nbsp;{{item.SerialNo}}</label>
+                            <label class="col-3">เสร็จงาน&nbsp;:&nbsp;{{item.end_service_date}}</label>
+                        </div>
+                        <div *ngIf="type != 'CM'else show" #show>
+                            <label class="col-9" >ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsName}}</label>                           
+                            <label class="col-3">เวลาที่ใช้&nbsp;:&nbsp;{{item.TimeSpent}}</label>
+                        </div>
+                        <div *ngIf="item.SerialNoNew != item.SerialNo && type == 'CM' else device" #device>
+                            <label class="col-4" >ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsNameNew}}</label>
                             <label class="col-5"
-                            *ngIf="item.SerialNoNew == item.SerialNo && type == 'CM' else device" #device>ชื่อสินค้า&nbsp;(ใหม่)&nbsp;:&nbsp;{{item.ItemsName}}</label>
+                            >ชื่อสินค้า&nbsp;(ใหม่)&nbsp;:&nbsp;{{item.ItemsName}}</label>
                             <label class="col-3">เวลาที่ใช้&nbsp;:&nbsp;{{item.TimeSpent}}</label>
                         </div>
                     </div>

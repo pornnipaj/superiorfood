@@ -37,7 +37,7 @@ export class CustomerevaluationPage implements OnInit {
     this.workclose = this.navParams.data.workclose
     console.log(this.workclose);
 
-    if (this.jobtype == "CM" && this.workclose != 'workclose') {
+    if (this.jobtype == "CM" && this.workclose != 'workclose' || this.jobtype == "CM" && this.workclose == 'workclose') {
       let params = {
         installID: this.installID,
         jobtype: "getresolution"

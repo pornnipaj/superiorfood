@@ -123,7 +123,7 @@ export class JobdetailPage implements OnInit {
       console.log(this.typethai);
     }
     else if (this.type == "CM") {
-      this.typethai = "งานซ๋อม"
+      this.typethai = "งานซ่อม"
     }
     else if (this.type == "PM") {
       this.typethai = "งานตรวจเช็ค"
