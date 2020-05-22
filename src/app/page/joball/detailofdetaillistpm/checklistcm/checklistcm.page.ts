@@ -313,7 +313,7 @@ export class ChecklistcmPage implements OnInit {
             });
         }
       });
-    }else{
+    } else {
       let params = {
         installID: this.installID,
         typedevice: "Searchsku",
@@ -333,19 +333,19 @@ export class ChecklistcmPage implements OnInit {
             this.listreal.push(
               {
                 AssID: this.data[j].AssID,
-        SKUID: this.data[j].SKUID,
-        SKUCode: this.data[j].SKUCode,
-        Name: this.data[j].Name,
-        No: this.data[j].No,
-        Unit: this.data[j].Unit,
-        Serial: this.data[j].Serial,
-        Balance: this.data[j].Balance,
+                SKUID: this.data[j].SKUID,
+                SKUCode: this.data[j].SKUCode,
+                Name: this.data[j].Name,
+                No: this.data[j].No,
+                Unit: this.data[j].Unit,
+                Serial: this.data[j].Serial,
+                Balance: this.data[j].Balance,
               });
           }
         }
       });
-    }        
-      }
+    }
+  }
 
   remove(index, item) {
     this.spareList.splice(index, 1);
@@ -365,20 +365,30 @@ export class ChecklistcmPage implements OnInit {
 
   //#region barcode
 
-  scan() {
-    this.barcodeScanner.scan().then(barcodeData => {
-      console.log('Barcode data', barcodeData);
-      let barcode = barcodeData
-      this.serial = barcode.text
-      this.sparepart = barcode.text
-      this.Add();
-    }).catch(err => {
-      console.log('Error', err);
-    });
+  scan(type) {
+    if (type == 'device') {
+      this.barcodeScanner.scan().then(barcodeData => {
+        console.log('Barcode data', barcodeData);
+        let barcode = barcodeData
+        this.serial = barcode.text
+      }).catch(err => {
+        console.log('Error', err);
+      });
+    } else if (type == 'spare') {
+      this.barcodeScanner.scan().then(barcodeData => {
+        console.log('Barcode data', barcodeData);
+        let barcode = barcodeData
+        this.sparepart = barcode.text
+        this.Add();
+      }).catch(err => {
+        console.log('Error', err);
+      });
+    }
+
   }
 
   //#endregion
-  
+
   //#region Add Spare
   AddCM(type, item) {
     if (type == "Devices") {
