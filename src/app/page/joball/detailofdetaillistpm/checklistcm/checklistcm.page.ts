@@ -21,6 +21,7 @@ export class ChecklistcmPage implements OnInit {
   ItemsName;
   ItemCode;
   SerialNo;
+  spare;
   InstallPlanNameNew;
   ItemsNameNew;
   ItemCodeNew;
@@ -28,12 +29,15 @@ export class ChecklistcmPage implements OnInit {
   cat;
   public anArray: any = [];
   data;
+  dataspare;
   serial = "";
   isShowType = true;
   isShowDevice = false;
   isShowSpare = false;
   isShowSpareDetail = false;
   isShowDeviceDetail = false;
+  isEditDevice = false;
+  isEditSpare = false;
   sparepart = "";
   asset;
   productname;
@@ -72,7 +76,6 @@ export class ChecklistcmPage implements OnInit {
     this.SerialNo = this.navParams.data.SerialNo;
     this.cat = this.navParams.data.Cat;
     console.log(this.ItemsName, this.ItemCode, this.SerialNo);
-
     this.stock = [];
   }
 
@@ -92,64 +95,73 @@ export class ChecklistcmPage implements OnInit {
     this.modalController.dismiss(0);
   }
 
+  GetSpareTran() {
+    let param = {
+      installID: this.installID,
+      typedevice: "GetSpareTran",
+      empID: this.empID,
+      planID: this.planID,
+    }
+    this.postDataService.postdevice(param).then(data => {
+      this.dataspare = data
+      console.log(this.dataspare);
+      for (let p = 0; p < this.dataspare.length; p++) {
+        this.spareList.push(
+          {
+            AssID: this.dataspare[p].AssID,
+            SKUID: this.dataspare[p].SKUID,
+            SKUCode: this.dataspare[p].SKUCode,
+            Name: this.dataspare[p].Name,
+            No: this.dataspare[p].No,
+            Unit: this.dataspare[p].Unit,
+            Serial: this.dataspare[p].Serial,
+            Balance: this.dataspare[p].Balance,
+          });
+        console.log(this.spareList);
+      }
+    });
+  }
+  GetSpareCM() {
+    let params = {
+      planID: this.planID,
+      installID: this.installID,
+      typedevice: "GetSpareCM",
+      empID: this.empID
+    }
+    this.postDataService.postdevice(params).then(data => {
+      this.data = data
+      for (let j = 0; j < this.data.length; j++) {
+        this.listreal.push(
+          {
+            AssID: this.data[j].AssID,
+            SKUID: this.data[j].SKUID,
+            SKUCode: this.data[j].SKUCode,
+            Name: this.data[j].Name,
+            No: this.data[j].No,
+            Unit: this.data[j].Unit,
+            Serial: this.data[j].Serial,
+            Balance: this.data[j].Balance,
+          });
+      }
+      console.log(this.listreal);
+    });
+  }
+
   chang(type) {
-    if (type == "sparepart") {      
-    // let sparetran = {
-    //   planID: this.planID,
-    //   installID: this.installID,
-    //   typedevice: "GetSpareTran",
-    //   empID: this.empID
-    // }
-    // this.postDataService.postdevice(sparetran).then(status => {
-    //   this.status = status
-    //   console.log(this.status);        
-    // });
+    if (type == "sparepart") {
       this.isShowType = false;
       this.isShowSpare = true;
       this.isShowDevice = false;
-      // if (this.status != false) {
-      //   for (let j = 0; j < this.status.length; j++) {
-      //     this.listreal.push(
-      //       {
-      //         SKUID: this.data[j].SKUID,
-      //         SKUCode: this.data[j].SKUCode,
-      //         Name: this.data[j].Name,
-      //         No: this.data[j].No,
-      //         Unit: this.data[j].Unit,
-      //         Balance: this.data[j].Balance,
-      //       });
-      //   }    
-      //   console.log(this.listreal);
-            
-      // }else{
-        let params = {
-          planID: this.planID,
-          installID: this.installID,
-          typedevice: "GetSpareCM",
-          empID: this.empID
-        }
-        this.postDataService.postdevice(params).then(data => {
-          this.data = data
-          for (let j = 0; j < this.data.length; j++) {
-            this.listreal.push(
-              {
-                AssID: this.data[j].AssID,
-                SKUID: this.data[j].SKUID,
-                SKUCode: this.data[j].SKUCode,
-                Name: this.data[j].Name,
-                No: this.data[j].No,
-                Unit: this.data[j].Unit,
-                SerialNo: this.data[j].Serial,
-                Balance: this.data[j].Balance,
-              });
-          }
-        });
+      this.isShowDeviceDetail = false;
+      this.isEditSpare = true;
+      this.GetSpareTran();
+      this.GetSpareCM();
       // }      
     }
     if (type == "device") {
       this.isShowType = false;
       this.isShowDevice = true;
-      this.isShowSpare = false; 
+      this.isShowSpare = false;
       let devicetran = {
         planID: this.planID,
         installID: this.installID,
@@ -158,8 +170,8 @@ export class ChecklistcmPage implements OnInit {
       }
       this.postDataService.postdevice(devicetran).then(status => {
         this.status = status
-        console.log(this.status);        
-      });     
+        console.log(this.status);
+      });
       let params = {
         installID: this.installID,
         typedevice: "GetDevice",
@@ -178,8 +190,8 @@ export class ChecklistcmPage implements OnInit {
       }
       this.postDataService.postdevice(devicetran).then(status => {
         this.status = status
-        console.log(this.status);        
-      });     
+        console.log(this.status);
+      });
 
       let param = {
         typedevice: "non"
@@ -243,8 +255,8 @@ export class ChecklistcmPage implements OnInit {
   //#endregion
 
   //#region EditDevice
-  EditDevice(){
-    this.isShowDevice = false;
+  EditDevice() {
+    this.isEditDevice = true;
     let params = {
       installID: this.installID,
       typedevice: "GetDevice",
@@ -254,12 +266,31 @@ export class ChecklistcmPage implements OnInit {
       this.data = data
     });
   }
+
+  EditSpare() {
+    this.isEditSpare = true;
+  }
   //#endregion
 
+  select(i, item) {
+    this.listreal.splice(i, 1);
+    this.spareList.push(
+      {
+        AssID: item.AssID,
+        SKUID: item.SKUID,
+        SKUCode: item.SKUCode,
+        Name: item.Name,
+        No: item.No,
+        Unit: item.Unit,
+        Serial: item.Serial,
+        Balance: item.Balance,
+      });
+  }
   //#region spare
 
   Add() {
     if (this.sparepart == "" || this.sparepart == null) {
+      this.listreal.splice(0);
       let params = {
         planID: this.planID,
         installID: this.installID,
@@ -282,57 +313,53 @@ export class ChecklistcmPage implements OnInit {
             });
         }
       });
-    }
-    let isserial = false;
-    if (this.listreal.length > 0) {
-        for (let i = 0; i < this.listreal.length; i++) {
-          if (this.sparepart == this.listreal[i].SerialNo) {
-            this.alertPartNo(); 
-            isserial = true;
-            break;           
-          }
-        }
-        console.log(isserial);        
-        if (isserial == false) {
-          let params = {
-            installID: this.installID,
-            typedevice: "Searchsku",
-            empID: this.empID,
-            skuID: this.sparepart
-          }
-          this.postDataService.postdevice(params).then(asset => {
-            
-            this.data = asset
-            console.log(this.data);
-            
-            if (this.data == false) {
-              this.alertNotPart();
-            }else{
-              this.listreal.splice(0);
-              for (let j = 0; j < this.data.length; j++) {
-                this.listreal.push(
-                  {
-                    AssID: this.data[j].AssID,
-                    SKUID: this.data[j].SKUID,
-                    SKUCode: this.data[j].SKUCode,
-                    Name: this.data[j].Name,
-                    No: this.data[j].No,
-                    Unit: this.data[j].Unit,
-                    SerialNo: this.data[j].Serial,
-                    Balance: this.data[j].Balance,
-                  });
-              }
-            }            
-          });
-        }
-    }
-  }
-  remove(index) {
-    this.spareList.splice(index, 1);
-  }
+    }else{
+      let params = {
+        installID: this.installID,
+        typedevice: "Searchsku",
+        empID: this.empID,
+        skuID: this.sparepart
+      }
+      this.postDataService.postdevice(params).then(asset => {
 
-  removelist(index) {
-    this.listreal.splice(index, 1);
+        this.data = asset
+        console.log(this.data);
+
+        if (this.data == false) {
+          this.alertNotPart();
+        } else {
+          this.listreal.splice(0);
+          for (let j = 0; j < this.data.length; j++) {
+            this.listreal.push(
+              {
+                AssID: this.data[j].AssID,
+        SKUID: this.data[j].SKUID,
+        SKUCode: this.data[j].SKUCode,
+        Name: this.data[j].Name,
+        No: this.data[j].No,
+        Unit: this.data[j].Unit,
+        Serial: this.data[j].Serial,
+        Balance: this.data[j].Balance,
+              });
+          }
+        }
+      });
+    }        
+      }
+
+  remove(index, item) {
+    this.spareList.splice(index, 1);
+    this.listreal.push(
+      {
+        AssID: item.AssID,
+        SKUID: item.SKUID,
+        SKUCode: item.SKUCode,
+        Name: item.Name,
+        No: item.No,
+        Unit: item.Unit,
+        Serial: item.Serial,
+        Balance: item.Balance,
+      });
   }
   //#endregion
 
@@ -344,35 +371,17 @@ export class ChecklistcmPage implements OnInit {
       let barcode = barcodeData
       this.serial = barcode.text
       this.sparepart = barcode.text
+      this.Add();
     }).catch(err => {
       console.log('Error', err);
     });
   }
 
   //#endregion
+  
   //#region Add Spare
   AddCM(type, item) {
-    if (type == "Device") {
-      let params = {
-        planID: this.planID,
-        installID: this.installID,
-        idold: this.assetold,
-        idnew: this.assetnew,
-        typedevice: "SaveDeviceCM",
-        empID: this.empID,
-      }
-      console.log(params);
-      this.postDataService.postdevice(params).then(asset => {
-        console.log(asset);
-      });
-
-      let param = {
-        typedevice: "device"
-      }
-      console.log(param);
-      this.modalController.dismiss(param);
-    }
-    else if (type == "Devices") {
+    if (type == "Devices") {
       let params = {
         planID: this.planID,
         installID: this.installID,
@@ -392,40 +401,43 @@ export class ChecklistcmPage implements OnInit {
       console.log(param);
       this.modalController.dismiss(param);
     }
-    else if (type == "Sparepart" || type == "Spareparts") {
-      for (let s = 0; s < item.length; s++) {
-        this.true = 0;
-        if (item[s].No > item[s].Balance) {
-          this.alertQty();
-          this.true = 1;
-          break;
-        }
+    else if (type == "Spareparts") {
+      let params = {
+        planID: this.planID,
+        installID: this.installID,
+        spare: this.spareList,
+        typedevice: "SaveSpareCM",
+        empID: this.empID,
       }
-      if (this.true == 0) {
-        this.check()
+      console.log(params);
+
+      this.postDataService.postdevice(params).then(asset => {
+        console.log(asset);
+      });
+
+      let param = {
+        typedevice: "sparepart"
       }
+      console.log(params);
+      this.modalController.dismiss(param);
     }
   }
   //#endregion
 
   check() {
     console.log();
-
     for (let i = 0; i < this.listreal.length; i++) {
-      if (this.listreal[i].No <= this.listreal[i].Balance
-        && this.listreal[i].No != 0) {
-        this.AsList.push(
-          {
-            AssID: this.data[i].AssID,
-            SKUID: this.listreal[i].SKUID,
-            SKUCode: this.listreal[i].SKUCode,
-            SerialNo: this.listreal[i].SerialNo,
-            Name: this.listreal[i].Name,
-            Qty: this.listreal[i].No,
-            Unit: this.listreal[i].Unit
-          });
-        console.log(this.AsList);
-      }
+      this.AsList.push(
+        {
+          AssID: this.listreal[i].AssID,
+          SKUID: this.listreal[i].SKUID,
+          SKUCode: this.listreal[i].SKUCode,
+          SerialNo: this.listreal[i].SerialNo,
+          Name: this.listreal[i].Name,
+          Qty: this.listreal[i].No,
+          Unit: this.listreal[i].Unit
+        });
+      console.log(this.AsList);
     }
     if (this.AsList.length > 0) {
       let params = {
@@ -520,5 +532,5 @@ export class ChecklistcmPage implements OnInit {
     await alert.present();
   }
 
-  
+
 } 
