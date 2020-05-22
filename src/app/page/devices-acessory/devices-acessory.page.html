@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="text-left">เครื่องและอุปกรณ์คงเหลือ</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="row" style="margin: 5px;">
+    <div class="col-4" *ngFor="let item of Data">
+      <div (click)="showDetail(item)">
+        <a href="javascript:;" class="icon-btn col-12">
+          <i class="fa fa-group"></i>
+          <div> {{item.ProductNameTH}} </div>
+          <span class="badge badge-danger"> {{item.Count}} </span>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin: 5px;" *ngIf="isShowDetail">
+    <div class="col-12">
+      <div class="table-scrollable table-scrollable-borderless">
+        <table class="table table-hover table-light">
+          <thead>
+            <tr class="uppercase">
+              <th colspan="2"> ชื่อสินค้า </th>
+              <th> จำนวนคงเหลือ </th>
+            </tr>
+          </thead>
+          <tr *ngFor="let item of DataDetail">
+            <td colspan="2"> {{item.SKUName}} </td>
+            <td><span class="bold theme-font">{{item.Count}}</span></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</ion-content>

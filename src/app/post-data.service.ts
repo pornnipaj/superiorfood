@@ -248,6 +248,18 @@ export class PostDataService {
       });
     });
   }
+
+  GetDevice(form) {
+    return new Promise((resovle, reject) => {
+      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+      this.http.post(this.apiServer_url + '/API/StockList.asmx/stock', JSON.stringify(form), option).subscribe(data => {
+        resovle(data);
+      }, error => {
+        reject(error)
+      });
+    });
+  }
   //#endregion
 
 }

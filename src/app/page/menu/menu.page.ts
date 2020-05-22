@@ -33,6 +33,11 @@ export class MenuPage implements OnInit {
       icon: 'hammer'
     },
     {
+      title: 'เครื่องและอุปกรณ์คงเหลือ',
+      url: '/menu/device',
+      icon: 'hammer'
+    },
+    {
       title: 'สินค้าและคู่มือ',
       url: '/menu/product',
       icon: 'bookmarks'

@@ -34,6 +34,10 @@ const routes: Routes = [
         loadChildren: '../take-spare-parts/sparelist/sparelist.module#SparelistPageModule'
       },
       {
+        path: 'device',
+        loadChildren: '../devices-acessory/devices-acessory.module#DevicesAcessoryPageModule'
+      },
+      {
         path: 'product',
         loadChildren: '../product/product.module#ProductPageModule'
       },
