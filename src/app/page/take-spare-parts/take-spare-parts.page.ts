@@ -133,7 +133,7 @@ export class TakeSparePartsPage implements OnInit {
     });
 
     modal.onDidDismiss().then(data => {
-      console.log(this.JobID)
+      this.JobID = data.data
       if (this.JobID != null) {
         if (this.type == "new") {
           let params = {
