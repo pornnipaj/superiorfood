@@ -92,7 +92,7 @@ export class ChecklistcmPage implements OnInit {
   //#region click
 
   close() {
-    this.modalController.dismiss(0);
+    this.modalController.dismiss();
   }
 
   GetSpareTran() {
@@ -207,6 +207,7 @@ export class ChecklistcmPage implements OnInit {
   //#region device
 
   search() {
+    this.isEditDevice = true;
     console.log(this.serial);
     console.log(this.SerialNo);
 
@@ -217,7 +218,6 @@ export class ChecklistcmPage implements OnInit {
       this.alertMeanSN();
     }
     else if (this.serial != this.SerialNo) {
-
       let params = {
         installID: this.installID,
         typedevice: "GetDevice",
@@ -237,7 +237,7 @@ export class ChecklistcmPage implements OnInit {
             this.installserial = this.asset[i].SerialNo;
             this.assetnew = this.asset[i].AssetID;
             this.assetold = this.asset[i].assetid;
-            this.isShowDeviceDetail = true;
+            this.isShowDeviceDetail = false;
             this.isShowSpare = false;
             this.chkdata = 1;
             console.log(1);

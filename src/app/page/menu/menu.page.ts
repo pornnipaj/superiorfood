@@ -35,7 +35,7 @@ export class MenuPage implements OnInit {
     {
       title: 'เครื่องและอุปกรณ์คงเหลือ',
       url: '/menu/device',
-      icon: 'hammer'
+      icon: 'briefcase'
     },
     {
       title: 'สินค้าและคู่มือ',
