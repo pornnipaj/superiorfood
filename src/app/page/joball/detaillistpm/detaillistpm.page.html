@@ -118,7 +118,7 @@
               </div>
               <div class="row col-12" *ngIf="data.value.JobType == 'PM' else pm">
                 <label class="col-4 text" #pm>ประเภทงาน :</label>
-                <label class="col-8 subtext" #pm>{{data.value.typePm}}</label>
+                <label class="col-8 subtext" #pm>{{data.value.JobType}}</label>
               </div>
               <div class="row col-12" *ngIf="data.value.JobType == 'CM' && data.value.Workfinish == 1 else cm">
                 <div class="col-4 text" #cm>การปิดงาน :</div>

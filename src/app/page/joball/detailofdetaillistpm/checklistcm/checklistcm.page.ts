@@ -371,6 +371,7 @@ export class ChecklistcmPage implements OnInit {
         console.log('Barcode data', barcodeData);
         let barcode = barcodeData
         this.serial = barcode.text
+        this.search();
       }).catch(err => {
         console.log('Error', err);
       });
