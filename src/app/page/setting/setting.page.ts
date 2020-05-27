@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
-import { Platform, IonList } from '@ionic/angular';
+import { Platform, IonList,NavController,ModalController } from '@ionic/angular';
 import { StorageService, User } from '../../storage.service';
-import { NavController } from '@ionic/angular';
 import { AuthenticationService } from '../../auth/authentication.service';
+import { ChangpasswordPage } from '../setting/changpassword/changpassword.page';
 
 @Component({
   selector: 'app-setting',
@@ -23,7 +23,8 @@ export class SettingPage implements OnInit {
     private sqlite: SQLite,
     private storageService: StorageService,
     private authService: AuthenticationService,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    public modalController: ModalController,
   ) {
   }
   //#endregion
@@ -37,9 +38,20 @@ export class SettingPage implements OnInit {
   logout() {
     this.storageService.resetLocalStorage();
     console.log("Logout Finish");
-    this.authService.logout();   
-    
+    this.authService.logout();
+
   }
   //#endregion
-  
+
+  //#region Changpassword
+  async Changpassword() {
+    const modal = await this.modalController.create({
+      component: ChangpasswordPage,
+      cssClass: 'my-custom-modal-css',
+    });
+    modal.onDidDismiss().then(data => {
+    })
+    return await modal.present();
+  }  //#endregion
+
 }

@@ -26,6 +26,7 @@ import { ChecklistPageModule } from '../app/page/joball/detailofdetaillistpm/che
 import { ModalpopPageModule } from '../app/page/overview/modalpop/modalpop.module';
 import { ChecklistcmPageModule } from '../app/page/joball/detailofdetaillistpm/checklistcm/checklistcm.module';
 import { ShowimginstallPageModule } from '../app/page/job/showimginstall/showimginstall.module';
+import { ChangpasswordPageModule } from '../app/page/setting/changpassword/changpassword.module';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SQLite } from '@ionic-native/sqlite/ngx';
@@ -55,6 +56,7 @@ import { Network } from '@ionic-native/network/ngx';
     ChangsparepartPageModule,
     ChecklistcmPageModule,
     ShowimginstallPageModule,
+    ChangpasswordPageModule,
     HttpClientModule,
     NgbModule,
   ],

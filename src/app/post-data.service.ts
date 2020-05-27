@@ -23,6 +23,21 @@ export class PostDataService {
   }
 
   //#region Server
+  changpassword(pass) {
+    console.log(pass);
+    
+    return new Promise((resovle, reject) => {
+
+      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+      this.http.post(this.apiServer_url + '/API/Login.ashx' + '?empID=' + pass.empID + '&type=' + pass.type + '&passold=' + pass.old + '&passnew=' + pass.new,
+        JSON.stringify(pass), option).subscribe(data => {
+          resovle(data);
+        }, error => {
+          reject(error)
+        });
+    });
+  } 
   login(user) {
     return new Promise((resovle, reject) => {
 
