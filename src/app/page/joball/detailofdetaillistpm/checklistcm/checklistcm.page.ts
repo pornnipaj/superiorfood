@@ -171,14 +171,18 @@ export class ChecklistcmPage implements OnInit {
       this.postDataService.postdevice(devicetran).then(status => {
         this.status = status
         console.log(this.status);
-      });
-      let params = {
-        installID: this.installID,
-        typedevice: "GetDevice",
-        empID: this.empID
-      }
-      this.postDataService.postdevice(params).then(data => {
-        this.data = data
+        if (this.status == false) {
+          let params = {
+            installID: this.installID,
+            typedevice: "GetDevice",
+            empID: this.empID
+          }
+          this.postDataService.postdevice(params).then(data => {
+            this.data = data
+          });
+        } else {
+          this.data = this.status;
+        }
       });
     }
     if (type == "non") {
@@ -213,6 +217,15 @@ export class ChecklistcmPage implements OnInit {
 
     if (this.serial == "") {
       this.isShowDeviceDetail = false;
+      let params = {
+        installID: this.installID,
+        typedevice: "GetDevice",
+        empID: this.empID
+      }
+      this.postDataService.postdevice(params).then(asset => {
+        this.data = asset
+        console.log(this.asset);
+      });
     }
     else if (this.serial == this.SerialNo) {
       this.alertMeanSN();
@@ -244,7 +257,17 @@ export class ChecklistcmPage implements OnInit {
             break;
           }
         }
-
+        if (this.chkdata == 1) {
+          let params = {
+            installID: this.installID,
+            typedevice: "SearchDevice",
+            empID: this.empID,
+            skuID: this.serial
+          }
+          this.postDataService.postdevice(params).then(asset => {
+            this.data = asset
+          });
+        }
         if (this.chkdata == 0) {
           this.alertNotSearch();
         }

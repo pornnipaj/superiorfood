@@ -96,9 +96,9 @@
         <ion-card-content>
           <ion-card-title>เปลี่ยนเครื่อง</ion-card-title>
           <ion-item>
-            <ion-input type="text" placeholder="Serial No." [(ngModel)]="serial" name="serial"></ion-input>
-            <ion-icon name="barcode" slot="end" (click)="scan('device')"></ion-icon>
             <ion-icon name="search" slot="end" (click)="search()">Search</ion-icon>
+            <ion-input type="text" placeholder="Serial No." [(ngModel)]="serial" name="serial"></ion-input>
+            <ion-icon name="barcode" slot="end" (click)="scan('device')"></ion-icon>            
           </ion-item>
           <div class="tab-content">
             <div class="tab-pane active">
