@@ -36,7 +36,6 @@ cor;
           this.router.navigate(['login']);
         }
       });
-
     });
   }
 }

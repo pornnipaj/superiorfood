@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams, AlertController } from '@ionic/angular';
 import { PostDataService } from '../../../../post-data.service';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-changsparepart',
@@ -17,9 +18,17 @@ export class ChangsparepartPage implements OnInit {
   SerialNo;
   jobtype;
   AsList = [];
+  Device = [];
+  Devicestorage = [];
+  Spare = [];
+  Sparestorage = [];
   true;
   type;
   skuID;
+  isShowDevice = false;
+  isShowSpare = false;
+  status;
+  qty;
 
   constructor(private modalController: ModalController,
     private postDataService: PostDataService,
@@ -36,28 +45,114 @@ export class ChangsparepartPage implements OnInit {
 
     if (this.jobtype == "INSTALL") {
       if (this.type == 'device') {
-        let params = {
+        let param = {
           planID: this.planID,
           installID: this.installID,
-          typedevice: "GetDeviceIN",
+          typedevice: "GetDeviceInTran",
           empID: this.empID
         }
-        console.log(params);
-        this.postDataService.postdevice(params).then(data => {
-          this.data = data
-          console.log(this.data);
+        console.log(param);
+        this.postDataService.postdevice(param).then(status => {
+          this.status = status
+          console.log(this.status);
+          if (this.status == false) {
+            this.isShowDevice = false;
+          } else {
+            this.isShowDevice = true;
+            for (let u = 0; u < this.status.length; u++) {
+              this.Device.push({
+                AssetID: this.status[u].AssetID,
+                AssetNo: this.status[u].AssetNo,
+                SKUID: this.status[u].SKUID,
+                SerialNo: this.status[u].SerialNo,
+                AssetTypeID: this.status[u].AssetTypeID,
+              })
+            }
+          }
+          let params = {
+            planID: this.planID,
+            installID: this.installID,
+            typedevice: "GetDeviceIN",
+            empID: this.empID
+          }
+          console.log(params);
+          this.postDataService.postdevice(params).then(data => {
+            this.data = data
+            console.log(this.data);
+            for (let i = 0; i < this.data.length; i++) {
+              this.Devicestorage.push({
+                AssetID: this.data[i].AssetID,
+                AssetNo: this.data[i].AssetNo,
+                SKUID: this.data[i].SKUID,
+                SerialNo: this.data[i].SerialNo,
+                AssetTypeID: this.data[i].AssetTypeID,
+              })
+            }
+          });
+          console.log(this.Devicestorage);
+          console.log(this.Device);
         });
       } else {
-        let params = {
+        let item = {
           planID: this.planID,
           installID: this.installID,
-          typedevice: "GetSpareIN",
+          typedevice: "GetItemSpareIN",
           empID: this.empID
         }
-        console.log(params);
-        this.postDataService.postdevice(params).then(data => {
-          this.data = data
-          console.log(this.data);
+        console.log(item);
+        this.postDataService.postdevice(item).then(qty => {
+          this.qty = qty;
+        });
+        let param = {
+          planID: this.planID,
+          installID: this.installID,
+          typedevice: "GetSpareInTran",
+          empID: this.empID
+        }
+        console.log(param);
+        this.postDataService.postdevice(param).then(status => {
+          this.status = status
+          console.log(this.status);
+          if (this.status == false) {
+            this.isShowSpare = false;
+          } else {
+            this.isShowSpare = true;
+            for (let u = 0; u < this.status.length; u++) {
+              this.Spare.push({
+                AssID: this.status[u].AssID,
+                SKUID: this.status[u].SKUID,
+                SKUCode: this.status[u].SKUCode,
+                Name: this.status[u].Name,
+                Unit: this.status[u].Unit,
+                No: this.status[u].No,
+                Serial: this.status[u].Serial,
+              })
+            }
+          }
+          let params = {
+            planID: this.planID,
+            installID: this.installID,
+            typedevice: "GetSpareINALL",
+            empID: this.empID
+          }
+          console.log(params);
+          this.postDataService.postdevice(params).then(data => {
+            this.data = data
+            console.log(this.data);
+            for (let i = 0; i < this.data.length; i++) {
+              this.Sparestorage.push({
+                AssID: this.data[i].AssID,
+                SKUID: this.data[i].SKUID,
+                SKUCode: this.data[i].SKUCode,
+                Name: this.data[i].Name,
+                Unit: this.data[i].Unit,
+                No: this.data[i].No,
+                Serial: this.data[i].Serial,
+              })
+            }
+          });
+          console.log(this.Sparestorage);
+          console.log(this.Spare);
         });
       }
     }
@@ -74,6 +169,63 @@ export class ChangsparepartPage implements OnInit {
         console.log(this.data);
       });
     }
+  }
+
+  DeleteDevice(index) {
+    this.Device.splice(index, 1);
+    this.Devicestorage.push({
+      AssetID: index.AssetID,
+      AssetNo: index.AssetNo,
+      SKUID: index.SKUID,
+      SerialNo: index.SerialNo,
+      AssetTypeID: index.AssetTypeID,
+    })
+  }
+
+  AddDevice(index) {
+    if (this.Device.length == 1) {
+      this.alertNotDevice();
+    } else {
+      this.Devicestorage.splice(index, 1);
+      this.Device.push({
+        AssetID: index.AssetID,
+        AssetNo: index.AssetNo,
+        SKUID: index.SKUID,
+        SerialNo: index.SerialNo,
+        AssetTypeID: index.AssetTypeID,
+      })
+    }
+  }
+
+  DeleteSpare(index,i) {
+    this.Spare.splice(i, 1);
+    this.Sparestorage.push({
+      AssID: index.AssID,
+      SKUID: index.SKUID,
+      SKUCode: index.SKUCode,
+      Name: index.Name,
+      Unit: index.Unit,
+      No: index.No,
+      Serial: index.Serial,
+    })
+    console.log(this.Sparestorage);
+  
+  }
+
+  AddSpare(index,i) {
+    this.isShowSpare = true;
+    this.Sparestorage.splice(i, 1);
+    this.Spare.push({
+      AssID: index.AssID,
+      SKUID: index.SKUID,
+      SKUCode: index.SKUCode,
+      Name: index.Name,
+      Unit: index.Unit,
+      No: index.No,
+      Serial: index.Serial,
+    })
+    console.log(this.Spare);
+    
   }
 
   ngOnInit() {
@@ -95,6 +247,7 @@ export class ChangsparepartPage implements OnInit {
       console.log('Error', err);
     });
   }
+
   check(data) {
     for (let i = 0; i < data.length; i++) {
       if (data[i].No <= data[i].Balance && data[i].No != 0) {
@@ -110,24 +263,7 @@ export class ChangsparepartPage implements OnInit {
       }
     }
     if (this.AsList.length > 0) {
-      if (this.jobtype == "INSTALL") {
-        let params = {
-          installID: this.installID,
-          planID: this.planID,
-          typedevice: "SaveSpareIN",
-          spare: this.AsList,
-          empID: this.empID
-        }
-        console.log(params);
-        this.postDataService.postdevice(params).then(data => {
-          this.data = data
-          console.log(this.data);
-          if (data == true) {
-            this.modalController.dismiss(0);
-          }
-        });
-      }
-      else if (this.jobtype == "PM") {
+      if (this.jobtype == "PM") {
         let params = {
           installID: this.installID,
           planID: this.planID,
@@ -162,6 +298,155 @@ export class ChangsparepartPage implements OnInit {
     }
   }
 
+  SaveSpareIn(Spare) {
+    if (this.Spare.length == 0) {
+      this.alertNotSpare();
+    } else{
+      let params = {
+        installID: this.installID,
+        planID: this.planID,
+        typedevice: "SaveSpareIN",
+        spare: this.Spare,
+        empID: this.empID
+      }
+      console.log(params);
+      this.postDataService.postdevice(params).then(data => {
+        this.data = data
+        console.log(this.data);
+        if (data == true) {
+          this.modalController.dismiss(0);
+        }
+      }); 
+    }
+  }
+
+  saveDevice(item) {
+    let assID;
+    for (let i = 0; i < item.length; i++) {
+      assID = item[i].AssetID
+    }
+    console.log(assID);
+    let params = {
+      planID: this.planID,
+      installID: this.installID,
+      typedevice: "SaveDeviceIN",
+      empID: this.empID,
+      assID: assID
+    }
+    console.log(params);
+    this.postDataService.postdevice(params).then(data => {
+      this.modalController.dismiss(data);
+    });
+  }
+
+  Searchsku() {
+    if (this.type == 'device') {
+      if (this.skuID == null || this.skuID == "") {
+        let params = {
+          planID: this.planID,
+          installID: this.installID,
+          typedevice: "GetDeviceIN",
+          empID: this.empID
+        }
+        console.log(params);
+        this.postDataService.postdevice(params).then(data => {
+          this.data = data
+          this.Devicestorage.splice(0);
+          for (let i = 0; i < this.data.length; i++) {
+            this.Devicestorage.push({
+              AssetID: this.data[i].AssetID,
+              AssetNo: this.data[i].AssetNo,
+              SKUID: this.data[i].SKUID,
+              SerialNo: this.data[i].SerialNo,
+              AssetTypeID: this.data[i].AssetTypeID,
+            })
+          }
+        });
+      } else {
+        let params = {
+          installID: this.installID,
+          planID:this.planID,
+          skuID: this.skuID,
+          typedevice: "SearchDevice",
+          empID: this.empID
+        }
+        console.log(params);
+        this.postDataService.postdevice(params).then(data => {
+          this.data = data
+          if (this.data == false) {
+            this.alertNotSearchDevice();
+          } else {
+            for (let i = 0; i < this.data.length; i++) {
+              this.Devicestorage.splice(0);
+              this.Devicestorage.push({
+                AssetID: this.data[i].AssetID,
+                AssetNo: this.data[i].AssetNo,
+                SKUID: this.data[i].SKUID,
+                SerialNo: this.data[i].SerialNo,
+                AssetTypeID: this.data[i].AssetTypeID,
+              })
+            }
+          }
+          console.log(this.data);
+        });
+      }
+    } else {
+      if (this.skuID == null || this.skuID == "") {
+        let params = {
+          planID: this.planID,
+          installID: this.installID,
+          typedevice: "GetSpareINALL",
+          empID: this.empID
+        }
+        console.log(params);
+        this.postDataService.postdevice(params).then(data => {
+          console.log(this.data);
+          this.data = data;
+          this.Sparestorage.splice(0);
+          for (let i = 0; i < this.data.length; i++) {
+            this.Sparestorage.push({
+              AssID: this.data[i].AssID,
+              SKUID: this.data[i].SKUID,
+              SKUCode: this.data[i].SKUCode,
+              Name: this.data[i].Name,
+              Unit: this.data[i].Unit,
+              No: this.data[i].No,
+              Serial: this.data[i].Serial,
+            })
+          }
+        });
+      } else {
+        let params = {
+          installID: this.installID,
+          skuID: this.skuID,
+          typedevice: "Searchsku",
+          empID: this.empID
+        }
+        console.log(params);
+        this.postDataService.postdevice(params).then(data => {
+          this.data = data
+          if (this.data == false) {
+            this.alertNotSearchDevice();
+          } else {
+            this.Sparestorage.splice(0);
+            for (let i = 0; i < this.data.length; i++) {
+              this.Sparestorage.push({
+                AssID: this.data[i].AssID,
+                SKUID: this.data[i].SKUID,
+                SKUCode: this.data[i].SKUCode,
+                Name: this.data[i].Name,
+                Unit: this.data[i].Unit,
+                No: this.data[i].No,
+                Serial: this.data[i].Serial,
+              })
+            }
+          }
+        });
+      }
+    }
+
+  }
+
   async alertQty() {
     const alert = await this.alertController.create({
       header: 'แจ้งเตือน',
@@ -171,44 +456,27 @@ export class ChangsparepartPage implements OnInit {
     await alert.present();
   }
 
-  saveDevice(item){
-    let params = {
-      planID: this.planID,
-      installID: this.installID,
-      typedevice: "SaveDeviceIN",
-      empID: this.empID,
-      assID:item.AssetID
-    }
-    console.log(params);
-    this.postDataService.postdevice(params).then(data => {
-      this.modalController.dismiss(data);
-    });    
+  async alertNotDevice() {
+    const alert = await this.alertController.create({
+      message: 'ไม่สามารถเพิ่มเครื่องได้',
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 
-  Searchsku(){
-    if (this.skuID == null || this.skuID == "") {
-      let params = {
-        planID: this.planID,
-        installID: this.installID,
-        typedevice: "GetDeviceIN",
-        empID: this.empID
-      }
-      console.log(params);
-      this.postDataService.postdevice(params).then(data => {
-        this.data = data
-        console.log(this.data);
-      });
-    }else{
-    let params = {
-      skuID: this.skuID,
-      typedevice: "Searchsku",
-      empID: this.empID
-    }
-    console.log(params);
-    this.postDataService.postdevice(params).then(data => {
-      this.data = data
-      console.log(this.data);
-    });  
+  async alertNotSpare() {
+    const alert = await this.alertController.create({
+      message: 'กรุณาเลือกอะไหล่',
+      buttons: ['OK']
+    });
+    await alert.present();
   }
+
+  async alertNotSearchDevice() {
+    const alert = await this.alertController.create({
+      message: 'ไม่พบ Serial No. / Part No. นี้',
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 }

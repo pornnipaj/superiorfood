@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../../../auth-service.service';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController,AlertController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
 import { StorageService } from '../../../storage.service';
 import { PostDataService } from '../../../post-data.service';
@@ -35,6 +35,7 @@ export class UninstallPage implements OnInit {
   constructor(public DataService: AuthServiceService,
     private route: ActivatedRoute,
     public navCtrl: NavController,
+    public alertController:AlertController,
     private storageService: StorageService,
     private postDataService: PostDataService) {
 
@@ -77,24 +78,48 @@ export class UninstallPage implements OnInit {
   click(item, data) {
 
     console.log(item);
-
-    let params = {
-      item: item.value,
-      type: this.type,
-      date: data.planDate,
+    let param = {
+      planID: item.value.planID,
+      empID: this.empid,
+      type: "checkstatus",
     }
+    console.log(param);
+    
+    this.postDataService.postcheck(param).then(status => {
+      console.log(status);
 
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        data: JSON.stringify(params)
+      if (status == true) {
+        let params = {
+          item: item.value,
+          type: this.type,
+          date: data.planDate,
+        }
+    
+        let navigationExtras: NavigationExtras = {
+          queryParams: {
+            data: JSON.stringify(params)
+          }
+        };
+        console.log(navigationExtras);
+    
+        this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
+      }else{
+        this.status();
       }
-    };
-    console.log(navigationExtras);
-
-    this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
+    });   
 
   }
 
+  //#endregion
+
+  //#region alert status
+  async status(){
+    const alert = await this.alertController.create({
+      message: 'ยังไม่ถึงกำหนดรอบการตรวจเช็ค',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }  
   //#endregion
 
   //#region ChangMonth
