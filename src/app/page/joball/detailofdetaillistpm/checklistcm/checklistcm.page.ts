@@ -56,6 +56,10 @@ export class ChecklistcmPage implements OnInit {
   true;
   AsList = [];
   status;
+  isdevice = true;
+  isspare = true;
+  isnon = true;
+  show;
   //#endregion
 
   //#region constructor
@@ -77,6 +81,31 @@ export class ChecklistcmPage implements OnInit {
     this.cat = this.navParams.data.Cat;
     console.log(this.ItemsName, this.ItemCode, this.SerialNo);
     this.stock = [];
+
+    let param = {
+      installID: this.installID,
+      typedevice: "CheckCM",
+      empID: this.empID,
+      planID: this.planID,
+    }
+    this.postDataService.postdevice(param).then(data => {
+      this.show = data
+      if (this.show == "device") {
+        this.isdevice = true;
+        this.isspare = false;
+        this.isnon = false;
+      } else if (this.show == "spare") {
+        this.isdevice = false;
+        this.isspare = true;
+        this.isnon = false;
+      } else {
+        this.isdevice = true;
+        this.isspare = true;
+        this.isnon = false;
+      }
+
+
+    });
   }
 
   //#endregion

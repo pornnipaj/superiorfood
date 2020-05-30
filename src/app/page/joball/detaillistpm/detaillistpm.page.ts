@@ -223,12 +223,11 @@ export class DetaillistpmPage implements OnInit {
     if (item.Workfinish == 0) {      
       if (item.status == "Pending") {
         const alert = await this.alertController.create({
-          message: 'กรุณาติดต่อผู้ดูแลระบบ',
+          message: 'กรุณาติดต่อแอดมินบริษัทสุพีเรีย',
           buttons: ['OK']
         });
         await alert.present();
-      } 
-      if (this.type == "CM") {
+      } else  if (this.type == "CM") {
         if (item.tranID != null) {
           let tran = {
             AssetID: item.AssetID,

@@ -29,6 +29,7 @@ export class ChangsparepartPage implements OnInit {
   isShowSpare = false;
   status;
   qty;
+  modal;
 
   constructor(private modalController: ModalController,
     private postDataService: PostDataService,
@@ -171,8 +172,8 @@ export class ChangsparepartPage implements OnInit {
     }
   }
 
-  DeleteDevice(index) {
-    this.Device.splice(index, 1);
+  DeleteDevice(index,i) {
+    this.Device.splice(i, 1);
     this.Devicestorage.push({
       AssetID: index.AssetID,
       AssetNo: index.AssetNo,
@@ -182,11 +183,11 @@ export class ChangsparepartPage implements OnInit {
     })
   }
 
-  AddDevice(index) {
+  AddDevice(index,i) {
     if (this.Device.length == 1) {
       this.alertNotDevice();
     } else {
-      this.Devicestorage.splice(index, 1);
+      this.Devicestorage.splice(i, 1);
       this.Device.push({
         AssetID: index.AssetID,
         AssetNo: index.AssetNo,
@@ -231,10 +232,34 @@ export class ChangsparepartPage implements OnInit {
   ngOnInit() {
   }
 
-  async closeModal() {
-    await this.modalController.dismiss(0);
+  async closeModal(i) {   
+    
+    await this.modalController.dismiss(i);
   }
 
+  checkin(){
+    if (this.jobtype == "INSTALL") {
+      this.closeModal(0);
+    }else{
+    let params = {
+      installID: this.installID,
+      planID: this.planID,
+      typedevice: "CheckInstall",
+      empID: this.empID
+    }
+    console.log(params);
+    this.postDataService.postdevice(params).then(status => {
+      this.modal = status
+      console.log(this.modal);
+      if (this.modal = true) {
+        this.modal = 0
+      }else{
+        this.modal = 1
+      }
+      this.closeModal(this.modal);
+    });
+  }    
+  }
   scan() {
     this.barcodeScanner.scan().then(barcodeData => {
       console.log('Barcode data', barcodeData);
@@ -313,30 +338,31 @@ export class ChangsparepartPage implements OnInit {
       this.postDataService.postdevice(params).then(data => {
         this.data = data
         console.log(this.data);
-        if (data == true) {
-          this.modalController.dismiss(0);
-        }
       }); 
     }
   }
 
   saveDevice(item) {
-    let assID;
-    for (let i = 0; i < item.length; i++) {
-      assID = item[i].AssetID
+    if (item.length == 0) {
+      this.alertNotSpare();
+    }else{
+      let assID;
+      for (let i = 0; i < item.length; i++) {
+        assID = item[i].AssetID
+      }
+      console.log(assID);
+      let params = {
+        planID: this.planID,
+        installID: this.installID,
+        typedevice: "SaveDeviceIN",
+        empID: this.empID,
+        assID: assID
+      }
+      console.log(params);
+      this.postDataService.postdevice(params).then(data => {
+      });
     }
-    console.log(assID);
-    let params = {
-      planID: this.planID,
-      installID: this.installID,
-      typedevice: "SaveDeviceIN",
-      empID: this.empID,
-      assID: assID
-    }
-    console.log(params);
-    this.postDataService.postdevice(params).then(data => {
-      this.modalController.dismiss(data);
-    });
+    
   }
 
   Searchsku() {
@@ -466,7 +492,7 @@ export class ChangsparepartPage implements OnInit {
 
   async alertNotSpare() {
     const alert = await this.alertController.create({
-      message: 'กรุณาเลือกอะไหล่',
+      message: 'กรุณาเลือกอุปกรณ์',
       buttons: ['OK']
     });
     await alert.present();

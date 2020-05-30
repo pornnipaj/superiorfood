@@ -3,7 +3,7 @@
   <ion-title *ngIf="jobtype == 'INSTALL' && type!= 'device' else install" #install>เพิ่มอุปกรณ์เสริม</ion-title>
   <ion-title *ngIf="type == 'device' else device" #device>เพิ่มเครื่อง</ion-title>
   <ion-buttons slot="primary">
-    <ion-icon slot="end" name="close" (click)="closeModal()"></ion-icon>
+    <ion-icon slot="end" name="close" (click)="checkin()"></ion-icon>
   </ion-buttons>
 </ion-toolbar>
 
@@ -154,7 +154,7 @@
                       <td style="padding-top:15px;"> {{item.SerialNo}}</td>
                       <td style="padding-top:15px;">{{item.AssetTypeID}}</td>
                       <td>
-                        <ion-button color="danger" class="text-center" (click)="DeleteDevice(item)"> ลบ</ion-button>
+                        <ion-button color="danger" class="text-center" (click)="DeleteDevice(item,i)"> ลบ</ion-button>
                       </td>
                     </tr>
                   </tbody>
@@ -195,7 +195,7 @@
                       <td style="padding-top:15px;"> {{item.SerialNo}}</td>
                       <td style="padding-top:15px;">{{item.AssetTypeID}}</td>
                       <td>
-                        <ion-button color="warning" class="text-center" (click)="AddDevice(item)"> เลือก</ion-button>
+                        <ion-button color="warning" class="text-center" (click)="AddDevice(item,i)"> เลือก</ion-button>
                       </td>
                     </tr>
                   </tbody>
