@@ -42,6 +42,10 @@
                             <label class="col-5">Serial&nbsp;No&nbsp;(ใหม่)&nbsp;:&nbsp;{{item.SerialNo}}</label>
                             <label class="col-3">เสร็จงาน&nbsp;:&nbsp;{{item.end_service_date}}</label>
                         </div>
+                        <div *ngIf="item.SerialNoNew == item.SerialNo && type == 'CM' else sp" #sp>
+                            <label class="col-9">Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNo}}</label>
+                            <label class="col-3">เสร็จงาน&nbsp;:&nbsp;{{item.end_service_date}}</label>
+                        </div>
                         <div *ngIf="type != 'CM'else show" #show>
                             <label class="col-9" >ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsName}}</label>                           
                             <label class="col-3">เวลาที่ใช้&nbsp;:&nbsp;{{item.TimeSpent}}</label>
@@ -50,6 +54,10 @@
                             <label class="col-4" >ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsNameNew}}</label>
                             <label class="col-5"
                             >ชื่อสินค้า&nbsp;(ใหม่)&nbsp;:&nbsp;{{item.ItemsName}}</label>
+                            <label class="col-3">เวลาที่ใช้&nbsp;:&nbsp;{{item.TimeSpent}}</label>
+                        </div>
+                        <div *ngIf="item.SerialNoNew == item.SerialNo && type == 'CM' else sp" #sp>
+                            <label class="col-9" >ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsName}}</label>
                             <label class="col-3">เวลาที่ใช้&nbsp;:&nbsp;{{item.TimeSpent}}</label>
                         </div>
                     </div>
