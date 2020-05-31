@@ -481,7 +481,7 @@ export class ChangsparepartPage implements OnInit {
   async alertaccess() {
     const alert = await this.alertController.create({
       header: 'แจ้งเตือน',
-      message: 'กรุณาเลือกอุปกรณ์ให้ถูกต้อง',
+      message: 'กรุณาเลือกจำนวนอุปกรณ์ให้ถูกต้อง',
       buttons: ['OK']
     });
     await alert.present();

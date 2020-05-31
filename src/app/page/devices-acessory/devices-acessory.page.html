@@ -3,9 +3,12 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title class="text-left">เครื่องและอุปกรณ์คงเหลือ</ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-title>เครื่องและอุปกรณ์คงเหลือ</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="loadpage()">
+        <ion-icon slot="icon-only" name="refresh"></ion-icon>  
+    </ion-button>
+  </ion-buttons>
 
 <ion-content>
   <div class="row" style="margin: 5px;">
