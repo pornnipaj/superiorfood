@@ -95,7 +95,7 @@
       </div>
       <ion-item>
         <ion-icon name="search" (click)="Searchsku()"></ion-icon>
-        <ion-input type="text" placeholder="Part No." name="skuID" [(ngModel)]="skuID"></ion-input>
+        <ion-input type="text" placeholder="Part No." name="skuID" [(ngModel)]="skuID" (ngModelChange)="skuID = $event.toLocaleUpperCase()"></ion-input>
         <ion-icon name="barcode" (click)="scan()"></ion-icon>
       </ion-item>
       <div class="tab-content">
@@ -169,7 +169,7 @@
       </div>
       <ion-item>
         <ion-icon name="search" (click)="Searchsku()"></ion-icon>
-        <ion-input type="text" placeholder="Serial" name="skuID" [(ngModel)]="skuID"></ion-input>
+        <ion-input type="text" placeholder="Serial" name="skuID" [(ngModel)]="skuID" (ngModelChange)="skuID = $event.toLocaleUpperCase()"></ion-input>
         <ion-icon name="barcode" (click)="scan()"></ion-icon>
       </ion-item>
       <div class="tab-content">

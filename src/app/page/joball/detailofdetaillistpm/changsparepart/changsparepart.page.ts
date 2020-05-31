@@ -371,6 +371,8 @@ export class ChangsparepartPage implements OnInit {
   }
 
   Searchsku() {
+    console.log(this.skuID);
+    
     if (this.type == 'device') {
       if (this.skuID == null || this.skuID == "") {
         let params = {
