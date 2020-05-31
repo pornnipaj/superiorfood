@@ -337,6 +337,11 @@ export class ChangsparepartPage implements OnInit {
       console.log(params);
       this.postDataService.postdevice(params).then(data => {
         this.data = data
+        if (this.data == false) {
+          this.alertaccess();
+        }else{
+          this.checkin();
+        }
         console.log(this.data);
       }); 
     }
@@ -471,6 +476,15 @@ export class ChangsparepartPage implements OnInit {
       }
     }
 
+  }
+
+  async alertaccess() {
+    const alert = await this.alertController.create({
+      header: 'แจ้งเตือน',
+      message: 'กรุณาเลือกอุปกรณ์ให้ถูกต้อง',
+      buttons: ['OK']
+    });
+    await alert.present();
   }
 
   async alertQty() {

@@ -123,6 +123,11 @@ export class DetailofdetaillistpmPage implements OnInit {
   ItemsName;
   ItemCode;
   ProductCode;
+  InstallPlanNameNew;
+  SerialNoNew;
+  ItemsNameNew;
+  ItemCodeNew;
+  ProductCodeNew;
   Category;
   sign;
   install;
@@ -204,6 +209,11 @@ export class DetailofdetaillistpmPage implements OnInit {
   CustomerName;
   myDate: String = new Date().toString();
   sanitizer: DomSanitizer;
+  isdevice = false;
+  isspare = false;
+  show;
+  devices;
+  spares;
   //#endregion
 
   //#region constructor
@@ -382,6 +392,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.isenabledcheck = false;
       this.isenabledcuseva = false;
       this.isenabledrequest = false;
+      this.checkcm();
 
     } else if (this.jobtype == "INSTALL") {
       this.title1 = "รายการที่ 1 ถ่ายภาพก่อนการติดตั้ง"
@@ -413,6 +424,54 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.title8 = "รายการที่ 8 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
     }
 
+  }
+
+  checkcm(){
+    let param = {
+      installID: this.installID,
+      typedevice: "CheckCM",
+      empID: this.empID,
+      planID: this.planID,
+    }
+    this.postDataService.postdevice(param).then(data => {
+      this.show = data
+      console.log(this.show);
+      
+      if (this.show == "device") {
+        this.isdevice = true;
+        this.showdevice();
+      }else if(this.show == "spare"){
+        this.isspare = true;
+        this.showspare();
+      }
+    });
+  }
+
+  showdevice(){
+    let param = {
+      installID: this.installID,
+      typedevice: "GetDeviceTran",
+      empID: this.empID,
+      planID: this.planID,
+    }
+    this.postDataService.postdevice(param).then(data => {
+      this.devices = data
+      console.log(this.devices);
+      
+    });
+  }
+
+  showspare(){    
+    let param = {
+      installID: this.installID,
+      typedevice: "GetSpareTran",
+      empID: this.empID,
+      planID: this.planID,
+    }
+    this.postDataService.postdevice(param).then(data => {
+      this.spares = data
+      console.log(this.spares);      
+    });
   }
 
   loadItems() {
@@ -2393,7 +2452,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       }
       else if (this.jobtype == "PM") {
         //console.log('sparetype', Array.isArray(this.sparetype));
-        if (this.sparetype != "" ){
+        if (this.sparetype != "") {
           this.isenabledspare = true;
         }
 
@@ -2467,7 +2526,7 @@ export class DetailofdetaillistpmPage implements OnInit {
         } else {
           this.isenabledcuseva = true;
         }
-
+this.checkcm();
       })
 
       return await modal.present();
@@ -2615,7 +2674,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           idold: this.idold,
           TecComment: this.TecComment,
           resolutiondetail: this.resolutiondetail,
-          workclose: this.workclose
+          workclose: "WorkClose002"
         }
         console.log(params);
         this.postDataService.SaveCaseAll(params).then(resolution => {
@@ -2667,10 +2726,10 @@ export class DetailofdetaillistpmPage implements OnInit {
         if (this.list == 0) {
           this.isenabledcuseva = true;
         }
-          if (this.list.AssetID != null) {
-            this.SerialNo = this.list.SerialNo
-            console.log(this.SerialNo);
-          }
+        if (this.list.AssetID != null) {
+          this.SerialNo = this.list.SerialNo
+          console.log(this.SerialNo);
+        }
       })
 
       return await modal.present();
@@ -2721,19 +2780,19 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.Cuscomment = this.cuscom.data.Cuscomment;
       console.log(this.cuscom);
       if (this.jobtype == 'INSTALL') {
-          let params = {
-            planID: this.planID,
-            installID: this.installID,
-            jobtype: "Cuscomment",
-            empID: this.empID,
-            Cuscomment: this.Cuscomment,
-          }
-          console.log(params);
-          this.postDataService.SaveCaseAll(params).then(comment => {
-            console.log(comment);
-          });
-          this.isenabledsave = true;
-        
+        let params = {
+          planID: this.planID,
+          installID: this.installID,
+          jobtype: "Cuscomment",
+          empID: this.empID,
+          Cuscomment: this.Cuscomment,
+        }
+        console.log(params);
+        this.postDataService.SaveCaseAll(params).then(comment => {
+          console.log(comment);
+        });
+        this.isenabledsave = true;
+
       } else {
         if (this.cuscom.data == 0) {
           this.alertCusCode();

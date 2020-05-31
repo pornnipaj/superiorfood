@@ -413,8 +413,55 @@
               </div>
             </div>
           </div>
-        </div>
-        
+        </div>  
+        <div class="col-12 col-md-12 col-sm-12 ex2" style="padding: 0px;" *ngIf="isdevice && jobtype == 'CM'">
+          <div class="portlet box blue">
+            <div class="portlet-title">
+              <div class="caption">
+                <i class="fa fa-cube"></i>เครื่องที่เปลี่ยน</div>
+            </div>
+            <div class="portlet-body" style="margin: 0px;">
+              <div class="portlet light" *ngFor="let i of devices;">
+                <div class="row">
+                  <div class="col-md-4 col-4">
+                    <p class="profile-desc-text">สินค้าที่ติดตั้ง:</p>
+                    <p class="profile-desc-text">ชื่อสินค้า:</p>
+                    <p class="profile-desc-text">รหัสสินค้า:</p>
+                    <p class="profile-desc-text">Serial No:</p>
+                  </div>
+                  <div class="col-md-8 col-8">
+                    <p class="profile-desc-text">{{i.InstallPlanName}}</p>
+                    <p class="profile-desc-text">{{i.ItemCode}}</p>
+                    <p class="profile-desc-text">{{i.ItemsName}}</p>
+                    <p class="profile-desc-text">{{i.SerialNo}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+        <div class="col-12 col-md-12 col-sm-12 ex2" style="padding: 0px;" *ngIf="isspare && jobtype == 'CM'">
+          <div class="portlet box blue">
+            <div class="portlet-title">
+              <div class="caption">
+                <i class="fa fa-cube"></i>อะไหล่ที่เปลี่ยน</div>
+            </div>
+            <div class="portlet-body" style="margin: 0px;">
+              <div class="portlet light" *ngFor="let i of spares;">
+                <div class="row">
+                  <div class="col-md-4 col-4">
+                    <p class="profile-desc-text">ชื่ออุปกรณ์เสริม:</p>
+                    <p class="profile-desc-text">Part No:</p>
+                  </div>
+                  <div class="col-md-8 col-8">
+                    <p class="profile-desc-text">{{i.Name}}</p>
+                    <p class="profile-desc-text">{{i.Serial}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>       
       </div>
     </div>
   </div>

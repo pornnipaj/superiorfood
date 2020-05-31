@@ -9,10 +9,10 @@ import { PostDataService } from '../../../../post-data.service';
 })
 export class CustomerevaluationPage implements OnInit {
   resolution;
-  resolutiondetail="";
+  resolutiondetail = "";
   data;
   installID;
-  TecComment="";
+  TecComment = "";
   jobtype;
   planID;
   detail;
@@ -46,7 +46,7 @@ export class CustomerevaluationPage implements OnInit {
       this.postDataService.SaveCaseAll(params).then(data => {
         this.data = data
         console.log(data);
-      });      
+      });
     }
     let params = {
       installID: this.installID,
@@ -57,35 +57,35 @@ export class CustomerevaluationPage implements OnInit {
     this.postDataService.SaveCaseAll(params).then(detail => {
       this.detail = detail
       console.log(this.detail);
-      this.TecComment = this.detail.TecComment 
+      this.TecComment = this.detail.TecComment
       if (this.jobtype == "CM") {
         this.resolution = this.detail.ResolutionID
         this.resolutiondetail = this.detail.Resolutiondetail
-      }   else{
+      } else {
         this.resolutiondetail = "resolutiondetail"
-      }            
+      }
     });
 
   }
 
   ngOnInit() {
-    
+
   }
   close() {
     this.modalController.dismiss();
   }
-  onChange(value,type) {
+  onChange(value, type) {
     console.log(value);
-if (type == 'resolution') {
-  this.resolution = value.detail.value
-  console.log(this.resolution);
-}
-   
+    if (type == 'resolution') {
+      this.resolution = value.detail.value
+      console.log(this.resolution);
+    }
+
   }
   async submit() {
     console.log(this.resolution);
     console.log(this.resolutiondetail);
-    
+
     if (this.jobtype == "CM" && this.workclose != 'workclose') {
       if (this.resolutiondetail == null || this.resolutiondetail == "") {
         const alert = await this.alertController.create({
@@ -95,15 +95,15 @@ if (type == 'resolution') {
         });
 
         await alert.present();
-      }else{
+      } else {
         let params = {
           installID: this.installID,
           planID: this.planID,
-          empID:this.empID,
-          workclose:this.workclose,
+          empID: this.empID,
+          workclose: this.workclose,
           jobtype: "saveclosecustomer",
-          resolution:this.resolution,
-          resolutiondetail:this.resolutiondetail
+          resolution: this.resolution,
+          resolutiondetail: this.resolutiondetail
         }
         console.log(params);
         this.postDataService.SaveCaseAll(params).then(data => {
@@ -117,7 +117,24 @@ if (type == 'resolution') {
           }
         });
       }
-    }else{ 
+    } else if (this.jobtype == "CM" && this.workclose == 'workclose') {
+      if (this.resolutiondetail == null || this.resolutiondetail == "") {
+        const alert = await this.alertController.create({
+          header: 'แจ้งเตือน',
+          message: 'กรุณากรอกรายละเอียดของปัญหา',
+          buttons: ['OK']
+        });
+        await alert.present();
+      } else {
+        let params = {
+          resolution: this.resolution,
+          resolutiondetail: this.resolutiondetail,
+          TecComment: this.TecComment
+        }
+        this.modalController.dismiss(params);
+      }
+    }
+    else {
       if (this.TecComment == null || this.TecComment == "") {
         const alert = await this.alertController.create({
           header: 'แจ้งเตือน',
@@ -133,32 +150,32 @@ if (type == 'resolution') {
           TecComment: this.TecComment
         }
         this.modalController.dismiss(params);
-      }   
-    } 
+      }
+    }
   }
 
-    //#region alert success
-    async alertSuccess() {
-      const alert = await this.alertController.create({
-        header: 'แจ้งเตือน',
-        message: 'บันทึกสำเร็จ',
-        buttons: ['OK']
-      });
-  
-      await alert.present();
-    }
-    //#endregion
-  
-    //#region alert success
-    async alertFail() {
-      const alert = await this.alertController.create({
-        header: 'แจ้งเตือน',
-        message: 'บันทึกไม่สำเร็จ',
-        buttons: ['OK']
-      });
-  
-      await alert.present();
-    }
-    //#endregion
-  
+  //#region alert success
+  async alertSuccess() {
+    const alert = await this.alertController.create({
+      header: 'แจ้งเตือน',
+      message: 'บันทึกสำเร็จ',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  //#endregion
+
+  //#region alert success
+  async alertFail() {
+    const alert = await this.alertController.create({
+      header: 'แจ้งเตือน',
+      message: 'บันทึกไม่สำเร็จ',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  //#endregion
+
 }
