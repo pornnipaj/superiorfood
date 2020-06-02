@@ -13,8 +13,10 @@
     <div class="sig-body" *ngIf="isSign">
       <signature-pad [options]="signaturePadOptions"></signature-pad>
     </div>
+    <div class="text-center">
     <ion-button (click)="savePad()" *ngIf="isSave">บันทึก</ion-button>
     <ion-button color="dark" (click)="clearPad()">รีเซ็ต</ion-button>
+  </div>
     <!-- <ion-button color="danger" (click)="close()">ปิด</ion-button> -->
   </div>
 

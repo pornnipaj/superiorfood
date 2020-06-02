@@ -20,22 +20,22 @@
                     <tr>
                       <th> ลำดับที่ </th>
                       <th> ชื่ออุปกรณ์เสริม </th>
-                      <th> Part No. </th>
+                      <th> รหัสสินค้า </th>
                       <th> จำนวน </th>
-                      <th> ยอดคงเหลือ </th>
-                      <th> หน่วย </th>
+                      <th></th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let item of data; let i = index">
+                    <tr *ngFor="let item of PMstorage; let i = index">
                       <td style="padding-top:15px;">
                         {{i+1}}
                       </td>
                       <td style="padding-top:15px;"> {{item.Name}} </td>
-                      <td style="padding-top:15px;"> {{item.SKUCode}}</td>
-                      <td> <input type="text" style="padding: 8px;" [(ngModel)]="item.No" /></td>
-                      <td style="padding-top:15px;">{{item.Balance}}</td>
-                      <td style="padding-top:15px;">{{item.Unit}}</td>
+                      <td style="padding-top:15px;"> {{item.Serial}} </td>
+                      <td style="padding-top:15px;">{{item.No}}</td>
+                      <td>
+                        <ion-button color="warning" class="text-center" (click)="AddPM(item,i)"> เลือก</ion-button>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -44,9 +44,43 @@
           </div>
         </div>
       </div>
-      <div class="text-center">
-        <ion-button shape="round" color="success" class="text-center" (click)="submit(data)">บันทึก</ion-button>
-      </div>
+      <div class="tab-content" *ngIf="isShowPM">
+        <div class="tab-pane active">
+          <div class="row">
+            <div class="col-12">
+              <div class="table-scrollable">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th> ลำดับที่ </th>
+                      <th> ชื่ออุปกรณ์เสริม </th>
+                      <th> รหัสสินค้า </th>
+                      <th> จำนวน </th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of PM; let i = index">
+                      <td style="padding-top:15px;">
+                        {{i+1}}
+                      </td>
+                      <td style="padding-top:15px;"> {{item.Name}} </td>
+                      <td style="padding-top:15px;"> {{item.Serial}} </td>
+                      <td style="padding-top:15px;">{{item.No}}</td>
+                      <td>
+                        <ion-button color="danger" class="text-center" (click)="DeletePM(item,i)"> ลบ</ion-button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <ion-button shape="round" color="success" class="text-center" (click)="submit()">บันทึก</ion-button>
+        </div>
+      </div>      
     </div>
     <div *ngIf="jobtype == 'INSTALL' && type!= 'device' else install" #install>
       <ion-list>

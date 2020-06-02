@@ -118,8 +118,8 @@ export class JobdetailPage implements OnInit {
         console.log(this.empID);
       }
       this.postDataService.apiServer_url
-      
-      this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url +'Web/CK_CheckInfo.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.insID);
+
+      this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/CK_CheckInfo.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.insID);
     });
   }
   //#endregion
@@ -133,8 +133,8 @@ export class JobdetailPage implements OnInit {
     }
     else if (this.type == "CM") {
       this.typethai = "งานซ่อม"
-      this.typeeng = 'TK'    
-      this.checkcm();  
+      this.typeeng = 'TK'
+      this.checkcm();
     }
     else if (this.type == "PM") {
       this.typethai = "งานตรวจเช็ค"
@@ -147,9 +147,13 @@ export class JobdetailPage implements OnInit {
     if (this.type != "PM") {
       this.ShowList = false;
     }
+    if (this.type == "CM") {
+      this.jobdetail.insID = this.newinsID;
+    } else {
+      this.jobdetail.insID = this.insID;
+    }
     this.jobdetail.planID = this.planID;
     this.jobdetail.tranID = this.tranID;
-    this.jobdetail.insID = this.newinsID;
     this.jobdetail.type = this.type
 
     console.log(this.jobdetail);
@@ -161,7 +165,7 @@ export class JobdetailPage implements OnInit {
         this.image = JSON.parse(this.result[i].image);
       }
       console.log(this.image);
-  
+
       for (let v = 0; v < this.image.length; v++) {
         if (this.image[v].type == "step1_pic1") {
           this.img.src1 = this.postDataService.apiServer_url + this.image[v].file_path
@@ -229,7 +233,7 @@ export class JobdetailPage implements OnInit {
           console.log("13", this.img.src13);
         }
         console.log(this.booimg12);
-        
+
         console.log(this.booimg13)
       }
       this.isShowImage1 = this.booimg1;
@@ -241,8 +245,8 @@ export class JobdetailPage implements OnInit {
       this.isShowImage7 = this.booimg7;
       this.isShowImage8 = this.booimg8;
       this.isShowImage9 = this.booimg9;
-      this.isShowImage10  = this.booimg10;
-      this.isShowImage11  = this.booimg11;
+      this.isShowImage10 = this.booimg10;
+      this.isShowImage11 = this.booimg11;
       this.isShowImage12 = this.booimg12;
       this.isShowImage13 = this.booimg13;
     });
@@ -258,7 +262,7 @@ export class JobdetailPage implements OnInit {
       planID: this.planID,
     }
     console.log(param);
-    
+
     this.postDataService.postdevice(param).then(data => {
       this.shows = data
       console.log(this.shows);
@@ -303,7 +307,7 @@ export class JobdetailPage implements OnInit {
   }
 
   //#region 
-  async editChecklist(){
+  async editChecklist() {
     const modal = await this.modalController.create({
       component: ChecklistPage,
       cssClass: 'my-custom-modal-css-pm',
