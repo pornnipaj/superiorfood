@@ -2,7 +2,7 @@
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
-      <ion-title>{{jobtype}}: {{ItemsName}}</ion-title>
+      <ion-title>{{worktype}}: {{ItemsName}}</ion-title>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -450,8 +450,8 @@
               <div class="portlet light" *ngFor="let i of spares;">
                 <div class="row">
                   <div class="col-md-4 col-4">
-                    <p class="profile-desc-text">ชื่ออุปกรณ์เสริม:</p>
-                    <p class="profile-desc-text">Part No:</p>
+                    <p class="profile-desc-text">ชื่ออุปกรณ์เสริม :</p>
+                    <p class="profile-desc-text">Part No. :</p>
                   </div>
                   <div class="col-md-8 col-8">
                     <p class="profile-desc-text">{{i.Name}}</p>

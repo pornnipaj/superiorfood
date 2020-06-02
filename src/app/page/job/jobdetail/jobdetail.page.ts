@@ -38,8 +38,10 @@ export class JobdetailPage implements OnInit {
   planID;
   tranID;
   insID;
+  newinsID
   image;
   type;
+  typeeng;
   isShowImage = true;
   url: SafeResourceUrl;
   sanitizer: DomSanitizer;
@@ -77,7 +79,12 @@ export class JobdetailPage implements OnInit {
   isShowImage11 = false;
   isShowImage12 = false;
   isShowImage13 = false;
-  
+  shows;
+  isdevice = false;
+  isspare = false;
+  devices;
+  spares;
+  typeChang;
   //#endregion
 
   //#region constructor
@@ -93,6 +100,7 @@ export class JobdetailPage implements OnInit {
       this.query = JSON.parse(params["data"]);
       this.data = this.query.data
       this.insID = this.query.installID
+      this.newinsID = this.query.newinstallID
       this.tranID = this.query.tranID
       this.type = this.query.type
       this.planID = this.query.planID
@@ -120,23 +128,28 @@ export class JobdetailPage implements OnInit {
   ngOnInit() {
     if (this.type == "INSTALL") {
       this.typethai = "งานติดตั้ง"
+      this.typeeng = 'Install'
       console.log(this.typethai);
     }
     else if (this.type == "CM") {
       this.typethai = "งานซ่อม"
+      this.typeeng = 'TK'    
+      this.checkcm();  
     }
     else if (this.type == "PM") {
       this.typethai = "งานตรวจเช็ค"
+      this.typeeng = 'PM'
     }
     else if (this.type == "UNINSTALL") {
       this.typethai = "งานถอนการติดตั้ง"
+      this.typeeng = 'Uninstall'
     }
     if (this.type != "PM") {
       this.ShowList = false;
     }
     this.jobdetail.planID = this.planID;
     this.jobdetail.tranID = this.tranID;
-    this.jobdetail.insID = this.insID;
+    this.jobdetail.insID = this.newinsID;
     this.jobdetail.type = this.type
 
     console.log(this.jobdetail);
@@ -235,6 +248,59 @@ export class JobdetailPage implements OnInit {
     });
   }
   //#endregion
+
+
+  checkcm() {
+    let param = {
+      installID: this.insID,
+      typedevice: "CheckCM",
+      empID: this.empID,
+      planID: this.planID,
+    }
+    console.log(param);
+    
+    this.postDataService.postdevice(param).then(data => {
+      this.shows = data
+      console.log(this.shows);
+
+      if (this.shows == "device") {
+        this.typeChang = "เครื่อง"
+        this.showdevice();
+      } else if (this.shows == "spare") {
+        this.typeChang = "อะไหล่"
+        this.showspare();
+      }
+    });
+  }
+
+  showdevice() {
+    let param = {
+      installID: this.insID,
+      typedevice: "GetDeviceTran",
+      empID: this.empID,
+      planID: this.planID,
+    }
+    this.postDataService.postdevice(param).then(data => {
+      this.devices = data
+      this.isdevice = true;
+      console.log(this.devices);
+
+    });
+  }
+
+  showspare() {
+    let param = {
+      installID: this.insID,
+      typedevice: "GetSpareTran",
+      empID: this.empID,
+      planID: this.planID,
+    }
+    this.postDataService.postdevice(param).then(data => {
+      this.devices = data
+      this.isspare = true;
+      console.log(this.spares);
+    });
+  }
 
   //#region 
   async editChecklist(){

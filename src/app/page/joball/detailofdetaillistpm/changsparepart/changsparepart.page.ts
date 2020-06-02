@@ -187,6 +187,7 @@ export class ChangsparepartPage implements OnInit {
     if (this.Device.length == 1) {
       this.alertNotDevice();
     } else {
+      this.isShowDevice = true;
       this.Devicestorage.splice(i, 1);
       this.Device.push({
         AssetID: index.AssetID,

@@ -435,7 +435,8 @@ export class DetaillistpmPage implements OnInit {
         } else {
           let params = {
             data: data,
-            installID: item.newinstallID,
+            newinstallID: item.newinstallID,
+            installID: item.installId,
             tranID: item.tranID,
             planID: item.planID,
             type: this.type

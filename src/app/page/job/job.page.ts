@@ -52,7 +52,8 @@ export class JobPage implements OnInit {
       console.log(item);
       let params = {
         data: item,
-        installID: item.installnew,
+        newinstallID: item.newinstallID,
+        installID: item.installId,
         tranID:item.tranID,
         planID:item.planID,
         type:item.JobType

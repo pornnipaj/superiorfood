@@ -128,6 +128,10 @@
                 <div class="col-4 text" #cm>การปิดงาน :</div>
                 <div class="col-8 subtext" #cm>{{data.value.WorkClose}}</div>
               </div>
+              <div class="row col-12" *ngIf="data.value.JobType == 'CM' && data.value.Workfinish == 1 else cm">
+                <div class="col-4 text" #cm>การเปลี่ยนอุปกรณ์ :</div>
+                <div class="col-8 subtext" #cm>{{data.value.TypeChang}}</div>
+              </div>
               <div class="row col-12" *ngIf="data.value.sparepart != '' && data.value.JobType == 'PM' else spare">
                 <div class="col-4 text" #spare>อะไหล่ที่ต้องเปลี่ยน :</div>
                 <div class="col-8 subtext" #spare>

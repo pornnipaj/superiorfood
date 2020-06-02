@@ -2,7 +2,7 @@
     <ion-toolbar color="primary">
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
-            <ion-title>สรุปผล{{typethai}}&nbsp;({{type}})</ion-title>
+            <ion-title>สรุปผล{{typethai}}&nbsp;({{typeeng}})</ion-title>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
@@ -33,79 +33,84 @@
                             <label class="col-9">สินค้าที่ติดตั้ง&nbsp;:&nbsp;{{item.InstallPlanName}} </label>
                             <label class="col-3">เริ่มทำงาน&nbsp;:&nbsp;{{item.start_service_date}}</label>
                         </div>
-                        <div *ngIf="type != 'CM'else show" #show>
-                            <label class="col-9">Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNo}}</label>                           
-                            <label class="col-3">เสร็จงาน&nbsp;:&nbsp;{{item.end_service_date}}</label>
-                        </div>
-                        <div *ngIf="item.SerialNoNew != item.SerialNo && type == 'CM' else device" #device>
-                            <label class="col-4">Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNoNew}}</label>
-                            <label class="col-5">Serial&nbsp;No&nbsp;(ใหม่)&nbsp;:&nbsp;{{item.SerialNo}}</label>
+                        <div>
+                            <label class="col-9">Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNo}}</label>
                             <label class="col-3">เสร็จงาน&nbsp;:&nbsp;{{item.end_service_date}}</label>
                         </div>
                         <div *ngIf="item.SerialNoNew == item.SerialNo && type == 'CM' else sp" #sp>
                             <label class="col-9">Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNo}}</label>
                             <label class="col-3">เสร็จงาน&nbsp;:&nbsp;{{item.end_service_date}}</label>
                         </div>
-                        <div *ngIf="type != 'CM'else show" #show>
-                            <label class="col-9" >ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsName}}</label>                           
+                        <div>
+                            <label class="col-9">ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsName}}</label>
                             <label class="col-3">เวลาที่ใช้&nbsp;:&nbsp;{{item.TimeSpent}}</label>
                         </div>
-                        <div *ngIf="item.SerialNoNew != item.SerialNo && type == 'CM' else device" #device>
-                            <label class="col-4" >ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsNameNew}}</label>
-                            <label class="col-5"
-                            >ชื่อสินค้า&nbsp;(ใหม่)&nbsp;:&nbsp;{{item.ItemsName}}</label>
-                            <label class="col-3">เวลาที่ใช้&nbsp;:&nbsp;{{item.TimeSpent}}</label>
+                        <div *ngIf="type == 'CM'else chang" #chang>
+                            <hr>
+                            <label class="col-12">การเปลี่ยนอุปกรณ์ : เปลี่ยน{{typeChang}}</label>
                         </div>
-                        <div *ngIf="item.SerialNoNew == item.SerialNo && type == 'CM' else sp" #sp>
-                            <label class="col-9" >ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsName}}</label>
-                            <label class="col-3">เวลาที่ใช้&nbsp;:&nbsp;{{item.TimeSpent}}</label>
+                        <div *ngIf="isdevice">
+                            <div *ngFor="let i of devices;">
+                                <label class="col-4">สินค้าที่ติดตั้ง&nbsp;:&nbsp;{{i.InstallPlanName}}</label>
+                                <label class="col-8">ชื่อสินค้า&nbsp;:&nbsp;{{i.ItemCode}}</label>
+                                <label class="col-4">รหัสสินค้า&nbsp;:&nbsp;{{i.ItemsName}}</label>
+                                <label class="col-8">Serial No&nbsp;:&nbsp;{{i.SerialNo}}</label>
+                            </div>
+                        </div>
+                        <div *ngIf="isspare">
+                            <div *ngFor="let i of devices;">
+                                <label class="col-4">ชื่ออุปกรณ์เสริม&nbsp;:&nbsp;{{i.Name}}</label>
+                                <label class="col-8">Part No.&nbsp;:&nbsp;{{i.Serial}}</label>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row" *ngIf="isShowImage">
-                <div class="col-6" style="padding-right: 0px;">
-                    <div class="portlet blue box">
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class="fa fa-file-image-o"></i>ภาพถ่ายก่อนการทำงาน</div>
-                        </div>
-                        <div class="portlet-body">
-                            <img [src]="img.src1" *ngIf="isShowImage1" />
-                            <img [src]="img.src2" *ngIf="isShowImage2" />
-                            <img [src]="img.src3" *ngIf="isShowImage3" />
-                            <img [src]="img.src4" *ngIf="isShowImage4" />
-                            <img [src]="img.src5" *ngIf="isShowImage5" />
-                            <img [src]="img.src6" *ngIf="isShowImage6" />
-                            <img [src]="img.src7" *ngIf="isShowImage7" />
-                            <img [src]="img.src8" *ngIf="isShowImage8" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6" style="padding-left: 0px;">
-                    <div class="portlet blue box">
-                        <div class="portlet-title">
-                            <div class="caption">
-                                <i class="fa fa-file-image-o"></i>ภาพถ่ายหลังการทำงาน</div>
 
+
+                <div class="row" *ngIf="isShowImage">
+                    <div class="col-6" style="padding-right: 0px;">
+                        <div class="portlet blue box">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-file-image-o"></i>ภาพถ่ายก่อนการทำงาน</div>
+                            </div>
+                            <div class="portlet-body">
+                                <img [src]="img.src1" *ngIf="isShowImage1" />
+                                <img [src]="img.src2" *ngIf="isShowImage2" />
+                                <img [src]="img.src3" *ngIf="isShowImage3" />
+                                <img [src]="img.src4" *ngIf="isShowImage4" />
+                                <img [src]="img.src5" *ngIf="isShowImage5" />
+                                <img [src]="img.src6" *ngIf="isShowImage6" />
+                                <img [src]="img.src7" *ngIf="isShowImage7" />
+                                <img [src]="img.src8" *ngIf="isShowImage8" />
+                            </div>
                         </div>
-                        <div class="portlet-body">
-                            <img [src]="img.src9" *ngIf="isShowImage9"/>
-                            <img [src]="img.src10" *ngIf="isShowImage10"/>
-                            <img [src]="img.src11" *ngIf="isShowImage11"/>
-                            <img [src]="img.src12" *ngIf="isShowImage12"/>
-                            <img [src]="img.src13" *ngIf="isShowImage13"/>
+                    </div>
+                    <div class="col-6" style="padding-left: 0px;">
+                        <div class="portlet blue box">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-file-image-o"></i>ภาพถ่ายหลังการทำงาน</div>
+
+                            </div>
+                            <div class="portlet-body">
+                                <img [src]="img.src9" *ngIf="isShowImage9" />
+                                <img [src]="img.src10" *ngIf="isShowImage10" />
+                                <img [src]="img.src11" *ngIf="isShowImage11" />
+                                <img [src]="img.src12" *ngIf="isShowImage12" />
+                                <img [src]="img.src13" *ngIf="isShowImage13" />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <!-- <div *ngIf="type == 'PM'; else checklist" #checklist class="text-center">
+            <!-- <div *ngIf="type == 'PM'; else checklist" #checklist class="text-center">
         <ion-button *ngFor="let item of result" shape="round" (click)="editChecklist()">แก้ไขใบรายงานตรวจสอบ{{item.InstallPlanName}}</ion-button>
     </div> -->
-    <div class="col-12 col-sm-12 col-md-12" style="width:100%;height:100%;padding: 0px;" *ngIf="ShowList">
-        <iframe [src]="url" style="width:100%;height:100%">
-        </iframe>
-    </div>
+            <div class="col-12 col-sm-12 col-md-12" style="width:100%;height:100%;padding: 0px;" *ngIf="ShowList">
+                <iframe [src]="url" style="width:100%;height:100%">
+                </iframe>
+            </div>
+        </div>
 </ion-content>

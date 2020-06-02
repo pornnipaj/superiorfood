@@ -54,7 +54,47 @@
           ชื่ออุปกรณ์เสริม : {{i.Name}}
           จำนวน : {{i.No}}
         </ion-item>
-      </ion-list>
+      </ion-list>    
+      <ion-item>
+        <ion-icon name="search" (click)="Searchsku()"></ion-icon>
+        <ion-input type="text" placeholder="Part No." name="skuID" [(ngModel)]="skuID"></ion-input>
+        <ion-icon name="barcode" (click)="scan()"></ion-icon>
+      </ion-item>
+      <div class="tab-content">
+        <div class="tab-pane active">
+          <div class="row">
+            <div class="col-12">
+              <div class="table-scrollable">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th> ลำดับที่ </th>
+                      <th> ชื่ออุปกรณ์เสริม </th>
+                      <th> รหัสสินค้า </th>
+                      <th> จำนวน </th>
+                      <th> หน่วย </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of Sparestorage; let i = index">
+                      <td style="padding-top:15px;">
+                        {{i+1}}
+                      </td>
+                      <td style="padding-top:15px;"> {{item.Name}} </td>
+                      <td style="padding-top:15px;"> {{item.Serial}} </td>
+                      <td style="padding-top:15px;">{{item.No}}</td>
+                      <td style="padding-top:15px;">{{item.Unit}}</td>
+                      <td>
+                        <ion-button color="warning" class="text-center" (click)="AddSpare(item,i)"> เลือก</ion-button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="tab-content" *ngIf="isShowSpare">
         <div class="tab-pane active">
           <div class="row">
@@ -93,83 +133,11 @@
           </div>
         </div>
       </div>
-      <ion-item>
-        <ion-icon name="search" (click)="Searchsku()"></ion-icon>
-        <ion-input type="text" placeholder="Part No." name="skuID" [(ngModel)]="skuID" (ngModelChange)="skuID = $event.toLocaleUpperCase()"></ion-input>
-        <ion-icon name="barcode" (click)="scan()"></ion-icon>
-      </ion-item>
-      <div class="tab-content">
-        <div class="tab-pane active">
-          <div class="row">
-            <div class="col-12">
-              <div class="table-scrollable">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th> ลำดับที่ </th>
-                      <th> ชื่ออุปกรณ์เสริม </th>
-                      <th> รหัสสินค้า </th>
-                      <th> จำนวน </th>
-                      <th> หน่วย </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let item of Sparestorage; let i = index">
-                      <td style="padding-top:15px;">
-                        {{i+1}}
-                      </td>
-                      <td style="padding-top:15px;"> {{item.Name}} </td>
-                      <td style="padding-top:15px;"> {{item.Serial}} </td>
-                      <td style="padding-top:15px;">{{item.No}}</td>
-                      <td style="padding-top:15px;">{{item.Unit}}</td>
-                      <td>
-                        <ion-button color="warning" class="text-center" (click)="AddSpare(item,i)"> เลือก</ion-button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-    <div *ngIf="type == 'device' else device" #device>
-      <div class="tab-content" *ngIf="isShowDevice">
-        <div class="tab-pane active">
-          <div class="row">
-            <div class="col-12">
-              <div class="table-scrollable">
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th> ชื่อเครื่อง </th>
-                      <th> Serial No. </th>
-                      <th> ประเภทเครื่อง </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let item of Device; let i = index">
-                      <td style="padding-top:15px;"> {{item.AssetNo}} </td>
-                      <td style="padding-top:15px;"> {{item.SerialNo}}</td>
-                      <td style="padding-top:15px;">{{item.AssetTypeID}}</td>
-                      <td>
-                        <ion-button color="danger" class="text-center" (click)="DeleteDevice(item,i)"> ลบ</ion-button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <div class="text-center">
-                  <ion-button shape="round" color="success" class="text-center" (click)="saveDevice(Device)">บันทึก</ion-button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div *ngIf="type == 'device' else device" #device>      
       <ion-item>
         <ion-icon name="search" (click)="Searchsku()"></ion-icon>
-        <ion-input type="text" placeholder="Serial" name="skuID" [(ngModel)]="skuID" (ngModelChange)="skuID = $event.toLocaleUpperCase()"></ion-input>
+        <ion-input type="text" placeholder="Serial" name="skuID" [(ngModel)]="skuID"></ion-input>
         <ion-icon name="barcode" (click)="scan()"></ion-icon>
       </ion-item>
       <div class="tab-content">
@@ -200,6 +168,38 @@
                     </tr>
                   </tbody>
                 </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-content" *ngIf="isShowDevice">
+        <div class="tab-pane active">
+          <div class="row">
+            <div class="col-12">
+              <div class="table-scrollable">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th> ชื่อเครื่อง </th>
+                      <th> Serial No. </th>
+                      <th> ประเภทเครื่อง </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of Device; let i = index">
+                      <td style="padding-top:15px;"> {{item.AssetNo}} </td>
+                      <td style="padding-top:15px;"> {{item.SerialNo}}</td>
+                      <td style="padding-top:15px;">{{item.AssetTypeID}}</td>
+                      <td>
+                        <ion-button color="danger" class="text-center" (click)="DeleteDevice(item,i)"> ลบ</ion-button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="text-center">
+                  <ion-button shape="round" color="success" class="text-center" (click)="saveDevice(Device)">บันทึก</ion-button>
+                </div>
               </div>
             </div>
           </div>
