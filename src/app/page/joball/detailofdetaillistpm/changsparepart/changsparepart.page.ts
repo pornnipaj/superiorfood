@@ -313,7 +313,7 @@ export class ChangsparepartPage implements OnInit {
   }
 
   checkin() {
-    if (this.jobtype == "INSTALL") {
+    if (this.jobtype != "INSTALL") {
       this.closeModal(0);
     } else {
       let params = {
@@ -326,7 +326,7 @@ export class ChangsparepartPage implements OnInit {
       this.postDataService.postdevice(params).then(status => {
         this.modal = status
         console.log(this.modal);
-        if (this.modal = true) {
+        if (this.modal == true) {
           this.modal = 0
         } else {
           this.modal = 1

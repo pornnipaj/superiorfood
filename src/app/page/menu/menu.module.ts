@@ -25,10 +25,10 @@ const routes: Routes = [
         path: 'job',
         loadChildren: '../job/job.module#JobPageModule'
       },
-      {
-        path: 'joball',
-        loadChildren: '../joball/joball.module#JoballPageModule'
-      },
+      // {
+      //   path: 'joball',
+      //   loadChildren: '../joball/joball.module#JoballPageModule'
+      // },
       {
         path: 'sparepart',
         loadChildren: '../take-spare-parts/sparelist/sparelist.module#SparelistPageModule'

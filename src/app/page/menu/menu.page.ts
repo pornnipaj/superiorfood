@@ -22,11 +22,11 @@ export class MenuPage implements OnInit {
       url: '/menu/job',
       icon: 'person'
     },
-    {
-      title: 'งานทั้งหมด',
-      url: '/menu/joball',
-      icon: 'people'
-    },
+    // {
+    //   title: 'งานทั้งหมด',
+    //   url: '/menu/joball',
+    //   icon: 'people'
+    // },
     {
       title: 'เบิกอะไหล่',
       url: '/menu/sparepart',

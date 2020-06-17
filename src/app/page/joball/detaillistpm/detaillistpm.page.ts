@@ -69,7 +69,7 @@ export class DetaillistpmPage implements OnInit {
       this.workfinish = this.item.WorkFinish
       this.month = this.item.month
       this.year = this.item.year
-      console.log("receive", this.type);
+      console.log("receive", this.myId);
     });
   }
 

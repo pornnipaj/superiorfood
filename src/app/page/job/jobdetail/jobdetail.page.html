@@ -18,7 +18,7 @@
                     </div>
                     <div class="portlet-body">
                         <div>
-                            <label class="col-9">ชื่อลูกค้า&nbsp;:&nbsp;{{item.CustomerName}}</label>
+                            <label class="col-9">ชื่อลูกค้า&nbsp;:&nbsp;{{item.CustomerName}} {{item.CustomerNameEng}}</label>
                             <label class="col-3">ผู้ตรวจเช็ค&nbsp;:&nbsp;{{item.Name}}</label>
                         </div>
                         <div>
@@ -104,13 +104,16 @@
                         </div>
                     </div>
                 </div>
+
+              
             </div>
             <!-- <div *ngIf="type == 'PM'; else checklist" #checklist class="text-center">
         <ion-button *ngFor="let item of result" shape="round" (click)="editChecklist()">แก้ไขใบรายงานตรวจสอบ{{item.InstallPlanName}}</ion-button>
     </div> -->
-            <div class="col-12 col-sm-12 col-md-12" style="width:100%;height:100%;padding: 0px;" *ngIf="ShowList">
-                <iframe [src]="url" style="width:100%;height:100%">
-                </iframe>
-            </div>
+            
+        </div>
+        <div class="col-12 col-sm-12 col-md-12" style="width:100%;height:100%;padding: 0px;" *ngIf="ShowList">
+            <iframe [src]="url" style="width:100%;height:100%">
+            </iframe>
         </div>
 </ion-content>

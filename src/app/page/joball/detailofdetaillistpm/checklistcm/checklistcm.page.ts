@@ -101,7 +101,7 @@ export class ChecklistcmPage implements OnInit {
       } else {
         this.isdevice = true;
         this.isspare = true;
-        this.isnon = false;
+        this.isnon = true;
       }
 
 
