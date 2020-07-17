@@ -10,7 +10,7 @@
 <ion-content>
   <div class="container-fluid">
     <div class="row" style="padding: 5px;">
-      <div class="col-md-12 col-12">
+      <div class="col-lg-12">
         <div class="portlet box blue">
           <div class="portlet-title">
             <div class="caption">
@@ -26,7 +26,7 @@
             <div class="tab-content">
               <div class="tab-pane active">
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col-12">
                     <ion-list>
                       <ion-item *ngIf="JobID == null; else lblNew" #lblNew>
                         <div class="col-4">
@@ -86,7 +86,7 @@
                       </ion-item>
                     </ion-list>
                   </div>
-                  <div class="col-6">
+                  <div class="col-12">
                     <ion-list>
                       <ion-item>
                         <div class="col-4">
@@ -147,11 +147,11 @@
           </div>
         </div>
       </div>
-      <div class="col-12" style="text-align: right; padding: 20px;"
+      <div class="col-lg-12" style="text-align: right; padding: 20px;"
         *ngIf="Status != 'อนุมัติ' && Status != 'รออนุมัติ' && CusID != null; else lblOld">
         <span class="label label-sm label-warning" (click)="spare()" #lblOld> เพิ่มอะไหล่ </span>
       </div>
-      <div class="col-md-12 col-12" *ngIf="JobID != null; else lbltable">
+      <div class="col-lg-12" *ngIf="JobID != null; else lbltable">
         <div class="portlet light " #lbltable>
           <div class="portlet-body">
             <div class="table-scrollable">

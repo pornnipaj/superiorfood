@@ -35,19 +35,25 @@
                         <ul class="list-group">
                             <li *ngFor="let item of data.customerdata | keyvalue" (click)="click(item,data)"
                                 class="list-group-item">
-                                <i class="fa fa-square-o" #lblSuccess
-                                    *ngIf="item.value.WorkAll != item.value.WorkFinish; else lblSuccess">
-                                </i>
-                                <i class="fa fa-check-square-o" #lblInstall
-                                    *ngIf="item.value.WorkAll == item.value.WorkFinish; else lblInstall">
-                                </i>
-                                {{ item.value.Customer }}
-                                <div class="pull-right">
-                                    <div class="badge badge-default bg-blue" style="margin:5px;"
-                                        style="font-size: 0.9em;">ติดตั้ง : {{ item.value.WorkAll }}
-                                        สำเร็จ : {{ item.value.WorkFinish }}
+                                <div class="row">
+                                    <div class="col-8">
+                                        <i class="fa fa-square-o" #lblSuccess
+                                        *ngIf="item.value.WorkAll != item.value.WorkFinish; else lblSuccess">
+                                    </i>
+                                    <i class="fa fa-check-square-o" #lblInstall
+                                        *ngIf="item.value.WorkAll == item.value.WorkFinish; else lblInstall">
+                                    </i>
+                                    {{ item.value.Customer }} {{item.value.CustomerEng}}
                                     </div>
-                                </div>
+                                    <div class="col-4">
+                                        <div class="pull-right">
+                                            <div class="badge badge-default bg-blue" style="margin:5px;"
+                                                style="font-size: 0.9em;">ติดตั้ง : {{ item.value.WorkAll }}
+                                                สำเร็จ : {{ item.value.WorkFinish }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>   
                             </li>
                         </ul>
                     </div>

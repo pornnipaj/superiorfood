@@ -18,12 +18,15 @@ export class ChecklistPage implements OnInit {
   installID;
   tran;
   url: SafeResourceUrl;
+  urls: SafeResourceUrl;
   type;
+  tranid;
   //#endregion data
 
   //#region constructor
   constructor(public modalController: ModalController,
     private navParams: NavParams,
+    public navCtrl: NavController,
     private postDataService: PostDataService,
     sanitizer: DomSanitizer,
     public alertController: AlertController, ) {
@@ -32,7 +35,8 @@ export class ChecklistPage implements OnInit {
     this.planID = this.navParams.data.planID;
     this.installID = this.navParams.data.install
     this.type = this.navParams.data.type;
-    console.log(this.empID, this.planID, this.installID, this.type);
+    this.tranid = this.navParams.data.tranid;
+    console.log(this.empID, this.planID, this.installID, this.type,this.tranid);
     this.tran = [];;
     if (this.type == "new") {
       this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
@@ -42,10 +46,17 @@ export class ChecklistPage implements OnInit {
       this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
       // this.url = sanitizer.bypassSecurityTrustResourceUrl('http://localhost:41669/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
 
+    }else if (this.type == "report") {
+      this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/GenerateReport.aspx' + '?tranid=' + this.tranid);
+      this.closeiframe();
+      // this.url = sanitizer.bypassSecurityTrustResourceUrl('http://localhost:41669/Web/CK_Check.aspx' + '?empID=' + this.empID + '&serviceplanid=' + this.planID + '&installplanid=' + this.installID);
     }
   }
   //#endregion
-
+  closeiframe(){
+    this.alertSuccess();
+    this.navCtrl.navigateForward(['/menu/overview']);   
+  }  
   //#region start
 
   ngOnInit() {
@@ -82,4 +93,16 @@ export class ChecklistPage implements OnInit {
 
     await alert.present();
   }
+
+    //#region alert success
+    async alertSuccess() {
+      const alert = await this.alertController.create({
+        header: 'แจ้งเตือน',
+        message: 'บันทึกสำเร็จ',
+        buttons: ['OK']
+      });
+  
+      await alert.present();
+    }
+    //#endregion
 }

@@ -146,6 +146,7 @@ export class DetailofdetaillistpmPage implements OnInit {
   sparepart;
   jobtype;
   interval;
+  tranid;
   cameraOptions: CameraOptions = {
     quality: 100,
     destinationType: this.camera.DestinationType.DATA_URL,
@@ -209,7 +210,6 @@ export class DetailofdetaillistpmPage implements OnInit {
   CustomerName;
   CustomerNameEng;
   myDate: String = new Date().toString();
-  sanitizer: DomSanitizer;
   isdevice = false;
   isspare = false;
   show;
@@ -227,7 +227,7 @@ export class DetailofdetaillistpmPage implements OnInit {
     private storageService: StorageService,
     public alertController: AlertController,
     private auth: AuthenticationService,
-    private postDataService: PostDataService, ) {
+    private postDataService: PostDataService,) {
     this.DateStart = new Date().toString();
     this.tran = [];
     this.img = [];
@@ -2618,7 +2618,7 @@ export class DetailofdetaillistpmPage implements OnInit {
   //#endregion
 
   //#region save All 
-  saveData(sanitizer: DomSanitizer) {
+  saveData() {
     this.pauseTimer();
     let params = {
       planID: this.planID,
@@ -2635,8 +2635,25 @@ export class DetailofdetaillistpmPage implements OnInit {
     this.postDataService.SaveCaseAll(params).then(servicephoto => {
       this.status = servicephoto
       if (this.status == true) {
-        this.alertSuccess();
-        this.navCtrl.navigateForward(['/menu/overview']);
+        //this.alertSuccess();
+        console.log(this.jobtype);
+
+        if (this.jobtype == 'PM') {
+          let params = {
+            planID: this.planID,
+            installID: this.installID,
+            jobtype: "GetTran",
+          }
+          console.log(params);
+          this.postDataService.GetTran(params).then(tranid => {
+            this.tranid = tranid;
+            console.log(this.tranid);
+            this.GenReport();
+          });
+        } else {
+          this.alertSuccess();
+          this.navCtrl.navigateForward(['/menu/overview']); 
+        }
       }
       if (this.status == false) {
         this.alertFail();
@@ -2646,6 +2663,21 @@ export class DetailofdetaillistpmPage implements OnInit {
   }
   //#endregion
 
+  async GenReport() {
+    console.log(this.tranid);
+    const modal = await this.modalController.create({
+      component: ChecklistPage,
+      cssClass: 'my-custom-modal-css-report',
+      componentProps: {
+        tranid: this.tranid,
+        type: "report"
+      }
+    });
+    modal.onDidDismiss().then(data => {
+
+    });
+    return await modal.present();
+  }
   //#region openModalcustomereva
   async openModalcustomereva() {
     const modal = await this.modalController.create({
@@ -2730,23 +2762,23 @@ export class DetailofdetaillistpmPage implements OnInit {
         console.log(this.list);
         console.log(this.installID);
         if (this.list == 0) {
-            let params = {
-              installID: this.installID,
-              typedevice: "GetSerial",
+          let params = {
+            installID: this.installID,
+            typedevice: "GetSerial",
+          }
+          console.log(params);
+          this.postDataService.postdevice(params).then(serial => {
+            console.log(serial);
+            if (serial != false) {
+              this.SerialNo = serial;
+              this.isenabledcuseva = true;
             }
-            console.log(params);
-            this.postDataService.postdevice(params).then(serial => {
-              console.log(serial);
-              if (serial != false) {
-                this.SerialNo = serial;
-                this.isenabledcuseva = true;
-              }            
             console.log(this.SerialNo);
-            }); 
-        }     
-        else{
+          });
+        }
+        else {
           this.isenabledcuseva = false;
-        }   
+        }
       })
       return await modal.present();
     }
@@ -2763,7 +2795,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       });
 
       modal.onDidDismiss().then(data => {
-        this.list = data        
+        this.list = data
         this.list = this.list.data
         console.log(this.list);
         if (this.list == 0) {

@@ -48,7 +48,6 @@ export class JobdetailPage implements OnInit {
   img;
   empID;
   installnew;
-  link = 'http://localhost:41605';
   ShowList = true;
   typethai;
   ShowCM = false;

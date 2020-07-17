@@ -55,3 +55,9 @@
    --max-width:600px !important;
    --min-width:599px !important; 
  }
+
+ .my-custom-modal-css-report .modal-wrapper {
+   display: none;
+   width: 0%; 
+   height: 0%;
+ }

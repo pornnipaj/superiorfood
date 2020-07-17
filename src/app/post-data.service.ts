@@ -7,10 +7,10 @@ import { Http, Headers } from "@angular/http";
 })
 export class PostDataService {
   data;
-  // apiServer_url = 'http://localhost:41669';
+   //apiServer_url = 'http://localhost:41669/';
   // apiServer_url = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/';
-  // apiServer_url = 'https://superior2.wingplusweb.com/';
-  apiServer_url = 'https://superiortest.wingplusweb.com/';
+   //apiServer_url = 'https://erpsuperior.com/';
+  apiServer_url = 'https://test.erpsuperior.com/';
   // apiServer_url = 'https://cors-anywhere.herokuapp.com/https://superior2.wingplusweb.com/';
 
   httpOptions = {
@@ -195,19 +195,6 @@ export class PostDataService {
         });
     });
   }
-  postTranid(tran) {
-    return new Promise((resovle, reject) => {
-
-      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-      this.http.post(this.apiServer_url + '/Web/Test2.aspx' + '?empID=' + tran.empID + '&planID=' + tran.serviceplanid + '&installID=' + tran.installplanid,
-        JSON.stringify(tran), option).subscribe(data => {
-          resovle(data);
-        }, error => {
-          reject(error)
-        });
-    });
-  }
   postdevice(form) {
     return new Promise((resovle, reject) => {
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -276,6 +263,30 @@ export class PostDataService {
     });
   }
   //#endregion
+  GetTran(form) {
+    return new Promise((resovle, reject) => {
+      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
 
+      this.http.post(this.apiServer_url + '/API/SaveCaseAll.asmx/SaveCase', JSON.stringify(form), option).subscribe(data => {
+        resovle(data);
+      }, error => {
+        reject(error)
+      });
+    });
+  }
+
+  GenReport(tran) {
+    return new Promise((resovle, reject) => {
+
+      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+      this.http.post(this.apiServer_url + '/Web/GenerateReport.aspx' + '?tranid=' + tran.tranid,
+        JSON.stringify(tran), option).subscribe(data => {
+          resovle(data);
+        }, error => {
+          reject(error)
+        });
+    });
+  }
 }
 

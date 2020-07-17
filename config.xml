@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.superior" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>eService</name>
+<widget id="io.ionic.superioreServiceTest" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>eServiceTest</name>
     <description>eService by Wingplus</description>
     <author email="PM@WingPlusSolution.com" href="https://www.wingplussolution.com/">WingPlusSolution</author>
     <content src="index.html" />
@@ -18,7 +18,7 @@
     <allow-navigation href="http://superior2.wingplusweb.com/*" />
     <allow-intent href="http://*/*" launch-external="yes" />
     <allow-intent href="https://*/*" launch-exterFnal="yes" />
-    <preference name="orientation" value="landscape" />
+    <!-- <preference name="orientation" value="landscape" /> -->
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />

@@ -9,8 +9,137 @@
 
 <ion-content>
   <div class="container-fluid">
-    <div class="row" style="padding: 5px;">
-      <div class="col-6 col-md-6 col-sm-6 col-xs-12" style="padding: 0px;" id="LeftPhoto">
+    <div class="row" style="padding: 5px;">     
+      <div class="col-lg-3" style="padding: 0px;">
+        <div class="row hidden" style="padding-left:15px;">
+          <div class="col-4 hidden" style="padding: 0px; padding-right:2px;">
+            <div class="portlet box blue">
+              <div class="portlet-title">
+                <div class="caption">
+                  <i class="fa fa-clock-o"></i>เวลาทำงาน</div>
+              </div>
+              <div class="portlet-body" style="margin: 0px;">
+                <div class="portlet light ">
+                  <div class="row">
+                    <div class="col-12">
+                      <p class="profile-desc-text" style="text-align: center">{{time}}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12" style="padding: 0px;">
+            <div class="portlet box blue">
+              <div class="portlet-title">
+                <div class="caption">
+                  <i class="fa fa-bar-chart"></i>สถานะ</div>
+              </div>
+              <div class="portlet-body" style="margin: 0px;">
+                <div class="portlet light ">
+                  <div class="row">
+                    <div class="col-12">
+                      <p class="profile-desc-text" style="text-align: center; padding: 5px;">รอการตรวจสอบ</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12" style="padding: 0px;">
+          <div class="portlet box blue">
+            <div class="portlet-title">
+              <div class="caption">
+                <i class="fa fa-bar-chart"></i>สถานะ</div>
+            </div>
+            <div class="portlet-body" style="margin: 0px;">
+              <div class="portlet light ">
+                <div class="row">
+                  <div class="col-12">
+                    <p class="profile-desc-text" style="text-align: center; padding: 5px;">รอการตรวจสอบ</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12" style="padding: 0px;">
+          <div class="portlet box blue">
+            <div class="portlet-title">
+              <div class="caption">
+                <i class="fa fa-cube"></i>สินค้า</div>
+            </div>
+            <div class="portlet-body" style="margin: 0px;">
+              <div class="portlet light ">
+                <div class="row">
+                  <div class="col-4">
+                    <p class="profile-desc-text">สินค้าที่ติดตั้ง:</p>
+                    <p class="profile-desc-text">รหัสสินค้า:</p>
+                    <p class="profile-desc-text">ชื่อสินค้า:</p>
+                    <p class="profile-desc-text">Serial No:</p>
+                  </div>
+                  <div class="col-8">
+                    <p class="profile-desc-text">{{InstallPlanName}}</p>
+                    <p class="profile-desc-text">{{ItemCode}}</p>
+                    <p class="profile-desc-text">{{ItemsName}}</p>
+                    <p class="profile-desc-text">{{SerialNo}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+        <div class="col-12" style="padding: 0px;" *ngIf="isdevice && jobtype == 'CM'">
+          <div class="portlet box blue">
+            <div class="portlet-title">
+              <div class="caption">
+                <i class="fa fa-cube"></i>เครื่องที่เปลี่ยน</div>
+            </div>
+            <div class="portlet-body" style="margin: 0px;">
+              <div class="portlet light" *ngFor="let i of devices;">
+                <div class="row">
+                  <div class="col-4">
+                    <p class="profile-desc-text">สินค้าที่ติดตั้ง:</p>
+                    <p class="profile-desc-text">ชื่อสินค้า:</p>
+                    <p class="profile-desc-text">รหัสสินค้า:</p>
+                    <p class="profile-desc-text">Serial No:</p>
+                  </div>
+                  <div class="col-8">
+                    <p class="profile-desc-text">{{i.InstallPlanName}}</p>
+                    <p class="profile-desc-text">{{i.ItemCode}}</p>
+                    <p class="profile-desc-text">{{i.ItemsName}}</p>
+                    <p class="profile-desc-text">{{i.SerialNo}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+        <div class="col-12" style="padding: 0px;" *ngIf="isspare && jobtype == 'CM'">
+          <div class="portlet box blue">
+            <div class="portlet-title">
+              <div class="caption">
+                <i class="fa fa-cube"></i>อะไหล่ที่เปลี่ยน</div>
+            </div>
+            <div class="portlet-body" style="margin: 0px;">
+              <div class="portlet light" *ngFor="let i of spares;">
+                <div class="row">
+                  <div class="col-4">
+                    <p class="profile-desc-text">ชื่ออุปกรณ์เสริม :</p>
+                    <p class="profile-desc-text">Part No. :</p>
+                  </div>
+                  <div class="col-8">
+                    <p class="profile-desc-text">{{i.Name}}</p>
+                    <p class="profile-desc-text">{{i.Serial}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>       
+      </div>
+      <div class="col-lg-9" style="padding: 0px;">
         <div class="portlet box blue">
           <div class="portlet-title">
             <div class="caption">
@@ -22,7 +151,7 @@
           <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle1">
             <div class="portlet light ">
               <div class="row">
-                <div class="col-md-12 col-12">
+                <div class="col-12">
                   <div class="caption">
                     <i class="fa fa-map-pin font-blue-sharp"></i>
                     <span style="font-size: 1.1em!important;" class="caption-subject font-blue-sharp bold uppercase">
@@ -54,10 +183,10 @@
                   <img [src]="img.src8" *ngIf="isShowImage8" />
                 </div>
 
-                <div class="col-md-1 col-1 text-center">
+                <div class="col-1 text-center">
                 </div>
                 
-                <div class="col-md-2 col-2 text-center" *ngIf="isInstall">
+                <div class=" col-2 text-center" *ngIf="isInstall">
                   <div #take1 *ngIf="isShow1 == false ; else take1">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(1)">
@@ -68,7 +197,7 @@
                   <img [src]="photo1" *ngIf="isShow1" (click)="Take(1)">
                 </div>
 
-                <div class="col-md-2 col-2 text-center" *ngIf="isInstall">
+                <div class="col-2 text-center" *ngIf="isInstall">
                   <div #take2 *ngIf="isShow2 == false ; else take2">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(2)">
@@ -79,7 +208,7 @@
                   <img [src]="photo2" *ngIf="isShow2" (click)="Take(2)"/>
                 </div>
 
-                <div class="col-md-2 col-2 text-center" *ngIf="isInstall">
+                <div class="col-2 text-center" *ngIf="isInstall">
                   <div #take3 *ngIf="isShow3 == false ; else take3">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(3)">
@@ -90,7 +219,7 @@
                   <img [src]="photo3" *ngIf="isShow3" (click)="Take(3)">
                 </div>
 
-                <div class="col-md-2 col-2 text-center" *ngIf="isInstall">
+                <div class="col-2 text-center" *ngIf="isInstall">
                   <div #take4 *ngIf="isShow4 == false ; else take4">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(4)">
@@ -101,7 +230,7 @@
                   <img [src]="photo4" *ngIf="isShow4" (click)="Take(4)">
                 </div>
 
-                <div class="col-md-2 col-2 text-center" *ngIf="isInstall">
+                <div class="col-2 text-center" *ngIf="isInstall">
                   <div #take5 *ngIf="isShow5 == false ; else take5">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(5)">
@@ -117,7 +246,7 @@
           <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle2">
             <div class="portlet light">
               <div class="row">
-                <div class="col-md-12 col-12">
+                <div class="col-12">
                   <div class="caption" style="margin-top: 20px;">
                     <i class="fa fa-map-pin font-blue-sharp"></i>
                     <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
@@ -126,9 +255,9 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-1 col-1 text-center">
+                <div class="col-1 text-center">
                 </div>
-                <div class="col-md-2 col-2 text-center">
+                <div class="col-2 text-center">
                   <div #take6 *ngIf="isShow6 == false ; else take6">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(6)" [disabled]="!isenabledTakeback">
@@ -138,7 +267,7 @@
                   </div>
                   <img [src]="photo6" *ngIf="isShow6" (click)="Take(6)">
                 </div>
-                <div class="col-md-2 col-2 text-center">
+                <div class="col-2 text-center">
                   <div #take7 *ngIf="isShow7 == false ; else take7">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(7)" [disabled]="!isenabledTakeback">
@@ -148,7 +277,7 @@
                   </div>
                   <img [src]="photo7" *ngIf="isShow7" (click)="Take(7)">
                 </div>
-                <div class="col-md-2 col-2 text-center">
+                <div class="col-2 text-center">
                   <div #take8 *ngIf="isShow8 == false ; else take8">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(8)" [disabled]="!isenabledTakeback">
@@ -159,7 +288,7 @@
                   <img [src]="photo8" *ngIf="isShow8" (click)="Take(8)">
                 </div>
 
-                <div class="col-md-2 col-2 text-center">
+                <div class="col-2 text-center">
                   <div #take9 *ngIf="isShow9 == false ; else take9">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(9)" [disabled]="!isenabledTakeback">
@@ -170,7 +299,7 @@
                   <img [src]="photo9" *ngIf="isShow9" (click)="Take(9)">
                 </div>
 
-                <div class="col-md-2 col-2 text-center">
+                <div class="col-2 text-center">
                   <div #take10 *ngIf="isShow10 == false ; else take10">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(10)" [disabled]="!isenabledTakeback">
@@ -186,7 +315,7 @@
           <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle3">
             <div class="portlet light ">
               <div class="row">
-                <div class="col-md-12 col-12">
+                <div class="col-12">
                   <div class="caption" style="margin-top: 20px;">
                     <i class="fa fa-map-pin font-blue-sharp"></i>
                     <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
@@ -195,19 +324,19 @@
                 </div>
               </div>
               <div class="row">
-                <div #nospare class="col-md-6 col-6 text-center" style="padding-left: 10px;" *ngIf="jobtype != 'INSTALL' else nospare">
+                <div #nospare class="col-6 text-center" style="padding-left: 10px;" *ngIf="jobtype != 'INSTALL' else nospare">
                   <button (click)="check()" [disabled]="!isenabledcheck" class="btn default">
                     รายการตรวจเช็ค </button>
                 </div>
-                <div #device class="col-md-6 col-6 text-center" style="padding-left: 10px;" *ngIf="SerialNoInstall == '-' && jobtype == 'INSTALL' else device">
+                <div #device class="col-6 text-center" style="padding-left: 10px;" *ngIf="SerialNoInstall == '-' && jobtype == 'INSTALL' else device">
                   <button (click)="changspare('device')" [disabled]="!isenabledadddevice" class="btn default">
                     เพิ่มเครื่อง </button>
                 </div>
-                <div #spare class="col-md-6 col-6 text-center" style="padding-left: 10px;" *ngIf="jobtype == 'INSTALL' else spare">
+                <div #spare class="col-6 text-center" style="padding-left: 10px;" *ngIf="jobtype == 'INSTALL' else spare">
                   <button (click)="changspare()" [disabled]="!isenabledadddevice"  class="btn default">
                     เพิ่มอุปกรณ์เสริม </button>
                 </div>
-                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                <div class="col-6 text-center" style="padding-left: 10px;">
                   <div *ngIf="sparetype != '' && jobtype == 'PM'; else sparepart">
                   <button (click)="changspare()" [disabled]="!isenabledspare" class="btn default" #sparepart>  
                     รายการเปลี่ยนอะไหล่ </button>
@@ -224,7 +353,7 @@
           <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle7">
             <div class="portlet light ">
               <div class="row">
-                <div class="col-md-12 col-12">
+                <div class="col-12">
                   <div class="caption" style="margin-top: 20px;">
                     <i class="fa fa-map-pin font-blue-sharp"></i>
                     <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
@@ -233,11 +362,11 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                <div class="col-6 text-center" style="padding-left: 10px;">
                   <button class="btn default" (click)="openModalcustomereva()" [disabled]="!isenabledcuseva">
                     ประเมิน </button>
                 </div>
-                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                <div class="col-6 text-center" style="padding-left: 10px;">
                 </div>
               </div>
             </div>
@@ -245,7 +374,7 @@
           <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle5">
             <div class="portlet light ">
               <div class="row">
-                <div class="col-md-12 col-12">
+                <div class="col-12">
                   <div class="caption" style="margin-top: 15px;">
                     <i class="fa fa-map-pin font-blue-sharp"></i>
                     <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
@@ -254,11 +383,11 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                <div class="col-6 text-center" style="padding-left: 10px;">
                   <button class="btn default" [disabled]="!isenabledeva" (click)="clickeva()">
                     ประเมิน </button>
                 </div>
-                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                <div class="col-6 text-center" style="padding-left: 10px;">
                 </div>
               </div>
             </div>
@@ -266,7 +395,7 @@
           <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle4">
             <div class="portlet light ">
               <div class="row">
-                <div class="col-md-12 col-12">
+                <div class="col-12">
                   <div class="caption" style="margin-top: 15px;">
                     <i class="fa fa-map-pin font-blue-sharp"></i>
                     <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
@@ -278,11 +407,11 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                <div class="col-6 text-center" style="padding-left: 10px;">
                   <button class="btn default" (click)="Modal()" [disabled]="!isenabledsig"> ลายเซ็นต์ผู้รับผิดชอบ
                   </button>
                 </div>
-                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                <div class="col-6 text-center" style="padding-left: 10px;">
                 </div>
               </div>
             </div>
@@ -291,7 +420,7 @@
           <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle6">
             <div class="portlet light ">
               <div class="row">
-                <div class="col-md-12 col-12">
+                <div class="col-12">
                   <div class="caption" style="margin-top: 15px;">
                     <i class="fa fa-map-pin font-blue-sharp"></i>
                     <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
@@ -300,13 +429,13 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                <div class="col-6 text-center" style="padding-left: 10px;">
                   <button class="btn default" *ngIf="jobtype == 'INSTALL' else spare" #spare (click)="openModalcustomerpw()" [disabled]="!isenabledcuspass">
                     ยืนยันการปิดงาน </button>
                     <button class="btn default" *ngIf="jobtype != 'INSTALL' else all" #all (click)="openModalcustomerpw()" [disabled]="!isenabledcuspass">
                       รหัสยืนยันตัวตนลูกค้า   </button>
                 </div>
-                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                <div class="col-6 text-center" style="padding-left: 10px;">
                 </div>
               </div>
             </div>
@@ -314,7 +443,7 @@
           <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle8">
             <div class="portlet light ">
               <div class="row">
-                <div class="col-md-12 col-12">
+                <div class="col-12">
                   <div class="caption">
                     <i class="fa fa-map-pin font-blue-sharp"></i>
                     <span class="caption-subject font-blue-sharp bold uppercase" style="font-size: 1.1em!important;">
@@ -323,145 +452,16 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                <div class="col-6 text-center" style="padding-left: 10px;">
                   <button class="btn default" [disabled]="!isenabledsave" (click)="saveData()">
                     บันทึก </button>
                 </div>
-                <div class="col-md-6 col-6 text-center" style="padding-left: 10px;">
+                <div class="col-6 text-center" style="padding-left: 10px;">
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-6 col-md-6 col-sm-6 col-xs-12" style="padding-right: 0px; padding-left: 5px;" id="RightPhoto">
-        <div class="row hidden" style="padding-left:15px;">
-          <div class="col-4 col-md-4 col-sm-4 hidden" style="padding: 0px; padding-right:2px;">
-            <div class="portlet box blue">
-              <div class="portlet-title">
-                <div class="caption">
-                  <i class="fa fa-clock-o"></i>เวลาทำงาน</div>
-              </div>
-              <div class="portlet-body" style="margin: 0px;">
-                <div class="portlet light ">
-                  <div class="row">
-                    <div class="col-md-12 col-12">
-                      <p class="profile-desc-text" style="text-align: center">{{time}}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 col-md-12 col-sm-12 ex2" style="padding: 0px;">
-            <div class="portlet box blue">
-              <div class="portlet-title">
-                <div class="caption">
-                  <i class="fa fa-bar-chart"></i>สถานะ</div>
-              </div>
-              <div class="portlet-body" style="margin: 0px;">
-                <div class="portlet light ">
-                  <div class="row">
-                    <div class="col-md-12 col-12">
-                      <p class="profile-desc-text" style="text-align: center; padding: 5px;">รอการตรวจสอบ</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-12 col-sm-12 ex2" style="padding: 0px;">
-          <div class="portlet box blue">
-            <div class="portlet-title">
-              <div class="caption">
-                <i class="fa fa-bar-chart"></i>สถานะ</div>
-            </div>
-            <div class="portlet-body" style="margin: 0px;">
-              <div class="portlet light ">
-                <div class="row">
-                  <div class="col-md-12 col-12">
-                    <p class="profile-desc-text" style="text-align: center; padding: 5px;">รอการตรวจสอบ</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 col-md-12 col-sm-12 ex2" style="padding: 0px;">
-          <div class="portlet box blue">
-            <div class="portlet-title">
-              <div class="caption">
-                <i class="fa fa-cube"></i>สินค้า</div>
-            </div>
-            <div class="portlet-body" style="margin: 0px;">
-              <div class="portlet light ">
-                <div class="row">
-                  <div class="col-md-4 col-4">
-                    <p class="profile-desc-text">สินค้าที่ติดตั้ง:</p>
-                    <p class="profile-desc-text">รหัสสินค้า:</p>
-                    <p class="profile-desc-text">ชื่อสินค้า:</p>
-                    <p class="profile-desc-text">Serial No:</p>
-                  </div>
-                  <div class="col-md-8 col-8">
-                    <p class="profile-desc-text">{{InstallPlanName}}</p>
-                    <p class="profile-desc-text">{{ItemCode}}</p>
-                    <p class="profile-desc-text">{{ItemsName}}</p>
-                    <p class="profile-desc-text">{{SerialNo}}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>  
-        <div class="col-12 col-md-12 col-sm-12 ex2" style="padding: 0px;" *ngIf="isdevice && jobtype == 'CM'">
-          <div class="portlet box blue">
-            <div class="portlet-title">
-              <div class="caption">
-                <i class="fa fa-cube"></i>เครื่องที่เปลี่ยน</div>
-            </div>
-            <div class="portlet-body" style="margin: 0px;">
-              <div class="portlet light" *ngFor="let i of devices;">
-                <div class="row">
-                  <div class="col-md-4 col-4">
-                    <p class="profile-desc-text">สินค้าที่ติดตั้ง:</p>
-                    <p class="profile-desc-text">ชื่อสินค้า:</p>
-                    <p class="profile-desc-text">รหัสสินค้า:</p>
-                    <p class="profile-desc-text">Serial No:</p>
-                  </div>
-                  <div class="col-md-8 col-8">
-                    <p class="profile-desc-text">{{i.InstallPlanName}}</p>
-                    <p class="profile-desc-text">{{i.ItemCode}}</p>
-                    <p class="profile-desc-text">{{i.ItemsName}}</p>
-                    <p class="profile-desc-text">{{i.SerialNo}}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>  
-        <div class="col-12 col-md-12 col-sm-12 ex2" style="padding: 0px;" *ngIf="isspare && jobtype == 'CM'">
-          <div class="portlet box blue">
-            <div class="portlet-title">
-              <div class="caption">
-                <i class="fa fa-cube"></i>อะไหล่ที่เปลี่ยน</div>
-            </div>
-            <div class="portlet-body" style="margin: 0px;">
-              <div class="portlet light" *ngFor="let i of spares;">
-                <div class="row">
-                  <div class="col-md-4 col-4">
-                    <p class="profile-desc-text">ชื่ออุปกรณ์เสริม :</p>
-                    <p class="profile-desc-text">Part No. :</p>
-                  </div>
-                  <div class="col-md-8 col-8">
-                    <p class="profile-desc-text">{{i.Name}}</p>
-                    <p class="profile-desc-text">{{i.Serial}}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>       
       </div>
     </div>
   </div>

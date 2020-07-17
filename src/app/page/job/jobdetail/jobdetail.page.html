@@ -18,32 +18,36 @@
                     </div>
                     <div class="portlet-body">
                         <div>
-                            <label class="col-9">ชื่อลูกค้า&nbsp;:&nbsp;{{item.CustomerName}} {{item.CustomerNameEng}}</label>
-                            <label class="col-3">ผู้ตรวจเช็ค&nbsp;:&nbsp;{{item.Name}}</label>
+                            <label class="col-6">ชื่อลูกค้า&nbsp;:&nbsp;{{item.CustomerName}} {{item.CustomerNameEng}}</label>
+                            <label class="col-6">ผู้ตรวจเช็ค&nbsp;:&nbsp;{{item.Name}}</label>
                         </div>
                         <div>
-                            <label class="col-9">โทรศัพท์&nbsp;:&nbsp;{{item.Phone}} </label>
-                            <label class="col-3">วันที่กำหนด&nbsp;:&nbsp;{{item.service_date_plan}}</label>
+                            <label class="col-6">โทรศัพท์&nbsp;:&nbsp;{{item.Phone}} </label>
+                            <label class="col-6">วันที่กำหนด&nbsp;:&nbsp;{{item.service_date_plan}}</label>
                         </div>
                         <div>
-                            <label class="col-9">ที่อยู่ร้าน&nbsp;:&nbsp;{{item.Address}}</label>
-                            <label class="col-3">ต่างจากวันกำหนด&nbsp;:&nbsp;{{item.TimeDiff}}</label>
+                            <label class="col-6">ที่อยู่ร้าน&nbsp;:&nbsp;{{item.Address}}</label>
+                            <label class="col-6">ต่างจากวันกำหนด&nbsp;:&nbsp;{{item.TimeDiff}}</label>
                         </div>
                         <div>
-                            <label class="col-9">สินค้าที่ติดตั้ง&nbsp;:&nbsp;{{item.InstallPlanName}} </label>
-                            <label class="col-3">เริ่มทำงาน&nbsp;:&nbsp;{{item.start_service_date}}</label>
+                            <label class="col-6">ประเภทสินค้า&nbsp;:&nbsp;{{item.InstallPlanName}} </label>
+                            <label class="col-6">เริ่มทำงาน&nbsp;:&nbsp;{{item.start_service_date}}</label>
                         </div>
-                        <div>
-                            <label class="col-9">Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNo}}</label>
-                            <label class="col-3">เสร็จงาน&nbsp;:&nbsp;{{item.end_service_date}}</label>
+                        <div *ngIf="!isdevice">
+                            <label class="col-6">Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNo}}</label>
+                            <label class="col-6">เสร็จงาน&nbsp;:&nbsp;{{item.end_service_date}}</label>
                         </div>
-                        <div *ngIf="item.SerialNoNew == item.SerialNo && type == 'CM' else sp" #sp>
-                            <label class="col-9">Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNo}}</label>
-                            <label class="col-3">เสร็จงาน&nbsp;:&nbsp;{{item.end_service_date}}</label>
+                        <div *ngIf="!isdevice">
+                            <label class="col-6">ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsName}}</label>
+                            <label class="col-6">เวลาที่ใช้&nbsp;:&nbsp;{{item.TimeSpent}}</label>
                         </div>
-                        <div>
-                            <label class="col-9">ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsName}}</label>
-                            <label class="col-3">เวลาที่ใช้&nbsp;:&nbsp;{{item.TimeSpent}}</label>
+                        <div *ngIf="isdevice">
+                            <label class="col-6">Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNoNew}}</label>
+                            <label class="col-6">เสร็จงาน&nbsp;:&nbsp;{{item.end_service_date}}</label>
+                        </div>
+                        <div *ngIf="isdevice">
+                            <label class="col-6">ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsNameNew}}</label>
+                            <label class="col-6">เวลาที่ใช้&nbsp;:&nbsp;{{item.TimeSpent}}</label>
                         </div>
                         <div *ngIf="type == 'CM'else chang" #chang>
                             <hr>
@@ -52,8 +56,8 @@
                         <div *ngIf="isdevice">
                             <div *ngFor="let i of devices;">
                                 <label class="col-4">สินค้าที่ติดตั้ง&nbsp;:&nbsp;{{i.InstallPlanName}}</label>
-                                <label class="col-8">ชื่อสินค้า&nbsp;:&nbsp;{{i.ItemCode}}</label>
-                                <label class="col-4">รหัสสินค้า&nbsp;:&nbsp;{{i.ItemsName}}</label>
+                                <label class="col-8">ชื่อสินค้า&nbsp;:&nbsp;{{i.ItemsName}}</label>
+                                <label class="col-4">รหัสสินค้า&nbsp;:&nbsp;{{i.ItemCode}}</label>
                                 <label class="col-8">Serial No&nbsp;:&nbsp;{{i.SerialNo}}</label>
                             </div>
                         </div>

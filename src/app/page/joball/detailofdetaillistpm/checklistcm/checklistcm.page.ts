@@ -487,43 +487,6 @@ export class ChecklistcmPage implements OnInit {
   }
   //#endregion
 
-  check() {
-    console.log();
-    for (let i = 0; i < this.listreal.length; i++) {
-      this.AsList.push(
-        {
-          AssID: this.listreal[i].AssID,
-          SKUID: this.listreal[i].SKUID,
-          SKUCode: this.listreal[i].SKUCode,
-          SerialNo: this.listreal[i].SerialNo,
-          Name: this.listreal[i].Name,
-          Qty: this.listreal[i].No,
-          Unit: this.listreal[i].Unit
-        });
-      console.log(this.AsList);
-    }
-    if (this.AsList.length > 0) {
-      let params = {
-        planID: this.planID,
-        installID: this.installID,
-        spare: this.AsList,
-        typedevice: "SaveSpareCM",
-        empID: this.empID,
-      }
-      console.log(params);
-
-      this.postDataService.postdevice(params).then(asset => {
-        console.log(asset);
-      });
-
-      let param = {
-        typedevice: "sparepart"
-      }
-      console.log(params);
-      this.modalController.dismiss(param);
-    }
-  }
-
   //#region alert
   async alertSN() {
     const alert = await this.alertController.create({

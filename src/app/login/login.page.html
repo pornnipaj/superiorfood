@@ -2,7 +2,11 @@
   <div class="centered">   
     <form #form="ngForm" (ngSubmit)="login(form)" class="text-center">
       <img src="../../assets/img/logo.png" alt=""/>
-      <h3>Login your account!</h3>
+      <div class="row">
+        <div class="col-12" style="padding: 5px;margin-bottom: 30px;">
+          <div style="font-size: 20px;font-weight: bold;">Login your account</div>
+        </div>    
+      </div> 
       <ion-item>
         <ion-input name="username" type="text" [(ngModel)]="user.email" placeholder="ชื่อผู้ใช้" ngModel required></ion-input>
       </ion-item>
@@ -10,7 +14,7 @@
         <ion-input name="password" type="password" [(ngModel)]="user.password" placeholder="รหัสผ่าน" ngModel required>
         </ion-input>
       </ion-item>
-      <ion-button shape="round"  [disabled]="form.invalid" (click)="login()">Login</ion-button>
+      <ion-button shape="round" [disabled]="form.invalid" (click)="login()">Login</ion-button>     
     </form>
   </div> 
   <!-- <iframe [src]="url" style="width:100%;height:100%" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
