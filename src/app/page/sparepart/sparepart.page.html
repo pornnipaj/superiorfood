@@ -1,0 +1,129 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+      <ion-title>เบิกอะไหล่ ({{installPlanName}})</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <div class="row">
+      <div class="col-12">
+        <ion-label color="primary">ประเภทอะไหล่</ion-label>
+      </div>
+      <div class="col-12">
+        <ion-select interface="popover" (ionChange)="getImage($event)" [(ngModel)]="SpareID">
+          <ion-select-option *ngFor="let s of SpareList" [value]="s.ProductID" [selected]="s.ProductName">
+            {{s.ProductName}}
+          </ion-select-option>
+        </ion-select>
+      </div>
+
+      <!-- <div class="col-sm-3" *ngFor="let s of SpareList">
+        <ion-button expand="block" (click)="getImage(s)" [ngStyle]="{'background-color': buttonColor}">{{s.ProductName}}</ion-button>
+        <span class="label label-sm label-success circle" (click)="getImage(s)">{{s.ProductName}}</span>
+      </div> -->
+    </div>
+    <!-- <ion-select interface="popover" (ionChange)="getImage($event)" [(ngModel)]="SpareID">
+      <ion-select-option *ngFor="let s of SpareList" [value]="s.ProductID" [selected]="s.ProductName">{{s.ProductName}}
+      </ion-select-option>
+    </ion-select> -->
+  </ion-item>
+  <ion-slides zoom>
+    <ion-slide>
+      <div class="swiper-zoom-container">
+        <img [src]="SpareImage" *ngIf="SpareImage != null" />
+      </div>      
+    </ion-slide>    
+  </ion-slides>
+  <div class="row" style="margin: 5px;" *ngIf="DataSpare">
+    <div class="col-md-6" style="padding:2px;">
+      <div class="portlet box blue">
+        <div class="portlet-title">
+          <div class="caption">
+            <i class="fa fa-user"></i>รายการอะไหล่</div>
+        </div>
+        <div class="portlet-body">
+          <div class="tab-content">
+            <div class="tab-pane active">
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-scrollable">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th> ลำดับที่ </th>
+                          <th> ชื่ออะไหล่ </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of DataSpare; let i = index">
+                          <td> {{item.SpareNo}} </td>
+                          <td> {{item.SpareName}} </td>
+                          <td>
+                            <ion-button expand="block" color="warning" (click)="AddToList(i,item)" size="small"
+                              style="width: 150px;">เพิ่มลงในรายการเบิก</ion-button>
+                            <!-- <span class="label label-sm label-warning circle"
+                              (click)="AddToList(i,item)">เพิ่มลงในรายการเบิก</span> -->
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6" style="padding:2px;">
+      <div class="portlet box blue">
+        <div class="portlet-title">
+          <div class="caption">
+            <i class="fa fa-user"></i>รายการอะไหล่ที่ต้องการเบิก</div>
+        </div>
+        <div class="portlet-body">
+          <div class="tab-content">
+            <div class="tab-pane active">
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-scrollable">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th> ลำดับที่ </th>
+                          <th> ชื่ออะไหล่ </th>
+                          <th> จำนวนที่ต้องการเบิก </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of ListSpare; let i = index">
+                          <td> {{item.SpareNo}} </td>
+                          <td> {{item.SpareName}} </td>
+                          <td> <input type="number" [(ngModel)]="item.Amount" style="width: 100%;" /> </td>
+                          <td>
+                            <ion-button expand="block" color="danger" (click)="DeleteFromList(i,item)" size="small"
+                              style="width: 150px;">ลบออกจากรายการเบิก</ion-button>
+                            <!-- <span class="label label-sm label-warning circle"
+                              (click)="DeleteFromList(i,item)">ลบออกจากรายการเบิก</span> -->
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="text-center">
+                      <ion-button shape="round" color="success" class="text-center" (click)="SaveSpare(ListSpare)">
+                        ยืนยันการเบิกอะไหล่</ion-button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

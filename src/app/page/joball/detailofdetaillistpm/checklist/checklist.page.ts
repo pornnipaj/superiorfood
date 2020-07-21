@@ -3,6 +3,7 @@ import { NavController, ModalController, NavParams } from '@ionic/angular';
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { PostDataService } from '../../../../post-data.service';
 import { AlertController } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-checklist',
@@ -21,6 +22,10 @@ export class ChecklistPage implements OnInit {
   urls: SafeResourceUrl;
   type;
   tranid;
+  date;
+  item;
+  types;
+
   //#endregion data
 
   //#region constructor
@@ -36,6 +41,9 @@ export class ChecklistPage implements OnInit {
     this.installID = this.navParams.data.install
     this.type = this.navParams.data.type;
     this.tranid = this.navParams.data.tranid;
+    this.date = this.navParams.data.date;
+    this.item = this.navParams.data.item;
+    this.types = this.navParams.data.types;
     console.log(this.empID, this.planID, this.installID, this.type,this.tranid);
     this.tran = [];;
     if (this.type == "new") {
@@ -55,7 +63,21 @@ export class ChecklistPage implements OnInit {
   //#endregion
   closeiframe(){
     this.alertSuccess();
-    this.navCtrl.navigateForward(['/menu/overview']);   
+    let params = {
+      item: this.item,
+      type: this.types,
+      date: this.date,
+    }
+    console.log(params);
+
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        data: JSON.stringify(params)
+      }
+    };
+    console.log(navigationExtras);
+    this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
+    //this.navCtrl.navigateForward(['/menu/overview']);   
   }  
   //#region start
 

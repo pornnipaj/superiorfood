@@ -55,7 +55,7 @@ export class DetaillistpmPage implements OnInit {
     private postDataService: PostDataService,
     private storageService: StorageService,
     public alertController: AlertController,
-    public modalController: ModalController, ) {
+    public modalController: ModalController,) {
     this.detaillistpm = [];
 
     this.route.queryParams.subscribe(params => {
@@ -70,6 +70,9 @@ export class DetaillistpmPage implements OnInit {
       this.month = this.item.month
       this.year = this.item.year
       console.log("receive", this.myId);
+      console.log("item", this.item);
+      console.log("type", this.type);
+      console.log("date", this.date);
     });
   }
 
@@ -220,14 +223,14 @@ export class DetaillistpmPage implements OnInit {
   async click(data, item) {
     console.log('Data', data);
     console.log('item', item);
-    if (item.Workfinish == 0) {      
+    if (item.Workfinish == 0) {
       if (item.status == "Pending") {
         const alert = await this.alertController.create({
           message: 'กรุณาติดต่อแอดมินบริษัทสุพีเรีย',
           buttons: ['OK']
         });
         await alert.present();
-      } else  if (this.type == "CM") {
+      } else if (this.type == "CM") {
         if (item.tranID != null) {
           let tran = {
             AssetID: item.AssetID,
@@ -238,7 +241,7 @@ export class DetaillistpmPage implements OnInit {
             type: this.type
           }
           console.log(tran);
-  
+
           this.postDataService.postTranService(tran).then(TranService => {
             // console.log(TranService);  
           });
@@ -247,104 +250,110 @@ export class DetaillistpmPage implements OnInit {
             install: item,
             data: data,
             insID: item.installId,
-            sparetype: item.sparepart
+            sparetype: item.sparepart,
+            item: this.item,
+            type: this.type,
+            date: this.date,
           }
           console.log(params);
-  
+
           const navigationExtras: NavigationExtras = {
             queryParams: {
               data: JSON.stringify(params)
             }
           };
           this.navCtrl.navigateForward(['joball/listpm/detailofdetaillistpm'], navigationExtras);
-          console.log("sent", navigationExtras);      
-        }else{
-        let alert = await this.alertController.create({
-          cssClass: 'custom-alert',
-          message: 'กรุณาเลือกการปิดงาน',
-          inputs: [
-            {
-              type: 'radio',
-              label: this.getworkclose1,
-              value: this.getworkclosevalue1
-            },
-            {
-              type: 'radio',
-              label: this.getworkclose2,
-              value: this.getworkclosevalue2
-            },
-            {
-              type: 'radio',
-              label: this.getworkclose3,
-              value: this.getworkclosevalue3
-            }
-          ],
-          buttons:
-            [{
-              text: this.text,
-              handler: data => {
-                console.log(data);
-                if (data == this.getworkclosevalue1) {
-                  let params = {
-                    planID: item.planID,
-                    installID: item.installId,
-                    empID: this.empID,
-                    jobtype: "saveclose",
-                    workclose: data
-                  }
-                  console.log(params);
-                  this.postDataService.SaveCaseAll(params).then(data => {
-                    console.log(data);
-                    if (data == true) {
-                      this.alertSuccess();
-                      this.navCtrl.navigateForward(['/menu/overview']);
-                    }
-                    if (data == false) {
-                      this.alertFail();
-                    }
-                  });
-                }
-                else if (data == this.getworkclosevalue2) {
-                  let tran = {
-                    AssetID: item.AssetID,
-                    Serial: item.Serial,
-                    planID: item.planID,
-                    empID: this.empID,
-                    insID: item.installId,
-                    type: this.type,
-                    workclose: data
-                  }
-                  console.log(tran);
-
-                  this.postDataService.postTranService(tran).then(TranService => {
-                    // console.log(TranService);  
-                  });
-                  let params = {
-                    planID: item.planID,
-                    install: item,
-                    data: data,
-                    insID: item.installId,
-                    sparetype: item.sparepart
-                  }
-                  console.log(params);
-
-                  const navigationExtras: NavigationExtras = {
-                    queryParams: {
-                      data: JSON.stringify(params)
-                    }
-                  };
-                  this.navCtrl.navigateForward(['joball/listpm/detailofdetaillistpm'], navigationExtras);
-                  console.log("sent", navigationExtras);
-                }
-                else if (data == this.getworkclosevalue3) {
-                  this.popupclose(item, this.getworkclose3, data)
-                }
+          console.log("sent", navigationExtras);
+        } else {
+          let alert = await this.alertController.create({
+            cssClass: 'custom-alert',
+            message: 'กรุณาเลือกการปิดงาน',
+            inputs: [
+              {
+                type: 'radio',
+                label: this.getworkclose1,
+                value: this.getworkclosevalue1
+              },
+              {
+                type: 'radio',
+                label: this.getworkclose2,
+                value: this.getworkclosevalue2
+              },
+              {
+                type: 'radio',
+                label: this.getworkclose3,
+                value: this.getworkclosevalue3
               }
-            }]
-        });
-        await alert.present();
+            ],
+            buttons:
+              [{
+                text: this.text,
+                handler: data => {
+                  console.log(data);
+                  if (data == this.getworkclosevalue1) {
+                    let params = {
+                      planID: item.planID,
+                      installID: item.installId,
+                      empID: this.empID,
+                      jobtype: "saveclose",
+                      workclose: data
+                    }
+                    console.log(params);
+                    this.postDataService.SaveCaseAll(params).then(data => {
+                      console.log(data);
+                      if (data == true) {
+                        this.alertSuccess();
+                        this.navCtrl.navigateForward(['/menu/overview']);
+                      }
+                      if (data == false) {
+                        this.alertFail();
+                      }
+                    });
+                  }
+                  else if (data == this.getworkclosevalue2) {
+                    let tran = {
+                      AssetID: item.AssetID,
+                      Serial: item.Serial,
+                      planID: item.planID,
+                      empID: this.empID,
+                      insID: item.installId,
+                      type: this.type,
+                      workclose: data
+                    }
+                    console.log(tran);
+
+                    this.postDataService.postTranService(tran).then(TranService => {
+                      // console.log(TranService);  
+                    });
+                    let params = {
+                      planID: item.planID,
+                      install: item,
+                      data: data,
+                      insID: item.installId,
+                      sparetype: item.sparepart,
+                      item: this.item,
+                      type: this.type,
+                      date: this.date,
+                    }
+                    console.log(params);
+
+                    const navigationExtras: NavigationExtras = {
+                      queryParams: {
+                        data: JSON.stringify(params)
+                      }
+                    };
+                    this.navCtrl.navigateForward(['joball/listpm/detailofdetaillistpm'], navigationExtras);
+                    console.log("sent", navigationExtras);
+                  }
+                  else if (data == this.getworkclosevalue3) {
+                    this.popupclose(item, this.getworkclose3, data)
+                  }
+                }
+              }]
+          });
+          await alert.present();
+        }
       }
-      } 
       if (item.tranID != null && this.type != "CM") {
         let tran = {
           AssetID: item.AssetID,
@@ -364,7 +373,10 @@ export class DetaillistpmPage implements OnInit {
           install: item,
           data: data,
           insID: item.installId,
-          sparetype: item.sparepart
+          sparetype: item.sparepart,
+          item: this.item,
+          type: this.type,
+          date: this.date,
         }
         console.log(params);
 
@@ -374,9 +386,9 @@ export class DetaillistpmPage implements OnInit {
           }
         };
         this.navCtrl.navigateForward(['joball/listpm/detailofdetaillistpm'], navigationExtras);
-        console.log("sent", navigationExtras);      
+        console.log("sent", navigationExtras);
       }
-      else if((item.tranID == null && this.type != "CM")) {
+      else if ((item.tranID == null && this.type != "CM")) {
         const alert = await this.alertController.create({
           header: 'แจ้งเตือน!',
           message: 'ต้องการเริ่มทำงาน',
@@ -402,7 +414,10 @@ export class DetaillistpmPage implements OnInit {
                   install: item,
                   data: data,
                   insID: item.installId,
-                  sparetype: item.sparepart
+                  sparetype: item.sparepart,
+                  item: this.item,
+                  type: this.type,
+                  date: this.date,
                 }
                 console.log(params);
 
@@ -493,6 +508,29 @@ export class DetaillistpmPage implements OnInit {
     }
   }
   //#endregion
+
+  //#region 
+  showSpare(value) {
+    let params = {
+      empID: this.empID,
+      insID: value.installId,
+      planID: value.planID,
+      item: this.item,
+      type: this.type,
+      date: this.date,
+      installPlanName: value.installPlanName
+    }
+    console.log(params);
+
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        data: JSON.stringify(params)
+      }
+    };
+    this.navCtrl.navigateForward(['/sparepart'], navigationExtras);
+
+    console.log(navigationExtras);
+  }  //#endregion
 
   //#region alert success
   async alertSuccess() {

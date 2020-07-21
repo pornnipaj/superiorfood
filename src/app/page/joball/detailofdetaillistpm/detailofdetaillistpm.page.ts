@@ -17,6 +17,8 @@ import { CheckevaluationPage } from '../detailofdetaillistpm/checkevaluation/che
 import * as watermark from 'watermarkjs';
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 import { AuthenticationService } from '../../../auth/authentication.service';
+import { NavigationExtras } from '@angular/router';
+
 @Component({
   selector: 'app-detailofdetaillistpm',
   templateUrl: './detailofdetaillistpm.page.html',
@@ -216,6 +218,9 @@ export class DetailofdetaillistpmPage implements OnInit {
   devices;
   spares;
   worktype;
+  item;
+  type;
+  date;
   //#endregion
 
   //#region constructor
@@ -251,6 +256,9 @@ export class DetailofdetaillistpmPage implements OnInit {
 
     this.route.queryParams.subscribe(params => {
       this.myId = JSON.parse(params["data"]);
+      this.item = this.myId.item
+      this.type = this.myId.type
+      this.date = this.myId.date
       this.install = this.myId.install
       this.CustomerName = this.myId.data.CustomerName
       this.CustomerNameEng = this.myId.data.CustomerNameEng
@@ -2652,7 +2660,21 @@ export class DetailofdetaillistpmPage implements OnInit {
           });
         } else {
           this.alertSuccess();
-          this.navCtrl.navigateForward(['/menu/overview']); 
+          let params = {
+            item: this.item,
+            type: this.type,
+            date: this.date,
+          }
+          console.log(params);
+      
+          let navigationExtras: NavigationExtras = {
+            queryParams: {
+              data: JSON.stringify(params)
+            }
+          };
+          console.log(navigationExtras);
+          this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
+          // this.navCtrl.navigateForward(['/menu/overview']); 
         }
       }
       if (this.status == false) {
@@ -2670,7 +2692,10 @@ export class DetailofdetaillistpmPage implements OnInit {
       cssClass: 'my-custom-modal-css-report',
       componentProps: {
         tranid: this.tranid,
-        type: "report"
+        type: "report",
+        item: this.item,
+        types: this.type,
+        date: this.date,
       }
     });
     modal.onDidDismiss().then(data => {

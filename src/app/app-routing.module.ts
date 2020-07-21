@@ -30,8 +30,9 @@ const routes: Routes = [
   { path: 'take', loadChildren: './page/take-spare-parts/take/take.module#TakePageModule' },
   { path: 'sparelist', loadChildren: './page/take-spare-parts/sparelist/sparelist.module#SparelistPageModule' },
   { path: 'take-new', loadChildren: './page/take-spare-parts/take-new/take-new.module#TakeNewPageModule' },
-  { path: 'changsparepart', loadChildren: './page/joball/detailofdetaillistpm/changsparepart/changsparepart.module#ChangsparepartPageModule' },  { path: 'changpassword', loadChildren: './page/setting/changpassword/changpassword.module#ChangpasswordPageModule' },
-
+  { path: 'changsparepart', loadChildren: './page/joball/detailofdetaillistpm/changsparepart/changsparepart.module#ChangsparepartPageModule' },
+  { path: 'changpassword', loadChildren: './page/setting/changpassword/changpassword.module#ChangpasswordPageModule' },
+  { path: 'sparepart', loadChildren: './page/sparepart/sparepart.module#SparepartPageModule' },
 
   
 
