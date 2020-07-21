@@ -13,6 +13,7 @@ export class SparepartPage implements OnInit {
   empID;
   planID;
   SkuID;
+  SpareID;
   SpareList;
   SpareImage;
   SpareData;
@@ -26,7 +27,7 @@ export class SparepartPage implements OnInit {
   item;
   date;
   installPlanName;
-
+  itemname = [];
   constructor(public modalController: ModalController,
     private postDataService: PostDataService,
     private route: ActivatedRoute,
@@ -99,10 +100,12 @@ export class SparepartPage implements OnInit {
           SpareName: this.SpareList[i].ProductName,
           Amount: 0
         });
+      this.itemname.push(
+        this.SpareList[i].ProductName
+      );
     }
     console.log(this.ListSpare);
     console.log(this.DataSpare);
-
   }
 
   GetListSpare() {
@@ -169,7 +172,7 @@ export class SparepartPage implements OnInit {
     this.ListSpare.splice(i, 1);
   }
 
-  SaveSpare() {    
+  SaveSpare() {
     // this.check = false;
     // for (let k = 0; k < this.ListSpare.length; k++) {
     //   const amount = 0;
@@ -222,6 +225,25 @@ export class SparepartPage implements OnInit {
       buttons: ['OK']
     });
     await alert.present();
+  }
+
+  getItems(ev: any) {
+    const val = ev.target.value;
+    console.log(val);
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() !== '') {
+      this.itemname = this.itemname.filter((item) => {
+        return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }else{
+      for (let i = 0; i < this.SpareList.length; i++) {
+       
+        this.itemname.push(
+          this.SpareList[i].ProductName
+        );
+    }
+    }
   }
 
 }

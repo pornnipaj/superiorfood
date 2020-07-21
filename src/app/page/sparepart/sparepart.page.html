@@ -13,9 +13,16 @@
       <div class="col-12">
         <ion-label color="primary">ประเภทอะไหล่</ion-label>
       </div>
-      <div class="col-12">
+      <!-- <div class="col-12">
+      <ion-searchbar type="text" (ionChange)="getItems($event)"></ion-searchbar>
+    </div>
+       <div class="col-3" *ngFor="let s of itemname">
+        <ion-button expand="block" >{{s}}</ion-button>
+      </div> -->
+
+      <div class="col-12">        
         <ion-select interface="popover" (ionChange)="getImage($event)" [(ngModel)]="SpareID">
-          <ion-select-option *ngFor="let s of SpareList" [value]="s.ProductID" [selected]="s.ProductName">
+          <ion-select-option *ngFor="let s of SpareList" [value]="s.ProductID" [selected]="s.ProductName" style="width: auto!important;">
             {{s.ProductName}}
           </ion-select-option>
         </ion-select>

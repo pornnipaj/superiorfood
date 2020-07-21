@@ -511,6 +511,8 @@ export class DetaillistpmPage implements OnInit {
 
   //#region 
   showSpare(value) {
+    console.log(value);
+    
     let params = {
       empID: this.empID,
       insID: value.installId,
