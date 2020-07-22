@@ -24,7 +24,9 @@
                         (click)="changeMonthNext(listpm)"> ถัดไป </button>
                 </div>
             </div>
+            <div class="centered">
                 <ion-spinner name="lines" *ngIf="listpm == null"></ion-spinner>
+            </div>
             <div class="col-12" #lblData *ngIf="listpm != false; else lblData" style="padding-top: 10px; padding: 0px;">
                 <div class="portlet box blue" *ngFor="let data of listpm">
                     <div class="portlet-title">
@@ -39,12 +41,12 @@
                                 <div class="row">
                                     <div class="col-8">
                                         <i class="fa fa-square-o" #lblSuccess
-                                        *ngIf="item.value.WorkAll != item.value.WorkFinish; else lblSuccess">
-                                    </i>
-                                    <i class="fa fa-check-square-o" #lblInstall
-                                        *ngIf="item.value.WorkAll == item.value.WorkFinish; else lblInstall">
-                                    </i>
-                                    {{ item.value.Customer }} {{item.value.CustomerEng}}
+                                            *ngIf="item.value.WorkAll != item.value.WorkFinish; else lblSuccess">
+                                        </i>
+                                        <i class="fa fa-check-square-o" #lblInstall
+                                            *ngIf="item.value.WorkAll == item.value.WorkFinish; else lblInstall">
+                                        </i>
+                                        {{ item.value.Customer }} {{item.value.CustomerEng}}
                                     </div>
                                     <div class="col-4">
                                         <div class="pull-right">
@@ -54,13 +56,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>   
+                                </div>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-12" style="text-align: center; margin-top: 20px;" #lblWait *ngIf="listpm == false; else lblWait">
+            <div class="col-12" style="text-align: center; margin-top: 20px;" #lblWait
+                *ngIf="listpm == false; else lblWait">
                 <label>ไม่พบข้อมูล</label>
             </div>
         </div>

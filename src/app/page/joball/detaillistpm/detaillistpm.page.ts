@@ -520,7 +520,7 @@ export class DetaillistpmPage implements OnInit {
       item: this.item,
       type: this.type,
       date: this.date,
-      installPlanName: value.installPlanName
+      ItemsName: value.ItemsName
     }
     console.log(params);
 

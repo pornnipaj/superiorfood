@@ -2,7 +2,7 @@
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
-      <ion-title>เบิกอะไหล่ ({{installPlanName}})</ion-title>
+      <ion-title>เบิกอะไหล่ ({{ItemsName}})</ion-title>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -13,20 +13,20 @@
       <div class="col-12">
         <ion-label color="primary">ประเภทอะไหล่</ion-label>
       </div>
-      <!-- <div class="col-12">
+      <div class="col-12">
       <ion-searchbar type="text" (ionChange)="getItems($event)"></ion-searchbar>
     </div>
-       <div class="col-3" *ngFor="let s of itemname">
-        <ion-button expand="block" >{{s}}</ion-button>
-      </div> -->
+       <div class="col-sm-3" *ngFor="let s of itemname">
+        <ion-button expand="block" (click)="getImage(s.SparepartGroupID,s.MainSKUID)">{{s.SparepartGroupName}}</ion-button>
+      </div>
 
-      <div class="col-12">        
+      <!-- <div class="col-12">        
         <ion-select interface="popover" (ionChange)="getImage($event)" [(ngModel)]="SpareID">
-          <ion-select-option *ngFor="let s of SpareList" [value]="s.ProductID" [selected]="s.ProductName" style="width: auto!important;">
-            {{s.ProductName}}
+          <ion-select-option *ngFor="let s of SpareList" [value]="s.SparepartGroupID" [selected]="s.SparepartGroupName" style="width: auto!important;">
+            {{s.SparepartGroupName}}
           </ion-select-option>
         </ion-select>
-      </div>
+      </div> -->
 
       <!-- <div class="col-sm-3" *ngFor="let s of SpareList">
         <ion-button expand="block" (click)="getImage(s)" [ngStyle]="{'background-color': buttonColor}">{{s.ProductName}}</ion-button>
@@ -61,17 +61,19 @@
                     <table class="table table-hover">
                       <thead>
                         <tr>
-                          <th> ลำดับที่ </th>
+                          <th class="text-center"> ลำดับที่ </th>
                           <th> ชื่ออะไหล่ </th>
+                          <th class="text-center"> ตำแหน่ง </th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr *ngFor="let item of DataSpare; let i = index">
-                          <td> {{item.SpareNo}} </td>
-                          <td> {{item.SpareName}} </td>
-                          <td>
+                          <td class="text-center"> {{i + 1}} </td>
+                          <td> {{item.Skuname}} </td>
+                          <td class="text-center"> {{item.PositionNo}} </td>
+                          <td class="text-center">
                             <ion-button expand="block" color="warning" (click)="AddToList(i,item)" size="small"
-                              style="width: 150px;">เพิ่มลงในรายการเบิก</ion-button>
+                              >เพิ่ม</ion-button>
                             <!-- <span class="label label-sm label-warning circle"
                               (click)="AddToList(i,item)">เพิ่มลงในรายการเบิก</span> -->
                           </td>
@@ -100,20 +102,22 @@
                   <div class="table-scrollable">
                     <table class="table table-hover">
                       <thead>
-                        <tr>
-                          <th> ลำดับที่ </th>
+                        <tr>                          
+                          <th class="text-center"> ลำดับ </th>
                           <th> ชื่ออะไหล่ </th>
+                          <th class="text-center"> ตำแหน่ง </th>
                           <th> จำนวนที่ต้องการเบิก </th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr *ngFor="let item of ListSpare; let i = index">
-                          <td> {{item.SpareNo}} </td>
-                          <td> {{item.SpareName}} </td>
-                          <td> <input type="number" [(ngModel)]="item.Amount" style="width: 100%;" /> </td>
+                          <td class="text-center"> {{i + 1}} </td>
+                          <td> {{item.Skuname}} </td>
+                          <td class="text-center"> {{item.PositionNo}} </td>
+                          <td> <input type="number" [(ngModel)]="item.Amount" style="width: 120px" /> </td>
                           <td>
                             <ion-button expand="block" color="danger" (click)="DeleteFromList(i,item)" size="small"
-                              style="width: 150px;">ลบออกจากรายการเบิก</ion-button>
+                             >ลบ</ion-button>
                             <!-- <span class="label label-sm label-warning circle"
                               (click)="DeleteFromList(i,item)">ลบออกจากรายการเบิก</span> -->
                           </td>
