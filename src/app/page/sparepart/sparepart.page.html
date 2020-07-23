@@ -16,8 +16,8 @@
       <div class="col-12">
       <ion-searchbar type="text" (ionChange)="getItems($event)"></ion-searchbar>
     </div>
-       <div class="col-sm-3" *ngFor="let s of itemname">
-        <ion-button expand="block" (click)="getImage(s.SparepartGroupID,s.MainSKUID)">{{s.SparepartGroupName}}</ion-button>
+       <div class="col-sm-3" *ngFor="let s of itemname; let i = index">
+        <ion-button expand="block" color="{{s.color}}" (click)="getImage(i,s.SparepartGroupID,s.MainSKUID)">{{s.SparepartGroupName}}</ion-button>
       </div>
 
       <!-- <div class="col-12">        

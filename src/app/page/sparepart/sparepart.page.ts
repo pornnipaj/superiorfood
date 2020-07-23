@@ -32,7 +32,7 @@ export class SparepartPage implements OnInit {
   SpareJob;
   JobID;
   MainSKUID;
-  
+
   constructor(public modalController: ModalController,
     private postDataService: PostDataService,
     private route: ActivatedRoute,
@@ -42,7 +42,7 @@ export class SparepartPage implements OnInit {
   }
 
   ngOnInit() {
-    this.buttonColor = '#345465';
+    this.buttonColor = 'medium';
     this.route.queryParams.subscribe(params => {
       this.data = JSON.parse(params["data"]);
       this.insID = this.data.insID;
@@ -66,7 +66,6 @@ export class SparepartPage implements OnInit {
   getSpare() {
     let params = {
       insID: this.insID,
-      empID: this.empID,
       Type: "GetSpare",
     }
     console.log(params);
@@ -79,15 +78,58 @@ export class SparepartPage implements OnInit {
             SparepartGroupID: this.SpareList[a].SparepartGroupID,
             SparepartGroupName: this.SpareList[a].SparepartGroupName,
             MainSKUID: this.SpareList[a].MainSKUID,
+            color: 'medium'
           });
-      }
+          this.MainSKUID = this.SpareList[a].MainSKUID;
+      }      
+      this.GetJob();
       //this.Test();
       console.log(this.itemname);
+      console.log(this.MainSKUID);
+      
     });
   }
 
-  getImage(SparepartGroupID, MainSKUID) {
-    this.buttonColor = '#ffffff';
+  GetJob() {
+    let params = {
+      MainSKUID: this.MainSKUID,
+      planID: this.planID,
+      insID: this.insID,
+      Type: "GetJob",
+    }
+    console.log(params);
+    this.postDataService.PostCus(params).then(SpareJob => {
+      this.SpareJob = SpareJob;
+      if (this.SpareJob != null) {
+        for (let i = 0; i < this.SpareJob.length; i++) {
+          this.ListSpare.push(
+            {
+              ID: this.SpareJob[i].ID,
+              PositionNo: this.SpareJob[i].PositionNo,
+              Skuname: this.SpareJob[i].Skuname,
+              Amount: this.SpareJob[i].Amount,
+              SubSKUID: this.SpareJob[i].SubSKUID,
+              JobDeviceID: this.SpareJob[i].JobDeviceID,
+            });
+          this.JobID = this.SpareJob[i].JobID
+        }
+      }
+    });
+  }
+
+  getImage(i,SparepartGroupID, MainSKUID) {
+    this.itemname.splice(0);
+    for (let a = 0; a < this.SpareList.length; a++) {
+      this.itemname.push(
+        {
+          SparepartGroupID: this.SpareList[a].SparepartGroupID,
+          SparepartGroupName: this.SpareList[a].SparepartGroupName,
+          MainSKUID: this.SpareList[a].MainSKUID,
+          color: 'medium'
+        });
+        this.MainSKUID = this.SpareList[a].MainSKUID;
+    }     
+    this.itemname[i].color = 'primary';
     console.log(SparepartGroupID, MainSKUID);
     let params = {
       SparepartGroupID: SparepartGroupID,
@@ -150,34 +192,7 @@ export class SparepartPage implements OnInit {
           Amount: this.SpareData[i].Amount,
           SubSKUID: this.SpareData[i].SubSKUID,
         });
-    }    
-  }
-
-  GetJob(){
-    let params = {
-      MainSKUID: this.MainSKUID,
-      planID: this.planID,
-      insID: this.insID,
-      Type: "GetJob",
     }
-    console.log(params);
-    this.postDataService.PostCus(params).then(SpareJob => {
-      this.SpareJob = SpareJob;
-      if (this.SpareJob != null) {
-        for (let i = 0; i < this.SpareJob.length; i++) {
-          this.ListSpare.push(
-            {
-              ID: this.SpareJob[i].ID,
-              PositionNo: this.SpareJob[i].PositionNo,
-              Skuname: this.SpareJob[i].Skuname,
-              Amount: this.SpareJob[i].Amount,
-              SubSKUID: this.SpareJob[i].SubSKUID,
-              JobDeviceID: this.SpareJob[i].JobDeviceID,
-            });
-            this.JobID =  this.SpareJob[i].JobID
-        }
-      }
-    });
   }
 
   AddToList(i, item) {
