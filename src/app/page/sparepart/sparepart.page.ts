@@ -31,7 +31,8 @@ export class SparepartPage implements OnInit {
   cusID;
   SpareJob;
   JobID;
-
+  MainSKUID;
+  
   constructor(public modalController: ModalController,
     private postDataService: PostDataService,
     private route: ActivatedRoute,
@@ -134,12 +135,12 @@ export class SparepartPage implements OnInit {
     this.postDataService.PostCus(params).then(SpareData => {
       this.SpareData = SpareData;
       if (this.SpareImage != null) {
-        this.AddDataToList(MainSKUID);
+        this.AddDataToList();
       }
     });
   }
 
-  AddDataToList(MainSKUID) {
+  AddDataToList() {
     for (let i = 0; i < this.SpareData.length; i++) {
       this.DataSpare.push(
         {
@@ -149,9 +150,12 @@ export class SparepartPage implements OnInit {
           Amount: this.SpareData[i].Amount,
           SubSKUID: this.SpareData[i].SubSKUID,
         });
-    }
+    }    
+  }
+
+  GetJob(){
     let params = {
-      MainSKUID: MainSKUID,
+      MainSKUID: this.MainSKUID,
       planID: this.planID,
       insID: this.insID,
       Type: "GetJob",
