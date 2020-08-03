@@ -32,6 +32,10 @@ export class SparepartPage implements OnInit {
   SpareJob;
   JobID;
   MainSKUID;
+  Type;
+  ListJob;
+  DetailJobList;
+  No;
 
   constructor(public modalController: ModalController,
     private postDataService: PostDataService,
@@ -53,13 +57,17 @@ export class SparepartPage implements OnInit {
       this.date = this.data.date;
       this.ItemsName = this.data.ItemsName;
       this.cusID = this.item.cusID;
+      this.Type = this.data.Type;
     });
     console.log(this.insID);
     console.log(this.empID);
     console.log(this.planID);
     console.log("item", this.item);
     console.log("type", this.type);
-    console.log("date", this.date);
+    console.log("Type", this.Type);
+    if (this.Type == 'history') {
+      this.GetListJob()
+    }else{}
     this.getSpare();
   }
 
@@ -81,8 +89,7 @@ export class SparepartPage implements OnInit {
             color: 'medium'
           });
           this.MainSKUID = this.SpareList[a].MainSKUID;
-      }      
-      this.GetJob();
+      }       
       //this.Test();
       console.log(this.itemname);
       console.log(this.MainSKUID);
@@ -90,33 +97,57 @@ export class SparepartPage implements OnInit {
     });
   }
 
-  GetJob() {
+  GetListJob() {
     let params = {
-      MainSKUID: this.MainSKUID,
       planID: this.planID,
       insID: this.insID,
-      Type: "GetJob",
+      Type: "GetListJob",
     }
     console.log(params);
-    this.postDataService.PostCus(params).then(SpareJob => {
-      this.SpareJob = SpareJob;
-      if (this.SpareJob != null) {
-        for (let i = 0; i < this.SpareJob.length; i++) {
-          this.ListSpare.push(
-            {
-              ID: this.SpareJob[i].ID,
-              PositionNo: this.SpareJob[i].PositionNo,
-              Skuname: this.SpareJob[i].Skuname,
-              Amount: this.SpareJob[i].Amount,
-              SubSKUID: this.SpareJob[i].SubSKUID,
-              JobDeviceID: this.SpareJob[i].JobDeviceID,
-            });
-          this.JobID = this.SpareJob[i].JobID
-        }
-      }
+    this.postDataService.PostCus(params).then(ListJob => {
+      this.ListJob = ListJob;
     });
   }
 
+  GetJob(item,Docno) {
+    this.No = Docno;
+    let params = {
+      planID: this.planID,
+      insID: this.insID,
+      Type: "GetJob",
+      JobID:item
+    }
+    console.log(params);
+    this.postDataService.PostCus(params).then(DetailJobList => {
+      this.DetailJobList = DetailJobList;
+      console.log(this.DetailJobList);
+            
+    });
+  }
+
+  delete(value) {
+    let params = {
+      JobDeviceID: value.JobDeviceID,
+      Type: "DeleteJobDevice",
+    }
+    console.log(params);
+    this.postDataService.PostCus(params).then(ListJob => {
+      console.log(ListJob);  
+      this.GetJob(ListJob,this.No);    
+    });
+  }
+  DeleteJob(JobID){
+    let params = {
+      JobID: JobID,
+      Type: "DeleteJob",
+    }
+    console.log(params);
+    this.postDataService.PostCus(params).then(ListJob => {
+      console.log(ListJob);  
+      this.GetListJob(); 
+      this.GetJob("","");   
+    });
+  }
   getImage(i,SparepartGroupID, MainSKUID) {
     this.itemname.splice(0);
     for (let a = 0; a < this.SpareList.length; a++) {
@@ -139,7 +170,7 @@ export class SparepartPage implements OnInit {
     }
     console.log(params);
     this.postDataService.PostCus(params).then(SpareImage => {
-      this.SpareImage = this.postDataService.apiServer_url + SpareImage;
+      this.SpareImage = this.postDataService.apiStock + SpareImage;
       if (this.SpareImage != null) {
         this.DataSpare.splice(0);
         this.GetListSpare(SparepartGroupID, MainSKUID);
@@ -147,23 +178,6 @@ export class SparepartPage implements OnInit {
     });
     console.log(this.SpareImage);
 
-  }
-
-  Test() {
-    for (let i = 0; i < this.SpareList.length; i++) {
-      this.DataSpare.push(
-        {
-          SpareID: this.SpareList[i].ProductID,
-          SpareNo: 123,
-          SpareName: this.SpareList[i].ProductName,
-          Amount: 0
-        });
-      this.itemname.push(
-        this.SpareList[i].ProductName
-      );
-    }
-    console.log(this.ListSpare);
-    console.log(this.DataSpare);
   }
 
   GetListSpare(SparepartGroupID, MainSKUID) {
@@ -191,6 +205,7 @@ export class SparepartPage implements OnInit {
           Skuname: this.SpareData[i].Skuname,
           Amount: this.SpareData[i].Amount,
           SubSKUID: this.SpareData[i].SubSKUID,
+          Balance: this.SpareData[i].Balance
         });
     }
   }
@@ -213,10 +228,10 @@ export class SparepartPage implements OnInit {
           {
             ID: item.ID,
             PositionNo: item.PositionNo,
-            Skuname: item.Skuname,
-            Amount: item.Amount,
+            Skuname: item.Skuname,            
             SubSKUID: item.SubSKUID,
-            JobDeviceID: item.JobDeviceID,
+            Amount: item.Amount,
+            Balance: item.Balance
           });
       } else {
         this.alertMeanSpart();
@@ -229,7 +244,7 @@ export class SparepartPage implements OnInit {
           Skuname: item.Skuname,
           SubSKUID: item.SubSKUID,
           Amount: item.Amount,
-          JobDeviceID: item.JobDeviceID,
+          Balance: item.Balance
         });
     }
   }

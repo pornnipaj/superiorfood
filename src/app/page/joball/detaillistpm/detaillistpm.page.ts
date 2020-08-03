@@ -510,6 +510,32 @@ export class DetaillistpmPage implements OnInit {
   //#endregion
 
   //#region 
+  showSpareHistory(value){
+    console.log(value);
+    let params = {
+      empID: this.empID,
+      insID: value.installId,
+      planID: value.planID,
+      item: this.item,
+      type: this.type,
+      date: this.date,
+      ItemsName: value.ItemsName,
+      Type:"history"
+    }
+    console.log(params);
+
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        data: JSON.stringify(params)
+      }
+    };
+    this.navCtrl.navigateForward(['/sparepart'], navigationExtras);
+
+    console.log(navigationExtras);
+  }
+  //#endregion
+
+  //#region 
   showSpare(value) {
     console.log(value);
     
@@ -520,7 +546,8 @@ export class DetaillistpmPage implements OnInit {
       item: this.item,
       type: this.type,
       date: this.date,
-      ItemsName: value.ItemsName
+      ItemsName: value.ItemsName,
+      Type:"Sparepart"
     }
     console.log(params);
 
