@@ -2660,14 +2660,13 @@ export class DetailofdetaillistpmPage implements OnInit {
             this.GenReport();
           });
         } else {
-          this.alertSuccess();
-          let params = {
-            item: this.item,
-            type: this.type,
-            date: this.date,
-          }
-          console.log(params);
-      
+          if (this.jobtype == 'CM') {
+            let params = {
+              item: this.item,
+              type: "getCM",
+              date: this.date,
+            }
+            console.log(params);      
           let navigationExtras: NavigationExtras = {
             queryParams: {
               data: JSON.stringify(params)
@@ -2676,6 +2675,38 @@ export class DetailofdetaillistpmPage implements OnInit {
           console.log(navigationExtras);
           this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
           // this.navCtrl.navigateForward(['/menu/overview']); 
+          }else if (this.jobtype == 'INSTALL') {
+            let params = {
+              item: this.item,
+              type: "getIN",
+              date: this.date,
+            }
+            console.log(params);      
+          let navigationExtras: NavigationExtras = {
+            queryParams: {
+              data: JSON.stringify(params)
+            }
+          };
+          console.log(navigationExtras);
+          this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
+          // this.navCtrl.navigateForward(['/menu/overview']); 
+          }else if (this.jobtype == 'UNINSTALL') {
+            let params = {
+              item: this.item,
+              type: "getUN",
+              date: this.date,
+            }
+            console.log(params);      
+          let navigationExtras: NavigationExtras = {
+            queryParams: {
+              data: JSON.stringify(params)
+            }
+          };
+          console.log(navigationExtras);
+          this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
+          // this.navCtrl.navigateForward(['/menu/overview']); 
+          }
+          this.alertSuccess(); 
         }
       }
       if (this.status == false) {

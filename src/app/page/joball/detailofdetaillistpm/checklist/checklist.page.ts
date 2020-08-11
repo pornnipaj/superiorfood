@@ -65,7 +65,7 @@ export class ChecklistPage implements OnInit {
     this.alertSuccess();
     let params = {
       item: this.item,
-      type: this.types,
+      type: "getPM",
       date: this.date,
     }
     console.log(params);

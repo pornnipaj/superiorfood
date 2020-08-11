@@ -159,6 +159,7 @@ export class ChecklistcmPage implements OnInit {
     }
     this.postDataService.postdevice(params).then(data => {
       this.data = data
+      this.listreal.splice(0);
       for (let j = 0; j < this.data.length; j++) {
         this.listreal.push(
           {
@@ -332,7 +333,7 @@ export class ChecklistcmPage implements OnInit {
         SKUID: item.SKUID,
         SKUCode: item.SKUCode,
         Name: item.Name,
-        No: item.No,
+        No: item.No, 
         Unit: item.Unit,
         Serial: item.Serial,
         Balance: item.Balance,

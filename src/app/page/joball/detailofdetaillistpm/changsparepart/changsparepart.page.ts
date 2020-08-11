@@ -113,7 +113,7 @@ export class ChangsparepartPage implements OnInit {
           typedevice: "GetSpareInTran",
           empID: this.empID
         }
-        console.log(param);
+        console.log(param);        
         this.postDataService.postdevice(param).then(status => {
           this.status = status
           console.log(this.status);
@@ -121,6 +121,7 @@ export class ChangsparepartPage implements OnInit {
             this.isShowSpare = false;
           } else {
             this.isShowSpare = true;
+            this.Spare.splice(0);
             for (let u = 0; u < this.status.length; u++) {
               this.Spare.push({
                 AssID: this.status[u].AssID,
@@ -143,6 +144,7 @@ export class ChangsparepartPage implements OnInit {
           this.postDataService.postdevice(params).then(data => {
             this.data = data
             console.log(this.data);
+            this.Sparestorage.splice(0);
             for (let i = 0; i < this.data.length; i++) {
               this.Sparestorage.push({
                 AssID: this.data[i].AssID,

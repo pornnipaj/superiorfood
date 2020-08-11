@@ -7,12 +7,12 @@ import { Http, Headers } from "@angular/http";
 })
 export class PostDataService {
   data;
-   apiServer_url = 'http://localhost:41669/';
+   //apiServer_url = 'http://localhost:41669/';
   // apiServer_url = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/';
-   //apiServer_url = 'https://erpsuperior.com/';
-   //apiStock = 'https://wms.erpsuperior.com/';
+   apiServer_url = 'https://erpsuperior.com/';
+   apiStock = 'https://wms.erpsuperior.com/';
   //apiServer_url = 'https://test.erpsuperior.com/';
-  apiStock = 'https://wmstest.erpsuperior.com/';  
+  //apiStock = 'https://wmstest.erpsuperior.com/';  
   // apiServer_url = 'https://cors-anywhere.herokuapp.com/https://superior2.wingplusweb.com/';
 
   httpOptions = {
@@ -100,6 +100,20 @@ export class PostDataService {
 
       this.http.post(this.apiServer_url + '/API/JobList.ashx' + '?empID=' + job.empID + '&month=' + job.month + '&year=' + job.year
         + '&jobtype=' + job.jobtype,
+        JSON.stringify(job), option).subscribe(data => {
+          resovle(data);
+        }, error => {
+          reject(error)
+        });
+    });
+  }
+
+  postGetList(job) {
+    return new Promise((resovle, reject) => {
+
+      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+      this.http.post(this.apiServer_url + '/API/JobList.ashx' + '?PlanID=' + job.PlanID + '&jobtype=' + job.jobtype,
         JSON.stringify(job), option).subscribe(data => {
           resovle(data);
         }, error => {

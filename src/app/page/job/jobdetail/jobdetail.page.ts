@@ -104,6 +104,7 @@ export class JobdetailPage implements OnInit {
       this.type = this.query.type
       this.planID = this.query.planID
       console.log("query", this.query);
+      this.ngOnInit();
     });
 
     this.storageService.getUser().then(items => {

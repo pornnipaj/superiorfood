@@ -72,7 +72,98 @@ export class DetaillistpmPage implements OnInit {
       console.log("receive", this.myId);
       console.log("item", this.item);
       console.log("type", this.type);
-      console.log("date", this.date);
+      console.log("planID", this.planID);
+      if (this.type == "getPM") {
+        this.detaillistpm.PlanID = this.planID,
+          this.detaillistpm.jobtype = "SuccessPM"
+        console.log(this.detaillistpm);
+        this.postDataService.postGetList(this.detaillistpm).then(work => {
+          this.data = work;
+          console.log(this.data);
+          for (let i = 0; i < this.data.length; i++) {
+            this.Customername = this.data[i].CustomerName;
+            this.data[i].productInstall = JSON.parse(this.data[i].productInstall);
+            for (let j = 0; j < this.data[i].productInstall.length; j++) {
+              console.log(this.data[i].productInstall[j]);
+            }
+          }
+        });
+        this.type = "PM";
+      }
+      else if (this.type == "getIN") {
+        this.imgbf = true
+        this.detaillistpm.PlanID = this.planID,
+          this.detaillistpm.jobtype = "SuccessIN"
+        console.log(this.detaillistpm);
+        this.postDataService.postGetList(this.detaillistpm).then(work => {
+          this.data = work;
+          console.log(this.data);
+          for (let i = 0; i < this.data.length; i++) {
+            this.Customername = this.data[i].CustomerName;
+            this.data[i].productInstall = JSON.parse(this.data[i].productInstall);
+            for (let j = 0; j < this.data[i].productInstall.length; j++) {
+              console.log(this.data[i].productInstall[j]);
+            }
+          }
+        });
+        this.type = "INSTALL";
+      }
+      else if (this.type == "getCM") {
+        this.imgbf = true
+        this.detaillistpm.PlanID = this.planID,
+          this.detaillistpm.jobtype = "SuccessCM"
+        console.log(this.detaillistpm);
+        this.postDataService.postDetailListpm(this.detaillistpm).then(work => {
+          this.data = work;
+          console.log(this.data);
+          for (let i = 0; i < this.data.length; i++) {
+            this.Customername = this.data[i].CustomerName;
+            this.data[i].productInstall = JSON.parse(this.data[i].productInstall);
+          }
+        });
+        let workclose = {
+          jobtype: "getworkclose"
+        }
+        console.log(workclose);
+        this.postDataService.SaveCaseAll(workclose).then(data => {
+          this.getworkclose = data
+          console.log(data);
+          for (let i = 0; i < this.getworkclose.length; i++) {
+            console.log(this.getworkclose);
+            if (i == 0) {
+              this.getworkclose1 = this.getworkclose[0].SystemDataName;
+              this.getworkclosevalue1 = this.getworkclose[0].SystemID;
+              this.text = 'ปิดงาน'
+            } else if (i == 1) {
+              this.getworkclose2 = this.getworkclose[1].SystemDataName;
+              this.getworkclosevalue2 = this.getworkclose[1].SystemID;
+              this.text = 'เริ่มงาน'
+            } else if (i == 2) {
+              this.getworkclose3 = this.getworkclose[2].SystemDataName;
+              this.getworkclosevalue3 = this.getworkclose[2].SystemID;
+              this.text = 'บันทึก'
+            }
+          }
+        });
+        this.type = "CM";
+      }
+      else if (this.type == "getUN") {
+        this.detaillistpm.PlanID = this.planID,
+          this.detaillistpm.jobtype = "SuccessUN"
+        console.log(this.detaillistpm);
+        this.postDataService.postGetList(this.detaillistpm).then(work => {
+          this.data = work;
+          console.log(this.data);
+          for (let i = 0; i < this.data.length; i++) {
+            this.Customername = this.data[i].CustomerName;
+            this.data[i].productInstall = JSON.parse(this.data[i].productInstall);
+            for (let j = 0; j < this.data[i].productInstall.length; j++) {
+              console.log(this.data[i].productInstall[j]);
+            }
+          }
+        });        
+      this.type = "UNINSTALL";
+      }
     });
   }
 
@@ -510,7 +601,7 @@ export class DetaillistpmPage implements OnInit {
   //#endregion
 
   //#region 
-  showSpareHistory(value){
+  showSpareHistory(value) {
     console.log(value);
     let params = {
       empID: this.empID,
@@ -520,7 +611,7 @@ export class DetaillistpmPage implements OnInit {
       type: this.type,
       date: this.date,
       ItemsName: value.ItemsName,
-      Type:"history"
+      Type: "history"
     }
     console.log(params);
 
@@ -538,7 +629,7 @@ export class DetaillistpmPage implements OnInit {
   //#region 
   showSpare(value) {
     console.log(value);
-    
+
     let params = {
       empID: this.empID,
       insID: value.installId,
@@ -547,7 +638,7 @@ export class DetaillistpmPage implements OnInit {
       type: this.type,
       date: this.date,
       ItemsName: value.ItemsName,
-      Type:"Sparepart"
+      Type: "Sparepart"
     }
     console.log(params);
 

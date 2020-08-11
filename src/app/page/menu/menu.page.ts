@@ -42,11 +42,11 @@ export class MenuPage implements OnInit {
       url: '/menu/product',
       icon: 'bookmarks'
     },
-    {
-      title: 'ข่าว',
-      url: '/menu/news',
-      icon: 'alert'
-    },
+    // {
+    //   title: 'ข่าว',
+    //   url: '/menu/news',
+    //   icon: 'alert'
+    // },
     {
       title: 'ตั้งค่า',
       url: '/menu/setting',
