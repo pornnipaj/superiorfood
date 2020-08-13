@@ -4,6 +4,7 @@ import { Platform, IonList,NavController,ModalController } from '@ionic/angular'
 import { StorageService, User } from '../../storage.service';
 import { AuthenticationService } from '../../auth/authentication.service';
 import { ChangpasswordPage } from '../setting/changpassword/changpassword.page';
+import { AppVersion } from '@ionic-native/app-version/ngx';
 
 @Component({
   selector: 'app-setting',
@@ -15,6 +16,7 @@ export class SettingPage implements OnInit {
   //#region data
   user;
   name;
+  VersionNumber;
   //#endregion
 
   //#region constructor
@@ -25,12 +27,17 @@ export class SettingPage implements OnInit {
     private authService: AuthenticationService,
     public navCtrl: NavController,
     public modalController: ModalController,
+    private appVersion: AppVersion
   ) {
+    this.appVersion.getVersionNumber().then((s) => {
+      this.VersionNumber = s;
+    });
   }
   //#endregion
 
   //#region start
   ngOnInit() {
+    
   }
   //#endregion
 

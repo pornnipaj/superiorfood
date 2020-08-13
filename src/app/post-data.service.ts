@@ -11,8 +11,8 @@ export class PostDataService {
   // apiServer_url = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/';
    apiServer_url = 'https://erpsuperior.com/';
    apiStock = 'https://wms.erpsuperior.com/';
-  //apiServer_url = 'https://test.erpsuperior.com/';
-  //apiStock = 'https://wmstest.erpsuperior.com/';  
+  // apiServer_url = 'https://test.erpsuperior.com/';
+  // apiStock = 'https://wmstest.erpsuperior.com/';  
   // apiServer_url = 'https://cors-anywhere.herokuapp.com/https://superior2.wingplusweb.com/';
 
   httpOptions = {
@@ -302,6 +302,18 @@ export class PostDataService {
         }, error => {
           reject(error)
         });
+    });
+  }
+
+  checkversion(form) {
+    return new Promise((resovle, reject) => {
+      let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+      this.http.post(this.apiServer_url + '/API/CheckVersion.asmx/Devices', JSON.stringify(form), option).subscribe(data => {
+        resovle(data);
+      }, error => {
+        reject(error)
+      });
     });
   }
 }

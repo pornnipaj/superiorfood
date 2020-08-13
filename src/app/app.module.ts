@@ -33,6 +33,8 @@ import { SQLite } from '@ionic-native/sqlite/ngx';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Network } from '@ionic-native/network/ngx';
+import { AppVersion } from '@ionic-native/app-version/ngx';
+import { BrowserTab } from '@ionic-native/browser-tab/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -68,6 +70,8 @@ import { Network } from '@ionic-native/network/ngx';
     Network,
     Camera,
     SQLite,
+    AppVersion,
+    BrowserTab,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     AuthServiceService,
     BarcodeScanner,

@@ -11,6 +11,7 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { Storage } from '@ionic/storage';
 import { SignaturePage } from '../joball/detailofdetaillistpm/signature/signature.page'
 import { ActivatedRoute, Data } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { Platform, PopoverController, ModalController, Events, LoadingController } from '@ionic/angular';
@@ -18,6 +19,8 @@ import { StorageService, User } from '../../storage.service';
 import { ModalpopPage } from '../overview/modalpop/modalpop.page';
 import { from } from 'rxjs';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
+import { AppVersion } from '@ionic-native/app-version/ngx';
+import { BrowserTab } from '@ionic-native/browser-tab/ngx';
 
 @Component({
   selector: 'app-overview',
@@ -55,6 +58,9 @@ export class OverviewPage implements OnInit {
   install;
   uninstall;
   job;
+  VersionNumber;
+  statusversion;
+  link;
   //#endregion
 
   //#region constructor
@@ -70,10 +76,14 @@ export class OverviewPage implements OnInit {
     private sqlite: SQLite,
     private events: Events,
     private localNotifications: LocalNotifications,
-    private storageService: StorageService) {
+    private storageService: StorageService,
+    private appVersion: AppVersion,
+    public alertController: AlertController,
+    private browserTab: BrowserTab) {
 
     setTimeout(() => {
       this.ngOnInit();
+      this.checkversion();
     }, 500);
     this.user = [];
     this.test = [];
@@ -415,7 +425,7 @@ export class OverviewPage implements OnInit {
         this.name = this.items[i].name
         this.position = this.items[i].position
         this.username = this.items[i].username
-         console.log(this.empID);        
+        console.log(this.empID);
       }
       this.user.empID = this.empID;
       this.user.month = this.intMonth;
@@ -443,5 +453,71 @@ export class OverviewPage implements OnInit {
     });
   }
 
+  //#endregion
+
+  //#region Check Version
+  checkversion() {
+    this.appVersion.getVersionNumber().then((s) => {
+      this.VersionNumber = s;
+      //alert(this.VersionNumber);
+      let param = {
+        version: this.VersionNumber,
+        typedevice: "checkversion",
+      }
+      console.log(param);
+      this.postDataService.postdevice(param).then(data => {
+        this.statusversion = data;
+        console.log(this.statusversion);
+  
+        if (this.statusversion == true) {
+  
+        } else {
+          this.link = this.statusversion;
+          this.alertversion();
+        }
+      });
+    })
+  }
+  //#endregion
+
+  //#region 
+  async alertversion() {
+    const alert = await this.alertController.create({
+      message: 'กรุณาดาวน์โหลดเวอร์ชั่นใหม่',
+      buttons: [
+        {
+          text: 'ดาวน์โหลดเวอร์ชั่นใหม่',
+          handler: () => {
+            this.openUrl();
+          }
+        }, {
+          text: 'ยกเลิก',
+          handler: () => {
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  //#endregion
+
+  //#region 
+  openUrl() {
+    this.browserTab.isAvailable()
+      .then((isAvailable: boolean) => {
+
+        if (isAvailable) {
+
+          this.browserTab.openUrl(this.link);
+          //this.browserTab.openUrl('https://test.erpsuperior.com/APK/eServiceTest.apk');
+          //this.browserTab.openUrl('https://drive.google.com/file/d/1CYrs3j1akx2gtIXRx3A_DvD8kX9bSsea/view?usp=sharing');
+
+        } else {
+
+          // if custom tabs are not available you may  use InAppBrowser
+
+        }
+      });
+  }
   //#endregion
 }

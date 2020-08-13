@@ -23,6 +23,9 @@
                         (click)="changeMonthNext(listpm)"> ถัดไป </button>
                 </div>
             </div>
+            <div class="centered">
+                <ion-spinner name="lines" *ngIf="listpm == null"></ion-spinner>
+            </div>
             <div class="col-12" #lblData *ngIf="listpm != false; else lblData" style="padding-top: 10px; padding: 0px;">
                 <div class="portlet box blue" *ngFor="let data of listpm">
                     <div class="portlet-title">
