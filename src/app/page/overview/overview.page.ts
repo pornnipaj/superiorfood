@@ -459,7 +459,7 @@ export class OverviewPage implements OnInit {
   checkversion() {
     this.appVersion.getVersionNumber().then((s) => {
       this.VersionNumber = s;
-      //alert(this.VersionNumber);
+      console.log(this.VersionNumber);
       let param = {
         version: this.VersionNumber,
         typedevice: "checkversion",
@@ -503,6 +503,7 @@ export class OverviewPage implements OnInit {
 
   //#region 
   openUrl() {
+    console.log(this.link);
     this.browserTab.isAvailable()
       .then((isAvailable: boolean) => {
 

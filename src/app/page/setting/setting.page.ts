@@ -5,6 +5,9 @@ import { StorageService, User } from '../../storage.service';
 import { AuthenticationService } from '../../auth/authentication.service';
 import { ChangpasswordPage } from '../setting/changpassword/changpassword.page';
 import { AppVersion } from '@ionic-native/app-version/ngx';
+import { BrowserTab } from '@ionic-native/browser-tab/ngx';
+import { AlertController } from '@ionic/angular';
+import { PostDataService } from '../../post-data.service';
 
 @Component({
   selector: 'app-setting',
@@ -17,6 +20,8 @@ export class SettingPage implements OnInit {
   user;
   name;
   VersionNumber;
+  statusversion;
+  link;
   //#endregion
 
   //#region constructor
@@ -27,7 +32,10 @@ export class SettingPage implements OnInit {
     private authService: AuthenticationService,
     public navCtrl: NavController,
     public modalController: ModalController,
-    private appVersion: AppVersion
+    private appVersion: AppVersion,
+    public alertController: AlertController,
+    private browserTab: BrowserTab,
+    public postDataService: PostDataService,
   ) {
     this.appVersion.getVersionNumber().then((s) => {
       this.VersionNumber = s;
@@ -59,6 +67,73 @@ export class SettingPage implements OnInit {
     modal.onDidDismiss().then(data => {
     })
     return await modal.present();
-  }  //#endregion
+  }  
+  //#endregion
 
+  //#region Check Version
+  checkversion() {
+    this.appVersion.getVersionNumber().then((s) => {
+      this.VersionNumber = s;
+      console.log(this.VersionNumber);
+      let param = {
+        version: this.VersionNumber,
+        typedevice: "checkversion",
+      }
+      console.log(param);
+      this.postDataService.postdevice(param).then(data => {
+        this.statusversion = data;
+        console.log(this.statusversion);
+  
+        if (this.statusversion == true) {
+  
+        } else {
+          this.link = this.statusversion;
+          this.alertversion();
+        }
+      });
+    })
+  }
+  //#endregion
+
+  //#region 
+  async alertversion() {
+    const alert = await this.alertController.create({
+      message: 'กรุณาดาวน์โหลดเวอร์ชั่นใหม่',
+      buttons: [
+        {
+          text: 'ดาวน์โหลดเวอร์ชั่นใหม่',
+          handler: () => {
+            this.openUrl();
+          }
+        }, {
+          text: 'ยกเลิก',
+          handler: () => {
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  //#endregion
+
+  //#region 
+  openUrl() {
+    console.log(this.link);
+    this.browserTab.isAvailable()
+      .then((isAvailable: boolean) => {
+
+        if (isAvailable) {
+
+          this.browserTab.openUrl(this.link);
+          //this.browserTab.openUrl('https://test.erpsuperior.com/APK/eServiceTest.apk');
+          //this.browserTab.openUrl('https://drive.google.com/file/d/1CYrs3j1akx2gtIXRx3A_DvD8kX9bSsea/view?usp=sharing');
+
+        } else {
+
+          // if custom tabs are not available you may  use InAppBrowser
+
+        }
+      });
+  }
+  //#endregion
 }

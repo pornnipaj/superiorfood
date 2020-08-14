@@ -161,8 +161,8 @@ export class DetaillistpmPage implements OnInit {
               console.log(this.data[i].productInstall[j]);
             }
           }
-        });        
-      this.type = "UNINSTALL";
+        });
+        this.type = "UNINSTALL";
       }
     });
   }
@@ -303,7 +303,9 @@ export class DetaillistpmPage implements OnInit {
         jobtype: this.type,
         header: header,
         empID: this.empID,
-        workclose: workclose
+        workclose: workclose,
+        item:this.item,
+        date:this.date
       }
     });
     modal.onDidDismiss().then(data => {
@@ -392,9 +394,21 @@ export class DetaillistpmPage implements OnInit {
                     console.log(params);
                     this.postDataService.SaveCaseAll(params).then(data => {
                       console.log(data);
-                      if (data == true) {
+                      if (data == true) {                        
+                        this.imgbf = true
+                        this.detaillistpm.PlanID = item.planID,
+                          this.detaillistpm.jobtype = "SuccessCM"
+                        console.log(this.detaillistpm);
+                        this.postDataService.postDetailListpm(this.detaillistpm).then(work => {
+                          this.data = work;
+                          console.log(this.data);
+                          for (let i = 0; i < this.data.length; i++) {
+                            this.Customername = this.data[i].CustomerName;
+                            this.data[i].productInstall = JSON.parse(this.data[i].productInstall);
+                          }
+                        });
                         this.alertSuccess();
-                        this.navCtrl.navigateForward(['/menu/overview']);
+                        //this.navCtrl.navigateForward(['/menu/overview']);
                       }
                       if (data == false) {
                         this.alertFail();
@@ -535,7 +549,7 @@ export class DetaillistpmPage implements OnInit {
 
     if (item.Workfinish == 1) {
       if (this.type == "CM") {
-        if (item.WorkCloseID == "WorkClose001") {
+        if (item.WorkCloseID == "WorkClose001" || item.WorkCloseID == "WorkClose003") {
 
 
         } else {

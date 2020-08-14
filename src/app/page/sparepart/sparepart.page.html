@@ -209,6 +209,7 @@
                       <thead>
                         <tr>
                           <th class="text-center"> ลำดับที่ </th>
+                          <th> ประเภทอะไหล่ </th>
                           <th> ชื่ออะไหล่ </th>
                           <th class="text-center"> ตำแหน่ง </th>
                           <th class="text-center"> จำนวนที่เบิก </th>
@@ -217,7 +218,8 @@
                       <tbody>
                         <tr *ngFor="let item of DetailJobList; let i = index">
                           <td class="text-center"> {{i + 1}} </td>
-                          <td> {{item.Skuname}} </td>
+                          <td> {{item.AssetTypeName}} </td> 
+                          <td> {{item.Skuname}} </td>                          
                           <td class="text-center"> {{item.PositionNo}} </td>
                           <td class="text-center"> {{item.Amount}} </td>
                           <td>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, ModalController, NavParams, AlertController } from '@ionic/angular';
 import { PostDataService } from '../../../../post-data.service';
+import { ActivatedRoute } from '@angular/router';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-customerevaluation',
@@ -19,14 +21,24 @@ export class CustomerevaluationPage implements OnInit {
   header;
   empID;
   workclose;
+  item;
+  myId;
+  date;
 
   constructor(private postDataService: PostDataService,
     public modalController: ModalController,
     public alertController: AlertController,
     public navCtrl: NavController,
-    private navParams: NavParams, ) {
+    private navParams: NavParams,
+    private route: ActivatedRoute,) {
 
     console.table(this.navParams);
+    this.route.queryParams.subscribe(params => {
+      this.myId = JSON.parse(params["data"]);
+      this.item = this.myId.item
+      this.date = this.myId.date
+    });
+
     this.resolution = this.navParams.data.resolution;
     this.resolutiondetail = this.navParams.data.resolutiondetail;
     this.installID = this.navParams.data.installID
@@ -109,7 +121,20 @@ export class CustomerevaluationPage implements OnInit {
         this.postDataService.SaveCaseAll(params).then(data => {
           if (data == true) {
             this.alertSuccess();
-            this.navCtrl.navigateForward(['/menu/overview']);
+            let params = {
+              item: this.item,
+              type: "getCM",
+              date: this.date,
+            }
+            console.log(params);      
+          let navigationExtras: NavigationExtras = {
+            queryParams: {
+              data: JSON.stringify(params)
+            }
+          };
+          console.log(navigationExtras);
+          this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
+            //this.navCtrl.navigateForward(['/menu/overview']);
             this.modalController.dismiss();
           }
           if (data == false) {

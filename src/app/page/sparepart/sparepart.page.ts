@@ -129,17 +129,20 @@ export class SparepartPage implements OnInit {
     let params = {
       JobDeviceID: value.JobDeviceID,
       Type: "DeleteJobDevice",
+      EmpID: this.empID
     }
     console.log(params);
     this.postDataService.PostCus(params).then(ListJob => {
       console.log(ListJob);  
-      this.GetJob(ListJob,this.No);    
+      this.GetJob(ListJob,this.No);   
+      this.GetListJob();
     });
   }
   DeleteJob(JobID){
     let params = {
       JobID: JobID,
       Type: "DeleteJob",
+      EmpID: this.empID
     }
     console.log(params);
     this.postDataService.PostCus(params).then(ListJob => {
