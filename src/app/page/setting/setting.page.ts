@@ -85,7 +85,7 @@ export class SettingPage implements OnInit {
         console.log(this.statusversion);
   
         if (this.statusversion == true) {
-  
+          this.alertversionlast();
         } else {
           this.link = this.statusversion;
           this.alertversion();
@@ -106,6 +106,19 @@ export class SettingPage implements OnInit {
             this.openUrl();
           }
         }, {
+          text: 'ยกเลิก',
+          handler: () => {
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  async alertversionlast() {
+    const alert = await this.alertController.create({
+      message: 'เวอร์ชั่น' + this.VersionNumber + ' เป็นเวอร์ชั่นล่าสุด',
+      buttons: [
+         {
           text: 'ยกเลิก',
           handler: () => {
           }

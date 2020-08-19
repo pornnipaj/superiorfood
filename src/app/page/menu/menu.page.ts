@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StorageService, User } from '../../storage.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu',
@@ -18,7 +19,7 @@ export class MenuPage implements OnInit {
       icon: 'home'
     },
     {
-      title: 'งานของในความรับผิดชอบ',
+      title: 'งานในความรับผิดชอบ',
       url: '/menu/job',
       icon: 'person'
     },
@@ -55,7 +56,8 @@ export class MenuPage implements OnInit {
   ];
 
 
-  constructor(private storageService: StorageService) {
+  constructor(private storageService: StorageService,
+    private menu: MenuController) {
   }
   ngOnInit() {
   }

@@ -7,12 +7,12 @@ import { Http, Headers } from "@angular/http";
 })
 export class PostDataService {
   data;
-   //apiServer_url = 'http://localhost:41669/';
+  //apiServer_url = 'http://localhost:41669/';
   // apiServer_url = 'https://cors-anywhere.herokuapp.com/http://superior2.wingplusweb.com/';
-   apiServer_url = 'https://erpsuperior.com/';
-   apiStock = 'https://wms.erpsuperior.com/';
+  apiServer_url = 'https://erpsuperior.com/';
+  apiStock = 'https://wms.erpsuperior.com/';
   // apiServer_url = 'https://test.erpsuperior.com/';
-  // apiStock = 'https://wmstest.erpsuperior.com/';  
+  // apiStock = 'https://wmstest.erpsuperior.com/';
   // apiServer_url = 'https://cors-anywhere.herokuapp.com/https://superior2.wingplusweb.com/';
 
   httpOptions = {
@@ -27,7 +27,7 @@ export class PostDataService {
   //#region Server
   changpassword(pass) {
     console.log(pass);
-    
+
     return new Promise((resovle, reject) => {
 
       let option: any = new HttpHeaders({ 'Content-Type': 'application/json' });
@@ -39,7 +39,7 @@ export class PostDataService {
           reject(error)
         });
     });
-  } 
+  }
   login(user) {
     return new Promise((resovle, reject) => {
 

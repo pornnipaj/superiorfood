@@ -46,7 +46,7 @@
     "@ionic-native/sqlite": "^5.14.0",
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic-native/toast": "^5.15.0",
-    "@ionic/angular": "^4.9.0",
+    "@ionic/angular": "^4.11.2",
     "@ionic/storage": "^2.2.0",
     "@material/dialog": "^3.2.0",
     "@mobiscroll/cli": "^1.2.1",
@@ -137,8 +137,7 @@
       "cordova-plugin-browsertab": {}
     },
     "platforms": [
-      "browser",
-      "android"
+      "browser"
     ]
   }
 }

@@ -149,7 +149,7 @@
       </div>
       <div class="col-lg-12" style="text-align: right; padding: 20px;"
         *ngIf="Status != 'อนุมัติ' && Status != 'รออนุมัติ' && CusID != null; else lblOld">
-        <span class="label label-sm label-warning" (click)="spare()" #lblOld> เพิ่มอะไหล่ </span>
+        <span class="label label-sm label-warning" (click)="spare()" #lblOld> เพิ่มเครื่อง </span>
       </div>
       <div class="col-lg-12" *ngIf="JobID != null; else lbltable">
         <div class="portlet light " #lbltable>
