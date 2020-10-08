@@ -154,11 +154,11 @@
                       <table class="table table-hover">
                         <thead>
                           <tr>
-                            <th> ลำดับที่ </th>
-                            <th> ชื่ออะไหล่ </th>
-                            <th> Part No. </th>
-                            <th> จำนวน </th>
-                            <th></th>
+                            <th style="color:blue"> ลำดับที่ </th>
+                            <th style="color:blue"> ชื่ออะไหล่ </th>
+                            <th style="color:blue"> Part No. </th>
+                            <th style="color:blue"> จำนวน </th>
+                            <th style="color:blue"></th>
                           </tr>
                         </thead>
                         <tbody>
@@ -167,7 +167,7 @@
                               {{i+1}}
                             </td>
                             <td style="padding-top:15px;"> {{item.Name}} </td>
-                            <td style="padding-top:15px;"> {{item.Serial}}</td>
+                            <td style="padding-top:15px;"> {{item.SKUCode}}</td>
                             <td style="padding-top:15px;">{{item.Balance}}</td>
                             <td>
                               <ion-button shape="round" color="warning" class="text-center" (click)="select(i,item)">
@@ -195,10 +195,13 @@
                         <table class="table table-hover">
                           <thead>
                             <tr>
-                              <th> ลำดับที่ </th>
-                              <th> ชื่ออะไหล่ </th>
-                              <th> Part No. </th>
-                              <th> จำนวน </th>
+                              <th style="color:green"> ลำดับที่ </th>
+                              <th style="color:green"> ชื่ออะไหล่ </th>
+                              <th style="color:green"> ชื่ออะไหล่เดิม </th>
+                              <th style="color:green"> Part No. </th>
+                              <th style="color:green"> Part No. ตัวเดิม</th>
+                              <th style="color:green"> จำนวน </th>
+                              <th style="color:green"> ส่งคืน</th>
                               <th></th>
                             </tr>
                           </thead>
@@ -206,8 +209,11 @@
                             <tr *ngFor="let item of spareList; let i = index">
                               <td style="padding-top:15px;">{{i+1}}</td>
                               <td style="padding-top:15px;"> {{item.Name}}</td>
-                              <td style="padding-top:15px;"> {{item.Serial}}</td>
+                              <td> <input type="text" [(ngModel)]="item.NameOld" style="width: 150px" /> </td>
+                              <td style="padding-top:15px;"> {{item.SKUCode}}</td>
+                              <td> <input type="text" [(ngModel)]="item.PartOld" style="width: 120px" /> </td>
                               <td style="padding-top:15px;">{{item.Balance}}</td>
+                              <td style="padding-top: 15px;"> <ion-checkbox slot="end" [(ngModel)]="item.isChecked"></ion-checkbox></td>
                               <td>
                                 <ion-button shape="round" color="danger" class="text-center" (click)="remove(i,item)">
                                   ลบ

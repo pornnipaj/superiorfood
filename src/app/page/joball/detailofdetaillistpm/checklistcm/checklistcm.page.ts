@@ -141,10 +141,13 @@ export class ChecklistcmPage implements OnInit {
             SKUID: this.dataspare[p].SKUID,
             SKUCode: this.dataspare[p].SKUCode,
             Name: this.dataspare[p].Name,
+            NameOld: this.dataspare[p].NameOld,
             No: this.dataspare[p].No,
             Unit: this.dataspare[p].Unit,
             Serial: this.dataspare[p].Serial,
+            PartOld: this.dataspare[p].PartOld,
             Balance: this.dataspare[p].Balance,
+            isChecked: this.dataspare[p].isChecked
           });
         console.log(this.spareList);
       }
@@ -159,6 +162,7 @@ export class ChecklistcmPage implements OnInit {
     }
     this.postDataService.postdevice(params).then(data => {
       this.data = data
+      console.log(this.data)
       this.listreal.splice(0);
       for (let j = 0; j < this.data.length; j++) {
         this.listreal.push(
@@ -171,6 +175,7 @@ export class ChecklistcmPage implements OnInit {
             Unit: this.data[j].Unit,
             Serial: this.data[j].Serial,
             Balance: this.data[j].Balance,
+            PartOld: this.data[j].PartOld,
           });
       }
       console.log(this.listreal);
@@ -333,10 +338,13 @@ export class ChecklistcmPage implements OnInit {
         SKUID: item.SKUID,
         SKUCode: item.SKUCode,
         Name: item.Name,
+        NameOld: item.Name,
         No: item.No, 
         Unit: item.Unit,
+        PartOld: item.PartOld,
         Serial: item.Serial,
         Balance: item.Balance,
+        isChecked: item.isChecked
       });
   }
   //#region spare
@@ -359,10 +367,13 @@ export class ChecklistcmPage implements OnInit {
               SKUID: this.data[j].SKUID,
               SKUCode: this.data[j].SKUCode,
               Name: this.data[j].Name,
+              NameOld: this.data[j].Name,
               No: this.data[j].No,
               Unit: this.data[j].Unit,
-              SerialNo: this.data[j].Serial,
+              Serial: this.data[j].Serial,
               Balance: this.data[j].Balance,
+              PartOld: "",
+              isChecked:false
             });
         }
       });
@@ -389,10 +400,13 @@ export class ChecklistcmPage implements OnInit {
                 SKUID: this.data[j].SKUID,
                 SKUCode: this.data[j].SKUCode,
                 Name: this.data[j].Name,
+                NameOld: this.data[j].Name,
                 No: this.data[j].No,
                 Unit: this.data[j].Unit,
                 Serial: this.data[j].Serial,
                 Balance: this.data[j].Balance,
+                PartOld: "",
+                isChecked:false
               });
           }
         }
@@ -408,10 +422,13 @@ export class ChecklistcmPage implements OnInit {
         SKUID: item.SKUID,
         SKUCode: item.SKUCode,
         Name: item.Name,
+        NameOld: item.NameOld,
         No: item.No,
         Unit: item.Unit,
+        PartOld: item.PartOld,
         Serial: item.Serial,
         Balance: item.Balance,
+        isChecked: item.isChecked
       });
   }
   //#endregion

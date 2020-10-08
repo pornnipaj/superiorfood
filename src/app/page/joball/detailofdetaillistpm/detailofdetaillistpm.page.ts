@@ -154,7 +154,9 @@ export class DetailofdetaillistpmPage implements OnInit {
     destinationType: this.camera.DestinationType.DATA_URL,
     encodingType: this.camera.EncodingType.JPEG,
     mediaType: this.camera.MediaType.PICTURE,
-    correctOrientation: true
+    correctOrientation: true,
+    targetWidth: 960,
+    targetHeight: 1280,
   }
   galleryOptions: CameraOptions = {
     quality: 100,
