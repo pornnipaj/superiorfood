@@ -7,6 +7,8 @@ import { StorageService, User } from '../storage.service';
 import { Network } from '@ionic-native/network/ngx';
 import { AuthenticationService } from '../auth/authentication.service';
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -46,20 +48,33 @@ export class LoginPage implements OnInit {
     private network: Network,
     private authService: AuthenticationService,
     private DataService: AuthServiceService,
-    sanitizer: DomSanitizer,) {
+    sanitizer: DomSanitizer,
+    private router: Router,
+    private route: ActivatedRoute,) {
     this.checkNetwork();
     setTimeout(() => {
       this.ngOnInit();
     }, 500);
 
     this.user = [];
-
+    this.route.queryParams.subscribe(params => {
+      this.authService.authenticationState.subscribe(state => {
+        if (state) {
+          this.router.navigate(['/menu/overview']);
+        } else {
+          this.router.navigate(['login']);
+        }
+      });
+      
+    });
+    
   }
   //#endregion
 
 
   //#region Check Network
   checkNetwork() {
+    
     // watch network for a disconnection
     let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
       console.log('network was disconnected :-(');
@@ -188,7 +203,9 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     //this.storageService.resetLocalStorage();
     // this.checkspace();
+    
   }
   //#endregion
 
 }
+ 

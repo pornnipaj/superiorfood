@@ -315,6 +315,8 @@ export class ChangsparepartPage implements OnInit {
   }
 
   checkin() {
+    console.log(this.jobtype);
+    
     if (this.jobtype != "INSTALL") {
       this.closeModal(0);
     } else {

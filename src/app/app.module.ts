@@ -35,6 +35,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Network } from '@ionic-native/network/ngx';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 import { BrowserTab } from '@ionic-native/browser-tab/ngx';
+import { AuthGuardGuard } from '../app/auth/auth-guard.guard';
 
 @NgModule({
   declarations: [AppComponent],
@@ -63,6 +64,7 @@ import { BrowserTab } from '@ionic-native/browser-tab/ngx';
     NgbModule,
   ],
   providers: [
+    AuthGuardGuard,
     StatusBar,
     SplashScreen,
     ScreenOrientation,

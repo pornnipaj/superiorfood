@@ -43,6 +43,13 @@ export class InstallPage implements OnInit {
     this.json;
     this.listpmdetail = [];
     this.job = [];
+
+    this.route.queryParams.subscribe(params => {
+      this.listpm = null;
+      this.ngOnInit();
+      
+    });
+
     this.storageService.getUser().then(items => {
       this.items = items;
       // console.log(items);      

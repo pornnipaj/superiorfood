@@ -37,7 +37,7 @@ export class ReportcheckpmPage implements OnInit {
     private route: ActivatedRoute,
     public navCtrl: NavController,
     private storageService: StorageService,
-    private postDataService: PostDataService) {
+    private postDataService: PostDataService,) {
     this.json;
     this.listpmdetail = [];
     this.job = [];
@@ -50,7 +50,12 @@ export class ReportcheckpmPage implements OnInit {
         console.log(this.myempID);
       }
     });
-
+    this.route.queryParams.subscribe(params => {
+      this.listpm = null;
+      this.ChangeMonth();
+      this.ngOnInit();
+      
+    });
     this.ChangeMonth()
     setTimeout(() => {
       this.ngOnInit();

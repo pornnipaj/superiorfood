@@ -9,7 +9,7 @@
 
 <ion-content>
   <div class="container-fluid">
-    <div class="row" style="padding: 5px;">     
+    <div class="row" style="padding: 5px;">
       <div class="col-lg-3" style="padding: 0px;">
         <div class="row hidden" style="padding-left:15px;">
           <div class="col-4 hidden" style="padding: 0px; padding-right:2px;">
@@ -89,7 +89,7 @@
               </div>
             </div>
           </div>
-        </div>  
+        </div>
         <div class="col-12" style="padding: 0px;" *ngIf="isdevice && jobtype == 'CM'">
           <div class="portlet box blue">
             <div class="portlet-title">
@@ -115,7 +115,7 @@
               </div>
             </div>
           </div>
-        </div>  
+        </div>
         <div class="col-12" style="padding: 0px;" *ngIf="isspare && jobtype == 'CM'">
           <div class="portlet box blue">
             <div class="portlet-title">
@@ -137,7 +137,7 @@
               </div>
             </div>
           </div>
-        </div>       
+        </div>
       </div>
       <div class="col-lg-9" style="padding: 0px;">
         <div class="portlet box blue">
@@ -185,7 +185,7 @@
 
                 <div class="col-1 text-center">
                 </div>
-                
+
                 <div class=" col-2 text-center" *ngIf="isInstall">
                   <div #take1 *ngIf="isShow1 == false ; else take1">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
@@ -205,7 +205,7 @@
                       </ion-fab-button>
                     </ion-fab>
                   </div>
-                  <img [src]="photo2" *ngIf="isShow2" (click)="Take(2)"/>
+                  <img [src]="photo2" *ngIf="isShow2" (click)="Take(2)" />
                 </div>
 
                 <div class="col-2 text-center" *ngIf="isInstall">
@@ -240,6 +240,45 @@
                   </div>
                   <img [src]="photo5" *ngIf="isShow5" (click)="Take(5)">
                 </div>
+
+                <div class="col-12" *ngIf="isPM">
+                  <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-3 text-center" style="margin-bottom: 80px;" *ngFor="let p of productphoto">
+                      <div>{{p.Name}}</div>
+                      <div #take *ngIf="p.show == false ; else take">
+                        <ion-fab style="margin-top: 25px;" vertical="bottom" horizontal="center" class="button-native">
+                          <ion-fab-button (click)="TakePM(p)">
+                            <ion-icon name="camera"></ion-icon>
+                          </ion-fab-button>
+                        </ion-fab>
+                      </div>
+                      <img [src]="apiServer_url + p.img" *ngIf="p.show" (click)="TakePM(p)">
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="text-center" style="padding-left: 10px;">
+                      <button (click)="showimgremark()" class="btn default" style="width: 100%;">
+                        รูปภาพเพิ่มเติม </button>
+                    </div>
+                  </div>
+                    <div class="col-12" *ngIf="isimgRemark" style="margin-top: 10px;margin-bottom: 10px;;">
+                      <div class="row">
+                        <div class="col-1 text-center">
+                        </div>
+        
+                        <div class=" col-2 text-center" *ngFor="let p of photoremark">
+                          <div #takere *ngIf="p.show == false ; else takere">
+                            <ion-fab vertical="bottom" horizontal="center" class="button-native">
+                              <ion-fab-button (click)="TakePMRe(p)">
+                                <ion-icon name="camera"></ion-icon>
+                              </ion-fab-button>
+                            </ion-fab>
+                          </div>
+                          <img [src]="apiServer_url + p.img" *ngIf="p.show" (click)="TakePMRe(p)">
+                        </div>
+                      </div>
+                    </div>
+                    </div>              
               </div>
             </div>
           </div>
@@ -257,7 +296,7 @@
               <div class="row">
                 <div class="col-1 text-center">
                 </div>
-                <div class="col-2 text-center">
+                <div class="col-2 text-center" *ngIf="isnotPM">
                   <div #take6 *ngIf="isShow6 == false ; else take6">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(6)" [disabled]="!isenabledTakeback">
@@ -267,7 +306,7 @@
                   </div>
                   <img [src]="photo6" *ngIf="isShow6" (click)="Take(6)">
                 </div>
-                <div class="col-2 text-center">
+                <div class="col-2 text-center" *ngIf="isnotPM">
                   <div #take7 *ngIf="isShow7 == false ; else take7">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(7)" [disabled]="!isenabledTakeback">
@@ -277,7 +316,7 @@
                   </div>
                   <img [src]="photo7" *ngIf="isShow7" (click)="Take(7)">
                 </div>
-                <div class="col-2 text-center">
+                <div class="col-2 text-center" *ngIf="isnotPM">
                   <div #take8 *ngIf="isShow8 == false ; else take8">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(8)" [disabled]="!isenabledTakeback">
@@ -288,7 +327,7 @@
                   <img [src]="photo8" *ngIf="isShow8" (click)="Take(8)">
                 </div>
 
-                <div class="col-2 text-center">
+                <div class="col-2 text-center" *ngIf="isnotPM">
                   <div #take9 *ngIf="isShow9 == false ; else take9">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(9)" [disabled]="!isenabledTakeback">
@@ -299,7 +338,7 @@
                   <img [src]="photo9" *ngIf="isShow9" (click)="Take(9)">
                 </div>
 
-                <div class="col-2 text-center">
+                <div class="col-2 text-center" *ngIf="isnotPM">
                   <div #take10 *ngIf="isShow10 == false ; else take10">
                     <ion-fab vertical="bottom" horizontal="center" class="button-native">
                       <ion-fab-button (click)="Take(10)" [disabled]="!isenabledTakeback">
@@ -324,28 +363,32 @@
                 </div>
               </div>
               <div class="row">
-                <div #nospare class="col-6 text-center" style="padding-left: 10px;" *ngIf="jobtype != 'INSTALL' else nospare">
+                <div #nospare class="col-6 text-center" style="padding-left: 10px;"
+                  *ngIf="jobtype != 'INSTALL' else nospare">
                   <button (click)="check()" [disabled]="!isenabledcheck" class="btn default">
                     รายการตรวจเช็ค </button>
                 </div>
-                <div #device class="col-6 text-center" style="padding-left: 10px;" *ngIf="SerialNoInstall == '-' && jobtype == 'INSTALL' else device">
+                <div #device class="col-6 text-center" style="padding-left: 10px;"
+                  *ngIf="SerialNoInstall == '-' && jobtype == 'INSTALL' else device">
                   <button (click)="changspare('device')" [disabled]="!isenabledadddevice" class="btn default">
                     เพิ่มเครื่อง </button>
                 </div>
-                <div #spare class="col-6 text-center" style="padding-left: 10px;" *ngIf="jobtype == 'INSTALL' else spare">
-                  <button (click)="changspare()" [disabled]="!isenabledadddevice"  class="btn default">
+                <div #spare class="col-6 text-center" style="padding-left: 10px;"
+                  *ngIf="jobtype == 'INSTALL' else spare">
+                  <button (click)="changspare()" [disabled]="!isenabledadddevice" class="btn default">
                     เพิ่มอุปกรณ์เสริม </button>
                 </div>
                 <div class="col-6 text-center" style="padding-left: 10px;">
                   <div *ngIf="sparetype != '' && jobtype == 'PM'; else sparepart">
-                  <button (click)="changspare()" [disabled]="!isenabledspare" class="btn default" #sparepart>  
-                    รายการเปลี่ยนอะไหล่ </button>
+                    <button (click)="changspare()" [disabled]="!isenabledspare" class="btn default" #sparepart>
+                      รายการเปลี่ยนอะไหล่ </button>
                   </div>
                   <div *ngIf="jobtype == 'CM' && request == null; else CM">
-                    <button (click)="takerequest()" class="btn default" #CM [disabled]="!isenabledrequest">  
+                    <button (click)="takerequest()" class="btn default" #CM [disabled]="!isenabledrequest">
                       ใบเบิกอะไหล่ </button>
-                    </div>
-                      <img *ngIf="jobtype == 'CM' && request != null ; else imgrequest" [src]="request"  (click)="takerequest()" #imgrequest>                    
+                  </div>
+                  <img *ngIf="jobtype == 'CM' && request != null ; else imgrequest" [src]="request"
+                    (click)="takerequest()" #imgrequest>
                 </div>
               </div>
             </div>
@@ -416,7 +459,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle6">
             <div class="portlet light ">
               <div class="row">
@@ -430,16 +473,18 @@
               </div>
               <div class="row">
                 <div class="col-6 text-center" style="padding-left: 10px;">
-                  <button class="btn default" *ngIf="jobtype == 'INSTALL' else spare" #spare (click)="openModalcustomerpw()" [disabled]="!isenabledcuspass">
+                  <button class="btn default" *ngIf="jobtype == 'INSTALL' else spare" #spare
+                    (click)="openModalcustomerpw()" [disabled]="!isenabledcuspass">
                     ยืนยันการปิดงาน </button>
-                    <button class="btn default" *ngIf="jobtype != 'INSTALL' else all" #all (click)="openModalcustomerpw()" [disabled]="!isenabledcuspass">
-                      รหัสยืนยันตัวตนลูกค้า   </button>
+                  <button class="btn default" *ngIf="jobtype != 'INSTALL' else all" #all (click)="openModalcustomerpw()"
+                    [disabled]="!isenabledcuspass">
+                    รหัสยืนยันตัวตนลูกค้า </button>
                 </div>
                 <div class="col-6 text-center" style="padding-left: 10px;">
                 </div>
               </div>
             </div>
-          </div>         
+          </div>
           <div class="portlet-body" style="margin: 0px;" *ngIf="isenabledtitle8">
             <div class="portlet light ">
               <div class="row">
