@@ -171,10 +171,10 @@
                     <td> {{item.AssetType}} </td>
                     <td> {{item.AssetNo}} </td>
                     <td> {{item.Qty}} </td>
-                    <td *ngIf="Status != 'อนุมัติ' && Status != 'รออนุมัติ'; else lblOld">
+                    <td *ngIf="Status == 'ช่างขอเบิกอะไหล่'; else lblOld">
                       <span class="label label-sm label-warning" (click)="Edit(item)" #lblOld> แก้ไข </span>
                     </td>
-                    <td *ngIf="Status != 'อนุมัติ' && Status != 'รออนุมัติ'; else lblOld">
+                    <td *ngIf="Status == 'ช่างขอเบิกอะไหล่'; else lblOld">
                       <span class="label label-sm label-danger" (click)="Delete(item)" #lblOld> ลบ </span>
                     </td>
                   </tr>

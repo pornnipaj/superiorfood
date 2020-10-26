@@ -108,7 +108,7 @@
                           <th> ชื่ออะไหล่ </th>
                           <th class="text-center"> ตำแหน่ง </th>
                           <th> จำนวนที่ต้องการเบิก </th>
-                          <th> จำนวนคงเหลือในสต็อก </th>
+                          <!-- <th> จำนวนคงเหลือในสต็อก </th> -->
                         </tr>
                       </thead>
                       <tbody>
@@ -117,7 +117,7 @@
                           <td> {{item.Skuname}} </td>
                           <td class="text-center"> {{item.PositionNo}} </td>
                           <td> <input type="number" [(ngModel)]="item.Amount" style="width: 120px" /> </td>
-                          <td> {{item.Balance}} </td>
+                          <!-- <td> {{item.Balance}} </td> -->
                           <td>
                             <ion-button expand="block" color="danger" (click)="DeleteFromList(i,item)" size="small"
                              >ลบ</ion-button>
@@ -142,14 +142,17 @@
   </div>
 </div>
 <div *ngIf="Type == 'history'">
+  <div class="portlet-body">
+    <div class="col-12" style="text-align: center; margin-top: 20px;" *ngIf="ListJob == []">
+      <label>ไม่พบข้อมูล</label>
+  </div>
   <div class="row">
-    <div class="col-md-12" style="margin: 2px;">
+    <div class="col-md-12" style="margin: 2px;" *ngIf="ListJob">
       <div class="portlet box blue">
         <div class="portlet-title">
           <div class="caption">
             <i class="fa fa-user"></i>ประวัติการเบิกอะไหล่</div>
-        </div>
-        <div class="portlet-body">
+        </div>        
           <div class="tab-content">
             <div class="tab-pane active">
               <div class="row">
@@ -192,8 +195,7 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-12" style="margin:2px;">
+    <div class="col-md-12" style="margin:2px;" *ngIf="DetailJobList">
       <div class="portlet box blue">
         <div class="portlet-title">
           <div class="caption">
@@ -237,6 +239,7 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
   </div>
 </ion-content>

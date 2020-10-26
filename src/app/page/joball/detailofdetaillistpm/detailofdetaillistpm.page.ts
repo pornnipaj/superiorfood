@@ -233,6 +233,7 @@ export class DetailofdetaillistpmPage implements OnInit {
   checkimgPM;
   photoremark;
   isimgRemark = false;
+  OldItemsName;
   //#endregion
 
   //#region constructor
@@ -281,6 +282,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.SerialNo = this.install.SerialNo;
       this.SerialNoInstall = this.install.SerialNo;
       this.ItemsName = this.install.ItemsName;
+      this.OldItemsName = this.install.OldAssetName;
       this.ItemCode = this.install.ItemCode;
       this.ProductCode = this.install.ProductCode;
       this.password = this.install.Password;

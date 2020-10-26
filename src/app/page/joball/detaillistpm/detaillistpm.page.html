@@ -84,7 +84,7 @@
 
           </div>
           <div style="padding: 5px;" *ngFor="let data of item.productInstall | keyvalue">
-            <div (click)="click(item, data.value)">
+            <!-- <div (click)="click(item, data.value)"> -->
               <div class="row col-12">
                 <div class="col-4 text">สถานะ:</div>
                 <div class="col-8 subtext" #lblWait style="color: #E78D8D;"
@@ -100,13 +100,38 @@
                 <label class="col-4 text">รหัสสินค้า:</label>
                 <label class="col-8 subtext">{{data.value.ItemCode}}</label>  
               </div>
-              <div class="row col-12">
+              <div class="row col-12" *ngIf="data.value.JobType == 'INSTALL' && data.value.OldAssetName != null">
+                <label class="col-4 text">เครื่องที่รื้อถอน:</label>
+                <label class="col-8 subtext">{{data.value.OldAssetName}}</label>  
+              </div>
+              <div class="row col-12" *ngIf="data.value.JobType == 'INSTALL'">
+                <label class="col-4 text">เครื่องที่ติดตั้ง:</label>
+                <label class="col-8 subtext">{{data.value.ItemsName}}</label>  
+              </div>
+              <div class="row col-12" *ngIf="data.value.JobType != 'INSTALL'">
                 <label class="col-4 text">ชื่อสินค้า:</label>
                 <label class="col-8 subtext">{{data.value.ItemsName}}</label>  
               </div>
               <div class="row col-12">
                 <label class="col-4 text">Serial No:</label>
-                <label class="col-8 subtext">{{data.value.SerialNo}}</label>  
+                <label class="col-8 subtext" *ngIf="data.value.JobType != 'PM'">{{data.value.SerialNo}}</label>  
+                <div class="col-8 subtext" *ngIf="data.value.JobType == 'PM'">
+                  <div class="row">
+                    <div class="col-8">
+                      <ion-input type="text" style="padding: 0px;" name="SerialNo" [(ngModel)]="data.value.SerialNo"></ion-input>
+                    </div>
+                    <div class="col-2">
+                      <ion-button size="small" (click)="SaveSerial(data.value)">
+                        <ion-icon name="save"></ion-icon>
+                      </ion-button>
+                    </div>
+                    <div class="col-2">
+                      <ion-button size="small" (click)="SaveSerialBarcode(data.value)">
+                        <ion-icon name="barcode"></ion-icon>
+                      </ion-button>
+                    </div>
+                  </div>
+                </div>               
               </div>
               <div class="row col-12">
                 <label class="col-4 text" *ngIf="new">New Serial No:</label>
@@ -138,7 +163,7 @@
                   <div [innerHTML]="data.value.sparepart"></div>
                 </div>
               </div>              
-            </div>
+            <!-- </div> -->
 
             <div class="col-12">
               <ion-button size="small" (click)="showSpareHistory(data.value)" *ngIf="data.value.JobType == 'PM'">ประวัติการเบิกอะไหล่</ion-button>

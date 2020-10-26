@@ -30,7 +30,7 @@
       <div class="col-12" style="padding-left: 0px;">
         <ion-card *ngIf="isShowType">
           <ion-card-content>
-            <ion-button expand="block" (click)="chang('device')" *ngIf="isdevice">เปลี่ยนเครื่อง</ion-button>
+            <ion-button expand="block" (click)="chang('device')" class="hidden" *ngIf="isdevice">เปลี่ยนเครื่อง</ion-button>
             <ion-button expand="block" (click)="chang('sparepart')" *ngIf="isspare">เปลี่ยนอะไหล่</ion-button>            
             <ion-button expand="block" (click)="chang('non')" *ngIf="isnon">ไม่เปลี่ยนเครื่อง/อะไหล่</ion-button>
           </ion-card-content>

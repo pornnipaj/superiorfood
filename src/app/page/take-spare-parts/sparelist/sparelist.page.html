@@ -50,15 +50,15 @@
                             <td> {{item.CustomerName}} </td>
                             <td> {{item.Status}} </td>
                             <td> {{item.CreatedDate}} </td>
-                            <td *ngIf="item.Status != 'กำลังดำเนินการ'; else lblEdit" > 
+                            <td *ngIf="item.Status != 'ช่างขอเบิกอะไหล่'; else lblEdit" > 
                               <span class="label label-sm label-warning circle" #lblEdit
                                 (click)="Detail(item)">ดู</span>
                             </td>
-                            <td *ngIf="item.Status == 'กำลังดำเนินการ'; else lblView" > 
+                            <td *ngIf="item.Status == 'ช่างขอเบิกอะไหล่'; else lblView" > 
                               <span class="label label-sm label-warning circle" #lblView
                               (click)="Detail(item)">แก้ไข</span>
                           </td>
-                          <td *ngIf="item.Status == 'กำลังดำเนินการ'; else lblView" > 
+                          <td *ngIf="item.Status == 'ช่างขอเบิกอะไหล่'; else lblView" > 
                             <span class="label label-sm label-danger circle" #lblView
                             (click)="Delete(item)">ลบ</span>
                         </td>

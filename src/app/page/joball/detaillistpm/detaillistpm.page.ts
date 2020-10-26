@@ -8,6 +8,7 @@ import { from } from 'rxjs';
 import { ModalController } from '@ionic/angular';
 import { ShowimginstallPage } from '../../job/showimginstall/showimginstall.page';
 import { CustomerevaluationPage } from '../detailofdetaillistpm/customerevaluation/customerevaluation.page';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @Component({
   selector: 'app-detaillistpm',
@@ -55,7 +56,8 @@ export class DetaillistpmPage implements OnInit {
     private postDataService: PostDataService,
     private storageService: StorageService,
     public alertController: AlertController,
-    public modalController: ModalController,) {
+    public modalController: ModalController,
+    private barcodeScanner: BarcodeScanner,) {
     this.detaillistpm = [];
 
     this.route.queryParams.subscribe(params => {
@@ -304,8 +306,8 @@ export class DetaillistpmPage implements OnInit {
         header: header,
         empID: this.empID,
         workclose: workclose,
-        item:this.item,
-        date:this.date
+        item: this.item,
+        date: this.date
       }
     });
     modal.onDidDismiss().then(data => {
@@ -394,7 +396,7 @@ export class DetaillistpmPage implements OnInit {
                     console.log(params);
                     this.postDataService.SaveCaseAll(params).then(data => {
                       console.log(data);
-                      if (data == true) {                        
+                      if (data == true) {
                         this.imgbf = true
                         this.detaillistpm.PlanID = item.planID,
                           this.detaillistpm.jobtype = "SuccessCM"
@@ -689,5 +691,36 @@ export class DetaillistpmPage implements OnInit {
     await alert.present();
   }
   //#endregion
-
+  SaveSerial(value) {
+    console.log(value);
+    let params = {
+      insID: value.installId,
+      Type: "UpdateSerial",
+      EmpID: this.empID,
+      SerialNo:value.SerialNo
+    }
+    console.log(params);
+    this.postDataService.PostCus(params).then(status => {
+      console.log(status);      
+    });
+  }
+  SaveSerialBarcode(value){
+    this.barcodeScanner.scan().then(barcodeData => {
+      let barcode = barcodeData
+      if (barcode != null) {
+        let params = {
+          insID: value.installId,
+          Type: "UpdateSerial",
+          EmpID: this.empID,
+          SerialNo:barcode
+        }
+        console.log(params);
+        this.postDataService.PostCus(params).then(status => {
+          console.log(status);      
+        });
+      }
+    }).catch(err => {
+      console.log('Error', err);
+    });
+  }
 }

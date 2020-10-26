@@ -35,6 +35,9 @@ export class LoginPage implements OnInit {
   url: SafeResourceUrl;
   Tablet;
   link;
+  disconnectSubscription;
+  connectSubscription;
+  text ="";
   //#endregion
 
   //#region constructor
@@ -50,10 +53,14 @@ export class LoginPage implements OnInit {
     private DataService: AuthServiceService,
     sanitizer: DomSanitizer,
     private router: Router,
-    private route: ActivatedRoute,) {
-    this.checkNetwork();
+    private route: ActivatedRoute,) {    
+      this.network.onDisconnect().subscribe(() => {
+        this.text = "...กรุณาเชื่อมต่ออินเทอร์เน็ต..."        
+      });
+
     setTimeout(() => {
       this.ngOnInit();
+      // this.checkNetwork();
     }, 500);
 
     this.user = [];
@@ -74,31 +81,16 @@ export class LoginPage implements OnInit {
 
   //#region Check Network
   checkNetwork() {
-    
-    // watch network for a disconnection
-    let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
-      console.log('network was disconnected :-(');
+    this.network.onDisconnect().subscribe(() => {
+      alert('network was disconnected :-(');
     });
-
-    // stop disconnect watch
-    disconnectSubscription.unsubscribe();
-
-
-    // watch network for a connection
-    let connectSubscription = this.network.onConnect().subscribe(() => {
-      console.log('network connected!');
+    this.network.onConnect().subscribe(() => {
+      alert('network connected!');
       // We just got a connection but we need to wait briefly
-      // before we determine the connection type. Might need to wait.
+       // before we determine the connection type. Might need to wait.
       // prior to doing any api requests as well.
-      setTimeout(() => {
-        if (this.network.type === 'wifi') {
-          console.log('we got a wifi connection, woohoo!');
-        }
-      }, 3000);
+      
     });
-
-    // stop connect watch
-    connectSubscription.unsubscribe();
   }
 
   //#endregion

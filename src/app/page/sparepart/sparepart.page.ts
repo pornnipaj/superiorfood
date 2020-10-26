@@ -33,7 +33,7 @@ export class SparepartPage implements OnInit {
   JobID;
   MainSKUID;
   Type;
-  ListJob;
+  ListJob ;
   DetailJobList;
   No;
 
@@ -106,6 +106,8 @@ export class SparepartPage implements OnInit {
     console.log(params);
     this.postDataService.PostCus(params).then(ListJob => {
       this.ListJob = ListJob;
+      console.log(this.ListJob);
+      
     });
   }
 

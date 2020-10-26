@@ -76,13 +76,17 @@
                   <div class="col-4">
                     <p class="profile-desc-text">สินค้าที่ติดตั้ง:</p>
                     <p class="profile-desc-text">รหัสสินค้า:</p>
-                    <p class="profile-desc-text">ชื่อสินค้า:</p>
+                    <p class="profile-desc-text" *ngIf="jobtype != 'INSTALL'">ชื่อสินค้า:</p>
+                    <p class="profile-desc-text" *ngIf="jobtype == 'INSTALL' && OldItemsName != null">เครื่องที่รื้อถอน:</p>
+                    <p class="profile-desc-text" *ngIf="jobtype == 'INSTALL'">เครื่องที่ติดตั้ง:</p>
                     <p class="profile-desc-text">Serial No:</p>
                   </div>
                   <div class="col-8">
                     <p class="profile-desc-text">{{InstallPlanName}}</p>
                     <p class="profile-desc-text">{{ItemCode}}</p>
-                    <p class="profile-desc-text">{{ItemsName}}</p>
+                    <p class="profile-desc-text" *ngIf="jobtype != 'INSTALL'">{{ItemsName}}</p>
+                    <p class="profile-desc-text" *ngIf="jobtype == 'INSTALL' && OldItemsName != null">{{OldItemsName}}</p>
+                    <p class="profile-desc-text" *ngIf="jobtype == 'INSTALL'">{{ItemsName}}</p>
                     <p class="profile-desc-text">{{SerialNo}}</p>
                   </div>
                 </div>

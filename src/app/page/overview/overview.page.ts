@@ -95,9 +95,17 @@ export class OverviewPage implements OnInit {
     setTimeout(() => {
       this.load();
       this.ngOnInit();
-    }, 500);
+      this.noti();
+    }, 500);    
   }
 
+  noti(){
+  //   this.localNotifications.schedule({
+  //     title: 'The big survey',
+  //   text: 'Are you a fan of RB Leipzig?',
+  //   attachments: ['file://img/rb-leipzig.jpg']
+  // });
+  }
   async load() {
     const loading = await this.loadingController.create({
       message: 'กำลังโหลดข้อมูล...',
@@ -445,12 +453,12 @@ export class OverviewPage implements OnInit {
         }
       });
     });
-    this.localNotifications.schedule({
-      id: 1,
-      text: 'งานทั้งหมด' + this.job + "งาน",
-      data: { secret: 'key_data' },
-      trigger: { every: { hour: 12 }, count: 1 },
-    });
+    // this.localNotifications.schedule({
+    //   id: 1,
+    //   text: 'งานทั้งหมด' + this.job + "งาน",
+    //   data: { secret: 'key_data' },
+    //   trigger: { every: { hour: 12 }, count: 1 },
+    // });
   }
 
   //#endregion
