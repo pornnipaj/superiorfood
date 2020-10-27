@@ -14,6 +14,7 @@ export class ModalpopPage implements OnInit {
   cm;
   install;
   uninstall;
+  wait;
   //#endregion
 
   //#region constructor
@@ -23,6 +24,7 @@ export class ModalpopPage implements OnInit {
     this.cm = this.navParams.data.cm;
     this.install = this.navParams.data.install;
     this.uninstall = this.navParams.data.uninstall;
+    this.wait = this.navParams.data.wait;
   }
   //#endregion
 
@@ -56,6 +58,11 @@ export class ModalpopPage implements OnInit {
     if (type == 'uninstall') {
 
       this.router.navigate(['/job/uninstall']);
+      this.popoverController.dismiss();
+    }
+    if (type == 'waiting') {
+
+      this.router.navigate(['/waitspare']);
       this.popoverController.dismiss();
     }
   }

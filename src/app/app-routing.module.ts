@@ -34,12 +34,7 @@ const routes: Routes = [
   { path: 'changsparepart', loadChildren: './page/joball/detailofdetaillistpm/changsparepart/changsparepart.module#ChangsparepartPageModule' },
   { path: 'changpassword', loadChildren: './page/setting/changpassword/changpassword.module#ChangpasswordPageModule' },
   { path: 'sparepart', loadChildren: './page/sparepart/sparepart.module#SparepartPageModule' },
-
-  
-
-
-
-
+  { path: 'waitspare', loadChildren: './page/take-spare-parts/waitspare/waitspare.module#WaitsparePageModule' },
 ];
 
 @NgModule({

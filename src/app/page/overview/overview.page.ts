@@ -61,6 +61,7 @@ export class OverviewPage implements OnInit {
   VersionNumber;
   statusversion;
   link;
+  wait;
   //#endregion
 
   //#region constructor
@@ -125,7 +126,8 @@ export class OverviewPage implements OnInit {
         pm: this.pm,
         cm: this.cm,
         install: this.install,
-        uninstall: this.uninstall
+        uninstall: this.uninstall,
+        wait: this.wait
       }
     });
     return await popover.present();
@@ -450,6 +452,7 @@ export class OverviewPage implements OnInit {
           this.install = this.jobOverview[i].install;
           this.uninstall = this.jobOverview[i].uninstall;
           this.job = this.jobOverview[i].job;
+          this.wait = this.jobOverview[i].wait;
         }
       });
     });
