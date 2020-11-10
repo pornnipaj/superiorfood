@@ -9,6 +9,15 @@
 <ion-content>
   <div class="container">
       <div class="row">
+        <div class="col-12" #show *ngIf="(jobtype == 'CM' && this.workclose != 'workclose') || (jobtype == 'CM' && this.workclose == 'workclose'); else show">
+          <ion-item>
+            <ion-label>ปัญหาเกิดจาก</ion-label>
+            <ion-select interface="popover" (ionChange)="onChange($event,'resolution')" [(ngModel)]="problemby">
+              <ion-select-option *ngFor="let title of problembydata" [value]="title.SystemID"
+                  [selected]="title.SystemDataName">{{title.SystemDataName}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
           <div class="col-12" style="margin-top: 20px;" #show *ngIf="(jobtype == 'CM' && this.workclose != 'workclose') || (jobtype == 'CM' && this.workclose == 'workclose'); else show">
             <ion-item>
               <ion-label>หัวข้อการแก้ปัญหา</ion-label>

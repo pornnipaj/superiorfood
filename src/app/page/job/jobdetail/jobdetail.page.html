@@ -49,7 +49,7 @@
                             <label class="col-6">ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsNameNew}}</label>
                             <label class="col-6">เวลาที่ใช้&nbsp;:&nbsp;{{item.TimeSpent}}</label>
                         </div>
-                        <div *ngIf="type == 'CM'else chang" #chang>
+                        <div *ngIf="type == 'CM' && WorkCloseID == 'WorkClose004' && newinstall != '-' else cm else chang" #chang>
                             <hr>
                             <label class="col-12">การเปลี่ยนอุปกรณ์ : เปลี่ยน{{typeChang}}</label>
                         </div>

@@ -148,9 +148,13 @@
               <div class="col-4 text" #cm>การปิดงาน :</div>
               <div class="col-8 subtext" #cm>{{data.value.WorkClose}}</div>
             </div>
-            <div class="row col-12" *ngIf="data.value.JobType == 'CM' && data.value.Workfinish == 1 else cm">
+            <div class="row col-12" *ngIf="data.value.JobType == 'CM' && data.value.Workfinish == 1 && data.value.WorkCloseID == 'WorkClose004' && data.value.newinstallID != null else cm">
               <div class="col-4 text" #cm>การเปลี่ยนอุปกรณ์ :</div>
               <div class="col-8 subtext" #cm>{{data.value.TypeChang}}</div>
+            </div>
+            <div class="row col-12" *ngIf="data.value.JobType == 'CM' && data.value.Workfinish == 1 else cm">
+              <div class="col-4 text" #cm>ปัญหาเกิดจาก :</div>
+              <div class="col-8 subtext" #cm>{{data.value.ProblemBy}}</div>
             </div>
             <div class="row col-12" *ngIf="data.value.sparepart != '' && data.value.JobType == 'PM' else spare">
               <div class="col-4 text" #spare>อะไหล่ที่ต้องเปลี่ยน :</div>
@@ -172,6 +176,8 @@
               <ion-button size="small" (click)="Imgbf(data.value)" *ngIf="imgbf">ภาพหน้างาน</ion-button>
               <ion-button color="success" size="small" (click)="click(item, data.value)"
                 *ngIf="data.value.Workfinish == 0 else wait" #wait>เริ่มงาน</ion-button>
+                <ion-button color="success" size="small" (click)="click(item, data.value)"
+                *ngIf="data.value.Workfinish == 1 else wait" #wait>รายละเอียด</ion-button>
             </div>
             <hr />
           </div>

@@ -132,17 +132,17 @@ export class DetaillistpmPage implements OnInit {
           console.log(data);
           for (let i = 0; i < this.getworkclose.length; i++) {
             console.log(this.getworkclose);
-            if (i == 0) {
-              this.getworkclose1 = this.getworkclose[0].SystemDataName;
-              this.getworkclosevalue1 = this.getworkclose[0].SystemID;
+            if (i == 1) {
+              this.getworkclose1 = this.getworkclose[1].SystemDataName;
+              this.getworkclosevalue1 = this.getworkclose[1].SystemID;
               this.text = 'ปิดงาน'
-            } else if (i == 1) {
-              this.getworkclose2 = this.getworkclose[1].SystemDataName;
-              this.getworkclosevalue2 = this.getworkclose[1].SystemID;
+            } else if (i == 3) {
+              this.getworkclose2 = this.getworkclose[3].SystemDataName;
+              this.getworkclosevalue2 = this.getworkclose[3].SystemID;
               this.text = 'เริ่มงาน'
-            } else if (i == 2) {
-              this.getworkclose3 = this.getworkclose[2].SystemDataName;
-              this.getworkclosevalue3 = this.getworkclose[2].SystemID;
+            } else if (i == 0) {
+              this.getworkclose3 = this.getworkclose[0].SystemDataName;
+              this.getworkclosevalue3 = this.getworkclose[0].SystemID;
               this.text = 'บันทึก'
             }
           }
@@ -210,17 +210,17 @@ export class DetaillistpmPage implements OnInit {
         console.log(data);
         for (let i = 0; i < this.getworkclose.length; i++) {
           console.log(this.getworkclose);
-          if (i == 0) {
-            this.getworkclose1 = this.getworkclose[0].SystemDataName;
-            this.getworkclosevalue1 = this.getworkclose[0].SystemID;
+          if (i == 1) {
+            this.getworkclose1 = this.getworkclose[1].SystemDataName;
+            this.getworkclosevalue1 = this.getworkclose[1].SystemID;
             this.text = 'ปิดงาน'
-          } else if (i == 1) {
-            this.getworkclose2 = this.getworkclose[1].SystemDataName;
-            this.getworkclosevalue2 = this.getworkclose[1].SystemID;
+          } else if (i == 3) {
+            this.getworkclose2 = this.getworkclose[3].SystemDataName;
+            this.getworkclosevalue2 = this.getworkclose[3].SystemID;
             this.text = 'เริ่มงาน'
-          } else if (i == 2) {
-            this.getworkclose3 = this.getworkclose[2].SystemDataName;
-            this.getworkclosevalue3 = this.getworkclose[2].SystemID;
+          } else if (i == 0) {
+            this.getworkclose3 = this.getworkclose[0].SystemDataName;
+            this.getworkclosevalue3 = this.getworkclose[0].SystemID;
             this.text = 'บันทึก'
           }
         }
@@ -326,7 +326,7 @@ export class DetaillistpmPage implements OnInit {
         });
         await alert.present();
       } else if (this.type == "CM") {
-        if (item.tranID != null) {
+        if (item.WorkCloseID != null) {
           let tran = {
             AssetID: item.AssetID,
             Serial: item.Serial,
@@ -365,11 +365,7 @@ export class DetaillistpmPage implements OnInit {
             message: 'กรุณาเลือกการปิดงาน',
             inputs: [
               {
-                type: 'radio',
-                label: this.getworkclose1,
-                value: this.getworkclosevalue1
-              },
-              {
+                
                 type: 'radio',
                 label: this.getworkclose2,
                 value: this.getworkclosevalue2

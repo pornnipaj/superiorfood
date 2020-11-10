@@ -151,6 +151,7 @@ export class DetailofdetaillistpmPage implements OnInit {
   jobtype;
   interval;
   tranid;
+  problemby;
   cameraOptions: CameraOptions = {
     quality: 100,
     destinationType: this.camera.DestinationType.DATA_URL,
@@ -3196,6 +3197,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.resolutiondetail = this.cusEva.data.resolutiondetail
       this.TecComment = this.cusEva.data.TecComment
       this.workclose = this.cusEva.data.workclose
+      this.problemby = this.cusEva.data.problemby
       console.log(this.resolution);
       console.log(this.resolutiondetail);
       console.log(this.TecComment);
@@ -3212,7 +3214,8 @@ export class DetailofdetaillistpmPage implements OnInit {
           idold: this.idold,
           TecComment: this.TecComment,
           resolutiondetail: this.resolutiondetail,
-          workclose: "WorkClose002"
+          problemby: this.problemby,
+          workclose: "WorkClose004"
         }
         console.log(params);
         this.postDataService.SaveCaseAll(params).then(resolution => {

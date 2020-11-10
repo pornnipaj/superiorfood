@@ -24,6 +24,8 @@ export class CustomerevaluationPage implements OnInit {
   item;
   myId;
   date;
+  problemby;
+  problembydata;
 
   constructor(private postDataService: PostDataService,
     public modalController: ModalController,
@@ -50,6 +52,15 @@ export class CustomerevaluationPage implements OnInit {
     console.log(this.workclose);
 
     if (this.jobtype == "CM" && this.workclose != 'workclose' || this.jobtype == "CM" && this.workclose == 'workclose') {
+      let problembydata = {
+        installID: this.installID,
+        jobtype: "problembydata"
+      }
+      console.log(problembydata);
+      this.postDataService.SaveCaseAll(problembydata).then(data => {
+        this.problembydata = data
+        console.log(data);
+      });
       let params = {
         installID: this.installID,
         jobtype: "getresolution"
@@ -73,6 +84,7 @@ export class CustomerevaluationPage implements OnInit {
       if (this.jobtype == "CM") {
         this.resolution = this.detail.ResolutionID
         this.resolutiondetail = this.detail.Resolutiondetail
+        this.problemby = this.detail.ProblemBy
       } else {
         this.resolutiondetail = "resolutiondetail"
       }
@@ -99,10 +111,18 @@ export class CustomerevaluationPage implements OnInit {
     console.log(this.resolutiondetail);
 
     if (this.jobtype == "CM" && this.workclose != 'workclose') {
-      if (this.resolutiondetail == null || this.resolutiondetail == "") {
+      if (this.problemby == null || this.problemby == "") {
         const alert = await this.alertController.create({
           header: 'แจ้งเตือน',
-          message: 'กรุณากรอกรายละเอียดของปัญหา',
+          message: 'กรุณากรอกหวช้อปัญหาเกิดจากอะไร',
+          buttons: ['OK']
+        });
+        await alert.present();
+      }
+      else if (this.resolutiondetail == null || this.resolutiondetail == "") {
+        const alert = await this.alertController.create({
+          header: 'แจ้งเตือน',
+          message: 'กรุณากรอกวิธีการแก้ปัญหา',
           buttons: ['OK']
         });
 
@@ -115,7 +135,8 @@ export class CustomerevaluationPage implements OnInit {
           workclose: this.workclose,
           jobtype: "saveclosecustomer",
           resolution: this.resolution,
-          resolutiondetail: this.resolutiondetail
+          resolutiondetail: this.resolutiondetail,
+          problemby: this.problemby,
         }
         console.log(params);
         this.postDataService.SaveCaseAll(params).then(data => {
@@ -126,14 +147,14 @@ export class CustomerevaluationPage implements OnInit {
               type: "getCM",
               date: this.date,
             }
-            console.log(params);      
-          let navigationExtras: NavigationExtras = {
-            queryParams: {
-              data: JSON.stringify(params)
-            }
-          };
-          console.log(navigationExtras);
-          this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
+            console.log(params);
+            let navigationExtras: NavigationExtras = {
+              queryParams: {
+                data: JSON.stringify(params)
+              }
+            };
+            console.log(navigationExtras);
+            this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
             //this.navCtrl.navigateForward(['/menu/overview']);
             this.modalController.dismiss();
           }
@@ -143,10 +164,18 @@ export class CustomerevaluationPage implements OnInit {
         });
       }
     } else if (this.jobtype == "CM" && this.workclose == 'workclose') {
-      if (this.resolutiondetail == null || this.resolutiondetail == "") {
+      if (this.problemby == null || this.problemby == "") {
         const alert = await this.alertController.create({
           header: 'แจ้งเตือน',
-          message: 'กรุณากรอกรายละเอียดของปัญหา',
+          message: 'กรุณากรอกหวช้อปัญหาเกิดจากอะไร',
+          buttons: ['OK']
+        });
+        await alert.present();
+      }
+      else if (this.resolutiondetail == null || this.resolutiondetail == "") {
+        const alert = await this.alertController.create({
+          header: 'แจ้งเตือน',
+          message: 'กรุณากรอกวิธีการแก้ปัญหา',
           buttons: ['OK']
         });
         await alert.present();
@@ -154,7 +183,8 @@ export class CustomerevaluationPage implements OnInit {
         let params = {
           resolution: this.resolution,
           resolutiondetail: this.resolutiondetail,
-          TecComment: this.TecComment
+          TecComment: this.TecComment,
+          problemby: this.problemby,
         }
         this.modalController.dismiss(params);
       }
@@ -172,7 +202,8 @@ export class CustomerevaluationPage implements OnInit {
         let params = {
           resolution: this.resolution,
           resolutiondetail: this.resolutiondetail,
-          TecComment: this.TecComment
+          TecComment: this.TecComment,
+          ProblemBy:this.problemby
         }
         this.modalController.dismiss(params);
       }
