@@ -77,7 +77,8 @@
                     <p class="profile-desc-text">สินค้าที่ติดตั้ง:</p>
                     <p class="profile-desc-text">รหัสสินค้า:</p>
                     <p class="profile-desc-text" *ngIf="jobtype != 'INSTALL'">ชื่อสินค้า:</p>
-                    <p class="profile-desc-text" *ngIf="jobtype == 'INSTALL' && OldItemsName != null">เครื่องที่รื้อถอน:</p>
+                    <p class="profile-desc-text" *ngIf="jobtype == 'INSTALL' && OldItemsName != null">เครื่องที่รื้อถอน:
+                    </p>
                     <p class="profile-desc-text" *ngIf="jobtype == 'INSTALL'">เครื่องที่ติดตั้ง:</p>
                     <p class="profile-desc-text">Serial No:</p>
                   </div>
@@ -85,7 +86,8 @@
                     <p class="profile-desc-text">{{InstallPlanName}}</p>
                     <p class="profile-desc-text">{{ItemCode}}</p>
                     <p class="profile-desc-text" *ngIf="jobtype != 'INSTALL'">{{ItemsName}}</p>
-                    <p class="profile-desc-text" *ngIf="jobtype == 'INSTALL' && OldItemsName != null">{{OldItemsName}}</p>
+                    <p class="profile-desc-text" *ngIf="jobtype == 'INSTALL' && OldItemsName != null">{{OldItemsName}}
+                    </p>
                     <p class="profile-desc-text" *ngIf="jobtype == 'INSTALL'">{{ItemsName}}</p>
                     <p class="profile-desc-text">{{SerialNo}}</p>
                   </div>
@@ -265,24 +267,24 @@
                         รูปภาพเพิ่มเติม </button>
                     </div>
                   </div>
-                    <div class="col-12" *ngIf="isimgRemark" style="margin-top: 10px;margin-bottom: 10px;;">
-                      <div class="row">
-                        <div class="col-1 text-center">
+                  <div class="col-12" *ngIf="isimgRemark" style="margin-top: 10px;margin-bottom: 10px;;">
+                    <div class="row">
+                      <div class="col-1 text-center">
+                      </div>
+
+                      <div class=" col-2 text-center" *ngFor="let p of photoremark">
+                        <div #takere *ngIf="p.show == false ; else takere">
+                          <ion-fab vertical="bottom" horizontal="center" class="button-native">
+                            <ion-fab-button (click)="TakePMRe(p)">
+                              <ion-icon name="camera"></ion-icon>
+                            </ion-fab-button>
+                          </ion-fab>
                         </div>
-        
-                        <div class=" col-2 text-center" *ngFor="let p of photoremark">
-                          <div #takere *ngIf="p.show == false ; else takere">
-                            <ion-fab vertical="bottom" horizontal="center" class="button-native">
-                              <ion-fab-button (click)="TakePMRe(p)">
-                                <ion-icon name="camera"></ion-icon>
-                              </ion-fab-button>
-                            </ion-fab>
-                          </div>
-                          <img [src]="apiServer_url + p.img" *ngIf="p.show" (click)="TakePMRe(p)">
-                        </div>
+                        <img [src]="apiServer_url + p.img" *ngIf="p.show" (click)="TakePMRe(p)">
                       </div>
                     </div>
-                    </div>              
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -514,4 +516,9 @@
       </div>
     </div>
   </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="log()">
+    <ion-fab-button>
+      <ion-icon name="alert"></ion-icon>
+  </ion-fab-button>
+  </ion-fab>
 </ion-content>

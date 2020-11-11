@@ -719,4 +719,7 @@ export class DetaillistpmPage implements OnInit {
       console.log('Error', err);
     });
   }
+  fab(){
+    console.log('test');
+  }
 }

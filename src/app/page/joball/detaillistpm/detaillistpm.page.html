@@ -177,7 +177,11 @@
               <ion-button color="success" size="small" (click)="click(item, data.value)"
                 *ngIf="data.value.Workfinish == 0 else wait" #wait>เริ่มงาน</ion-button>
                 <ion-button color="success" size="small" (click)="click(item, data.value)"
-                *ngIf="data.value.Workfinish == 1 else wait" #wait>รายละเอียด</ion-button>
+                *ngIf="data.value.Workfinish == 1 && 
+                (data.value.JobType == 'PM' || data.value.JobType == 'INSTALL' 
+                || data.value.JobType == 'UNINSTALL') || (data.value.JobType == 'CM' 
+                && data.value.WorkCloseID == 'WorkClose004' 
+                && data.value.newinstallID == null) else wait" #wait>รายละเอียด</ion-button>
             </div>
             <hr />
           </div>
@@ -185,5 +189,9 @@
       </div>
     </div>
   </div>
-
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="fab()">
+    <ion-fab-button>
+      <ion-icon name="alert"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
 </ion-content>

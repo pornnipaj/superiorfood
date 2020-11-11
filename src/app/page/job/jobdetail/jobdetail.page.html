@@ -30,15 +30,18 @@
                             <label class="col-6">ต่างจากวันกำหนด&nbsp;:&nbsp;{{item.TimeDiff}}</label>
                         </div>
                         <div>
-                            <label class="col-6">ประเภทสินค้า&nbsp;:&nbsp;{{item.InstallPlanName}} </label>
+                            <label class="col-6" *ngIf="type != 'CM'">ประเภทสินค้า&nbsp;:&nbsp;{{item.InstallPlanName}} </label>
+                            <label class="col-6" *ngIf="type == 'CM'">ประเภทสินค้า&nbsp;:&nbsp;{{item.InstallPlanNameNew}} </label>
                             <label class="col-6">เริ่มทำงาน&nbsp;:&nbsp;{{item.start_service_date}}</label>
                         </div>
                         <div *ngIf="!isdevice">
-                            <label class="col-6">Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNo}}</label>
+                            <label class="col-6" *ngIf="type != 'CM'">Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNo}}</label>
+                            <label class="col-6" *ngIf="type == 'CM'">Serial&nbsp;No&nbsp;:&nbsp;{{item.SerialNoNew}}</label>
                             <label class="col-6">เสร็จงาน&nbsp;:&nbsp;{{item.end_service_date}}</label>
                         </div>
                         <div *ngIf="!isdevice">
-                            <label class="col-6">ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsName}}</label>
+                            <label class="col-6" *ngIf="type != 'CM'">ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsName}}</label>
+                            <label class="col-6" *ngIf="type == 'CM'">ชื่อสินค้า&nbsp;:&nbsp;{{item.ItemsNameNew}}</label>
                             <label class="col-6">เวลาที่ใช้&nbsp;:&nbsp;{{item.TimeSpent}}</label>
                         </div>
                         <div *ngIf="isdevice">
