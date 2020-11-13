@@ -2914,7 +2914,7 @@ export class DetailofdetaillistpmPage implements OnInit {
           this.isenabledspare = true;
         }
 
-        this.isenabledcheck = true;
+        this.isenabledcheck = false;
       }
     }
   }
