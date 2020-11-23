@@ -722,4 +722,26 @@ export class DetaillistpmPage implements OnInit {
   fab(){
     console.log('test');
   }
+  imgice(value){
+    console.log(value);
+
+    let params = {
+      empID: this.empID,
+      insID: value.installId,
+      planID: value.planID,
+      ItemName:value.ItemName,
+      CustomerName:value.CustomerName,      
+    }
+    console.log(params);
+
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        data: JSON.stringify(params)
+      }
+    };
+    this.navCtrl.navigateForward(['/iceimg'], navigationExtras);
+
+    console.log(navigationExtras);
+  }
 }
+ 

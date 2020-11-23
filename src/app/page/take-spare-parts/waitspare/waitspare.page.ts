@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PostDataService } from '../../../post-data.service';
 import { StorageService } from '../../../storage.service';
-
+import { ModalController, AlertController, IonTextarea } from '@ionic/angular';
+import { PartsWaitingListPage } from '../../sparepart/parts-waiting-list/parts-waiting-list.page';
 @Component({
   selector: 'app-waitspare',
   templateUrl: './waitspare.page.html',
@@ -12,7 +13,7 @@ export class WaitsparePage implements OnInit {
   DetailJobList;
   No;
   empID;
-  constructor(private postDataService:PostDataService,private storageService: StorageService,) { 
+  constructor(private postDataService:PostDataService,private storageService: StorageService,public modalController: ModalController,) { 
     this.loadItems();
   }
 
@@ -41,17 +42,30 @@ export class WaitsparePage implements OnInit {
     });
   }
 
-  GetJob(item,Docno) {
-    this.No = Docno;
-    let params = {
-      Type: "GetJobWait",
-      JobID:item
-    }
-    console.log(params);
-    this.postDataService.PostCus(params).then(DetailJobList => {
-      this.DetailJobList = DetailJobList;
-      console.log(this.DetailJobList);
-            
+  async GetJob(item,Docno) {
+    const modal = await this.modalController.create({
+      component: PartsWaitingListPage,
+      cssClass: 'my-custom-modal-css-pm',
+      componentProps: {
+        empID: this.empID,
+        JobID: item,
+      }
     });
+    modal.onDidDismiss().then(data => {
+      console.log(data);
+    })
+    return await modal.present();
+  
+  //   this.No = Docno;
+  //   let params = {
+  //     Type: "GetJobWait",
+  //     JobID:item
+  //   }
+  //   console.log(params);
+  //   this.postDataService.PostCus(params).then(DetailJobList => {
+  //     this.DetailJobList = DetailJobList;
+  //     console.log(this.DetailJobList);
+            
+  //   });
   }
 }

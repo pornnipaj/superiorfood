@@ -60,6 +60,7 @@ export class ChecklistcmPage implements OnInit {
   isspare = true;
   isnon = true;
   show;
+  type;
   //#endregion
 
   //#region constructor
@@ -79,6 +80,7 @@ export class ChecklistcmPage implements OnInit {
     this.ItemCode = this.navParams.data.ItemCode;
     this.SerialNo = this.navParams.data.SerialNo;
     this.cat = this.navParams.data.Cat;
+    this.type = this.navParams.data.type;
     console.log(this.ItemsName, this.ItemCode, this.SerialNo);
     this.stock = [];
 

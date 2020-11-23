@@ -58,7 +58,7 @@ export class SparepartPage implements OnInit {
       this.ItemsName = this.data.ItemsName;
       this.cusID = this.item.cusID;
       this.Type = this.data.Type;
-    });
+    }); 
     console.log(this.insID);
     console.log(this.empID);
     console.log(this.planID);

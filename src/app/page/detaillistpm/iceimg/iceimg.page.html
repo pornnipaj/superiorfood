@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+      <ion-title>ชั่งน้ำแข็ง</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="row" *ngIf="type != 'icelist'">
+    <div class="col-6" style="padding: 20px;">
+      <ion-label>ชื่อเครื่อง {{ItemName}}</ion-label>
+    </div>
+    <div class="col-6" style="padding: 20px;">
+    <ion-label>ชื่อร้าน {{CustomerName}}</ion-label>
+  </div>
+    <div class="col-12" style="text-align: center;">
+      <ion-fab>
+        <ion-fab-button (click)="TakeIce(p)">
+          <ion-icon name="camera"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 65px;" *ngIf="type != 'icelist'">
+    <div class="col-3" *ngFor="let p of photolist" style="text-align: center;">
+      <img [src]="apiServer_url + p.file_path" style="width: 65%;padding: 10px;" (click)="TakeEditIce(p)">
+    </div>
+  </div>
+
+  <div *ngIf="type == 'icelist'">
+    <div class="row" style="margin: 5px;">
+      <div class="col-md-12" style="padding:2px;">
+        <div class="portlet box blue">
+          <div class="portlet-title">
+            <div class="caption">
+              <i class="fa fa-user"></i>รายการชั่งน้ำแข็ง</div>
+          </div>
+          <div class="portlet-body">
+            <div class="tab-content">
+              <div class="tab-pane active">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="table-scrollable">
+                      <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th class="text-center"> ลำดับที่ </th>
+                            <th> ชื่อร้าน </th>
+                            <th> ชื่อเครื่อง </th>
+                            <th> สถานะ </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let item of IceList; let i = index">
+                            <td class="text-center"> {{i + 1}} </td>
+                            <td> {{item.CustomerName}} </td>
+                            <td> {{item.ItemName}} </td>
+                            <td> {{item.status}} </td>
+                            <td class="text-center">
+                              <ion-button expand="block" color="warning" (click)="ViewIce(item)" size="small">ดู
+                              </ion-button>
+                              <!-- <span class="label label-sm label-warning circle"
+                                (click)="AddToList(i,item)">เพิ่มลงในรายการเบิก</span> -->
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -36,6 +36,7 @@ import { Network } from '@ionic-native/network/ngx';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 import { BrowserTab } from '@ionic-native/browser-tab/ngx';
 import { AuthGuardGuard } from '../app/auth/auth-guard.guard';
+import { PartsWaitingListPageModule } from '../app/page/sparepart/parts-waiting-list/parts-waiting-list.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -56,6 +57,7 @@ import { AuthGuardGuard } from '../app/auth/auth-guard.guard';
     CheckevaluationPageModule,
     ModalpopPageModule,
     ChecklistPageModule,
+    PartsWaitingListPageModule,
     ChangsparepartPageModule,
     ChecklistcmPageModule,
     ShowimginstallPageModule,

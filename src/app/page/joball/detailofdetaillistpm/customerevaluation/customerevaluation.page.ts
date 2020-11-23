@@ -114,7 +114,7 @@ export class CustomerevaluationPage implements OnInit {
       if (this.problemby == null || this.problemby == "") {
         const alert = await this.alertController.create({
           header: 'แจ้งเตือน',
-          message: 'กรุณากรอกหวช้อปัญหาเกิดจากอะไร',
+          message: 'กรุณากรอกหัวข้อปัญหาเกิดจากอะไร',
           buttons: ['OK']
         });
         await alert.present();
@@ -167,7 +167,7 @@ export class CustomerevaluationPage implements OnInit {
       if (this.problemby == null || this.problemby == "") {
         const alert = await this.alertController.create({
           header: 'แจ้งเตือน',
-          message: 'กรุณากรอกหวช้อปัญหาเกิดจากอะไร',
+          message: 'กรุณากรอกหัวข้อปัญหาเกิดจากอะไร',
           buttons: ['OK']
         });
         await alert.present();
