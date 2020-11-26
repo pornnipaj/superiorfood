@@ -182,7 +182,7 @@
                               (click)="DeleteFromList(i,item)">ลบออกจากรายการเบิก</span> -->
                           </td>
                           <td>
-                            <ion-button expand="block" color="danger" (click)="DeleteJob(item.JobID)" size="small" *ngIf="item.Status == 'กำลังดำเนินการ'"
+                            <ion-button expand="block" color="danger" (click)="DeleteJob(item.JobID)" size="small" *ngIf="item.Status == 'ช่างขอเบิกอะไหล่'"
                              >ลบ</ion-button>
                           </td>
                         </tr>
@@ -225,7 +225,7 @@
                           <td class="text-center"> {{item.PositionNo}} </td>
                           <td class="text-center"> {{item.Amount}} </td>
                           <td>
-                            <ion-button expand="block" color="danger" (click)="delete(item)" size="small" *ngIf="item.Status == 'กำลังดำเนินการ'"
+                            <ion-button expand="block" color="danger" (click)="delete(item)" size="small" *ngIf="item.Status == 'ช่างขอเบิกอะไหล่'"
                              >ลบ</ion-button>
                           </td>
                         </tr>

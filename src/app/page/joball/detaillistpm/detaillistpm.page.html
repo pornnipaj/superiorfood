@@ -182,7 +182,7 @@
                 || data.value.JobType == 'UNINSTALL') || (data.value.JobType == 'CM' 
                 && data.value.WorkCloseID == 'WorkClose004' 
                 && data.value.newinstallID == null) else detail" #detail>รายละเอียด</ion-button>
-                <ion-button color="success" size="small" (click)="imgice(data.value)"
+                <ion-button color="warning" size="small" (click)="imgice(data.value)"
                 *ngIf="data.value.Workfinish == 1 && data.value.JobType == 'INSTALL' else ice" #ice>ชั่งน้ำแข็ง</ion-button>
             </div>
             <hr />

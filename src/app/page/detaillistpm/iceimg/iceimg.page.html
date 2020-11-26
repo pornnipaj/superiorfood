@@ -10,13 +10,14 @@
 
 <ion-content>
   <div class="row" *ngIf="type != 'icelist'">
-    <div class="col-6" style="padding: 20px;">
-      <ion-label>ชื่อเครื่อง {{ItemName}}</ion-label>
+    <div class="col-12" style="padding: 20px;">
+      <div>ชื่อร้าน {{CustomerName}}</div>
+      <div>ชื่อเครื่อง {{ItemName}}</div>
     </div>
-    <div class="col-6" style="padding: 20px;">
-    <ion-label>ชื่อร้าน {{CustomerName}}</ion-label>
-  </div>
     <div class="col-12" style="text-align: center;">
+      <ion-label>รูปภาพ อย่างน้อย 3 รูป</ion-label>
+    </div>
+    <div class="col-12" style="text-align: center;margin-top: 20px;">
       <ion-fab>
         <ion-fab-button (click)="TakeIce(p)">
           <ion-icon name="camera"></ion-icon>

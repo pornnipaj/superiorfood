@@ -703,17 +703,18 @@ export class DetaillistpmPage implements OnInit {
   SaveSerialBarcode(value){
     this.barcodeScanner.scan().then(barcodeData => {
       let barcode = barcodeData
-      if (barcode != null) {
+      if (barcode != null || barcode.text != '') {
         let params = {
           insID: value.installId,
           Type: "UpdateSerial",
           EmpID: this.empID,
-          SerialNo:barcode
+          SerialNo:barcode.text
         }
         console.log(params);
         this.postDataService.PostCus(params).then(status => {
           console.log(status);      
         });
+        this.ngOnInit();
       }
     }).catch(err => {
       console.log('Error', err);
@@ -729,8 +730,8 @@ export class DetaillistpmPage implements OnInit {
       empID: this.empID,
       insID: value.installId,
       planID: value.planID,
-      ItemName:value.ItemName,
-      CustomerName:value.CustomerName,      
+      ItemName:value.ItemsName,
+      CustomerName:this.Customername,      
     }
     console.log(params);
 
