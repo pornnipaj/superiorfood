@@ -24,6 +24,7 @@ export class IceimgPage implements OnInit {
   ItemName;
   CustomerName;
   items;
+load = false;
 
   cameraOptions: CameraOptions = {
     quality: 100,
@@ -435,6 +436,9 @@ export class IceimgPage implements OnInit {
     this.postDataService.SaveCaseAll(param).then(IceList => {
       this.IceList = IceList
       console.log(IceList);
+      if (this.IceList == []) {
+        this.load = true;
+      }
     });
   }
 

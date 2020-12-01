@@ -12,6 +12,7 @@ import { NavController, AlertController,LoadingController } from '@ionic/angular
 export class SparelistPage implements OnInit {
   empID;
   list;
+  loads = false;
   constructor(private postDataService: PostDataService,
     private storageService: StorageService, 
     public alertController: AlertController,
@@ -55,6 +56,9 @@ async loaddata() {
       this.postDataService.PostCus(params).then(list => {
         this.list = list
         console.log(list);
+        if (this.list == []) {
+          this.loads = true;
+        }
       });
     });
   }

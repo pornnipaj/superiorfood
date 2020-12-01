@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="centered">
-                <ion-spinner name="lines" *ngIf="listpm == null"></ion-spinner>
+                <ion-spinner name="lines" *ngIf="listpm == null || load == true"></ion-spinner>
             </div>
             <div class="col-12" #lblData *ngIf="listpm != false; else lblData" style="padding-top: 10px; padding: 0px;">
                 <div class="portlet box blue" *ngFor="let data of listpm">
@@ -61,7 +61,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12" style="text-align: center; margin-top: 20px;" #lblWait *ngIf="listpm == false; else lblWait">
+            <div class="col-12" style="text-align: center; margin-top: 20px;"  *ngIf="listpm == false && load == false">
                 <label>ไม่พบข้อมูล</label>
             </div>
         </div>

@@ -33,7 +33,10 @@
 
   <div *ngIf="type == 'icelist'">
     <div class="row" style="margin: 5px;">
-      <div class="col-md-12" style="padding:2px;">
+      <div class="col-12" style="text-align: center; margin-top: 20px;" *ngIf="load == false">
+        <label>ไม่พบข้อมูล</label>
+      </div>
+      <div class="col-md-12" style="padding:2px;" *ngIf="load == true">
         <div class="portlet box blue">
           <div class="portlet-title">
             <div class="caption">

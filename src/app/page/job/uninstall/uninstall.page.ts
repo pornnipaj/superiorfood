@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../../../auth-service.service';
 import { ActivatedRoute } from '@angular/router';
-import { NavController,AlertController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
 import { StorageService } from '../../../storage.service';
 import { PostDataService } from '../../../post-data.service';
@@ -29,13 +29,14 @@ export class UninstallPage implements OnInit {
   myempID: string;
   empid: any;
   listpm;
+  load = false;
   //#endregion
 
   //#region constructor
   constructor(public DataService: AuthServiceService,
     private route: ActivatedRoute,
     public navCtrl: NavController,
-    public alertController:AlertController,
+    public alertController: AlertController,
     private storageService: StorageService,
     private postDataService: PostDataService) {
 
@@ -46,7 +47,7 @@ export class UninstallPage implements OnInit {
       this.listpm = null;
       this.ChangeMonth();
       this.ngOnInit();
-      
+
     });
     this.storageService.getUser().then(items => {
       this.items = items;
@@ -89,7 +90,7 @@ export class UninstallPage implements OnInit {
       type: "checkstatus",
     }
     console.log(param);
-    
+
     this.postDataService.postcheck(param).then(status => {
       console.log(status);
 
@@ -99,32 +100,32 @@ export class UninstallPage implements OnInit {
           type: this.type,
           date: data.planDate,
         }
-    
+
         let navigationExtras: NavigationExtras = {
           queryParams: {
             data: JSON.stringify(params)
           }
         };
         console.log(navigationExtras);
-    
+
         this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
-      }else{
+      } else {
         this.status();
       }
-    });   
+    });
 
   }
 
   //#endregion
 
   //#region alert status
-  async status(){
+  async status() {
     const alert = await this.alertController.create({
       message: 'ยังไม่ถึงกำหนดรอบการตรวจเช็ค',
       buttons: ['OK']
     });
     await alert.present();
-  }  
+  }
   //#endregion
 
   //#region ChangMonth
@@ -234,6 +235,7 @@ export class UninstallPage implements OnInit {
 
   //#region Chang MonthNext
   changeMonthNext() {
+    this.load = true;
     // const year = new Date().getFullYear();
     //#region nextmonth
     if (this.month == 'มกราคม') {
@@ -328,15 +330,18 @@ export class UninstallPage implements OnInit {
         }
 
         console.log('listpm', this.listpm);
-
+        if (this.listpm == false) {
+          this.load = false;
+        }
       });
     });
     //#endregion
   }
   //#endregion
-  
+
   //#region ChangMonthBack
   changeMonthBack(value) {
+    this.load = true;
     //#region 
     if (this.month == 'มกราคม') {
       this.month = 'ธันวาคม'
@@ -401,7 +406,7 @@ export class UninstallPage implements OnInit {
     }
 
     //#endregion
-    
+
     if (value == false) {
       this.job.empID = this.empid;
       this.job.month = this.intMonth;
@@ -449,7 +454,9 @@ export class UninstallPage implements OnInit {
         }
 
         console.log('listpm', this.listpm);
-
+        if (this.listpm == false) {
+          this.load = false;
+        }
       });
     });
   }

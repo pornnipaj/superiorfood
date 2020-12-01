@@ -29,6 +29,7 @@ export class CmPage implements OnInit {
   myempID: string;
   empid: any;
   listpm;
+  load = false;
   //#endregion
 
   //#region constructor
@@ -222,6 +223,7 @@ export class CmPage implements OnInit {
 
   //#region changeMonthNext
   changeMonthNext(value) {
+    this.load = true;
     // const year = new Date().getFullYear();
     //#region nextmonth
     if (this.month == 'มกราคม') {
@@ -340,7 +342,9 @@ export class CmPage implements OnInit {
         }
 
         console.log('listpm', this.listpm);
-
+        if (this.listpm == false) {
+          this.load = false;
+        }
       });
     });
   }
@@ -348,6 +352,7 @@ export class CmPage implements OnInit {
 
   //#region changeMonthBack
   changeMonthBack(value) {
+    this.load = true;
     //#region 
     if (this.month == 'มกราคม') {
       this.month = 'ธันวาคม'
@@ -464,7 +469,9 @@ export class CmPage implements OnInit {
         }
 
         console.log('listpm', this.listpm);
-
+        if (this.listpm == false) {
+          this.load = false;
+        }
       });
     });
   }

@@ -16,6 +16,7 @@ export class DevicesAcessoryPage implements OnInit {
   user;
   items;
   isShowDetail = false;
+  load = false;
   constructor(private postDataService: PostDataService,
     private storage: StorageService,
     private storageService: StorageService) {
@@ -51,6 +52,9 @@ export class DevicesAcessoryPage implements OnInit {
     this.postDataService.GetDevice(params).then(list => {
       this.Data = list
       console.log(this.Data);
+      if (this.Data == []) {
+        this.load = true;
+      }
 
     });
   }

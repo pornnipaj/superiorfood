@@ -13,6 +13,7 @@ export class WaitsparePage implements OnInit {
   DetailJobList;
   No;
   empID;
+  load = false;
   constructor(private postDataService:PostDataService,private storageService: StorageService,public modalController: ModalController,) { 
     this.loadItems();
   }
@@ -38,7 +39,9 @@ export class WaitsparePage implements OnInit {
     this.postDataService.PostCus(params).then(ListJob => {
       this.ListJob = ListJob;
       console.log(this.ListJob);
-      
+      if (this.ListJob == []) {
+        this.load = true;
+      }
     });
   }
 

@@ -8,12 +8,12 @@
 </ion-header>
 
 <ion-content>
-    <div class="portlet-body">
-      <div class="col-12" style="text-align: center; margin-top: 20px;" *ngIf="ListJob == []">
+    <div class="portlet-body">     
+      <div class="row"> 
+        <div class="col-12" style="text-align: center; margin-top: 20px;" *ngIf="load == false">
         <label>ไม่พบข้อมูล</label>
       </div>
-      <div class="row">
-        <div class="col-md-12" style="margin: 2px;" *ngIf="ListJob">
+        <div class="col-md-12" style="margin: 2px;" *ngIf="load == true">
           <div class="portlet box blue">
             <div class="portlet-title">
               <div class="caption">

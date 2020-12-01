@@ -31,6 +31,7 @@ export class InstallPage implements OnInit {
   empid: any;
   listpm;
   planDate;
+  load = false;
   //#endregion
 
   //#region constructor
@@ -47,7 +48,7 @@ export class InstallPage implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.listpm = null;
       this.ngOnInit();
-      
+
     });
 
     this.storageService.getUser().then(items => {
@@ -90,7 +91,7 @@ export class InstallPage implements OnInit {
       type: "checkstatus",
     }
     console.log(param);
-    
+
     this.postDataService.postcheck(param).then(status => {
       console.log(status);
 
@@ -101,7 +102,7 @@ export class InstallPage implements OnInit {
           date: data.planDate,
         }
         console.log(params);
-    
+
         let navigationExtras: NavigationExtras = {
           queryParams: {
             data: JSON.stringify(params)
@@ -109,7 +110,7 @@ export class InstallPage implements OnInit {
         };
         console.log(navigationExtras);
         this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
-      }else{
+      } else {
         this.status();
       }
     });
@@ -117,13 +118,13 @@ export class InstallPage implements OnInit {
   //#endregion
 
   //#region alert status
-  async status(){
+  async status() {
     const alert = await this.alertController.create({
       message: 'ยังไม่ถึงกำหนดรอบการตรวจเช็ค',
       buttons: ['OK']
     });
     await alert.present();
-  }  
+  }
   //#endregion
 
   //#region ChangMonth
@@ -234,6 +235,7 @@ export class InstallPage implements OnInit {
 
   //#region ChangMonthNext
   changeMonthNext(value) {
+    this.load = true;
     // const year = new Date().getFullYear();
     //#region nextmonth
     if (this.month == 'มกราคม') {
@@ -301,8 +303,8 @@ export class InstallPage implements OnInit {
     //   this.intYear = year
     // }
     //#endregion
-    
-    if (value == false){
+
+    if (value == false) {
       this.job.empID = this.empid;
       this.job.month = this.intMonth;
       this.job.year = this.intYear;
@@ -322,7 +324,7 @@ export class InstallPage implements OnInit {
       });
     }
     if (value != false) {
-      this.listpm = false;      
+      this.listpm = false;
     }
     console.log(this.intMonth)
     console.log(this.intYear)
@@ -351,7 +353,9 @@ export class InstallPage implements OnInit {
         }
 
         console.log('listpm', this.listpm);
-
+        if (this.listpm == false) {
+          this.load = false;
+        }
       });
     });
   }
@@ -359,6 +363,7 @@ export class InstallPage implements OnInit {
 
   //#region ChangMonthBack
   changeMonthBack(value) {
+    this.load = true;
     //#region 
     if (this.month == 'มกราคม') {
       this.month = 'ธันวาคม'
@@ -473,7 +478,9 @@ export class InstallPage implements OnInit {
         }
 
         console.log('listpm', this.listpm);
-
+        if (this.listpm == false) {
+          this.load = false;
+        }
       });
     });
   }

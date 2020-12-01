@@ -17,7 +17,10 @@
 <ion-content>
   <div class="container-fluid">
     <div class="row" style="padding: 5px;">
-      <div class="col-md-12 col-12">
+      <div class="col-12" style="text-align: center; margin-top: 20px;" *ngIf="loads == false">
+        <label>ไม่พบข้อมูล</label>
+      </div>
+      <div class="col-md-12 col-12" *ngIf="loads == true">
         <div class="portlet box blue">
           <div class="portlet-title">
             <div class="caption">
