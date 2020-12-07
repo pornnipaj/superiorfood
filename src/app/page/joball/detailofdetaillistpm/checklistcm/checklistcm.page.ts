@@ -61,6 +61,7 @@ export class ChecklistcmPage implements OnInit {
   isnon = true;
   show;
   type;
+  jobtype;
   //#endregion
 
   //#region constructor
@@ -80,8 +81,8 @@ export class ChecklistcmPage implements OnInit {
     this.ItemCode = this.navParams.data.ItemCode;
     this.SerialNo = this.navParams.data.SerialNo;
     this.cat = this.navParams.data.Cat;
-    this.type = this.navParams.data.type;
-    console.log(this.ItemsName, this.ItemCode, this.SerialNo);
+    this.jobtype = this.navParams.data.jobtype;
+    console.log(this.navParams.data.jobtype);
     this.stock = [];
 
     let param = {
@@ -160,8 +161,11 @@ export class ChecklistcmPage implements OnInit {
       planID: this.planID,
       installID: this.installID,
       typedevice: "GetSpareCM",
-      empID: this.empID
+      empID: this.empID,
+      type:this.jobtype
     }
+    console.log(params);
+    
     this.postDataService.postdevice(params).then(data => {
       this.data = data
       console.log(this.data)
@@ -358,8 +362,11 @@ export class ChecklistcmPage implements OnInit {
         planID: this.planID,
         installID: this.installID,
         typedevice: "GetSpareCM",
-        empID: this.empID
+        empID: this.empID,
+        type:this.jobtype
       }
+      console.log(params);
+      
       this.postDataService.postdevice(params).then(data => {
         this.data = data
         for (let j = 0; j < this.data.length; j++) {

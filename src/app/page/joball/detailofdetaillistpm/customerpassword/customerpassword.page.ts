@@ -51,7 +51,7 @@ export class CustomerpasswordPage implements OnInit {
     async submit(){
       console.log(this.code);
       console.log(this.getpassword);
-      if (this.type != 'INSTALL') {
+      if (this.type == 'PM') {
         if (this.Cuscomment == "" || this.Cuscomment == null || this.code != this.getpassword) {
           if(this.Cuscomment == "" || this.Cuscomment == null){
             const alert = await this.alertController.create({

@@ -37,6 +37,7 @@ import { AppVersion } from '@ionic-native/app-version/ngx';
 import { BrowserTab } from '@ionic-native/browser-tab/ngx';
 import { AuthGuardGuard } from '../app/auth/auth-guard.guard';
 import { PartsWaitingListPageModule } from '../app/page/sparepart/parts-waiting-list/parts-waiting-list.module';
+import { LogPageModule } from '../app/page/detaillistpm/log/log.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -62,6 +63,7 @@ import { PartsWaitingListPageModule } from '../app/page/sparepart/parts-waiting-
     ChecklistcmPageModule,
     ShowimginstallPageModule,
     ChangpasswordPageModule,
+    LogPageModule,
     HttpClientModule,
     NgbModule,
   ],

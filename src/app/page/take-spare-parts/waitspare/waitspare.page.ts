@@ -40,6 +40,8 @@ export class WaitsparePage implements OnInit {
       this.ListJob = ListJob;
       console.log(this.ListJob);
       if (this.ListJob == []) {
+        this.load = false;
+      }else{
         this.load = true;
       }
     });

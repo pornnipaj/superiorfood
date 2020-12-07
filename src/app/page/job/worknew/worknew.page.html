@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+      <ion-title>รายการงานใหม่ ของ {{name}}</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="container-fluid">
+      <div class="row" style="padding: 5px;">
+          <div class="centered">
+              <ion-spinner name="lines" *ngIf="listpm == null || load == true"></ion-spinner>
+          </div>
+          <div class="col-12" #lblData *ngIf="listpm != false; else lblData" style="padding-top: 10px; padding: 0px;">
+              <div class="portlet box blue" *ngFor="let data of listpm">
+                  <div class="portlet-title">
+                      <div class="caption">
+                          <i class="fa fa-circle"></i>{{data.planDateTH}}
+                      </div>
+                  </div>
+                  <div class="portlet-body" style="padding: 5px;">
+                      <ul class="list-group">
+                          <li *ngFor="let item of data.customerdata | keyvalue" (click)="click(item,data)"
+                              class="list-group-item">
+                              <div class="row">
+                                  <div class="col-8">
+                                      <i class="fa fa-square-o" #lblSuccess
+                                      *ngIf="item.value.WorkAll != item.value.WorkFinish; else lblSuccess">
+                                  </i>
+                                  <i class="fa fa-check-square-o" #lblInstall
+                                      *ngIf="item.value.WorkAll == item.value.WorkFinish; else lblInstall">
+                                  </i>
+                                  {{ item.value.Customer }} {{item.value.CustomerEng}}
+                                  </div>
+                                  <div class="col-4">
+                                      <div class="pull-right">
+                                          <div class="badge badge-default bg-blue" style="margin:5px;"
+                                              style="font-size: 0.9em;">จำนวน : {{ item.value.WorkAll }} งาน
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>   
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+          <div class="col-12" style="text-align: center; margin-top: 20px;"  *ngIf="listpm == false && load == false">
+              <label>ไม่พบข้อมูล</label>
+          </div>
+      </div>
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button>
+          <ion-icon name="alert"></ion-icon>
+      </ion-fab-button>
+  </ion-fab>
+</ion-content>

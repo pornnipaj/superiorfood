@@ -73,6 +73,7 @@ export class OverviewPage implements OnInit {
   sparepart;
   datas;
   item;
+  worknew;
   //#endregion
 
   //#region constructor
@@ -470,6 +471,7 @@ export class OverviewPage implements OnInit {
           this.wait = this.jobOverview[i].wait;
           this.ice = this.jobOverview[i].ice;
           this.jobupload = this.jobOverview[i].jobupload;
+          this.worknew = this.jobOverview[i].worknew
         }
       });
     });
@@ -649,6 +651,11 @@ export class OverviewPage implements OnInit {
 
   next(type) {
     console.log(type);
+
+    if (type == 'worknew') {
+      this.router.navigate(['/job/worknew']);
+      this.popoverController.dismiss();
+    }
 
     if (type == 'pm') {
       this.router.navigate(['/job/reportcheckpm']);

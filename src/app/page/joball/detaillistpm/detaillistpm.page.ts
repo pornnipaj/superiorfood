@@ -413,7 +413,7 @@ viewpic(data,item){
             data: data,
             insID: item.installId,
             sparetype: item.sparepart,
-            item: this.item,
+            item: item,
             type: this.type,
             date: this.date,
           }
@@ -501,7 +501,7 @@ viewpic(data,item){
                       data: data,
                       insID: item.installId,
                       sparetype: item.sparepart,
-                      item: this.item,
+                      item: item,
                       type: this.type,
                       date: this.date,
                     }
@@ -837,19 +837,55 @@ viewpic(data,item){
           text: 'ยกเลิก',
           role: 'cancel',
           handler: data => {
-            console.log('Cancel clicked');
+            
           }
         },
         {
           text: 'บันทึก',
           handler: data => {
-            // this.saveTabletProblemLog(data.detail)
+            this.saveAssign(data)
           }
         }
       ]
     });
     (await alert).present();
   }
+  saveAssign(data){
+    console.log(data);
+    if (data.date == '' && data.time == '' && data.remark == '') {
+      this.alertAssign();
+    }else{
+      let params = {
+        insID: this.insID,
+        planID:this.planID,
+        typedevice: "SaveAssignCM",
+        EmpID: this.empID,
+        remark:data.remark,
+        time:data.time,
+        date:data.date +' '+ data.time
+      }
+      console.log(params);
+      this.postDataService.postdevice(params).then(status => {
+        console.log(status);     
+        if (status == true) {
+          this.alertSuccess();
+          this.ngOnInit();
+        } 
+      });
+    }
+  }
+
+  //#region alert success
+  async alertAssign() {
+    const alert = await this.alertController.create({
+      header: 'แจ้งเตือน',
+      message: 'กรุณากรอกข้อมูลให้ครบ',
+      buttons: ['OK']
+    });
+
+    await alert.present();
+  }
+  //#endregion
 
 }
  

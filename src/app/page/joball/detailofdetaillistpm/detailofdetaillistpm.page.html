@@ -369,39 +369,42 @@
                 </div>
               </div>
               <div class="row">
-                <div class="col-6 text-center" style="padding-left: 10px;"
-                  *ngIf="jobtype == 'PM'">
+                <div class="col-6 text-center" style="padding-left: 10px;margin-top: 5px;" *ngIf="jobtype == 'PM'">
                   <button (click)="changsparepm()" [disabled]="!isenabledcheck" class="btn default">
                     เปลี่ยนอะไหล่ </button>
                 </div>
-                <div #nospare class="col-6 text-center" style="padding-left: 10px;"
+                <div #nospare class="col-6 text-center" style="padding-left: 10px;margin-top: 5px;"
                   *ngIf="jobtype != 'INSTALL' else nospare">
                   <button (click)="check()" [disabled]="!isenabledcheck" class="btn default">
                     รายการตรวจเช็ค </button>
                 </div>
-                <div #device class="col-6 text-center" style="padding-left: 10px;"
+                <div #device class="col-6 text-center" style="padding-left: 10px;margin-top: 5px;"
                   *ngIf="SerialNoInstall == '-' && jobtype == 'INSTALL' else device">
                   <button (click)="changspare('device')" [disabled]="!isenabledadddevice" class="btn default">
                     เพิ่มเครื่อง </button>
                 </div>
-                <div #spare class="col-6 text-center" style="padding-left: 10px;"
+                <div #spare class="col-6 text-center" style="padding-left: 10px;margin-top: 5px;"
                   *ngIf="jobtype == 'INSTALL' else spare">
                   <button (click)="changspare()" [disabled]="!isenabledadddevice" class="btn default">
                     เพิ่มอุปกรณ์เสริม </button>
                 </div>
-                <div class="col-6 text-center" style="padding-left: 10px;">
+                <div class="col-6 text-center" style="padding-left: 10px;margin-top: 5px;">
                   <!-- <div *ngIf="sparetype != '' && jobtype == 'PM'; else sparepart">
                     <button (click)="changspare()" [disabled]="!isenabledspare" class="btn default" #sparepart>
                       รายการเปลี่ยนอะไหล่ </button>
                   </div> -->
-                  <div *ngIf="jobtype == 'CM' && request == null; else CM">
+                  <div *ngIf="jobtype == 'CM' && request == null; else CM" style="margin-top: 5px;">
                     <!-- <button (click)="takerequest()" class="btn default" #CM [disabled]="!isenabledrequest">
                       ใบเบิกอะไหล่ </button> -->
-                      <button (click)="showSpare()" class="btn default" #CM [disabled]="!isenabledrequest">
-                        ขอเบิกอะไหล่ </button>
+                    <!-- <img *ngIf="jobtype == 'CM' && request != null ; else imgrequest" [src]="request"
+                  (click)="takerequest()" #imgrequest> -->
+                    <button (click)="showSpare()" class="btn default" #CM [disabled]="!isenabledrequest">
+                      ขอเบิกอะไหล่ </button>
                   </div>
-                  <img *ngIf="jobtype == 'CM' && request != null ; else imgrequest" [src]="request"
-                    (click)="takerequest()" #imgrequest>
+                  <div *ngIf="jobtype != 'PM'" style="margin-top: 5px;">
+                    <button class="btn default" (click)="logs()">
+                      Log </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -486,8 +489,8 @@
               </div>
               <div class="row">
                 <div class="col-6 text-center" style="padding-left: 10px;">
-                  <button class="btn default" *ngIf="jobtype != 'PM' else spare" #spare
-                    (click)="openModalcustomerpw()" [disabled]="!isenabledcuspass">
+                  <button class="btn default" *ngIf="jobtype != 'PM' else spare" #spare (click)="openModalcustomerpw()"
+                    [disabled]="!isenabledcuspass">
                     ความคิดเห็นจากลูกค้า </button>
                   <button class="btn default" *ngIf="jobtype == 'PM' else all" #all (click)="openModalcustomerpw()"
                     [disabled]="!isenabledcuspass">
@@ -526,6 +529,6 @@
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="log()">
     <ion-fab-button>
       <ion-icon name="alert"></ion-icon>
-  </ion-fab-button>
+    </ion-fab-button>
   </ion-fab>
 </ion-content>

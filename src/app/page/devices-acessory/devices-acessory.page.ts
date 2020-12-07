@@ -53,6 +53,8 @@ export class DevicesAcessoryPage implements OnInit {
       this.Data = list
       console.log(this.Data);
       if (this.Data == []) {
+        this.load = false;
+      }else{
         this.load = true;
       }
 

@@ -34,10 +34,13 @@ const routes: Routes = [
   { path: 'changsparepart', loadChildren: './page/joball/detailofdetaillistpm/changsparepart/changsparepart.module#ChangsparepartPageModule' },
   { path: 'changpassword', loadChildren: './page/setting/changpassword/changpassword.module#ChangpasswordPageModule' },
   { path: 'sparepart', loadChildren: './page/sparepart/sparepart.module#SparepartPageModule' },
-  { path: 'waitspare', loadChildren: './page/take-spare-parts/waitspare/waitspare.module#WaitsparePageModule' },  { path: 'parts-waiting-list', loadChildren: './page/sparepart/parts-waiting-list/parts-waiting-list.module#PartsWaitingListPageModule' },
+  { path: 'waitspare', loadChildren: './page/take-spare-parts/waitspare/waitspare.module#WaitsparePageModule' },
+  { path: 'parts-waiting-list', loadChildren: './page/sparepart/parts-waiting-list/parts-waiting-list.module#PartsWaitingListPageModule' },
   { path: 'iceimg', loadChildren: './page/detaillistpm/iceimg/iceimg.module#IceimgPageModule' },
   { path: 'scanserial', loadChildren: './page/detaillistpm/scanserial/scanserial.module#ScanserialPageModule' },
   { path: 'picserial', loadChildren: './page/detaillistpm/picserial/picserial.module#PicserialPageModule' },
+  { path: 'log', loadChildren: './page/detaillistpm/log/log.module#LogPageModule' },
+  { path: 'job/worknew', loadChildren: './page/job/worknew/worknew.module#WorknewPageModule' },
 
 ];
 
