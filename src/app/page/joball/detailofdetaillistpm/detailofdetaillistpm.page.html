@@ -390,13 +390,15 @@
                     เพิ่มอุปกรณ์เสริม </button>
                 </div>
                 <div class="col-6 text-center" style="padding-left: 10px;">
-                  <div *ngIf="sparetype != '' && jobtype == 'PM'; else sparepart">
+                  <!-- <div *ngIf="sparetype != '' && jobtype == 'PM'; else sparepart">
                     <button (click)="changspare()" [disabled]="!isenabledspare" class="btn default" #sparepart>
                       รายการเปลี่ยนอะไหล่ </button>
-                  </div>
+                  </div> -->
                   <div *ngIf="jobtype == 'CM' && request == null; else CM">
-                    <button (click)="takerequest()" class="btn default" #CM [disabled]="!isenabledrequest">
-                      ใบเบิกอะไหล่ </button>
+                    <!-- <button (click)="takerequest()" class="btn default" #CM [disabled]="!isenabledrequest">
+                      ใบเบิกอะไหล่ </button> -->
+                      <button (click)="showSpare()" class="btn default" #CM [disabled]="!isenabledrequest">
+                        ขอเบิกอะไหล่ </button>
                   </div>
                   <img *ngIf="jobtype == 'CM' && request != null ; else imgrequest" [src]="request"
                     (click)="takerequest()" #imgrequest>
@@ -484,10 +486,10 @@
               </div>
               <div class="row">
                 <div class="col-6 text-center" style="padding-left: 10px;">
-                  <button class="btn default" *ngIf="jobtype == 'INSTALL' else spare" #spare
+                  <button class="btn default" *ngIf="jobtype != 'PM' else spare" #spare
                     (click)="openModalcustomerpw()" [disabled]="!isenabledcuspass">
-                    ยืนยันการปิดงาน </button>
-                  <button class="btn default" *ngIf="jobtype != 'INSTALL' else all" #all (click)="openModalcustomerpw()"
+                    ความคิดเห็นจากลูกค้า </button>
+                  <button class="btn default" *ngIf="jobtype == 'PM' else all" #all (click)="openModalcustomerpw()"
                     [disabled]="!isenabledcuspass">
                     รหัสยืนยันตัวตนลูกค้า </button>
                 </div>

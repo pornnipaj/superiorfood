@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
-import { Platform, IonList,NavController,ModalController } from '@ionic/angular';
+import { Platform, IonList, NavController, ModalController } from '@ionic/angular';
 import { StorageService, User } from '../../storage.service';
 import { AuthenticationService } from '../../auth/authentication.service';
 import { ChangpasswordPage } from '../setting/changpassword/changpassword.page';
@@ -22,6 +22,11 @@ export class SettingPage implements OnInit {
   VersionNumber;
   statusversion;
   link;
+  data;
+  productInstall;
+  installId;
+  planID;
+  sparepart;
   //#endregion
 
   //#region constructor
@@ -45,7 +50,7 @@ export class SettingPage implements OnInit {
 
   //#region start
   ngOnInit() {
-    
+
   }
   //#endregion
 
@@ -67,7 +72,7 @@ export class SettingPage implements OnInit {
     modal.onDidDismiss().then(data => {
     })
     return await modal.present();
-  }  
+  }
   //#endregion
 
   //#region Check Version
@@ -83,7 +88,7 @@ export class SettingPage implements OnInit {
       this.postDataService.postdevice(param).then(data => {
         this.statusversion = data;
         console.log(this.statusversion);
-  
+
         if (this.statusversion == true) {
           this.alertversionlast();
         } else {
@@ -118,7 +123,7 @@ export class SettingPage implements OnInit {
     const alert = await this.alertController.create({
       message: 'เวอร์ชั่น' + this.VersionNumber + ' เป็นเวอร์ชั่นล่าสุด',
       buttons: [
-         {
+        {
           text: 'ยกเลิก',
           handler: () => {
           }
@@ -149,4 +154,31 @@ export class SettingPage implements OnInit {
       });
   }
   //#endregion
+
+  test() {
+    let params = {
+      typedevice: 'GetPM',
+      empID: '02026476-e932-4a8f-a1bb-7481b4e58e0a',
+      SerialScan: '1803002848'
+    }
+    console.log(params);
+
+    this.postDataService.postdevice(params).then(data => {
+      this.data = data;
+      console.log(data);
+      for (let i = 0; i < this.data.length; i++) {
+        
+        this.productInstall = JSON.parse(this.data[i].productInstall);
+        console.log(this.data);
+        
+      }
+      for (let i = 0; i < this.productInstall.length; i++) {   
+        this.installId = this.productInstall[i].installId;
+        this.planID = this.productInstall[i].planID;
+        this.sparepart = this.productInstall[i].sparepart;
+        console.log(this.installId +"-"+this.planID+"-"+this.sparepart);
+        
+      }
+    });
+  }
 }

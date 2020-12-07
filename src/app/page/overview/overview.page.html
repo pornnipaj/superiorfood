@@ -5,12 +5,15 @@
             <ion-title>ภาพรวมการทำงาน</ion-title>
         </ion-buttons>
         <ion-buttons slot="primary">
-            <ion-button (click)="Openpop($event)">
+            <ion-button (click)="GetBarcode()">
+                <ion-icon slot="icon-only" name="barcode"></ion-icon>
+            </ion-button>
+            <!-- <ion-button (click)="Openpop($event)">
                 <i class="fa fa-bell"></i>&nbsp;{{job}}
-            </ion-button>
-            <ion-button (click)="loadpage()">
+            </ion-button> -->
+            <!-- <ion-button (click)="loadpage()">
                 <ion-icon slot="icon-only" name="refresh"></ion-icon>
-            </ion-button>
+            </ion-button> -->
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
@@ -66,7 +69,42 @@
                             <label class="col-6 text-right">{{jobupload}}</label>
                         </div>
                     </div>
-
+                    <div class="portlet box blue" style="margin-top: 5px;">
+                        <div class="portlet-title">
+                            <div class="caption">
+                                <i class="fa fa-wrench"></i>งานทั้งหมด
+                            </div>
+                            <div class="tools">
+                                <ion-icon (click)="loadpage()" slot="icon-only" name="refresh"></ion-icon>
+                            </div>
+                        </div>
+                        <div class="portlet-body" style="padding: 2px;">
+                            <div (click)="next('pm')">
+                                <label class="col-6">PM</label>
+                                <label class="col-6 text-right">{{pm}}</label>
+                            </div>
+                            <div (click)="next('cm')">
+                                <label class="col-6">TK</label>
+                                <label class="col-6 text-right">{{cm}}</label>
+                            </div>
+                            <div (click)="next('install')">
+                                <label class="col-6">INSTALL</label>
+                                <label class="col-6 text-right">{{install}}</label>
+                            </div>
+                            <div (click)="next('uninstall')">
+                                <label class="col-6">UNINSTALL</label>
+                                <label class="col-6 text-right">{{uninstall}}</label>
+                            </div>
+                            <div (click)="next('waiting')">
+                                <label class="col-6">รายการรอรับอะไหล่</label>
+                                <label class="col-6 text-right">{{wait}}</label>
+                            </div>
+                            <div (click)="next('ice')">
+                                <label class="col-6">ชั่งน้ำแข็ง</label>
+                                <label class="col-6 text-right">{{ice}}</label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-md-4" style="padding-left:2px;padding-right: 2px;margin-top: 3px;">
@@ -85,7 +123,7 @@
                             <label class="col-8">{{ position }}</label>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

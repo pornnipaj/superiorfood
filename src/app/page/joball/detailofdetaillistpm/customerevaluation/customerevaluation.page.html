@@ -9,7 +9,7 @@
 <ion-content>
   <div class="container">
       <div class="row">
-        <div class="col-12" #show *ngIf="(jobtype == 'CM' && this.workclose != 'workclose') || (jobtype == 'CM' && this.workclose == 'workclose'); else show">
+        <div class="col-12" #show *ngIf="(jobtype == 'CM' && this.workclose == 'workclose'); else show">
           <ion-item>
             <ion-label>ปัญหาเกิดจาก</ion-label>
             <ion-select interface="popover" (ionChange)="onChange($event,'resolution')" [(ngModel)]="problemby">

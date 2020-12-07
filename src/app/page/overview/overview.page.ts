@@ -11,7 +11,7 @@ import { SignaturePad } from 'angular2-signaturepad/signature-pad';
 import { Storage } from '@ionic/storage';
 import { SignaturePage } from '../joball/detailofdetaillistpm/signature/signature.page'
 import { ActivatedRoute, Data } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite/ngx';
 import { Platform, PopoverController, ModalController, Events, LoadingController } from '@ionic/angular';
@@ -21,6 +21,8 @@ import { from } from 'rxjs';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 import { BrowserTab } from '@ionic-native/browser-tab/ngx';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { Router,NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-overview',
@@ -64,6 +66,13 @@ export class OverviewPage implements OnInit {
   wait;
   ice;
   jobupload;
+  data;
+  productInstall
+  installId
+  planID
+  sparepart;
+  datas;
+  item;
   //#endregion
 
   //#region constructor
@@ -82,7 +91,10 @@ export class OverviewPage implements OnInit {
     private storageService: StorageService,
     private appVersion: AppVersion,
     public alertController: AlertController,
-    private browserTab: BrowserTab) {
+    public navCtrl: NavController,
+    private browserTab: BrowserTab,
+    private barcodeScanner: BarcodeScanner,
+    private router: Router) {
 
     setTimeout(() => {
       this.ngOnInit();
@@ -99,15 +111,15 @@ export class OverviewPage implements OnInit {
       this.load();
       this.ngOnInit();
       this.noti();
-    }, 500);    
+    }, 500);
   }
 
-  noti(){
-  //   this.localNotifications.schedule({
-  //     title: 'The big survey',
-  //   text: 'Are you a fan of RB Leipzig?',
-  //   attachments: ['file://img/rb-leipzig.jpg']
-  // });
+  noti() {
+    //   this.localNotifications.schedule({
+    //     title: 'The big survey',
+    //   text: 'Are you a fan of RB Leipzig?',
+    //   attachments: ['file://img/rb-leipzig.jpg']
+    // });
   }
   async load() {
     const loading = await this.loadingController.create({
@@ -130,7 +142,7 @@ export class OverviewPage implements OnInit {
         install: this.install,
         uninstall: this.uninstall,
         wait: this.wait,
-        ice:this.ice
+        ice: this.ice
       }
     });
     return await popover.present();
@@ -484,9 +496,9 @@ export class OverviewPage implements OnInit {
       this.postDataService.postdevice(param).then(data => {
         this.statusversion = data;
         console.log(this.statusversion);
-  
+
         if (this.statusversion == true) {
-  
+
         } else {
           this.link = this.statusversion;
           this.alertversion();
@@ -537,4 +549,148 @@ export class OverviewPage implements OnInit {
       });
   }
   //#endregion
+  GetPM() {
+    let param = {
+      planID: this.planID,
+      install: this.item,
+      data: this.data,
+      insID: this.installId,
+      sparetype: this.sparepart,
+      item: this.productInstall,
+      type: "PM",
+    }
+    console.log(param);
+
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        data: JSON.stringify(param)
+      }
+    };
+    this.navCtrl.navigateForward(['joball/listpm/detailofdetaillistpm'], navigationExtras);
+  }
+
+
+  async gopm(barcode) {
+    let params = {
+      typedevice: 'GetPM',
+      empID: this.empID,
+      SerialScan: barcode
+    }
+    console.log(params);
+
+    this.postDataService.postdevice(params).then(datas => {
+      this.datas = datas;
+      console.log(this.datas);
+      if (this.datas == true) {
+        this.success();
+      }
+      else if (this.datas == false) {
+        this.fail();
+      } else {
+        for (let i = 0; i < this.datas.length; i++) {
+          this.data = this.datas[i];
+          this.productInstall = JSON.parse(this.datas[i].productInstall);
+        }
+        for (let i = 0; i < this.productInstall.length; i++) {
+          this.item = this.productInstall[i];
+          this.installId = this.productInstall[i].installId;
+          this.planID = this.productInstall[i].planID;
+          this.sparepart = this.productInstall[i].sparepart;
+          console.log(this.item);
+          this.GetPM();
+        }
+      }
+    });
+  }
+
+  async success() {
+    const alert = await this.alertController.create({
+      header: 'ปิดงานเรียบร้อยแล้ว',
+      buttons: [
+        {
+          text: 'ตกลง',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  GetBarcode() {
+    this.gopm('00030700058');
+    // this.barcodeScanner.scan().then(barcodeData => {
+    //   let barcode = barcodeData
+    //   if (barcode != null || barcode.text != '') {
+    //     this.gopm(barcode.text);
+    //   }
+    // }).catch(err => {
+    //   console.log('Error', err);
+    // });
+  }
+
+  async fail() {
+    const alert = await this.alertController.create({
+      header: 'ไม่พบ Serial No. / Asset Plate SFS นี้',
+      buttons: [
+        {
+          text: 'ตกลง',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  next(type) {
+    console.log(type);
+
+    if (type == 'pm') {
+      this.router.navigate(['/job/reportcheckpm']);
+      this.popoverController.dismiss();
+    }
+
+    if (type == 'cm') {
+      this.router.navigate(['/job/cm']);
+      this.popoverController.dismiss();
+    }
+
+    if (type == 'install') {
+      this.router.navigate(['/job/install']);
+      this.popoverController.dismiss();
+    }
+
+    if (type == 'uninstall') {
+
+      this.router.navigate(['/job/uninstall']);
+      this.popoverController.dismiss();
+    }
+    if (type == 'waiting') {
+
+      this.router.navigate(['/waitspare']);
+      this.popoverController.dismiss();
+    }
+    if (type == 'ice') {
+
+      let params = {
+        type:'icelist'
+      }
+      console.log(params);
+  
+      const navigationExtras: NavigationExtras = {
+        queryParams: {
+          data: JSON.stringify(params)
+        }
+      };
+      this.navCtrl.navigateForward(['/iceimg'], navigationExtras);
+      this.popoverController.dismiss();
+  
+      console.log(navigationExtras);
+    }
+  }
 }

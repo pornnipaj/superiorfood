@@ -36,6 +36,8 @@ const routes: Routes = [
   { path: 'sparepart', loadChildren: './page/sparepart/sparepart.module#SparepartPageModule' },
   { path: 'waitspare', loadChildren: './page/take-spare-parts/waitspare/waitspare.module#WaitsparePageModule' },  { path: 'parts-waiting-list', loadChildren: './page/sparepart/parts-waiting-list/parts-waiting-list.module#PartsWaitingListPageModule' },
   { path: 'iceimg', loadChildren: './page/detaillistpm/iceimg/iceimg.module#IceimgPageModule' },
+  { path: 'scanserial', loadChildren: './page/detaillistpm/scanserial/scanserial.module#ScanserialPageModule' },
+  { path: 'picserial', loadChildren: './page/detaillistpm/picserial/picserial.module#PicserialPageModule' },
 
 ];
 

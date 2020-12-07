@@ -423,13 +423,13 @@ export class DetailofdetaillistpmPage implements OnInit {
 
     } else if (this.jobtype == "INSTALL") {
       this.worktype = "งานติดตั้ง"
-      this.title1 = "รายการที่ 1 ถ่ายภาพก่อนการติดตั้ง"
-      this.title2 = "รายการที่ 2 ถ่ายภาพหลังการติดตั้ง"
+      this.title1 = "รายการที่ 1 รูปภาพหน้างาน"
+      this.title2 = "รายการที่ 2 รูปภาพหลังการติดตั้ง"
       this.title3 = "รายการที่ 3 เลือกเครื่องหลักและอุปกรณ์เสริม"
       this.title7 = "รายการที่ 4 ความคิดเห็นของช่าง"
       this.title5 = "รายการที่ 5 ประเมินการทำงาน"
       this.title4 = "รายการที่ 6 ลายเซ็นต์ผู้รับผิดชอบ"
-      this.title6 = "รายการที่ 7 ยืนยันการปิดงาน"
+      this.title6 = "รายการที่ 7 ความคิดเห็นจากลูกค้า"
       this.title8 = "รายการที่ 8 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
       this.isenabledtitle3 = true;
       this.isenabledadddevice = false;
@@ -439,11 +439,12 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.getImgInstall();
       this.checkIn();
     } else if (this.jobtype == "UNINSTALL") {
+      this.isenabledtitle1 = false;
       this.worktype = "งานถอนการติดตั้ง"
       this.title7 = "รายการที่ 3 ความคิดเห็นของช่าง"
       this.title5 = "รายการที่ 4 ประเมินการทำงาน"
       this.title4 = "รายการที่ 5 ลายเซ็นต์ผู้รับผิดชอบ"
-      this.title6 = "รายการที่ 6 ยืนยันการปิดงาน"
+      this.title6 = "รายการที่ 6 ความคิดเห็นจากลูกค้า"
       this.title8 = "รายการที่ 7 บันทึกข้อมูลและส่งข้อมุลเข้าระบบ"
       this.isenabledtitle3 = false;
     } else if (this.jobtype == "PM") {
@@ -2897,6 +2898,11 @@ export class DetailofdetaillistpmPage implements OnInit {
 
   //#region Check Take After  
   checklist() {
+    if (this.jobtype == "INSTALL") {
+      if (this.status6 == "1" || this.status7 == "1" || this.status8 == "1" || this.status9 == "1" || this.status10 == "1") {
+        this.isenabledadddevice = true;
+      }
+    }
     if (this.status6 == "1" && this.status7 == "1" && this.status8 == "1" && this.status9 == "1" && this.status10 == "1") {
       if (this.jobtype == "INSTALL") {
         this.isenabledadddevice = true;
@@ -3366,7 +3372,7 @@ export class DetailofdetaillistpmPage implements OnInit {
       this.code = this.cuscom.data.code;
       this.Cuscomment = this.cuscom.data.Cuscomment;
       console.log(this.cuscom);
-      if (this.jobtype == 'INSTALL') {
+      if (this.jobtype != 'PM') {
         let params = {
           planID: this.planID,
           installID: this.installID,
@@ -3570,5 +3576,27 @@ export class DetailofdetaillistpmPage implements OnInit {
       console.log(data);
     }
     );
+  }
+  showSpareHistory() {
+    let params = {
+      empID: this.empID,
+      insID: this.installID,
+      planID: this.planID,
+      item: this.item,
+      type: this.type,
+      date: this.date,
+      ItemsName: this.ItemsName,
+      Type: "history"
+    }
+    console.log(params);
+
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        data: JSON.stringify(params)
+      }
+    };
+    this.navCtrl.navigateForward(['/sparepart'], navigationExtras);
+
+    console.log(navigationExtras);
   }
 }

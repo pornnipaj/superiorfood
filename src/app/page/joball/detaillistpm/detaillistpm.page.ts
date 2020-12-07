@@ -48,6 +48,7 @@ export class DetaillistpmPage implements OnInit {
   new = false;
   imgbf = false;
   sparetype;
+  statusserial;
   //#endregion
 
   //#region constructor
@@ -139,7 +140,7 @@ export class DetaillistpmPage implements OnInit {
             } else if (i == 3) {
               this.getworkclose2 = this.getworkclose[3].SystemDataName;
               this.getworkclosevalue2 = this.getworkclose[3].SystemID;
-              this.text = 'เริ่มงาน'
+              this.text = 'ตกลง'
             } else if (i == 0) {
               this.getworkclose3 = this.getworkclose[0].SystemDataName;
               this.getworkclosevalue3 = this.getworkclose[0].SystemID;
@@ -217,7 +218,7 @@ export class DetaillistpmPage implements OnInit {
           } else if (i == 3) {
             this.getworkclose2 = this.getworkclose[3].SystemDataName;
             this.getworkclosevalue2 = this.getworkclose[3].SystemID;
-            this.text = 'เริ่มงาน'
+            this.text = 'ตกลง'
           } else if (i == 0) {
             this.getworkclose3 = this.getworkclose[0].SystemDataName;
             this.getworkclosevalue3 = this.getworkclose[0].SystemID;
@@ -313,6 +314,72 @@ export class DetaillistpmPage implements OnInit {
     modal.onDidDismiss().then(data => {
     })
     return await modal.present();
+  }
+
+viewpic(data,item){
+  let params = { 
+    empID: this.empID,
+    data: data,
+    item: item,
+    type:this.type,      
+  }
+  console.log(params);
+
+  const navigationExtras: NavigationExtras = {
+    queryParams: {
+      data: JSON.stringify(params)
+    }
+  };
+  this.navCtrl.navigateForward(['/picserial'], navigationExtras);
+}
+
+  scan(data, item){console.log("data"+data);
+  console.log("item"+item);
+    if (this.type != "INSTALL") {
+      
+    
+    let params = {
+      installID: item.installId,
+      typedevice: "checkserial"
+    }
+    console.log(params);
+    this.postDataService.postdevice(params).then(statusserial => {
+      this.statusserial = statusserial;
+      console.log(this.statusserial);      
+      if (this.statusserial != false) {
+        this.click(data, item)
+      }else{
+        let tran = {
+          AssetID: item.AssetID,
+          Serial: item.Serial,
+          planID: item.planID,
+          empID: this.empID,
+          insID: item.installId,
+          type: this.type
+        }
+        console.log(tran);
+
+        this.postDataService.postTranService(tran).then(TranService => {
+          let params = { 
+            empID: this.empID,
+            data: data,
+            item: item,
+            type:this.type,      
+          }
+          console.log(params);
+      
+          const navigationExtras: NavigationExtras = {
+            queryParams: {
+              data: JSON.stringify(params)
+            }
+          };
+          this.navCtrl.navigateForward(['/picserial'], navigationExtras);
+        });        
+      } 
+    });   
+    }else{
+      this.click(data, item)
+    } 
   }
   //#region click
   async click(data, item) {
@@ -744,5 +811,45 @@ export class DetaillistpmPage implements OnInit {
 
     console.log(navigationExtras);
   }
+
+  async assign() {
+    let alert = this.alertController.create({
+      message: 'ตอบรับงาน',
+      inputs: [
+        {        
+          name: 'date',
+          placeholder: 'วันที่',
+          type: 'date'
+        },
+        {
+          name: 'time',
+          placeholder: 'เวลา',
+          type: 'time'
+        },
+        {
+          name: 'remark',
+          placeholder: 'หมายเหตุ',
+          type: 'text'
+        }
+      ],
+      buttons: [
+        {
+          text: 'ยกเลิก',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'บันทึก',
+          handler: data => {
+            // this.saveTabletProblemLog(data.detail)
+          }
+        }
+      ]
+    });
+    (await alert).present();
+  }
+
 }
  

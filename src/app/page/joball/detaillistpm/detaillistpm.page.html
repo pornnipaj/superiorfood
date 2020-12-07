@@ -114,19 +114,24 @@
             </div>
             <div class="row col-12">
               <label class="col-4 text">Serial No:</label>
-              <label class="col-8 subtext" *ngIf="data.value.JobType != 'PM'">{{data.value.SerialNo}}</label>
-                  <ion-input class="col-6" *ngIf="data.value.JobType == 'PM'" type="text" style="padding: 0px!important;padding-left: 5px!important;" name="SerialNo" [(ngModel)]="data.value.SerialNo">
-                  </ion-input>
-                <div class="col-1" *ngIf="data.value.JobType == 'PM'">
+              <label class="col-8 subtext">{{data.value.SerialNo}}</label>
+                  <!-- <ion-input class="col-6" *ngIf="data.value.JobType == 'PM'" type="text" style="padding: 0px!important;padding-left: 5px!important;" name="SerialNo" [(ngModel)]="data.value.SerialNo"> -->
+                  <!-- </ion-input> -->
+                  <!-- <div class="col-1" *ngIf="data.value.JobType == 'PM'">
+                    <ion-button size="small" (click)="viewpic(item, data.value)">
+                      <ion-icon name="view"></ion-icon>
+                    </ion-button>
+                  </div> -->
+                <!-- <div class="col-1" *ngIf="data.value.JobType == 'PM'">
                   <ion-button size="small" (click)="SaveSerial(data.value)">
                     <ion-icon name="save"></ion-icon>
                   </ion-button>
-                </div>
-                <div class="col-1" *ngIf="data.value.JobType == 'PM'">
+                </div> -->
+                <!-- <div class="col-1" *ngIf="data.value.JobType == 'PM'">
                   <ion-button size="small" (click)="SaveSerialBarcode(data.value)">
                     <ion-icon name="barcode"></ion-icon>
                   </ion-button>
-                </div>
+                </div> -->
               </div>
             <div class="row col-12">
               <label class="col-4 text" *ngIf="new">New Serial No:</label>
@@ -152,7 +157,7 @@
               <div class="col-4 text" #cm>การเปลี่ยนอุปกรณ์ :</div>
               <div class="col-8 subtext" #cm>{{data.value.TypeChang}}</div>
             </div>
-            <div class="row col-12" *ngIf="data.value.JobType == 'CM' && data.value.Workfinish == 1 else cm">
+            <div class="row col-12" *ngIf="data.value.JobType == 'CM' && data.value.Workfinish == 1 && data.value.WorkCloseID == 'WorkClose004' else cm">
               <div class="col-4 text" #cm>ปัญหาเกิดจาก :</div>
               <div class="col-8 subtext" #cm>{{data.value.ProblemBy}}</div>
             </div>
@@ -165,27 +170,33 @@
             <!-- </div> -->
 
             <div class="col-12">
-              <ion-button size="small" (click)="showSpareHistory(data.value)" *ngIf="data.value.JobType == 'PM'">
+              <ion-button expand="block" size="small" (click)="Imgbf(data.value)" *ngIf="imgbf">ภาพหน้างาน</ion-button> 
+              <ion-button expand="block" color="warning" size="small" (click)="assign()"
+              *ngIf="data.value.JobType != 'PM' && data.value.status == 'Assign' else assigns" #assigns>ตอบรับงาน</ion-button>
+              <ion-button expand="block" color="success" size="small" (click)="scan(item, data.value)"
+              *ngIf="data.value.JobType == 'PM' && data.value.Workfinish == 0 else wait" #wait>เริ่มงาน</ion-button>
+              <ion-button expand="block" color="success" size="small" (click)="scan(item, data.value)"
+              *ngIf="data.value.JobType != 'PM' && data.value.Workfinish == 0 && (data.value.status == 'Inprogress' || data.value.status == 'Response') else wait" #wait>เริ่มงาน</ion-button>              
+              <ion-button expand="block" size="small" (click)="showSpare(data.value)"
+              *ngIf="data.value.JobType == 'PM' && data.value.Workfinish == 0">เบิกอะไหล่</ion-button>
+              <ion-button expand="block" size="small" (click)="showSpareHistory(data.value)" *ngIf="data.value.JobType == 'PM'">
                 ประวัติการเบิกอะไหล่</ion-button>
-              <ion-button size="small" (click)="showSpare(data.value)"
-                *ngIf="data.value.JobType == 'PM' && data.value.Workfinish == 0">เบิกอะไหล่</ion-button>
-              <ion-button size="small" (click)="showSpareHistory(data.value)" *ngIf="data.value.JobType == 'CM'">
-                ประวัติการเบิกอะไหล่</ion-button>
-              <ion-button size="small" (click)="showSpare(data.value)"
+                <ion-button expand="block" size="small" (click)="showSpare(data.value)"
                 *ngIf="data.value.JobType == 'CM' && data.value.Workfinish == 0">เบิกอะไหล่</ion-button>
-              <ion-button size="small" (click)="Imgbf(data.value)" *ngIf="imgbf">ภาพหน้างาน</ion-button>
-              <ion-button color="success" size="small" (click)="click(item, data.value)"
-                *ngIf="data.value.Workfinish == 0 else wait" #wait>เริ่มงาน</ion-button>
-                <ion-button color="success" size="small" (click)="click(item, data.value)"
+              <ion-button expand="block" size="small" (click)="showSpareHistory(data.value)" *ngIf="data.value.JobType == 'CM'">
+                ประวัติการเบิกอะไหล่</ion-button>
+                <ion-button expand="block" color="warning" size="small" (click)="imgice(data.value)"
+                *ngIf="data.value.Workfinish == 1 && data.value.JobType == 'INSTALL' else ice" #ice>ชั่งน้ำแข็ง</ion-button>
+                <ion-button expand="block" color="warning" size="small" (click)="viewpic(item, data.value)"
+                *ngIf="data.value.JobType != 'UNINSTALL' && data.value.isSerial == true else sn" #sn>ดูรูป Serial</ion-button>
+                <ion-button expand="block" color="success" size="small" (click)="click(item, data.value)"
                 *ngIf="data.value.Workfinish == 1 && 
                 (data.value.JobType == 'PM' || data.value.JobType == 'INSTALL' 
                 || data.value.JobType == 'UNINSTALL') || (data.value.JobType == 'CM' 
                 && data.value.WorkCloseID == 'WorkClose004' 
-                && data.value.newinstallID == null) else detail" #detail>รายละเอียด</ion-button>
-                <ion-button color="warning" size="small" (click)="imgice(data.value)"
-                *ngIf="data.value.Workfinish == 1 && data.value.JobType == 'INSTALL' else ice" #ice>ชั่งน้ำแข็ง</ion-button>
+                && data.value.newinstallID == null) else detail" #detail>รายละเอียด</ion-button>               
             </div>
-            <hr />
+            <hr /> 
           </div>
         </div>
       </div>

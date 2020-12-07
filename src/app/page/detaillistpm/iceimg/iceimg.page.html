@@ -27,7 +27,7 @@
   </div>
   <div class="row" style="margin-top: 65px;" *ngIf="type != 'icelist'">
     <div class="col-3" *ngFor="let p of photolist" style="text-align: center;">
-      <img [src]="apiServer_url + p.file_path" style="width: 65%;padding: 10px;" (click)="TakeEditIce(p)">
+      <img [src]="apiServer_url + p.file_path" style="width: 80%;padding: 10px;" (click)="TakeEditIce(p)">
     </div>
   </div>
 

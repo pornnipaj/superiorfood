@@ -111,15 +111,7 @@ export class CustomerevaluationPage implements OnInit {
     console.log(this.resolutiondetail);
 
     if (this.jobtype == "CM" && this.workclose != 'workclose') {
-      if (this.problemby == null || this.problemby == "") {
-        const alert = await this.alertController.create({
-          header: 'แจ้งเตือน',
-          message: 'กรุณากรอกหัวข้อปัญหาเกิดจากอะไร',
-          buttons: ['OK']
-        });
-        await alert.present();
-      }
-      else if (this.resolutiondetail == null || this.resolutiondetail == "") {
+      if (this.resolutiondetail == null || this.resolutiondetail == "") {
         const alert = await this.alertController.create({
           header: 'แจ้งเตือน',
           message: 'กรุณากรอกวิธีการแก้ปัญหา',
