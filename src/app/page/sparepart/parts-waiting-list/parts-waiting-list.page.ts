@@ -22,7 +22,9 @@ export class PartsWaitingListPage implements OnInit {
     private postDataService: PostDataService,
     sanitizer: DomSanitizer,
     public alertController: AlertController,) {
-    this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/PartsWaitingList.aspx' + '?empID=' + this.empID + '?JobID=' + this.JobID);
+      this.empID = this.navParams.data.empID;
+      this.JobID = this.navParams.data.JobID;
+    this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/PartsWaitingList.aspx' + '?empID=' + this.empID + '&JobID=' + this.JobID);
   }
 
   ngOnInit() {

@@ -436,11 +436,13 @@ load = false;
     this.postDataService.SaveCaseAll(param).then(IceList => {
       this.IceList = IceList
       console.log(IceList);
-      if (this.IceList == [] || this.IceList == null) {
+      if (this.IceList == []) {
         this.load = false;
       }else{
         this.load = true;
       }
+      console.log(this.load);
+      
     });
   }
 

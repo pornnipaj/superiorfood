@@ -176,7 +176,7 @@
               <ion-button expand="block" color="success" size="small" (click)="scan(item, data.value)"
               *ngIf="data.value.JobType != 'CM' && data.value.Workfinish == 0 else wait" #wait>เริ่มงาน</ion-button>
               <ion-button expand="block" color="success" size="small" (click)="scan(item, data.value)"
-              *ngIf="data.value.JobType == 'CM' && data.value.Workfinish == 0 && (data.value.status == 'Inprogress' || data.value.status == 'Response') else wait" #wait>เริ่มงาน</ion-button>              
+              *ngIf="data.value.JobType == 'CM' && data.value.Workfinish == 0 && data.value.status != 'Assign'" #wait>เริ่มงาน</ion-button>              
               <ion-button expand="block" size="small" (click)="showSpare(data.value)"
               *ngIf="data.value.JobType == 'PM' && data.value.Workfinish == 0">เบิกอะไหล่</ion-button>
               <ion-button expand="block" size="small" (click)="showSpareHistory(data.value)" *ngIf="data.value.JobType == 'PM'">
@@ -189,6 +189,8 @@
                 *ngIf="data.value.Workfinish == 1 && data.value.JobType == 'INSTALL' else ice" #ice>ชั่งน้ำแข็ง</ion-button>
                 <ion-button expand="block" color="warning" size="small" (click)="viewpic(item, data.value)"
                 *ngIf="data.value.JobType != 'UNINSTALL' && data.value.isSerial == true else sn" #sn>ดูรูป Serial</ion-button>
+                <ion-button expand="block" color="success" size="small" (click)="logs()"
+              *ngIf="data.value.JobType != 'PM'">Log</ion-button>
                 <ion-button expand="block" color="success" size="small" (click)="click(item, data.value)"
                 *ngIf="data.value.Workfinish == 1 && (data.value.JobType == 'PM' || data.value.JobType == 'UNINSTALL')">รายละเอียด</ion-button> 
                 <ion-button expand="block" color="success" size="small" (click)="click(item, data.value)"

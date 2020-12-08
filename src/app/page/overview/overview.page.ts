@@ -571,7 +571,38 @@ export class OverviewPage implements OnInit {
     this.navCtrl.navigateForward(['joball/listpm/detailofdetaillistpm'], navigationExtras);
   }
 
-
+  scan(data, item)
+  {console.log("data"+data);
+  console.log("item"+item);
+    let params = {
+      installID: item.installId,
+      typedevice: "checkserial"
+    }
+    console.log(params);
+    this.postDataService.postdevice(params).then(statusserial => {
+      console.log(statusserial);      
+      if (statusserial != false) {
+        this.GetPM()
+      }else{
+        
+          let params = { 
+            empID: this.empID,
+            data: data,
+            item: item,
+            type:'PM',      
+          }
+          console.log(params);
+      
+          const navigationExtras: NavigationExtras = {
+            queryParams: {
+              data: JSON.stringify(params)
+            }
+          };
+          this.navCtrl.navigateForward(['/picserial'], navigationExtras);  
+      } 
+    }); 
+  }
+  
   async gopm(barcode) {
     let params = {
       typedevice: 'GetPM',
@@ -599,7 +630,7 @@ export class OverviewPage implements OnInit {
           this.planID = this.productInstall[i].planID;
           this.sparepart = this.productInstall[i].sparepart;
           console.log(this.item);
-          this.GetPM();
+          this.scan(this.data,this.item)
         }
       }
     });
@@ -622,15 +653,15 @@ export class OverviewPage implements OnInit {
   }
 
   GetBarcode() {
-    this.gopm('00030700058');
-    // this.barcodeScanner.scan().then(barcodeData => {
-    //   let barcode = barcodeData
-    //   if (barcode != null || barcode.text != '') {
-    //     this.gopm(barcode.text);
-    //   }
-    // }).catch(err => {
-    //   console.log('Error', err);
-    // });
+    // this.gopm('8859015702278');
+    this.barcodeScanner.scan().then(barcodeData => {
+      let barcode = barcodeData
+      if (barcode != null || barcode.text != '') {
+        this.gopm(barcode.text);
+      }
+    }).catch(err => {
+      console.log('Error', err);
+    });
   }
 
   async fail() {

@@ -78,18 +78,6 @@ export class WorknewPage implements OnInit {
 
   //#region click
   click(data) {
-    console.log(data);
-    let param = {
-      planID: data.planID,
-      empID: this.empid,
-      type: "checkstatus",
-    }
-    console.log(param);
-    
-    this.postDataService.postcheck(param).then(status => {
-      console.log(status);
-
-      if (status == true) {
         let params = {
           item: data,
           type: this.type,
@@ -102,10 +90,7 @@ export class WorknewPage implements OnInit {
         };
         console.log(navigationExtras);
         this.navCtrl.navigateForward(['/joball/listpm/detaillistpm'], navigationExtras);
-      }else{
-        this.status();
-      }
-    });    
+          
     console.log(data);
     
   }

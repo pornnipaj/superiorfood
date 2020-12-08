@@ -9,6 +9,7 @@ import { ModalController } from '@ionic/angular';
 import { ShowimginstallPage } from '../../job/showimginstall/showimginstall.page';
 import { CustomerevaluationPage } from '../detailofdetaillistpm/customerevaluation/customerevaluation.page';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { LogPage } from '../../detaillistpm/log/log.page';
 
 @Component({
   selector: 'app-detaillistpm',
@@ -49,6 +50,7 @@ export class DetaillistpmPage implements OnInit {
   imgbf = false;
   sparetype;
   statusserial;
+  datacm;
   //#endregion
 
   //#region constructor
@@ -66,7 +68,7 @@ export class DetaillistpmPage implements OnInit {
       this.item = this.myId.item
       this.type = this.myId.type
       this.date = this.myId.date
-
+      this.datacm = this.myId.datacm
       this.cusID = this.item.cusID
       this.planID = this.item.planID
       this.workfinish = this.item.WorkFinish
@@ -333,9 +335,10 @@ viewpic(data,item){
   this.navCtrl.navigateForward(['/picserial'], navigationExtras);
 }
 
-  scan(data, item){console.log("data"+data);
+  scan(data, item){
+    console.log("data"+data);
   console.log("item"+item);
-    if (this.type != "INSTALL") {
+    if (this.type == "PM" || this.type == "CM") {
       
     
     let params = {
@@ -383,7 +386,7 @@ viewpic(data,item){
   }
   //#region click
   async click(data, item) {
-    console.log('Data', data);
+    console.log('Data', data); 
     console.log('item', item);
     if (item.Workfinish == 0) {
       if (item.status == "Pending") {
@@ -446,20 +449,20 @@ viewpic(data,item){
             buttons:
               [{
                 text: this.text,
-                handler: data => {
-                  console.log(data);
-                  if (data == this.getworkclosevalue1) {
+                handler: value => {
+                  console.log(value);
+                  if (value == this.getworkclosevalue1) {
                     let params = {
                       planID: item.planID,
                       installID: item.installId,
                       empID: this.empID,
                       jobtype: "saveclose",
-                      workclose: data
+                      workclose: value
                     }
                     console.log(params);
-                    this.postDataService.SaveCaseAll(params).then(data => {
-                      console.log(data);
-                      if (data == true) {
+                    this.postDataService.SaveCaseAll(params).then(result => {
+                      console.log(result);
+                      if (result == true) {
                         this.imgbf = true
                         this.detaillistpm.PlanID = item.planID,
                           this.detaillistpm.jobtype = "SuccessCM"
@@ -480,7 +483,8 @@ viewpic(data,item){
                       }
                     });
                   }
-                  else if (data == this.getworkclosevalue2) {
+                  else if (value == this.getworkclosevalue2) {
+                    this.UpdateInprogresss();
                     let tran = {
                       AssetID: item.AssetID,
                       Serial: item.Serial,
@@ -488,7 +492,7 @@ viewpic(data,item){
                       empID: this.empID,
                       insID: item.installId,
                       type: this.type,
-                      workclose: data
+                      workclose: value
                     }
                     console.log(tran);
 
@@ -515,8 +519,8 @@ viewpic(data,item){
                     this.navCtrl.navigateForward(['joball/listpm/detailofdetaillistpm'], navigationExtras);
                     console.log("sent", navigationExtras);
                   }
-                  else if (data == this.getworkclosevalue3) {
-                    this.popupclose(item, this.getworkclose3, data)
+                  else if (value == this.getworkclosevalue3) {
+                    this.popupclose(item, this.getworkclose3, value)
                   }
                 }
               }]
@@ -659,6 +663,20 @@ viewpic(data,item){
   }
 
   //#endregion
+
+  
+  UpdateInprogresss(){
+    let params = {
+      installID: this.insID,
+      planID: this.planID,
+      typedevice: "UpdateInprogresss",
+      empID: this.empID
+    }
+    console.log(params);
+    this.postDataService.postdevice(params).then(status => {
+      console.log(status);
+    });
+  }
 
   //#region Imgbf
   async Imgbf(item) {
@@ -852,14 +870,14 @@ viewpic(data,item){
   }
   saveAssign(data){
     console.log(data);
-    if (data.date == '' && data.time == '' && data.remark == '') {
+    if (data.date == '' || data.time == '' || data.remark == '') {
       this.alertAssign();
     }else{
       let params = {
         insID: this.insID,
         planID:this.planID,
         typedevice: "SaveAssignCM",
-        EmpID: this.empID,
+        empID: this.empID,
         remark:data.remark,
         time:data.time,
         date:data.date +' '+ data.time
@@ -869,6 +887,7 @@ viewpic(data,item){
         console.log(status);     
         if (status == true) {
           this.alertSuccess();
+          this.type == "CM"
           this.ngOnInit();
         } 
       });
@@ -886,6 +905,22 @@ viewpic(data,item){
     await alert.present();
   }
   //#endregion
+
+  async logs() {
+    const modal = await this.modalController.create({
+      component: LogPage,
+      cssClass: 'my-custom-modal-css-pm',
+      componentProps: {
+        empID: this.empID,
+        insID: this.insID,
+        planID: this.planID,
+      }
+    });
+    modal.onDidDismiss().then(data => {
+      console.log(data);
+    })
+    return await modal.present();
+  }
 
 }
  

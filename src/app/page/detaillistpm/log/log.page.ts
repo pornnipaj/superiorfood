@@ -21,7 +21,11 @@ export class LogPage implements OnInit {
     private postDataService: PostDataService,
     sanitizer: DomSanitizer,
     public alertController: AlertController,) {
-    this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/PartsWaitingList.aspx' + '?empID=' + this.empID + '?insID=' + this.insID + '?planID=' + this.planID);
+    this.empID = this.navParams.data.empID;
+    this.planID = this.navParams.data.planID;
+    console.log(this.empID + " " + this.planID);
+    
+    this.url = sanitizer.bypassSecurityTrustResourceUrl(this.postDataService.apiServer_url + 'Web/TabletsLogs.aspx' + '?empID=' + this.empID + '&planID=' + this.planID);
   }
 
   ngOnInit() {

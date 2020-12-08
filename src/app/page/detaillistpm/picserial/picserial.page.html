@@ -18,7 +18,11 @@
       </ion-fab>
     </div>
       <div class="col-3">
-        <img [src]="picserial" style="width: 100%;padding: 10px;">
+      </div>
+      <div class="col-6">
+        <img *ngIf="picserial != null" [src]="picserial" style="width: 100%;padding: 10px;">
+      </div>
+      <div class="col-3">
       </div>
     </div>
 </ion-content>

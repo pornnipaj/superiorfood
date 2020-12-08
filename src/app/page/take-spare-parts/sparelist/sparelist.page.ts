@@ -57,6 +57,8 @@ async loaddata() {
         this.list = list
         console.log(list);
         if (this.list == []) {
+          this.loads = false;
+        }else{
           this.loads = true;
         }
       });
